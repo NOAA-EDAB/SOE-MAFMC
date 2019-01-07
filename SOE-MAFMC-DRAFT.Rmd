@@ -1,0 +1,151 @@
+---
+title: "State of the Ecosystem: Mid-Atlantic Bight Snowman"
+output:
+    pdf_document:
+      latex_engine: xelatex
+      includes:
+        in_header: latex\header.tex
+      fig_caption: yes
+geometry: "left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm"
+fontsize: 11pt
+mainfont: Garamond
+monofont: Calibri
+header-includes:
+  \usepackage{float}
+  \usepackage{caption}
+---
+
+```{r setup, include=FALSE}
+
+#Default Rmd options
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, dev = "cairo_pdf", fig.width = 8, fig.align = 'center')
+
+#Plotting and data libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ecodata)
+library(here)
+library(kableExtra)
+
+#GIS libraries
+library(sf)
+library(rgdal)
+library(raster)
+library(rnaturalearth)
+
+#Data directories
+image.dir <- here("images")
+gis.dir <- here("gis")
+```
+
+```{r GIS-setup}
+
+#CRS
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+#Coastline shapefile
+coast <- ne_countries(scale = 10,
+                          continent = "North America",
+                          returnclass = "sf") %>%
+             sf::st_transform(crs = crs)
+
+#EPU shapefile
+epu_shp <- readOGR(file.path(gis.dir, "EPU_Extended.shp"), verbose = F) 
+crs(epu_shp) <- crs #Assign CRS
+epu_shp <- as(epu_shp, "sf") #Turn to sf for use with ggplot
+epu_shp <- epu_shp %>% filter(EPU %in% c("MAB","GB","GOM")) #Exclude Scotian Shelf polygon
+
+#Map theme for plotting
+theme_map <- function(...) {
+  theme(
+ # axis.line = element_blank(),
+ # axis.ticks = element_blank(),
+  panel.grid.major = element_line(colour = "white"),
+  panel.grid.minor = element_blank(),
+  plot.background = element_rect(fill = "white", color = NA),
+  panel.background = element_rect(fill = "white", color = NA),
+  legend.background = element_rect(fill = "white", color = NA)
+  )
+}
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -76
+xmax = -66
+ymin = 36
+ymax = 45
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+  
+```
+
+
+
+# `Introduction`
+
+The purpose of this report is to provide ecosystem-scale information for fishery managers to consider along with existing species-scale analyses. An overview of ecosystem relationships as represented by a conceptual model helps place more detailed species-level management in context by highlighting relationships between focal species groups organized by Mid Atlantic Fishery Management Council (MAFMC) Fishery Management Plan (FMP), human activities, environmental drivers, habitats, and key ecological links (Fig. \ref{fig:conceptual-model}). Here, human activities indicators in this report, and key paths connecting components and objectives are highlighted.
+
+```{r conceptual-model, out.height="50%", fig.cap="A conceptual model visualizing relationships among Mid-Atlantic Bight ecosystem components. \\label{conceptual-model}"}
+
+knitr::include_graphics(file.path(image.dir, "SOE_MAB_ConceptMod.png"))
+
+```
+
+# `Executive Summary`
+
+We have organized this report using a proposed set of ecosystem-scale objectives (Table \ref{tab:management-objectives}) derived from US legislation and current management practices. We report indicators at the spatial scale of either the Mid-Atlantic Bight (MAB; \ref{EPU-MAP}) or entire Northeast coast where appropriate. Indicator spatial scale is noted in each section heading (**Do we want to keep this layout?**)
+
+ 
+```{r management-objectives}
+
+mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
+                                                 "Profits","Recreation",
+                                                 "Stability","Social & Cultural",
+                                                 "Biomass","Productivity",
+                                                 "Trophic structure","Habitat"),
+"Indicators reported here" = c("Landings by feeding guild","Revenue by feeding guild",
+                               "Number of anglers and trips; recreational catch",
+                               "Diversity indices (fishery and species)",
+                               "Commercial and recreational reliance; social vulnerability",
+                               "Biomass or abundance by feeding guild from surveys",
+                               "Condition and recruitment of MAFMC managed species",
+                               "Relative biomass of feeding guilds, primary productivity",
+                               "Estimated habitat occurrence and potential wind-energy interactions")) 
+
+knitr::kable(mng_obj,
+      col.names = c("Objective Categories","Indicators reported here"),
+      caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight \\label{management-objectives}") %>% 
+  kable_styling(latex_options = "striped") %>% 
+  row_spec(0, bold = TRUE)
+
+```
+
+We also report single-species status relative to established objectives and references points. The Mid-Atlantic Council (MAFMC) is meeting objectives at the managed species (i.e. stockwide) level for fishing mortality (F) rates for **inline R code** of **here** and biomass levels for **inline R code** of **here** stocks relative to established reference points (Fig. \ref{kobe}).
+
+```{r EPU-MAP, fig.height = 5, fig.cap = "The Northeast Large Marine Ecosystem. \\label{EPU-MAP}"}
+
+#Specify data frame with lat/lon locations for labels
+epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
+                                 "Gulf of Maine",
+                                 "Georges Bank"),
+                         latitude = c(40,42.85,41),
+                         longitude = c(-72.75,-69,-68.5))
+
+#I
+ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = epu_shp, fill = "transparent", size = map.lwd) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  geom_text(data = epu_labels, aes(x = longitude,
+                                    y = latitude,
+                                    label = EPU))+
+  theme_map() +
+  xlab("Longitude") +
+  ylab("Latitude")
+
+```
+
