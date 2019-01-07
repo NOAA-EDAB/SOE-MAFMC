@@ -1,18 +1,17 @@
 ---
-title: "State of the Ecosystem: Mid-Atlantic Bight Snowman"
+title: 'State of the Ecosystem: Mid-Atlantic Bight Snowman'
+geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 output:
-    pdf_document:
-      latex_engine: xelatex
-      includes:
-        in_header: latex\header.tex
-      fig_caption: yes
-geometry: "left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm"
-fontsize: 11pt
-mainfont: Garamond
+  pdf_document:
+    fig_caption: yes
+    includes:
+      in_header: latex\header.tex
+    latex_engine: xelatex
+  html_document:
+    df_print: paged
 monofont: Calibri
-header-includes:
-  \usepackage{float}
-  \usepackage{caption}
+mainfont: Garamond
+fontsize: 11pt
 ---
 
 ```{r setup, include=FALSE}
@@ -27,6 +26,8 @@ library(tidyr)
 library(ecodata)
 library(here)
 library(kableExtra)
+library(ggrepel)
+library(grid)
 
 #GIS libraries
 library(sf)
@@ -69,6 +70,16 @@ theme_map <- function(...) {
   )
 }
 
+theme_ts <- function(...){
+    theme(
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      panel.background = element_blank(),
+      panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+      legend.key = element_blank()
+      )
+}
+
 #Map line parameters
 map.lwd <- 0.4
 
@@ -97,7 +108,7 @@ knitr::include_graphics(file.path(image.dir, "SOE_MAB_ConceptMod.png"))
 
 # `Executive Summary`
 
-We have organized this report using a proposed set of ecosystem-scale objectives (Table \ref{tab:management-objectives}) derived from US legislation and current management practices. We report indicators at the spatial scale of either the Mid-Atlantic Bight (MAB; \ref{EPU-MAP}) or entire Northeast coast where appropriate. Indicator spatial scale is noted in each section heading (**Do we want to keep this layout?**)
+We have organized this report using a proposed set of ecosystem-scale objectives (Table \ref{tab:management-objectives}) derived from US legislation and current management practices. We report indicators at the spatial scale of either the Mid-Atlantic Bight (MAB; Fig. \ref{EPU-MAP}) or entire Northeast coast where appropriate. Indicator spatial scale is noted in each section heading (**Do we want to keep this layout?**)
 
  
 ```{r management-objectives}
@@ -124,7 +135,7 @@ knitr::kable(mng_obj,
 
 ```
 
-We also report single-species status relative to established objectives and references points. The Mid-Atlantic Council (MAFMC) is meeting objectives at the managed species (i.e. stockwide) level for fishing mortality (F) rates for **inline R code** of **here** and biomass levels for **inline R code** of **here** stocks relative to established reference points (Fig. \ref{kobe}).
+We also report single-species status relative to established objectives and references points. The Mid-Atlantic Council (MAFMC) is meeting objectives at the managed species (i.e. stockwide) level for fishing mortality (F) rates for **inline R code** of **here** and biomass levels for **inline R code** of **here** stocks relative to established reference points (Fig. \ref{stock-status}).
 
 ```{r EPU-MAP, fig.height = 5, fig.cap = "The Northeast Large Marine Ecosystem. \\label{EPU-MAP}"}
 
@@ -135,7 +146,7 @@ epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
                          latitude = c(40,42.85,41),
                          longitude = c(-72.75,-69,-68.5))
 
-#I
+#Map of NE LME
 ggplot() +
   geom_sf(data = coast, size = map.lwd) +
   geom_sf(data = epu_shp, fill = "transparent", size = map.lwd) +
@@ -146,6 +157,57 @@ ggplot() +
   theme_map() +
   xlab("Longitude") +
   ylab("Latitude")
+
+```
+
+```{r stock-status, warning=F, fig.cap = "Summary of single species status for MAFMC and jointly managed stocks. \\label{stock-status}"}
+
+#Get data, spread for plotting, and filter
+stock_status <- ecodata::stock_status %>%
+  spread(.,Var,Value) %>% 
+  filter(Council %in% c("MAFMC","Both"))
+
+#Plot constants
+y.max <- 1.75
+x.max <- 2.6
+
+#A dataframe that defines custom legend for stocks with unknown status
+unknown <- data.frame(text = c("Unknown Status", "B. Tilefish", "Longfin",
+                                "Ilex", "N. Goosefish", "S. Goosefish"),
+                      x = rep(0.9*x.max,6),
+                      y = seq(0.95*y.max,1.1,-.1))
+
+#Plotting code
+ggplot(data = stock_status) +
+  geom_vline(xintercept = 1, linetype = "dotted")+
+  geom_vline(xintercept = 0.5, linetype = "dashed")+
+  geom_hline(yintercept = 1, linetype = "dashed") +
+  geom_point(aes(x = B.Bmsy,
+                 y = F.Fmsy,
+                 color = Council)) +
+  geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
+                      y = F.Fmsy,
+                      label = Code,
+                      color = Council), show.legend = FALSE,nudge_y = 0.05, nudge_x = 0.05) +
+  scale_color_manual(values = c("purple","blue"), #Change legend labels for clarity
+                     name = "Managed by",
+                     breaks = c("Both","MAFMC"),
+                     labels = c("MAFMC/NEFMC","MAFMC"))+
+  ylim(0,y.max) +
+  xlim(0,x.max) +
+  geom_text(data = unknown, aes(x = x, y = y, label = text), #Custom legend for unknown stock status
+            size = c(4.75,rep(4,5)),
+            color = c("black",rep("blue",3), rep("purple",2))) +
+  annotate("rect", xmin = 0.8*x.max,
+           xmax = x.max,
+           ymin = 0.64*y.max,
+           ymax = 0.925*y.max,
+           alpha = 0.1) +
+  xlab(expression(~B/B[msy])) +
+  ylab(expression(~F/F[msy])) +
+  theme_ts()
+  
+
 
 ```
 
