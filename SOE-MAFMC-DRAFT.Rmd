@@ -129,8 +129,10 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
 
 knitr::kable(mng_obj,
       col.names = c("Objective Categories","Indicators reported here"),
-      caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight \\label{management-objectives}") %>% 
+      caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight \\label{management-objectives}",
+      align = 'c') %>% 
   kable_styling(latex_options = "striped") %>% 
+  column_spec(c(2), width = c("25em")) %>%
   row_spec(0, bold = TRUE)
 
 ```
@@ -160,6 +162,8 @@ ggplot() +
 
 ```
 
+Executive summary continues here..will make figures and come back to text
+
 ```{r stock-status, warning=F, fig.cap = "Summary of single species status for MAFMC and jointly managed stocks. \\label{stock-status}"}
 
 #Get data, spread for plotting, and filter
@@ -172,10 +176,10 @@ y.max <- 1.75
 x.max <- 2.6
 
 #A dataframe that defines custom legend for stocks with unknown status
-unknown <- data.frame(text = c("Unknown Status", "B. Tilefish", "Longfin",
+unknown <- data.frame(text = c("Unknown Status", "Longfin",
                                 "Ilex", "N. Goosefish", "S. Goosefish"),
-                      x = rep(0.9*x.max,6),
-                      y = seq(0.95*y.max,1.1,-.1))
+                      x = rep(0.9*x.max,5),
+                      y = seq(0.93*y.max,1.2,-.1))
 
 #Plotting code
 ggplot(data = stock_status) +
@@ -196,18 +200,55 @@ ggplot(data = stock_status) +
   ylim(0,y.max) +
   xlim(0,x.max) +
   geom_text(data = unknown, aes(x = x, y = y, label = text), #Custom legend for unknown stock status
-            size = c(4.75,rep(4,5)),
-            color = c("black",rep("blue",3), rep("purple",2))) +
+            size = c(4.75,rep(4,4)),
+            color = c("black",rep("blue",2), rep("purple",2))) +
   annotate("rect", xmin = 0.8*x.max,
            xmax = x.max,
-           ymin = 0.64*y.max,
-           ymax = 0.925*y.max,
+           ymin = 0.65*y.max,
+           ymax = 0.905*y.max,
            alpha = 0.1) +
   xlab(expression(~B/B[msy])) +
   ylab(expression(~F/F[msy])) +
   theme_ts()
-  
+```
 
+
+# `Changes for 2019`
+This section will likely be included as an appendix.
+
+Many metrics have been developed to aggregate species into functional groups. Similar groupings have been developed for previous editions of this report, which we refer to as feeding guilds. We have continued to improve upon these groupings to better reflect ecological reality, and show feeding guilds with key composite species in Table \ref{tab:species-groupings}.
+**FYI these are last year's groupings**
+
+```{r species-groupings, warning=F}
+
+spec_group <- data.frame(Group = c("Apex Predator (Highest trophic level)",
+                                   "Piscivore (Eat fish)",
+                                   "Planktivore (Eat plankton)",
+                                   "Benthivore (Eat bottom dwellers)",
+                                   "Benthos (Filter feeders)"),
+                         N = c(4, 23, 16, 25, 9),
+                         Major.species = c("shark (Unc.), swordfish, yellowfin and bluefin tuna",
+                                            "spiny dogfish, summer flounder, bluefish, striped bass, weakfish,
+                                            monkfish, winter and thorny skates, silver and offshore hake,
+                                            Atlantic cod and halibut, fourspot flounder",
+                                            "Atlantic and blueback herring, alewife, shad, menhaden, cusk,
+                                            Atlantic mackerel, butterfish, blackbelly rosefish, sculpins, lumpfish,
+                                            northern searobin, northern sand lance, northern shortfin and
+                                            longfin squid",
+                                            "black sea bass, scup, tilefish, tautog, cunner, blue crab, red crab,
+                                            lobster, ocean pout, haddock, yellowtail, winter, and witch
+                                            flounders, barndoor skate, American plaice, other crabs",
+                                            "scallops, surfclam, quahog, mussels, whelks, conchs, sand dollars
+                                            and urchins"))
+
+knitr::kable(spec_group,
+      col.names = c("Group","N species", "Major species in the group"),
+      caption = "Mid-Atlantic Bight feeding guilds listed with key species. \\label{species-group}",
+      align = 'c') %>% 
+  kable_styling(latex_options = "striped") %>%
+  column_spec(c(1,2,3), width = c("10em","5em","25em")) %>% 
+  row_spec(0, bold = TRUE)
 
 ```
+
 
