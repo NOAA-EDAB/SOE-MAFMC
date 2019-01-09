@@ -38,6 +38,17 @@ library(rnaturalearth)
 #Data directories
 image.dir <- here("images")
 gis.dir <- here("gis")
+
+#General inline text input for report
+
+#Council
+council <- "Mid-Atlantic Fishery Management Council"
+council_abbr <- "MAFMC"
+
+#Region
+epu <- "Mid-Atlantic Bight"
+epu_abbr <- "MAB"
+
 ```
 
 ```{r GIS-setup}
@@ -57,29 +68,6 @@ crs(epu_shp) <- crs #Assign CRS
 epu_shp <- as(epu_shp, "sf") #Turn to sf for use with ggplot
 epu_shp <- epu_shp %>% filter(EPU %in% c("MAB","GB","GOM")) #Exclude Scotian Shelf polygon
 
-#Map theme for plotting
-theme_map <- function(...) {
-  theme(
- # axis.line = element_blank(),
- # axis.ticks = element_blank(),
-  panel.grid.major = element_line(colour = "white"),
-  panel.grid.minor = element_blank(),
-  plot.background = element_rect(fill = "white", color = NA),
-  panel.background = element_rect(fill = "white", color = NA),
-  legend.background = element_rect(fill = "white", color = NA)
-  )
-}
-
-theme_ts <- function(...){
-    theme(
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      panel.background = element_blank(),
-      panel.border = element_rect(colour = "black", fill=NA, size=0.75),
-      legend.key = element_blank()
-      )
-}
-
 #Map line parameters
 map.lwd <- 0.4
 
@@ -98,7 +86,7 @@ ylims <- c(ymin, ymax)
 
 # `Introduction`
 
-The purpose of this report is to provide ecosystem-scale information for fishery managers to consider along with existing species-scale analyses. An overview of ecosystem relationships as represented by a conceptual model helps place more detailed species-level management in context by highlighting relationships between focal species groups organized by Mid Atlantic Fishery Management Council (MAFMC) Fishery Management Plan (FMP), human activities, environmental drivers, habitats, and key ecological links (Fig. \ref{fig:conceptual-model}). Here, human activities indicators in this report, and key paths connecting components and objectives are highlighted.
+The purpose of this report is to provide ecosystem-scale information for fishery managers to consider along with existing species-scale analyses. An overview of ecosystem relationships as represented by a conceptual model helps place more detailed species-level management in context by highlighting relationships between focal species groups organized by the `r council` (`r council_abbr`) Fishery Management Plan (FMP), human activities, environmental drivers, habitats, and key ecological links (Fig. \ref{fig:conceptual-model}). Here, human activities indicators in this report, and key paths connecting components and objectives are highlighted.
 
 ```{r conceptual-model, out.height="50%", fig.cap="A conceptual model visualizing relationships among Mid-Atlantic Bight ecosystem components. \\label{conceptual-model}"}
 
@@ -108,7 +96,7 @@ knitr::include_graphics(file.path(image.dir, "SOE_MAB_ConceptMod.png"))
 
 # `Executive Summary`
 
-We have organized this report using a proposed set of ecosystem-scale objectives (Table \ref{tab:management-objectives}) derived from US legislation and current management practices. We report indicators at the spatial scale of either the Mid-Atlantic Bight (MAB; Fig. \ref{EPU-MAP}) or entire Northeast coast where appropriate. Indicator spatial scale is noted in each section heading (**Do we want to keep this layout?**)
+We have organized this report using a proposed set of ecosystem-scale objectives (Table \ref{tab:management-objectives}) derived from US legislation and current management practices. We report indicators at the spatial scale of either the `r epu` (`r epu_abbr`; Fig. \ref{EPU-MAP}) or entire Northeast coast where appropriate. Indicator spatial scale is noted in each section heading (**Do we want to keep this layout?**)
 
  
 ```{r management-objectives}
@@ -137,7 +125,7 @@ knitr::kable(mng_obj,
 
 ```
 
-We also report single-species status relative to established objectives and references points. The Mid-Atlantic Council (MAFMC) is meeting objectives at the managed species (i.e. stockwide) level for fishing mortality (F) rates for **inline R code** of **here** and biomass levels for **inline R code** of **here** stocks relative to established reference points (Fig. \ref{stock-status}).
+We also report single-species status relative to established objectives and references points. The `r council_abbr` is meeting objectives at the managed species (i.e. stockwide) level for fishing mortality (F) rates for **inline R code** of **here** and biomass levels for **inline R code** of **here** stocks relative to established reference points (Fig. \ref{stock-status}).
 
 ```{r EPU-MAP, fig.height = 5, fig.cap = "The Northeast Large Marine Ecosystem. \\label{EPU-MAP}"}
 
@@ -242,7 +230,7 @@ spec_group <- data.frame(Group = c("Apex Predator (Highest trophic level)",
                                             and urchins"))
 
 knitr::kable(spec_group,
-      col.names = c("Group","N species", "Major species in the group"),
+      col.names = c("Group","N species", "Major species"),
       caption = "Mid-Atlantic Bight feeding guilds listed with key species. \\label{species-group}",
       align = 'c') %>% 
   kable_styling(latex_options = "striped") %>%
@@ -250,5 +238,17 @@ knitr::kable(spec_group,
   row_spec(0, bold = TRUE)
 
 ```
+
+# `Human Dimensions` 
+
+```{r human-dimension-inline-text}
+latest_landings_data <- 2017
+```
+
+
+Seafood production is a stated goal of optimal fishery management as part of the defintion of "benefits to the nation" under MSA. Both commercial and recreational fishing contributes to seafood production, the latter for personal consumption, and indicators for each of these human activities track management performance against this objective. 
+
+The `r council_abbr` only manages a portion of the total commercial landings that occur in the `r epu_abbr` region. For example, blue crabs represent a substantial portion of category D (Benthivores) landings. Therefore in `r latest_landings_data`, `r council_abbr` managed species accounted for **inline percentage** or the Benthivore landings and **inline percentage** of the revenue generated from those landings in the `r epu_abbr`.
+
 
 
