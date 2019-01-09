@@ -27,6 +27,7 @@ library(ecodata)
 library(here)
 library(kableExtra)
 library(ggrepel)
+library(stringr)
 library(grid)
 
 #GIS libraries
@@ -118,7 +119,8 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
 knitr::kable(mng_obj,
       col.names = c("Objective Categories","Indicators reported here"),
       caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight \\label{management-objectives}",
-      align = 'c') %>% 
+      align = 'c',
+      booktabs = T) %>% 
   kable_styling(latex_options = "striped") %>% 
   column_spec(c(2), width = c("25em")) %>%
   row_spec(0, bold = TRUE)
@@ -232,7 +234,8 @@ spec_group <- data.frame(Group = c("Apex Predator (Highest trophic level)",
 knitr::kable(spec_group,
       col.names = c("Group","N species", "Major species"),
       caption = "Mid-Atlantic Bight feeding guilds listed with key species. \\label{species-group}",
-      align = 'c') %>% 
+      align = 'c',
+      booktabs = T) %>% 
   kable_styling(latex_options = "striped") %>%
   column_spec(c(1,2,3), width = c("10em","5em","25em")) %>% 
   row_spec(0, bold = TRUE)
@@ -242,21 +245,37 @@ knitr::kable(spec_group,
 # `Human Dimensions` 
 
 ```{r human-dimension-inline-text}
-latest_landings_data <- 2017
-feeding_guild <- "Benthivores"
+#Set parameters to generate inline results for human dimensions------------------------------------------
 
-comdat <- ecodata::comdat
-landings_prop <- comdat %>%
-  filter(Var == "Benthivore MAFMC managed species - Landings prop",
-         Time == latest_landings_data,
-         EPU == epu_abbr) %>% 
-  pull(Value)
+#The most recent year landings data are available
+latest_landings_data <- 2017 
 
-revenue_prop <- comdat %>%
-  filter(Var == "Benthivore MAFMC managed species - Revenue prop",
-         Time == latest_landings_data,
-         EPU == epu_abbr) %>% 
-  pull(Value)
+#Pick a species name to find its feeding guild.
+example_common_name <- "BLUE CRAB"
+feeding_guild <- ecodata::species_groupings %>%
+  filter(COMNAME == example_common_name) %>% pull(SOE_18)
+
+#Make lowercase for inclusion in text
+example_common_name <- tolower(example_common_name)
+
+#Create a table of proportion of managed landings and revenues (displayed in next code chunk)
+land_rev_prop <- ecodata::comdat %>%
+  filter(str_detect(Var, "MAFMC managed species - Landings prop|MAFMC managed species - Revenue prop"), #find landings and revenue proportions
+         Time == latest_landings_data, #get latest year
+         EPU == epu_abbr,
+         !str_detect(Var, "Other")) %>% #discard "other" category
+  mutate(Var = ifelse(str_detect(Var,"Revenue"), #Rename to shorten
+                      paste(word(Var), "Revenue"),
+                      paste(word(Var), "Landings"))) %>% 
+  separate(., Var, into = c("Group","Metric")) %>% #Separate and spread for reporting table
+  mutate(Value = round(Value,2)) %>% 
+  spread(.,Metric,Value) %>% 
+  dplyr::select(-Time, -Units, -EPU) %>% 
+  arrange(match(Group, c("Piscivore","Planktivore","Benthivore","Benthos"))) #arrange in chosen order
+
+#Find most recent proportion of landings/revenue for CHOSEN SPECIES
+inline_landings <- land_rev_prop %>% filter(Group == feeding_guild) %>% pull(Landings)
+inline_revenue <- land_rev_prop %>% filter(Group == feeding_guild) %>% pull(Revenue)
 
   
 ```
@@ -264,7 +283,17 @@ revenue_prop <- comdat %>%
 
 Seafood production is a stated goal of optimal fishery management as part of the defintion of "benefits to the nation" under MSA. Both commercial and recreational fishing contributes to seafood production, the latter for personal consumption, and indicators for each of these human activities track management performance against this objective. 
 
-The `r council_abbr` only manages a portion of the total commercial landings that occur in the `r epu_abbr` region. For example, blue crabs represent a substantial portion of category D (Benthivores) landings. Therefore in `r latest_landings_data`, `r council_abbr` managed species accounted for `r round(landings_prop * 100)`% or the Benthivore landings and `r round(revenue_prop * 100)`% of the revenue generated from those landings in the `r epu_abbr`.
+The `r council_abbr` only manages a portion of the total commercial landings that occur in the `r epu_abbr` region. For example, `r example_common_name`s represent a substantial portion of `r feeding_guild` landings. For the year `r latest_landings_data`, `r council_abbr` managed species accounted for `r round(inline_landings * 100)`% of the Benthivore landings and `r round(inline_revenue * 100)`% of the revenue generated from those landings in the `r epu_abbr`. These proportions are highlighted below in Table \ref{tab:land-rev-props}.
 
+```{r land-rev-props}
+
+knitr::kable(land_rev_prop,
+      caption = "Proportion of landings and revenue derived from managed species in the Mid-Atlantic region. \\label{land-rev-props}",
+      align = 'c',
+      booktabs = T) %>% 
+  kable_styling(latex_options = "striped") %>%
+  row_spec(0, bold = TRUE)
+
+```
 
 
