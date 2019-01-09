@@ -243,12 +243,28 @@ knitr::kable(spec_group,
 
 ```{r human-dimension-inline-text}
 latest_landings_data <- 2017
+feeding_guild <- "Benthivores"
+
+comdat <- ecodata::comdat
+landings_prop <- comdat %>%
+  filter(Var == "Benthivore MAFMC managed species - Landings prop",
+         Time == latest_landings_data,
+         EPU == epu_abbr) %>% 
+  pull(Value)
+
+revenue_prop <- comdat %>%
+  filter(Var == "Benthivore MAFMC managed species - Revenue prop",
+         Time == latest_landings_data,
+         EPU == epu_abbr) %>% 
+  pull(Value)
+
+  
 ```
 
 
 Seafood production is a stated goal of optimal fishery management as part of the defintion of "benefits to the nation" under MSA. Both commercial and recreational fishing contributes to seafood production, the latter for personal consumption, and indicators for each of these human activities track management performance against this objective. 
 
-The `r council_abbr` only manages a portion of the total commercial landings that occur in the `r epu_abbr` region. For example, blue crabs represent a substantial portion of category D (Benthivores) landings. Therefore in `r latest_landings_data`, `r council_abbr` managed species accounted for **inline percentage** or the Benthivore landings and **inline percentage** of the revenue generated from those landings in the `r epu_abbr`.
+The `r council_abbr` only manages a portion of the total commercial landings that occur in the `r epu_abbr` region. For example, blue crabs represent a substantial portion of category D (Benthivores) landings. Therefore in `r latest_landings_data`, `r council_abbr` managed species accounted for `r round(landings_prop * 100)`% or the Benthivore landings and `r round(revenue_prop * 100)`% of the revenue generated from those landings in the `r epu_abbr`.
 
 
 
