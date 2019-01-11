@@ -12,6 +12,8 @@ output:
 monofont: Calibri
 mainfont: Garamond
 fontsize: 11pt
+header-includes: 
+   - \usepackage{wrapfig}
 ---
 
 ```{r setup, include=FALSE}
@@ -64,10 +66,8 @@ coast <- ne_countries(scale = 10,
              sf::st_transform(crs = crs)
 
 #EPU shapefile
-epu_shp <- readOGR(file.path(gis.dir, "EPU_Extended.shp"), verbose = F) 
-crs(epu_shp) <- crs #Assign CRS
-epu_shp <- as(epu_shp, "sf") #Turn to sf for use with ggplot
-epu_shp <- epu_shp %>% filter(EPU %in% c("MAB","GB","GOM")) #Exclude Scotian Shelf polygon
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB","GB","GOM"))
 
 #Map line parameters
 map.lwd <- 0.4
@@ -80,7 +80,24 @@ ymax = 45
 xlims <- c(xmin, xmax)
 ylims <- c(ymin, ymax)
 
-  
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
 ```
 
 
@@ -140,7 +157,7 @@ epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
 #Map of NE LME
 ggplot() +
   geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data = epu_shp, fill = "transparent", size = map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
   coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
   geom_text(data = epu_labels, aes(x = longitude,
                                     y = latitude,
@@ -297,7 +314,94 @@ knitr::kable(land_rev_prop,
 
 Figure \ref{comm-landings} shows the removals for human consumption of trophic groups including all species landed in the `r epu_abbr` as well as the subset of those removals managed by the `r council_abbr`. **Elaborate**
 
-```{r comm_landings}
+```{r comm_landings,fig.height=6.5, warning=F, fig.width = 5, fig.cap = "MAFMC managed species landings (red) and total commercial landings (black) by feeding guild. \\label{comm-landings}"}
+#Get data for plotting
+
+#Managed landings
+managed_landings <- ecodata::comdat  %>%
+  filter(str_detect(Var, "MAFMC managed species - Landings weight|JOINT managed species - Landings weight"),
+         !str_detect(Var, "Other"),
+         Time >= 1986,
+         EPU == epu_abbr)
+
+#Total landings
+total_landings <- ecodata::comdat  %>%
+  filter(!str_detect(Var, "managed species"),
+         !str_detect(Var, "Other"),
+         str_detect(Var, "Landings"),
+         Time >= 1986,
+         EPU == epu_abbr)
+
+#Assign feeding guild column for plotting with ggplot
+landings <- rbind(managed_landings, total_landings) %>%
+  mutate(feeding.guild = str_extract(Var,paste(feeding.guilds, collapse = "|")),
+         grouping = factor(ifelse(str_detect(Var,"MAFMC"), "managed",
+                                  ifelse(str_detect(Var, "JOINT"), "joint","total"))),
+         Var = paste(word(feeding.guild), grouping)) %>% 
+  mutate(feeding.guild = factor(feeding.guild, levels = feeding.guilds))
+
+#Add JOINT landings to MANAGED landings and remove
+landings[landings$Var ==  "Piscivore managed",]$Value <- landings[landings$Var ==  "Piscivore managed",]$Value + landings[landings$Var ==  "Piscivore joint",]$Value
+landings <- landings %>%
+  filter(Var != "Piscivore joint")  %>% 
+  group_by(Var) %>% 
+  mutate(hline = mean(Value))
+  
+#Define constants for figure plot
+x.shade.max <- max(landings$Time)
+x.shade.min <- x.shade.max - 9 
+series.col <- c("indianred","orange","purple","black")
+
+#Create dataframe for label locations
+label_loc <- landings %>%
+  group_by(feeding.guild) %>%
+  dplyr::summarise(yloc = max(Value)*0.95,
+                   xloc = min(Time)) %>% 
+  mutate(label = LETTERS[1:5])
+
+#facet names for titles
+facet_names <- list("Apex predators" = expression("Apex predators"),
+                    "Piscivores" = expression("Piscivores"),
+                    "Planktivores" = expression("Planktivores"),
+                    "Benthivores" = expression("Benthivores"),
+                    "Benthos" = expression("Benthos"))
+
+ggplot(data = landings) +
+  
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  
+  #Test for trend and add lines
+  stat_gls(aes(x = Time, y = Value,
+               group = Var, color = stat(col)),
+             alpha = trend.alpha, size = trend.size) +
+  
+  #Add time series
+  geom_line(aes(x = Time, y = Value, color = grouping), size = lwd) +
+  geom_point(aes(x = Time, y = Value, color = grouping), size = pcex) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline,
+                 group = Var,
+                 color = grouping),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+
+  #Facet 
+  facet_wrap(feeding.guild~.,scales = "free_y", labeller = label, ncol = 1) +
+  
+  #Axis and theme
+  scale_y_continuous(labels = function(l){trans = l / 1000})+
+  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
+  ylab(expression("Landings, 10"^3*"metric tons")) +
+  # geom_text(data = label_loc, aes(x = xloc, y = yloc, label = label),
+  #     size = label.size, hjust = hjust.label) +
+  theme_ts() +
+  theme(strip.background = element_blank(),
+        strip.text=element_text(hjust=0))
 
 ```
 
