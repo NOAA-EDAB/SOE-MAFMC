@@ -145,14 +145,14 @@ knitr::kable(mng_obj,
 
 We also report single-species status relative to established objectives and references points. The `r council_abbr` is meeting objectives at the managed species (i.e. stockwide) level for fishing mortality (F) rates for **inline R code** of **here** and biomass levels for **inline R code** of **here** stocks relative to established reference points (Fig. \ref{stock-status}).
 
-```{r EPU-MAP, fig.height = 5, fig.cap = "The Northeast Large Marine Ecosystem. \\label{EPU-MAP}"}
+```{r EPU-MAP, fig.height = 4.25, fig.cap = "The Northeast Large Marine Ecosystem. \\label{EPU-MAP}"}
 
 #Specify data frame with lat/lon locations for labels
 epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
                                  "Gulf of Maine",
                                  "Georges Bank"),
                          latitude = c(40,42.85,41),
-                         longitude = c(-72.75,-69,-68.5))
+                         longitude = c(-72.7,-69,-68.5))
 
 #Map of NE LME
 ggplot() +
@@ -161,7 +161,8 @@ ggplot() +
   coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
   geom_text(data = epu_labels, aes(x = longitude,
                                     y = latitude,
-                                    label = EPU))+
+                                    label = EPU),
+            size = 3.5)+
   theme_map() +
   xlab("Longitude") +
   ylab("Latitude")
@@ -170,7 +171,7 @@ ggplot() +
 
 Executive summary continues here..will make figures and come back to text
 
-```{r stock-status, warning=F, fig.cap = "Summary of single species status for MAFMC and jointly managed stocks. \\label{stock-status}"}
+```{r stock-status, warning=F, fig.cap = "Summary of single species status for MAFMC and jointly managed stocks. \\label{stock-status}", fig.height=4}
 
 #Get data, spread for plotting, and filter
 stock_status <- ecodata::stock_status %>%
@@ -253,7 +254,7 @@ knitr::kable(spec_group,
       align = 'c',
       booktabs = T) %>% 
   kable_styling(latex_options = "striped") %>%
-  column_spec(c(1,2,3), width = c("10em","5em","25em")) %>% 
+  column_spec(c(1,2,3), width = c("8em","5em","25em")) %>% 
   row_spec(0, bold = TRUE)
 
 ```
@@ -397,13 +398,50 @@ ggplot(data = landings) +
   scale_y_continuous(labels = function(l){trans = l / 1000})+
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   ylab(expression("Landings, 10"^3*"metric tons")) +
-  # geom_text(data = label_loc, aes(x = xloc, y = yloc, label = label),
-  #     size = label.size, hjust = hjust.label) +
   theme_ts() +
   theme(strip.background = element_blank(),
         strip.text=element_text(hjust=0))
 
 ```
 
+Total commercial seafood landings from all species and from MAFMC managed species in the MAB indicate total seafood production. Years prior to 1977 included foreign landings, so we began the time series in 1986 **Why not 1978?**. Aggregated landings, as shown in Figure \ref{total-landings}, are drawn from domestic fisheries only. In the Mid-Atlantic, there is a significant recent decrease in seafood landings, indicating high risk to regional domestic seafood production. 
+
+```{r total-landings, fig.cap = "Total commercial seafood landings (black) shown with MAFMC managed seafood landings (red). \\label{total-landings}", fig.width = 6, fig.height = 3}
+total_landings_agg <- total_landings %>%
+  group_by(Time) %>%
+  dplyr::summarise(Value = sum(Value)) %>% 
+  mutate(Var = "Total",hline = mean(Value))
+managed_landings_agg <- managed_landings %>%
+  group_by(Time) %>%
+  dplyr::summarise(Value = sum(Value)) %>% 
+  mutate(Var = "Managed",hline = mean(Value))
+
+landings_agg <- rbind(total_landings_agg, managed_landings_agg)
+
+
+series.col <- c("indianred","purple","black","orange")
+
+
+ggplot(data = landings_agg) + 
+  geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
+  geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
+  stat_gls(aes(x = Time, y = Value,
+               group = Var, color = stat(col)),
+             alpha = trend.alpha, size = trend.size) +
+  scale_y_continuous(labels = function(l){trans = l / 1000})+
+  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ylab(expression("Landings, 10"^3*"metric tons")) +
+
+  geom_hline(aes(yintercept = hline,
+               
+               color = Var),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts()
+
+```
 
 
