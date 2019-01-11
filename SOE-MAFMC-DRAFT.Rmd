@@ -84,7 +84,6 @@ ylims <- c(ymin, ymax)
 ```
 
 
-
 # `Introduction`
 
 The purpose of this report is to provide ecosystem-scale information for fishery managers to consider along with existing species-scale analyses. An overview of ecosystem relationships as represented by a conceptual model helps place more detailed species-level management in context by highlighting relationships between focal species groups organized by the `r council` (`r council_abbr`) Fishery Management Plan (FMP), human activities, environmental drivers, habitats, and key ecological links (Fig. \ref{fig:conceptual-model}). Here, human activities indicators in this report, and key paths connecting components and objectives are highlighted.
@@ -248,7 +247,7 @@ knitr::kable(spec_group,
 #Set parameters to generate inline results for human dimensions------------------------------------------
 
 #The most recent year landings data are available
-latest_landings_data <- 2017 
+latest_landings_data <- 2015
 
 #Pick a species name to find its feeding guild.
 example_common_name <- "BLUE CRAB"
@@ -295,5 +294,12 @@ knitr::kable(land_rev_prop,
   row_spec(0, bold = TRUE)
 
 ```
+
+Figure \ref{comm-landings} shows the removals for human consumption of trophic groups including all species landed in the `r epu_abbr` as well as the subset of those removals managed by the `r council_abbr`. **Elaborate**
+
+```{r comm_landings}
+
+```
+
 
 
