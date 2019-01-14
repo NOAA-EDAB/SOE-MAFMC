@@ -626,7 +626,8 @@ comm_div <- ecodata::commercial_div %>%
   group_by(Var) %>% 
   mutate(hline = mean(Value))
 
-series.col = c("black")
+
+series.col = c("black","purple")
 
 fleet_count <- comm_div %>% 
   filter(Var == "Fleet count") %>% 
@@ -707,6 +708,7 @@ comm_div %>%
 ```
 
 ## Recreational Opportunities (`r region` states)
+
 
 Providing recreational opportunities is a stated foal of optimal fishery management as part of the definition of "benefits to the nation" under MSA. Recreational fishing is important in the `r region` region, with *many coastal communities having high recreational dependence.* 
 
