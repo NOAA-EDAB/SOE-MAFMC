@@ -19,7 +19,11 @@ header-includes:
 ```{r setup, include=FALSE}
 
 #Default Rmd options
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, dev = "cairo_pdf", fig.width = 8, fig.align = 'center')
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      dev = "cairo_pdf",
+                      fig.align = 'center',
+                      eval.after = "fig.cap") #allows for inserting R code into captions
 
 #Plotting and data libraries
 library(ggplot2)
@@ -48,9 +52,11 @@ gis.dir <- here("gis")
 council <- "Mid-Atlantic Fishery Management Council"
 council_abbr <- "MAFMC"
 
-#Region
+#Region identifiers
 epu <- "Mid-Atlantic Bight"
 epu_abbr <- "MAB"
+region <- "Mid-Atlantic"
+region_abbr <- substring(epu_abbr,1,2) #Some commercial data organized by "MA" or "NE" regions, not by EPU 
 
 ```
 
@@ -105,9 +111,13 @@ label <- function(variable,value){
 
 The purpose of this report is to provide ecosystem-scale information for fishery managers to consider along with existing species-scale analyses. An overview of ecosystem relationships as represented by a conceptual model helps place more detailed species-level management in context by highlighting relationships between focal species groups organized by the `r council` (`r council_abbr`) Fishery Management Plan (FMP), human activities, environmental drivers, habitats, and key ecological links (Fig. \ref{fig:conceptual-model}). Here, human activities indicators in this report, and key paths connecting components and objectives are highlighted.
 
-```{r conceptual-model, out.height="50%", fig.cap="A conceptual model visualizing relationships among Mid-Atlantic Bight ecosystem components. \\label{conceptual-model}"}
+```{r conceptual-model, out.height="50%", fig.cap=paste0("A conceptual model visualizing relationships among ",epu," ecosystem components. \\label{conceptual-model}")}
 
-knitr::include_graphics(file.path(image.dir, "SOE_MAB_ConceptMod.png"))
+if (epu_abbr == "MAB"){
+  knitr::include_graphics(file.path(image.dir, "SOE_MAB_ConceptMod.png"))
+} else {
+  knitr::include_graphics(file.path(image.dir, 'ne_conceptual_model.pdf'))
+}
 
 ```
 
@@ -145,7 +155,7 @@ knitr::kable(mng_obj,
 
 We also report single-species status relative to established objectives and references points. The `r council_abbr` is meeting objectives at the managed species (i.e. stockwide) level for fishing mortality (F) rates for **inline R code** of **here** and biomass levels for **inline R code** of **here** stocks relative to established reference points (Fig. \ref{stock-status}).
 
-```{r EPU-MAP, fig.height = 4.25, fig.cap = "The Northeast Large Marine Ecosystem. \\label{EPU-MAP}"}
+```{r EPU-MAP, fig.cap = "The Northeast Large Marine Ecosystem. \\label{EPU-MAP}", fig.width = 3.4, fig.asp = 1.25}
 
 #Specify data frame with lat/lon locations for labels
 epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
@@ -162,7 +172,7 @@ ggplot() +
   geom_text(data = epu_labels, aes(x = longitude,
                                     y = latitude,
                                     label = EPU),
-            size = 3.5)+
+            size = 3.2)+
   theme_map() +
   xlab("Longitude") +
   ylab("Latitude")
@@ -171,22 +181,27 @@ ggplot() +
 
 Executive summary continues here..will make figures and come back to text
 
-```{r stock-status, warning=F, fig.cap = "Summary of single species status for MAFMC and jointly managed stocks. \\label{stock-status}", fig.height=4}
+```{r stock-status, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks. \\label{stock-status}"), fig.width = 7.5, fig.asp = 0.5}
 
 #Get data, spread for plotting, and filter
 stock_status <- ecodata::stock_status %>%
   spread(.,Var,Value) %>% 
-  filter(Council %in% c("MAFMC","Both"))
+  filter(Council %in% c(council_abbr,"Both"))
 
 #Plot constants
 y.max <- 1.75
 x.max <- 2.6
 
 #A dataframe that defines custom legend for stocks with unknown status
-unknown <- data.frame(text = c("Unknown Status", "Longfin",
+if (council_abbr == "MAFMC"){
+  unknown <- data.frame(text = c("Unknown Status", "Longfin",
                                 "Ilex", "N. Goosefish", "S. Goosefish"),
                       x = rep(0.9*x.max,5),
                       y = seq(0.93*y.max,1.2,-.1))
+} else {
+  unknown <- NULL
+}
+
 
 #Plotting code
 ggplot(data = stock_status) +
@@ -224,7 +239,7 @@ ggplot(data = stock_status) +
 This section will likely be included as an appendix.
 
 Many metrics have been developed to aggregate species into functional groups. Similar groupings have been developed for previous editions of this report, which we refer to as feeding guilds. We have continued to improve upon these groupings to better reflect ecological reality, and show feeding guilds with key composite species in Table \ref{tab:species-groupings}.
-**FYI these are last year's groupings**
+**FYI these are last year's groupings and specific to MAB**
 
 ```{r species-groupings, warning=F}
 
@@ -265,7 +280,7 @@ knitr::kable(spec_group,
 #Set parameters to generate inline results for human dimensions------------------------------------------
 
 #The most recent year landings data are available
-latest_landings_data <- 2015
+latest_landings_data <- 2017
 
 #Pick a species name to find its feeding guild.
 example_common_name <- "BLUE CRAB"
@@ -277,7 +292,7 @@ example_common_name <- tolower(example_common_name)
 
 #Create a table of proportion of managed landings and revenues (displayed in next code chunk)
 land_rev_prop <- ecodata::comdat %>%
-  filter(str_detect(Var, "MAFMC managed species - Landings prop|MAFMC managed species - Revenue prop"), #find landings and revenue proportions
+  filter(str_detect(Var, paste0(council_abbr," managed species - Landings prop|",council_abbr," managed species - Revenue prop")), #find landings and revenue proportions
          Time == latest_landings_data, #get latest year
          EPU == epu_abbr,
          !str_detect(Var, "Other")) %>% #discard "other" category
@@ -297,7 +312,7 @@ inline_revenue <- land_rev_prop %>% filter(Group == feeding_guild) %>% pull(Reve
   
 ```
 
-## `Seafood production (MAB)`
+## Seafood production (`r epu_abbr`)
 
 Seafood production is a stated goal of optimal fishery management as part of the defintion of "benefits to the nation" under MSA. Both commercial and recreational fishing contributes to seafood production, the latter for personal consumption, and indicators for each of these human activities track management performance against this objective. 
 
@@ -306,7 +321,7 @@ The `r council_abbr` only manages a portion of the total commercial landings tha
 ```{r land-rev-props}
 
 knitr::kable(land_rev_prop,
-      caption = "Proportion of landings and revenue derived from managed species in the Mid-Atlantic region. \\label{land-rev-props}",
+      caption = paste0("Proportion of landings and revenue derived from managed species in the ",region," region. \\label{land-rev-props}"),
       align = 'c',
       booktabs = T) %>% 
   kable_styling(latex_options = "striped") %>%
@@ -314,14 +329,14 @@ knitr::kable(land_rev_prop,
 
 ```
 
-Figure \ref{comm-landings} shows the removals for human consumption of trophic groups including all species landed in the `r epu_abbr` as well as the subset of those removals managed by the `r council_abbr`. **Elaborate**
+Figure \ref{comm-landings} shows the removals for human consumption of trophic groups including all species landed in the `r epu_abbr` as well as the subset of those removals managed by the `r council_abbr`. 
 
-```{r comm_landings,fig.height=6.5, warning=F, fig.width = 5, fig.cap = "MAFMC managed species landings (red) and total commercial landings (black) by feeding guild. \\label{comm-landings}"}
+```{r comm_landings,fig.height=6.5, warning=F, fig.width = 5, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild. \\label{comm-landings}")}
 #Get data for plotting
 
 #Managed landings
 managed_landings <- ecodata::comdat  %>%
-  filter(str_detect(Var, "MAFMC managed species - Landings weight|JOINT managed species - Landings weight"),
+  filter(str_detect(Var, paste0(council_abbr," managed species - Landings weight|JOINT managed species - Landings weight")),
          !str_detect(Var, "Other"),
          Time >= 1986,
          EPU == epu_abbr)
@@ -337,7 +352,7 @@ total_landings <- ecodata::comdat  %>%
 #Assign feeding guild column for plotting with ggplot
 landings <- rbind(managed_landings, total_landings) %>%
   mutate(feeding.guild = str_extract(Var,paste(feeding.guilds, collapse = "|")),
-         grouping = factor(ifelse(str_detect(Var,"MAFMC"), "managed",
+         grouping = factor(ifelse(str_detect(Var,council_abbr), "managed",
                                   ifelse(str_detect(Var, "JOINT"), "joint","total"))),
          Var = paste(word(feeding.guild), grouping)) %>% 
   mutate(feeding.guild = factor(feeding.guild, levels = feeding.guilds))
@@ -405,9 +420,9 @@ ggplot(data = landings) +
 
 ```
 
-Total commercial seafood landings from all species and from MAFMC managed species in the MAB indicate total seafood production. Years prior to 1977 included foreign landings, so we began the time series in 1986 **Why not 1978?**. Aggregated landings, as shown in Figure \ref{total-landings}, are drawn from domestic fisheries only. In the Mid-Atlantic, there has been a significant recent decrease in seafood landings, indicating high risk to regional domestic seafood production. 
+Total commercial seafood landings from all species and from `r council_abbr` managed species in the `r epu_abbr` indicate total seafood production. Years prior to 1977 included foreign landings, so we began the time series in 1986 **Why not 1978?**. Aggregated landings, as shown in Figure \ref{total-landings}, are drawn from domestic fisheries only. In the `r region`, *there has been a significant recent decrease in seafood landings, indicating high risk to regional domestic seafood production* **Specific to MAB**. 
 
-```{r total-landings, fig.cap = "Total commercial seafood landings (black) shown with MAFMC managed seafood landings (red). \\label{total-landings}", fig.width = 6, fig.height = 3}
+```{r total-landings, fig.cap = paste0("Total commercial seafood landings (black) shown with ",region," managed seafood landings (red). \\label{total-landings}"), fig.width = 5, fig.asp = 0.45}
 total_landings_agg <- total_landings %>%
   group_by(Time) %>%
   dplyr::summarise(Value = sum(Value)) %>% 
@@ -423,7 +438,13 @@ landings_agg <- rbind(total_landings_agg, managed_landings_agg)
 series.col <- c("indianred","purple","black","orange")
 
 
-ggplot(data = landings_agg) +   stat_gls(aes(x = Time, y = Value,
+ggplot(data = landings_agg)+
+  
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  stat_gls(aes(x = Time, y = Value,
                group = Var, color = stat(col)),
              alpha = trend.alpha, size = trend.size) +
   geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
@@ -445,20 +466,23 @@ ggplot(data = landings_agg) +   stat_gls(aes(x = Time, y = Value,
 
 ```
 
-Recreational seafood landings (as opposed to total landings that include catch and release shown by other indicators) were used to assess food use of recreationally caught fish in the Mid-Atlantic. These data are shown in Figure \ref{rec-landings}, where a negative long-term trend is driven by high catch prior to 1990. Recreational harvest remains near the long-term mean after 1990, and is likely increasing. 
+Recreational seafood landings (as opposed to total landings that include catch and release shown by other indicators) were used to assess food use of recreationally caught fish in the `r region`. These data are shown in Figure \ref{rec-landings}, *where a negative long-term trend is driven by high catch prior to 1990. Recreational harvest remains near the long-term mean after 1990, and is likely increasing.* **Specific to MAB**
 
-```{r rec-landings, fig.cap = "Total recreational seafood harvest in the Mid-Atlantic region. \\label{rec-landings}", fig.width = 6, fig.height = 3}
-
-region <- substring(epu_abbr,1,2)
+```{r rec-landings, fig.cap = paste0("Total recreational seafood harvest in the ",region," region. \\label{rec-landings}"), fig.width = 5, fig.asp = 0.45}
 
 landings_rec <- ecodata::recdat %>% 
-  filter(EPU == region,
+  filter(EPU == region_abbr,
          Var == "Recreational Seafood") %>% 
   mutate(hline = mean(Value))
 
 series.col <- c("purple","black")
 
-ggplot(data = landings_rec) +
+ggplot(data = landings_rec)+
+  
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
   stat_gls(aes(x = Time, y = Value,
                group = Var, color = stat(col)),
              alpha = trend.alpha, size = trend.size) +
@@ -481,11 +505,11 @@ ggplot(data = landings_rec) +
 
 ```
 
-# Commercial Fishery Revenue (MAB)
+## `Commercial Fishery Revenue (`r epu_abbr`)`
 
-This indicator links the human activity of commercial fishing to the profits objective. The Bennet Indicator, as shown in Figure \ref{bennet}, shows changes in revenue as a composite of price and volume of catch in the Mid-Atlantic. For example, in the year 2010, the volume of catch relative to the long-term mean was low, and price was relatively high. Combined, these data indicate the "pull" of catch price and volume on revenue changes. Here we show the indicator for all species caught in the Mid-Atlantic, and a feeding guild level breakdown of these data is available in the Appendix. 
+This indicator links the human activity of commercial fishing to the profits objective. The Bennet Indicator, as shown in Figure \ref{bennet}, shows changes in revenue as a composite of price and volume of catch in the `r region`. For example, in the year 2010, the volume of catch relative to the long-term mean was low, and price was relatively high. Combined, these data indicate the "pull" of catch price and volume on revenue changes. Here we show the indicator for all species caught in the `r region`, and a feeding guild level breakdown of these data is available in the Appendix. 
 
-```{r bennet, fig.cap = "Revenue change from the long-term mean in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight. \\label{bennet}", fig.height = 3}
+```{r bennet, fig.cap = paste0("Revenue change from the long-term mean in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,". \\label{bennet}"), fig.height = 3}
 
 #Filter data into two dataframes for plotting
 indicators <- ecodata::bennet %>% 
@@ -507,6 +531,12 @@ y.lim <- c(-450,450)
 
 #plot
 ggplot(data = indicators)+
+  
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf)+
+  
   geom_bar(aes(x=Time, y= Value, fill = Var), stat="identity")+
   scale_fill_manual(name = "Indicators", values = ind_fill) +
   geom_line(data = revchange, aes(x = Time, y = Value, colour="$"))+
@@ -520,11 +550,11 @@ ggplot(data = indicators)+
 
 ```
 
-# `Ecosystem-wide and Managed Species Total Revenue (MAB)`
+## Ecosystem-wide and Managed Species Total Revenue (`r epu_abbr`)
 
 **Should "other" landings be included here?**
 **Note no MAFMC managed apex predators**
-```{r comm-revenue, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red). \\label{comm-rev}", fig.width = 6, fig.height = 3}
+```{r comm-revenue, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red). \\label{comm-rev}", fig.width = 5, fig.asp = 0.45}
 
 #Filtering and aggregation step
 rev_agg <- ecodata::comdat %>% 
@@ -542,20 +572,27 @@ rev_agg <- ecodata::comdat %>%
 series.col <- c("indianred","orange","purple","black")
 
 #Plotting
-ggplot(data = rev_agg) +  
+ggplot(data = rev_agg) +
+  
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf)+  
+  
+  #lines
   stat_gls(aes(x = Time, y = Total,
                group = Status, color = stat(col)),
              alpha = trend.alpha, size = trend.size) +
   geom_line(aes(x = Time, y = Total, color = Status), size = lwd) +
   geom_point(aes(x = Time, y = Total, color = Status), size = pcex) +
 
+  #axes
   scale_y_continuous(labels = function(l){trans = l / 1000000})+
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   scale_color_manual(values = series.col, aesthetics = "color")+
   guides(color = FALSE) +
   ylab(expression("Revenue (10"^6*"USD)")) +
   geom_hline(aes(yintercept = hline,
-               
                color = Status),
            size = hline.size,
            alpha = hline.alpha,
@@ -574,4 +611,105 @@ max_rev_perc <- max(rev_inline)
 ```
 
 
-Average total revenue from MAFMC managed species ranges from `r min_rev_perc`-`r max_rev_perc`% of total revenue from commercial fishing in the Mid-Atlantic region over the last 5 years (Fig. \ref{comm-rev}).
+Average total revenue from `r council_abbr` managed species ranges from `r min_rev_perc`-`r max_rev_perc`% of total revenue from commercial fishing in the `r region` region over the last 5 years (Fig. \ref{comm-rev}).
+
+## Commercial Fleet Diversity (coastwide, `r region` permits)
+
+Maintaining diversity can provide the capacity to adapt to change at the ecosystem level for dependent fishing communities, and can address objectives related to stability. Diversity estimates have been developed for fleets and species landed by vessels with `r region` permits (Fig. \ref{comm-div}). A fleet is defined here as the combination of gear code (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel length category (<30 ft., 30-50 ft., 50 to 75 ft., and >75 ft.). The metric presented assesses the diversity of the overarching fleet, in terms of all revenue generated. 
+
+A declining trend in diversity indicates reliance on either a smaller number of resources, or a less diverse pool of resources. The diversity metric alone cannot distinguish whether specialization (by choice) or stovepiping (choices constrained) is occurring in the Northeast Large Marine Ecosystem. 
+
+
+```{r comm-div, fig.width = 5, fig.asp = .7, fig.cap = paste0("Fleet diversity (A) and fleet count (B) in the ",region,". \\label{comm-div}")}
+comm_div <- ecodata::commercial_div %>% 
+  filter(EPU == region_abbr) %>% 
+  group_by(Var) %>% 
+  mutate(hline = mean(Value))
+
+series.col = c("black","purple")
+
+fleet_count <- comm_div %>% 
+  filter(Var == "Fleet count") %>% 
+  ggplot() + 
+ #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  stat_gls(aes(x = Time, y = Value,
+               group = Var, color = stat(col)),
+             alpha = trend.alpha, size = trend.size) +
+  geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
+  geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
+
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ylab(expression("Fleet count (n)")) +
+  xlab("")+
+  geom_hline(aes(yintercept = hline,
+               color = Var),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts()
+
+fleet_div <- comm_div %>% 
+  filter(Var == "Fleet diversity in revenue") %>% 
+  ggplot() + 
+ #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  stat_gls(aes(x = Time, y = Value,
+               group = Var, color = stat(col)),
+             alpha = trend.alpha, size = trend.size) +
+  geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
+  geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
+
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ylab(expression("Fleet diversity")) +
+
+  geom_hline(aes(yintercept = hline,
+               color = Var),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+ theme_ts()
+
+cowplot::plot_grid(fleet_count, fleet_div, ncol = 1, align = "hv")
+
+```
+
+Another diversity index is the average effective Shannon index for species revenue at the permit level (Fig. \ref{spec-div}), for all permits landing any amount of `r council_abbr` FMP species within a year **(including Monkfish and Spiny Dogfish)**. Although the exact value of effective Shannon index is relatively uninformative, the major change in diversity seems to have occurred in the late 1990s, with much of the recent ndex being relatively stable. 
+
+```{r spec-div, fig.width = 5, fig.asp = 0.45, fig.cap = paste0("Species revenue diversity in the ",region,". \\label{spec-div}")}
+comm_div %>% 
+  filter(Var == "Permit revenue species diversity") %>% 
+  ggplot() + 
+ #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  stat_gls(aes(x = Time, y = Value,
+               group = Var, color = stat(col)),
+             alpha = trend.alpha, size = trend.size) +
+  geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
+  geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
+
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ylab(expression("Species diversity")) +
+  geom_hline(aes(yintercept = hline,
+               color = Var),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+ theme_ts()
+```
+
+## Recreational Opportunities (`r region` states)
+
+Providing recreational opportunities is a stated foal of optimal fishery management as part of the definition of "benefits to the nation" under MSA. Recreational fishing is important in the `r region` region...
