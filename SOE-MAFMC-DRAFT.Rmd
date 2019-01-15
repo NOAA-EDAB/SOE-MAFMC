@@ -35,6 +35,7 @@ library(kableExtra)
 library(ggrepel)
 library(stringr)
 library(grid)
+library(treemapify)
 
 #GIS libraries
 library(sf)
@@ -70,6 +71,11 @@ coast <- ne_countries(scale = 10,
                           continent = "North America",
                           returnclass = "sf") %>%
              sf::st_transform(crs = crs)
+
+#State polygons
+ne_states <- ne_states(country = "united states of america",
+                                      returnclass = "sf") %>%
+  sf::st_transform(crs = crs)
 
 #EPU shapefile
 epu_sf <- ecodata::epu_sf %>% 
@@ -808,7 +814,7 @@ rec_anglers <- recdat %>%
 cowplot::plot_grid(rec_effort, rec_div, rec_anglers, ncol = 1, align = "hv")
 ```
 
-Mariculture (Mid-Atlantic states)
+## Mariculture (Mid-Atlantic states)
 <!-- This section is hard coded as it is not included in the New England report -->
 
 Aquaculture indicators address both seafood production and possibly habitat objectives in that planted bivalves such as oysters provide both habitat structure and contribute locally to improved water quality at high densities. Individual states collect and report aquaculture data by surveying commercial farmers, and at this time, data in the Mid-Atlantic are available for Virginia, Maryland, and New Jersey (Fig. \ref{oyster-aqua}). From the reported data, Virginia is the largest producer of oysters, although oyster aquaculture is increasing overall throughout the Mid-Atlantic.
@@ -860,3 +866,189 @@ ggplot() +
 
 ```
 
+## Water Quality
+
+This section will include the water quality and nursey habitat indicators for Chesapeake Bay
+
+## Social
+
+```{r community-reliance, fig.cap = paste0("Fishing community reliance and engagement in commercial fisheries by state in the ",region,", where circle color reflects community reliance and engagement rankings (least reliant/engaged = 0; most reliant/engaged = 4), and circle size shows the percentage of sampled communities meeting different ranks. \\label{comm-eng-rel}"), fig.width = 8, fig.asp = 0.45, warning=F}
+# Set lat/lon window for maps
+xmin = -78
+xmax = -70
+ymin = 35
+ymax = 42
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+
+
+int_join <- data.frame(STATEABBR = rep(unique(ecodata::eng_rel[ecodata::eng_rel$REGION == region,]$STATEABBR), each = 5),
+                       Var = factor(0:4))
+
+
+# eng_rel <- ecodata::eng_rel %>%
+#  filter(PRIMARY_LATITUDE < 42) %>%
+#   mutate(ComEng_NE16_ct = as.numeric.factor(ComEng_NE16_ct)) %>%
+#   mutate(char_cat = ifelse(ComEng_NE16_ct > 2, "C",
+#                            ifelse(ComEng_NE16_ct <= 2 & ComEng_NE16_ct > 1,"B","A")),
+#          num_cat = ifelse(ComRel_NE16_ct > 2, 3,
+#                           ifelse(ComRel_NE16_ct <= 2 & ComRel_NE16_ct >1,2,1))) %>%
+#   unite(.,cat,c("char_cat","num_cat"), sep = "") %>%
+#   dplyr::rename(Latitude = PRIMARY_LATITUDE,
+#                 Longitude = PRIMARY_LONGITUDE) %>%
+#   group_by(STATEABBR, cat) %>% 
+#   summarise(n = n()) %>% 
+#   mutate(freq = n / sum(n)) %>% 
+#   filter(STATEABBR != "PA") %>% 
+#   as.data.frame()  %>% 
+#   right_join(.,int_join, by = c("STATEABBR","cat")) %>% 
+#   mutate(freq = plyr::mapvalues(freq, from = NA, to = 0),
+#          n = plyr::mapvalues(n, from = NA, to = 0))
+
+
+
+rel <- ecodata::eng_rel %>% 
+  filter(REGION == region) %>% 
+  mutate(ComRel_NE16_ct = factor(ComRel_NE16_ct)) %>%
+  dplyr::rename(Latitude = PRIMARY_LATITUDE,
+                Longitude = PRIMARY_LONGITUDE,
+                Var = ComRel_NE16_ct) %>% 
+  group_by(STATEABBR, Var) %>% 
+  dplyr::summarise(n = n()) %>% 
+  right_join(.,int_join,by = c("STATEABBR","Var")) %>% 
+  as.data.frame()
+
+eng <- ecodata::eng_rel %>% 
+  filter(REGION == region) %>% 
+  dplyr::rename(Latitude = PRIMARY_LATITUDE,
+                Longitude = PRIMARY_LONGITUDE,
+                Var = ComEng_NE16_ct) %>% 
+  group_by(STATEABBR, Var) %>% 
+  dplyr::summarise(n = n()) %>% 
+  right_join(.,int_join,by = c("STATEABBR","Var")) %>% 
+  as.data.frame()
+  
+
+eng_rel <- rel %>%
+  left_join(.,eng, by = c("STATEABBR","Var")) %>% 
+  dplyr::rename(Reliance = n.x, Engagement = n.y) %>% 
+  replace_na(list(Reliance = 0, Engagement = 0)) %>% 
+  gather(.,Class,Value,-STATEABBR,-Var) %>%
+  group_by(STATEABBR , Class) %>%
+  mutate(freq = Value / sum(Value))
+
+biv_col <- c("4" = "#ca0020", "3" = "#f4a582", "2" = "grey", "1" = "#92c5de", "0" = "#0571b0")
+
+eng_rel %>% 
+ggplot() +
+#  geom_line(aes(x = Class, y = Value, group = Var, color = Var)) +
+  geom_point(aes(x = Class, y = Var, size = freq, color = Var)) +
+ scale_size(name = "Rank\nFrequency")+
+  facet_wrap(.~STATEABBR, ncol = 4) +
+  guides(color = guide_legend(override.aes = list(size = 5),
+                              reverse = T)) + 
+  scale_color_manual(name = "Ranking", values = biv_col) +
+  # scale_x_discrete(expand = c(0.05, 0.05))+
+  theme_ts() +
+  theme(legend.key.size = unit(1,"mm")) +
+  ylab("Community Ranking")+
+  theme(strip.background = element_blank(),
+        strip.text=element_text(),
+        legend.position = c(1, 0), 
+         legend.justification = c(1, 0.1),
+        legend.box = "horizontal",legend.background = element_rect(color="grey",size = 0.05)) +
+  ggtitle("Commercial Fishing Community Reliance and Engagement")
+
+# biv_col <- c(A1 = "#e8e8e8", B1 = "#ace4e4", C1 = "#5ac8c8",
+#              A2 = "#dfb0d6", B2 = "#a5add3", C2 = "#5698b9",
+#              A3 = "#be64ac", B3 = "#8c62aa", C3 = "#3b4994")
+
+# biv_df <- data.frame()
+# r <- raster(xmn = -73.5, xmx = -71.4, ymn = 36, ymx = 37.8, nrows = 3, ncols = 3)
+# r[] <- 1:9
+
+
+
+# ggplot(data = eng_rel, aes(area = n, fill = cat)) +
+#   geom_treemap(layout = "fixed") +
+#   facet_wrap(STATEABBR~., ncol = 5) +
+#   scale_fill_manual(values = biv_col)
+# 
+# glm(ComEng_NE16_ct ~ ComRel_NE16_ct, data = eng_rel, family = "poisson")
+
+# biv_col <- c(A1 = "#e8e8e8", B1 = "#b5c0da", C1 = "#6c83b5",
+#              A2 = "#b8d6be", B2 = "#90b2b3", C2 = "#567994",
+#              A3 = "#73ae80", B3 = "#5a9178", C3 = "#2a5a5b")
+
+# plot(r, col = biv_col, legend = F, bty = "n", axes = F, yaxt = "n", frame.plot = F,
+#      xaxt='n', add = T)
+
+
+# ggplot() +
+#   geom_sf(data = coast, size = map.lwd) +
+#   geom_sf(data  = ne_states, size = map.lwd) +
+#   coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+#   #geom_point(data = eng_rel, aes(x = Longitude, y = Latitude, color = cat)) +
+#   scale_color_manual(values = biv_col) +
+#   theme_map() +
+#   xlab("Longitude") +
+#   ylab("Latitude")
+```
+
+
+```{r rec-reliance, fig.cap = paste0("Fishing community reliance and engagement in commercial fisheries by state in the ",region,", where circle color reflects community reliance and engagement rankings (least reliant/engaged = 0; most reliant/engaged = 4), and circle size shows the percentage of sampled communities meeting different ranks. \\label{rec-eng-rel}"), fig.width = 8, fig.asp = 0.45, warning=F}
+
+rel <- ecodata::eng_rel %>% 
+  filter(REGION == region) %>% 
+  mutate(RecRel_NE16_ct = factor(RecRel_NE16_ct)) %>%
+  dplyr::rename(Latitude = PRIMARY_LATITUDE,
+                Longitude = PRIMARY_LONGITUDE,
+                Var = RecRel_NE16_ct) %>% 
+  group_by(STATEABBR, Var) %>% 
+  dplyr::summarise(n = n()) %>% 
+  right_join(.,int_join,by = c("STATEABBR","Var")) %>% 
+  as.data.frame()
+
+eng <- ecodata::eng_rel %>% 
+  filter(REGION == region) %>% 
+  mutate(RecEng_NE16_ct = factor(RecEng_NE16_ct)) %>%
+  dplyr::rename(Latitude = PRIMARY_LATITUDE,
+                Longitude = PRIMARY_LONGITUDE,
+                Var = RecEng_NE16_ct) %>% 
+  group_by(STATEABBR, Var) %>% 
+  dplyr::summarise(n = n()) %>% 
+  right_join(.,int_join,by = c("STATEABBR","Var")) %>% 
+  as.data.frame()
+  
+
+eng_rel <- rel %>%
+  left_join(.,eng, by = c("STATEABBR","Var")) %>% 
+  dplyr::rename(Reliance = n.x, Engagement = n.y) %>% 
+  replace_na(list(Reliance = 0, Engagement = 0)) %>% 
+  gather(.,Class,Value,-STATEABBR,-Var) %>%
+  group_by(STATEABBR , Class) %>%
+  mutate(freq = Value / sum(Value))
+
+biv_col <- c("4" = "#ca0020", "3" = "#f4a582", "2" = "grey", "1" = "#92c5de", "0" = "#0571b0")
+
+eng_rel %>% 
+ggplot() +
+#  geom_line(aes(x = Class, y = Value, group = Var, color = Var)) +
+  geom_point(aes(x = Class, y = Var, size = freq, color = Var)) +
+ scale_size(name = "Rank\nFrequency")+
+  facet_wrap(.~STATEABBR, ncol = 4) +
+  guides(color = guide_legend(override.aes = list(size = 5),
+                              reverse = T)) + 
+  scale_color_manual(name = "Ranking", values = biv_col) +
+  # scale_x_discrete(expand = c(0.05, 0.05))+
+  theme_ts() +
+  theme(legend.key.size = unit(1,"mm")) +
+  ylab("Community Ranking")+
+  theme(strip.background = element_blank(),
+        strip.text=element_text(),
+        legend.position = c(1, 0), 
+         legend.justification = c(1, 0.1),
+        legend.box = "horizontal",legend.background = element_rect(color="grey",size = 0.05)) +
+  ggtitle("Recreational Fishing Community Reliance and Engagement")
+```
