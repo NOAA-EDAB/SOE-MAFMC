@@ -1055,7 +1055,7 @@ ggplot() +
 
 # Protected species-fishery interactions
 
-## Harbor porpoise
+## Harbor porpoise (coastwide)
 
 #### With a ribbon to show uncertainty
 
@@ -1101,7 +1101,7 @@ ggplot() +
                     ymin = `harbor porpoise bycatch lo95ci`,
                   ymax = `harbor porpoise bycatch up95ci`,
                   color = "Harbor Porpoise Bycatch"), 
-                width = 0.1)+
+                width = 0.25)+
   geom_line(aes(x = Time, y = `harbor porpoise bycatch pbr`, color = "PBR"), size = lwd-0.1) +
   scale_color_manual("", values = c("Harbor Porpoise Bycatch" = "black", "PBR" = "red")) +
   guides(color = guide_legend(override.aes = list(shape = c(19,NA)))) +
@@ -1111,4 +1111,66 @@ ggplot() +
   theme(legend.position = c(0.4, 0.85), legend.background = element_rect(
     fill = "transparent"), legend.text = element_text(size = 10)))
 
+```
+
+## Right whale (coastwide)
+
+```{r right-whale-errorbars, fig.cap = "Estimated North Atlanic right whale abundance. Error bars represent the 95\\% credible interval.", fig.width = 5, fig.asp = 0.45}
+
+hline <- mean(narw[narw$Var == "right whale abundance median",]$Value)
+
+ecodata::narw %>% 
+  spread(.,Var,Value) %>% 
+  ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = `right whale abundance median`), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = `right whale abundance median`), size = pcex-0.75) +
+  geom_errorbar(aes(x = Time,
+                    ymin = `right whale abundance lcl`,
+                  ymax = `right whale abundance ucl`), 
+                width = 0.25) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ylab(expression("Abundance (n)")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts()
+```
+
+```{r right-whale-ribbon, fig.cap = "Estimated North Atlanic right whale abundance. Line shading represents the 95\\% credible interval.", fig.width = 5, fig.asp = 0.45}
+
+hline <- mean(narw[narw$Var == "right whale abundance median",]$Value)
+
+ecodata::narw %>% 
+  spread(.,Var,Value) %>% 
+  ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = `right whale abundance median`), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = `right whale abundance median`), size = pcex-0.75) +
+  geom_ribbon(aes(x = Time,
+                    ymin = `right whale abundance lcl`,
+                  ymax = `right whale abundance ucl`),
+              alpha = hline.alpha) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ylab(expression("Abundance (n)")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts()
 ```
