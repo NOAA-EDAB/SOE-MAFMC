@@ -420,9 +420,8 @@ ggplot(data = landings) +
   scale_y_continuous(labels = function(l){trans = l / 1000})+
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   ylab(expression("Landings, 10"^3*"metric tons")) +
-  theme_ts() +
-  theme(strip.background = element_blank(),
-        strip.text=element_text(hjust=0))
+  theme_facet() +
+  theme(strip.text=element_text(hjust=0))
 
 ```
 
@@ -1174,3 +1173,80 @@ ecodata::narw %>%
            linetype = hline.lty) +
   theme_ts()
 ```
+
+# Resource species (`r epu_abbr`)
+
+Patterns for groups of species that feed on similar prey can indicate how overall ecosystem conditions are changing and provide context for individual species stock assessments. The information presented in Figure \ref{nefsc-biomass} is taken from NEEFSC bottom trawl surveys during the spring and fall. 
+
+## Trends in biomass (`r epu_abbr`)
+
+```{r nefsc-biomass, fig.cap = paste0("Fall (left) and spring (right) NEFSC survey biomass in the",region". \\label{nefsc-biomass}")}
+
+
+total_surv <- nefsc_survey %>% 
+  filter(EPU == epu_abbr,
+         !str_detect(Var, "Other|Apex|managed"),
+         Time >= 1968) %>% 
+  group_by(Var) %>% 
+  mutate(hline = mean(Value)) %>% 
+  ungroup() %>% 
+  mutate(Var = word(Var, 1,2))
+
+total_surv$Var <- factor(total_surv$Var,levels = c("Piscivore Fall",
+                                                   "Piscivore Spring",
+                                                    "Benthivore Fall",
+                                                    "Benthivore Spring",
+                                                    "Planktivore Fall",
+                                                    "Planktivore Spring",
+                                                    "Benthos Fall",
+                                                    "Benthos Spring"))
+
+#Create dataframe for label locations
+label_loc <- total_surv %>%
+  group_by(Var) %>%
+  dplyr::summarise(yloc = max(Value)*0.95,
+                   xloc = min(Time)) %>% 
+  mutate(label = LETTERS[1:8])
+
+#facet names for titles
+facet_names <- list("Piscivores" = expression("Piscivores"),
+                    "Planktivores" = expression("Planktivores"),
+                    "Benthivores" = expression("Benthivores"),
+                    "Benthos" = expression("Benthos"))
+
+series.col <- rep("black",10)
+
+ggplot(data = total_surv) +
+  
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  
+  #Test for trend and add lines
+  stat_gls(aes(x = Time, y = Value,
+               color = Var),
+             alpha = trend.alpha, size = trend.size) +
+  
+  #Add time series
+  geom_line(aes(x = Time, y = Value, color = Var), size = lwd-0.5) +
+  geom_point(aes(x = Time, y = Value, color = Var), size = pcex-0.5) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline,
+                 group = Var),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+
+  #Facet 
+  facet_wrap(Var~.,scales = "free_y", ncol = 2) +
+  
+  #Axis and theme
+  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
+  ylab(expression("Biomass (kg tow"^-1*")")) +
+  theme_facet()+
+  theme(strip.text=element_text(hjust=0))
+
+```
+
