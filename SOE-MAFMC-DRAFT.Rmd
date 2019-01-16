@@ -1180,7 +1180,7 @@ Patterns for groups of species that feed on similar prey can indicate how overal
 
 ## Trends in biomass (`r epu_abbr`)
 
-```{r nefsc-biomass, fig.cap = paste0("Fall (left) and spring (right) NEFSC survey biomass in the",region". \\label{nefsc-biomass}")}
+```{r nefsc-biomass, fig.cap = paste0("Fall (left) and spring (right) NEFSC survey biomass in the ",region,". \\label{nefsc-biomass}")}
 
 
 total_surv <- nefsc_survey %>% 
