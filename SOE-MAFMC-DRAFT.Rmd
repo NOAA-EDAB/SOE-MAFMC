@@ -712,6 +712,8 @@ comm_div %>%
  theme_ts()
 ```
 
+## Offshore wind development
+
 ## Recreational Opportunities (`r region` states)
 
 
@@ -1247,6 +1249,86 @@ ggplot(data = total_surv) +
   ylab(expression("Biomass (kg tow"^-1*")")) +
   theme_facet()+
   theme(strip.text=element_text(hjust=0))
+
+```
+
+## Ichthyoplankton diversity (coastwide)
+
+## Species distribution (coastwide)
+
+Mean along-shelf distance, habitat area, and species distribution plots
+
+# Ecosystem Conditions and Productivity
+
+Productivity of the system can be influenced by many factors. Temperature affects the behavior and physiology of marine organisms while changes in productivity and species composition at the base of the food web can influence juvenile survival. In this section, we report temperature and lower trophic level production trends and annual cycles for the most recent year. We also look at fish productivity through recruitment and fish condition. 
+
+## Long-term ocean temperature (coastwide)
+
+Sea surface temperature (SST) measurements have been collected on the Northeast Continental Shelf since the mid-1800s. The highest mean annual temperature in this time series was recorded in 2012, as the ecosystem warmed above the levels last seen in the late 1940s. The 2018 datum is the **X** highest temperature in the time series. The positive trend over the full time series (1856-2018) is statistically significant, and the trend over the past decade is greater than the long-term average. 
+
+**Figure here**
+
+Annual cycles in ocean temperature and primary production (`r epu_abbr`)
+
+**2018 SST figure here**
+
+```{r chl-pp}
+
+pp <- ecodata::chl_pp %>% 
+  filter(EPU == epu_abbr)
+
+(chl_oc_cci <- pp %>%
+  filter(str_detect(Var, "MONTHLY_CHLOR_A_MEDIAN OC-CCI PAN")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+  ggplot() +
+    geom_point(aes(x = Year, y = Value)) +
+    facet_wrap(Month~., ncol = 12) +
+    ggtitle("MONTHLY_CHLOR_A_MEDIAN OC-CCI PAN") )
+
+(chl_seawifs <- pp %>%
+  filter(str_detect(Var, "MONTHLY_CHLOR_A_MEDIAN SeaWiFS PAN")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+  ggplot() +
+    geom_point(aes(x = Year, y = Value)) +
+    facet_wrap(Month~., ncol = 12) +
+    ggtitle("MONTHLY_CHLOR_A_MEDIAN SeaWiFS PAN"))
+
+
+(chl_modis <- pp %>%
+  filter(str_detect(Var, "MONTHLY_CHLOR_A_MEDIAN MODIS-Aqua PAN")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+  ggplot() +
+    geom_point(aes(x = Year, y = Value)) +
+    facet_wrap(Month~., ncol = 12) +
+    ggtitle("MONTHLY_CHLOR_A_MEDIAN MODIS-Aqua PAN"))
+
+
+(pp_seawifs <- pp %>%
+  filter(str_detect(Var, "MONTHLY_PPD_MEDIAN OC-CCI BERENFELD")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+  ggplot() +
+    geom_point(aes(x = Year, y = Value)) +
+    facet_wrap(Month~., ncol = 12) +
+    ggtitle("MONTHLY_PPD_MEDIAN OC-CCI BERENFELD"))
+
+
+(pp_modis <- pp %>%
+  filter(str_detect(Var, "MONTHLY_PPD_MEDIAN MODIS-Aqua BERENFELD")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+  ggplot() +
+    geom_point(aes(x = Year, y = Value)) +
+    facet_wrap(Month~., ncol = 12) +
+    ggtitle("MONTHLY_PPD_MEDIAN MODIS-Aqua BERENFELD"))
+
+(pp_seawifs <- pp %>%
+  filter(str_detect(Var, "MONTHLY_PPD_MEDIAN SeaWiFS BERENFELD")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+  ggplot() +
+    geom_point(aes(x = Year, y = Value)) +
+    facet_wrap(Month~., ncol = 12) +
+    ggtitle("MONTHLY_PPD_MEDIAN SeaWiFS BERENFELD"))
+
+
 
 ```
 
