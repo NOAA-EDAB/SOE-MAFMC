@@ -997,7 +997,7 @@ ggplot() +
 ```
 
 
-```{r rec-reliance, fig.cap = paste0("Fishing community reliance and engagement in commercial fisheries by state in the ",region,", where circle color reflects community reliance and engagement rankings (least reliant/engaged = 0; most reliant/engaged = 4), and circle size shows the percentage of sampled communities meeting different ranks. \\label{rec-eng-rel}"), fig.width = 8, fig.asp = 0.45, warning=F}
+```{r rec-reliance, fig.cap = paste0("Fishing community reliance and engagement in commercial fisheries by state in ",region,", where circle color reflects community reliance and engagement rankings (least reliant/engaged = 0; most reliant/engaged = 4), and circle size shows the percentage of sampled communities meeting different ranks. \\label{rec-eng-rel}"), fig.width = 8, fig.asp = 0.45, warning=F}
 
 rel <- ecodata::eng_rel %>% 
   filter(REGION == region) %>% 
@@ -1051,4 +1051,64 @@ ggplot() +
          legend.justification = c(1, 0.1),
         legend.box = "horizontal",legend.background = element_rect(color="grey",size = 0.05)) +
   ggtitle("Recreational Fishing Community Reliance and Engagement")
+```
+
+# Protected species-fishery interactions
+
+## Harbor porpoise
+
+#### With a ribbon to show uncertainty
+
+```{r harbor-porpoise-ribbon, fig.width = 5, fig.asp = 0.45, fig.cap = "Harbor porpoise bycatch estimate (black) shown with Potential Biological Removal (red). Line shading indicates 95\\% confidence interval."}
+
+(p <- ecodata::harborporpoise %>% 
+  spread(.,Var,Value) %>% 
+ggplot() +
+    annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = lwd) +
+  geom_point(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = pcex) +
+  geom_ribbon(aes(x = Time,
+                  ymin = `harbor porpoise bycatch lo95ci`,
+                  ymax = `harbor porpoise bycatch up95ci`),
+              alpha = hline.alpha) +
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch pbr`, color = "PBR"), size = lwd-0.1) +
+  scale_color_manual("", values = c("Harbor Porpoise Bycatch" = "black", "PBR" = "red")) +
+  guides(color = guide_legend(override.aes = list(shape = c(19,NA)))) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ylab("Bycatch Estimate (n)") +
+  theme_ts() +
+  theme(legend.position = c(0.4, 0.85), legend.background = element_rect(
+    fill = "transparent"), legend.text = element_text(size = 10)))
+
+
+```
+
+#### With error bars 
+
+```{r harbor-porpoise-bars, fig.width = 5, fig.asp = 0.45, fig.cap = "Harbor porpoise bycatch estimate (black) shown with Potential Biological Removal (red). Error bars indicate 95\\% confidence interval."}
+
+(p <- ecodata::harborporpoise %>% 
+  spread(.,Var,Value) %>% 
+ggplot() +
+    annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = lwd) +
+  geom_point(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = pcex) +
+  geom_errorbar(aes(x = Time,
+                    ymin = `harbor porpoise bycatch lo95ci`,
+                  ymax = `harbor porpoise bycatch up95ci`,
+                  color = "Harbor Porpoise Bycatch"), 
+                width = 0.1)+
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch pbr`, color = "PBR"), size = lwd-0.1) +
+  scale_color_manual("", values = c("Harbor Porpoise Bycatch" = "black", "PBR" = "red")) +
+  guides(color = guide_legend(override.aes = list(shape = c(19,NA)))) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ylab("Bycatch Estimate (n)") +
+  theme_ts() +
+  theme(legend.position = c(0.4, 0.85), legend.background = element_rect(
+    fill = "transparent"), legend.text = element_text(size = 10)))
+
 ```
