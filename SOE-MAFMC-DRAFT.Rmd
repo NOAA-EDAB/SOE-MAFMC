@@ -35,7 +35,6 @@ library(kableExtra)
 library(ggrepel)
 library(stringr)
 library(grid)
-library(treemapify)
 
 #GIS libraries
 library(sf)
@@ -146,17 +145,16 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                "Biomass or abundance by feeding guild from surveys",
                                "Condition and recruitment of MAFMC managed species",
                                "Relative biomass of feeding guilds, primary productivity",
-                               "Estimated habitat occurrence and potential wind-energy interactions")) 
+                               "Estimated habitat occurrence and potential wind-energy interactions"))
 
 knitr::kable(mng_obj,
       col.names = c("Objective Categories","Indicators reported here"),
       caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight \\label{management-objectives}",
       align = 'c',
-      booktabs = T) %>% 
-  kable_styling(latex_options = "striped") %>% 
+      booktabs = T) %>%
+ # kable_styling(latex_options = "striped") %>%
   column_spec(c(2), width = c("25em")) %>%
   row_spec(0, bold = TRUE)
-
 ```
 
 We also report single-species status relative to established objectives and references points. The `r council_abbr` is meeting objectives at the managed species (i.e. stockwide) level for fishing mortality (F) rates for **inline R code** of **here** and biomass levels for **inline R code** of **here** stocks relative to established reference points (Fig. \ref{stock-status}).
@@ -274,7 +272,7 @@ knitr::kable(spec_group,
       caption = "Mid-Atlantic Bight feeding guilds listed with key species. \\label{species-group}",
       align = 'c',
       booktabs = T) %>% 
-  kable_styling(latex_options = "striped") %>%
+  #kable_styling(latex_options = "striped") %>%
   column_spec(c(1,2,3), width = c("8em","5em","25em")) %>% 
   row_spec(0, bold = TRUE)
 
@@ -373,7 +371,7 @@ landings <- landings %>%
 #Define constants for figure plot
 x.shade.max <- max(landings$Time)
 x.shade.min <- x.shade.max - 9 
-series.col <- c("indianred","orange","purple","black")
+series.col <- c("indianred","black")
 
 #Create dataframe for label locations
 label_loc <- landings %>%
@@ -389,7 +387,7 @@ facet_names <- list("Apex predators" = expression("Apex predators"),
                     "Benthivores" = expression("Benthivores"),
                     "Benthos" = expression("Benthos"))
 
-ggplot(data = landings) +
+ggplot(data = landings,aes(x = Time, y = Value, color = grouping)) +
   
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
@@ -397,18 +395,17 @@ ggplot(data = landings) +
       ymin = -Inf, ymax = Inf) +
   
   #Test for trend and add lines
-  stat_gls(aes(x = Time, y = Value,
-               group = Var, color = stat(col)),
-             alpha = trend.alpha, size = trend.size) +
+  geom_gls(aes(x = Time, y = Value,
+               group = Var)) +
   
   #Add time series
-  geom_line(aes(x = Time, y = Value, color = grouping), size = lwd) +
-  geom_point(aes(x = Time, y = Value, color = grouping), size = pcex) +
+  geom_line(size = lwd) +
+  geom_point(size = pcex) +
   scale_color_manual(values = series.col, aesthetics = "color")+
   guides(color = FALSE) +
   geom_hline(aes(yintercept = hline,
                  group = Var,
-                 color = grouping),
+                 size = grouping),
              size = hline.size,
              alpha = hline.alpha,
              linetype = hline.lty)+
@@ -422,6 +419,7 @@ ggplot(data = landings) +
   ylab(expression("Landings, 10"^3*"metric tons")) +
   theme_facet() +
   theme(strip.text=element_text(hjust=0))
+
 
 ```
 
@@ -440,17 +438,14 @@ managed_landings_agg <- managed_landings %>%
 landings_agg <- rbind(total_landings_agg, managed_landings_agg)
 
 
-series.col <- c("indianred","purple","black","orange")
-
-
 ggplot(data = landings_agg)+
   
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf) +
-  stat_gls(aes(x = Time, y = Value,
-               group = Var, color = stat(col)),
+  geom_gls(aes(x = Time, y = Value,
+               group = Var),
              alpha = trend.alpha, size = trend.size) +
   geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
   geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
@@ -467,7 +462,7 @@ ggplot(data = landings_agg)+
            size = hline.size,
            alpha = hline.alpha,
            linetype = hline.lty) +
-  theme_ts()
+    theme_ts()
 
 ```
 
@@ -480,7 +475,7 @@ landings_rec <- ecodata::recdat %>%
          Var == "Recreational Seafood") %>% 
   mutate(hline = mean(Value))
 
-series.col <- c("purple","black")
+series.col <- "black"
 
 ggplot(data = landings_rec)+
   
@@ -488,8 +483,8 @@ ggplot(data = landings_rec)+
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf) +
-  stat_gls(aes(x = Time, y = Value,
-               group = Var, color = stat(col)),
+  geom_gls(aes(x = Time, y = Value,
+               group = Var),
              alpha = trend.alpha, size = trend.size) +
   geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
   geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
@@ -574,7 +569,7 @@ rev_agg <- ecodata::comdat %>%
   group_by(Status) %>% 
   mutate(hline = mean(Total))
 
-series.col <- c("indianred","orange","purple","black")
+series.col <- c("indianred","black")
 
 #Plotting
 ggplot(data = rev_agg) +
@@ -585,8 +580,8 @@ ggplot(data = rev_agg) +
       ymin = -Inf, ymax = Inf)+  
   
   #lines
-  stat_gls(aes(x = Time, y = Total,
-               group = Status, color = stat(col)),
+  geom_gls(aes(x = Time, y = Total,
+               group = Status),
              alpha = trend.alpha, size = trend.size) +
   geom_line(aes(x = Time, y = Total, color = Status), size = lwd) +
   geom_point(aes(x = Time, y = Total, color = Status), size = pcex) +
@@ -632,7 +627,7 @@ comm_div <- ecodata::commercial_div %>%
   mutate(hline = mean(Value))
 
 
-series.col = c("black","purple")
+series.col = c("black")
 
 fleet_count <- comm_div %>% 
   filter(Var == "Fleet count") %>% 
@@ -680,7 +675,8 @@ fleet_div <- comm_div %>%
            linetype = hline.lty) +
  theme_ts()
 
-cowplot::plot_grid(fleet_count, fleet_div, ncol = 1, align = "hv")
+cowplot::plot_grid(fleet_count, fleet_div, ncol = 1, align = "hv") + 
+  theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
 
 ```
 
@@ -694,8 +690,8 @@ comm_div %>%
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf) +
-  stat_gls(aes(x = Time, y = Value,
-               group = Var, color = stat(col)),
+  geom_gls(aes(x = Time, y = Value,
+               group = Var),
              alpha = trend.alpha, size = trend.size) +
   geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
   geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
@@ -725,9 +721,7 @@ recdat <- ecodata::recdat %>%
   group_by(Var) %>% 
   mutate(hline = mean(Value))
 
-
 series.col <- "black"
-
 
 rec_effort <- recdat %>% 
   filter(Var == "Recreational Effort") %>% 
@@ -736,8 +730,8 @@ rec_effort <- recdat %>%
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf) +
-  stat_gls(aes(x = Time, y = Value,
-               group = Var, color = stat(col)),
+  geom_gls(aes(x = Time, y = Value,
+               group = Var),
              alpha = trend.alpha, size = trend.size) +
   geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
   geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
@@ -755,8 +749,6 @@ rec_effort <- recdat %>%
            linetype = hline.lty) +
   theme_ts() 
 
-series.col <- c("purple","black")
-
 rec_div <- recdat %>% 
   filter(Var == "Recreational fleet effort diversity across modes") %>% 
   ggplot() + 
@@ -764,8 +756,8 @@ rec_div <- recdat %>%
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf) +
-  stat_gls(aes(x = Time, y = Value,
-               group = Var, color = stat(col)),
+  geom_gls(aes(x = Time, y = Value,
+               group = Var),
              alpha = trend.alpha, size = trend.size) +
   geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
   geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
@@ -782,7 +774,6 @@ rec_div <- recdat %>%
            linetype = hline.lty) +
   theme_ts()
 
-series.col = "black"
 
 rec_anglers <- recdat %>% 
   filter(Var == "Recreational anglers") %>% 
@@ -791,8 +782,8 @@ rec_anglers <- recdat %>%
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf) +
-  stat_gls(aes(x = Time, y = Value,
-               group = Var, color = stat(col)),
+  geom_gls(aes(x = Time, y = Value,
+               group = Var),
              alpha = trend.alpha, size = trend.size) +
   geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
   geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
@@ -812,7 +803,8 @@ rec_anglers <- recdat %>%
 
 
 
-cowplot::plot_grid(rec_effort, rec_div, rec_anglers, ncol = 1, align = "hv")
+cowplot::plot_grid(rec_effort, rec_div, rec_anglers, ncol = 1, align = "hv") +
+    theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
 ```
 
 ## Mariculture (Mid-Atlantic states)
@@ -1062,7 +1054,7 @@ ggplot() +
 
 ```{r harbor-porpoise-ribbon, fig.width = 5, fig.asp = 0.45, fig.cap = "Harbor porpoise bycatch estimate (black) shown with Potential Biological Removal (red). Line shading indicates 95\\% confidence interval."}
 
-(p <- ecodata::harborporpoise %>% 
+ecodata::harborporpoise %>% 
   spread(.,Var,Value) %>% 
 ggplot() +
     annotate("rect", fill = shade.fill, alpha = shade.alpha,
@@ -1081,7 +1073,7 @@ ggplot() +
   ylab("Bycatch Estimate (n)") +
   theme_ts() +
   theme(legend.position = c(0.4, 0.85), legend.background = element_rect(
-    fill = "transparent"), legend.text = element_text(size = 10)))
+    fill = "transparent"), legend.text = element_text(size = 10))
 
 
 ```
@@ -1090,7 +1082,7 @@ ggplot() +
 
 ```{r harbor-porpoise-bars, fig.width = 5, fig.asp = 0.45, fig.cap = "Harbor porpoise bycatch estimate (black) shown with Potential Biological Removal (red). Error bars indicate 95\\% confidence interval."}
 
-(p <- ecodata::harborporpoise %>% 
+ecodata::harborporpoise %>% 
   spread(.,Var,Value) %>% 
 ggplot() +
     annotate("rect", fill = shade.fill, alpha = shade.alpha,
@@ -1110,7 +1102,7 @@ ggplot() +
   ylab("Bycatch Estimate (n)") +
   theme_ts() +
   theme(legend.position = c(0.4, 0.85), legend.background = element_rect(
-    fill = "transparent"), legend.text = element_text(size = 10)))
+    fill = "transparent"), legend.text = element_text(size = 10))
 
 ```
 
@@ -1182,7 +1174,7 @@ Patterns for groups of species that feed on similar prey can indicate how overal
 
 ## Trends in biomass (`r epu_abbr`)
 
-```{r nefsc-biomass, fig.cap = paste0("Fall (left) and spring (right) NEFSC survey biomass in the ",region,". \\label{nefsc-biomass}")}
+```{r nefsc-biomass, fig.cap = paste0("Fall (left) and spring (right) NEFSC survey biomass in the ",region,". \\label{nefsc-biomass}"), fig.width=8}
 
 
 total_surv <- nefsc_survey %>% 
@@ -1193,6 +1185,8 @@ total_surv <- nefsc_survey %>%
   mutate(hline = mean(Value)) %>% 
   ungroup() %>% 
   mutate(Var = word(Var, 1,2))
+
+series.col <- rep("black",length(unique(total_surv$Var)))
 
 total_surv$Var <- factor(total_surv$Var,levels = c("Piscivore Fall",
                                                    "Piscivore Spring",
@@ -1216,7 +1210,6 @@ facet_names <- list("Piscivores" = expression("Piscivores"),
                     "Benthivores" = expression("Benthivores"),
                     "Benthos" = expression("Benthos"))
 
-series.col <- rep("black",10)
 
 ggplot(data = total_surv) +
   
@@ -1226,7 +1219,7 @@ ggplot(data = total_surv) +
       ymin = -Inf, ymax = Inf) +
   
   #Test for trend and add lines
-  stat_gls(aes(x = Time, y = Value,
+  geom_gls(aes(x = Time, y = Value,
                color = Var),
              alpha = trend.alpha, size = trend.size) +
   
@@ -1272,63 +1265,94 @@ Annual cycles in ocean temperature and primary production (`r epu_abbr`)
 
 **2018 SST figure here**
 
-```{r chl-pp}
+```{r primary-productivity, fig.width=8, fig.height = 4}
 
-pp <- ecodata::chl_pp %>% 
-  filter(EPU == epu_abbr)
-
-(chl_oc_cci <- pp %>%
-  filter(str_detect(Var, "MONTHLY_CHLOR_A_MEDIAN OC-CCI PAN")) %>% 
+out_pp <- ecodata::chl_pp %>% 
+  filter(EPU == epu_abbr,
+         str_detect(Var, "MONTHLY_PPD_MEDIAN OC-CCI BERENFELD")) %>% 
   separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
-  ggplot() +
-    geom_point(aes(x = Year, y = Value)) +
-    facet_wrap(Month~., ncol = 12) +
-    ggtitle("MONTHLY_CHLOR_A_MEDIAN OC-CCI PAN") )
-
-(chl_seawifs <- pp %>%
-  filter(str_detect(Var, "MONTHLY_CHLOR_A_MEDIAN SeaWiFS PAN")) %>% 
-  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
-  ggplot() +
-    geom_point(aes(x = Year, y = Value)) +
-    facet_wrap(Month~., ncol = 12) +
-    ggtitle("MONTHLY_CHLOR_A_MEDIAN SeaWiFS PAN"))
+    mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
+                                                   "07","08","09","10","11","12"),
+                                   to = c(month.abb)))
+out_pp$Month <- factor(out_pp$Month, levels = month.abb)
 
 
-(chl_modis <- pp %>%
-  filter(str_detect(Var, "MONTHLY_CHLOR_A_MEDIAN MODIS-Aqua PAN")) %>% 
-  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
-  ggplot() +
-    geom_point(aes(x = Year, y = Value)) +
-    facet_wrap(Month~., ncol = 12) +
-    ggtitle("MONTHLY_CHLOR_A_MEDIAN MODIS-Aqua PAN"))
+(pp_cci <- ggplot(out_pp) +
+    geom_point(aes(x = Year, y = Value, group = Month)) +
+    geom_line(aes(x = Year, y = Value, group = Month)) +
+    geom_gls(aes(x = Year, y = Value, group = Month))+
+    scale_x_discrete(name = "Time", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
+    facet_wrap(Month~., ncol = 6) +
+    ggtitle("MONTHLY_PPD_MEDIAN OC-CCI BERENFELD") +
+    theme_facet() +
+    theme(axis.text.x = element_text(angle=45, hjust = 1),
+          panel.spacing = unit(1, "lines"),
+          plot.margin = unit(c(0.1, 0, 0, 0), "cm")))
 
 
-(pp_seawifs <- pp %>%
-  filter(str_detect(Var, "MONTHLY_PPD_MEDIAN OC-CCI BERENFELD")) %>% 
-  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
-  ggplot() +
-    geom_point(aes(x = Year, y = Value)) +
-    facet_wrap(Month~., ncol = 12) +
-    ggtitle("MONTHLY_PPD_MEDIAN OC-CCI BERENFELD"))
+# (chl_seawifs <- pp %>%
+#   filter(str_detect(Var, "MONTHLY_CHLOR_A_MEDIAN SeaWiFS PAN")) %>% 
+#   separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+#   ggplot() +
+#     geom_point(aes(x = Year, y = Value)) +
+#     facet_wrap(Month~., ncol = 12) +
+#     ggtitle("MONTHLY_CHLOR_A_MEDIAN SeaWiFS PAN"))
 
 
-(pp_modis <- pp %>%
-  filter(str_detect(Var, "MONTHLY_PPD_MEDIAN MODIS-Aqua BERENFELD")) %>% 
-  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
-  ggplot() +
-    geom_point(aes(x = Year, y = Value)) +
-    facet_wrap(Month~., ncol = 12) +
-    ggtitle("MONTHLY_PPD_MEDIAN MODIS-Aqua BERENFELD"))
+# (chl_modis <- pp %>%
+#   filter(str_detect(Var, "MONTHLY_CHLOR_A_MEDIAN MODIS-Aqua PAN")) %>% 
+#   separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+#   ggplot() +
+#     geom_point(aes(x = Year, y = Value)) +
+#     facet_wrap(Month~., ncol = 12) +
+#     ggtitle("MONTHLY_CHLOR_A_MEDIAN MODIS-Aqua PAN"))
 
-(pp_seawifs <- pp %>%
-  filter(str_detect(Var, "MONTHLY_PPD_MEDIAN SeaWiFS BERENFELD")) %>% 
-  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
-  ggplot() +
-    geom_point(aes(x = Year, y = Value)) +
-    facet_wrap(Month~., ncol = 12) +
-    ggtitle("MONTHLY_PPD_MEDIAN SeaWiFS BERENFELD"))
+
+# (pp_modis <- pp %>%
+#   filter(str_detect(Var, "MONTHLY_PPD_MEDIAN MODIS-Aqua BERENFELD")) %>% 
+#   separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+#   ggplot() +
+#     geom_point(aes(x = Year, y = Value)) +
+#     facet_wrap(Month~., ncol = 12) +
+#     ggtitle("MONTHLY_PPD_MEDIAN MODIS-Aqua BERENFELD"))
+# 
+# (pp_seawifs <- pp %>%
+#   filter(str_detect(Var, "MONTHLY_PPD_MEDIAN SeaWiFS BERENFELD")) %>% 
+#   separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+#   ggplot() +
+#     geom_point(aes(x = Year, y = Value)) +
+#     geom_gls(aes(x = Year, y = Value, group = Month)) +
+#     facet_wrap(Month~., ncol = 12) +
+#     ggtitle("MONTHLY_PPD_MEDIAN SeaWiFS BERENFELD"))
 
 
 
 ```
 
+```{r chl, fig.width = 8, fig.height=4}
+out_chl <- ecodata::chl_pp %>% 
+  filter(EPU == epu_abbr,
+         str_detect(Var, "MONTHLY_CHLOR_A_MEDIAN OC-CCI PAN")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+    mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
+                                                   "07","08","09","10","11","12"),
+                                   to = c(month.abb)))
+out_chl$Month <- factor(out_chl$Month, levels = month.abb)
+
+
+(chl_cci <- ggplot(out_chl) +
+    geom_point(aes(x = Year, y = Value, group = Month)) +
+    geom_line(aes(x = Year, y = Value, group = Month)) +
+    geom_gls(aes(x = Year, y = Value, group = Month))+
+    scale_x_discrete(name = "Time", breaks = seq(min(out_chl$Year),max(out_chl$Year),10)) +  
+    facet_wrap(Month~., ncol = 6) +
+    ggtitle("MONTHLY_CHLOR_A_MEDIAN OC-CCI PAN") +
+    theme_facet() +
+    theme(axis.text.x = element_text(angle=45, hjust = 1),
+          panel.spacing = unit(1, "lines"),
+          plot.margin = unit(c(0.1, 0, 0, 0), "cm")))
+
+```
+
+
+We continue below
