@@ -931,7 +931,7 @@ This section will include the water quality and nursey habitat indicators for Ch
 
 ## Social
 
-```{r community-reliance, fig.cap = paste0("Fishing community reliance and engagement in commercial fisheries by state in the ",region,", where circle color reflects community reliance and engagement rankings (least reliant/engaged = 0; most reliant/engaged = 4), and circle size shows the percentage of sampled communities meeting different ranks. \\label{comm-eng-rel}"), fig.width = 8, fig.asp = 0.45, warning=F}
+```{r comm-reliance-maps, fig.width = 8, fig.height = 4.5}
 # Set lat/lon window for maps
 xmin = -78
 xmax = -70
@@ -940,10 +940,128 @@ ymax = 42
 xlims <- c(xmin, xmax)
 ylims <- c(ymin, ymax)
 
+biv_col <- c("4" = "#ca0020", "3" = "#f4a582", "2" = "grey", "1" = "#92c5de", "0" = "#0571b0")
+
+eng_rel <- ecodata::eng_rel %>%
+    filter(PRIMARY_LATITUDE < 42) %>% 
+  dplyr::rename(comeng = ComEng_NE16_ct,
+                comrel = ComRel_NE16_ct,
+                receng = RecEng_NE16_ct,
+                recrel = RecRel_NE16_ct,
+                Latitude = PRIMARY_LATITUDE,
+                Longitude = PRIMARY_LONGITUDE,
+                State = STATEABBR) %>% 
+  mutate(receng = as.factor(receng))
 
 
-int_join <- data.frame(STATEABBR = rep(unique(ecodata::eng_rel[ecodata::eng_rel$REGION == region,]$STATEABBR), each = 5),
-                       Var = factor(0:4))
+com <- eng_rel %>% 
+  dplyr::select(comeng, comrel, Latitude, Longitude) %>% 
+  filter(comeng != 0,
+         comrel != 0) %>% 
+ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data  = ne_states, size = map.lwd) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  geom_point(aes(x = Longitude, y = Latitude,
+                 color = comeng, size = comrel)) +
+  guides(color = F,
+         size = F) +
+  scale_color_manual(values = biv_col) +
+  theme_map() +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Commercial Reliance & Engagement")
+
+rec <- 
+  eng_rel %>% 
+  dplyr::select(receng, recrel, Latitude, Longitude) %>% 
+  filter(receng != 0,
+         recrel != 0) %>% 
+ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data  = ne_states, size = map.lwd) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  geom_point(aes(x = Longitude, y = Latitude,
+                 color = receng, size = recrel)) +
+  guides(color = guide_legend(override.aes = list(size = 5),
+                            reverse = T,
+                            title = "Engagement"),
+         size = guide_legend(reverse = T,
+                            title = "Reliance")) +
+  scale_color_manual(values = biv_col) +
+  theme_map() +
+  xlab("Longitude") +
+  ylab("") +
+  theme(legend.position = c(0.7, 0.25), 
+        legend.box = "horizontal",
+        legend.direction = "vertical",
+        legend.key=element_blank(),
+        legend.key.width = unit(0, "cm"))+
+  ggtitle("Recreational Reliance & Engagement")
+
+com + rec + plot_layout(ncol = 2) &
+  theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
+```
+
+
+```{r comm-reliance-maps-outlined, fig.width = 8, fig.height = 4.5}
+com <- eng_rel %>% 
+  dplyr::select(comeng, comrel, Latitude, Longitude) %>% 
+  filter(comeng != 0,
+         comrel != 0) %>% 
+ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data  = ne_states, size = map.lwd) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  geom_point(aes(x = Longitude, y = Latitude,
+                 fill = comeng, size = comrel),
+             color = "black",pch = 21) +
+  guides(fill = F,
+         size = F) +
+  scale_fill_manual(values = biv_col) +
+  theme_map() +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Commercial Reliance & Engagement")
+
+rec <- 
+  eng_rel %>% 
+  dplyr::select(receng, recrel, Latitude, Longitude) %>% 
+  filter(receng != 0,
+         recrel != 0) %>% 
+ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data  = ne_states, size = map.lwd) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  geom_point(aes(x = Longitude, y = Latitude,
+                 fill = receng, size = recrel),
+             color = "black",pch = 21) +
+  guides(fill = guide_legend(override.aes = list(size = 5),
+                            reverse = T,
+                            title = "Engagement"),
+         size = guide_legend(reverse = T,
+                            title = "Reliance")) +
+  scale_fill_manual(values = biv_col) +
+  theme_map() +
+  xlab("Longitude") +
+  ylab("") +
+  theme(legend.position = c(0.7, 0.25), 
+        legend.box = "horizontal",
+        legend.direction = "vertical",
+        legend.key=element_blank(),
+        legend.key.width = unit(0, "cm"))+
+  ggtitle("Recreational Reliance & Engagement")
+
+com + rec + plot_layout(ncol = 2) &
+  theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
+
+```
+
+
+```{r community-reliance, fig.cap = paste0("Fishing community reliance and engagement in commercial fisheries by state in the ",region,", where circle color reflects community reliance and engagement rankings (least reliant/engaged = 0; most reliant/engaged = 4), and circle size shows the percentage of sampled communities meeting different ranks. \\label{comm-eng-rel}"), fig.width = 8, fig.asp = 0.45, warning=F}
+
+int_join <- data.frame(STATEABBR = rep(unique(ecodata::eng_rel[ecodata::eng_rel$REGION == region,]$STATEABBR), each = 4),
+                       Var = factor(1:4))
 
 
 # eng_rel <- ecodata::eng_rel %>%
@@ -975,6 +1093,7 @@ rel <- ecodata::eng_rel %>%
                 Var = ComRel_NE16_ct) %>% 
   group_by(STATEABBR, Var) %>% 
   dplyr::summarise(n = n()) %>% 
+  filter(Var != 0) %>% 
   right_join(.,int_join,by = c("STATEABBR","Var")) %>% 
   as.data.frame()
 
@@ -985,6 +1104,7 @@ eng <- ecodata::eng_rel %>%
                 Var = ComEng_NE16_ct) %>% 
   group_by(STATEABBR, Var) %>% 
   dplyr::summarise(n = n()) %>% 
+  filter(Var != 0) %>% 
   right_join(.,int_join,by = c("STATEABBR","Var")) %>% 
   as.data.frame()
   
