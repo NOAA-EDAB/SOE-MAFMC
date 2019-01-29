@@ -340,14 +340,12 @@ Figure \ref{comm-landings} shows the removals for human consumption of trophic g
 
 ```{r comm_landings,fig.height=6.5, warning=F, fig.width = 5, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild. \\label{comm-landings}")}
 #Get data for plotting
-
 #Managed landings
 managed_landings <- ecodata::comdat  %>%
   filter(str_detect(Var, paste0(council_abbr," managed species - Landings weight|JOINT managed species - Landings weight")),
          !str_detect(Var, "Other"),
          Time >= 1986,
          EPU == epu_abbr)
-
 #Total landings
 total_landings <- ecodata::comdat  %>%
   filter(!str_detect(Var, "managed species"),
@@ -355,7 +353,6 @@ total_landings <- ecodata::comdat  %>%
          str_detect(Var, "Landings"),
          Time >= 1986,
          EPU == epu_abbr)
-
 #Assign feeding guild column for plotting with ggplot
 landings <- rbind(managed_landings, total_landings) %>%
   mutate(feeding.guild = str_extract(Var,paste(feeding.guilds, collapse = "|")),
@@ -363,7 +360,6 @@ landings <- rbind(managed_landings, total_landings) %>%
                                   ifelse(str_detect(Var, "JOINT"), "joint","total"))),
          Var = paste(word(feeding.guild), grouping)) %>% 
   mutate(feeding.guild = factor(feeding.guild, levels = feeding.guilds))
-
 #Add JOINT landings to MANAGED landings and remove
 landings[landings$Var ==  "Piscivore managed",]$Value <- landings[landings$Var ==  "Piscivore managed",]$Value + landings[landings$Var ==  "Piscivore joint",]$Value
 landings <- landings %>%
@@ -375,21 +371,18 @@ landings <- landings %>%
 x.shade.max <- max(landings$Time)
 x.shade.min <- x.shade.max - 9 
 series.col <- c("indianred","black")
-
 #Create dataframe for label locations
 label_loc <- landings %>%
   group_by(feeding.guild) %>%
   dplyr::summarise(yloc = max(Value)*0.95,
                    xloc = min(Time)) %>% 
   mutate(label = LETTERS[1:5])
-
 #facet names for titles
 facet_names <- list("Apex predators" = expression("Apex predators"),
                     "Piscivores" = expression("Piscivores"),
                     "Planktivores" = expression("Planktivores"),
                     "Benthivores" = expression("Benthivores"),
                     "Benthos" = expression("Benthos"))
-
 ggplot(data = landings,aes(x = Time, y = Value, color = grouping)) +
   
   #Highlight last ten years
@@ -412,7 +405,6 @@ ggplot(data = landings,aes(x = Time, y = Value, color = grouping)) +
              size = hline.size,
              alpha = hline.alpha,
              linetype = hline.lty)+
-
   #Facet 
   facet_wrap(feeding.guild~.,scales = "free_y", labeller = label, ncol = 1) +
   
@@ -422,8 +414,6 @@ ggplot(data = landings,aes(x = Time, y = Value, color = grouping)) +
   ylab(expression("Landings, 10"^3*"metric tons")) +
   theme_facet() +
   theme(strip.text=element_text(hjust=0))
-
-
 ```
 
 Total commercial seafood landings from all species and from `r council_abbr` managed species in the `r epu_abbr` indicate total seafood production. Years prior to 1977 included foreign landings, so we began the time series in 1986 **Why not 1978?**. Aggregated landings, as shown in Figure \ref{total-landings}, are drawn from domestic fisheries only. In the `r region`, *there has been a significant recent decrease in seafood landings, indicating high risk to regional domestic seafood production* **Specific to MAB**. 
@@ -1356,11 +1346,11 @@ ecodata::narw %>%
 
 # Resource species (`r epu_abbr`)
 
-Patterns for groups of species that feed on similar prey can indicate how overall ecosystem conditions are changing and provide context for individual species stock assessments. The information presented in Figure \ref{nefsc-biomass} is taken from NEEFSC bottom trawl surveys during the spring and fall. 
+Patterns for groups of species that feed on similar prey can indicate how overall ecosystem conditions are changing and provide context for individual species stock assessments. The information presented in Figure \ref{nefsc-biomass} is taken from NEEFSC bottom trawl surveys during the spring and fall. We also include data from the NorthEast Area Monitoring and Assessment Program (NEAMAP), which is an inshore sampling initiative surveying the region between Cape Cod, MA and Cape Hatteras, NC.
 
 ## Trends in biomass (`r epu_abbr`)
 
-```{r nefsc-biomass, fig.cap = paste0("Fall (left) and spring (right) NEFSC survey biomass in the ",region,". \\label{nefsc-biomass}"), fig.width=8}
+```{r nefsc-biomass, fig.cap = paste0("Fall (left) and spring (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. \\label{nefsc-biomass}"), fig.width=8, fig.asp = 0.75}
 
 
 total_surv <- nefsc_survey %>% 
@@ -1371,9 +1361,7 @@ total_surv <- nefsc_survey %>%
   mutate(hline = mean(Value)) %>% 
   ungroup() %>% 
   mutate(Var = word(Var, 1,2))
-
 series.col <- rep("black",length(unique(total_surv$Var)))
-
 total_surv$Var <- factor(total_surv$Var,levels = c("Piscivore Fall",
                                                    "Piscivore Spring",
                                                     "Benthivore Fall",
@@ -1382,26 +1370,33 @@ total_surv$Var <- factor(total_surv$Var,levels = c("Piscivore Fall",
                                                     "Planktivore Spring",
                                                     "Benthos Fall",
                                                     "Benthos Spring"))
-
 #Create dataframe for label locations
 label_loc <- total_surv %>%
   group_by(Var) %>%
   dplyr::summarise(yloc = max(Value)*0.95,
                    xloc = min(Time)) %>% 
   mutate(label = LETTERS[1:8])
-
 #facet names for titles
 facet_names <- list("Piscivores" = expression("Piscivores"),
                     "Planktivores" = expression("Planktivores"),
                     "Benthivores" = expression("Benthivores"),
                     "Benthos" = expression("Benthos"))
 
+#Get NEAMAP
+neamap <- ecodata::mab_inshore_survey %>% 
+  mutate(season = str_to_title(word(Var),1),
+         feeding.guild = str_to_title(word(Var,2))) %>% 
+   filter(str_detect(Var, "index")) %>% 
+ unite(.,Var,c("feeding.guild","season"), sep = " ") %>% 
+  group_by(Var) %>% 
+  mutate(hline = mean(Value))
 
-ggplot(data = total_surv) +
+
+ggplot(data = total_surv, aes(x = Time, y = Value, color = Var)) +
   
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
+      xmin = x.shade.min + 1 , xmax = x.shade.max + 1,
       ymin = -Inf, ymax = Inf) +
   
   #Test for trend and add lines
@@ -1410,8 +1405,8 @@ ggplot(data = total_surv) +
              alpha = trend.alpha, size = trend.size) +
   
   #Add time series
-  geom_line(aes(x = Time, y = Value, color = Var), size = lwd-0.5) +
-  geom_point(aes(x = Time, y = Value, color = Var), size = pcex-0.5) +
+  geom_line(size = lwd-0.5) +
+  geom_point(size = pcex-0.5) +
   scale_color_manual(values = series.col, aesthetics = "color")+
   guides(color = FALSE) +
   geom_hline(aes(yintercept = hline,
@@ -1419,6 +1414,14 @@ ggplot(data = total_surv) +
              size = hline.size,
              alpha = hline.alpha,
              linetype = hline.lty)+
+  
+  #Add NEAMAP
+  geom_line(data = neamap, aes(x = Time, y = Value, color = Var),
+            size = lwd-0.5,
+            color = "#ca0020")+
+  geom_point(data = neamap, aes(x = Time, y = Value, color = Var),
+             size = pcex-0.5,
+             color = "#ca0020")+
 
   #Facet 
   facet_wrap(Var~.,scales = "free_y", ncol = 2) +
@@ -1428,8 +1431,8 @@ ggplot(data = total_surv) +
   ylab(expression("Biomass (kg tow"^-1*")")) +
   theme_facet()+
   theme(strip.text=element_text(hjust=0))
-
 ```
+
 
 ## Ichthyoplankton diversity (coastwide)
 
