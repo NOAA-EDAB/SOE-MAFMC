@@ -5,7 +5,7 @@ output:
   pdf_document:
     fig_caption: yes
     includes:
-      in_header: latex\header.tex
+      in_header: latex/header.tex
     latex_engine: xelatex
   html_document:
     df_print: paged
@@ -699,7 +699,7 @@ comm_div %>%
   scale_x_continuous(expand = c(0.01, 0.01)) +
   scale_color_manual(values = series.col, aesthetics = "color")+
   guides(color = FALSE) +
-  ylab(expression("Species diversity")) +
+  ylab(expression("Diversity")) +
   geom_hline(aes(yintercept = hline,
                color = Var),
            size = hline.size,
@@ -1278,9 +1278,9 @@ out_pp$Month <- factor(out_pp$Month, levels = month.abb)
 
 
 (pp_cci <- ggplot(out_pp) +
+    geom_gls(aes(x = Year, y = Value, group = Month))+
     geom_point(aes(x = Year, y = Value, group = Month)) +
     geom_line(aes(x = Year, y = Value, group = Month)) +
-    geom_gls(aes(x = Year, y = Value, group = Month))+
     scale_x_discrete(name = "Time", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
     facet_wrap(Month~., ncol = 6) +
     ggtitle("MONTHLY_PPD_MEDIAN OC-CCI BERENFELD") +
@@ -1341,9 +1341,9 @@ out_chl$Month <- factor(out_chl$Month, levels = month.abb)
 
 
 (chl_cci <- ggplot(out_chl) +
+    geom_gls(aes(x = Year, y = Value, group = Month))+
     geom_point(aes(x = Year, y = Value, group = Month)) +
     geom_line(aes(x = Year, y = Value, group = Month)) +
-    geom_gls(aes(x = Year, y = Value, group = Month))+
     scale_x_discrete(name = "Time", breaks = seq(min(out_chl$Year),max(out_chl$Year),10)) +  
     facet_wrap(Month~., ncol = 6) +
     ggtitle("MONTHLY_CHLOR_A_MEDIAN OC-CCI PAN") +
@@ -1354,5 +1354,11 @@ out_chl$Month <- factor(out_chl$Month, levels = month.abb)
 
 ```
 
+#Oceanography
 
-We continue below
+```{r MAB-wind}
+
+
+
+```
+
