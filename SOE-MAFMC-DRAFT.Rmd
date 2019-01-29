@@ -5,7 +5,7 @@ output:
   pdf_document:
     fig_caption: yes
     includes:
-      in_header: latex\header.tex
+      in_header: latex/header.tex
     latex_engine: xelatex
   html_document:
     df_print: paged
