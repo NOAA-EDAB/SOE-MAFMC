@@ -1543,9 +1543,58 @@ out_chl$Month <- factor(out_chl$Month, levels = month.abb)
 
 ```
 
-#Oceanography
+# Environmental
 
-```{r MAB-wind}
+```{r MAB-wind, fig.width = 8, fig.asp=0.35, fig.cap = "Total wind speed, storminess, and turbulent kinetic energy during the summer in the Mid-Atlantic Bight."}
+
+summer_winds <- wind %>% 
+  filter(str_detect(Var, "total wind speed|hcly|tke"),
+         str_detect(Var, "summer"))
+
+tws <- summer_winds %>%
+  filter(str_detect(Var, "total wind speed"),
+         EPU == "MAB") %>% #filter
+  mutate(Var = str_to_title(word(Var, -1))) %>% 
+  ggplot()+ #plot
+  geom_line(aes(x = Time, y = Value))+
+  geom_gls(aes(x = Time, y = Value)) +
+  ylab("Wind Speed (m/s)") +
+  ggtitle("Total Wind Speed") +
+  theme_ts() +
+  theme(strip.text=element_text(hjust=0),
+        plot.title = element_text(size = 12))
+
+
+helicity <- summer_winds %>%
+  filter(str_detect(Var, "hcly"), EPU == "MAB") %>% #filter
+  mutate(Var = str_to_title(word(Var, -1))) %>% 
+  ggplot()+ #plot
+  geom_line(aes(x = Time, y = Value))+
+  geom_gls(aes(x = Time, y = Value)) +
+  ylab(expression("Relative Helicity (m"^2*" sec"^-2*")")) +
+  ggtitle("Storminess") +
+  theme_ts() +
+  theme(strip.text=element_text(hjust=0),
+        plot.title = element_text(size = 12))
+
+tke <- summer_winds %>%
+  filter(str_detect(Var, "tke"), EPU == "MAB") %>% #filter
+  mutate(Var = str_to_title(word(Var, -1))) %>% 
+  ggplot()+ #plot
+  geom_line(aes(x = Time, y = Value))+
+  geom_gls(aes(x = Time, y = Value)) +
+  ylab(expression("Kinetic Energy (J kg"^-1*")")) +
+  ggtitle("Turbulent Kinetic Energy") +
+  theme_facet() +
+  theme(strip.text=element_text(hjust=0),
+        plot.title = element_text(size = 12))
+
+tws + helicity + tke + plot_annotation(title = "Summer Winds")
+
+```
+
+
+```{r}
 
 
 
