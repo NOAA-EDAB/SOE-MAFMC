@@ -1610,12 +1610,13 @@ tke <- summer_winds %>%
   theme(strip.text=element_text(hjust=0),
         plot.title = element_text(size = 12))
 
-tws + helicity + tke + plot_annotation(title = "Summer Winds")
+tws + helicity + tke + plot_annotation(title = "Summer Winds") &
+  theme(plot.margin = unit(c(0, 0.1, 0, 0), "cm")) 
 
 ```
 
 
-```{r ocean-temp, fig.width = 5, fig.asp = .7, fig.cap = paste0("Ocean temperature trends in the ",region,". \\label{ocean-temp}"), warning=F}
+```{r ocean-temp, fig.width = 6, fig.asp = .35, fig.cap = paste0("Ocean temperature trends in the ",region,". \\label{ocean-temp}"), warning=F}
 
 temp <- oceantemp_insitu %>% 
   filter(EPU == epu_abbr) %>% 
@@ -1646,7 +1647,7 @@ ggplot2::ggplot() +
   geom_line(aes(x = Time, y = Value)) +
   geom_gls(aes(x = Time, y = Value)) +
   geom_point(aes(x = Time, y = Value), size = 1) +
-  ylab(expression("Temp. Anomaly ("*degree*"C)")) +
+  ylab("") +
   ggtitle("Bottom temperature") +
   scale_x_continuous(expand = c(0.01, 0.01)) +
   theme_ts() +
@@ -1660,13 +1661,13 @@ ggplot2::ggplot() +
 
 #Patchwork plot layout
 surf_temp + bot_temp +
-  plot_layout(ncol =  1) &
+  plot_layout(ncol =  2) &
   theme(plot.margin = unit(c(0, 0, 0, 0), "cm")) 
 
 ```
 
 
-```{r ocean-sal, fig.width = 5, fig.asp = .7, fig.cap = paste0("Ocean salinity trends in the ",region,". \\label{ocean-sal}"), warning=F}
+```{r ocean-sal, fig.width = 6, fig.asp = .35, fig.cap = paste0("Ocean salinity trends in the ",region,". \\label{ocean-sal}"), warning=F}
 
 sal <- oceansal_insitu %>% 
   filter(EPU == epu_abbr) %>% 
@@ -1697,7 +1698,7 @@ ggplot2::ggplot() +
   geom_line(aes(x = Time, y = Value)) +
   geom_gls(aes(x = Time, y = Value)) +
   geom_point(aes(x = Time, y = Value), size = 1) +
-  ylab("Salinity Anomaly (PSU)") +
+  ylab("") +
   ggtitle("Bottom salinity") +
   scale_x_continuous(expand = c(0.01, 0.01)) +
   theme_ts() +
@@ -1711,7 +1712,7 @@ ggplot2::ggplot() +
 
 #Patchwork plot layout
 surf_sal + bot_sal +
-  plot_layout(ncol =  1) &
+  plot_layout(ncol =  2) &
   theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
 
 ```
