@@ -1615,15 +1615,15 @@ tws + helicity + tke + plot_annotation(title = "Summer Winds")
 ```
 
 
-```{r ocean-temp, fig.width = 5, fig.asp = .7, fig.cap = "Ocean temperature trends in the Mid-Atlantic Bight.", warning=F}
+```{r ocean-temp, fig.width = 5, fig.asp = .7, fig.cap = paste0("Ocean temperature trends in the ",region,". \\label{ocean-temp}"), warning=F}
 
-mab_temp <- oceantemp_insitu %>% 
-  filter(EPU == "MAB") %>% 
+temp <- oceantemp_insitu %>% 
+  filter(EPU == epu_abbr) %>% 
   complete(Time = full_seq(min(oceantemp_insitu$Time):max(oceantemp_insitu$Time),1),
            nesting(Var)) %>% 
   mutate(hline = 0)
 
-surf <- mab_temp %>%
+surf_temp <- temp %>%
   filter(Var == "sst anomaly in situ") %>% 
 ggplot2::ggplot() +
   geom_line(aes(x = Time, y = Value)) +
@@ -1640,7 +1640,7 @@ ggplot2::ggplot() +
   theme(strip.text=element_text(hjust=0),
         plot.title = element_text(size = 12))
 
-bot <- mab_temp %>%
+bot_temp <- temp %>%
  filter(Var == "bottom temp anomaly in situ") %>%
 ggplot2::ggplot() +
   geom_line(aes(x = Time, y = Value)) +
@@ -1659,8 +1659,61 @@ ggplot2::ggplot() +
  theme_ts()
 
 #Patchwork plot layout
-surf + bot +
-  plot_layout(ncol =  1) 
+surf_temp + bot_temp +
+  plot_layout(ncol =  1) &
+  theme(plot.margin = unit(c(0, 0, 0, 0), "cm")) 
 
 ```
+
+
+```{r ocean-sal, fig.width = 5, fig.asp = .7, fig.cap = paste0("Ocean salinity trends in the ",region,". \\label{ocean-sal}"), warning=F}
+
+sal <- oceansal_insitu %>% 
+  filter(EPU == epu_abbr) %>% 
+  complete(Time = full_seq(min(oceansal_insitu$Time):max(oceansal_insitu$Time),1),
+           nesting(Var)) %>% 
+  mutate(hline = 0)
+
+surf_sal <- sal %>%
+  filter(Var == "surface salinity anomaly in situ") %>% 
+ggplot2::ggplot() +
+  geom_line(aes(x = Time, y = Value)) +
+  geom_gls(aes(x = Time, y = Value)) +
+  geom_point(aes(x = Time, y = Value), size = 1) +
+  ylab("Salinity Anomaly (PSU)") +
+  ggtitle("Surface salinity") +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+    geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts() +
+  theme(strip.text=element_text(hjust=0),
+        plot.title = element_text(size = 12))
+
+bot_sal <- sal %>%
+ filter(Var == "bottom salinity anomaly in situ") %>%
+ggplot2::ggplot() +
+  geom_line(aes(x = Time, y = Value)) +
+  geom_gls(aes(x = Time, y = Value)) +
+  geom_point(aes(x = Time, y = Value), size = 1) +
+  ylab("Salinity Anomaly (PSU)") +
+  ggtitle("Bottom salinity") +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  theme_ts() +
+  theme(strip.text=element_text(hjust=0),
+        plot.title = element_text(size = 12))+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+ theme_ts()
+
+#Patchwork plot layout
+surf_sal + bot_sal +
+  plot_layout(ncol =  1) &
+  theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
+
+```
+
 
