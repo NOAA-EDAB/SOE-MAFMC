@@ -12,8 +12,6 @@ output:
 monofont: Calibri
 mainfont: Garamond
 fontsize: 11pt
-header-includes: 
-   - \usepackage{wrapfig}
 ---
 
 ```{r setup, include=FALSE}
@@ -272,7 +270,7 @@ spec_group <- data.frame(Group = c("Apex Predator (Highest trophic level)",
 
 knitr::kable(spec_group,
       col.names = c("Group","N species", "Major species"),
-      caption = "Mid-Atlantic Bight feeding guilds listed with key species. \\label{species-group}",
+      caption = "Mid-Atlantic Bight feeding guilds listed with key species.",
       align = 'c',
       booktabs = T) %>% 
   #kable_styling(latex_options = "striped") %>%
@@ -1545,7 +1543,7 @@ out_chl$Month <- factor(out_chl$Month, levels = month.abb)
 
 # Environmental
 
-```{r MAB-wind, fig.width = 8, fig.asp=0.35, fig.cap = "Total wind speed, storminess, and turbulent kinetic energy during the summer in the Mid-Atlantic Bight."}
+```{r MAB-wind, eval=F, fig.width = 8, fig.asp=0.35, fig.cap = "Total wind speed, storminess, and turbulent kinetic energy during the summer in the Mid-Atlantic Bight."}
 
 summer_winds <- wind %>% 
   filter(str_detect(Var, "total wind speed|hcly|tke"),
