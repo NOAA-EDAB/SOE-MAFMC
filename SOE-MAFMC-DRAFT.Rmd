@@ -248,34 +248,57 @@ Many metrics have been developed to aggregate species into functional groups. Si
 
 ```{r species-groupings, warning=F}
 
-spec_group <- data.frame(Group = c("Apex Predator (Highest trophic level)",
-                                   "Piscivore (Eat fish)",
-                                   "Planktivore (Eat plankton)",
-                                   "Benthivore (Eat bottom dwellers)",
-                                   "Benthos (Filter feeders)"),
-                         N = c(4, 23, 16, 25, 9),
-                         Major.species = c("shark (Unc.), swordfish, yellowfin and bluefin tuna",
-                                            "spiny dogfish, summer flounder, bluefish, striped bass, weakfish,
-                                            monkfish, winter and thorny skates, silver and offshore hake,
-                                            Atlantic cod and halibut, fourspot flounder",
-                                            "Atlantic and blueback herring, alewife, shad, menhaden, cusk,
-                                            Atlantic mackerel, butterfish, blackbelly rosefish, sculpins, lumpfish,
-                                            northern searobin, northern sand lance, northern shortfin and
-                                            longfin squid",
-                                            "black sea bass, scup, tilefish, tautog, cunner, blue crab, red crab,
-                                            lobster, ocean pout, haddock, yellowtail, winter, and witch
-                                            flounders, barndoor skate, American plaice, other crabs",
-                                            "scallops, surfclam, quahog, mussels, whelks, conchs, sand dollars
-                                            and urchins"))
+# spec_group <- data.frame(Group = c("Apex Predator (Highest trophic level)",
+#                                    "Piscivore (Eat fish)",
+#                                    "Planktivore (Eat plankton)",
+#                                    "Benthivore (Eat bottom dwellers)",
+#                                    "Benthos (Filter feeders)"),
+#                          N = c(4, 23, 16, 25, 9),
+#                          Major.species = c("shark (Unc.), swordfish, yellowfin and bluefin tuna",
+#                                             "spiny dogfish, summer flounder, bluefish, striped bass, weakfish,
+#                                             monkfish, winter and thorny skates, silver and offshore hake,
+#                                             Atlantic cod and halibut, fourspot flounder",
+#                                             "Atlantic and blueback herring, alewife, shad, menhaden, cusk,
+#                                             Atlantic mackerel, butterfish, blackbelly rosefish, sculpins, lumpfish,
+#                                             northern searobin, northern sand lance, northern shortfin and
+#                                             longfin squid",
+#                                             "black sea bass, scup, tilefish, tautog, cunner, blue crab, red crab,
+#                                             lobster, ocean pout, haddock, yellowtail, winter, and witch
+#                                             flounders, barndoor skate, American plaice, other crabs",
+#                                             "scallops, surfclam, quahog, mussels, whelks, conchs, sand dollars
+#                                             and urchins"))
+# 
+# knitr::kable(spec_group,
+#       col.names = c("Group","N species", "Major species"),
+#       caption = "Mid-Atlantic Bight feeding guilds listed with key species.",
+#       align = 'c',
+#       booktabs = T) %>% 
+#   #kable_styling(latex_options = "striped") %>%
+#   column_spec(c(1,2,3), width = c("8em","5em","25em")) %>% 
+#   row_spec(0, bold = TRUE)
 
-knitr::kable(spec_group,
-      col.names = c("Group","N species", "Major species"),
-      caption = "Mid-Atlantic Bight feeding guilds listed with key species.",
-      align = 'c',
-      booktabs = T) %>% 
-  #kable_styling(latex_options = "striped") %>%
-  column_spec(c(1,2,3), width = c("8em","5em","25em")) %>% 
-  row_spec(0, bold = TRUE)
+# new table with all species listed by management entity
+df <- ecodata::species_groupings %>%
+  dplyr::select(SOE_18, COMNAME, Fed_Managed) %>%
+  filter(SOE_18 != "Other") %>%
+  distinct() %>%
+  group_by(SOE_18, Fed_Managed) %>%
+  summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
+  spread(Fed_Managed, COMNAME) %>%
+  arrange(factor(SOE_18, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
+df<-df[,c(1,4,3,5,6)] %>%
+  mutate_all(tolower)
+
+
+knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodies.', 
+             col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
+  kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>%
+  column_spec(1, width="2cm") %>%
+  column_spec(2, width="5cm") %>%
+  column_spec(3, width="2cm") %>%
+  column_spec(4:5, width="5cm") %>%
+  #column_spec(3, width="7.5cm") #%>%
+  collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
 
 ```
 
