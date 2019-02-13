@@ -32,9 +32,12 @@ library(rgdal)
 library(raster)
 library(rnaturalearth)
 
+#Data directories
+image.dir <- here("images")
+gis.dir <- here("gis")
 
 #GIS directory
-gis.dir <- here::here("inst","extdata","gridded")
+#gis.dir <- here::here("inst","extdata","gridded")
 
 #General inline text input for report
 #Council
@@ -68,7 +71,7 @@ ne_states <- ne_states(country = "united states of america",
   sf::st_transform(crs = crs)
 
 #high-res polygon of Maine
-new_england <- read_sf(gis.dir,"new_england")
+#new_england <- read_sf(gis.dir,"new_england")
 
 #EPU shapefile
 epu_sf <- ecodata::epu_sf %>% 
@@ -106,3 +109,24 @@ label <- function(variable,value){
   return(facet_names[value])
 }
 ```
+
+# Take Home Messages
+
+
+# Report Structure
+
+
+# Economic and Social
+
+
+# Protected Species
+
+
+# Fish and Invertebrates
+
+
+# Habitat Quality and Ecosystem Productivity
+
+
+# Contributors
+
