@@ -248,6 +248,29 @@ ggplot() +
 
 # Economic and Social
 
+The objectives of U.S. federal fishery management include providing benefits to the Nation in terms of seafood production and recreational opportunities, while considering economic efficiency and effects on coastal communities. The indicators in this section consider these objectives for commercial and recreational fishing sectors separately where possible. 
+
+Despite mostly meeting fishery management objectives at the single species level (fig.X), long term declines in total seafood production and commercial revenue remain apparent (figX). Indicators highlight a declining diversity of recreational opportunities (fishing modes and species, figX). Further, coastal communities with high fishery engagement and reliance are dependent on a smaller number of species than historically (pX), these species are predominantly high valued shellfish vulnerable to increased ocean temperature and acidification.  
+
+## Commercial sector (MAB)
+Seafood landings overall and for MAFMC managed species are stable or declining, with the exception of a long term increase in MAFMC managed benthivores (scup, black sea bass, and tilefish). In 2018, landings of MAFMC managed planktivores increased to account for nearly all planktivore landings in the MAB, likely due to increased squid and decreased Atlantic herring landings (commercial landings fig).
+
+Revenue for MAFMC managed species has also declined over the long term, with recent decreases in total revenue driven by decreased landings volume in the MAB which are outweighing increased prices for benthos, planktivores, and other species groups (commercial revenue fig).
+
+MAB fishing communities are heavily reliant on shellfish species (especially scallops) for the majority of revenue. This reliance likely represents heightened risk to fishing communities, particularly along the coasts of New York, New Jersey, and Virginia in ports which are highly engaged and reliant on commercial fishing. This risk is heightened by the high climate vulnerability of shellfish to ocean acidification (commercial engagement/reliance fig).
+
+Aquaculture production in the Mid-Atlantic is dominated by shellfish as well. Virginia continues to lead oyster production in the US, though numbers sold stabilized in 2017 after a long term increase. Reported concerns for Virginia growers within the past two years include an increase in wild spat fall preventing farmed oysters from entering higher-value markets. Maryland and New Jersey oyster production continues to increase (aquaculture fig).
+
+Commercial fleet diversity indices were updated with 2017 data. Current diversity remains near the long term average.  (no fig? fig?)
+
+## Recreational sector (Mid-Atlantic states)
+All recreational indicators have been updated with new Marine Recreational Information Program (MRIP) data, and new indicators for recreational diversity are presented in this report at the request of the MAFMC. In contrast to the commercial seafood production trends, recreational seafood production shows an increasing trend since the mid-1990s with the updated MRIP data. (rec landings fig)
+
+Updated indicators for recreational opportunities (effort days and number of anglers) show general increases since the 1990s, peaking in the late 2000s and declining since then. This is similar to previously reported trends. (rec opportunities fig--effort and angler days)
+
+Newly developed indicators for the diversity of recreational effort (i.e. access to recreational opportunities) by mode (party/charter boats, private boats, shore-based), and diversity of catch (NEFMC and MAFMC managed species only) show significant long-term downward trends. The downward effort diversity trend is driven by party/charter contraction (from a high of 24% of angler trips to 6% currently), with a shift towards shorebased angling. Effort in private boats remained stable between 36-37% of angler trips across the entire series. The long-term decrease in catch diversity in the Mid-Atlantic states contrasts with an increase in recreational catch diversity in New England states over the same time period; this trend requires further investigation as SAFMC managed species are not currently tracked separately. (rec diversity fig)
+
+Recreational fishing is important to many Mid-Atlantic communities, particularly on Long Island, the  New Jersey shoreline and the Delaware Bay. Communities that are most socially and economically dependent (both engaged and reliant) on recreational fishing may face additional risk due this downward shift in diversity of recreational opportunity and species catch. (rec engagement reliance fig)
 
 # Protected Species
 
