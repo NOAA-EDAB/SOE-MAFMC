@@ -1534,6 +1534,33 @@ Investigations are underway to evaluate changes in timing of spawning for manage
 
 # Habitat Quality and Ecosystem Productivity
 
+Productivity of harvested fish and protected species, and therefore sustainability of fisheries, depends on adequate habitat, which encompasses physical and chemical conditions and biological productivity at the base of the food web. Many harvested and protected species on the Northeast US shelf occupy several distinct habitats throughout their life cycle, including estuaries, nearshore coastal, and offshore environments. The indicators in this section provide information on the changing conditions encountered by managed species in different seasons and across habitats, which may explain observed changes in species distribution and productivity. Ultimately, a better understanding of these ecological drivers may permit proactive management in a changing system.
+
+Some habitat management interventions have proven beneficial in the Mid-Atlantic and throughout the Northeast US Shelf. For example, management limiting nutrient inputs has significantly improved water quality in Chesapeake Bay. However, temperature and ocean circulation observations in coastal and offshore habitats are trending towards unprecedented levels. Observed changes at the base of the food web, including timing of production and plankton community composition, affect productivity of protected and managed species in ways we do not yet fully understand. 
+
+## Estuarine habitat quality (Chesapeake Bay)
+Many important MAFMC managed species use estuarine habitats as nurseries or are considered estuarine and nearshore coastal-dependent (summer flounder, scup, black sea bass, and bluefish). An integrated measure of multiple water quality criteria shows a significantly increasing proportion of Chesapeake Bay waters meeting or exceeding EPA water quality standards over time (Zhang et al. 2018). This pattern was statistically linked to total nitrogen reduction, indicating responsiveness of water quality status to management actions implemented to reduce nutrients. The status and trends of tidal segments’ water quality may be used to inform siting decisions of aquaculture operations in Chesapeake Bay. (Ches water quality fig)
+
+## Ocean circulation and surface temperature (coastwide)
+The position of the northern edge of the Gulf Stream has been moving to the north since the late 1950’s, with an increasing rate since 2009. The most northerly positions ever recorded were observed over the most recent years (2014-2017). A more northerly Gulf Stream position is associated with warmer ocean temperature in the Northeast US shelf (Zhang and Vallis, 2007), a higher proportion of Atlantic Temperate Slope Water in the Northeast Channel, and increased sea surface height along the U.S. east coast (Goddard et al. 2015). (GSI fig)
+
+Globally, 2018 was the 4th hottest year on record and the last four years were the warmest on record. The Northeast US shelf sea surface temperature (SST) has an overall warming trend since the 1860s, with the past decade well above the long term average (and the trendline). (long term temp fig) 
+
+## Ocean temperature, surface and bottom (MAB)
+The regional ocean is warming, with increasing variability between the winter and other seasons. Surface and bottom temperature trends in the MAB averaged over all seasons have significantly increased since the early 1980s; seasonal temperatures have increased in spring, summer, and fall. The 2018 summer sea surface temperatures were the third highest on record in the Mid-Atlantic, however temperatures during the other seasons were near or slightly below average.  (regional bottom and surface temp trends with 2018 anomaly maps)
+
+## Primary production (MAB)
+Primary production sets the overall level of potential fish and fishery productivity in an ecosystem. (Mike’s fig) There is a trend of increasing primary production in the Mid-Atlantic, but this trend is primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling. This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. 2018 had a larger than average fall bloom in the MAB following a below average October. (pp and chl a figs)
+
+## Zooplankton (MAB)
+The most abundant zooplankton species in the MAB are Centropages typicus, Psuedocalanus spp., and Temora sp. (Morse et al., 2017).  Calanus finmarchicus are also abundant in the MAB and are important prey for larval fish and the North Atlantic Right Whale.  Annually, there has been a significant decrease in Pseudocalanus and a decreasing trend of Calanus in recent years (annual anomaly figure).  Seasonally, Temora have decreased during the fall, while the timing of the peak concentration of C. typicus has began shifting from late fall to early spring in the late 1980’s (Bi et al. 2014) (seasonal OI abundance plot).
+
+Changes in the abundance of the larger C. finmarchicus is also reflected in the size distribution of the copepods. The small-large copepod index is a measure of the relative size composition of the dominant copepod taxa. During the 1990’s and early 2000’s the positive index was driven by high relative abundance of smaller bodied copepods and a lower relative abundance of Calanus, which is also a period identified with regime shifts to lower fish recruitment (Peretti et al 2017). The current trends in the index suggest an increase in the relative abundance of smaller bodied copepods. (small-large index fig)
+
+Changes in primary productivity and zooplankton affect the food web and may be related to observed changes in fish condition, recruitment patterns, and forage fish energy content, however more research and analyses are needed to directly trace these connections. 
+
+\newpage 
 
 # Contributors
 
+To be filled in
