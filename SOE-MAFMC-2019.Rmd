@@ -853,8 +853,83 @@ ggplot() +
   ggtitle("Recreational Reliance & Engagement"))
 ```
 
+\newpage
 
 # Protected Species
+
+Protected species include marine mammals (under the Marine Mammal Protection Act), Endangered and Threatened species (under the Endangered Species Act), and migratory birds (under the Migratory Bird Treaty Act). In the Northeast US, endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and 5 baleen whales. Fishery management objectives for protected species generally focus on reducing interactions between resource and protected species; here we report on the status of these interactions as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast US region. This year four Unusual Mortality Events (UMEs) have been declared for three large whale species and two seal species, with several mortalities attributed to human interactions. Also, a marine mammal climate vulnerability assessment is currently underway and for Atlantic and Gulf of Mexico and will be reported on in future versions of this report.
+
+## Sea Turtles (coastwide)
+Sea turtles are known to be susceptible to climate and ecosystem changes, and their distribution is influenced by water temperature. Sea turtle diets contain a considerable amount of gelatinous zooplankton, which are also influenced by changes in the ecosystem. At present, management measures to reduce sea turtle-fishery interactions are limited to the regions with historical observations of sea turtles and based on historical ocean temperature distributions. However, changes in climate may cause turtles to shift northward into areas with heavy fishing, possibly resulting in increased bycatch, and necessitating new management measures.
+
+## Whales (coastwide)
+North Atlantic right whales are among the most endangered large whale populations in the world. Changes in right whale trends can have implications for fisheries management where fisheries interact with these whales. Additional management restrictions could have a large impact on fishing times, gears, etc. Although the population increased steadily from 1990 to 2011, it has decreased recently (FIg. \ref{fig:NARW-abundance}). From Pace et al 2017: “The probability that the population’s trajectory post-2010 was a decline was estimated at 99.99%.” Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are only about 100 adult females remaining in the population. Further, right whale distribution has changed since 2010. The reasons for these changes is unclear, but changes in climate and primary prey (*Calanus finmarchicus*) are suspected.
+ 
+Three large whale Unusual Mortality Events (UMEs) have been declared for north Atlantic right whales, humpback whales, and minke whales. In all three cases human interaction appears to have contributed to increased mortalities, although investigations are not complete. Twenty right whale mortalities have been documented in 2017 and 2018 so far. Among the 20 right whale deaths observed in 2017 and 2018 thus far, 5 were due to vessel strike (1 in US waters, 4 in Canadian waters), 6 from entanglement (2 in Canadian gear, 1 in unknown gear, and 3 others found in US waters), and the rest from unknown causes. UMEs have also been declared for humpback whales during 2016-2018 and 2017-2018 minke whales due to elevated strandings. Necropsy investigations on 50% of humpback whales showed evidence of human interaction, either ship strike or entanglement. Similarly, 60% of minke whales show evidence of human interactions or infectious disease. In both cases the investigations are still underway and more research is needed to determine the causes of these UME.
+
+```{r NARW-abundance, fig.width = 6, fig.asp = 0.55,fig.cap = "Right whale abundance estimates with 95\\% credible intervals. These values represent the estimated number of animals alive sometime during the year referenced and NOT at the end of the year referenced. Seventeen known deaths were recorded in 2017 (likely all from anthropogenic causes), but these deaths were not reflected in the 2017 estimate because those animals were alive sometime during the year."}
+hline <- mean(narw[narw$Var == "right whale abundance median",]$Value)
+
+ecodata::narw %>% 
+  spread(.,Var,Value) %>% 
+  ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = `right whale abundance median`), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = `right whale abundance median`), size = pcex-0.75) +
+  geom_errorbar(aes(x = Time,
+                    ymin = `right whale abundance lcl`,
+                  ymax = `right whale abundance ucl`), 
+                width = 0.25) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ggtitle("NARW abundance") +
+  ylab(expression("Abundance (n)")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts()
+```
+
+## Grey Seals (coastwide)
+The number of grey seals (*Halichoerus grypus*) in U.S. waters has risen dramatically in the last 2 decades, with few  observed in the early 1990s to roughly 24,000 observed in southeastern Massachusetts in 2015 (Pace et al. in press). Roughly 30,000 - 40,000 gray seals were estimated in southeastern Massachusetts in 2015, using correction factors applied to seal counts visible in Google Earth imagery. As of 2016, the size of the grey seal population in Canada, which is part of the same stock as the grey seals in the U.S., was estimated to be roughly 425,000, and increasing by 4% a year. Pups born on Muskeget Island MA, currently the largest pupping site for gray seals in the U.S., were first observed in 1988 and now number over 3,500. Trends in pup production at U.S. colonies appear to be increasing, and it is likely that U.S. pup production is being supplemented each year by animals from Canada. A UME for both gray and harbor seals was declared in 2018, triggering an investigation into the cause of this event. Tests so far suggest phocine distemper virus as a potential cause, although the investigation is not yet complete.
+ 
+Fisheries interactions have increased over the past 2 decades, with fewer than 10 total estimated grey seal interactions in 1993, to more than 1000 in 2013 and 2015, and with preliminary 2017 estimates over 900. Analysis of seal diet is currently underway using a variety of techniques (analysis of stomach contents, fatty acids, and DNA) to assess the potential impact of seal population growth on the ecosystem and important commercial fish species.
+
+## Harbor porpoise (coastwide)
+Harbor porpoise bycatch has resulted in fisheries closures in the past, but current bycatch levels suggest that management measures have been effective, reducing this fishery interaction. The 5-year mean bycatch has been below the maximum permitted level (Potential Biological Removal, PBR) since 2011 (Fig. \ref{fig:harbor-porpoise-bars}), and the 2016 and draft 2017 annual bycatch estimates are among the lowest in the time series. Recent compliance with the harbor porpoise take reduction plan and reduced fishing effort are thought to contribute to low bycatch estimates. Potential recent shifts in porpoise distribution could also be contributing to low bycatch and this will be explored during the coming year. A new draft of harbor porpoise abundance estimate suggests stable or increasing abundance of the Gulf of Maine/Bay of Fundy harbor porpoise stock. Recent analyses have examined regional harbor porpoise diet, and suggest that harbor porpoise are not typically feeding on fish caught in gillnets. However, the impact of ecosystem changes on bycatch, population, or distribution remain unclear.
+
+```{r harbor-porpoise-bars, fig.width = 6, fig.asp = 0.55, fig.cap = "Harbor porpoise bycatch estimate (black) shown with Potential Biological Removal (red). Error bars indicate 95\\% confidence interval."}
+ecodata::harborporpoise %>% 
+  spread(.,Var,Value) %>% 
+ggplot() +
+    annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = lwd) +
+  geom_point(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = pcex) +
+  geom_errorbar(aes(x = Time,
+                    ymin = `harbor porpoise bycatch lo95ci`,
+                  ymax = `harbor porpoise bycatch up95ci`,
+                  color = "Harbor Porpoise Bycatch"), 
+                width = 0.25)+
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch pbr`, color = "PBR"), size = lwd-0.1) +
+  scale_color_manual("", values = c("Harbor Porpoise Bycatch" = "black", "PBR" = "red")) +
+  guides(color = guide_legend(override.aes = list(shape = c(19,NA)))) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggtitle("Harbor porpoise bycatch") +
+  ylab("Bycatch Estimate (n)") +
+  theme_ts() +
+  theme(legend.position = c(0.4, 0.85), legend.background = element_rect(
+    fill = "transparent"), legend.text = element_text(size = 10))
+
+```
 
 
 # Fish and Invertebrates
