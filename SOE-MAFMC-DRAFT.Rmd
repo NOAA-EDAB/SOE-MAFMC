@@ -9,8 +9,6 @@ output:
     latex_engine: xelatex
   html_document:
     df_print: paged
-monofont: Calibri
-mainfont: Garamond
 fontsize: 11pt
 ---
 
