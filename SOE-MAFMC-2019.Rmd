@@ -1839,7 +1839,7 @@ bot_temp_insitu
 ```
 
 ## Primary production (MAB)
-Primary production, the rate of photosynthesis by phytoplankton, is a factor of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem (Fig. \ref{fig:prod-potential}) There is a trend of increasing primary production in the Mid-Atlantic, but this trend is primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. 2018 had a larger than average fall bloom in the MAB following a below average October (Fig. \ref{fig:mab-chl-weekly}).
+Primary production, the rate of photosynthesis by phytoplankton, is a factor of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem (Fig. \ref{fig:prod-potential}) There is a trend of increasing primary production in the Mid-Atlantic, but this trend is primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2018 had an above average phytoplankton bloom, most likely comprised of larger diatom species, with the highest concentrations near the shelf break (Fig. \ref{fig:mab-chl-weekly}).
 
 ```{r prod-potential, fig.cap = "Primary production and environmental drivers linkages throughout the ecosystem. The important societal benefits that derive from sustainable fisheries depend directly on a sequence of events starting at the base of the food web. The production of fish and shellfish available for harvest by the fisheries follows pathways of energy flow from phytoplankton and zooplankton to different parts of the food web. The production at each component further depends on the effect of a host of environmental drivers including temperature, salinity, and other factors. We trace these pathways in a highly simplified representation of a fishery ecosystem.", out.width='\\linewidth'}
 
@@ -2072,7 +2072,7 @@ pp_anom %>%
 ```
 
 
-Changes in primary productivity and zooplankton affect the food web and may be related to observed changes in fish condition, recruitment patterns, and forage fish energy content, however more research and analyses are needed to directly trace these connections. 
+Changes in primary productivity, phytoplankton and zooplankton composition and abundance affect the food web and may be related to observed changes in fish condition, recruitment patterns, and forage fish energy content, however more research and analyses are needed to directly trace these connections. 
 
 \newpage 
 
