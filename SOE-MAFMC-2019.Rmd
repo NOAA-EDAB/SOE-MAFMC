@@ -1,8 +1,10 @@
 ---
 title: "State of the Ecosystem 2019: Mid-Atlantic"
-output: pdf_document
+output: tint::tintPdf
 bibliography: SOE2019.bib
 link-citations: yes
+header-includes:
+  \usepackage{array}
 ---
 
 ```{r setup, include=FALSE}
@@ -119,25 +121,54 @@ label <- function(variable,value){
 
 # If you read nothing else, read this
 
-The purpose of this report is to synthesize available information relevant to fishery management in the Mid-Atlantic portion of the US Northeast Shelf. This 2019 report highlights where management interventions have proven successful to achieve ecological objectives, but also the considerable challenges for management posed by climate change and increasing trade-offs across conservation, fishing, and other human activities in this region. Finally, we describe combinations of ecological signals that present opportunities for further integrated research and possibly creative management solutions. 
+<!--The purpose of this report is to synthesize available information relevant to fishery management in the Mid-Atlantic portion of the US Northeast Shelf. This 2019 report highlights where management interventions have proven successful to achieve ecological objectives, but also the considerable challenges for management posed by climate change and increasing trade-offs across conservation, fishing, and other human activities in this region. Finally, we describe combinations of ecological signals that present opportunities for further integrated research and possibly creative management solutions. -->
 
-Some management interventions for ecosystems and fisheries have proven beneficial in the Mid-Atlantic and throughout the Northeast US Shelf. For example, management limiting nutrient inputs has significantly improved water quality in Chesapeake Bay (Fig. \ref{fig:cb-attainment}). This trend, which has been driven by improvements to dissolved oxygen content and water clarity, has positive implications for aquaculture development and for managed species using the Bay as nursery habitat.  Also encouraging is a continued decrease in harbor porpoise bycatch, which for this year is the lowest on record in the region, and an apparent increase in the harbor porpoise population (Fig. \ref{fig:harbor-porpoise-bars}).
+Some management interventions for ecosystems and fisheries have proven beneficial in the Mid-Atlantic and throughout the Northeast US Shelf. `r margin_note("Management works!")`For example, management limiting nutrient inputs has significantly improved water quality in Chesapeake Bay (Fig. \ref{fig:cb-attainment}). This trend, which has been driven by improvements to dissolved oxygen content and water clarity, has positive implications for aquaculture development and for managed species using the Bay as nursery habitat.  Also encouraging is a continued decrease in harbor porpoise bycatch, which for this year is the lowest on record in the region, and an apparent increase in the harbor porpoise population (Fig. \ref{fig:harbor-porpoise-bars}).
 
-However, there are multiple signals indicating challenges to meeting management goals. Despite mostly meeting fishery management objectives at the single species level (Fig. \ref{fig:stock-status}), long term declines in total seafood production and commercial revenue remain apparent (Figs. \ref{fig:total-landings}, \ref{fig:comm-landings}, \ref{fig:comm-revenue}). Indicators highlight a declining diversity of recreational opportunities (fishing modes and species, Fig. \ref{fig:rec-div}). Further, coastal communities with high fishery engagement and reliance are dependent on a smaller number of species than historically, these species are predominantly high valued shellfish vulnerable to increased ocean temperature and acidification. 
+However, there are multiple signals indicating challenges to meeting management goals. `r margin_note("Some fishery objectives met better than others")`Despite mostly meeting fishery management objectives at the single species level (Fig. \ref{fig:stock-status}), long term declines in total seafood production and commercial revenue remain apparent (Figs. \ref{fig:total-landings}, \ref{fig:comm-landings}, \ref{fig:comm-revenue}). Indicators highlight a declining diversity of recreational opportunities (fishing modes and species, Fig. \ref{fig:rec-div}). Further, coastal communities with high fishery engagement and reliance are dependent on a smaller number of species than historically, these species are predominantly high valued shellfish vulnerable to increased ocean temperature and acidification. 
 
-Fisheries are significantly affecting protected species, particularly large whale abundance. Changes in fishery management to address this issue could have considerable consequences for the fixed gear fishing sector, particularly for pot gear such as for lobster. The recovery of north Atlantic right whales is jeopardized by anthropogenic mortality (Fig. \ref{fig:NARW-abundance}). Unusual Mortality Events (UMEs) have been declared for north Atlantic right whales, humpback whales, and minke whales, and preliminary investigations suggest fishing gear entanglement has played a primary role in these mortalities. Gray seal bycatch mortality has also risen in recent years, with an estimated annual mortality that has often totaled more than 1000 animals and a UME has been declared for both gray and harbor seals that may be due to phocine distemper virus. Shifts in ecosystem conditions may be contributing to increased interaction between right whales and fishing gear and could be playing a role in other protected species trends.
+Fisheries are significantly affecting protected species, particularly large whale abundance. `r margin_note("Right whales declining, multispecies unusual mortality events")`Changes in fishery management to address this issue could have considerable consequences for the fixed gear fishing sector, particularly for pot gear such as for lobster. The recovery of north Atlantic right whales is jeopardized by anthropogenic mortality (Fig. \ref{fig:NARW-abundance}). Unusual Mortality Events (UMEs) have been declared for north Atlantic right whales, humpback whales, and minke whales, and preliminary investigations suggest fishing gear entanglement has played a primary role in these mortalities. Gray seal bycatch mortality has also risen in recent years, with an estimated annual mortality that has often totaled more than 1000 animals and a UME has been declared for both gray and harbor seals that may be due to phocine distemper virus. Shifts in ecosystem conditions may be contributing to increased interaction between right whales and fishing gear and could be playing a role in other protected species trends.
 
-Several climate and ecosystem observations are trending towards unprecedented levels.  Sea surface and bottom temperatures across the Northeast US shelf are still among the fastest warming waters globally (Fig. \ref{fig:long-term-sst}) with implications for species physiology, productivity, distribution, and community composition. Globally, 2018 was the 4th hottest year on record and the last four years were the warmest on record. In the Mid-Atlantic, 2018 summer sea surface temperatures were the third highest on record, however temperatures during the other seasons were near or slightly below average (Fig. \ref{fig:MAB-SST-insitu}).  Bottom temperature measurements also continue to have a significant long term increasing trend (Fig. \ref{fig:MAB-bot-temp}). Ocean circulation is changing as well. The position of the northern edge of the Gulf Stream has been moving to the north since the late 1950’s, with an increasing rate since 2009. The most northerly positions ever recorded were observed over the most recent years (2014-2017, Fig. \ref{fig:GSI}). A more northerly Gulf Stream position is associated with warmer ocean temperature in the Northeast US shelf [@zhang_role_2007] and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
+Several climate and ecosystem observations are trending towards unprecedented levels. `r margin_note("Unprecedented climate signals")`Sea surface and bottom temperatures across the Northeast US shelf are still among the fastest warming waters globally (Fig. \ref{fig:long-term-sst}) with implications for species physiology, productivity, distribution, and community composition. Globally, 2018 was the 4th hottest year on record and the last four years were the warmest on record. In the Mid-Atlantic, 2018 summer sea surface temperatures were the third highest on record, however temperatures during the other seasons were near or slightly below average (Fig. \ref{fig:MAB-SST-insitu}).  Bottom temperature measurements also continue to have a significant long term increasing trend (Fig. \ref{fig:MAB-bot-temp}). Ocean circulation is changing as well. The position of the northern edge of the Gulf Stream has been moving to the north since the late 1950’s, with an increasing rate since 2009. The most northerly positions ever recorded were observed over the most recent years (2014-2017, Fig. \ref{fig:GSI}). A more northerly Gulf Stream position is associated with warmer ocean temperature in the Northeast US shelf^[@zhang_role_2007] and increased sea surface height along the U.S. east coast^[@goddard_extreme_2015]. 
 
-The management implications of these ocean changes vary by region and species, and are not fully understood at this point. Changes in the distribution of managed fish species continue, with aggregate trends on the entire Northeast Shelf towards the northeast and generally into deeper water (Fig. \ref{fig:spec-dist}). These shifts will place increasing pressure on a management system based around stable species distributions. The proportion of NEFMC managed benthivore species (righteye flounders, haddock) has declined over time in Mid-Atlantic waters according to bottom trawl surveys (Fig. \ref{fig:NEFMC-in-MAB}), while the proportion of MAFMC managed planktivore (squids, mackerel, and butterfish) species has been increasing in New England waters in both surveys and landings (Figs. \ref{fig:MAFMC-in-NE}, \ref{fig:comm-landings}). Similarly, butterfish have been observed in Gulf of Maine common tern fledgling diets 2009-2011 and again in 2018 (see New England report). The downward trend in recreational species diversity in the Mid-Atlantic (Fig. \ref{fig:rec-div}) contrasts with an increase in recreational species diversity over time in New England (see New England report), although it is unclear to what extent this result is due to the aggregation of SAFMC species in the indicator itself. Nearshore NEAMAP survey indices show some similar patterns to offshore surveys, although with different magnitudes, perhaps reflecting seasonal importance of nearshore habitats (Fig. \ref{fig:nefsc-biomass-mab}); these patterns will be explored in more detail in future analyses. As temperature and ocean circulation indicators trend toward extremes, fishery management based on static stock areas will likely face continued changes in species distribution.
+The management implications of these ocean changes vary by region and species, and are not fully understood at this point. `r margin_note("Shifting distributions present management challenges")`Changes in the distribution of managed fish species continue, with aggregate trends on the entire Northeast Shelf towards the northeast and generally into deeper water (Fig. \ref{fig:spec-dist}). These shifts will place increasing pressure on a management system based around stable species distributions. The proportion of NEFMC managed benthivore species (righteye flounders, haddock) has declined over time in Mid-Atlantic waters according to bottom trawl surveys (Fig. \ref{fig:NEFMC-in-MAB}), while the proportion of MAFMC managed planktivore (squids, mackerel, and butterfish) species has been increasing in New England waters in both surveys and landings (Figs. \ref{fig:MAFMC-in-NE}, \ref{fig:comm-landings}). Similarly, butterfish have been observed in Gulf of Maine common tern fledgling diets 2009-2011 and again in 2018 (see New England report). The downward trend in recreational species diversity in the Mid-Atlantic (Fig. \ref{fig:rec-div}) contrasts with an increase in recreational species diversity over time in New England (see New England report), although it is unclear to what extent this result is due to the aggregation of SAFMC species in the indicator itself. Nearshore NEAMAP survey indices show some similar patterns to offshore surveys, although with different magnitudes, perhaps reflecting seasonal importance of nearshore habitats (Fig. \ref{fig:nefsc-biomass-mab}); these patterns will be explored in more detail in future analyses. As temperature and ocean circulation indicators trend toward extremes, fishery management based on static stock areas will likely face continued changes in species distribution.
 
-Observed changes at the base of the food web, including timing and community composition, affect productivity of protected and managed species in ways we do not yet fully understand. There is a trend of increasing primary production in the Mid-Atlantic, but this trend is primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. Current zooplankton trends in the Mid-Atlantic suggest a shift in timing towards a spring peak in the dominant species (Fig. \ref{fig:MAB-oi-zoo}), as well as a shift towards smaller-bodied copepods (Fig. \ref{fig:MAB-sli}). This suggests a possible return to conditions last observed during the 1990’s, when small bodied copepods dominated the zooplankton community, regime shifts in groundfish recruitment were observed [@perretti_regime_2017], and north Atlantic right whales experienced lower birth rates [@greene_remote_2013]. The timing of shifts in fish condition may be similar (Fig. \ref{fig:mab-cf}), though potential mechanisms connecting adult fish condition to zooplankton patterns are unclear.
+Observed changes at the base of the food web, including timing and community composition, affect productivity of protected and managed species in ways we do not yet fully understand. `r margin_note("Ecological shifts alter fishery production")`There is a trend of increasing primary production in the Mid-Atlantic, but this trend is primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. Current zooplankton trends in the Mid-Atlantic suggest a shift in timing towards a spring peak in the dominant species (Fig. \ref{fig:MAB-oi-zoo}), as well as a shift towards smaller-bodied copepods (Fig. \ref{fig:MAB-sli}). This suggests a possible return to conditions last observed during the 1990’s, when small bodied copepods dominated the zooplankton community, regime shifts in groundfish recruitment were observed^[@perretti_regime_2017], and north Atlantic right whales experienced lower birth rates^[@greene_remote_2013]. The timing of shifts in fish condition may be similar (Fig. \ref{fig:mab-cf}), though potential mechanisms connecting adult fish condition to zooplankton patterns are unclear.
 
 # Report Structure
 
-The major messages of the report are synthesized above with reference to key figures. The figure format is explained in Fig \ref{fig:figformat}. The information in this report is organized around general ecosystem-level management objectives (Table \ref{tab:management-objectives}), and indicators related to these objectives are grouped into four general categories in the four sections below: economic and social, protected species, fish and invertebrates, and habitat quality and ecosystem productivity. Fish and invertebrates are aggregated into similar feeding categories (Table \ref{tab:species-groupings}) to evaluate ecosystem level trends in predators and prey. The spatial scale of indicators is either coastwide, Mid-Atlantic states (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig. \ref{fig:EPU-MAP}) level. Each section begins with a summary of main messages with links to other sections, including any new information added at the request of the Council, and includes figures with brief descriptions of all current indicators. Technical methods documentation for the indicators is available [online](https://noaa-edab.github.io/tech-memo), and indicator data is also available [online](https://www.integratedecosystemassessment.noaa.gov/regions/northeast/Indicator-data#MidAtlanticIndicators).
+The major messages of the report are synthesized above with reference to key figures. The information in this report is organized around general ecosystem-level management objectives (Table \ref{tab:management-objectives}), and indicators related to these objectives are grouped into four general categories in the four sections below: economic and social, protected species, fish and invertebrates, and habitat quality and ecosystem productivity. 
 
-```{r figformat, fig.cap = "Key to figures. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2018, the shaded region will still cover this time period.", fig.height = 2.5, fig.width = 4}
+```{r management-objectives}
+
+mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
+                                                 "Profits","Recreation",
+                                                 "Stability","Social & Cultural",
+                                                 "Biomass","Productivity",
+                                                 "Trophic structure","Habitat"),
+"Indicators reported here" = c("Landings by feeding guild","Revenue by feeding guild",
+                               "Number of anglers and trips; recreational catch",
+                               "Diversity indices (fishery and species)",
+                               "Commercial and recreational reliance; social vulnerability",
+                               "Biomass or abundance by feeding guild from surveys",
+                               "Condition and recruitment of MAFMC managed species",
+                               "Relative biomass of feeding guilds, primary productivity",
+                               "Estuarine and offshore habitat conditions"))
+
+knitr::kable(mng_obj,
+      col.names = c("Objective Categories","Indicators reported here"),
+      caption = "Ecosystem-scale objectives in the Mid-Atlantic Bight",
+      #align = 'c',
+      booktabs = T) %>%
+  kable_styling(latex_options = "scale_down", "HOLD_position") %>%
+ # column_spec(c(2), width = c("25em")) %>%
+  row_spec(0, bold = TRUE)
+```
+
+
+The figure format is explained in Fig \ref{fig:figformat}. 
+
+```{r figformat, fig.cap = "Key to figures. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2018, the shaded region will still cover this time period.", fig.height = 2.5, fig.width = 4, out.width='0.7\\linewidth'}
 
 m <- 0.1
 x <- 1985:2018
@@ -174,60 +205,10 @@ ggplot2::ggplot(data = data,aes(x = x, y = y)) +
 
 ```
 
-```{r management-objectives}
-
-mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
-                                                 "Profits","Recreation",
-                                                 "Stability","Social & Cultural",
-                                                 "Biomass","Productivity",
-                                                 "Trophic structure","Habitat"),
-"Indicators reported here" = c("Landings by feeding guild","Revenue by feeding guild",
-                               "Number of anglers and trips; recreational catch",
-                               "Diversity indices (fishery and species)",
-                               "Commercial and recreational reliance; social vulnerability",
-                               "Biomass or abundance by feeding guild from surveys",
-                               "Condition and recruitment of MAFMC managed species",
-                               "Relative biomass of feeding guilds, primary productivity",
-                               "Estimated habitat occurrence and potential wind-energy interactions"))
-
-knitr::kable(mng_obj,
-      col.names = c("Objective Categories","Indicators reported here"),
-      caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight",
-      #align = 'c',
-      booktabs = T) %>%
- # kable_styling(latex_options = "striped") %>%
- # column_spec(c(2), width = c("25em")) %>%
-  row_spec(0, bold = TRUE)
-```
-
-```{r species-groupings, warning=F}
-
-# new table with all species listed by management entity
-df <- ecodata::species_groupings %>%
-  dplyr::select(SOE_18, COMNAME, Fed_Managed) %>%
-  filter(SOE_18 != "Other") %>%
-  distinct() %>%
-  group_by(SOE_18, Fed_Managed) %>%
-  summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
-  spread(Fed_Managed, COMNAME) %>%
-  arrange(factor(SOE_18, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
-df<-df[-6,c(1,4,3,5,6)] %>%
-  mutate_all(tolower)
+Fish and invertebrates are aggregated into similar feeding categories (Table \ref{tab:species-groupings}) to evaluate ecosystem level trends in predators and prey. The spatial scale of indicators is either coastwide, Mid-Atlantic states (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig. \ref{fig:EPU-MAP}) level. 
 
 
-knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodies.', 
-             col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
-  kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>%
-  column_spec(1, width="2cm") %>%
-  column_spec(2, width="5cm") %>%
-  column_spec(3, width="2cm") %>%
-  column_spec(4:5, width="5cm") %>%
-  #column_spec(3, width="7.5cm") #%>%
-  collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
-
-```
-
-```{r EPU-MAP, fig.cap = "The Northeast Large Marine Ecosystem.", fig.width = 3.4, fig.asp = 1.25}
+```{r EPU-MAP, fig.margin = TRUE, fig.cap = "The Northeast Large Marine Ecosystem.", fig.width = 3.4, fig.asp = 1.25}
 
 #Specify data frame with lat/lon locations for labels
 epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
@@ -250,6 +231,39 @@ ggplot() +
   ylab("Latitude")
 
 ```
+
+Each section begins with a summary of main messages with links to other sections, including any new information added at the request of the Council, and includes figures with brief descriptions of all current indicators. Technical methods documentation^[https://noaa-edab.github.io/tech-memo], and indicator data^[https://www.integratedecosystemassessment.noaa.gov/regions/northeast/Indicator-data#MidAtlanticIndicators] are available online.
+
+
+```{r species-groupings, warning=F}
+
+# new table with all species listed by management entity
+df <- ecodata::species_groupings %>%
+  dplyr::select(SOE_18, COMNAME, Fed_Managed) %>%
+  filter(SOE_18 != "Other") %>%
+  distinct() %>%
+  group_by(SOE_18, Fed_Managed) %>%
+  summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
+  spread(Fed_Managed, COMNAME) %>%
+  arrange(factor(SOE_18, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
+df<-df[-6,c(1,4,3,5,6)] %>%
+  mutate_all(tolower)
+
+
+knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodies.', 
+             col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
+  kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>% 
+  column_spec(1, width="2cm") %>%
+  column_spec(2, width="5cm") %>%
+  column_spec(3, width="2cm") %>%
+  column_spec(4:5, width="5cm") %>%
+  #column_spec(3, width="7.5cm") #%>%
+  collapse_rows(columns = 1, latex_hline = "major", valign = "middle") %>%
+  row_spec(0, bold = TRUE)
+
+```
+
+
 
 \newpage
 
