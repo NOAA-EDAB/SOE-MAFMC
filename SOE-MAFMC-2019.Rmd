@@ -7,10 +7,10 @@ link-citations: yes
 
 ```{r setup, include=FALSE}
 
-library(tint)
-# invalidate cache when the package version changes
-knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tint'))
-options(htmltools.dir.version = FALSE)
+# library(tint)
+# # invalidate cache when the package version changes
+# knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tint'))
+# options(htmltools.dir.version = FALSE)
 
 #Default Rmd options
 knitr::opts_chunk$set(echo = FALSE,
@@ -1169,18 +1169,15 @@ ggplot(data = total_surv, aes(x = Time, y = Value, color = Var)) +
 The proportion of NEFMC managed benthivore species (righteye flounders, haddock) has declined over time in Mid-Atlantic waters according to bottom trawl surveys (Fig. \ref{fig:NEFMC-in-MAB}), while the proportion of MAFMC managed planktivore (squids, mackerel and butterfish) species has been increasing in New England waters in both surveys and landings (Fig. \ref{fig:MAFMC-in-NE}, Fig. \ref{fig:comm-landings}). 
 
 ```{r NEFMC-in-MAB, fig.width = 7, fig.asp = 0.45, fig.cap = "New England-managed survey proportion of MAB benthivores."}
-#raw.dir <- here::here("inst","extdata")
-#load(file= file.path(raw.dir,"Survdat_proportions.Rdata"))
-load("Survdat_proportions.Rdata")
 
-nefmc_ma <- survey_proportions %>% 
+nefmc_ma <- nefsc_survey_disaggregated %>% 
   distinct() %>% 
   filter(EPU %in% c("MAB"),
-         Fed_Managed == "NEFMC",
-         !str_detect(group,"Other")) %>% 
-  group_by(EPU, group, season, Time) %>% 
-  dplyr::summarise(Value = sum(Prop)) %>% 
-  unite(.,Var,c("group","season"), sep = " ") %>% 
+         Management == "NEFMC",
+         !str_detect(`Feeding guild`,"Other")) %>% 
+  group_by(EPU, `Feeding guild`, Season, Time) %>% 
+  dplyr::summarise(Value = sum(Proportion)) %>% 
+  unite(.,Var,c("Feeding guild","Season"), sep = " ") %>% 
   group_by(EPU,Var) %>% 
   mutate(hline = mean(Value)) %>% 
   filter(str_detect(Var,"Benthivore")) %>% 
@@ -1217,20 +1214,21 @@ mab_nefmc_props <- nefmc_ma %>%
   theme(strip.text=element_text(hjust=0))
 
 
+
 mab_nefmc_props
 
 ```
 
 ```{r MAFMC-in-NE, fig.width = 7, fig.asp = .9, fig.cap = "Mid-Atlantic-managed survey proportion of GOM and GB planktivores."}
 
-mafmc_ne <- survey_proportions %>% 
+mafmc_ne <- nefsc_survey_disaggregated %>% 
   distinct() %>% 
   filter(EPU %in% c("GOM","GB"),
-         Fed_Managed == "MAFMC",
-         !str_detect(group,"Other")) %>% 
-  group_by(EPU, group, season, Time) %>% 
-  dplyr::summarise(Value = sum(Prop)) %>% 
-  unite(.,Var,c("group","season"), sep = " ") %>% 
+         Management == "MAFMC",
+         !str_detect(`Feeding guild`,"Other")) %>% 
+  group_by(EPU, `Feeding guild`, Season, Time) %>% 
+  dplyr::summarise(Value = sum(Proportion)) %>% 
+  unite(.,Var,c("Feeding guild","Season"), sep = " ") %>% 
   group_by(EPU,Var) %>% 
   mutate(hline = mean(Value)) %>% 
   filter(str_detect(Var,"Planktivore")) %>% 
@@ -1446,7 +1444,7 @@ plot_stackbarcpts_single <- function(YEAR, var2bar,
   #       height = height)
 }
 
-bar_dat <- ecodata::recruitment_anomaly %>% 
+bar_dat <- ecodata::productivity_anomaly %>% 
   filter(EPU == "MAB")
 
 # mafmc <-plot_stackbarcpts_single(YEAR = bar_dat$Time,
