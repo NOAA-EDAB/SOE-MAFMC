@@ -1086,7 +1086,7 @@ ggplot(data = total_surv, aes(x = Time, y = Value, color = Var)) +
 
 The proportion of NEFMC managed benthivore species (righteye flounders, haddock) has declined over time in Mid-Atlantic waters according to bottom trawl surveys (Fig. \ref{fig:NEFMC-in-MAB}), while the proportion of MAFMC managed planktivore (squids, mackerel and butterfish) species has been increasing in New England waters in both surveys and landings (Fig. \ref{fig:MAFMC-in-NE}, Fig. \ref{fig:comm-landings}). 
 
-```{r NEFMC-in-MAB, fig.width = 7, fig.asp = 0.45, fig.cap = "New England-managed survey proportion of MAB benthivores."}
+```{r NEFMC-in-MAB, fig.width = 7, fig.asp = 0.35, fig.cap = "New England-managed survey proportion of MAB benthivores."}
 
 nefmc_ma <- nefsc_survey_disaggregated %>% 
   distinct() %>% 
@@ -1137,7 +1137,7 @@ mab_nefmc_props
 
 ```
 
-```{r MAFMC-in-NE, fig.width = 7, fig.asp = .9, fig.cap = "Mid-Atlantic-managed survey proportion of GOM and GB planktivores."}
+```{r MAFMC-in-NE, fig.width = 7, fig.asp = .7, fig.cap = "Mid-Atlantic-managed survey proportion of GOM and GB planktivores."}
 
 mafmc_ne <- nefsc_survey_disaggregated %>% 
   distinct() %>% 
@@ -1236,7 +1236,7 @@ knitr::include_graphics(file.path(image.dir, "MAFMC_Fish_Condition_2019.jpg"))
 ## Fish productivity (MAB)
 We describe patterns of aggregate fish productivity in the Mid-Atlantic with the small fish per large fish anomaly indicator, derived from NEFSC bottom trawl survey data (Fig. \ref{fig:MAB-recruitment}). The indicator shows that productivity has been relatively low in this region since 2010. Recent increases in the indicator have been driven by strong productivity years for witch flounder, silver hake, and winter flounder.
 
-```{r MAB-recruitment, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.",fig.width = 8, fig.height = 5}
+```{r MAB-recruitment, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.", fig.width = 8, fig.asp = .55}
 
 #### Adjust plot properties -------------------------------
 adjustAxes <- 
@@ -1401,7 +1401,7 @@ mid
 ## Larval diversity (MAB)
 Fluctuations in larval diversity from NEFSC ECOMON and bottom trawl surveys reflect changing dominance of forage fish, hake, and haddock. In fall, the decrease in diversity since 2010 is driven by high abundance of menhaden and hake larvae. In spring, both diversity and species richness declined to a time series low due to the dominance of sandlance and haddock, which are common in the northern portion of the MAB (Fig. \ref{fig:mab-larval-div}). Too few stations were sampled in spring 2014 and 2016 and in fall 2017 to detect departures from trends in the MAB. 
 
-```{r mab-larval-div, fig.cap = "Larval diversity indices from ECOMON surveys in the Mid-Atlantic."}
+```{r mab-larval-div, fig.cap = "Larval diversity indices from ECOMON surveys in the Mid-Atlantic.", fig.width = 7, fig.asp = .7}
 ma_larv_div <- ecodata::ichthyo_diversity %>%
   filter(EPU == "MAB",
          str_detect(Var, "Ich Shannon")) %>%
