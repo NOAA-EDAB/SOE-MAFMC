@@ -1481,7 +1481,7 @@ mid
 
 
 ## Larval diversity (MAB)
-Fluctuations in larval diversity from NEFSC ECOMON and bottom trawl surveys reflect changing dominance of forage fish, hake, and haddock. In fall, the decrease in diversity since 2010 is driven by high abundance of menhaden and hake larvae. In spring, both diversity and species richness declined to a time series low due to the dominance of sandlance and haddock, which are common in the northern portion of the MAB (Fig. \ref{fig:mab-larval-div}). Spring 2014 and 2016 and fall 2017 had no survey coverage in the MAB. 
+Fluctuations in larval diversity from NEFSC ECOMON and bottom trawl surveys reflect changing dominance of forage fish, hake, and haddock. In fall, the decrease in diversity since 2010 is driven by high abundance of menhaden and hake larvae. In spring, both diversity and species richness declined to a time series low due to the dominance of sandlance and haddock, which are common in the northern portion of the MAB (Fig. \ref{fig:mab-larval-div}). Too few stations were sampled in spring 2014 and 2016 and in fall 2017 to detect departures from trends in the MAB. 
 
 ```{r mab-larval-div, fig.cap = "Larval diversity indices from ECOMON surveys in the Mid-Atlantic."}
 ma_larv_div <- ecodata::ichthyo_diversity %>%
