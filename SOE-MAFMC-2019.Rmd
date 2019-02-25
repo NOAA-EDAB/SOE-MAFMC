@@ -1,6 +1,10 @@
 ---
 title: "State of the Ecosystem 2019: Mid-Atlantic"
-output: pdf_document
+output: 
+  pdf_document:
+    includes:
+      in_header: latex/preamble-latex.tex
+    keep_tex: yes
 bibliography: SOE2019.bib
 link-citations: yes
 ---
@@ -1958,7 +1962,7 @@ sli_plt <- sli %>%
   xlab("")+
   ylab("Small-large abundance") +
   ggtitle("Small-large copepod abundance") +
-    scale_x_continuous(expand = c(0.01, 0.01), limits = c(1998, 2018))+
+    scale_x_continuous(expand = c(0.01, 0.01), limits = c(1988, 2018))+
       geom_hline(aes(yintercept = hline,
                      group = Var),
            size = hline.size,
@@ -1978,7 +1982,7 @@ pp_anom_plt <- pp_anom %>%
   guides(color = F) +
   ylab("Anomaly ratio") +
   ggtitle("Primary production anomaly ratio") +
-    scale_x_continuous(expand = c(0.01, 0.01), limits = c(1998, 2018))+
+    scale_x_continuous(expand = c(0.01, 0.01), limits = c(1988, 2018))+
     scale_y_continuous(limits = c(0.8,1.2)) +
       geom_hline(aes(yintercept = hline,
                      group = Var),
@@ -1996,11 +2000,11 @@ sli_plt + pp_anom_plt + plot_layout(ncol = 1) & theme(plot.margin = margin(t = 0
 
 Changes in primary productivity, phytoplankton and zooplankton composition and abundance affect the food web and may be related to observed changes in fish condition, recruitment patterns, and forage fish energy content, however more research and analyses are needed to directly trace these connections. Any attempt to predict how the ecosystem will respond to changes in climate and fishing patterns ultimately will depend on understanding these connections. Our objective is to shed light on these fundamental issues and to document changes affecting human communities and the fishery ecosystem on which we depend.  
 
-\newpage 
-
 # Contributors
 
 To be filled in
+
+\newpage 
 
 # Document Orientation
 
