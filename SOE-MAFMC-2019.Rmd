@@ -3,7 +3,7 @@ title: "State of the Ecosystem 2019: Mid-Atlantic"
 output: 
   pdf_document:
     includes:
-      in_header: latex/preamble-latex.tex
+      in_header: latex/header.tex
     keep_tex: yes
 bibliography: SOE2019.bib
 link-citations: yes

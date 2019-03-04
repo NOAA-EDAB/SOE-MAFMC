@@ -1,7 +1,10 @@
 % Set up the fonts
-\usepackage{fontspec}
+%\usepackage{fontspec}
 %\setmainfont{Garamond}
 %\setmonofont{Calibri}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage[T1]{fontenc}
+
 
 % Set the language for 508
 \hypersetup{
@@ -42,12 +45,13 @@
 \pagestyle{fancy}
 \fancyhf{}
 \setlength\headheight{40pt}
-\lhead{\texttt{\emph{State of the Ecosystem}} \\ \texttt{\emph{Gulf of Maine and Georges Bank}}}
+\rhead{\texttt{\emph{Published - \today}}}
+\lhead{\texttt{\emph{State of the Ecosystem}} \\ \texttt{\emph{Mid-Atlantic}}}
 \cfoot{\thepage}
 
 \AddEverypageHook{%
    \ifthenelse{\value{page}=1}%
-     {\rhead{\includegraphics[width=40pt]{NOAA_logo.png} \\ \texttt{\emph{Published March 3, 2018}}}
+     {\rhead{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \texttt{\emph{Published - \today}}}
      }%
      {\rhead{}
      }
