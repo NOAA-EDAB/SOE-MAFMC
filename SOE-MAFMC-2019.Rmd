@@ -170,7 +170,7 @@ knitr::kable(mng_obj,
  # column_spec(c(2), width = c("25em")) %>%
   row_spec(0, bold = TRUE)
 ```
-\newpage
+
 
 # Economic and Social
 
@@ -181,7 +181,7 @@ Despite mostly meeting fishery management objectives at the single species level
 ## Commercial sector (MAB)
 Seafood landings overall and for MAFMC managed species are declining (Fig. \ref{fig:total-landings}). Seafood landings for feeding guilds are also stable or declining (Fig. \ref{fig:comm-landings}), with the exception of a long term increase in MAFMC managed benthivores (scup, black sea bass, and tilefish). In 2018, landings of MAFMC managed planktivores increased to account for nearly all planktivore landings in the MAB, likely due to increased squid and decreased Atlantic herring landings.
 
-```{r total-landings, fig.cap = paste0("Total commercial seafood landings (black) shown with ",region," managed seafood landings (red)."), fig.width = 5, fig.asp = 0.45}
+```{r total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red)."), fig.width = 4, fig.asp = 0.45}
 #Get data for plotting
 
 #Managed landings
@@ -232,7 +232,7 @@ ggplot(data = landings_agg)+
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   scale_color_manual(values = series.col, aesthetics = "color")+
   guides(color = FALSE) +
-  ylab(expression("Landings (10"^3*"metric tons)")) +
+  ylab(expression("Landings, 10"^3*"metric tons")) +
 
   geom_hline(aes(yintercept = hline,
                
@@ -244,7 +244,7 @@ ggplot(data = landings_agg)+
 
 ```
 
-```{r comm-landings, fig.height=8, warning=F, fig.width = 5, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild.")}
+```{r comm-landings, fig.asp=1.6, warning=F, fig.width = 4, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild.")}
 
 #Assign feeding guild column for plotting with ggplot
 landings <- rbind(managed_landings, total_landings) %>%
@@ -313,7 +313,7 @@ ggplot(data = landings,aes(x = Time, y = Value, color = grouping)) +
 
 Revenue for MAFMC managed species has also declined over the long term (Fig. \ref{fig:comm-revenue}), with recent decreases in total revenue driven by decreased landings volume outweighing increased prices for benthos, planktivores, and other species groups (Fig. \ref{fig:bennet}).
 
-```{r comm-revenue, fig.width = 5, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."}
+```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."}
 
 #Filtering and aggregation step
 rev_agg <- ecodata::comdat %>% 
@@ -528,7 +528,7 @@ Commercial fleet diversity indices were updated with 2017 data. Current diversit
 ## Recreational sector (Mid-Atlantic states)
 All recreational indicators have been updated with new Marine Recreational Information Program (MRIP) data, and new indicators for recreational diversity are presented in this report at the request of the MAFMC. In contrast to the commercial seafood production trends, recreational seafood production shows an increasing trend since the mid-1990s with the updated MRIP data (Fig. \ref{fig:rec-landings}))
 
-```{r rec-landings, fig.cap = paste0("Total recreational seafood harvest in the ",region," region."), fig.width = 5, fig.asp = 0.45}
+```{r rec-landings, fig.cap = paste0("Total recreational seafood harvest in the ",region," region."), fig.width = 4, fig.asp = 0.45}
 
 landings_rec <- ecodata::recdat %>% 
   filter(EPU == region_abbr,
@@ -569,7 +569,7 @@ ggplot(data = landings_rec)+
 
 Updated indicators for recreational opportunities (effort days and number of anglers) show general increases since the 1990s, peaking in the late 2000s and declining since then. This is similar to previously reported trends (Fig. \ref{fig:rec-op}).
 
-```{r rec-op, fig.width = 5, fig.asp = 1, fig.cap = paste0("Recreational effort and number of recreational anglers in the ",region,".")}
+```{r rec-op, fig.width = 4, fig.asp = 0.8, fig.cap = paste0("Recreational effort and number of recreational anglers in the ",region,".")}
 recdat <- ecodata::recdat %>% 
   filter(EPU == region_abbr) %>% 
   group_by(Var) %>% 
@@ -671,7 +671,7 @@ cowplot::plot_grid(rec_effort,
 
 Newly developed indicators for the diversity of recreational effort (i.e. access to recreational opportunities) by mode (party/charter boats, private boats, shore-based), and diversity of catch (NEFMC and MAFMC managed species only) show significant long-term downward trends. The downward effort diversity trend is driven by party/charter contraction (from a high of 24% of angler trips to 6% currently), with a shift towards shorebased angling. Effort in private boats remained stable between 36-37% of angler trips across the entire series. The long-term decrease in catch diversity in the Mid-Atlantic states contrasts with an increase in recreational catch diversity in New England states over the same time period; this trend requires further investigation as SAFMC managed species are not currently tracked separately (Fig. \ref{fig:rec-div})
 
-```{r rec-div, fig.width = 5, fig.asp = 1, fig.cap = paste0("Recreational effort diversity and diversity of recreational catch in the ",region,".")}
+```{r rec-div, fig.width = 4, fig.asp = 0.8, fig.cap = paste0("Recreational effort diversity and diversity of recreational catch in the ",region,".")}
 
 rec_div <- recdat %>% 
   filter(Var == "Recreational fleet effort diversity across modes") %>% 
@@ -793,7 +793,7 @@ North Atlantic right whales are among the most endangered large whale population
  
 Three large whale Unusual Mortality Events (UMEs) have been declared for North Atlantic right whales, humpback whales, and minke whales. In all three cases human interaction appears to have contributed to increased mortalities, although investigations are not complete. Twenty right whale mortalities have been documented in 2017 and 2018 so far. Among the 20 right whale deaths observed in 2017 and 2018 thus far, 5 were due to vessel strike (1 in US waters, 4 in Canadian waters), 6 from entanglement (2 in Canadian gear, 1 in unknown gear, and 3 others found in US waters), and the rest from unknown causes. UMEs have also been declared for humpback whales during 2016-2018 and 2017-2018 minke whales due to elevated strandings. Necropsy investigations on 50% of humpback whales showed evidence of human interaction, either ship strike or entanglement. Similarly, 60% of minke whales show evidence of human interactions or infectious disease. In both cases the investigations are still underway and more research is needed to determine the causes of these UME.
 
-```{r NARW-abundance, fig.width = 6, fig.asp = 0.55,fig.cap = "Right whale abundance estimates with 95\\% credible intervals. These values represent the estimated number of animals alive sometime during the year referenced and NOT at the end of the year referenced. Seventeen known deaths were recorded in 2017 (likely all from anthropogenic causes), but these deaths were not reflected in the 2017 estimate because those animals were alive sometime during the year."}
+```{r NARW-abundance, fig.width = 4, fig.asp = 0.45,fig.cap = "Right whale abundance estimates with 95\\% credible intervals. These values represent the estimated number of animals alive sometime during the year referenced and NOT at the end of the year referenced. Seventeen known deaths were recorded in 2017 (likely all from anthropogenic causes), but these deaths were not reflected in the 2017 estimate because those animals were alive sometime during the year."}
 hline <- mean(narw[narw$Var == "right whale abundance median",]$Value)
 
 ecodata::narw %>% 
@@ -831,7 +831,7 @@ Fisheries interactions have increased over the past 2 decades, with fewer than 1
 ## Harbor porpoise (coastwide)
 Harbor porpoise bycatch has resulted in fisheries closures in the past, but current bycatch levels suggest that management measures have been effective, reducing this fishery interaction. The 5-year mean bycatch has been below the maximum permitted level (Potential Biological Removal, PBR) since 2011 (Fig. \ref{fig:harbor-porpoise-bars}), and the 2016 and draft 2017 annual bycatch estimates are among the lowest in the time series. Recent compliance with the harbor porpoise take reduction plan and reduced fishing effort are thought to contribute to low bycatch estimates. Potential recent shifts in porpoise distribution could also be contributing to low bycatch and this will be explored during the coming year. A new draft of harbor porpoise abundance estimate suggests stable or increasing abundance of the Gulf of Maine/Bay of Fundy harbor porpoise stock. Recent analyses have examined regional harbor porpoise diet, and suggest that harbor porpoise are not typically feeding on fish caught in gillnets. However, the impact of ecosystem changes on bycatch, population, or distribution remain unclear.
 
-```{r harbor-porpoise-bars, fig.width = 6, fig.asp = 0.55, fig.cap = "Harbor porpoise bycatch estimate (black) shown with Potential Biological Removal (red). Error bars indicate 95\\% confidence interval."}
+```{r harbor-porpoise-bars, fig.width = 5, fig.asp = 0.45, fig.cap = "Harbor porpoise bycatch estimate (black) shown with Potential Biological Removal (red). Error bars indicate 95\\% confidence interval."}
 ecodata::harborporpoise %>% 
   spread(.,Var,Value) %>% 
 ggplot() +
@@ -922,7 +922,7 @@ ggplot(data = stock_status) +
 
 Changes in the distribution of managed fish species continue, with aggregate trends on the entire Northeast Shelf towards the northeast and generally into deeper water (Fig. \ref{fig:spec-dist}). These shifts will place increasing pressure on a management system based around stable species distributions. 
 
-```{r spec-dist,fig.width = 5, fig.asp = 1.25, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."}
+```{r spec-dist,fig.width = 4, fig.asp = 1.2, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."}
 
 spec_dist <- ecodata::species_dist %>% 
   group_by(Var) %>% 
@@ -1468,7 +1468,7 @@ Some habitat management interventions have proven beneficial in the Mid-Atlantic
 ## Estuarine habitat quality (Chesapeake Bay)
 Many important MAFMC managed species use estuarine habitats as nurseries or are considered estuarine and nearshore coastal-dependent (summer flounder, scup, black sea bass, and bluefish), and interact with other important estuarine-dependent species (e.g., striped bass and menhaden). An integrated measure of multiple water quality criteria shows a significantly increasing proportion of Chesapeake Bay waters meeting or exceeding EPA water quality standards over time (@zhang_chesapeake_2018; Fig. \ref{fig:cb-attainment}). This pattern was statistically linked to total nitrogen reduction, indicating responsiveness of water quality status to management actions implemented to reduce nutrients. Water quality trends and status may be used to inform aquaculture siting decisions in Chesapeake Bay. 
 
-```{r cb-attainment,fig.width = 6, fig.asp = 0.55, fig.cap = "Estimated water quality standards attainment of Chesapeake Bay tidal waters for the combined assessment of dissolved oxygen, underwater bay grasses/water clarity and chlorophyll a using rolling three year assessment periods."}
+```{r cb-attainment,fig.width = 5, fig.asp = 0.35, fig.cap = "Estimated water quality standards attainment of Chesapeake Bay tidal waters for the combined assessment of dissolved oxygen, underwater bay grasses/water clarity and chlorophyll a using rolling three year assessment periods."}
 
 minlab <- seq(1985,2015,5)
 maxlab <- seq(1987,2017,5)
@@ -1498,7 +1498,7 @@ ches_bay_wq %>%
 ## Ocean circulation and surface temperature (coastwide)
 The position of the northern edge of the Gulf Stream has been moving to the north since the late 1950s, with an increasing rate since 2009 (Fig. \ref{fig:GSI}). The most northerly positions ever recorded were observed over the most recent years (2014-2017). A more northerly Gulf Stream position is associated with warmer ocean temperature on the Northeast US shelf [@zhang_role_2007], a higher proportion of Atlantic Temperate Slope Water in the Northeast Channel, and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
 
-```{r GSI, fig.width = 5, fig.asp = 0.55, fig.cap = "Index representing the north wall of the Gulf Stream. Positive values represent a more northerly Gulf Stream position."}
+```{r GSI, fig.width = 4, fig.asp = 0.45, fig.cap = "Index representing the north wall of the Gulf Stream. Positive values represent a more northerly Gulf Stream position."}
 gsi %>% 
   mutate(Year = floor(Time)) %>% 
   group_by(Year) %>% 
@@ -1527,7 +1527,7 @@ gsi %>%
 
 Globally, 2018 was the 4th warmest year on record and the last four years were the warmest on record. Since the 1860’s, the Northeast US shelf sea surface temperature (SST) has exhibited an overall warming trend, with the past decade measuring well above the long term average (and the trendline; Fig. \ref{fig:long-term-sst}).
 
-```{r long-term-sst, fig.width = 5, fig.asp = 0.55, fig.cap = "Average annual sea surface temperature (SST) over the Northeast US Shelf"}
+```{r long-term-sst, fig.width = 8, fig.asp = 0.25, fig.cap = "Average annual sea surface temperature (SST) over the Northeast US Shelf"}
 lt_sst <- ecodata::long_term_sst %>% 
   mutate(hline = mean(Value))
 
@@ -1732,7 +1732,7 @@ sst_map +
 
 ```
 
-```{r MAB-bot-temp, fig.width = 6, fig.asp = .55, fig.cap = "Annual bottom temperatures in the Mid-Atlantic Bight."}
+```{r MAB-bot-temp, fig.width = 4, fig.asp = .45, fig.cap = "Annual bottom temperatures in the Mid-Atlantic Bight."}
 temp_anom <- oceantemp_insitu %>% 
   filter(EPU == epu_abbr) %>% 
   complete(Time = full_seq(min(oceantemp_insitu$Time):max(oceantemp_insitu$Time),1),
@@ -1804,7 +1804,7 @@ out_pp$Month <- factor(out_pp$Month, levels = month.abb)
           plot.margin = unit(c(0.1, 0, 0, 0), "cm")))
 ```
 
-```{r mab-chl-weekly,fig.width = 6, fig.asp = 0.55, fig.cap = "Weekly chlorophyll concentrations in the Mid-Atlantic are shown by the colored line for 2018. The long-term mean is shown in black, and shading indicates +/- 1 sample SD."}
+```{r mab-chl-weekly,fig.width = 5, fig.asp = 0.55, fig.cap = "Weekly chlorophyll concentrations in the Mid-Atlantic are shown by the colored line for 2018. The long-term mean is shown in black, and shading indicates +/- 1 sample SD."}
 
 interp_chl_pp <- function(epu, year = 2018, Variable){
   out <- ecodata::chl_pp %>% 
@@ -1943,7 +1943,7 @@ ggplot(aes(x = Time, y = Value, group = Var)) +
 
 Changes in the abundance of the larger *Calanus finmarchicus* are also reflected in the size distribution of the copepods. The small-large copepod index is a measure of the relative size composition of the dominant copepod taxa. During the 1990s and early 2000s the positive index was driven by high relative abundance of smaller bodied copepods and a lower relative abundance of *Calanus finmarchicus*. This period was also identified with regime shifts to lower fish recruitment [@perretti_regime_2017]. The current trend in the index suggests an increase in the relative abundance of smaller bodied copepods (Fig. \ref{fig:MAB-sli}).
 
-```{r MAB-sli, fig.cap = "MAB small-large zooplankton index and the annual primary production anomaly."}
+```{r MAB-sli, fig.width = 4, fig.asp = 0.9, fig.cap = "MAB small-large zooplankton index and the annual primary production anomaly."}
 sli <- ecodata::zoo_anom_sli %>% 
   filter(EPU == epu_abbr,
          str_detect(Var, "small-large")) %>% 
@@ -2013,9 +2013,9 @@ To be filled in
 
 # Document Orientation
 
-The figure format is explained in Fig \ref{fig:figformat}. 
+The figure format is illustrated in Fig \ref{fig:figformat}. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2018, the shaded region will still cover this time period.
 
-```{r figformat, fig.cap = "Key to figures. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2018, the shaded region will still cover this time period.", fig.height = 2.5, fig.width = 4}
+```{r figformat, fig.cap = "Key to figures.", fig.height = 2.5, fig.width = 4}
 
 m <- 0.1
 x <- 1985:2018
