@@ -1,5 +1,6 @@
 ---
 title:
+geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 output: 
   pdf_document:
     includes:
@@ -7,6 +8,7 @@ output:
     keep_tex: yes
 bibliography: SOE2019.bib
 link-citations: yes
+subparagraph: yes
 ---
 
 ```{r setup, include=FALSE}
