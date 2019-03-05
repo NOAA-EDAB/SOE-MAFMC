@@ -9,6 +9,7 @@ output:
 bibliography: SOE2019.bib
 csl: plos.csl
 link-citations: yes
+fontsize: 11pt
 subparagraph: yes
 ---
 
