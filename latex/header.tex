@@ -1,7 +1,4 @@
 % Set up the fonts
-%\usepackage{fontspec}
-%\setmainfont{Garamond}
-%\setmonofont{Calibri}
 \usepackage[urw-palatino]{mathdesign}
 \usepackage[T1]{fontenc}
 
@@ -41,24 +38,28 @@
     \endorigtable
 }
 
-
+% First page has the large title and NOAA logo
 \pagestyle{fancy}
 \fancyhf{}
 \setlength\headheight{40pt}
-%\rhead{\texttt{\emph{Published - \today}}}
-%\lhead{\texttt{\emph{State of the Ecosystem}} \\ \texttt{\emph{Mid-Atlantic}}}
 \cfoot{\thepage}
 
 \AddEverypageHook{%
    \ifthenelse{\value{page}=1}%
-     {\rhead{\includegraphics[width=40pt]{NOAA_logo.png} \\ \textsf{\emph{Published March 12, 2019}}}
+     {\rhead{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \textsf{\emph{Published March 12, 2019}}}
       \lhead{\textsf{\LARGE State of the Ecosystem 2019: Mid-Atlantic}}
       }%
      {\rhead{}
-     %\lhead{\texttt{\emph{State of the Ecosystem 2019}} \\ \texttt{\emph{Mid-Atlantic}}}
-     \lhead{\textsf{\emph{State of the Ecosystem 2019: Mid-Atlantic}}}
+      \lhead{\textsf{\emph{State of the Ecosystem 2019: Mid-Atlantic}}}
      }
 }
 
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
+
+
+% Change section labels to san serif
+\usepackage{titlesec}
+\titleformat*{\section}{\Large\bfseries\sffamily}
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+\titleformat*{\subsubsection}{\normalsize\bfseries\sffamily}
