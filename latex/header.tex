@@ -2,7 +2,7 @@
 %\usepackage{fontspec}
 %\setmainfont{Garamond}
 %\setmonofont{Calibri}
-\usepackage[urw-garamond]{mathdesign}
+\usepackage[urw-palatino]{mathdesign}
 \usepackage[T1]{fontenc}
 
 
@@ -51,12 +51,12 @@
 
 \AddEverypageHook{%
    \ifthenelse{\value{page}=1}%
-     {\rhead{\includegraphics[width=40pt]{NOAA_logo.png} \\ \texttt{\emph{Published March 12, 2019}}}
-      \lhead{\texttt{\LARGE State of the Ecosystem 2019: Mid-Atlantic}}
+     {\rhead{\includegraphics[width=40pt]{NOAA_logo.png} \\ \textsf{\emph{Published March 12, 2019}}}
+      \lhead{\textsf{\LARGE State of the Ecosystem 2019: Mid-Atlantic}}
       }%
      {\rhead{}
      %\lhead{\texttt{\emph{State of the Ecosystem 2019}} \\ \texttt{\emph{Mid-Atlantic}}}
-     \lhead{\texttt{\emph{State of the Ecosystem 2019: Mid-Atlantic}}}
+     \lhead{\textsf{\emph{State of the Ecosystem 2019: Mid-Atlantic}}}
      }
 }
 
