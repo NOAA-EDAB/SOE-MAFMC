@@ -1,5 +1,5 @@
 ---
-title: "State of the Ecosystem 2019: Mid-Atlantic"
+title:
 output: 
   pdf_document:
     includes:

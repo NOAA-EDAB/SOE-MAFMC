@@ -45,15 +45,18 @@
 \pagestyle{fancy}
 \fancyhf{}
 \setlength\headheight{40pt}
-\rhead{\texttt{\emph{Published - \today}}}
-\lhead{\texttt{\emph{State of the Ecosystem}} \\ \texttt{\emph{Mid-Atlantic}}}
+%\rhead{\texttt{\emph{Published - \today}}}
+%\lhead{\texttt{\emph{State of the Ecosystem}} \\ \texttt{\emph{Mid-Atlantic}}}
 \cfoot{\thepage}
 
 \AddEverypageHook{%
    \ifthenelse{\value{page}=1}%
-     {\rhead{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \texttt{\emph{Published - \today}}}
-     }%
+     {\rhead{\includegraphics[width=40pt]{NOAA_logo.png} \\ \texttt{\emph{Published March 12, 2019}}}
+      \lhead{\texttt{\LARGE State of the Ecosystem 2019: Mid-Atlantic}}
+      }%
      {\rhead{}
+     %\lhead{\texttt{\emph{State of the Ecosystem 2019}} \\ \texttt{\emph{Mid-Atlantic}}}
+     \lhead{\texttt{\emph{State of the Ecosystem 2019: Mid-Atlantic}}}
      }
 }
 
