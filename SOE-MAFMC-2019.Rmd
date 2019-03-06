@@ -11,6 +11,8 @@ csl: plos.csl
 link-citations: yes
 fontsize: 11pt
 subparagraph: yes
+header-includes:
+  - \usepackage{subfig}
 ---
 
 ```{r setup, include=FALSE}
@@ -2013,10 +2015,11 @@ To be filled in
 
 # Document Orientation
 
-The figure format is illustrated in Fig \ref{fig:figformat}. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2018, the shaded region will still cover this time period.
+The figure format is illustrated in Fig \ref{fig:docformat}a. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2018, the shaded region will still cover this time period. The spatial scale of indicators is either coastwide, Mid-Atlantic states (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig. \ref{fig:docformat}b) level.
 
-```{r figformat, fig.cap = "Key to figures.", fig.height = 2.5, fig.width = 4}
+```{r docformat, fig.cap = "Document orientation.", fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.49\\linewidth', fig.show="hold"}
 
+# FIgure orientation subfigure
 m <- 0.1
 x <- 1985:2018
 y <-  m*x + rnorm(30, sd = 0.35)
@@ -2049,6 +2052,39 @@ ggplot2::ggplot(data = data,aes(x = x, y = y)) +
   ylab(expression("Invented Index, 10"^3*"widgets")) +
   xlab("Year") +
   theme_ts()
+
+# EPU map subfigure
+# Set lat/lon window for map
+xmin = -76
+xmax = -66
+ymin = 36
+ymax = 45
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+#CRS
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+#Specify data frame with lat/lon locations for labels
+epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
+                                 "Gulf of Maine",
+                                 "Georges Bank"),
+                         latitude = c(40,42.85,41),
+                         longitude = c(-72.7,-69,-68.5))
+
+#Map of NE LME
+ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  geom_text(data = epu_labels, aes(x = longitude,
+                                    y = latitude,
+                                    label = EPU),
+            size = 3.2)+
+  theme_map() +
+  xlab("Longitude") +
+  ylab("Latitude")
+
 
 ```
 
