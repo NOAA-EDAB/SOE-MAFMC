@@ -20,6 +20,7 @@
 \usepackage{ifthen}
 \usepackage{everypage}
 \usepackage{float}
+\usepackage{subfig}
 
 % Avoid struggling over figure and table float in Rmarkdown
 \let\origfigure\figure
@@ -56,6 +57,9 @@
 
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
+
+% Make caption fonts a bit smaller
+\usepackage[font={small}]{caption}
 
 
 % Change section labels to san serif
