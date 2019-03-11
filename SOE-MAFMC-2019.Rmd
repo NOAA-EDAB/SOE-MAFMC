@@ -2088,9 +2088,9 @@ Changes in primary productivity, phytoplankton and zooplankton composition and a
 
 # Contributors
 
-**Editors:** Sarah Gaichas, Sean Hardison, Scott Large, Sean Lucey
+**Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Sean Hardison, Scott Large, Sean Lucey
 
-**Contributors:** Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, James Gartland, Heather Haas, Sean Hardison, Kimberly Hyde, Terry Joyce, John Kosik, Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Vincent Saba, Laurel Smith, Mark Terceiro, John Walden, Harvey Walsh, Mark Wuenschel, Qian Zhang
+**Contributors** (NEFSC unless otherwise noted): Lisa Calvo (Rutgers), Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, James Gartland (Virginia Institute of Marine Science), Heather Haas, Sean Hardison, Kimberly Hyde, Terry Joyce (Woods Hole Oceanographic Institute), John Kosik, Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Karl Roscher (Maryland Department of Natural Resources), Vincent Saba, Laurel Smith, Mark Terceiro, John Walden, Harvey Walsh, Mark Wuenschel, Qian Zhang (UMD CEES / US EPA Ches Bay Prog)
 
 
 \newpage 
