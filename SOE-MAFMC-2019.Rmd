@@ -2089,7 +2089,7 @@ Changes in primary productivity, phytoplankton and zooplankton composition and a
 
 **Editors:** Sarah Gaichas, Sean Hardison, Scott Large, Sean Lucey
 
-**Contributors:** Patricia Clay, Lisa Colburn, Geret DePiper, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, James Gartland, Heather Haas, Sean Hardison, Kimberly Hyde, John Kosik, Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Vincent Saba, Laurel Smith, Mark Terceiro, John Walden, Harvey Walsh, Mark Wuenschel, Qian Zhang
+**Contributors:** Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, James Gartland, Heather Haas, Sean Hardison, Kimberly Hyde, Terry Joyce, John Kosik, Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Vincent Saba, Laurel Smith, Mark Terceiro, John Walden, Harvey Walsh, Mark Wuenschel, Qian Zhang
 
 
 \newpage 
