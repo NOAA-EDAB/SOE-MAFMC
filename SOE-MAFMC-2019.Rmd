@@ -130,7 +130,7 @@ The purpose of this report is to synthesize available information relevant to fi
 
 ```{r conceptual-model, echo=FALSE, out.width = "\\textwidth", fig.cap="A conceptual model places detailed species-level management in context by highlighting relationships between focal species groups organized by the Mid-Atlantic Fisheries Management Council (MAFMC) Fishery Management Plan (FMP), managed human activities, environmental drivers, habitats, and key ecological links."}
 
-knitr::include_graphics("images/SOE_MAB_ConceptMod.png")
+knitr::include_graphics("images/MAB_conmod_overview.jpg")
 ```
 
 Some management interventions for ecosystems and fisheries have proven beneficial in the Mid-Atlantic and throughout the Northeast US Shelf. For example, the evidence suggests that management limiting nutrient inputs has significantly improved water quality in Chesapeake Bay (Fig. \ref{fig:cb-attainment}). This trend, which has been driven by improvements to dissolved oxygen content and water clarity, has positive implications for aquaculture development and for managed species using the Bay as nursery habitat.  Also encouraging is a continued decrease in harbor porpoise bycatch, which for this year is the lowest on record in the Northeast US, and an apparent stable harbor porpoise population (Fig. \ref{fig:harbor-porpoise-bars}).
