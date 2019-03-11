@@ -1564,7 +1564,8 @@ The regional ocean is warming. Surface and bottom temperature in the MAB average
 ## Ocean temperature, surface and bottom (MAB)
 The regional ocean is warming. Surface and bottom temperature in the MAB averaged over all seasons has trended warmer since the early 1980s; while seasonally temperatures have trended warmer in spring, summer, and fall. The 2018 summer sea surface temperatures were the third highest on record in the Mid-Atlantic, although temperatures during the other seasons were near or slightly below average (Figs. \ref{fig:MAB-SST-insitu}, \ref{fig:MAB-bot-temp}).  
 
-```{r MAB-SST-insitu, fig.width = 8, fig.height = 7, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies.",out.extra='trim={0 2cm 0 2cm},clip'}
+```{r MAB-SST-insitu, fig.width = 8, fig.height = 7, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies."}
+#,out.extra='trim={0 1cm 0 1cm},clip'
 annotation_custom2 <- function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) 
 {
   layer(data = data, stat = StatIdentity, position = PositionIdentity, 
@@ -2098,8 +2099,8 @@ Changes in primary productivity, phytoplankton and zooplankton composition and a
 
 The figure format is illustrated in Fig \ref{fig:docformat}a. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2018, the shaded region will still cover this time period. The spatial scale of indicators is either coastwide, Mid-Atlantic states (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig. \ref{fig:docformat}b) level.
 
-```{r docformat, fig.cap = "Document orientation.", fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.4\\linewidth', fig.show="hold", out.height='2in'}
-
+```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.height = 2.5}
+#fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.49\\linewidth', fig.show="hold" 
 # FIgure orientation subfigure
 m <- 0.1
 x <- 1985:2018
@@ -2114,7 +2115,7 @@ x.shade.min <- x.shade.max - 9
 hline = mean(y)
 
 #Plot series with trend 
-ggplot2::ggplot(data = data,aes(x = x, y = y)) +
+psample <- ggplot2::ggplot(data = data,aes(x = x, y = y)) +
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
@@ -2131,13 +2132,15 @@ ggplot2::ggplot(data = data,aes(x = x, y = y)) +
   scale_y_continuous(labels = function(l){trans = l / 1000})+
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   ylab(expression("Invented Index, 10"^3*"widgets")) +
-  xlab("Year") +
+  xlab("Time") +
+  labs(tag = "a")  +
   theme_ts()
+
 
 # EPU map subfigure
 # Set lat/lon window for map
-xmin = -76
-xmax = -66
+xmin = -78
+xmax = -65
 ymin = 36
 ymax = 45
 xlims <- c(xmin, xmax)
@@ -2154,18 +2157,20 @@ epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
                          longitude = c(-72.7,-69,-68.5))
 
 #Map of NE LME
-ggplot() +
+epumap <- ggplot() +
   geom_sf(data = coast, size = map.lwd) +
   geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
   coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
   geom_text(data = epu_labels, aes(x = longitude,
                                     y = latitude,
                                     label = EPU),
-            size = 3.2)+
+            size = 1.7)+
   theme_map() +
   xlab("Longitude") +
-  ylab("Latitude")
+  ylab("Latitude") +
+  labs(tag = "b")
 
+psample + plot_spacer() + epumap + plot_layout(ncol = 3, widths=c(3,.5,4.5))
 
 ```
 
