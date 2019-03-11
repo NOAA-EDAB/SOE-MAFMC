@@ -2111,50 +2111,15 @@ knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodie
              col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
   kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>%
   column_spec(1, width="2cm") %>%
-  column_spec(2, width="5cm") %>%
+  column_spec(2, width="4cm") %>%
   column_spec(3, width="2cm") %>%
-  column_spec(4:5, width="5cm") %>%
+  column_spec(4, width="5cm") %>%
+  column_spec(5, width="6cm") %>%
   #column_spec(3, width="7.5cm") #%>%
   collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
 
 ```
 
-The spatial scale of indicators is either coastwide, Mid-Atlantic states (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig. \ref{fig:EPU-MAP}) level. 
-
-```{r EPU-MAP, fig.cap = "The Northeast Large Marine Ecosystem.", fig.width = 3.4, fig.asp = 1.25}
-
-# Set lat/lon window for map
-xmin = -76
-xmax = -66
-ymin = 36
-ymax = 45
-xlims <- c(xmin, xmax)
-ylims <- c(ymin, ymax)
-
-#CRS
-crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
-
-#Specify data frame with lat/lon locations for labels
-epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
-                                 "Gulf of Maine",
-                                 "Georges Bank"),
-                         latitude = c(40,42.85,41),
-                         longitude = c(-72.7,-69,-68.5))
-
-#Map of NE LME
-ggplot() +
-  geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
-  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
-  geom_text(data = epu_labels, aes(x = longitude,
-                                    y = latitude,
-                                    label = EPU),
-            size = 3.2)+
-  theme_map() +
-  xlab("Longitude") +
-  ylab("Latitude")
-
-```
 
 \newpage 
 
