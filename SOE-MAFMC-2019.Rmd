@@ -248,7 +248,7 @@ ggplot(data = landings_agg)+
 
 ```
 
-```{r comm-landings, fig.asp=1.6, warning=F, fig.width = 4, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild.")}
+```{r comm-landings, fig.asp=1.5, warning=F, fig.width = 4, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild.")}
 
 #Assign feeding guild column for plotting with ggplot
 landings <- rbind(managed_landings, total_landings) %>%
@@ -753,7 +753,7 @@ cowplot::plot_grid(#rec_effort,
 
 Recreational fishing is important to many Mid-Atlantic communities, particularly on Long Island, the  New Jersey shoreline and the Delaware Bay. Communities that are most socially and economically dependent (both engaged and reliant) on recreational fishing may face additional risk due this downward shift in diversity of recreational opportunity and species catch (Fig. \ref{fig:MAB-rec-engage}).
 
-```{r MAB-rec-engage, fig.height = 8, fig.cap = "Recreational engagement (shore, private vessel and for-hire recreational fishing in a community) and reliance (per capita engagement) based on 2016 landings and the ACS running average of 2012-2016 census data."}
+```{r MAB-rec-engage, fig.height = 7, fig.cap = "Recreational engagement (shore, private vessel and for-hire recreational fishing in a community) and reliance (per capita engagement) based on 2016 landings and the ACS running average of 2012-2016 census data."}
 (rec <- 
   eng_rel %>% 
   dplyr::select(receng, recrel, Latitude, Longitude) %>% 
@@ -797,7 +797,7 @@ North Atlantic right whales are among the most endangered large whale population
  
 Three large whale Unusual Mortality Events (UMEs) have been declared for North Atlantic right whales, humpback whales, and minke whales. In all three cases human interaction appears to have contributed to increased mortalities, although investigations are not complete. Twenty right whale mortalities have been documented in 2017 and 2018 so far. Among the 20 right whale deaths observed in 2017 and 2018 thus far, 5 were due to vessel strike (1 in US waters, 4 in Canadian waters), 6 from entanglement (2 in Canadian gear, 1 in unknown gear, and 3 others found in US waters), and the rest from unknown causes. UMEs have also been declared for humpback whales during 2016-2018 and 2017-2018 minke whales due to elevated strandings. Necropsy investigations on 50% of humpback whales showed evidence of human interaction, either ship strike or entanglement. Similarly, 60% of minke whales show evidence of human interactions or infectious disease. In both cases the investigations are still underway and more research is needed to determine the causes of these UME.
 
-```{r NARW-abundance, fig.width = 4, fig.asp = 0.45,fig.cap = "Right whale abundance estimates with 95\\% credible intervals. These values represent the estimated number of animals alive sometime during the year referenced and NOT at the end of the year referenced. Seventeen known deaths were recorded in 2017 (likely all from anthropogenic causes), but these deaths were not reflected in the 2017 estimate because those animals were alive sometime during the year."}
+```{r NARW-abundance, fig.width = 5, fig.asp = 0.45,fig.cap = "Right whale abundance estimates with 95\\% credible intervals. These values represent the estimated number of animals alive sometime during the year referenced and NOT at the end of the year referenced. Seventeen known deaths were recorded in 2017 (likely all from anthropogenic causes), but these deaths were not reflected in the 2017 estimate because those animals were alive sometime during the year."}
 hline <- mean(narw[narw$Var == "right whale abundance median",]$Value)
 
 ecodata::narw %>% 
@@ -1472,7 +1472,7 @@ Some habitat management interventions have proven beneficial in the Mid-Atlantic
 ## Estuarine habitat quality (Chesapeake Bay)
 Many important MAFMC managed species use estuarine habitats as nurseries or are considered estuarine and nearshore coastal-dependent (summer flounder, scup, black sea bass, and bluefish), and interact with other important estuarine-dependent species (e.g., striped bass and menhaden). An integrated measure of multiple water quality criteria shows a significantly increasing proportion of Chesapeake Bay waters meeting or exceeding EPA water quality standards over time (@zhang_chesapeake_2018; Fig. \ref{fig:cb-attainment}). This pattern was statistically linked to total nitrogen reduction, indicating responsiveness of water quality status to management actions implemented to reduce nutrients. Water quality trends and status may be used to inform aquaculture siting decisions in Chesapeake Bay. 
 
-```{r cb-attainment,fig.width = 5, fig.asp = 0.35, fig.cap = "Estimated water quality standards attainment of Chesapeake Bay tidal waters for the combined assessment of dissolved oxygen, underwater bay grasses/water clarity and chlorophyll a using rolling three year assessment periods."}
+```{r cb-attainment,fig.width = 5, fig.asp = 0.45, fig.cap = "Estimated water quality standards attainment of Chesapeake Bay tidal waters for the combined assessment of dissolved oxygen, underwater bay grasses/water clarity and chlorophyll a using rolling three year assessment periods."}
 
 minlab <- seq(1985,2015,5)
 maxlab <- seq(1987,2017,5)
@@ -1488,21 +1488,23 @@ ches_bay_wq %>%
   geom_line() +
   geom_point() +
   geom_gls() +
-    ylab(expression("Estimated attainment, percent")) +
-  ggtitle("Chesapeake Bay Estimated Water Quality Standards Attainment Indicator Score") +
+      ylab("Estimated attainment (%)") +
+  ggtitle("Chesapeake Bay Estimated Water Quality Standards Attainment") +
   scale_x_continuous(breaks = minlab,labels = paste0(minlab,"-",maxlab),expand = c(0.01, 0.01)) +
     geom_hline(aes(yintercept = hline),
            size = hline.size,
            alpha = hline.alpha,
            linetype = hline.lty) +
-  theme_ts()
+  theme_ts() +
+  theme(axis.text.x = element_text(angle = 20, vjust = 0.65),
+          plot.title = element_text(size = 10))
 ```
 
 
 ## Ocean circulation and surface temperature (coastwide)
 The position of the northern edge of the Gulf Stream has been moving to the north since the late 1950s, with an increasing rate since 2009 (Fig. \ref{fig:GSI}). The most northerly positions ever recorded were observed over the most recent years (2014-2017). A more northerly Gulf Stream position is associated with warmer ocean temperature on the Northeast US shelf [@zhang_role_2007], a higher proportion of Atlantic Temperate Slope Water in the Northeast Channel, and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
 
-```{r GSI, fig.width = 4, fig.asp = 0.45, fig.cap = "Index representing the north wall of the Gulf Stream. Positive values represent a more northerly Gulf Stream position."}
+```{r GSI, fig.width = 4, fig.asp = 0.45, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position."}
 gsi %>% 
   mutate(Year = floor(Time)) %>% 
   group_by(Year) %>% 
@@ -1516,7 +1518,7 @@ gsi %>%
   geom_gls() +
   geom_line() +
   geom_point() +
-  ylab("Gulf Stream position anomaly") +
+  ylab("Position anomaly") +
   ggtitle("Gulf Stream Index") +
     scale_x_continuous(expand = c(0.01, 0.01))+
       geom_hline(aes(yintercept = hline),
@@ -1559,7 +1561,10 @@ lt_sst %>%
 ## Ocean temperature, surface and bottom (MAB)
 The regional ocean is warming. Surface and bottom temperature in the MAB averaged over all seasons has trended warmer since the early 1980s; while seasonally temperatures have trended warmer in spring, summer, and fall. The 2018 summer sea surface temperatures were the third highest on record in the Mid-Atlantic, although temperatures during the other seasons were near or slightly below average (Figs. \ref{fig:MAB-SST-insitu}, \ref{fig:MAB-bot-temp}).  
 
-```{r MAB-SST-insitu, fig.width = 8, fig.height = 7, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies."}
+## Ocean temperature, surface and bottom (MAB)
+The regional ocean is warming. Surface and bottom temperature in the MAB averaged over all seasons has trended warmer since the early 1980s; while seasonally temperatures have trended warmer in spring, summer, and fall. The 2018 summer sea surface temperatures were the third highest on record in the Mid-Atlantic, although temperatures during the other seasons were near or slightly below average (Figs. \ref{fig:MAB-SST-insitu}, \ref{fig:MAB-bot-temp}).  
+
+```{r MAB-SST-insitu, fig.width = 8, fig.height = 7, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies.",out.extra='trim={0 2cm 0 2cm},clip'}
 annotation_custom2 <- function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) 
 {
   layer(data = data, stat = StatIdentity, position = PositionIdentity, 
@@ -1777,38 +1782,7 @@ Phytoplankton primary production is a function of biomass, light, and temperatur
 knitr::include_graphics(file.path(image.dir, "SOE_Network_Diagram.png"))
 ```
 
-```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
-out_pp <- ecodata::chl_pp %>% 
-  filter(EPU == epu_abbr,
-         str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
-  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
-    mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
-                                                   "07","08","09","10","11","12"),
-                                   to = c(month.abb))) %>% 
-  group_by(Month) %>% 
-  mutate(hline = mean(Value))
-out_pp$Month <- factor(out_pp$Month, levels = month.abb)
-
-
-(pp_cci <- ggplot(out_pp) +
-   # geom_gls(aes(x = Year, y = Value, group = Month))+
-    geom_point(aes(x = Year, y = Value, group = Month)) +
-    geom_line(aes(x = Year, y = Value, group = Month)) +
-    scale_x_discrete(name = "Time", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
-        geom_hline(aes(yintercept = hline),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty) +
-    facet_wrap(Month~., ncol = 6) +
-    ggtitle("Monthly median PPD") +
-    ylab(expression("PP (gC m"^-2*" d"^-1*")")) +
-    theme_facet() +
-    theme(axis.text.x = element_text(angle=45, hjust = 1),
-          panel.spacing = unit(1, "lines"),
-          plot.margin = unit(c(0.1, 0, 0, 0), "cm")))
-```
-
-```{r mab-chl-weekly,fig.width = 5, fig.asp = 0.55, fig.cap = "Weekly chlorophyll concentrations in the Mid-Atlantic are shown by the colored line for 2018. The long-term mean is shown in black, and shading indicates +/- 1 sample SD."}
+```{r mab-chl-weekly,fig.width = 5, fig.asp = 0.45, fig.cap = "Weekly chlorophyll concentrations in the Mid-Atlantic are shown by the colored line for 2018. The long-term mean is shown in black, and shading indicates +/- 1 sample SD."}
 
 interp_chl_pp <- function(epu, year = 2018, Variable){
   out <- ecodata::chl_pp %>% 
@@ -1881,6 +1855,39 @@ MAB_pp_weekly <- ggplot(data = MAB_pp) +
 MAB_chl_weekly
 ```
 
+```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
+out_pp <- ecodata::chl_pp %>% 
+  filter(EPU == epu_abbr,
+         str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+    mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
+                                                   "07","08","09","10","11","12"),
+                                   to = c(month.abb))) %>% 
+  group_by(Month) %>% 
+  mutate(hline = mean(Value))
+out_pp$Month <- factor(out_pp$Month, levels = month.abb)
+
+
+(pp_cci <- ggplot(out_pp) +  
+   # geom_gls(aes(x = Year, y = Value, group = Month))+
+    geom_point(aes(x = Year, y = Value, group = Month)) +
+    geom_line(aes(x = Year, y = Value, group = Month)) +
+    scale_x_discrete(name = "Time", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
+        geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+    facet_wrap(Month~., ncol = 6) +
+    ggtitle("Monthly median PPD") +
+    ylab(expression("PP (gC m"^-2*" d"^-1*")")) +
+    theme_facet() +
+    theme(axis.text.x = element_text(angle=45, hjust = 1),
+          panel.spacing = unit(1, "lines"),
+          plot.margin = unit(c(0.1, 0, 0, 0), "cm")))
+```
+
+
+
 
 ## Zooplankton (MAB)
 The most abundant zooplankton species in the MAB are *Centropages typicus*, *Psuedocalanus* spp., and *Temora longicornis* [@morse_distinct_2017].  *Calanus finmarchicus* are also abundant in the MAB and are important prey for larval fish and the North Atlantic right whale.  Annually, there has been a significant decrease in *Pseudocalanus* and in recent years a decreasing trend of *Calanus finmarchicus* (Fig. \ref{fig:MAB-zoo-abund}).  Seasonally, *Temora longicornis* have decreased during the fall, while a decrease in fall concentration and an increase in spring concentration of *Centropages typicus* (Fig. \ref{fig:MAB-oi-zoo}) corresponds to a shift in timing of their peak concentration from late fall to early spring beginning in the late 1980s [@bi_decadal_2014].
@@ -1915,6 +1922,7 @@ zoo_abund %>%
 
 ```
 
+
 ```{r MAB-oi-zoo, fig.width=8, fig.cap = "Seasonal abundance of key zooplankton species in the MAB."}
 facet_names <- list(
   'centropages spring'=expression(paste(italic("Centropages "), "spring")),
@@ -1927,21 +1935,59 @@ facet_names <- list(
 zoo_oi_mab <- ecodata::zoo_oi %>% 
   filter(!str_detect(Var,"SD"),
          EPU == "MAB") %>% 
-  mutate(Var = str_remove(Var, " zoo")) %>% 
+  mutate(Var = str_remove(Var, " zoo"),
+         Val2 = exp(Value)) %>% 
   group_by(EPU, Var) %>% 
-  mutate(hline = mean(Value, na.rm = T))
+  mutate(hline = mean(Value, na.rm = T)) %>% 
+  separate(.,col = Var, into = c("Species","Season"), remove = F)
 
-zoo_oi_mab %>%  
-ggplot(aes(x = Time, y = Value, group = Var)) +
+top <- zoo_oi_mab %>%  
+  filter(Species == "centropages") %>% 
+ggplot(aes(x = Time, y = Val2, group = Var)) +
   geom_gls() +
   geom_line()+
   geom_point()+
-  ylab(expression("Abundance log num m"^-3*"")) +
-  facet_wrap(Var ~ ., ncol = 2,scales = "free_y", labeller = label) +
+  ylab("") +
+  facet_wrap(Var ~ ., ncol = 2, scales='free_x',labeller = label) +
   ggtitle("Zooplankton abundance (OI)") +
+  scale_y_continuous(trans = "log10")+
+  theme_facet() +
+    theme(strip.text=element_text(hjust=0,
+                                face = "italic"),
+          axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+middle <- zoo_oi_mab %>%  
+  filter(Species == "pseudocalanus") %>% 
+ggplot(aes(x = Time, y = Val2, group = Var)) +
+  geom_gls() +
+  geom_line()+
+  geom_point()+
+  ylab(expression("Abundance num m"^-3*"")) +
+  facet_wrap(Var ~ ., ncol = 2, scales='free_x',labeller = label) +
+  scale_y_continuous(trans = "log10")+
+  theme_facet() +
+    theme(strip.text=element_text(hjust=0,
+                                face = "italic"),
+          axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+bottom <- zoo_oi_mab %>%  
+  filter(Species == "temora") %>% 
+ggplot(aes(x = Time, y = Val2, group = Var)) +
+  geom_gls() +
+  geom_line()+
+  geom_point()+
+  ylab("") +
+  facet_wrap(Var ~ ., ncol = 2, scales='free_x',labeller = label) +
+  scale_y_continuous(trans = "log10")+
   theme_facet() +
     theme(strip.text=element_text(hjust=0,
                                 face = "italic"))
+
+top + middle + bottom + plot_layout(ncol = 1) & theme(plot.margin = margin(0,0,0,0,"cm"))
 
 ```
 
