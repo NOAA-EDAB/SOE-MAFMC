@@ -65,7 +65,26 @@ epu_abbr <- "MAB"
 region <- "Mid-Atlantic"
 region_abbr <- "MA" #Some commercial data organized by "MA" or "NE" regions, not by EPU 
 
-
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2009
+x.shade.max <- 2018
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
 ```
 
 
@@ -103,26 +122,7 @@ ymax = 45
 xlims <- c(xmin, xmax)
 ylims <- c(ymin, ymax)
 
-#Time series constants
-shade.alpha <- 0.3
-shade.fill <- "lightgrey"
-lwd <- 1
-pcex <- 2
-trend.alpha <- 0.5
-trend.size <- 2
-hline.size <- 1
-hline.alpha <- 0.35
-hline.lty <- "dashed"
-label.size <- 5
-hjust.label <- 1.5
-letter_size <- 4
-feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
-x.shade.min <- 2009
-x.shade.max <- 2018
-#Function for custom ggplot facet labels
-label <- function(variable,value){
-  return(facet_names[value])
-}
+
 ```
 
 # Overview
@@ -1008,7 +1008,7 @@ total_surv <- nefsc_survey %>%
          !str_detect(Var, "Other|Apex|managed"),
          Time >= 1968) %>% 
   group_by(Var) %>% 
-  mutate(hline = mean(Value)) %>% 
+  mutate(hline = mean(Value, na.rm = T)) %>% 
   ungroup() %>% 
   mutate(Var = word(Var, 1,2))
 series.col <- rep("black",length(unique(total_surv$Var)))
