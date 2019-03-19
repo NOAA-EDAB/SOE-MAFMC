@@ -1565,8 +1565,6 @@ lt_sst %>%
 ## Ocean temperature, surface and bottom (MAB)
 The regional ocean is warming. Surface and bottom temperature in the MAB averaged over all seasons has trended warmer since the early 1980s; while seasonally temperatures have trended warmer in spring, summer, and fall. The 2018 summer sea surface temperatures were the third highest on record in the Mid-Atlantic, although temperatures during the other seasons were near or slightly below average (Figs. \ref{fig:MAB-SST-insitu}, \ref{fig:MAB-bot-temp}).  
 
-## Ocean temperature, surface and bottom (MAB)
-The regional ocean is warming. Surface and bottom temperature in the MAB averaged over all seasons has trended warmer since the early 1980s; while seasonally temperatures have trended warmer in spring, summer, and fall. The 2018 summer sea surface temperatures were the third highest on record in the Mid-Atlantic, although temperatures during the other seasons were near or slightly below average (Figs. \ref{fig:MAB-SST-insitu}, \ref{fig:MAB-bot-temp}).  
 
 ```{r MAB-SST-insitu, fig.width = 8, fig.height = 7, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies."}
 #,out.extra='trim={0 1cm 0 1cm},clip'
