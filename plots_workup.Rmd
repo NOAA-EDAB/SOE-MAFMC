@@ -1,0 +1,423 @@
+---
+title: "Plots"
+output: html_document
+---
+```{r setup, include=FALSE}
+#Plotting and data libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ecodata)
+library(here)
+library(kableExtra)
+library(ggrepel)
+library(stringr)
+library(patchwork)
+library(grid)
+library(ggiraph)
+library(vegan)
+library(rpart)
+
+#GIS libraries
+library(sf)
+library(rgdal)
+library(raster)
+library(rnaturalearth)
+```
+
+
+
+I took these plots from the MA and NE SOE 2019. I didn't what to change to rmd since they are published. These are changes we discussed. Please let me know if you want me to make any changes.
+
+## Stock Status and Aggregation {.tabset}
+### MAFMC
+```{r stock-status, echo=FALSE, warning=F, fig.cap = paste0("Summary of single species status for MAMFC and jointly managed stocks."), fig.width = 7.5, fig.asp = 0.5} 
+
+#Get data, spread for plotting, and filter
+stock_status <- ecodata::stock_status %>%
+  spread(.,Var,Value) %>% 
+  filter(Council %in% c("MAFMC","Both")) %>% 
+  group_by(Stock) %>% 
+  mutate(score = case_when(
+    (F.Fmsy > 1 & B.Bmsy < 1) ~ "a",  
+    (F.Fmsy > 1 & B.Bmsy > 1) ~ "b",
+    (F.Fmsy < 1 & B.Bmsy < 1) ~ "c",
+    (F.Fmsy < 1 & B.Bmsy > 1) ~ "d"))
+
+#Plot constants
+y.max <- 2.0 #1.75 mackerel cut off F/Fmsy is 1.8
+x.max <- 2.6
+
+#A dataframe that defines custom legend for stocks with unknown status
+
+unknown <- data.frame(text = c("Unknown Status", "Longfin",
+                              "Illex", "N. Goosefish", "S. Goosefish"),
+                    x = rep(0.9*x.max,5),
+                    y = seq(0.93*y.max,1.4,-.1))
+
+
+#Plotting code
+ggplot(data = stock_status) +
+  geom_vline(xintercept = 1, linetype = "dotted")+
+  geom_vline(xintercept = 0.5, linetype = "dashed")+
+  geom_hline(yintercept = 1, linetype = "dashed") +
+  geom_point(aes(x = B.Bmsy,
+                 y = F.Fmsy,
+                 shape = Council,
+                 color = score)) +
+  geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
+                      y = F.Fmsy,
+                      label = Code,
+                      shape = Council), show.legend = FALSE,nudge_y = 0.05, nudge_x = 0.05) +
+  scale_color_manual(values = c("orangered2","gold2", "green3"), #Change legend labels for clarity
+                     breaks = stock_status$score) +
+  ylim(0,y.max) +
+  xlim(0,x.max) +
+  geom_text(data = unknown, aes(x = x, y = y, label = text), #Custom legend for unknown stock status
+            size = c(4.75,rep(4,4))) +
+  annotate("rect", xmin = 0.8*x.max,
+           xmax = x.max,
+           ymin = 0.65*y.max,
+           ymax = 0.90*y.max,
+           alpha = 0.1) +
+  xlab(expression(~B/B[msy])) +
+  ylab(expression(~F/F[msy])) +
+  guides(color = FALSE) +
+  theme_ts()
+```
+###NEFMC
+```{r NE-stock-status, echo=FALSE, warning=F, fig.cap = paste0("Summary of single species status for NEFMC and jointly managed stocks. \\label{stock-status}"), fig.width = 8, fig.asp = 0.65}
+
+#Get data, spread for plotting, and filter
+stock_status <- ecodata::stock_status %>%
+  spread(.,Var,Value) %>% 
+  filter(Council %in% c("NEFMC","Both")) %>% 
+  group_by(Stock) %>% 
+  mutate(score = case_when(
+    (F.Fmsy > 1 & B.Bmsy < 1) ~ "a",  
+    (F.Fmsy > 1 & B.Bmsy > 1) ~ "b",
+    (F.Fmsy < 1 & B.Bmsy < 1) ~ "c",
+    (F.Fmsy < 1 & B.Bmsy > 1) ~ "d"))
+
+#Plot constants
+y.max <- 3.5
+x.max <- 7.5
+
+all_missing <- stock_status %>%
+  filter(is.na(B.Bmsy),is.na(F.Fmsy)) %>% 
+  dplyr::select(Code, Council)
+
+b_missing <- stock_status %>%
+  filter(is.na(B.Bmsy), !is.na(F.Fmsy)) %>% 
+  dplyr::select(Code, Council)
+
+f_missing <- stock_status %>%
+  filter(is.na(F.Fmsy), !is.na(B.Bmsy)) %>% 
+  dplyr::select(Code, Council)
+
+#A dataframe that defines custom legend for stocks with unknown status
+
+all.df <- data.frame(text = all_missing$Code,
+                    x = rep(x.max,length(all_missing$Code)),
+                    y = seq(3.35,2.25, length.out = 7))
+
+b.df <- data.frame(text = b_missing$Code,
+                    x = rep(x.max*0.8,length(b_missing$Code)),
+                    y = c(3.35,3.15))
+
+f.df <- data.frame(text = f_missing$Code,
+                    x = rep(x.max*0.6,length(f_missing$Code)),
+                    y = seq(3.35,2.15, length.out = 7))
+
+
+#Plotting code
+ggplot(data = stock_status) +
+  geom_vline(xintercept = 1, linetype = "dotted", color = "grey60")+
+  geom_vline(xintercept = 0.5, linetype = "dashed", color = "grey60")+
+  geom_hline(yintercept = 1, linetype = "dashed", color = "grey60") +
+  geom_point(aes(x = B.Bmsy,
+                 y = F.Fmsy,
+                 color = stock_status$score,
+                 shape = Council)) +
+  geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
+                      y = F.Fmsy,
+                      label = Code,
+                      color = stock_status$score), show.legend = FALSE,nudge_y = 0.05, nudge_x = 0.05) +
+  ylim(0,y.max) +
+  xlim(0,x.max*1.1) +
+  geom_text(data = all.df, aes(x = x, y = y, label = text),show.legend = FALSE, size = 3)+
+  geom_text(data = b.df, aes(x = x, y = y, label = text),show.legend = FALSE, size = 3)+
+  geom_text(data = f.df, aes(x = x, y = y, label = text),show.legend = FALSE, size = 3)+
+  scale_color_manual(values = c("orangered3","gold3", "green3"), #Change legend labels for clarity
+                     breaks = stock_status$score) +
+  annotate("rect", xmin = 0.924*x.max,
+           xmax = 1.08*x.max,
+           ymin = 0.645*y.max,
+           ymax = 0.98*y.max,
+           alpha = 0.01) +
+  annotate("text", x = 7.5, y = 3.5, label = "F and B missing", fontface =2, size = 3)+
+  annotate("rect",  
+             xmin = 0.70*x.max,
+             xmax = 0.85*x.max,
+             ymin = 0.90*y.max,
+             ymax = 0.98*y.max,
+             alpha = 0.01) +
+  annotate("text", x = 6, y = 3.5, label = "B missing", fontface =2, size = 3)+
+  annotate("rect", xmin = 0.509*x.max,
+           xmax = 0.681*x.max,
+           ymin = 0.65*y.max,
+           ymax = 0.98*y.max,
+           alpha = 0.01) +
+  annotate("text", x = 4.5, y = 3.5, label = "F missing", fontface =2, size = 3)+
+  xlab(expression(~B/B[msy])) +
+  ylab(expression(~F/F[msy])) +
+  guides(color = FALSE) +
+  theme_ts()
+```
+
+
+
+## SST {.tabset}
+```{r GIS-setup, echo=FALSE}
+
+#CRS
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+#Coastline shapefile   
+coast <- ne_countries(scale = 10,
+                          continent = "North America",
+                          returnclass = "sf") %>%
+             sf::st_transform(crs = crs)
+
+#State polygons
+ne_states <- ne_states(country = "united states of america",
+                                      returnclass = "sf") %>%
+  sf::st_transform(crs = crs)
+
+#high-res polygon of Maine
+#new_england <- read_sf(gis.dir,"new_england")
+
+#EPU shapefile
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB","GB","GOM"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -77
+xmax = -65
+ymin = 36
+ymax = 45
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2009
+x.shade.max <- 2018
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
+```
+
+
+
+###MAFMC
+```{r MAB-SST-insitu, echo=FALSE, fig.width = 8, fig.height = 7, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies."}
+#,out.extra='trim={0 1cm 0 1cm},clip'
+annotation_custom2 <- function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) 
+{
+  layer(data = data, stat = StatIdentity, position = PositionIdentity, 
+        geom = ggplot2:::GeomCustomAnn,
+        inherit.aes = TRUE, params = list(grob = grob, 
+                                          xmin = xmin, xmax = xmax, 
+                                          ymin = ymin, ymax = ymax))
+}
+
+#EPU shapefile
+epu_sf_ma <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -81
+xmax = -66
+ymin = 35.5
+ymax = 43
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+sst <- seasonal_oisst_anom_gridded 
+
+sst$Season <- factor(sst$Season, levels = c("Winter",
+                                            "Spring",
+                                            "Summer",
+                                            "Fall"))
+sst_map <- 
+  ggplot() +
+  geom_tile(data = sst, aes(x = Longitude, y = Latitude,fill = Value)) +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = epu_sf_ma, fill = "transparent", size = map.lwd) +
+  scale_fill_gradient2(name = "Temp.\nAnomaly (°C)",
+                       low = scales::muted("blue"),
+                       mid = "white",
+                       high = scales::muted("red"),
+                       limits = c(-5,5)) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  facet_wrap(Season~.) +
+  theme_map() +
+  ggtitle("SST anomaly (2018)") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+        legend.key = element_blank(),
+        axis.title = element_text(size = 11),
+        strip.background = element_blank(),
+        strip.text=element_text(hjust=0),
+        axis.text = element_text(size = 8))
+
+seasonal_oisst_anom <- seasonal_oisst_anom %>% 
+  mutate(max.yr = if_else(.$Time == max(.$Time),"yes","no"))
+
+winter_anom <-  ggplotGrob( seasonal_oisst_anom %>% 
+                              filter(EPU == "MAB",
+                                     str_detect(Var, "winter")) %>% 
+                              mutate(hline = mean(Value)) %>% 
+                              ggplot(aes(x = Time, y = Value)) +
+                              annotate("rect", fill = shade.fill, alpha = shade.alpha,
+                                       xmin = x.shade.min , xmax = x.shade.max,
+                                       ymin = -Inf, ymax = Inf) +
+                              geom_point(aes(shape = max.yr), show.legend = FALSE) +
+                              scale_shape_manual(values = c(16, 1)) +
+                              geom_line() +
+                              geom_gls(alpha = trend.alpha + 0.25) +
+                              ylab("SST anomaly (°C)")+
+                              scale_x_continuous(expand = c(0.01, 0.01)) +
+                              geom_hline(aes(yintercept = hline)) +
+                              theme_ts()+
+                              theme(axis.title = element_text(size = 6),
+                                    axis.text = element_text(size = 6),
+                                    panel.background = element_rect(fill = "transparent"), 
+                                    plot.background = element_rect(fill = "transparent", color = NA), 
+                                    panel.grid.major = element_blank(),
+                                    panel.grid.minor = element_blank(), 
+                                    legend.background = element_rect(fill = "transparent"), 
+                                    legend.box.background = element_rect(fill = "transparent"), 
+                                    legend.key = element_rect(fill = "transparent", colour = NA), 
+                                    axis.line = element_blank(),
+                                    panel.border = element_blank())
+)
+
+spring_anom <-  ggplotGrob( seasonal_oisst_anom %>% 
+                              filter(EPU == "MAB",
+                                     str_detect(Var, "spring")) %>% 
+                              mutate(hline = mean(Value)) %>% 
+                              ggplot(aes(x = Time, y = Value)) +
+                              annotate("rect", fill = shade.fill, alpha = shade.alpha,
+                                       xmin = x.shade.min , xmax = x.shade.max,
+                                       ymin = -Inf, ymax = Inf) +
+                              geom_line() +
+                              geom_point(aes(shape = max.yr), show.legend = FALSE) +
+                              scale_shape_manual(values = c(16, 1)) +
+                              geom_gls(alpha = trend.alpha + 0.25) +
+                              ylab("SST anomaly (°C)")+
+                              scale_x_continuous(expand = c(0.01, 0.01)) +
+                              geom_hline(aes(yintercept = hline)) +
+                              theme_ts()+
+                              theme(axis.title = element_text(size = 6),
+                                    axis.text = element_text(size = 6),
+                                    panel.background = element_rect(fill = "transparent"), 
+                                    plot.background = element_rect(fill = "transparent", color = NA),
+                                    panel.grid.major = element_blank(),
+                                    panel.grid.minor = element_blank(), 
+                                    legend.background = element_rect(fill = "transparent"), 
+                                    legend.box.background = element_rect(fill = "transparent"), 
+                                    legend.key = element_rect(fill = "transparent", colour = NA), 
+                                    axis.line = element_blank(),
+                                    panel.border = element_blank())
+)
+
+summer_anom <-  ggplotGrob( seasonal_oisst_anom %>% 
+                              filter(EPU == "MAB",
+                                     str_detect(Var, "summer")) %>% 
+                              mutate(hline = mean(Value)) %>% 
+                              ggplot(aes(x = Time, y = Value)) +
+                              annotate("rect", fill = shade.fill, alpha = shade.alpha,
+                                       xmin = x.shade.min , xmax = x.shade.max,
+                                       ymin = -Inf, ymax = Inf) +
+                              geom_point(aes(shape = max.yr), show.legend = FALSE) +
+                              scale_shape_manual(values = c(16, 1)) +
+                              geom_line() +
+                              geom_gls(alpha = trend.alpha + 0.25) +
+                              ylab("SST anomaly (°C)")+
+                              scale_x_continuous(expand = c(0.01, 0.01)) +
+                              geom_hline(aes(yintercept = hline)) +
+                              theme_ts()+
+                              theme(axis.title = element_text(size = 6),
+                                    axis.text = element_text(size = 6),
+                                    panel.background = element_rect(fill = "transparent"),
+                                    plot.background = element_rect(fill = "transparent", color = NA),
+                                    panel.grid.major = element_blank(), 
+                                    panel.grid.minor = element_blank(), 
+                                    legend.background = element_rect(fill = "transparent"),
+                                    legend.box.background = element_rect(fill = "transparent"), 
+                                    legend.key = element_rect(fill = "transparent", colour = NA), 
+                                    axis.line = element_blank(),
+                                    panel.border = element_blank())
+)
+
+fall_anom <-  ggplotGrob( seasonal_oisst_anom %>% 
+                            filter(EPU == "MAB",
+                                   str_detect(Var, "fall")) %>% 
+                            mutate(hline = mean(Value)) %>% 
+                            ggplot(aes(x = Time, y = Value)) +
+                            annotate("rect", fill = shade.fill, alpha = shade.alpha,
+                                     xmin = x.shade.min , xmax = x.shade.max,
+                                     ymin = -Inf, ymax = Inf) +
+                            geom_line() +
+                            geom_point(aes(shape = max.yr), show.legend = FALSE) +
+                              scale_shape_manual(values = c(16, 1)) +
+                            geom_gls(alpha = trend.alpha + 0.25) +
+                            ylab("SST anomaly (°C)")+
+                            scale_x_continuous(expand = c(0.01, 0.01)) +
+                            geom_hline(aes(yintercept = hline)) +
+                            theme_ts()+
+                            theme(axis.title = element_text(size = 6),
+                                  axis.text = element_text(size = 6),
+                                  panel.background = element_rect(fill = "transparent"), 
+                                  plot.background = element_rect(fill = "transparent", color = NA), 
+                                  panel.grid.major = element_blank(), 
+                                  panel.grid.minor = element_blank(), 
+                                  legend.background = element_rect(fill = "transparent"), 
+                                  legend.box.background = element_rect(fill = "transparent"),
+                                  legend.key = element_rect(fill = "transparent", colour = NA),
+                                  axis.line = element_blank(),
+                                  panel.border = element_blank())
+)
+
+sst_map + 
+  annotation_custom2(grob = winter_anom,  xmin=-82, xmax=-73.75,
+                     ymin=39, ymax=43.5, data = data.frame(Season = "Winter")) +
+  annotation_custom2(grob = spring_anom,  xmin=-82, xmax=-73.75,
+                     ymin=39, ymax=43.5, data = data.frame(Season = "Spring")) +
+  annotation_custom2(grob = summer_anom,  xmin=-82, xmax=-73.75,
+                     ymin=39, ymax=43.5, data = data.frame(Season = "Summer")) +
+  annotation_custom2(grob = fall_anom,  xmin=-82, xmax=-73.75,
+                     ymin=39, ymax=43.5, data = data.frame(Season = "Fall"))
+
+```
