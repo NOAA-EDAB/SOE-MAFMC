@@ -1,6 +1,7 @@
 ---
 title: "Plots"
 output: html_document
+self_contained: no
 ---
 ```{r setup, include=FALSE}
 #Plotting and data libraries
@@ -238,6 +239,7 @@ label <- function(variable,value){
 
 ###MAFMC
 ```{r MAB-SST-insitu, echo=FALSE, fig.width = 8, fig.height = 7, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies."}
+  
 #,out.extra='trim={0 1cm 0 1cm},clip'
 annotation_custom2 <- function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) 
 {
@@ -301,12 +303,12 @@ winter_anom <-  ggplotGrob( seasonal_oisst_anom %>%
                               ggplot(aes(x = Time, y = Value)) +
                               annotate("rect", fill = shade.fill, alpha = shade.alpha,
                                        xmin = x.shade.min , xmax = x.shade.max,
-                                       ymin = -Inf, ymax = Inf) +
-                              geom_point(aes(shape = max.yr), show.legend = FALSE) +
+                                       ymin = -2, ymax = 3) +
+                              geom_point(size = 0.9, aes(shape = max.yr), show.legend = FALSE) +
                               scale_shape_manual(values = c(16, 1)) +
                               geom_line() +
                               geom_gls(alpha = trend.alpha + 0.25) +
-                              ylab("SST anomaly (°C)")+
+                              ylab("Anomaly (°C)")+
                               scale_x_continuous(expand = c(0.01, 0.01)) +
                               geom_hline(aes(yintercept = hline)) +
                               theme_ts()+
@@ -330,12 +332,12 @@ spring_anom <-  ggplotGrob( seasonal_oisst_anom %>%
                               ggplot(aes(x = Time, y = Value)) +
                               annotate("rect", fill = shade.fill, alpha = shade.alpha,
                                        xmin = x.shade.min , xmax = x.shade.max,
-                                       ymin = -Inf, ymax = Inf) +
+                                       ymin = -2, ymax = 3) +
                               geom_line() +
-                              geom_point(aes(shape = max.yr), show.legend = FALSE) +
+                              geom_point(size = 0.9, aes(shape = max.yr), show.legend = FALSE) +
                               scale_shape_manual(values = c(16, 1)) +
                               geom_gls(alpha = trend.alpha + 0.25) +
-                              ylab("SST anomaly (°C)")+
+                              ylab("Anomaly (°C)")+
                               scale_x_continuous(expand = c(0.01, 0.01)) +
                               geom_hline(aes(yintercept = hline)) +
                               theme_ts()+
@@ -359,12 +361,12 @@ summer_anom <-  ggplotGrob( seasonal_oisst_anom %>%
                               ggplot(aes(x = Time, y = Value)) +
                               annotate("rect", fill = shade.fill, alpha = shade.alpha,
                                        xmin = x.shade.min , xmax = x.shade.max,
-                                       ymin = -Inf, ymax = Inf) +
-                              geom_point(aes(shape = max.yr), show.legend = FALSE) +
+                                       ymin = -2, ymax = 3) +
+                              geom_point(size = 0.9, aes(shape = max.yr), show.legend = FALSE) +
                               scale_shape_manual(values = c(16, 1)) +
                               geom_line() +
                               geom_gls(alpha = trend.alpha + 0.25) +
-                              ylab("SST anomaly (°C)")+
+                              ylab("Anomaly (°C)")+
                               scale_x_continuous(expand = c(0.01, 0.01)) +
                               geom_hline(aes(yintercept = hline)) +
                               theme_ts()+
@@ -388,12 +390,12 @@ fall_anom <-  ggplotGrob( seasonal_oisst_anom %>%
                             ggplot(aes(x = Time, y = Value)) +
                             annotate("rect", fill = shade.fill, alpha = shade.alpha,
                                      xmin = x.shade.min , xmax = x.shade.max,
-                                     ymin = -Inf, ymax = Inf) +
+                                     ymin = -2, ymax = 3) +
                             geom_line() +
-                            geom_point(aes(shape = max.yr), show.legend = FALSE) +
+                            geom_point(size = 0.9, aes(shape = max.yr), show.legend = FALSE) +
                               scale_shape_manual(values = c(16, 1)) +
                             geom_gls(alpha = trend.alpha + 0.25) +
-                            ylab("SST anomaly (°C)")+
+                            ylab("Anomaly (°C)")+
                             scale_x_continuous(expand = c(0.01, 0.01)) +
                             geom_hline(aes(yintercept = hline)) +
                             theme_ts()+
@@ -419,5 +421,6 @@ sst_map +
                      ymin=39, ymax=43.5, data = data.frame(Season = "Summer")) +
   annotation_custom2(grob = fall_anom,  xmin=-82, xmax=-73.75,
                      ymin=39, ymax=43.5, data = data.frame(Season = "Fall"))
+
 
 ```
