@@ -1,5 +1,7 @@
 ### Bennet
 
+epu_abbr<-"MAB"
+
 #Filter data into two dataframes for plotting
 indicators <- ecodata::bennet %>% 
   filter(EPU == epu_abbr,

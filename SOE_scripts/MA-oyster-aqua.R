@@ -45,8 +45,4 @@ ggplot() +
   scale_y_continuous(labels = function(l){trans = l / 1000000})+
   ggtitle("Oyster harvest")+
   ylab(expression("Oysters sold (10"^6*" n)")) +
-  xlab("")+
-  labs(caption = "Oyster aquaculture production in terms of number of oysters sold from Virginia, Maryland, and New Jersey.")
-  theme_ts()+
-    theme(aspect.ratio= 0.45,
-          plot.caption = element_text(hjust = 2000))
+  xlab("")
