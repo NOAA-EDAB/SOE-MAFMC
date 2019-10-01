@@ -1,8 +1,5 @@
 
 ## ----oyster-aqua----
-library(tidyverse)
-library(ecodata)
-source(pipe(paste("wget -O -", "https://github.com/NOAA-EDAB/SOE-MAFMC/blob/master/SOE_scripts/MA-setup.R")))
 
 aqua <- ecodata::aquaculture %>% 
   group_by(Var) %>% 
