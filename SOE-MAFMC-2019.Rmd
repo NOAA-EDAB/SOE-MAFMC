@@ -174,8 +174,9 @@ knitr::kable(mng_obj,
   kable_styling(latex_options = "hold_position", "scale_down") %>%
  # column_spec(c(2), width = c("25em")) %>%
   row_spec(0, bold = TRUE)
-```
 
+```
+ 
 
 # Economic and Social
 
@@ -376,7 +377,7 @@ ggplot(data = rev_agg) +
 ```
 
 
-```{r bennet, fig.cap = paste0("Revenue change from the long-term mean in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 6, fig.asp = 0.45}
+```{r bennet,  fig.cap = paste0("Revenue change from the long-term mean in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 6, fig.asp = 0.45}
 
 #Filter data into two dataframes for plotting
 indicators <- ecodata::bennet %>% 

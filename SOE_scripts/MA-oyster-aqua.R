@@ -1,4 +1,9 @@
+
 ## ----oyster-aqua----
+library(tidyverse)
+library(ecodata)
+source(pipe(paste("wget -O -", "https://github.com/NOAA-EDAB/SOE-MAFMC/blob/master/SOE_scripts/MA-setup.R")))
+
 aqua <- ecodata::aquaculture %>% 
   group_by(Var) %>% 
   mutate(hline = mean(Value)) %>%
@@ -41,4 +46,7 @@ ggplot() +
   ggtitle("Oyster harvest")+
   ylab(expression("Oysters sold (10"^6*" n)")) +
   xlab("")+
-  theme_ts()
+  labs(caption = "Oyster aquaculture production in terms of number of oysters sold from Virginia, Maryland, and New Jersey.")
+  theme_ts()+
+    theme(aspect.ratio= 0.45,
+          plot.caption = element_text(hjust = 2000))
