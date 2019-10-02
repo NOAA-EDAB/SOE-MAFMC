@@ -42,4 +42,5 @@ ggplot() +
   scale_y_continuous(labels = function(l){trans = l / 1000000})+
   ggtitle("Oyster harvest")+
   ylab(expression("Oysters sold (10"^6*" n)")) +
-  xlab("")
+  xlab("")+
+  theme_ts()
