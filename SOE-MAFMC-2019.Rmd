@@ -41,6 +41,7 @@ library(grid)
 library(ggiraph)
 library(vegan)
 library(rpart)
+library(ks)
 
 #GIS libraries
 library(sf)
