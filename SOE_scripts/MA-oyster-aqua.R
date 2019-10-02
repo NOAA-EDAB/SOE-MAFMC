@@ -1,5 +1,4 @@
-
-## ----oyster-aqua----
+source("https://raw.githubusercontent.com/NOAA-EDAB/SOE-MAFMC/master/SOE_scripts/MA-setup.R")
 
 aqua <- ecodata::aquaculture %>% 
   group_by(Var) %>% 
