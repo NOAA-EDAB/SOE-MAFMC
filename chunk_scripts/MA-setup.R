@@ -12,14 +12,11 @@ knitr::opts_chunk$set(echo = FALSE,
                       fig.align = 'center') #allows for inserting R code into captions
 
 #Plotting and data libraries
-library(ggplot2)
-library(dplyr)
-library(tidyr)
+library(tidyverse)
 library(ecodata)
 library(here)
 library(kableExtra)
 library(ggrepel)
-library(stringr)
 library(patchwork)
 library(grid)
 library(ggiraph)
