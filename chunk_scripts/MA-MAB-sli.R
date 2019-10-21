@@ -1,6 +1,6 @@
 
 sli <- ecodata::zoo_anom_sli %>% 
-  filter(EPU == epu_abbr,
+  filter(EPU == "MAB",
          str_detect(Var, "small-large")) %>% 
   mutate(hline = 0) 
 

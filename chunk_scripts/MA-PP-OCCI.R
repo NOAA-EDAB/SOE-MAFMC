@@ -1,6 +1,6 @@
 
 out_pp <- ecodata::chl_pp %>% 
-  filter(EPU == epu_abbr,
+  filter(EPU == "MAB",
          str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
   separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
     mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
