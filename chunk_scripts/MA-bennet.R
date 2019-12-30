@@ -1,14 +1,14 @@
 
 #Filter data into two dataframes for plotting
 indicators <- ecodata::bennet %>% 
-  filter(EPU == "MAB",
+  dplyr::filter(EPU == "MAB",
          Var %in% c("VI EPU aggregate",
                     "PI EPU aggregate")) %>% 
-  mutate(Var, Var = plyr::mapvalues(Var, from = c("VI EPU aggregate","PI EPU aggregate"),
+  dplyr::mutate(Var, Var = plyr::mapvalues(Var, from = c("VI EPU aggregate","PI EPU aggregate"),
                                     to = c("Volume","Price")))
 
 revchange <- ecodata::bennet %>% 
-  filter(EPU == "MAB",
+  dplyr::filter(EPU == "MAB",
          Var %in% c("REVCHANGE EPU aggregate"))
 
 #custom bar fill color (color-blind friendly)
