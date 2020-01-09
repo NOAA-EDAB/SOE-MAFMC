@@ -4,7 +4,9 @@ indicators <- ecodata::bennet %>%
   dplyr::filter(EPU == "MAB",
          Var %in% c("VI EPU aggregate",
                     "PI EPU aggregate")) %>% 
-  dplyr::mutate(Var, Var = plyr::mapvalues(Var, from = c("VI EPU aggregate","PI EPU aggregate"),
+  dplyr::mutate(Var, 
+                Var = plyr::mapvalues(Var, 
+                                      from = c("VI EPU aggregate","PI EPU aggregate"),
                                     to = c("Volume","Price")))
 
 revchange <- ecodata::bennet %>% 
@@ -32,6 +34,7 @@ ggplot(data = indicators)+
   ggtitle("Bennet Indicator")+
   labs(y="Value $1,000,000 ($2015)") +
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
-  scale_y_continuous(breaks = seq(y.lim[1], y.lim[2], by = 100), limits = y.lim, expand = c(0.01, 0.01)) +
+  scale_y_continuous(breaks = seq(y.lim[1], y.lim[2], by = 100), 
+                     limits = y.lim, expand = c(0.01, 0.01)) +
   theme_ts() +
   theme(title = element_text(size = 10))
