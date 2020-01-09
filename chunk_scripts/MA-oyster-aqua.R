@@ -3,7 +3,9 @@ aqua <- ecodata::aquaculture %>%
   group_by(Var) %>% 
   mutate(hline = mean(Value)) %>%
   ungroup() %>% 
-  mutate(Var = plyr::mapvalues(Var, from = c("md oyster harvest","nj oyster harvest","va oyster harvest"),
+  mutate(Var = plyr::mapvalues(Var, from = c("md oyster harvest",
+                                             "nj oyster harvest",
+                                             "va oyster harvest"),
                                                     to  = c("MD","NJ","VA"))) %>%
   dplyr::rename(State = Var)
 
@@ -11,21 +13,24 @@ aqua$State <- factor(aqua$State, levels = c("VA","MD","NJ"))
 
 
 ggplot() + 
-  geom_segment(aes(x=2005,xend=2017,y=mean(aquaculture[aquaculture$Var == "va oyster harvest",]$Value),
+  geom_segment(aes(x=2005,xend=2017,
+                   y=mean(aquaculture[aquaculture$Var == "va oyster harvest",]$Value),
                    yend=mean(aquaculture[aquaculture$Var == "va oyster harvest",]$Value)),
                size = hline.size,
            alpha = hline.alpha,
            linetype = hline.lty,
            color = "#1b9e77",
            inherit.aes = F) +
-  geom_segment(aes(x=2012,xend=2016,y=mean(aquaculture[aquaculture$Var == "nj oyster harvest",]$Value),
+  geom_segment(aes(x=2012,xend=2016,
+                   y=mean(aquaculture[aquaculture$Var == "nj oyster harvest",]$Value),
                    yend=mean(aquaculture[aquaculture$Var == "nj oyster harvest",]$Value)),
                size = hline.size,
            alpha = hline.alpha,
            linetype = hline.lty,
            color = "#d95f02",
            inherit.aes = F) +
-  geom_segment(aes(x=2012,xend=2017,y=mean(aquaculture[aquaculture$Var == "md oyster harvest",]$Value),
+  geom_segment(aes(x=2012,xend=2017,
+                   y=mean(aquaculture[aquaculture$Var == "md oyster harvest",]$Value),
                    yend=mean(aquaculture[aquaculture$Var == "md oyster harvest",]$Value)),
                size = hline.size,
            alpha = hline.alpha,
