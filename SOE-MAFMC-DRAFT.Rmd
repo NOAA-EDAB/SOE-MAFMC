@@ -1,16 +1,33 @@
 ---
-title: 'State of the Ecosystem: Mid-Atlantic Bight Snowman'
-geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
+title: "null"
+csl: plos.csl
+fontsize: 10pt
 output:
-  pdf_document:
-    fig_caption: yes
-    includes:
-      in_header: latex/header.tex
-    latex_engine: xelatex
   html_document:
     df_print: paged
-fontsize: 11pt
+  pdf_document:
+    includes:
+      in_header: latex/header.tex
+    keep_tex: yes
+link-citations: yes
+geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
+subparagraph: yes
+bibliography: SOE2019.bib
 ---
+
+#---
+#title: 'State of the Ecosystem: Mid-Atlantic Bight Snowman'
+#geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
+#output:
+#  html_document:
+#    df_print: paged
+#  pdf_document:
+#    fig_caption: yes
+#    includes:
+#      in_header: latex/header.tex
+#    latex_engine: xelatex
+#fontsize: 11pt
+#---
 
 ```{r setup, include=FALSE}
 

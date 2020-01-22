@@ -23,23 +23,22 @@ subparagraph: yes
 #Default Rmd options
 knitr::opts_chunk$set(echo = FALSE,
                       message = FALSE,
+                      dev = "cairo_pdf",
                       warning = FALSE,
                       fig.align = 'center') #allows for inserting R code into captions
 
 #Plotting and data libraries
-library(ggplot2)
-library(dplyr)
-library(tidyr)
+library(tidyverse)
 library(ecodata)
 library(here)
 library(kableExtra)
 library(ggrepel)
-library(stringr)
 library(patchwork)
 library(grid)
 library(ggiraph)
 library(vegan)
 library(rpart)
+library(ks)
 
 #GIS libraries
 library(sf)
@@ -173,8 +172,9 @@ knitr::kable(mng_obj,
   kable_styling(latex_options = "hold_position", "scale_down") %>%
  # column_spec(c(2), width = c("25em")) %>%
   row_spec(0, bold = TRUE)
-```
 
+```
+ 
 
 # Economic and Social
 
@@ -375,18 +375,18 @@ ggplot(data = rev_agg) +
 ```
 
 
-```{r bennet, fig.cap = paste0("Revenue change from the long-term mean in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 6, fig.asp = 0.45}
+```{r bennet,  fig.cap = paste0("Revenue change from the long-term mean in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 6, fig.asp = 0.45}
 
 #Filter data into two dataframes for plotting
 indicators <- ecodata::bennet %>% 
-  filter(EPU == epu_abbr,
+  filter(EPU == "MAB",
          Var %in% c("VI EPU aggregate",
                     "PI EPU aggregate")) %>% 
   mutate(Var, Var = plyr::mapvalues(Var, from = c("VI EPU aggregate","PI EPU aggregate"),
                                     to = c("Volume","Price")))
 
 revchange <- ecodata::bennet %>% 
-  filter(EPU == epu_abbr,
+  filter(EPU == "MAB",
          Var %in% c("REVCHANGE EPU aggregate"))
 
 #custom bar fill color (color-blind friendly)
@@ -878,7 +878,13 @@ Single species management objectives of maintaining biomass above minimum thresh
 #Get data, spread for plotting, and filter
 stock_status <- ecodata::stock_status %>%
   spread(.,Var,Value) %>% 
-  filter(Council %in% c(council_abbr,"Both"))
+  filter(Council %in% c(council_abbr,"Both")) %>% 
+  group_by(Stock) %>% 
+  mutate(score = case_when(
+    (F.Fmsy > 1 & B.Bmsy < 1) ~ "a",  
+    (F.Fmsy > 1 & B.Bmsy > 1) ~ "b",
+    (F.Fmsy < 1 & B.Bmsy < 1) ~ "c",
+    (F.Fmsy < 1 & B.Bmsy > 1) ~ "d"))
 
 #Plot constants
 y.max <- 2.0 #1.75 mackerel cut off F/Fmsy is 1.8
@@ -893,26 +899,24 @@ unknown <- data.frame(text = c("Unknown Status", "Longfin",
 
 
 #Plotting code
-ggplot(data = stock_status) +
+p1<-ggplot(data = stock_status) +
   geom_vline(xintercept = 1, linetype = "dotted")+
   geom_vline(xintercept = 0.5, linetype = "dashed")+
   geom_hline(yintercept = 1, linetype = "dashed") +
   geom_point(aes(x = B.Bmsy,
                  y = F.Fmsy,
-                 color = Council)) +
+                 shape = Council,
+                 color = score)) +
   geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
                       y = F.Fmsy,
                       label = Code,
-                      color = Council), show.legend = FALSE,nudge_y = 0.05, nudge_x = 0.05) +
-  scale_color_manual(values = c("purple","blue"), #Change legend labels for clarity
-                     name = "Managed by",
-                     breaks = c("Both","MAFMC"),
-                     labels = c("MAFMC/NEFMC","MAFMC"))+
+                      shape = Council), show.legend = FALSE,nudge_y = 0.05, nudge_x = 0.05) +
+  scale_color_manual(values = c("orangered2","gold2", "green3"), #Change legend labels for clarity
+                     breaks = stock_status$score) +
   ylim(0,y.max) +
   xlim(0,x.max) +
   geom_text(data = unknown, aes(x = x, y = y, label = text), #Custom legend for unknown stock status
-            size = c(4.75,rep(4,4)),
-            color = c("black",rep("blue",2), rep("purple",2))) +
+            size = c(4.75,rep(4,4))) +
   annotate("rect", xmin = 0.8*x.max,
            xmax = x.max,
            ymin = 0.65*y.max,
@@ -920,6 +924,7 @@ ggplot(data = stock_status) +
            alpha = 0.1) +
   xlab(expression(~B/B[msy])) +
   ylab(expression(~F/F[msy])) +
+  guides(color = FALSE) +
   theme_ts()
 ```
 
@@ -1860,7 +1865,7 @@ MAB_chl_weekly
 
 ```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
 out_pp <- ecodata::chl_pp %>% 
-  filter(EPU == epu_abbr,
+  filter(EPU == "MAB",
          str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
   separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
     mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
@@ -2028,7 +2033,7 @@ Changes in the abundance of the larger *Calanus finmarchicus* are also reflected
 
 ```{r MAB-sli, fig.width = 4, fig.asp = 0.9, fig.cap = "MAB small-large zooplankton index and the annual primary production anomaly."}
 sli <- ecodata::zoo_anom_sli %>% 
-  filter(EPU == epu_abbr,
+  filter(EPU == "MAB",
          str_detect(Var, "small-large")) %>% 
   mutate(hline = 0) 
 
