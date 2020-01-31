@@ -133,7 +133,7 @@ The purpose of this report is to synthesize available information relevant to fi
 knitr::include_graphics("images/MAB_conmod_overview.jpg")
 ```
 
-![Northeast US conceptual model test alt text](`r knitr::fig-chunk ('conceptual-model', 'jpg')`)
+<!--![Northeast US conceptual model test alt text](`r knitr::fig_chunk ('conceptual-model', 'pdf')`)-->
 
 Some management interventions for ecosystems and fisheries have proven beneficial in the Mid-Atlantic and throughout the Northeast US Shelf. For example, the evidence suggests that management limiting nutrient inputs has significantly improved water quality in Chesapeake Bay (Fig. \ref{fig:cb-attainment}). This trend, which has been driven by improvements to dissolved oxygen content and water clarity, has positive implications for aquaculture development and for managed species using the Bay as nursery habitat.  Also encouraging is a continued decrease in harbor porpoise bycatch, which for this year is the lowest on record in the Northeast US, and an apparent stable harbor porpoise population (Fig. \ref{fig:harbor-porpoise-bars}).
 
@@ -250,7 +250,7 @@ ggplot(data = landings_agg)+
 
 ```
 
-![commercial landings test alt text](`r knitr::fig-chunk('total-landings', 'png')`)
+![commercial landings test alt text](`r knitr::fig_chunk('total-landings', 'pdf')`)
 
 ```{r comm-landings, fig.asp=1.5, warning=F, fig.width = 4, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild.")}
 
