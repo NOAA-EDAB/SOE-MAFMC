@@ -662,7 +662,7 @@ cowplot::plot_grid(rec_div,
 
 ## Probability of occupancy in offshore wind lease areas  (coastwide) 
 
-Habitat modeling indicates that summer flounder, butterfish, longfin squid, and spiny dogfish are among fish species highly likely to occupy wind energy lease areas. Habitat conditions for many of these species have become more favorable over time within wind lease areas.
+Habitat modeling [@friedland_changes_2020] indicates that summer flounder, butterfish, longfin squid, and spiny dogfish are among fish species highly likely to occupy wind energy lease areas. Habitat conditions for many of these species have become more favorable over time within wind lease areas. This table lists the top 5 species in each season most likely to occupy the wind lease areas in the northern, central, and southern portions of the MAB.
 
 ```{r wind_habitat_table, eval = T, echo = F, fig.cap='', out.width='80%'}
 wind1 <- ecodata::wind_occupancy
@@ -1539,7 +1539,7 @@ Estuarine water quality is measured in many other locations coastwide. Work is i
 ## Oceanographic conditions (coastwide) 
 Globally, 2019 was the 2nd warmest year on record and the last five years have been the warmest in the last 140 years^[https://www.nasa.gov/press-release/nasa-noaa-analyses-reveal-2019-second-warmest-year-on-record]. 
 
-Since the 1860’s, the Northeast US shelf sea surface temperature (SST) has exhibited an overall warming trend, with the past decade measuring well above the long term average (and the trendline; \ref{fig:long-term-sst}). Changes in the Gulf Stream, increases in the number of warm core ring formations and anomalous onshore intrusions of warm salt water are affecting the coastal ocean dynamics with important implications for commercial fisheries (@gawarkiewicz_2018).
+Since the 1860’s, the Northeast US shelf sea surface temperature (SST) has exhibited an overall warming trend, with the past decade measuring well above the long term average (and the trendline; \ref{fig:long-term-sst}). Changes in the Gulf Stream, increases in the number of warm core ring formations and anomalous onshore intrusions of warm salt water are affecting the coastal ocean dynamics with important implications for commercial fisheries (@gawarkiewicz_changing_2018).
 
 ```{r long-term-sst, fig.width = 8, fig.asp = 0.25, fig.cap = "Average annual sea surface temperature (SST) over the Northeast US Shelf"}
 lt_sst <- ecodata::long_term_sst %>% 
@@ -1598,7 +1598,7 @@ gsi %>%
                                 face = "italic"))
 ```
 
-Concurrently, large amplitude Gulf Stream meanders are forming more frequently further west [@andres_2016]. There has also been a regime shift since 2000 after which there has been a significant increase in the number of warm core rings formed each year (Fig \ref{warm-core-rings}; @gangopadhyay_2019. The greater number of warm core rings increases the probability of intrusions of warm/salty Gulf Stream water onto the continental shelf as well as the rate at which the geographical centroid of marine species moves to the north [@gangopadhyay_2019].
+Concurrently, large amplitude Gulf Stream meanders are forming more frequently further west [@andres_recent_2016]. There has also been a regime shift since 2000 after which there has been a significant increase in the number of warm core rings formed each year (Fig \ref{warm-core-rings}; @gangopadhyay_observed_2019. The greater number of warm core rings increases the probability of intrusions of warm/salty Gulf Stream water onto the continental shelf as well as the rate at which the geographical centroid of marine species moves to the north [@gangopadhyay_observed_2019].
 
 ```{r warm-core-rings, fig.cap= "Interannual Variability of the WCR formation between 1980 and 2019. The regime shift (denoted by the split in the red solid line) is significant at the turn of the century.  Figure reproduced with permission from Gangopadhyay, et al. (2019).  2018 and 2019 data points based on personal communication with A. Gangopadhyay (2020)."}
 upper.line<-ecodata::wcr %>%
@@ -1847,7 +1847,7 @@ ggplot2::ggplot() +
 ```
 
 ## Cold pool index (MAB) 
-Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_2017]. The average temperature of the cold pool has been getting warmer over time (Fig. \ref{cold-pool}) and the area of the cold pool is shrinking.  These changes can affect distribution and migration timing for species that depend on the cold pool habitat [@miller_2016].  
+Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017]. The average temperature of the cold pool has been getting warmer over time (Fig. \ref{cold-pool}) and the area of the cold pool is shrinking.  These changes can affect distribution and migration timing for species that depend on the cold pool habitat [@miller_state-space_2016].  
 
 ```{r cold-pool, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
 
@@ -1873,7 +1873,7 @@ ecodata::cold_pool %>%
 ```
 
 ## Marine heat waves (MAB) 
-Marine heatwaves measure not just temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. Heatwaves are measured in terms of intensity (the highest water temperature) and duration (the number of days temperatures are unusually high) using satellite measurements of daily sea surface temperature. Plotted below are maximum intensity and cumulative intensity, which is intensity times duration. Here we define a marine heatwave as a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2010) [@hobday_2016].    
+Marine heatwaves measure not just temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. Heatwaves are measured in terms of intensity (the highest water temperature) and duration (the number of days temperatures are unusually high) using satellite measurements of daily sea surface temperature. Plotted below are maximum intensity and cumulative intensity, which is intensity times duration. Here we define a marine heatwave as a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2010) [@hobday_hierarchical_2016].    
 
 The strongest heatwaves on record in the Middle Atlantic Bight occurred in the winter of 2012 in terms of maximum intensity (+5.13 oC above average) and in the winter/summer of 2012 in terms of cumulative intensity (515 oC-days; Fig. \ref{heatwave-mab}).  In 2019, the Middle Atlantic Bight experienced six distinct marine heatwaves in the spring, summer, and fall with one of the strongest events beginning on July 3 and lasting 21 days (Figs. \ref{MAB-heatwave1}, \ref{mab-heatwave-max}).  Relative to prior years, this marine heatwave ranked 17th on record in terms of maximum intensity (+2.88 oC above average on Jul 22).  Another strong marine heatwave began on Aug 1 and lasted 24 days, which was 20th on record in terms of cumulative intensity (46 oC-days).
 
