@@ -699,24 +699,8 @@ Current information suggests that gray seals eat primarily sand lance, hakes and
 Many nesting seabird species on Virginia barrier islands have declined over the last 20-25 years (https://ccbbirds.org/wp-content/uploads/CCBTR-19-06_Colonial-waterbirds-in-coastal-Virginia-2018.pdf). Between 1993 and 2018, Common Terns declined by 80.6% in coastal Virginia. Considerable declines have been documented in all 3 geographic regions that supported colonies in 1993. These declines have been attributed to habitat loss linked to sea level rise. All functional groups have declined since 1993 (Fig \ref{VA-cote}).
 
 ```{r VA-cote, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary & Virginia Commonwealth University, Williamsburg, VA. 28 pp. "}
-raw.dir<-here::here("data-raw")
-bird<- read.csv(file.path(raw.dir, "mab_bird.csv")) %>% 
+bird<- ecodata::seabird_MAB %>% 
   mutate(hline = mean(Value))
-
-
-
-# seabird <- ecodata::commontern_MAB %>% 
-#   mutate(Value = as.numeric(Value),
-#          Time = as.numeric(Time)) %>% 
-#   group_by(Time) %>% 
-#   dplyr::summarise(Mean = mean(Value, na.rm = T),
-#                    SE = sd(Value, na.rm = T)/sqrt(n()),
-#                    SD = sd(Value, na.rm = T),
-#                    n = n()) %>% 
-#   mutate(Mean = ifelse(is.na(SE),NA,Mean),
-#          se.low = Mean - SE,
-#          se.high = Mean + SE,
-#          hline = mean(Mean, na.rm = T))
 
 bird %>% 
   ggplot() +
@@ -726,20 +710,16 @@ bird %>%
       ymin = -Inf, ymax = Inf) +
   geom_line(aes(x = Time, y = Value, color = Group), size = lwd-0.75) +
   geom_point(aes(x = Time, y = Value, color = Group), size = pcex-0.75) +
-  #geom_gls(aes(x = Time, y = Mean)) +
-  #geom_errorbar(aes(x = Time,
-   #                 ymin = se.low,
-  #                ymax = se.high), 
-  #              width = 0.25) +
+  #geom_gls(aes(x = Time, y = Value)) +
   scale_x_continuous(expand = c(0.01, 0.01),limits = c(1991,2018)) +
   ggtitle("Seabird Abundance") +
   ylab(expression("Number of Breeding Pairs")) +
   xlab("")+
-  #geom_hline(aes(yintercept = hline),
-  #         color = "black",
-  #        size = hline.size,
-  #         alpha = hline.alpha,
-  #         linetype = hline.lty) +
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+          size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
   theme(legend.position="bottom", legend.direction = "horizontal", 
         legend.title = element_blank(), legend.margin=margin(t = -20)) +
   theme_ts()
@@ -755,33 +735,30 @@ Fishery management aims to keep individual harvested species within population r
 ## Stock status and aggregate distribution (coastwide)
 Single species management objectives of maintaining biomass above minimum thresholds and fishing mortality below limits are being met for all but one MAFMC managed species, though the status of four stocks is unknown (Fig. \ref{fig:stock-status}). Bluefish biomass is below the threshold, but fishing mortality was below the limit, while mackerel biomass was below the threshold and fishing mortality was above the limit. 
 
-```{r stock-status, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks."), fig.width = 7.5, fig.asp = 0.5}
+```{r stock-status, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks (Goosefish and Spiny dogfish)."), fig.width = 7.5, fig.asp = 0.5}
 
-#Get data, spread for plotting, and filter
 stock_status <- ecodata::stock_status %>%
+  mutate(Code = recode(Code, "Dogfish" = "Sp. Dogfish" )) %>% 
   spread(.,Var,Value) %>% 
-  filter(Council %in% c(council_abbr,"Both")) %>% 
+  filter(Council %in% c("MAFMC","Both")) %>% 
   group_by(Stock) %>% 
   mutate(score = case_when(
-    (F.Fmsy > 1 & B.Bmsy < 1) ~ "a",  
-    (F.Fmsy > 1 & B.Bmsy > 1) ~ "b",
-    (F.Fmsy < 1 & B.Bmsy < 1) ~ "c",
-    (F.Fmsy < 1 & B.Bmsy > 1) ~ "d"))
-
+    (B.Bmsy <0.5) ~"a",
+    (F.Fmsy >1) ~ "a", 
+    (F.Fmsy < 1 & B.Bmsy > 0.5 & B.Bmsy < 1) ~ "b",
+    (F.Fmsy < 1 & B.Bmsy > 1) ~ "c"))
 #Plot constants
 y.max <- 2.0 #1.75 mackerel cut off F/Fmsy is 1.8
 x.max <- 2.6
-
 #A dataframe that defines custom legend for stocks with unknown status
+unknown <- data.frame(text = c("Unknown Status", "Longfin Squid",
+                              "Shortfin Squid", "N. Goosefish", "S. Goosefish"),
+                    x = rep(0.9*x.max,5), y = seq(0.93*y.max,1.4,-.1))
 
-unknown <- data.frame(text = c("Unknown Status", "Longfin",
-                              "Illex", "N. Goosefish", "S. Goosefish"),
-                    x = rep(0.9*x.max,5),
-                    y = seq(0.93*y.max,1.4,-.1))
-
-
+# Custom Color
+custom_color<- c("#56B4E9", "#009E73", "#0072B2")
 #Plotting code
-p1<-ggplot(data = stock_status) +
+ggplot(data = stock_status) +
   geom_vline(xintercept = 1, linetype = "dotted")+
   geom_vline(xintercept = 0.5, linetype = "dashed")+
   geom_hline(yintercept = 1, linetype = "dashed") +
@@ -791,9 +768,10 @@ p1<-ggplot(data = stock_status) +
                  color = score)) +
   geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
                       y = F.Fmsy,
-                      label = Code,
-                      shape = Council), show.legend = FALSE,nudge_y = 0.05, nudge_x = 0.05) +
-  scale_color_manual(values = c("orangered2","gold2", "green3"), #Change legend labels for clarity
+                      label = Code, 
+                      color = score), 
+                  show.legend = FALSE, nudge_y = -0.01, nudge_x = 0.05) +
+  scale_color_brewer(palette = "Dark2",
                      breaks = stock_status$score) +
   ylim(0,y.max) +
   xlim(0,x.max) +
@@ -811,9 +789,10 @@ p1<-ggplot(data = stock_status) +
 ```
 
 
-Changes in the distribution of managed fish species continue, with aggregate trends on the entire Northeast Shelf towards the northeast and generally into deeper water (Fig. \ref{fig:spec-dist}). These shifts will place increasing pressure on the management system. 
+Trends for a suite of 48 commercially or ecologically important species along the entire Northeast Shelf continue to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:spec-dist}). Marine mammal distribution maps are available online^[https://www.nefsc.noaa.gov/AMAPPSviewer/]; updated maps and trends are currently being developed.
+ 
 
-```{r spec-dist,fig.width = 4, fig.asp = 1.2, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."}
+```{r spec-dist,fig.width = 4, fig.asp = 1.2, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem. Along-shelf distance measures the center of biomass along an axis oriented from the southwest to the northwest generally following the slope of coastline."}
 
 spec_dist <- ecodata::species_dist %>% 
   group_by(Var) %>% 
@@ -842,6 +821,8 @@ asd <- spec_dist %>%
 
 depth <- spec_dist %>% 
   filter(Var == "depth") %>% 
+  mutate(Value = Value* -1, 
+         hline = mean(Value)) %>% 
   ggplot(aes(x = Time, y = Value,
                group = Var)) + 
  #Highlight last ten years
@@ -852,7 +833,7 @@ depth <- spec_dist %>%
   geom_line() +
   geom_point() +
   scale_x_continuous(expand = c(0.01, 0.01)) +
-  ggtitle("Depth")+
+  ggtitle("Depth") +
   ylab(expression("Depth (m)")) +
   xlab("")+
   geom_hline(aes(yintercept = hline),
@@ -882,76 +863,139 @@ dtc <- spec_dist %>%
            linetype = hline.lty) +
   theme_ts() 
 
-asd + depth + dtc + plot_layout(ncol = 1) 
+asd + depth + plot_layout(ncol = 1) 
 
 ```
 
-## Survey biomass (MAB)
-As in past years, piscivore trends differ by season, with a significant long term decline in fall and an increase in spring (Fig. \ref{fig:nefsc-biomass-mab}). However, nearshore survey indices (Northeast Area Monitoring and Assessment Program; NEAMAP) suggest a decline for piscivores in spring. Surveys in both seasons may be sampling different groups of dominant species; for example the divergence in spring piscivores between offshore and NEAMAP surveys may represent the difference in inshore versus offshore distribution of spiny dogfish. Overall the NEAMAP surveys show similar patterns to offshore surveys for planktivores and benthivores, although with different magnitudes, perhaps reflecting seasonal importance of nearshore habitats. These patterns will be explored in more detail in future analyses. 
+## Southeast US fish occurrence (coastwide)
+Preliminary analysis of NEFSC trawl survey data shows limited occurrence of South Atlantic Fishery Management Council (SAFMC) managed species groups during the fall, but almost never in spring. Lack of these species on spring surveys suggests that they are not overwintering in our region. There is no detectable trend in fall frequency of occurrence of SAFMC managed species as a group over time, nor are there detectable trends for the most common southeast US shelf species in the trawl surveys: blue runner, Spanish mackerel, chub mackerel, cobia. 
 
-```{r nefsc-biomass-mab, fig.cap = paste0("Fall (left) and spring (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red."), fig.width=8, fig.asp = 0.75}
-total_surv <- nefsc_survey %>% 
-  filter(EPU == epu_abbr,
-         !str_detect(Var, "Other|Apex|managed"),
+Blue runner (*Caranx crysos*) was the southeast US shelf species with the highest frequency of occurrence over time. While there were no detectable trends, recent warm years have led to some observations of blue runner further north within the timing of the fall survey (Fig. \ref{blue-runner}). Four of the five the most northerly catches have happened since 2010, with the furthest north in 2012 in GOM and 3 on GB in 2018. Other indicators corroborate these observations. For example, butterfish have been observed in Gulf of Maine common tern fledgling diets between 2009-2011 and again in 2018 (New England Report Fig. 13b). As temperature and ocean circulation indicators trend toward extremes (next section), fishery management will likely face continued changes in species distribution.
+
+```{r blue-runner, fig.cap = "Blue runner presence on Northeast Shelf"}
+blue<-ecodata::blue_runner %>% 
+  separate(Var, c("Var", "Pos"), "L") %>% 
+  spread(., Pos, Value) %>% 
+  rename(Lat = at, 
+         Lon = on) %>% 
+  mutate(Var = recode(Var,
+                      "Positive Blue Runner Tows before 2001 - " = "Prior to 2000",
+                      "Positive Blue Runner Tows 2001 - 2010 - " = "2001-2010", 
+                      "Positive Blue Runner Tows since 2010 - " = "Since 2010"))
+blue$Var <- factor(blue$Var, levels = c("Prior to 2000", "2001-2010", "Since 2010"))
+  
+#EPU shapefile
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("GOM","GB", "MAB"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -77
+xmax = -65
+ymin = 35
+ymax = 45
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+## Map plotting blue runner
+blue_map <- 
+  ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
+  geom_point(data = blue, aes(x = Lon, y = Lat, color = Var, shape = Var))+
+  scale_shape_manual(values=c(16, 3, 17))+
+  scale_color_manual(values = c("blue", "black", "red"))+
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  theme_map() +
+  ggtitle("Blue Runner Presence") +
+  xlab("") +
+  ylab("") +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+        legend.key = element_blank(),
+        axis.title = element_text(size = 11),
+        strip.background = element_blank(),
+        strip.text=element_text(hjust=0),
+        axis.text = element_text(size = 8), 
+        legend.title = element_blank(), 
+        legend.position = c(0.6, 0.15))
+
+blue_map
+```
+
+## Survey biomass (MAB)
+Examining trends in biomass by aggregate groups rather than individual species reveals the overall stability of the trophic structure within the system.  In past reports we noted several trends in aggregate biomass which might suggest an instability in this structure. This year we include information on survey biomass uncertainty as well as the mean trend. When considering variable catch between survey stations within strata for each year (Fig. \ref{fig:nefsc-biomass-mab}), several previously identified trends are no longer significant, and others are unlikely to be ecologically significant. For example, our statistical analysis based on annual means suggests that benthivores had a positive trend in spring surveys. However, including sampling variability suggests that this trend is driven by uncertain estimates late in the time series. 
+
+Stability in biomass for these aggregate groups would suggest no major disturbances to overall trophic structure in the MAB. Both shelfwide and inshore surveys show stability over time for benthivores and planktivores. Similarly, piscivores and benthos are stable over time in the fall and spring, respectively. Including biomass uncertainty also demonstrates the similarity of trend and often magnitude of estimates between the NEFSC and NEAMAP surveys. These patterns will be explored in more detail using spatio-temporal analyses that include both surveys at once. 
+
+```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean. ", fig.width=8, fig.asp = 0.75}
+agg<-ecodata::agg_bio %>% 
+  filter(!str_detect(Var, "Apex|inshore|offshore|managed|NEFMC|MAFMC|JOINT|NA")) %>% #remove unused datasets
+  separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% 
+  unite("Var", feeding.guild:season, sep = " ") %>% 
+  mutate(stat = recode(Var1, Index = "Mean", 
+                      Standard = "SD")) %>% 
+  dplyr::select(-Biomass, -Var1) %>% 
+  group_by(Var, Time, EPU) %>% 
+  spread(stat, Value) %>% 
+  mutate(upper = Mean + (2*SD), 
+         lower = Mean - (2*SD))
+
+
+agg_bio<-agg %>% filter(EPU == epu_abbr,
          Time >= 1968) %>% 
-  group_by(Var) %>% 
-  mutate(hline = mean(Value, na.rm = T)) %>% 
-  ungroup() %>% 
-  mutate(Var = word(Var, 1,2))
-series.col <- rep("black",length(unique(total_surv$Var)))
-total_surv$Var <- factor(total_surv$Var,levels = c("Piscivore Fall",
-                                                   "Piscivore Spring",
-                                                    "Benthivore Fall",
+  group_by(Var, EPU) %>% 
+  mutate(hline = mean(Mean, na.rm = T)) %>% 
+  ungroup() 
+
+agg_bio$Var <- factor(agg_bio$Var,levels = c("Piscivore Spring",
+                                                   "Piscivore Fall",
                                                     "Benthivore Spring",
-                                                    "Planktivore Fall",
+                                                   "Benthivore Fall",
                                                     "Planktivore Spring",
-                                                    "Benthos Fall",
-                                                    "Benthos Spring"))
-#Create dataframe for label locations
-label_loc <- total_surv %>%
-  group_by(Var) %>%
-  dplyr::summarise(yloc = max(Value)*0.95,
-                   xloc = min(Time)) %>% 
-  mutate(label = LETTERS[1:8])
-#facet names for titles
+                                                    "Planktivore Fall",
+                                                    "Benthos Spring",
+                                                   "Benthos Fall"))
+series.col <- rep("black",length(unique(agg_bio$Var)))
 facet_names <- list("Piscivores" = expression("Piscivores"),
                     "Planktivores" = expression("Planktivores"),
                     "Benthivores" = expression("Benthivores"),
                     "Benthos" = expression("Benthos"))
-
 #Get NEAMAP
 neamap <- ecodata::mab_inshore_survey %>% 
-  mutate(season = str_to_title(word(Var),1),
-         feeding.guild = str_to_title(word(Var,2))) %>% 
-   filter(str_detect(Var, "index")) %>% 
- unite(.,Var,c("feeding.guild","season"), sep = " ") %>% 
   group_by(Var) %>% 
-  mutate(hline = mean(Value))
+  mutate(hline = mean(Value),
+         SD = Value * CV, #calculate SD from CV
+         upper = Value + (2*SD), 
+         lower = Value - (2*SD))
 
-neamap$Var <- factor(neamap$Var,levels = c("Piscivore Fall",
-                                                   "Piscivore Spring",
-                                                    "Benthivore Fall",
-                                                    "Benthivore Spring",
-                                                    "Planktivore Fall",
-                                                    "Planktivore Spring",
-                                                    "Benthos Fall",
-                                                    "Benthos Spring"))
-
-ggplot(data = total_surv, aes(x = Time, y = Value, color = Var)) +
+neamap$Var <- factor(neamap$Var,levels = c("Piscivore Spring","Piscivore Fall",
+                                           "Benthivore Spring", "Benthivore Fall",
+                                           "Planktivore Spring", "Planktivore Fall",  
+                                           "Benthos Spring", "Benthos Fall"))
+## Piscivore 
+neamap.1<-neamap %>% 
+  filter(str_detect(Var,"Piscivore"))
+p1<-agg_bio %>% 
+  filter(str_detect(Var,"Piscivore")) %>% 
+  ggplot() +
   
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max ,
       ymin = -Inf, ymax = Inf) +
-  
   #Test for trend and add lines
-  geom_gls(aes(x = Time, y = Value,
+  geom_gls(aes(x = Time, y = Mean,
                color = Var),
              alpha = trend.alpha, size = trend.size) +
-  
+
   #Add time series
-  geom_line(size = lwd-0.5) +
-  geom_point(size = pcex-0.5) +
+  geom_ribbon(aes(x = Time, ymin = pmax(lower,0), ymax = upper), 
+              alpha = 0.5,
+              fill = "grey") +
+  geom_line(aes(x = Time, y = Mean),size = lwd-0.5) +
+  geom_point(aes(x = Time, y = Mean),size = pcex-0.5) +
   scale_color_manual(values = series.col, aesthetics = "color")+
   guides(color = FALSE) +
   geom_hline(aes(yintercept = hline,
@@ -959,176 +1003,175 @@ ggplot(data = total_surv, aes(x = Time, y = Value, color = Var)) +
              size = hline.size,
              alpha = hline.alpha,
              linetype = hline.lty)+
-  
-  #Add NEAMAP
-  geom_line(data = neamap, aes(x = Time, y = Value, color = Var),
-            size = lwd-0.5,
+  facet_wrap(Var~.,ncol = 2) +
+     #Add NEAMAP
+    geom_ribbon(data = neamap.1, aes(x = Time, ymin = pmax(lower,0), ymax = upper), 
+              alpha = 0.5,
+              fill = "pink")+
+  geom_line(data = neamap.1, aes(x = Time, y = Value),
             color = "#ca0020")+
-  geom_point(data = neamap, aes(x = Time, y = Value, color = Var),
+  geom_point(data = neamap.1, aes(x = Time, y = Value),
              size = pcex-0.5,
              color = "#ca0020")+
 
-  #Facet 
-  facet_wrap(Var~.,scales = "free_y", ncol = 2) +
+  #Axis and theme
+  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
+  #ylim(0, 1200)+
+  ylab(expression("Biomass (kg tow"^-1*")")) +
+  theme_facet()+
+  theme(strip.text=element_text(hjust=0), 
+        axis.title.x=element_blank())
+
+## Benthivore
+neamap.2<-neamap %>% 
+  filter(str_detect(Var,"Benthivore"))
+p2<-agg_bio %>% 
+  filter(str_detect(Var,"Benthivore")) %>% 
+  ggplot() +
   
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max ,
+      ymin = -Inf, ymax = Inf) +
+  #Test for trend and add lines
+  geom_gls(aes(x = Time, y = Mean,
+               color = Var),
+             alpha = trend.alpha, size = trend.size) +
+  
+  #Add time series
+  geom_ribbon( aes(x = Time, ymin = pmax(lower,0), ymax = upper), 
+              alpha = 0.5,
+              fill = "grey") +
+  geom_line(aes(x = Time, y = Mean),size = lwd-0.5) +
+  geom_point(aes(x = Time, y = Mean),size = pcex-0.5) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline,
+                 group = Var),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  facet_wrap(Var~.,ncol = 2) +
+       #Add NEAMAP
+  geom_ribbon(data = neamap.2, aes(x = Time, ymin = pmax(lower,0), ymax = upper), 
+              alpha = 0.5, fill = "pink")+
+  geom_line(data = neamap.2, aes(x = Time, y = Value),
+            color = "#ca0020")+
+  geom_point(data = neamap.2, aes(x = Time, y = Value),
+             size = pcex-0.5,
+             color = "#ca0020")+
+
   #Axis and theme
   scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
   ylab(expression("Biomass (kg tow"^-1*")")) +
   theme_facet()+
-  theme(strip.text=element_text(hjust=0))
-```
+  theme(strip.text=element_text(hjust=0), 
+        axis.title.x=element_blank())
 
 
-The proportion of NEFMC managed benthivore species (righteye flounders, haddock) has declined over time in Mid-Atlantic waters according to bottom trawl surveys (Fig. \ref{fig:NEFMC-in-MAB}), while the proportion of MAFMC managed planktivore (squids, mackerel and butterfish) species has been increasing in New England waters in both surveys and landings (Fig. \ref{fig:MAFMC-in-NE}, Fig. \ref{fig:comm-landings}). 
-
-```{r NEFMC-in-MAB, fig.width = 7, fig.asp = 0.35, fig.cap = "New England-managed survey proportion of MAB benthivores."}
-
-
-
-nefmc_ma <- nefsc_survey_disaggregated %>% 
-  # distinct() %>% 
-  filter(EPU %in% c("MAB"),
-         Management == "NEFMC",
-         !str_detect(`Feeding guild`,"Other")) %>% 
-  group_by(EPU, `Feeding guild`, Season, Time) %>% 
-  dplyr::summarise(Value = sum(Proportion,na.rm = T)) %>% #IMPORTANT: Turn zeros to NA before taking mean
-  mutate(Value = ifelse(Value == 0, NA, Value)) %>% #Turn zeros to NA
-  unite(.,Var,c("Feeding guild","Season"), sep = " ") %>% 
-  group_by(EPU,Var, .drop = FALSE) %>% 
-  mutate(hline = mean(Value, na.rm = T)) %>% 
-  filter(str_detect(Var,"Benthivore")) %>% 
-  ungroup() %>% 
-  mutate(Var = paste(str_to_title(str_extract(Var, "fall|spring")),
-         "survey"))
-
-mab_nefmc_props <- nefmc_ma %>% 
- ggplot(aes(x = Time, y = Value, group = Var)) +
-  
-  #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max ,
-      ymin = -Inf, ymax = Inf) +
-  
-  #Add time series
-  geom_line(size = lwd-0.5) +
-  geom_point(size = pcex-0.5) +
-  # scale_color_manual(values = series.col, aesthetics = "color")+
-  guides(color = FALSE) +
-  geom_hline(aes(yintercept = hline,
-                 group = Var),
-             size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
-
-  #Facet 
-  facet_wrap(Var~.,scales = "free_y", ncol = 2) +
-  ggtitle("NEFMC benthivores in the Mid-Atlantic")+
-  #Axis and theme
-  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
-  ylab(expression("Proportion of MAB survey")) +
-  theme_facet()+
-  theme(strip.text=element_text(hjust=0))
-
-
-
-mab_nefmc_props
-
-```
-
-```{r MAFMC-in-NE, fig.width = 7, fig.asp = .7, fig.cap = "Mid-Atlantic-managed survey proportion of GOM and GB planktivores."}
-
-mafmc_ne <- nefsc_survey_disaggregated %>% 
-  distinct() %>% 
-  filter(EPU %in% c("GOM","GB"),
-         Management == "MAFMC",
-         !str_detect(`Feeding guild`,"Other")) %>% 
-  group_by(EPU, `Feeding guild`, Season, Time) %>% 
-  dplyr::summarise(Value = sum(Proportion,na.rm = T)) %>% #IMPORTANT: Turn zeros to NA before taking mean
-  mutate(Value = ifelse(Value == 0, NA, Value)) %>% #Turn zeros to NA
-  unite(.,Var,c("Feeding guild","Season"), sep = " ") %>% 
-  group_by(EPU,Var) %>% 
-  mutate(hline = mean(Value, na.rm = T)) %>% 
+### Planktivore
+neamap.3<-neamap %>% 
+  filter(str_detect(Var,"Planktivore"))
+p3<-agg_bio %>% 
   filter(str_detect(Var,"Planktivore")) %>% 
-  ungroup() %>% 
-  mutate(Var = paste(str_to_title(str_extract(Var, "fall|spring")),
-         "survey"))
-
-gom_mafmc_props <- mafmc_ne %>% 
-  filter(EPU == "GOM") %>% 
- ggplot(aes(x = Time, y = Value, group = Var)) +
+  ggplot() +
   
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max ,
       ymin = -Inf, ymax = Inf) +
-  
-  #Add time series
-  geom_line(size = lwd-0.5) +
-  geom_point(size = pcex-0.5) +
-  # scale_color_manual(values = series.col, aesthetics = "color")+
-  guides(color = FALSE) +
-  geom_hline(aes(yintercept = hline,
-                 group = Var),
-             size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
-
-  #Facet 
-  facet_wrap(Var~.,scales = "free_y", ncol = 2) +
-  ggtitle("MAFMC planktivores in Gulf of Maine")+
-  #Axis and theme
-  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
-  ylab(expression("Proportion of GOM survey")) +
-  theme_facet()+
-  theme(strip.text=element_text(hjust=0))
-
-gb_mafmc_props <- mafmc_ne %>% 
-  filter(EPU == "GB") %>% 
-ggplot(aes(x = Time, y = Value, group = Var)) +
-  
-  #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max ,
-      ymin = -Inf, ymax = Inf) +
-  
   #Test for trend and add lines
-  # geom_gls(aes(x = Time, y = Value,
-  #              color = Var),
-  #            alpha = trend.alpha, size = trend.size) +
+  geom_gls(aes(x = Time, y = Mean,
+               color = Var),
+             alpha = trend.alpha, size = trend.size) +
   
   #Add time series
-  geom_line(size = lwd-0.5) +
-  geom_point(size = pcex-0.5) +
-  # scale_color_manual(values = series.col, aesthetics = "color")+
+  geom_ribbon(aes(x = Time, ymin = pmax(lower,0), ymax = upper), 
+              alpha = 0.5,
+              fill = "grey") +
+  geom_line(aes(x = Time, y = Mean),size = lwd-0.5) +
+  geom_point(aes(x = Time, y = Mean),size = pcex-0.5) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
   guides(color = FALSE) +
   geom_hline(aes(yintercept = hline,
                  group = Var),
              size = hline.size,
              alpha = hline.alpha,
              linetype = hline.lty)+
+  facet_wrap(Var~.,ncol = 2) +
+       #Add NEAMAP
+    geom_ribbon(data = neamap.3, aes(ymax = pmax(upper, 0), ymin = lower, x = Time), 
+                fill = "pink", alpha = 0.5) +
+  geom_line(data = neamap.3, aes(x = Time, y = Value),
+            color = "#ca0020")+
+  geom_point(data = neamap.3, aes(x = Time, y = Value),
+             size = pcex-0.5,
+             color = "#ca0020")+
 
-  #Facet 
-  facet_wrap(Var~.,scales = "free_y", ncol = 2) +
-  ggtitle("MAFMC planktivores on Georges Bank")+
   #Axis and theme
   scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
-  ylab("Proportion of GB survey") +
+  #ylim(0, 600)+
+  ylab(expression("Biomass (kg tow"^-1*")")) +
   theme_facet()+
-  theme(strip.text=element_text(hjust=0))
+  theme(strip.text=element_text(hjust=0), 
+        axis.title.x=element_blank())
 
+### Benthos
+neamap.4<-neamap %>% 
+  filter(str_detect(Var,"Benthos"))
+p4<-agg_bio %>% 
+  filter(str_detect(Var,"Benthos")) %>% 
+  #ggplot(aes(x = Time, y = Mean)) +
+  ggplot() +
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max ,
+      ymin = -Inf, ymax = Inf) +
+  #Test for trend and add lines
+  geom_gls(aes(x = Time, y = Mean,
+               color = Var),
+             alpha = trend.alpha, size = trend.size) +
+  #Add time series
+  geom_ribbon( aes(x = Time, ymin = pmax(lower,0), ymax = upper), 
+              alpha = 0.5,
+              fill = "grey") + 
+  geom_line(aes(x = Time, y = Mean),size = lwd-0.5) +
+  geom_point(aes(x = Time, y = Mean), size = pcex-0.5) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline,
+                 group = Var),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  facet_wrap(Var~.,ncol = 2) +
+       #Add NEAMAP
+  geom_ribbon(data = neamap.4, aes(ymax = pmax(upper, 0), ymin = lower, x = Time),
+              fill = "pink", alpha = 0.5) +
+  geom_line(data = neamap.4, aes(x = Time, y = Value),
+            color = "#ca0020")+
+  geom_point(data = neamap.4, aes(x = Time, y = Value),
+             size = pcex-0.5,
+             color = "#ca0020")+
 
-gom_mafmc_props + gb_mafmc_props + plot_layout(ncol = 1)
+  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
 
+  ylab(expression("Biomass (kg tow"^-1*")")) +
+  theme_facet()+
+  theme(strip.text=element_text(hjust=0), 
+        axis.title.x=element_blank())
+plot_grid(p1, p2, p3, p4, nrow=4)
 ```
-
-Other observations corroborate these survey trends. For example, butterfish have been observed in Gulf of Maine common tern fledgling diets between 2009-2011 and again in 2018 (see New England report). The downward trend in recreational species diversity in the Mid-Atlantic (Fig. \ref{fig:rec-div}) contrasts with an increase in recreational species diversity over time in New England (see New England report), although it is unclear to what extent this result is due to the aggregation of SAFMC species in the indicator itself. As temperature and ocean circulation indicators trend toward extremes (next section), fishery management will likely face continued changes in species distribution.
 
 ## Fish condition (coastwide, MAFMC managed stocks)
-Fish condition is measured as the weight at a given length in relation to the average - a measure of 'fatness' and a factor that influences fecundity. This information is from fall NEFSC bottom trawl surveys. Overall, condition factor has been mixed for the past decade, in contrast to overall high condition up to 2000 and overall lower condition for 2001-2010 (Fig. \ref{fig:mab-cf}). The timing of these shifts is similar to shifts in the small-large zooplankton indicator (Fig. \ref{fig:MAB-sli}). Condition factor for some MAFMC managed predators (bluefish, spiny dogfish) was high in 2018. Black sea bass condition was low in 2018. 2017 information is missing for some species due to the incomplete 2017 fall survey. 
+Fish condition, a measure of ‘fatness’ as an indicator of health and a factor that influences fecundity, is measured as the weight at a given length in relation to the average - . For this report, females of all species adequately sampled in the Mid-Atlantic Bight portion of the fall NEFSC bottom trawl survey were analyzed (rather than both sexes of MAFMC managed species across the full Northeast US Shelf as in past years). Overall, condition factor has been mixed for the past decade, in contrast to overall high condition up to 2000 and overall lower condition for 2001-2010 (Fig. \ref{fig:mab-cf}). The timing of these shifts is similar to shifts in the small-large zooplankton indicator (Fig. \ref{fig:MAB-sli}). Condition factor for some MAFMC managed species (bluefish, butterfish) were high in the MAB in 2018-2019. Black sea bass and goosefish have had generally poor condition in the MAB since 2015. Summer flounder condition has varied considerably 2016-2019 in the MAB. 
 
-```{r mab-cf, fig.cap = "Condition factor for MAFMC managed species.", out.width = '\\textwidth'}
+Statistical analyses indicate that these trends in condition may be related to temperature changes and copepod size structure, but are not likely related to density dependence for most species. Fish condition is an important driver of population productivity as well as market prices, so we will investigate these potential links to changing habitat (temperature) and ecosystem productivity to evaluate whether they can inform decisions on annual catch limits. Work will continue over the coming year to explore relationships between fish condition and other indicators in this report (Fig. **2 Pager #2**)
+ 
 
-knitr::include_graphics(file.path(image.dir, "MAFMC_Fish_Condition_2019.jpg"))
+```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB. MAB data are missing for 2017 due to survey delays.", out.width = '\\textwidth'}
+
+knitr::include_graphics(file.path(image.dir, "MABcondition_2019_viridis_final.jpg"))
 
 ```
 
