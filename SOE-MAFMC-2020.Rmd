@@ -1973,7 +1973,7 @@ mab_map
 
 
 ## Primary production (MAB)
-Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem . There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2019 had an early above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with above average blooms in the central portion of the shelf Fig. \ref{}).
+Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem . There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2019 had an early above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with above average blooms in the central portion of the shelf Fig. \ref{MAB-chl-map}).
 
 ```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
 out_pp <- ecodata::chl_pp %>% 
@@ -2080,8 +2080,11 @@ MAB_pp_weekly <- ggplot(data = MAB_pp) +
 MAB_chl_weekly + MAB_pp_weekly + plot_layout(ncol = 1)
 ```
 
-ADD CHL a MAP IF ROOM
+```{r MAB-chl-map, eval= T, echo = F, out.width = "80%", fig.cap="Seasonal chlorophyll a anomalies in 2019."}
 
+knitr::include_graphics(file.path(image.dir,"CHL_SEASONAL_ANOMS_2019.png"))
+
+```
 
 ## Zooplankton (MAB)
 The most abundant zooplankton species in the MAB are the small-bodied species  *Centropages typicus*, *Psuedocalanus* spp., and *Temora longicornis* [@morse_distinct_2017]. The large-bodied species *Calanus finmarchicus* is also abundant in the MAB and is an important prey for larval fish and the North Atlantic right whale.  The mean abundance of small-bodied copepods was slightly above average in 2018 (Fig. \ref{fig:MAB-zoo-abund}).  This increase in abundance from the previous year was driven by all members of the small-bodied taxa above in addition to *Centropages hamatus*. While the long term trend in *Psuedocalanus* abundcance remains significantly negative in the MAB, 2018 abundance values were slightly above the long term mean and were the highest abundance values in the MAB since 1998 for this species. *Calanus finmarchicus* abundance was also higher in 2018 than in the previous 10 years, following a period of lower abundance between 2014-2017 (Fig. \ref{fig:MAB-zoo-abund}).
