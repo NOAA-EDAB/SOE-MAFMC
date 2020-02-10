@@ -426,7 +426,46 @@ The trend in the number of Mid-Atlantic fishing communities that were highly eng
  (Fig. \ref{fig:MAB-comm-reliance-maps-outlined}).
 
 ```{r MAB-comm-engagement-trend, fig.height = 8, fig.cap = "Commercial engagement scores (total pounds landed, value landed, commercial permits and commercial dealers in a community ) for  Mid-Atlantic fishing communities, 2004-2018."}
+eng<-ecodata::engagement %>% 
+  filter(!Var == "med.high.scores")
+eng$Var <- factor(eng$Var, levels = c("%High","%Medium High","%Moderate", "%Low"))
+eng %>% filter(EPU == "MA") %>% 
+  ggplot()+
+   #ylim(0.8, NA)+
+  geom_bar(aes(x = Time, y = Value, 
+               fill = Var), 
+           stat = "identity")+
+  #scale_y_continuous(labels = Value(suffix = "%", prefix = "")) +
+  #geom_text(aes(x = Time, y = Value,
+  #             label = paste0(Value,"%")), size=4) +
+  theme(legend.position="bottom", legend.direction="horizontal",
+        legend.title = element_blank())+
+  coord_cartesian(ylim=c(0.85,1))+
+  xlab("Time") +
+  ylab("% Communities in each category (Low to High)")+
+  ggtitle("Commercial Engagement")+
+  theme_ts()
 
+
+ecodata::engagement %>% 
+  filter(Var == "med.high.scores", 
+         EPU == "MA") %>% 
+  mutate(hline = mean(Value)) %>% 
+  ggplot()+
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = Value), size = lwd) +
+  geom_point(aes(x = Time, y = Value), size = pcex) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggtitle("Medium-High communities ") +
+  ylab(expression("Average score for Med High communities")) +
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+ theme_ts()
+  
 
 ```
 
@@ -626,16 +665,13 @@ cowplot::plot_grid(rec_div,
 Habitat modeling indicates that summer flounder, butterfish, longfin squid, and spiny dogfish are among fish species highly likely to occupy wind energy lease areas. Habitat conditions for many of these species have become more favorable over time within wind lease areas.
 
 ```{r wind_habitat_table, eval = T, echo = F, fig.cap='', out.width='80%'}
-image.dir <- here::here("docs")
-raw.dir <- here::here("data-raw")
-
-wind1 <- read.csv(file.path(raw.dir, "wind-occupancy-1.csv"))
+wind1 <- ecodata::wind_occupancy
 
 wind1$trend<- ifelse(wind1$Trend == "pos", 
-                    '![](arrow_up.png)',
+                    '![](images/arrow_up.png)',
                     ifelse(wind1$Trend == "neg",
-                    '![](arrow_down.png)', 
-                    '![](arrow_null.png)')) 
+                    '![](images/arrow_down.png)', 
+                    '![](images/arrow_null.png)')) 
 
 
 wind2<-wind1 %>% dplyr::select(Area, Season, Species, trend)
@@ -685,7 +721,7 @@ library(ggspatial)
 library(marmap)
 
 crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
-gis.dir <- here::here('data-raw','gis')
+#gis.dir <- here::here("data-raw/gis")
 nesbath <- fortify.bathy(getNOAA.bathy(lon1 = -77, lon2 = -65, lat1 = 35, lat2 = 45,
               resolution = 5))
 
@@ -1440,8 +1476,7 @@ mid
 Nutritional value of forage fishes as prey (energy content) is related to both environmental conditions and fish growth and reproductive cycles. Energy content is now being measured systematically on NEFSC trawl surveys, revealing both seasonal and interannual variation as well as differences from older measurements. Notably, the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) than earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (lolligo) and shortfin squid (Illex) were also lower than previous estimates. Energy density of Alewife, butterfish and Atlantic mackerel were higher than earlier estimates. Sampling and laboratory analysis is ongoing, with the goal of continuing routine monitoring of energy density of these species.
 
 ```{r forage, eval=T, echo=F}
-raw.dir <- here::here("data-raw")
-d<-read.csv(file.path(raw.dir, "forage.csv")) %>% 
+d<-ecodata::energy_density %>% 
     rename("Mean ED (SD)" = "Mean.ED..SD.", 
            "N" = "n",
            "Mean ED (SD)" = "Mean.ED..SD..1", 
@@ -1595,11 +1630,10 @@ wcr %>%
 
 
 ## Ocean temperature, surface and bottom (MAB)
-The regional ocean is warming. Surface and bottom temperature in the MAB averaged over all seasons has trended warmer since the early 1980s; while seasonally temperatures have trended warmer in spring, summer, and fall. The 2018 summer sea surface temperatures were the third highest on record in the Mid-Atlantic, although temperatures during the other seasons were near or slightly below average (Figs. \ref{fig:MAB-SST-insitu}, \ref{fig:MAB-bot-temp}).  
+The regional ocean is warming. Annual surface and bottom temperature in the MAB has trended warmer since the early 1980s; while seasonal temperatures have trended warmer in spring, summer, and fall. The 2019 winter MAB temperatures were below average, while the temperatures in the other seasons were among the top six during the satellite data record (1982-2019) (Fig. \ref{fig:MAB-SST-insitu}). 2019 MAB bottom temperature was just above the time series average (Fig. \ref{fig:MAB-bot-temp}).  
 
 
 ```{r MAB-SST-insitu, fig.width = 8, fig.height = 7, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies."}
-#,out.extra='trim={0 1cm 0 1cm},clip'
 annotation_custom2 <- function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) 
 {
   layer(data = data, stat = StatIdentity, position = PositionIdentity, 
@@ -1610,7 +1644,7 @@ annotation_custom2 <- function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax
 }
 
 #EPU shapefile
-epu_sf_ma <- ecodata::epu_sf %>% 
+epu_sf <- ecodata::epu_sf %>% 
   filter(EPU %in% c("MAB"))
 
 #Map line parameters
@@ -1623,7 +1657,7 @@ ymin = 35.5
 ymax = 43
 xlims <- c(xmin, xmax)
 ylims <- c(ymin, ymax)
-sst <- seasonal_oisst_anom_gridded 
+sst <- seasonal_sst_anomaly_gridded 
 
 sst$Season <- factor(sst$Season, levels = c("Winter",
                                             "Spring",
@@ -1633,16 +1667,16 @@ sst_map <-
   ggplot() +
   geom_tile(data = sst, aes(x = Longitude, y = Latitude,fill = Value)) +
   geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data = epu_sf_ma, fill = "transparent", size = map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
   scale_fill_gradient2(name = "Temp.\nAnomaly (°C)",
                        low = scales::muted("blue"),
                        mid = "white",
                        high = scales::muted("red"),
-                       limits = c(-5,5)) +
+                       limits = c(-6,6)) +
   coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
   facet_wrap(Season~.) +
   theme_map() +
-  ggtitle("SST anomaly (2018)") +
+  ggtitle("SST anomaly (2019)") +
   xlab("Longitude") +
   ylab("Latitude") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
@@ -1664,6 +1698,7 @@ winter_anom <-  ggplotGrob( seasonal_oisst_anom %>%
                               geom_point() +
                               geom_gls(alpha = trend.alpha + 0.25) +
                               ylab("SST anomaly (°C)")+
+                              xlab(element_blank())+
                               scale_x_continuous(expand = c(0.01, 0.01)) +
                               geom_hline(aes(yintercept = hline)) +
                               theme_ts()+
@@ -1692,6 +1727,7 @@ spring_anom <-  ggplotGrob( seasonal_oisst_anom %>%
                               geom_point() +
                               geom_gls(alpha = trend.alpha + 0.25) +
                               ylab("SST anomaly (°C)")+
+                              xlab(element_blank())+
                               scale_x_continuous(expand = c(0.01, 0.01)) +
                               geom_hline(aes(yintercept = hline)) +
                               theme_ts()+
@@ -1720,6 +1756,7 @@ summer_anom <-  ggplotGrob( seasonal_oisst_anom %>%
                               geom_point() +
                               geom_gls(alpha = trend.alpha + 0.25) +
                               ylab("SST anomaly (°C)")+
+                              xlab(element_blank())+
                               scale_x_continuous(expand = c(0.01, 0.01)) +
                               geom_hline(aes(yintercept = hline)) +
                               theme_ts()+
@@ -1748,6 +1785,7 @@ fall_anom <-  ggplotGrob( seasonal_oisst_anom %>%
                             geom_point() +
                             geom_gls(alpha = trend.alpha + 0.25) +
                             ylab("SST anomaly (°C)")+
+                            xlab(element_blank())+
                             scale_x_continuous(expand = c(0.01, 0.01)) +
                             geom_hline(aes(yintercept = hline)) +
                             theme_ts()+
@@ -1777,13 +1815,13 @@ sst_map +
 ```
 
 ```{r MAB-bot-temp, fig.width = 4, fig.asp = .45, fig.cap = "Annual bottom temperatures in the Mid-Atlantic Bight."}
-temp_anom <- oceantemp_insitu %>% 
+temp_anom <- ecodata::oceantemp_insitu %>% 
   filter(EPU == epu_abbr) %>% 
   complete(Time = full_seq(min(oceantemp_insitu$Time):max(oceantemp_insitu$Time),1),
            nesting(Var)) %>% 
   mutate(hline = 0)
 
-bot_temp_insitu <- temp_anom %>%
+temp_anom %>%
  filter(Var == "bottom temp anomaly in situ") %>%
 ggplot2::ggplot() +
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
@@ -1793,7 +1831,8 @@ ggplot2::ggplot() +
   geom_gls(aes(x = Time, y = Value)) +
   geom_point(aes(x = Time, y = Value), size = 1) +
   ylab("Temperature (°C)") +
-  ggtitle("Bottom temperature anomaly") +
+  xlab(element_blank())+
+  ggtitle("Bottom temp. anomaly") +
   scale_x_continuous(expand = c(0.01, 0.01)) +
   theme_ts() +
   theme(strip.text=element_text(hjust=0),
@@ -1805,9 +1844,133 @@ ggplot2::ggplot() +
  theme_ts()
 
 
-bot_temp_insitu 
+```
+
+## Cold pool index (MAB) 
+Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_2017]. The average temperature of the cold pool has been getting warmer over time (Fig. \ref{cold-pool}) and the area of the cold pool is shrinking.  These changes can affect distribution and migration timing for species that depend on the cold pool habitat [@miller_2016].  
+
+```{r cold-pool, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
+
+ecodata::cold_pool %>% 
+    mutate(hline = mean(Value, na.rm = T)) %>% 
+  ggplot() + 
+ #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -3, ymax = 3) +
+  geom_gls(aes(x = Time, y = Value),
+             alpha = trend.alpha, size = trend.size) +
+  geom_line(aes(x = Time, y = Value), size = lwd) +
+  geom_point(aes(x = Time, y = Value), size = pcex) +
+    geom_hline(aes(yintercept = hline),
+     size = hline.size,
+     alpha = hline.alpha,
+     linetype = hline.lty)+
+  ggtitle("Cold Pool Index")+
+  ylab(expression("Cold Pool Temperature Anomaly (C) ")) +
+  xlab("")+
+  theme_ts()
+```
+
+## Marine heat waves (MAB) 
+Marine heatwaves measure not just temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. Heatwaves are measured in terms of intensity (the highest water temperature) and duration (the number of days temperatures are unusually high) using satellite measurements of daily sea surface temperature. Plotted below are maximum intensity and cumulative intensity, which is intensity times duration. Here we define a marine heatwave as a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2010) [@hobday_2016].    
+
+The strongest heatwaves on record in the Middle Atlantic Bight occurred in the winter of 2012 in terms of maximum intensity (+5.13 oC above average) and in the winter/summer of 2012 in terms of cumulative intensity (515 oC-days; Fig. \ref{heatwave-mab}).  In 2019, the Middle Atlantic Bight experienced six distinct marine heatwaves in the spring, summer, and fall with one of the strongest events beginning on July 3 and lasting 21 days (Figs. \ref{MAB-heatwave1}, \ref{mab-heatwave-max}).  Relative to prior years, this marine heatwave ranked 17th on record in terms of maximum intensity (+2.88 oC above average on Jul 22).  Another strong marine heatwave began on Aug 1 and lasted 24 days, which was 20th on record in terms of cumulative intensity (46 oC-days).
+
+```{r heatwave-mab, fig.cap="Marine heatwave cumulative intesity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
+
+cumu <- ecodata::heatwave %>% 
+  filter(Var == "cumulative intensity") %>% 
+  mutate(Var = dplyr::recode(Var, "cumulative intensity" = "Cumulative Intensity (degree C x days)"))
+
+maxin <- ecodata::heatwave %>% 
+  dplyr::filter(Var == "maximum intensity") %>% 
+  dplyr::group_by(Time, EPU, Var, Units) %>% 
+  dplyr::summarise(Value = max(Value)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(Var = dplyr::recode(Var, "maximum intensity" = "Maximum Intensity (degree C)"))
+
+hw<- cumu %>%
+  rbind(maxin) %>% 
+  dplyr::group_by(Var, EPU) %>% 
+  dplyr::mutate(hline = mean(Value))
+
+mab.hw<- hw %>% filter(EPU == epu_abbr)
+mab.hw %>% 
+  ggplot() +
+  geom_line(aes(x = Time, y = Value)) +
+  geom_point(aes(x = Time, y = Value)) +
+  geom_gls(aes(x = Time, y = Value, group = Var)) +
+  ylab("") +
+  xlab(element_blank())+
+  ggtitle("Mid-Atlantic Marine Heatwave Intesity") +
+  scale_x_continuous(expand = c(0.01, 0.01))+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty)+
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  facet_wrap(~Var, scales = "free")+
+  theme_ts()+
+  theme(strip.text=element_text(hjust=0,
+                                face = "italic"))
 
 ```
+
+```{r MAB-heatwave1, eval= T, echo = F, out.width = "80%", fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2019."}
+
+knitr::include_graphics(file.path(image.dir,"MAB_Heatwave_timeseries.jpg"))
+
+```
+
+```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occuring on July 22, 2019."}
+#EPU shapefile
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -81
+xmax = -66
+ymin = 35.5
+ymax = 43
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+hw <- ecodata::hw_anom_gridded %>% 
+  filter(EPU == "MAB")
+
+mab_map <- 
+  ggplot() +
+  geom_tile(data =hw, aes(x = Longitude, y = Latitude,fill = Value)) +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
+  scale_fill_gradient2(name = "Temp.\nAnomaly (°C)",
+                       low = scales::muted("blue"),
+                       mid = "white",
+                       high = scales::muted("red"),
+                       limits = c(-5,7)) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  #facet_wrap(Season~.) +
+  theme_map() +
+  ggtitle("MAB heatwave anomaly (July 22, 2019)") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+        legend.key = element_blank(),
+        axis.title = element_text(size = 11),
+        strip.background = element_blank(),
+        strip.text=element_text(hjust=0),
+        axis.text = element_text(size = 8))
+
+
+mab_map 
+
+```
+
 
 ## Primary production (MAB)
 Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem (Fig. \ref{fig:prod-potential}). There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2018 had an above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with the highest concentrations near the shelf break, which is the same region that experienced below average temperatures in the fall (Fig. \ref{fig:MAB-SST-insitu}).
