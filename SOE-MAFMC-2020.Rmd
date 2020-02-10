@@ -430,60 +430,10 @@ The trend in the number of Mid-Atlantic fishing communities that were highly eng
 
 ```
 
-Aquaculture production in the Mid-Atlantic is dominated by shellfish as well. Virginia continues to lead oyster production in the US, though numbers sold stabilized in 2017 after a long term increase. Reported concerns for Virginia growers within the past two years include an increase in wild spat fall preventing farmed oysters from entering higher-value markets. Maryland and New Jersey oyster production continues to increase (Fig. \ref{fig:oyster-aqua}).
-
-```{r oyster-aqua, fig.width = 5, fig.asp = 0.45, fig.cap = "Oyster aquaculture production in terms of number of oysters sold from Virginia, Maryland, and New Jersey."}
-
-aqua <- ecodata::aquaculture %>% 
-  group_by(Var) %>% 
-  mutate(hline = mean(Value)) %>%
-  ungroup() %>% 
-  mutate(Var = plyr::mapvalues(Var, from = c("md oyster harvest","nj oyster harvest","va oyster harvest"),
-                                                    to  = c("MD","NJ","VA"))) %>%
-  dplyr::rename(State = Var)
-
-aqua$State <- factor(aqua$State, levels = c("VA","MD","NJ"))
-
-
-ggplot() + 
-  geom_segment(aes(x=2005,xend=2017,y=mean(aquaculture[aquaculture$Var == "va oyster harvest",]$Value),
-                   yend=mean(aquaculture[aquaculture$Var == "va oyster harvest",]$Value)),
-               size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty,
-           color = "#1b9e77",
-           inherit.aes = F) +
-  geom_segment(aes(x=2012,xend=2016,y=mean(aquaculture[aquaculture$Var == "nj oyster harvest",]$Value),
-                   yend=mean(aquaculture[aquaculture$Var == "nj oyster harvest",]$Value)),
-               size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty,
-           color = "#d95f02",
-           inherit.aes = F) +
-  geom_segment(aes(x=2012,xend=2017,y=mean(aquaculture[aquaculture$Var == "md oyster harvest",]$Value),
-                   yend=mean(aquaculture[aquaculture$Var == "md oyster harvest",]$Value)),
-               size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty,
-           color = "#7570b3",
-           inherit.aes = F) +
- #Highlight last ten years
-  geom_line(data = aqua, aes(x = Time, y = Value, color = State), size = lwd) +
-  geom_point(data = aqua,aes(x = Time, y = Value, color = State), size = pcex) +
-  scale_color_manual(values = c(VA = "#1b9e77", MD = "#7570b3",NJ = "#d95f02")) +
-  scale_x_continuous(breaks = seq(2005,2018,3),expand = c(0.01, 0.01)) +
-  scale_y_continuous(labels = function(l){trans = l / 1000000})+
-  ggtitle("Oyster harvest")+
-  ylab(expression("Oysters sold (10"^6*" n)")) +
-  xlab("")+
-  theme_ts()
-
-```
-
-Commercial fleet diversity indices were updated with 2017 data. Current diversity remains near the long term average. 
 
 ## Recreational sector (Mid-Atlantic states)
-All recreational indicators have been updated with new Marine Recreational Information Program (MRIP) data, and new indicators for recreational diversity are presented in this report at the request of the MAFMC. In contrast to the commercial seafood production trends, recreational seafood production shows an increasing trend since the mid-1990s with the updated MRIP data (Fig. \ref{fig:rec-landings}))
+Indicators for recreational diversity are presented in this report at the request of the MAFMC. In contrast to the commercial seafood production trends, recreational seafood production has been stable since the mid-1990s with the updated MRIP data (Fig. \ref{fig:rec-landings})). However, 2018 recreational seafood landings were the lowest observed since 1982, with a 47% drop year over year. This drop involved multiple species, including black sea bass, scup, spot, and bluefish, among others and though accompanied by lower recreational effort in 2018, is not fully explained by changes in effort alone. The survey methodology behind these numbers was updated in 2018, and additional years worth of data is needed to understand whether these declines are driven by changes in the precision or other statistical properties of the data.
+
 
 ```{r rec-landings, fig.cap = paste0("Total recreational seafood harvest in the ",region," region."), fig.width = 4, fig.asp = 0.45}
 
@@ -523,8 +473,7 @@ ggplot(data = landings_rec)+
 
 ```
 
-
-Updated indicators for recreational opportunities (effort days and number of anglers) show general increases since the 1990s, peaking in the late 2000s and declining since then. This is similar to previously reported trends (Fig. \ref{fig:rec-op}).
+Updated indicators for recreational opportunities (effort days) show general increases since the 1990s, peaking in the late 2000s and declining since then. This is similar to previously reported trends (Fig. \ref{fig:rec-op}).
 
 ```{r rec-op, fig.width = 4, fig.asp = 0.8, fig.cap = paste0("Recreational effort and number of recreational anglers in the ",region,".")}
 recdat <- ecodata::recdat %>% 
@@ -583,42 +532,14 @@ rec_effort <- recdat %>%
            linetype = hline.lty) +
   theme_ts() 
 
-
-
-rec_anglers <- recdat %>% 
-  filter(Var == "Recreational anglers") %>% 
-  ggplot() + 
- #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-    # annotate("text", 
-    #        x = label_loc[label_loc$Var == "Recreational anglers",]$xloc,
-    #        y = label_loc[label_loc$Var == "Recreational anglers",]$yloc,
-    #        label = label_loc[label_loc$Var == "Recreational anglers",]$labels,
-    #        size = letter_size)+
-  geom_gls(aes(x = Time, y = Value,
-               group = Var),
-             alpha = trend.alpha, size = trend.size) +
-  geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
-  geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
-  scale_x_continuous(expand = c(0.01, 0.01)) +
-  scale_y_continuous(labels = function(l){trans = l / 1000000}, limits = ylim_ra)+
-  scale_color_manual(values = series.col, aesthetics = "color")+
-  guides(color = FALSE) +
-  ggtitle("Recreational anglers") +
-  ylab(expression("Anglers (10"^6*" n)")) +
-  xlab("Time")+
-  geom_hline(aes(yintercept = hline,
-               color = Var),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty) +
-  theme_ts()
+#no rec angler data with MRIP From Geret:
+#Short answer: No. They are not currently calculating number of anglers. 
+#Seems the MRIP update caused some methodological issues that they haven't fully worked through for this indicator. 
+#Not sure when it will be available again.
 
 cowplot::plot_grid(rec_effort, 
                    #rec_div, 
-                   rec_anglers, 
+                   #rec_anglers, 
                    #rec_div_catch,
                    ncol = 1, 
                    align = "hv") +
@@ -626,7 +547,7 @@ cowplot::plot_grid(rec_effort,
 
 ```
 
-Newly developed indicators for the diversity of recreational effort (i.e. access to recreational opportunities) by mode (party/charter boats, private boats, shore-based), and diversity of catch (NEFMC and MAFMC managed species only) show significant long-term downward trends. The downward effort diversity trend is driven by party/charter contraction (from a high of 24% of angler trips to 6% currently), with a shift towards shorebased angling. Effort in private boats remained stable between 36-37% of angler trips across the entire series. The long-term decrease in catch diversity in the Mid-Atlantic states contrasts with an increase in recreational catch diversity in New England states over the same time period; this trend requires further investigation as SAFMC managed species are not currently tracked separately (Fig. \ref{fig:rec-div})
+Indicators for the diversity of recreational effort (i.e. access to recreational opportunities) by mode (party/charter boats, private boats, shore-based), and diversity of catch (NEFMC, MAFMC, and SAFMC managed species) show different trends. The downward effort diversity trend is driven by party/charter contraction (from a high of 24% of angler trips to 7% currently), with a shift towards shorebased angling. Effort in private boats remained stable between 36-37% of angler trips across the entire series. The long-term decrease in species catch diversity in the Mid-Atlantic states reported last year resulted from aggregation of SAFMC managed species. With SAFMC species considered individually, there is no long term trend in recreational catch diversity. This implies that recent increases in catch of SAFMC managed species is helping to maintain diversity in the same range that MAFMC and NEFMC species supported in the 1990s (Fig. \ref{fig:rec-div}).
 
 ```{r rec-div, fig.width = 4, fig.asp = 0.8, fig.cap = paste0("Recreational effort diversity and diversity of recreational catch in the ",region,".")}
 
@@ -693,47 +614,11 @@ rec_div_catch <- recdat %>%
   theme_ts()
 
 
-cowplot::plot_grid(#rec_effort, 
-                   rec_div, 
-                   #rec_anglers, 
+cowplot::plot_grid(rec_div, 
                    rec_div_catch,
                    ncol = 1, 
                    align = "hv") +
     theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
-
-```
-
-
-Recreational fishing is important to many Mid-Atlantic communities, particularly on Long Island, the  New Jersey shoreline and the Delaware Bay. Communities that are most socially and economically dependent (both engaged and reliant) on recreational fishing may face additional risk due this downward shift in diversity of recreational opportunity and species catch (Fig. \ref{fig:MAB-rec-engage}).
-
-```{r MAB-rec-engage, fig.height = 7, fig.cap = "Recreational engagement (shore, private vessel and for-hire recreational fishing in a community) and reliance (per capita engagement) based on 2016 landings and the ACS running average of 2012-2016 census data."}
-(rec <- 
-  eng_rel %>% 
-  dplyr::select(receng, recrel, Latitude, Longitude) %>% 
-  filter(receng != 0,
-         recrel != 0) %>% 
-ggplot() +
-  geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data  = ne_states, size = map.lwd) +
-  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
-  geom_point(aes(x = Longitude, y = Latitude,
-                 fill = receng, size = recrel),
-             color = "black",pch = 21) +
-  guides(fill = guide_legend(override.aes = list(size = 5),
-                            reverse = T,
-                            title = "Engagement"),
-         size = guide_legend(reverse = T,
-                            title = "Reliance")) +
-  scale_fill_manual(values = biv_col) +
-  theme_map() +
-  xlab("Longitude") +
-  ylab("Latitude") +
-  theme(legend.position = c(0.8, 0.25), 
-        legend.box = "horizontal",
-        legend.direction = "vertical",
-        legend.key=element_blank(),
-        legend.key.width = unit(0, "cm"))+
-  ggtitle("Recreational Reliance & Engagement"))
 ```
 
 \newpage
