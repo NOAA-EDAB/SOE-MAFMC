@@ -6,7 +6,7 @@ output:
     includes:
       in_header: latex/header.tex
     keep_tex: yes
-bibliography: SOE2019.bib
+bibliography: SOE2020.bib
 csl: plos.csl
 link-citations: yes
 fontsize: 10pt
@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = FALSE,
                       fig.align = 'center') #allows for inserting R code into captions
 
 #Plotting and data libraries
-remotes::install_github("noaa-edab/ecodata@0.1.0")
+#remotes::install_github("noaa-edab/ecodata@0.1.0") #change to 2020 ecodata version for release
 library(tidyverse)
 library(ecodata)
 library(here)
@@ -80,7 +80,7 @@ hjust.label <- 1.5
 letter_size <- 4
 feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
 x.shade.min <- 2009
-x.shade.max <- 2018
+x.shade.max <- 2019
 #Function for custom ggplot facet labels
 label <- function(variable,value){
   return(facet_names[value])
@@ -125,41 +125,9 @@ ylims <- c(ymin, ymax)
 
 ```
 
-# Overview
-
-SARAH CHANGED A LINE HERE
-
-
-Scott changed a line here
-
-Sean changed a line here
-
-KIM CHANGED THIS LINE
-
-Sarah added a thing here
-
-The purpose of this report is to synthesize available information relevant to fishery management in the Mid-Atlantic portion of the US Northeast Shelf. This 2019 report highlights where management interventions have proven successful to achieve ecological objectives, but also characterizes the considerable challenges for management posed by climate change and increasing trade-offs across conservation, fishing, and other human activities in this region (Fig. \ref{fig:conceptual-model}). Finally, we describe combinations of ecological signals that present opportunities for further integrated research and possibly creative management solutions.
-
-```{r conceptual-model, echo=FALSE, out.width = "\\textwidth", fig.cap="A conceptual model places detailed species-level management in context by highlighting relationships between focal species groups organized by the Mid-Atlantic Fisheries Management Council (MAFMC) Fishery Management Plan (FMP), managed human activities, environmental drivers, habitats, and key ecological links."}
-
-knitr::include_graphics("images/MAB_conmod_overview.jpg")
-```
-
-Some management interventions for ecosystems and fisheries have proven beneficial in the Mid-Atlantic and throughout the Northeast US Shelf. For example, the evidence suggests that management limiting nutrient inputs has significantly improved water quality in Chesapeake Bay (Fig. \ref{fig:cb-attainment}). This trend, which has been driven by improvements to dissolved oxygen content and water clarity, has positive implications for aquaculture development and for managed species using the Bay as nursery habitat.  Also encouraging is a continued decrease in harbor porpoise bycatch, which for this year is the lowest on record in the Northeast US, and an apparent stable harbor porpoise population (Fig. \ref{fig:harbor-porpoise-bars}).
-
-However, there are multiple signals indicating challenges to meeting management goals. Despite mostly meeting fishery management objectives at the single species level (Fig. \ref{fig:stock-status}), long term declines in total seafood production and commercial revenue remain apparent (Figs. \ref{fig:total-landings}, \ref{fig:comm-landings}, \ref{fig:comm-revenue}). Indicators highlight a declining diversity of recreational opportunities (fishing modes and species, Fig. \ref{fig:rec-div}). Further, coastal communities with high fishery engagement and reliance are dependent on a smaller number of species than historically. These species are predominantly high valued shellfish vulnerable to increased ocean temperature and acidification. 
-
-Fisheries are significantly affecting protected species, particularly large whale abundance. Changes in fishery management to address this issue could have considerable consequences for the fixed gear fishing sector, particularly for pot gear. The recovery of North Atlantic right whales is affected by anthropogenic mortality (Fig. \ref{fig:NARW-abundance}). Shifts in ecosystem conditions may be contributing to increased interaction between right whales and fishing gear and could be playing a role in other protected species trends. Unusual Mortality Events (UMEs) have been declared for North Atlantic right whales, humpback whales, and minke whales, and preliminary investigations suggest fishing gear entanglement has played a primary role in these mortalities. Gray seal bycatch mortality has also risen in recent years, with an estimated annual mortality that has often totaled more than 1000 animals and a UME has been declared for both gray and harbor seals that may be due to phocine distemper virus. 
-
-Several climate and ecosystem observations are trending towards unprecedented levels. The Northeast US shelf is still among the fastest warming waters globally (Fig. \ref{fig:long-term-sst}) with implications for species physiology, productivity, distribution, and community composition. Globally, 2018 was the 4th warmest year on record with the last four years being the warmest on record. In the Mid-Atlantic, 2018 summer sea surface temperatures were the third highest on record, while temperatures during the other seasons were near or slightly below average (Fig. \ref{fig:MAB-SST-insitu}). Annual average bottom temperature measurements show a significant long term warming trend (Fig. \ref{fig:MAB-bot-temp}). Ocean circulation is changing as well. The position of the northern edge of the Gulf Stream has trended northward since the late 1950s, with an increasing rate since 2009. The most northerly positions on record were observed between 2014-2017 (Fig. \ref{fig:GSI}). A more northerly Gulf Stream position is generally associated with warmer ocean temperature in the Northeast US shelf [@zhang_role_2007] and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
-
-The management implications of these ocean changes vary by region and species, and are not fully understood at this point. Changes in the distribution of managed fish species continue, with aggregate trends on the entire Northeast Shelf shifting towards the northeast and generally into deeper water (Fig. \ref{fig:spec-dist}). These shifts place increasing pressure on the management system. The proportion of NEFMC (New England Fishery Management Council) managed benthivore species (righteye flounders, haddock) has declined over time in Mid-Atlantic waters according to bottom trawl surveys (Fig. \ref{fig:NEFMC-in-MAB}), while the proportion of MAFMC (Mid-Atlantic Fishery Management Council) managed planktivore (squids, mackerel, and butterfish) species has been increasing in New England waters in both surveys and landings (Figs. \ref{fig:MAFMC-in-NE}, \ref{fig:comm-landings}). Similarly, butterfish have been observed in Gulf of Maine common tern fledgling diets between 2009-2011 and again in 2018 (see New England report). The downward trend in recreational species diversity in the Mid-Atlantic (Fig. \ref{fig:rec-div}) contrasts with an increase in recreational species diversity over time in New England (see New England report), although it is unclear to what extent this result is due to the aggregation of SAFMC species in the indicator itself. Nearshore NEAMAP survey indices show some similar patterns to offshore surveys, although with different magnitudes, perhaps reflecting seasonal importance of nearshore habitats (Fig. \ref{fig:nefsc-biomass-mab}); these patterns will be explored in more detail in future analyses. As temperature and ocean circulation indicators trend toward extremes, fishery management based on static stock areas will likely face continued changes in species distribution.
-
-Observed changes at the base of the food web, including timing and community composition, affect productivity of protected and managed species in ways we do not yet fully understand. There is a trend of increasing primary production in the Mid-Atlantic, but this trend is primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. Current zooplankton trends in the Mid-Atlantic suggest a shift in timing towards a spring peak in the dominant species (Fig. \ref{fig:MAB-oi-zoo}), as well as a shift towards smaller-bodied copepods (Fig. \ref{fig:MAB-sli}). This suggests a possible return to conditions last observed during the 1990s, when small bodied copepods dominated the zooplankton community, regime shifts in groundfish recruitment were observed [@perretti_regime_2017], and North Atlantic right whales experienced lower birth rates [@greene_remote_2013]. The timing of shifts in fish condition may be similar (Fig. \ref{fig:mab-cf}), though potential mechanisms connecting adult fish condition to zooplankton patterns require further study.
-
 # Report Structure
 
-The major messages of the report are synthesized above with reference to key figures. The information in this report is organized around general ecosystem-level management objectives (Table \ref{tab:management-objectives}), and indicators related to these objectives are grouped into four general categories in the four sections below: economic and social, protected species, fish and invertebrates, and habitat quality and ecosystem productivity. Each section begins with a summary of main messages with links to other sections, including any new information added at the request of the Fishery Management Councils, and includes figures with brief descriptions of all current indicators. Detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc] and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding groups (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
+The major messages of the report are synthesized in the 2-page overview. The information in this report is organized around general ecosystem-level management objectives (Table \ref{tab:management-objectives}), and indicators related to these objectives are grouped into four general categories in the four sections below: economic and social, protected species, fish and invertebrates, and habitat quality and ecosystem productivity. Each section begins with a summary of main messages with links to other sections, including any new information added at the request of the Fishery Management Councils, and includes figures with brief descriptions of all current indicators. Detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc] and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding groups (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
 
 ```{r management-objectives}
 
@@ -193,10 +161,37 @@ knitr::kable(mng_obj,
 
 The objectives of U.S. federal fishery management include providing benefits to the Nation in terms of seafood production and recreational opportunities, while considering economic efficiency and effects on coastal communities. The indicators in this section consider these objectives for commercial and recreational fishing sectors separately where possible. 
 
-Despite mostly meeting fishery management objectives at the single species level (Fig. \ref{fig:stock-status}), long term declines in total seafood production and commercial revenue remain apparent. Indicators highlight a declining diversity of recreational opportunities (fishing modes and species). Further, coastal communities with high fishery engagement and reliance are dependent on a smaller number of species than historically, these species are predominantly high valued shellfish vulnerable to increased ocean temperature and acidification.  
+Despite mostly meeting fishery management objectives at the single species level (Fig. \ref{fig:stock-status}), long term declines in total seafood production and commercial revenue remain apparent. Indicators highlight a declining diversity of recreational opportunities (fishing modes and species). Further, coastal communities with high fishery engagement and reliance are dependent on a smaller number of species than historically, these species are predominantly high valued shellfish vulnerable to increased ocean temperature and acidification.  New analysis of wind energy lease areas and modeled habitat occupancy highlights which species are most likely to be found in wind development  areas seasonally \ref{fig:wind-hab}).
+
 
 ## Commercial sector (MAB)
-Seafood landings overall and for MAFMC managed species are declining (Fig. \ref{fig:total-landings}). Seafood landings for feeding guilds are also stable or declining (Fig. \ref{fig:comm-landings}), with the exception of a long term increase in MAFMC managed benthivores (scup, black sea bass, and tilefish). In 2018, landings of MAFMC managed planktivores increased to account for nearly all planktivore landings in the MAB, likely due to increased squid and decreased Atlantic herring landings.
+
+The amount of potential yield we can expect from a marine ecosystem depends on the amount of production entering at the base of the food web, primarily in the form of phytoplankton; the pathways this energy follows to reach harvested species; the efficiency of transfer of energy at each step in the food web; and the fraction of this production that is removed by the fisheries.  Species such as scallops and clams primarily feed directly on larger phytoplankton species and therefore require only one step in the transfer of energy. The loss of energy at each step can exceed 80-90%.  For many fish species, as many as 2-4 steps may be necessary. Given the trophic level and the efficiency of energy transfer of the species in the ecosystem the amount phytoplankton production required (PPR) to account for the observed catch can be estimated.
+
+Primary production required has declined over the past 20 years (Fig. \ref{fig:ppr-mab}). There is also an apparent cyclical pattern. The overall trend is largely driven by the decrease in landings with an increase in primary production over the same period. The landings in many of the years are dominated by species at lower trophic levels (scallops and clams). The periodicity in the PPR index reflects both the periodicity in primary production (see Figure 31) and the periodicity in the closed areas for scallop harvest.
+
+```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\% of the landings in each year, with 15\% transfer efficiency assumed between trophic levels."}
+ecodata::ppr %>% 
+  group_by(EPU) %>% 
+  mutate(hline = mean(Value)) %>% 
+  filter(EPU == "MAB") %>% 
+  ggplot() +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_point(aes(x = Time, y = Value))+
+  geom_line(aes(x = Time, y = Value))+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty)+
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggtitle("Primary Production Required")+
+  ylab("Proportion of Total Primary Production Required")+
+  theme_ts()
+```
+
+Total seafood landings and MAFMC managed species seafood landings have declined over the long term (Fig. \ref{fig:total-landings}). with a slight increase 2016-2018. Seafood landings for feeding guilds are also stable or declining overall (Fig. \ref{fig:comm-landings}), although landings of piscivores and planktivores increased in the MAB. Recent increased landings of *Illex* squid are apparent in the piscivores guild (attributed to the planktivores guild in previous reports). Landings of apex predators are available for 2016-2018 but trends are not detectable in this short time series.
 
 ```{r total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red)."), fig.width = 4, fig.asp = 0.45}
 #Get data for plotting
@@ -227,11 +222,6 @@ managed_landings_agg <- managed_landings %>%
 
 landings_agg <- rbind(total_landings_agg, managed_landings_agg)
 
-#Define constants for figure plot
-x.shade.max <- 2018
-x.shade.min <- 2009
-series.col <- c("indianred","black")
-
 
 ggplot(data = landings_agg)+
   
@@ -249,7 +239,7 @@ ggplot(data = landings_agg)+
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   scale_color_manual(values = series.col, aesthetics = "color")+
   guides(color = FALSE) +
-  ylab(expression("Landings, 10"^3*"metric tons")) +
+  ylab(expression("Landings (10"^3*"metric tons)")) +
 
   geom_hline(aes(yintercept = hline,
                
@@ -259,13 +249,16 @@ ggplot(data = landings_agg)+
            linetype = hline.lty) +
     theme_ts()
 
+
 ```
 
 ```{r comm-landings, fig.asp=1.5, warning=F, fig.width = 4, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild.")}
 
 #Assign feeding guild column for plotting with ggplot
-landings <- rbind(managed_landings, total_landings) %>%
-  mutate(feeding.guild = str_extract(Var,paste(feeding.guilds, collapse = "|")),
+landings <- 
+  rbind(managed_landings, total_landings) %>%
+  filter(Var != "Apex Predator Landings") %>% 
+  mutate(feeding.guild = str_extract(Var,paste(feeding.guilds1, collapse = "|")),
          grouping = factor(ifelse(str_detect(Var,council_abbr), "managed",
                                   ifelse(str_detect(Var, "JOINT"), "joint","total"))),
          Var = paste(word(feeding.guild), grouping)) %>% 
@@ -273,25 +266,24 @@ landings <- rbind(managed_landings, total_landings) %>%
 
 #Add JOINT landings to MANAGED landings and remove
 landings[landings$Var ==  "Piscivore managed",]$Value <- landings[landings$Var ==  "Piscivore managed",]$Value + landings[landings$Var ==  "Piscivore joint",]$Value
+
 landings <- landings %>%
   filter(Var != "Piscivore joint")  %>% 
   group_by(Var) %>% 
   mutate(hline = mean(Value))
-  
-#Define constants for figure plot
-x.shade.max <- 2018
-x.shade.min <- 2009
-series.col <- c("indianred","black")
 
 
 #facet names for titles
-facet_names <- list("Apex predators" = expression("Apex predators"),
+facet_names <- list("Apex" = expression("Apex"),
                     "Piscivores" = expression("Piscivores"),
                     "Planktivores" = expression("Planktivores"),
                     "Benthivores" = expression("Benthivores"),
                     "Benthos" = expression("Benthos"))
 
-ggplot(data = landings,aes(x = Time, y = Value, color = grouping)) +
+
+p2<- landings %>% 
+  filter(EPU == "MAB") %>% 
+  ggplot(aes(x = Time, y = Value, color = grouping)) +
   
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
@@ -315,7 +307,7 @@ ggplot(data = landings,aes(x = Time, y = Value, color = grouping)) +
              linetype = hline.lty)+
 
   #Facet 
-  facet_wrap(feeding.guild~.,scales = "free_y", labeller = label, ncol = 1) +
+  facet_wrap(feeding.guild~., scales = "free", labeller = label, ncol = 1)+
   
   #Axis and theme
   scale_y_continuous(labels = function(l){trans = l / 1000})+
@@ -324,11 +316,14 @@ ggplot(data = landings,aes(x = Time, y = Value, color = grouping)) +
   theme_facet() +
   theme(strip.text=element_text(hjust=0))
 
+plot_grid(p2, ncol = 1, align = 'v', rel_heights = c(1,4))
+
+
 
 ```
 
 
-Revenue for MAFMC managed species has also declined over the long term (Fig. \ref{fig:comm-revenue}), with recent decreases in total revenue driven by decreased landings volume outweighing increased prices for benthos, planktivores, and other species groups (Fig. \ref{fig:bennet}).
+Revenue for MAFMC managed species has also declined over the long term (Fig. \ref{fig:comm-revenue}), with recent decreases in total revenue driven by decreased prices compared to the 2015 baseline (Fig. \ref{fig:bennet}).
 
 ```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."}
 
@@ -375,38 +370,33 @@ ggplot(data = rev_agg) +
            alpha = hline.alpha,
            linetype = hline.lty) +
   theme_ts()
-
-# rev_inline <- rev_agg %>% 
-#   dplyr::select(Status, Time, Total) %>% 
-#   spread(.,Status, Total) %>% 
-#   mutate(percent_managed = round(Managed/Total * 100)) %>% 
-#   filter(Time > latest_landings_data - 5, Time <= latest_landings_data) %>% 
-#   pull(percent_managed)
-# 
-# min_rev_perc <- min(rev_inline)
-# max_rev_perc <- max(rev_inline)
 ```
 
 
-```{r bennet,  fig.cap = paste0("Revenue change from the long-term mean in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 6, fig.asp = 0.45}
+```{r bennet,  fig.cap = paste0("Revenue change from the 2015 base year  in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 6, fig.asp = 0.45}
 
 #Filter data into two dataframes for plotting
+
 indicators <- ecodata::bennet %>% 
-  filter(EPU == "MAB",
-         Var %in% c("VI EPU aggregate",
-                    "PI EPU aggregate")) %>% 
-  mutate(Var, Var = plyr::mapvalues(Var, from = c("VI EPU aggregate","PI EPU aggregate"),
-                                    to = c("Volume","Price")))
+  filter(EPU == epu_abbr) %>% 
+  filter(stringr::str_detect(Var, pattern="Total"),
+         !Var == "Total Revenue Change - Bennet", 
+         !Time < 1985) %>% 
+  mutate(Var, Var = plyr::mapvalues(Var, from = c("Total Volume Index - Bennet","Total Price Index - Bennet"),
+                                    to = c("Volume","Price"))) %>% 
+  group_by(Time) %>% 
+  mutate(New = sum(Value))
+
 
 revchange <- ecodata::bennet %>% 
   filter(EPU == "MAB",
-         Var %in% c("REVCHANGE EPU aggregate"))
-
+         Var %in% c("Total Revenue Change - Bennet"),
+         !Time<1985)
 #custom bar fill color (color-blind friendly)
 ind_fill <- c("#a6cee3", "#b2df8a")
 
 #limits
-y.lim <- c(-450,450)
+y.lim <- c(-450,600)
 
 #plot
 ggplot(data = indicators)+
@@ -415,10 +405,11 @@ ggplot(data = indicators)+
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf)+
-  
-  geom_bar(aes(x=Time, y= Value, fill = Var), stat="identity")+
+
+  geom_bar(data = indicators, aes(x=Time, y= Value, fill = Var), stat="identity")+
   scale_fill_manual(name = "Indicators", values = ind_fill) +
   geom_line(data = revchange, aes(x = Time, y = Value, colour="$"))+
+  #geom_line(data = indicators, aes(x = Time, y = New, color = "blue"))+
   scale_colour_grey(name ="Revenue Change") +
   ggtitle("Bennet Indicator")+
   labs(y="Value $1,000,000 ($2015)") +
@@ -429,64 +420,13 @@ ggplot(data = indicators)+
 
 ```
 
-MAB fishing communities are heavily reliant on shellfish species (especially scallops) for the majority of revenue. This reliance likely represents heightened risk to fishing communities, particularly along the coasts of New York, New Jersey, and Virginia in ports which are highly engaged and reliant on commercial fishing. This risk is heightened by the high climate vulnerability of shellfish to ocean acidification (Fig. \ref{fig:MAB-comm-reliance-maps-outlined}).
+Commercial fleet diversity indices were updated with 2018 data and remain near the long term average^[https://noaa-edab.github.io/ecodata/human_dimensions#mid-atlantic].
 
-```{r MAB-comm-reliance-maps-outlined, fig.height = 8, fig.cap = "Commercial engagement (total pounds landed, value landed, commercial permits and commercial dealers in a community) and reliance (per capita engagement) based on 2016 landings and the ACS running average of 2012-2016 census data."}
-xmin = -78
-xmax = -70
-ymin = 35
-ymax = 42
-xlims <- c(xmin, xmax)
-ylims <- c(ymin, ymax)
+The trend in the number of Mid-Atlantic fishing communities that were highly engaged (red bar) in commercial fishing has shown a decrease since 2004 (Fig. \ref{fig:MAB-comm-engagement-trend}). Some of the communities that were highly engaged have moved into the moderate (blue bar) or medium-high (orange bar) category, and thus the number of moderately to medium-highly engaged communities have increased. Significant changes in engagement scores have also been observed in medium-highly engaged communities. The average engagement score has decreased since 2004. These changes may be driven by the decline in value landed by primary species such as sea scallops in this group of communities. 
+ (Fig. \ref{fig:MAB-comm-reliance-maps-outlined}).
 
-biv_col <- c("4" = "#ca0020", "3" = "#f4a582", "2" = "grey", "1" = "#92c5de", "0" = "#0571b0")
+```{r MAB-comm-engagement-trend, fig.height = 8, fig.cap = "Commercial engagement scores (total pounds landed, value landed, commercial permits and commercial dealers in a community ) for  Mid-Atlantic fishing communities, 2004-2018."}
 
-eng_rel <- ecodata::eng_rel %>%
-    filter(PRIMARY_LATITUDE < 42) %>% 
-  dplyr::rename(comeng = ComEng_NE16_ct,
-                comrel = ComRel_NE16_ct,
-                receng = RecEng_NE16_ct,
-                recrel = RecRel_NE16_ct,
-                Latitude = PRIMARY_LATITUDE,
-                Longitude = PRIMARY_LONGITUDE,
-                State = STATEABBR) %>% 
-  mutate(comsum = sum(as.numeric(comeng), as.numeric(comrel))) %>% 
-  mutate(comeng = factor(comeng, ordered = TRUE, levels = 1:4),
-         comrel = factor(comrel, ordered = TRUE, levels = 1:4),
-         receng = factor(receng, ordered = TRUE, levels = 1:4),
-         recrel = factor(recrel, ordered = TRUE, levels = 1:4))
-
-
-
-(com <- eng_rel %>% 
-  dplyr::select(comeng, comrel, comsum, Latitude, Longitude) %>% 
-  filter(comeng != 0 &
-         comrel != 0) %>% 
-ggplot() +
-  geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data  = ne_states, size = map.lwd) +
-  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
-  geom_point(aes(x = Longitude, y = Latitude,
-                 fill = comeng, size = comrel),
-             color = "black",pch = 21) +
-  guides(fill = guide_legend(override.aes = list(size = 5),
-                            reverse = T,
-                            title = "Engagement"),
-         size = guide_legend(reverse = T,
-                            title = "Reliance")) +
-  scale_fill_manual(values = biv_col) +
-  theme_map() +
-  xlab("Longitude") +
-  ylab("Latitude") +
-      theme(legend.position = c(0.8, 0.25), 
-        legend.box = "horizontal",
-        legend.direction = "vertical",
-        legend.key=element_blank(),
-        legend.key.width = unit(0, "cm"))+
-  ggtitle("Commercial Reliance & Engagement"))
-
-# com + rec + plot_layout(ncol = 2) &
-#   theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
 
 ```
 
