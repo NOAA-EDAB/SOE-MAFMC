@@ -1973,16 +1973,45 @@ mab_map
 
 
 ## Primary production (MAB)
-Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem (Fig. \ref{fig:prod-potential}). There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2018 had an above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with the highest concentrations near the shelf break, which is the same region that experienced below average temperatures in the fall (Fig. \ref{fig:MAB-SST-insitu}).
+Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem . There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2019 had an early above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with above average blooms in the central portion of the shelf Fig. \ref{}).
 
-```{r prod-potential, fig.cap = "Simplified representation of the pathways linking primary production and environmental driver throughout a fishery ecosystem. The important societal benefits that derive from sustainable fisheries depend directly on a sequence of events starting at the base of the food web. The production of fish and shellfish available for harvest by the fisheries follows pathways of energy flow from phytoplankton and zooplankton to different parts of the food web. The production at each component further depends on the effect of a host of environmental drivers including temperature, salinity, and other factors.", out.width='\\linewidth'}
+```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
+out_pp <- ecodata::chl_pp %>% 
+  filter(EPU == epu_abbr,
+         str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+    mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
+                                                   "07","08","09","10","11","12"),
+                                   to = c(month.abb))) %>% 
+  group_by(Month) %>% 
+  mutate(hline = mean(Value))
 
-knitr::include_graphics(file.path(image.dir, "SOE_Network_Diagram.png"))
+out_pp$Month <- factor(out_pp$Month, levels = month.abb)
+
+
+pp_cci <- ggplot(out_pp) +
+   # geom_gls(aes(x = Year, y = Value, group = Month))+
+    geom_point(aes(x = Year, y = Value, group = Month)) +
+    geom_line(aes(x = Year, y = Value, group = Month)) +
+    scale_x_discrete(name = "", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
+        geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+    facet_wrap(Month~., ncol = 12) +
+    ggtitle("Monthly median PPD") +
+    ylab(expression("PP (gC m"^-2*" d"^-1*")")) +
+    theme_facet() +
+    theme(axis.text.x = element_text(angle=45, hjust = 1),
+          panel.spacing = unit(0.5, "lines"),
+          plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
+pp_cci
 ```
 
-```{r mab-chl-weekly,fig.width = 5, fig.asp = 0.45, fig.cap = "Weekly chlorophyll concentrations in the Mid-Atlantic are shown by the colored line for 2018. The long-term mean is shown in black, and shading indicates +/- 1 sample SD."}
 
-interp_chl_pp <- function(epu, year = 2018, Variable){
+```{r mab-chl-weekly,fig.width = 5, fig.asp = 0.45, fig.cap = "Weekly chlorophyll concentrations in the Mid-Atlantic are shown by the colored line for 2019. The long-term mean is shown in black, and shading indicates +/- 1 sample SD."}
+
+interp_chl_pp <- function(epu, year = 2019, Variable){
   out <- ecodata::chl_pp %>% 
     filter(str_detect(Var,Variable),
            EPU == epu) %>% 
@@ -2009,7 +2038,6 @@ interp_chl_pp <- function(epu, year = 2018, Variable){
   
   return(ltm_out)
 }
-
 
 MAB_chl <- interp_chl_pp(epu = "MAB", Variable = "WEEKLY_CHLOR_A_MEDIAN MODIS-Aqua PAN")
 
@@ -2049,67 +2077,67 @@ MAB_pp_weekly <- ggplot(data = MAB_pp) +
   scale_color_manual(values = c("#ef8a62","#2c7fb8","#a1d99b"))+
   theme_ts()
 
-#MAB_chl_weekly + MAB_pp_weekly + plot_layout(ncol = 1)
-MAB_chl_weekly
+MAB_chl_weekly + MAB_pp_weekly + plot_layout(ncol = 1)
 ```
 
-```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
-out_pp <- ecodata::chl_pp %>% 
-  filter(EPU == "MAB",
-         str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
-  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
-    mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
-                                                   "07","08","09","10","11","12"),
-                                   to = c(month.abb))) %>% 
-  group_by(Month) %>% 
-  mutate(hline = mean(Value))
-out_pp$Month <- factor(out_pp$Month, levels = month.abb)
-
-
-(pp_cci <- ggplot(out_pp) +  
-   # geom_gls(aes(x = Year, y = Value, group = Month))+
-    geom_point(aes(x = Year, y = Value, group = Month)) +
-    geom_line(aes(x = Year, y = Value, group = Month)) +
-    scale_x_discrete(name = "Time", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
-        geom_hline(aes(yintercept = hline),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty) +
-    facet_wrap(Month~., ncol = 6) +
-    ggtitle("Monthly median PPD") +
-    ylab(expression("PP (gC m"^-2*" d"^-1*")")) +
-    theme_facet() +
-    theme(axis.text.x = element_text(angle=45, hjust = 1),
-          panel.spacing = unit(1, "lines"),
-          plot.margin = unit(c(0.1, 0, 0, 0), "cm")))
-```
-
-
+ADD CHL a MAP IF ROOM
 
 
 ## Zooplankton (MAB)
-The most abundant zooplankton species in the MAB are *Centropages typicus*, *Psuedocalanus* spp., and *Temora longicornis* [@morse_distinct_2017].  *Calanus finmarchicus* are also abundant in the MAB and are important prey for larval fish and the North Atlantic right whale.  Annually, there has been a significant decrease in *Pseudocalanus* and in recent years a decreasing trend of *Calanus finmarchicus* (Fig. \ref{fig:MAB-zoo-abund}).  Seasonally, *Temora longicornis* have decreased during the fall, while a decrease in fall concentration and an increase in spring concentration of *Centropages typicus* (Fig. \ref{fig:MAB-oi-zoo}) corresponds to a shift in timing of their peak concentration from late fall to early spring beginning in the late 1980s [@bi_decadal_2014].
+The most abundant zooplankton species in the MAB are the small-bodied species  *Centropages typicus*, *Psuedocalanus* spp., and *Temora longicornis* [@morse_distinct_2017]. The large-bodied species *Calanus finmarchicus* is also abundant in the MAB and is an important prey for larval fish and the North Atlantic right whale.  The mean abundance of small-bodied copepods was slightly above average in 2018 (Fig. \ref{fig:MAB-zoo-abund}).  This increase in abundance from the previous year was driven by all members of the small-bodied taxa above in addition to *Centropages hamatus*. While the long term trend in *Psuedocalanus* abundcance remains significantly negative in the MAB, 2018 abundance values were slightly above the long term mean and were the highest abundance values in the MAB since 1998 for this species. *Calanus finmarchicus* abundance was also higher in 2018 than in the previous 10 years, following a period of lower abundance between 2014-2017 (Fig. \ref{fig:MAB-zoo-abund}).
 
-```{r MAB-zoo-abund, fig.width = 8, fig.asp = .35, fig.cap = "Abundance anomaly time series for key zooplankton species found in the MAB."}
-zoo_abund <- ecodata::zoo_anom_sli %>% 
+```{r MAB-zoo-abund, fig.width = 8, fig.asp = .35, fig.cap = "Abundance anomaly time series for key zooplankton size groups found in the MAB"}
+ecodata::zoo_abund%>%
+   filter(EPU == epu_abbr) %>%
+   group_by(Time) %>% 
+   mutate(hline = 0) %>% 
+   ggplot(aes(x = Time, y = Value, color = Var)) +
+          annotate("rect", fill = shade.fill, alpha = shade.alpha,
+       xmin = x.shade.min , xmax = x.shade.max,
+       ymin = -Inf, ymax = Inf) +
+   #geom_gls() +
+   geom_line() +
+   geom_point() +
+   ylab("Abundance anomaly") +
+   xlab(element_blank())+
+   ggtitle("Small and large-bodied copepod abundance anomaly") +
+   scale_x_continuous(expand = c(0.01, 0.01))+
+       geom_hline(aes(yintercept = hline),
+            size = hline.size,
+            alpha = hline.alpha,
+            linetype = hline.lty)+
+  theme_ts()+
+   theme(strip.text=element_text(hjust=0,
+                                 face = "italic"), 
+         legend.title = element_blank())
+
+
+```
+
+Cnidarians (jellyfish) exhibit an increasing trend in abundance over the long term  record, and higher than normal abundance during the 1990's when the abundance of small-bodied copepods was highest (Fig. \ref{MAB-euph-cnid}). Euphausiids (krill), important prey items for many fish species, also exhibit a long term increasing trend in abundance in the MAB (Fig. \ref{MAB-euph-cnid}).
+
+```{r MAB-euph-cnid, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."}
+zoo_abund <- ecodata::zoo_strat_abun %>% 
   filter(EPU == epu_abbr,
-         !str_detect(Var, "small-large")) %>% 
-  mutate(hline = 0,
-         Var = str_to_title(str_remove(Var, "anomaly"))) 
+         !str_detect(Var, "Small|Large")) %>% 
+  mutate(Value = log10(Value+1)) %>% 
+  group_by(Var, EPU) %>% 
+  mutate(hline = mean(Value)) 
 
 zoo_abund %>% 
-  ggplot(aes(x = Time, y = Value, group = Var)) +
-         annotate("rect", fill = shade.fill, alpha = shade.alpha,
+  ggplot(aes(x = Time, y = Value)) +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf) +
   geom_gls() +
   geom_line() +
   geom_point() +
-  ylab("Abundance anomaly") +
-  ggtitle("Zooplankton abundance anomaly") +
+  ylab(expression("Log Stratified Abundance")) +
+  xlab(element_blank())+
+  ggtitle("Zooplankton abundance") +
   facet_wrap(Var~., ncol = 3) +
   scale_x_continuous(expand = c(0.01, 0.01))+
-      geom_hline(aes(yintercept = hline),
+  geom_hline(aes(yintercept = hline),
            size = hline.size,
            alpha = hline.alpha,
            linetype = hline.lty)+
@@ -2117,105 +2145,6 @@ zoo_abund %>%
   theme(strip.text=element_text(hjust=0,
                                 face = "italic"))
   
-
-```
-
-
-```{r MAB-oi-zoo, fig.width=8, fig.cap = "Seasonal abundance of key zooplankton species in the MAB."}
-facet_names <- list(
-  'centropages spring'=expression(paste(italic("Centropages "), "spring")),
-  'centropages fall'=expression(paste(italic("Centropages "), "fall")),
-  'temora spring'=expression(paste(italic("Temora "), "spring")),
-  'temora fall' = expression(paste(italic("Temora "), "fall")),
-  'pseudocalanus spring'=expression(paste(italic("Pseudocalanus "), "spring")),
-  'pseudocalanus fall' = expression(paste(italic("Pseudocalanus "), "fall")))
-
-zoo_oi_mab <- ecodata::zoo_oi %>% 
-  filter(!str_detect(Var,"SD"),
-         EPU == "MAB") %>% 
-  
-  mutate(Var = str_remove(Var, " zoo"),
-         Val2 = exp(Value)) %>% 
-      group_by(Var) %>% 
-  mutate(hline = mean(Val2, na.rm = T)) %>% 
-  separate(.,col = Var, into = c("Species","Season"), remove = F)
-
-
-
-top <- zoo_oi_mab %>%  
-  filter(Species == "centropages") %>% 
-
-ggplot(aes(x = Time, y = Val2, group = Var)) +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = 0, ymax = Inf) +
-  geom_hline(aes(yintercept = hline),
-     size = hline.size,
-     alpha = hline.alpha,
-     linetype = hline.lty)+
-  geom_gls() +
-  geom_line()+
-  geom_point()+
-  ylab("") +
-  facet_wrap(Var ~ ., ncol = 2, scales='free_x',labeller = label) +
-  ggtitle("Zooplankton abundance (OI)") +
-  scale_x_continuous(expand = c(0.01, 0.01))+
-  scale_y_continuous(trans = "log10")+
-  theme_facet() +
-    theme(strip.text=element_text(hjust=0,
-                                face = "italic"),
-          axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
-
-middle <- zoo_oi_mab %>%  
-  filter(Species == "pseudocalanus") %>% 
-ggplot(aes(x = Time, y = Val2, group = Var)) +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = 0, ymax = Inf) +
-  geom_hline(aes(yintercept = hline),
-     size = hline.size,
-     alpha = hline.alpha,
-     linetype = hline.lty)+
-  geom_gls() +
-  geom_line()+
-  geom_point()+
-  ylab(expression("Abundance num m"^-3*"")) +
-  facet_wrap(Var ~ ., ncol = 2, scales='free_x',labeller = label) +
-  scale_x_continuous(expand = c(0.01, 0.01))+
-  scale_y_continuous(trans = "log10")+
-  theme_facet() +
-    theme(strip.text=element_text(hjust=0,
-                                face = "italic"),
-          axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
-
-bottom <- zoo_oi_mab %>%  
-  filter(Species == "temora") %>% 
-ggplot(aes(x = Time, y = Val2, group = Var)) +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = 0, ymax = Inf) +
-  geom_hline(aes(yintercept = hline),
-     size = hline.size,
-     alpha = hline.alpha,
-     linetype = hline.lty)+
-    geom_gls() +
-  geom_line()+
-  geom_point()+
-    ylab("") +
-  facet_wrap(Var ~ ., ncol = 2,labeller = label) +
-  scale_x_continuous(breaks = seq(1980,2010,10),
-                     expand = c(0.01, 0.01))+
-
-  theme_facet() +
-    theme(strip.text=element_text(hjust=0,
-                                face = "italic")) +
-   scale_y_log10()
-
-top + middle + bottom + plot_layout(ncol = 1) & theme(plot.margin = margin(0,0,0,0,"cm"))
 
 ```
 
@@ -2285,9 +2214,9 @@ Changes in primary productivity, phytoplankton and zooplankton composition and a
 
 # Contributors
 
-**Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Sean Hardison, Scott Large, Sean Lucey
+**Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Chris Orphanides 
 
-**Contributors** (NEFSC unless otherwise noted): Lisa Calvo (Rutgers), Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, James Gartland (Virginia Institute of Marine Science), Heather Haas, Sean Hardison, Kimberly Hyde, Terry Joyce (Woods Hole Oceanographic Institute), John Kosik, Steve Kress and Don Lyons (National Audubon Society's Seabird Restoration Program), Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Karl Roscher (Maryland Department of Natural Resources), Vincent Saba, Laurel Smith, Mark Terceiro, John Walden, Harvey Walsh, Mark Wuenschel, and Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program).  
+**Contributors** (NEFSC unless otherwise noted): Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institute), Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Vincent Saba, Laurel Smith, John Walden, Harvey Walsh, Mark Wuenschel.  
 
 
 \newpage 
