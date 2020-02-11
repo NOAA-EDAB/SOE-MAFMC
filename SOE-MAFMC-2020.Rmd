@@ -768,6 +768,9 @@ ggplot() +
   coord_sf(crs = crs, xlim = c(-77, -69), ylim = c(36,42))+
   geom_segment(aes(x = -74.6, y = 37.4, xend =-75.4, yend =38), colour = "blue4")+
   geom_segment(aes(x = -71.1, y = 40.2, xend =-71.6, yend =41.1), colour = "blue4")+
+  annotate("text", x = -74.9, y = 37, label = "S")+
+  annotate("text", x = -73.5, y = 38.7, label = "M")+
+  annotate("text", x = -70.5, y = 40.2, label = "N")+
   annotation_scale(location = "br", width_hint = 0.4) +
   theme_bw( ) +
   ylab("")+
@@ -1494,7 +1497,7 @@ mid
 
 ## Forage fish energy content (coastwide) 
 
-Nutritional value of forage fishes as prey (energy content) is related to both environmental conditions and fish growth and reproductive cycles. Energy content is now being measured systematically on NEFSC trawl surveys, revealing both seasonal and interannual variation as well as differences from older measurements (Table \ref{tab:forage}). Notably, the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (*Lolligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates. Energy density of Alewife, butterfish and Atlantic mackerel were higher than earlier estimates. Sampling and laboratory analysis is ongoing, with the goal of continuing routine monitoring of energy density of these species.
+Nutritional value of forage fishes as prey (energy content) is related to both environmental conditions and fish growth and reproductive cycles. Energy content is now being measured systematically on NEFSC trawl surveys, revealing both seasonal and interannual variation as well as differences from older measurements (Table \ref{tab:forage}). Notably, the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (*Loligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates. Energy density of Alewife, butterfish and Atlantic mackerel were higher than earlier estimates. Sampling and laboratory analysis is ongoing, with the goal of continuing routine monitoring of energy density of these species.
 
 ```{r forage, eval=T, echo=F, out.width='80%'}
 d<-ecodata::energy_density #%>% 
@@ -1510,14 +1513,14 @@ d<-ecodata::energy_density #%>%
     #        "N" = "X",
     #        "Mean ED (SD)" = "Mean.ED..SD..5", 
     #        "Mean ED" = "Mean.ED" )
-kable(d, booktabs = T, linesep = "", escape = FALSE,
+kable(d, booktabs = T, linesep = "",
       col.names = c("Species", "ED (SD)", "N", "ED (SD)", "N",
                     "ED (SD)", "N","ED (SD)", "N",
                     "ED (SD)", "N","ED", "ED (SD)"),
-      caption = "Forage fish mean energy density (ED) mean and standard deviation (SD) by season and year. N = number sampled.") %>% 
+      caption = "Forage fish mean energy density (ED) mean and standard deviation (SD) by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values. N = number sampled.") %>% 
   kable_styling(latex_options = c("hold_position", "scale_down")) %>% 
   add_header_above(c(" " = 1, "Spring" = 2, "Fall" = 2, "Spring" = 2, "Fall" = 2, " " = 4)) %>% 
-  add_header_above(c(" " = 1, "2017" = 4, "2018" = 4, "Total" = 2, "Steimle and\\n Terranove (1985)" = 1, "Lawson et al.\\n(1998)" = 1))
+  add_header_above(c(" " = 1, "2017" = 4, "2018" = 4, "Total" = 2, "1980s" = 1, "1990s" = 1))
 
 ```
 
@@ -1539,7 +1542,7 @@ High flows during the winter and spring of Water Year (WY) 2019 came during a cr
 In Maryland, the Spatfall Intensity Index, a measure of oyster recruitment success and potential increase in the population, was 15.0 spat/bu, well below the 34-year median value of 39.8. Blue catfish, an invasive species in the Chesapeake, spread over the last two summers due to the lower salinity levels. 
 
 
-```{r cb-salinity,fig.width = 5, fig.asp = 0.45, fig.cap = "Salinity in Chesapeake Bay throughout 2018 (blue) and 2019 (red)  as well as the daily average 2008-2019 (black)."}
+```{r cb-salinity,fig.width = 5, fig.asp = 0.45, fig.cap = "Salinity in Chesapeake Bay throughout 2018 (blue) and 2019 (red)  as well as the daily average 2008-2019 (black) and the full observed range 2008-2019 (gray shading)."}
 
 ches_sal<-ecodata::ch_bay_sal %>% 
   filter(!Var == "UTCTime") %>% 
@@ -1623,7 +1626,7 @@ gsi %>%
                                 face = "italic"))
 ```
 
-Concurrently, large amplitude Gulf Stream meanders are forming more frequently further west [@andres_recent_2016]. There has also been a regime shift since 2000 after which there has been a significant increase in the number of warm core rings formed each year (Fig \ref{warm-core-rings}; @gangopadhyay_observed_2019. The greater number of warm core rings increases the probability of intrusions of warm/salty Gulf Stream water onto the continental shelf as well as the rate at which the geographical centroid of marine species moves to the north [@gangopadhyay_observed_2019].
+Concurrently, large amplitude Gulf Stream meanders are forming more frequently further west [@andres_recent_2016]. There has also been a regime shift since 2000 after which there has been a significant increase in the number of warm core rings formed each year (Fig \ref{fig:warm-core-rings}; @gangopadhyay_observed_2019. The greater number of warm core rings increases the probability of intrusions of warm/salty Gulf Stream water onto the continental shelf as well as the rate at which the geographical centroid of marine species moves to the north [@gangopadhyay_observed_2019].
 
 ```{r warm-core-rings, fig.width = 4, fig.asp = 0.45, fig.cap= "Interannual Variability of the WCR formation between 1980 and 2019. The regime shift (denoted by the split in the red solid line) is significant at the turn of the century.  Figure reproduced with permission from Gangopadhyay, et al. (2019).  2018 and 2019 data points based on personal communication with A. Gangopadhyay (2020)."}
 upper.line<-ecodata::wcr %>%
@@ -1872,7 +1875,7 @@ ggplot2::ggplot() +
 ```
 
 ## Cold pool index (MAB) 
-Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017]. The average temperature of the cold pool has been getting warmer over time (Fig. \ref{cold-pool}) and the area of the cold pool is shrinking.  These changes can affect distribution and migration timing for species that depend on the cold pool habitat [@miller_state-space_2016].  
+Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017]. The average temperature of the cold pool has been getting warmer over time (Fig. \ref{fig:cold-pool}, calculated based on [@miller_state-space_2016]) and the area of the cold pool is shrinking.  These changes can affect distribution and migration timing for species that depend on the cold pool habitat.  
 
 ```{r cold-pool, fig.width = 4, fig.asp = 0.45, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
 
@@ -1900,20 +1903,20 @@ ecodata::cold_pool %>%
 ## Marine heat waves (MAB) 
 Marine heatwaves measure not just temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. Marine heatwaves are measured in terms of intensity (water temperature) and duration (the cumulative number of degree days) using satellite measurements of daily sea surface temperature. Plotted below are maximum intensity and cumulative intensity, which is intensity times duration. Here we define a marine heatwave as a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2010) [@hobday_hierarchical_2016].    
 
-The strongest heatwaves on record in the Middle Atlantic Bight occurred in the winter of 2012 in terms of maximum intensity (+5.13 oC above average) and in the winter/summer of 2012 in terms of cumulative intensity (515 oC-days; Fig. \ref{heatwave-mab}).  In 2019, the Middle Atlantic Bight experienced six distinct marine heatwaves in the spring, summer, and fall with one of the strongest events beginning on July 3 and lasting 21 days (Figs. \ref{MAB-heatwave1}, \ref{mab-heatwave-max}).  Relative to prior years, this marine heatwave ranked 17th on record in terms of maximum intensity (+2.88 oC above average on Jul 22).  Another strong marine heatwave began on Aug 1 and lasted 24 days, which was 20th on record in terms of cumulative intensity (46 oC-days).
+The strongest heatwaves on record in the Middle Atlantic Bight occurred in the winter of 2012 in terms of maximum intensity (+5.13 °C above average) and in the winter/summer of 2012 in terms of cumulative intensity (515 °C-days; Fig. \ref{fig:heatwave-mab}).  In 2019, the Middle Atlantic Bight experienced six distinct marine heatwaves in the spring, summer, and fall with one of the strongest events beginning on July 3 and lasting 21 days (Figs. \ref{fig:MAB-heatwave1}, \ref{fig:mab-heatwave-max}).  Relative to prior years, this marine heatwave ranked 17th on record in terms of maximum intensity (+2.88 °C above average on Jul 22).  Another strong marine heatwave began on Aug 1 and lasted 24 days, which was 20th on record in terms of cumulative intensity (46 °C-days).
 
-```{r heatwave-mab, fig.width = 8, fig.asp = 0.45, fig.cap="Marine heatwave cumulative intesity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
+```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intesity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
 
 cumu <- ecodata::heatwave %>% 
   filter(Var == "cumulative intensity") %>% 
-  mutate(Var = dplyr::recode(Var, "cumulative intensity" = "Cumulative Intensity (degree C x days)"))
+  mutate(Var = dplyr::recode(Var, "cumulative intensity" = "Cumulative Intensity (°C x days)"))
 
 maxin <- ecodata::heatwave %>% 
   dplyr::filter(Var == "maximum intensity") %>% 
   dplyr::group_by(Time, EPU, Var, Units) %>% 
   dplyr::summarise(Value = max(Value)) %>% 
   dplyr::ungroup() %>% 
-  dplyr::mutate(Var = dplyr::recode(Var, "maximum intensity" = "Maximum Intensity (degree C)"))
+  dplyr::mutate(Var = dplyr::recode(Var, "maximum intensity" = "Maximum Intensity (°C)"))
 
 hw<- cumu %>%
   rbind(maxin) %>% 
@@ -1944,7 +1947,7 @@ mab.hw %>%
 
 ```
 
-```{r MAB-heatwave1, eval= T, echo = F, out.width = "80%", fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2019."}
+```{r MAB-heatwave1, eval= T, echo = F, out.width = "50%", fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2019."}
 
 knitr::include_graphics(file.path(image.dir,"MAB_Heatwave_timeseries.jpg"))
 
@@ -1998,7 +2001,7 @@ mab_map
 
 
 ## Primary production (MAB)
-Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem . There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2019 had an early above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with above average blooms in the central portion of the shelf Fig. \ref{MAB-chl-map}).
+Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem . There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2019 had an early above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with above average blooms in the central portion of the shelf Fig. \ref{fig:MAB-chl-map}).
 
 ```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
 out_pp <- ecodata::chl_pp %>% 
@@ -2142,9 +2145,9 @@ ecodata::zoo_abund%>%
 
 ```
 
-Cnidarians (jellyfish) exhibit an increasing trend in abundance over the long term  record, and higher than normal abundance during the 1990's when the abundance of small-bodied copepods was highest (Fig. \ref{MAB-euph-cnid}). Euphausiids (krill), important prey items for many fish species, also exhibit a long term increasing trend in abundance in the MAB (Fig. \ref{MAB-euph-cnid}).
+Cnidarians (jellyfish) exhibit an increasing trend in abundance over the long term  record, and higher than normal abundance during the 1990's when the abundance of small-bodied copepods was highest (Fig. \ref{fig:MAB-euph-cnid}). Euphausiids (krill), important prey items for many fish species, also exhibit a long term increasing trend in abundance in the MAB (Fig. \ref{fig:MAB-euph-cnid}).
 
-```{r MAB-euph-cnid, fig.width = 8, fig.asp = .45, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."}
+```{r MAB-euph-cnid, fig.width = 8, fig.asp = .35, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."}
 zoo_abund <- ecodata::zoo_strat_abun %>% 
   filter(EPU == epu_abbr,
          !str_detect(Var, "Small|Large")) %>% 
@@ -2336,14 +2339,14 @@ Fish and invertebrates are aggregated into similar feeding categories (Table \re
 
 # new table with all species listed by management entity
 df <- ecodata::species_groupings %>%
-  dplyr::select(SOE_18, COMNAME, Fed_Managed) %>%
-  filter(SOE_18 != "Other") %>%
+  dplyr::select(SOE.20, COMNAME, Fed.Managed) %>%
+  filter(SOE.20 != "Other") %>%
   distinct() %>%
-  group_by(SOE_18, Fed_Managed) %>%
+  group_by(SOE.20, Fed.Managed) %>%
   summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
-  spread(Fed_Managed, COMNAME) %>%
-  arrange(factor(SOE_18, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
-df<-df[-6,c(1,4,3,5,6)] %>%
+  spread(Fed.Managed, COMNAME) %>%
+  arrange(factor(SOE.20, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
+df<-df[c(1,3,2,4,5)] %>%
   mutate_all(tolower)
 
 
