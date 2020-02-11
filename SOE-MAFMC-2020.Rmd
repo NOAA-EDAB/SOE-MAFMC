@@ -189,6 +189,7 @@ ecodata::ppr %>%
            alpha = hline.alpha,
            linetype = hline.lty)+
   scale_x_continuous(expand = c(0.01, 0.01)) +
+  expand_limits(y=0) +
   ggtitle("Primary Production Required")+
   ylab("Proportion of Total Primary Production Required")+
   theme_ts()
@@ -430,11 +431,13 @@ Commercial fleet diversity indices were updated with 2018 data and remain near t
 
 The trend in the number of Mid-Atlantic fishing communities that were highly engaged (red bar) in commercial fishing has shown a decrease since 2004 (Fig. \ref{fig:MAB-comm-engagement-trend}). Some of the communities that were highly engaged have moved into the moderate (blue bar) or medium-high (orange bar) category, and thus the number of moderately to medium-highly engaged communities have increased. Significant changes in engagement scores have also been observed in medium-highly engaged communities. The average engagement score has decreased since 2004. These changes may be driven by the decline in value landed by primary species such as sea scallops in this group of communities. 
 
-```{r MAB-comm-engagement-trend, fig.width = 4, fig.asp = 1.0, fig.cap = "Commercial engagement scores (total pounds landed, value landed, commercial permits and commercial dealers in a community ) for  Mid-Atlantic fishing communities, 2004-2018."}
+```{r MAB-comm-engagement-trend, fig.width = 8, fig.asp = 0.45, fig.cap = "Commercial engagement scores (total pounds landed, value landed, commercial permits, and commercial dealers in a community) for Mid-Atlantic fishing communities, 2004-2018."}
+
 eng<-ecodata::engagement %>% 
   filter(!Var == "med.high.scores")
 eng$Var <- factor(eng$Var, levels = c("%High","%Medium High","%Moderate", "%Low"))
-eng %>% filter(EPU == "MA") %>% 
+
+engbar <- eng %>% filter(EPU == "MA") %>% 
   ggplot()+
    #ylim(0.8, NA)+
   geom_bar(aes(x = Time, y = Value, 
@@ -452,7 +455,7 @@ eng %>% filter(EPU == "MA") %>%
   theme_ts()
 
 
-ecodata::engagement %>% 
+mhtrend <- ecodata::engagement %>% 
   filter(Var == "med.high.scores", 
          EPU == "MA") %>% 
   mutate(hline = mean(Value)) %>% 
@@ -463,6 +466,7 @@ ecodata::engagement %>%
   geom_line(aes(x = Time, y = Value), size = lwd) +
   geom_point(aes(x = Time, y = Value), size = pcex) +
   scale_x_continuous(expand = c(0.01, 0.01)) +
+  expand_limits(y=0) +
   ggtitle("Medium-High communities ") +
   ylab(expression("Average score for Med High communities")) +
   geom_hline(aes(yintercept = hline),
@@ -471,6 +475,11 @@ ecodata::engagement %>%
            linetype = hline.lty) +
  theme_ts()
   
+cowplot::plot_grid(engbar, 
+                   mhtrend,
+                   ncol = 2, 
+                   align = "hv") +
+    theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
 
 ```
 
@@ -667,16 +676,16 @@ cowplot::plot_grid(rec_div,
 
 ## Probability of occupancy in offshore wind lease areas  (coastwide) 
 
-Habitat modeling [@friedland_changes_2020] indicates that summer flounder, butterfish, longfin squid, and spiny dogfish are among fish species highly likely to occupy wind energy lease areas. Habitat conditions for many of these species have become more favorable over time within wind lease areas. This table lists the top 5 species in each season most likely to occupy the wind lease areas in the northern, central, and southern portions of the MAB.
+Habitat modeling [@friedland_changes_2020] indicates that summer flounder, butterfish, longfin squid, and spiny dogfish are among fish species highly likely to occupy wind energy lease areas (Fig. \ref{wind-hab}). Habitat conditions for many of these species have become more favorable over time within wind lease areas. Table \ref{tab:wind-habitat-table} lists the top 5 species in each season most likely to occupy the wind lease areas in the northern, central, and southern portions of the MAB.
 
 ```{r wind-habitat-table, eval = T, echo = F, fig.cap='', out.width='80%'}
 wind1 <- ecodata::wind_occupancy
 
 wind1$trend<- ifelse(wind1$Trend == "pos", 
-                    '![](arrow_up.png)',
+                    "$\\nearrow$",
                     ifelse(wind1$Trend == "neg",
-                    '![](arrow_down.png)', 
-                    '![](arrow_null.png)')) 
+                    "$\\searrow$", 
+                    " ")) 
 
 
 wind2<-wind1 %>% dplyr::select(Area, Season, Species, trend)
@@ -721,7 +730,7 @@ kable(all,
 ```
 
 
-```{r, eval = T, echo = F, fig.cap="Map of BOEM existing (black) and proposed (red) lease areas as of February 2019.", message=FALSE, results=FALSE}
+```{r wind-hab, eval = T, echo = F, fig.cap="Map of BOEM existing (black) and proposed (red) lease areas as of February 2019.", message=FALSE, results=FALSE}
 library(rnaturalearthhires)
 library(sf)
 library(raster)
@@ -781,7 +790,7 @@ North Atlantic right whales are among the most endangered large whale population
  
 Three large whale Unusual Mortality Events (UMEs) are ongoing for North Atlantic right whales, humpback whales, and minke whales. In all three cases human interaction appears to have contributed to increased mortalities, although investigations are not complete. Since 2017, 30 right whale mortalities have been documented, 9 in the US and 21 in Canada. During 2019, 9 dead right whales have been documented in Canada and one in the US. Three of these mortalities were determined to have been due to vessel strike while the remainder are undetermined at this time.
 
-```{r NARW-abundance, fig.width = 5, fig.asp = 0.45,fig.cap = "1990-2018 right whale abundance estimates with 95% credible intervals. These values represent the estimated number of animals alive sometime during the year referenced and NOT at the end of the year referenced. Three known deaths were recorded in 2018, but these deaths were not reflected in the 2018 estimate because those animals were alive sometime during the year. An additional 10 known deaths occurred in 2019."}
+```{r NARW-abundance, fig.width = 5, fig.asp = 0.45,fig.cap = "1990-2018 right whale abundance estimates with 95\\% credible intervals. These values represent the estimated number of animals alive sometime during the year referenced and NOT at the end of the year referenced. Three known deaths were recorded in 2018, but these deaths were not reflected in the 2018 estimate because those animals were alive sometime during the year. An additional 10 known deaths occurred in 2019."}
 #hline <- mean(narw[narw$Var == "right whale abundance median",]$Value)
 
 ecodata::narw %>% 
