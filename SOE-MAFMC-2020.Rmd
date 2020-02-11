@@ -191,7 +191,7 @@ ecodata::ppr %>%
   scale_x_continuous(expand = c(0.01, 0.01)) +
   expand_limits(y=0) +
   ggtitle("Primary Production Required")+
-  ylab("Proportion of Total Primary Production Required")+
+  ylab("Proportion of Total Primary Production")+
   theme_ts()
 ```
 
@@ -429,7 +429,7 @@ ggplot(data = indicators)+
 
 Commercial fleet diversity indices were updated with 2018 data and remain near the long term average^[https://noaa-edab.github.io/ecodata/human_dimensions#mid-atlantic].
 
-The trend in the number of Mid-Atlantic fishing communities that were highly engaged (red bar) in commercial fishing has shown a decrease since 2004 (Fig. \ref{fig:MAB-comm-engagement-trend}). Some of the communities that were highly engaged have moved into the moderate (blue bar) or medium-high (orange bar) category, and thus the number of moderately to medium-highly engaged communities have increased. Significant changes in engagement scores have also been observed in medium-highly engaged communities. The average engagement score has decreased since 2004. These changes may be driven by the decline in value landed by primary species such as sea scallops in this group of communities. 
+The trend in the number of Mid-Atlantic fishing communities that were highly engaged (red bar) in commercial fishing has shown a decrease since 2004 (Fig. \ref{fig:MAB-comm-engagement-trend}). Some of the communities that were highly engaged have moved into the moderate (blue bar) or medium-high (green bar) category, and thus the number of moderately to medium-highly engaged communities have increased. Significant changes in engagement scores have also been observed in medium-highly engaged communities. The average engagement score has decreased since 2004. These changes may be driven by the decline in value landed by primary species such as sea scallops in this group of communities. 
 
 ```{r MAB-comm-engagement-trend, fig.width = 8, fig.asp = 0.4, fig.cap = "Commercial engagement scores (total pounds landed, value landed, commercial permits, and commercial dealers in a community) for Mid-Atlantic fishing communities, 2004-2018."}
 
@@ -675,9 +675,9 @@ cowplot::plot_grid(rec_div,
     theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
 ```
 
-## Probability of occupancy in offshore wind lease areas  (coastwide) 
+## Fish habitat overlap with offshore wind lease areas  (coastwide) 
 
-Habitat modeling [@friedland_changes_2020] indicates that summer flounder, butterfish, longfin squid, and spiny dogfish are among fish species highly likely to occupy wind energy lease areas (Fig. \ref{fig:wind-hab}). Habitat conditions for many of these species have become more favorable over time within wind lease areas. Table \ref{tab:wind-habitat-table} lists the top 5 species in each season most likely to occupy the wind lease areas in the northern, central, and southern portions of the MAB.
+Habitat modeling [@friedland_changes_2020] indicates that summer flounder, butterfish, longfin squid, and spiny dogfish are among fish species highly likely to occupy wind energy lease areas (Fig. \ref{fig:wind-hab}). Habitat conditions for many of these species have become more favorable over time within wind lease areas (increasing trend in probability of occupancy). Table \ref{tab:wind-habitat-table} lists the top 5 species in each season most likely to occupy the wind lease areas in the northern, central, and southern portions of the MAB, along with observed trends in probability of occupancy.
 
 ```{r wind-habitat-table, eval = T, echo = F, fig.cap='', out.width='80%'}
 wind1 <- ecodata::wind_occupancy
@@ -718,9 +718,9 @@ all<- a %>% cbind(b,c,d,e) %>%
   #        Species = Species.4, 
   #        Trend = trend.4 )
   
-kable(all,
+kable(all, escape = FALSE,
       col.names = c("Season", "Species", "Trend", "Species", "Trend", "Species","Trend", "Species","Trend", "Species", "Trend"),
-      caption = "Species with highest probability of occupancy species each season and area",
+      caption = "Species with highest probability of occupancy species each season and area, with observed trends",
       #align = 'c',
       booktabs = T) %>%
     add_header_above(c(" " = 1, "Existing - North" = 2, "Proposed - North" = 2, 
@@ -787,7 +787,7 @@ Protected species include marine mammals (under the Marine Mammal Protection Act
 While Harbor porpoise bycatch continues to be quite low as reported previously, this year saw the continuation of four Unusual Mortality Events (UMEs) for three large whale species and two seal species, with several mortalities attributed to human interactions. Strong evidence exists to suggest that the level of interaction between right whales and the combination of offshore lobster fishery in the US and snow crab fishery in Canada is contributing substantially to the decline of the species.
 
 ## Whales (coastwide)
-North Atlantic right whales are among the most endangered large whale populations in the world. Changes in right whale trends can have implications for fisheries management where fisheries interact with these whales. Additional management restrictions could have a large impact on fishing times, gears, etc. Although the population increased steadily from 1990 to 2011, it has decreased recently (Fig. \ref{fig:NARW-abundance}). Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are only about 100 reproductive adult females remaining in the population. In 2018 there were no  new calves observed, and a drop in annual calf production roughly mirrors the abundance decline (Fig. \ref{NARW-calf-abundance}), however seven new calves were born in 2019. Right whale distribution has changed since 2010. New research suggests that recent climate driven changes in ocean circulation has resulted in right whale distribution changes driven by increased warm water influx through the Northeast Channel, which has reduced the primary right whale prey (*Calanus finmarchicus*) in the central and eastern portions of the Gulf of Maine.
+North Atlantic right whales are among the most endangered large whale populations in the world. Changes in right whale trends can have implications for fisheries management where fisheries interact with these whales. Additional management restrictions could have a large impact on fishing times, gears, etc. Although the population increased steadily from 1990 to 2011, it has decreased recently (Fig. \ref{fig:NARW-abundance}). Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are only about 100 reproductive adult females remaining in the population. In 2018 there were no  new calves observed, and a drop in annual calf production roughly mirrors the abundance decline (Fig. \ref{fig:NARW-calf-abundance}), however seven new calves were born in 2019. Right whale distribution has changed since 2010. New research suggests that recent climate driven changes in ocean circulation has resulted in right whale distribution changes driven by increased warm water influx through the Northeast Channel, which has reduced the primary right whale prey (*Calanus finmarchicus*) in the central and eastern portions of the Gulf of Maine.
  
 Three large whale Unusual Mortality Events (UMEs) are ongoing for North Atlantic right whales, humpback whales, and minke whales. In all three cases human interaction appears to have contributed to increased mortalities, although investigations are not complete. Since 2017, 30 right whale mortalities have been documented, 9 in the US and 21 in Canada. During 2019, 9 dead right whales have been documented in Canada and one in the US. Three of these mortalities were determined to have been due to vessel strike while the remainder are undetermined at this time.
 
@@ -855,9 +855,9 @@ Current information suggests that gray seals eat primarily sand lance, hakes and
 
 ## Nesting seabird abundance (Virginia)
 
-Many nesting seabird species on Virginia barrier islands have declined over the last 20-25 years (https://ccbbirds.org/wp-content/uploads/CCBTR-19-06_Colonial-waterbirds-in-coastal-Virginia-2018.pdf). Between 1993 and 2018, Common Terns declined by 80.6% in coastal Virginia. Considerable declines have been documented in all 3 geographic regions that supported colonies in 1993. These declines have been attributed to habitat loss linked to sea level rise. All functional groups have declined since 1993 (Fig. \ref{VA-cote}).
+Many nesting seabird species on Virginia barrier islands have declined over the last 20-25 years^[https://ccbbirds.org/wp-content/uploads/CCBTR-19-06_Colonial-waterbirds-in-coastal-Virginia-2018.pdf]. Between 1993 and 2018, Common Terns declined by 80.6% in coastal Virginia. Considerable declines have been documented in all 3 geographic regions that supported colonies in 1993. These declines have been attributed to habitat loss linked to sea level rise. All functional groups have declined since 1993 (Fig. \ref{fig:VA-cote}).
 
-```{r VA-cote, fig.width = 5, fig.asp = 0.45, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary and Virginia Commonwealth University, Williamsburg, VA. 28 pp."}
+```{r VA-cote, fig.width = 5, fig.asp = 0.5, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary and Virginia Commonwealth University, Williamsburg, VA. 28 pp."}
 
 bird<- ecodata::seabird_MAB %>% 
   mutate(hline = mean(Value))
@@ -1030,7 +1030,7 @@ asd + depth + plot_layout(ncol = 1)
 ## Southeast US fish occurrence (coastwide)
 Preliminary analysis of NEFSC trawl survey data shows limited occurrence of South Atlantic Fishery Management Council (SAFMC) managed species groups during the fall, but almost never in spring. Lack of these species on spring surveys suggests that they are not overwintering in our region. There is no detectable trend in fall frequency of occurrence of SAFMC managed species as a group over time, nor are there detectable trends for the most common southeast US shelf species in the trawl surveys: blue runner, Spanish mackerel, chub mackerel, cobia. 
 
-Blue runner (*Caranx crysos*) was the southeast US shelf species with the highest frequency of occurrence over time. While there were no detectable trends, recent warm years have led to some observations of blue runner further north within the timing of the fall survey (Fig. \ref{blue-runner}). Four of the five the most northerly catches have happened since 2010, with the furthest north in 2012 in GOM and 3 on GB in 2018. Other indicators corroborate these observations. For example, butterfish have been observed in Gulf of Maine common tern fledgling diets between 2009-2011 and again in 2018 (New England Report Fig. 13b). As temperature and ocean circulation indicators trend toward extremes (next section), fishery management will likely face continued changes in species distribution.
+Blue runner (*Caranx crysos*) was the southeast US shelf species with the highest frequency of occurrence over time. While there were no detectable trends, recent warm years have led to some observations of blue runner further north within the timing of the fall survey (Fig. \ref{fig:blue-runner}). Four of the five the most northerly catches have happened since 2010, with the furthest north in 2012 in GOM and 3 on GB in 2018. Other indicators corroborate these observations. For example, butterfish have been observed in Gulf of Maine common tern fledgling diets between 2009-2011 and again in 2018 (New England Report Fig. 13b). As temperature and ocean circulation indicators trend toward extremes (next section), fishery management will likely face continued changes in species distribution.
 
 ```{r blue-runner, fig.cap = "Blue runner presence on Northeast Shelf"}
 blue<-ecodata::blue_runner %>% 
@@ -1324,7 +1324,7 @@ plot_grid(p1, p2, p3, p4, nrow=4)
 ```
 
 ## Fish condition (MAB)
-Fish condition, a measure of ‘fatness’ as an indicator of health and a factor that influences fecundity, is measured as the weight at a given length in relation to the average - . For this report, females of all species adequately sampled in the Mid-Atlantic Bight portion of the fall NEFSC bottom trawl survey were analyzed (rather than both sexes of MAFMC managed species across the full Northeast US Shelf as in past years). Overall, condition factor has been mixed for the past decade, in contrast to overall high condition up to 2000 and overall lower condition for 2001-2010 (Fig. \ref{fig:mab-cf}). The timing of these shifts is similar to shifts in the small-large zooplankton indicator (Fig. \ref{fig:MAB-sli}). Condition factor for some MAFMC managed species (bluefish, butterfish) were high in the MAB in 2018-2019. Black sea bass and goosefish have had generally poor condition in the MAB since 2015. Summer flounder condition has varied considerably 2016-2019 in the MAB. 
+Fish condition, a measure of ‘fatness’ as an indicator of health and a factor that influences fecundity, is measured as the weight at a given length in relation to the average. For this report, females of all species adequately sampled in the Mid-Atlantic Bight portion of the fall NEFSC bottom trawl survey were analyzed (rather than both sexes of MAFMC managed species across the full Northeast US Shelf as in past years). Overall, condition factor has been mixed for the past decade, in contrast to overall high condition up to 2000 and overall lower condition for 2001-2010 (Fig. \ref{fig:mab-cf}). The timing of these shifts is similar to shifts in the small-large zooplankton indicator (Fig. \ref{fig:MAB-sli}). Condition factor for some MAFMC managed species (bluefish, butterfish) were high in the MAB in 2018-2019. Black sea bass and goosefish have had generally poor condition in the MAB since 2015. Summer flounder condition has varied considerably 2016-2019 in the MAB. 
 
 Statistical analyses indicate that these trends in condition may be related to temperature changes and copepod size structure, but are not likely related to density dependence for most species. Fish condition is an important driver of population productivity as well as market prices, so we will investigate these potential links to changing habitat (temperature) and ecosystem productivity to evaluate whether they can inform decisions on annual catch limits. Work will continue over the coming year to explore relationships between fish condition and other indicators in this report (Fig. **2 Pager #2**)
  
@@ -1494,7 +1494,7 @@ mid
 
 ## Forage Fish Energy Content (coastwide) 
 
-Nutritional value of forage fishes as prey (energy content) is related to both environmental conditions and fish growth and reproductive cycles. Energy content is now being measured systematically on NEFSC trawl surveys, revealing both seasonal and interannual variation as well as differences from older measurements. Notably, the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) than earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (lolligo) and shortfin squid (Illex) were also lower than previous estimates. Energy density of Alewife, butterfish and Atlantic mackerel were higher than earlier estimates. Sampling and laboratory analysis is ongoing, with the goal of continuing routine monitoring of energy density of these species.
+Nutritional value of forage fishes as prey (energy content) is related to both environmental conditions and fish growth and reproductive cycles. Energy content is now being measured systematically on NEFSC trawl surveys, revealing both seasonal and interannual variation as well as differences from older measurements (Table \ref{tab:forage}). Notably, the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (*Lolligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates. Energy density of Alewife, butterfish and Atlantic mackerel were higher than earlier estimates. Sampling and laboratory analysis is ongoing, with the goal of continuing routine monitoring of energy density of these species.
 
 ```{r forage, eval=T, echo=F, out.width='80%'}
 d<-ecodata::energy_density #%>% 
@@ -1510,12 +1510,12 @@ d<-ecodata::energy_density #%>%
     #        "N" = "X",
     #        "Mean ED (SD)" = "Mean.ED..SD..5", 
     #        "Mean ED" = "Mean.ED" )
-kable(d, 
+kable(d, booktabs = T,
       col.names = c("Species", "Mean ED (SD)", "N", "Mean ED (SD)", "N",
                     "Mean ED (SD)", "N","Mean ED (SD)", "N",
                     "Mean ED (SD)", "N","Mean ED (SD)", "N"),
-      caption = "Forage fish energy content") %>% 
-  kable_styling(bootstrap_options = "striped", font_size = 9) %>% 
+      caption = "Forage fish energy density (ED) mean and standard deviation (SD) by season and year. N = number of fish sampled.") %>% 
+  kable_styling(latex_options = c("hold_position", "scale_down")) %>% 
   add_header_above(c(" " = 1, "Spring" = 2, "Fall" = 2, "Spring" = 2, "Fall" = 2, " " = 4)) %>% 
   add_header_above(c(" " = 1, "2017" = 4, "2018" = 4, "Total" = 2, "Steimle and Terranove (1985)" = 1, "Lawson et al. (1998)" = 1))
 
