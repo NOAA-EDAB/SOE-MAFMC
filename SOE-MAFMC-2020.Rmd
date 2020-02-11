@@ -670,14 +670,14 @@ cowplot::plot_grid(rec_div,
 
 Habitat modeling [@friedland_changes_2020] indicates that summer flounder, butterfish, longfin squid, and spiny dogfish are among fish species highly likely to occupy wind energy lease areas. Habitat conditions for many of these species have become more favorable over time within wind lease areas. This table lists the top 5 species in each season most likely to occupy the wind lease areas in the northern, central, and southern portions of the MAB.
 
-```{r wind_habitat_table, eval = T, echo = F, fig.cap='', out.width='80%'}
+```{r wind-habitat-table, eval = T, echo = F, fig.cap='', out.width='80%'}
 wind1 <- ecodata::wind_occupancy
 
 wind1$trend<- ifelse(wind1$Trend == "pos", 
-                    '![](images/arrow_up.png)',
+                    '![](arrow_up.png)',
                     ifelse(wind1$Trend == "neg",
-                    '![](images/arrow_down.png)', 
-                    '![](images/arrow_null.png)')) 
+                    '![](arrow_down.png)', 
+                    '![](arrow_null.png)')) 
 
 
 wind2<-wind1 %>% dplyr::select(Area, Season, Species, trend)
@@ -698,24 +698,27 @@ e<-wind2 %>% filter(Area == "Existing-South")%>%
   dplyr::rename_at(vars(names), ~ enew)
 
 all<- a %>% cbind(b,c,d,e) %>% 
-  dplyr::select(2:4,7:8,11:12,15:16,19:20) %>% 
-  rename(Trend = trend, 
-         Species = Species.1, 
-         Trend = trend.1, 
-         Species = Species.2, 
-         Trend = trend.2, 
-         Species = Species.3, 
-         Trend = trend.3, 
-         Species = Species.4, 
-         Trend = trend.4 )
+  dplyr::select(2:4,7:8,11:12,15:16,19:20) #%>% 
+  # rename(Trend = trend, 
+  #        Species = Species.1, 
+  #        Trend = trend.1, 
+  #        Species = Species.2, 
+  #        Trend = trend.2, 
+  #        Species = Species.3, 
+  #        Trend = trend.3, 
+  #        Species = Species.4, 
+  #        Trend = trend.4 )
   
-
-all %>% kable(format = "html") %>%
-  kable_styling("striped", "condensed", font_size = 9) %>%
-  collapse_rows(1) %>% 
-  add_header_above(c(" " = 1, "Existing - North" = 2, "Proposed - North" = 2, 
+kable(all,
+      col.names = c("Season", "Species", "Trend", "Species", "Trend", "Species","Trend", "Species","Trend", "Species", "Trend"),
+      caption = "Species with highest probability of occupancy species each season and area",
+      #align = 'c',
+      booktabs = T) %>%
+    add_header_above(c(" " = 1, "Existing - North" = 2, "Proposed - North" = 2, 
                      "Existing - Mid" = 2, "Proposed - Mid" = 2, 
-                     "Existing - South" = 2)) 
+                     "Existing - South" = 2)) %>%
+  kable_styling(latex_options = c("hold_position", "scale_down")) 
+
 ```
 
 
@@ -843,7 +846,7 @@ Current information suggests that gray seals eat primarily sand lance, hakes and
 
 Many nesting seabird species on Virginia barrier islands have declined over the last 20-25 years (https://ccbbirds.org/wp-content/uploads/CCBTR-19-06_Colonial-waterbirds-in-coastal-Virginia-2018.pdf). Between 1993 and 2018, Common Terns declined by 80.6% in coastal Virginia. Considerable declines have been documented in all 3 geographic regions that supported colonies in 1993. These declines have been attributed to habitat loss linked to sea level rise. All functional groups have declined since 1993 (Fig \ref{VA-cote}).
 
-```{r VA-cote, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary & Virginia Commonwealth University, Williamsburg, VA. 28 pp. "}
+```{r VA-cote, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary and Virginia Commonwealth University, Williamsburg, VA. 28 pp. "}
 bird<- ecodata::seabird_MAB %>% 
   mutate(hline = mean(Value))
 
@@ -1482,20 +1485,24 @@ mid
 Nutritional value of forage fishes as prey (energy content) is related to both environmental conditions and fish growth and reproductive cycles. Energy content is now being measured systematically on NEFSC trawl surveys, revealing both seasonal and interannual variation as well as differences from older measurements. Notably, the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) than earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (lolligo) and shortfin squid (Illex) were also lower than previous estimates. Energy density of Alewife, butterfish and Atlantic mackerel were higher than earlier estimates. Sampling and laboratory analysis is ongoing, with the goal of continuing routine monitoring of energy density of these species.
 
 ```{r forage, eval=T, echo=F}
-d<-ecodata::energy_density %>% 
-    rename("Mean ED (SD)" = "Mean.ED..SD.", 
-           "N" = "n",
-           "Mean ED (SD)" = "Mean.ED..SD..1", 
-           "N" = "n.1", 
-           "Mean ED (SD)" = "Mean.ED..SD..2", 
-           "N" = "n.2", 
-           "Mean ED (SD)" = "Mean.ED..SD..3", 
-           "N" = "n.3",
-           "Mean ED (SD)" = "Mean.ED..SD..4", 
-           "N" = "X",
-           "Mean ED (SD)" = "Mean.ED..SD..5", 
-           "Mean ED" = "Mean.ED" )
-kable(d, caption = "Forage fish energy content") %>% 
+d<-ecodata::energy_density #%>% 
+    # rename("Mean ED (SD)" = "Mean.ED..SD.", 
+    #        "N" = "n",
+    #        "Mean ED (SD)" = "Mean.ED..SD..1", 
+    #        "N" = "n.1", 
+    #        "Mean ED (SD)" = "Mean.ED..SD..2", 
+    #        "N" = "n.2", 
+    #        "Mean ED (SD)" = "Mean.ED..SD..3", 
+    #        "N" = "n.3",
+    #        "Mean ED (SD)" = "Mean.ED..SD..4", 
+    #        "N" = "X",
+    #        "Mean ED (SD)" = "Mean.ED..SD..5", 
+    #        "Mean ED" = "Mean.ED" )
+kable(d, 
+      col.names = c("Species", "Mean ED (SD)", "N", "Mean ED (SD)", "N",
+                    "Mean ED (SD)", "N","Mean ED (SD)", "N",
+                    "Mean ED (SD)", "N","Mean ED (SD)", "N"),
+      caption = "Forage fish energy content") %>% 
   kable_styling(bootstrap_options = "striped", font_size = 9) %>% 
   add_header_above(c(" " = 1, "Spring" = 2, "Fall" = 2, "Spring" = 2, "Fall" = 2, " " = 4)) %>% 
   add_header_above(c(" " = 1, "2017" = 4, "2018" = 4, "Total" = 2, "Steimle and Terranove (1985)" = 1, "Lawson et al. (1998)" = 1))
