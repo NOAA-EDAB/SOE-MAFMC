@@ -164,7 +164,7 @@ knitr::kable(mng_obj,
 
 The objectives of U.S. federal fishery management include providing benefits to the Nation in terms of seafood production and recreational opportunities, while considering economic efficiency and effects on coastal communities. The indicators in this section consider these objectives for commercial and recreational fishing sectors separately where possible. 
 
-Despite mostly meeting fishery management objectives at the single species level (Fig. \ref{fig:stock-status}), long term declines in total seafood production and commercial revenue remain apparent. Indicators highlight a declining diversity of recreational opportunities (fishing modes and species). Further, coastal communities with high fishery engagement and reliance are dependent on a smaller number of species than historically, these species are predominantly high valued shellfish vulnerable to increased ocean temperature and acidification.  New analysis of wind energy lease areas and modeled habitat occupancy highlights which species are most likely to be found in wind development  areas seasonally \ref{fig:wind-hab}).
+Despite mostly meeting fishery management objectives at the single species level (Fig. \ref{fig:stock-status}), long term declines in total seafood production and commercial revenue remain apparent. Indicators highlight a declining diversity of recreational opportunities (fishing modes and species). Further, coastal communities with high fishery engagement and reliance are dependent on a smaller number of species than historically, these species are predominantly high valued shellfish vulnerable to increased ocean temperature and acidification.  New analysis of wind energy lease areas and modeled habitat occupancy highlights which species are most likely to be found in wind development areas seasonally \ref{fig:wind-hab}).
 
 
 ## Commercial sector (MAB)
@@ -173,7 +173,7 @@ The amount of potential yield we can expect from a marine ecosystem depends on t
 
 Primary production required has declined over the past 20 years (Fig. \ref{fig:ppr-mab}). There is also an apparent cyclical pattern. The overall trend is largely driven by the decrease in landings with an increase in primary production over the same period. The landings in many of the years are dominated by species at lower trophic levels (scallops and clams). The periodicity in the PPR index reflects both the periodicity in primary production (see Figure 31) and the periodicity in the closed areas for scallop harvest.
 
-```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels."}
+```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 4, fig.asp = 0.45}
 ecodata::ppr %>% 
   group_by(EPU) %>% 
   mutate(hline = mean(Value)) %>% 
@@ -429,9 +429,8 @@ ggplot(data = indicators)+
 Commercial fleet diversity indices were updated with 2018 data and remain near the long term average^[https://noaa-edab.github.io/ecodata/human_dimensions#mid-atlantic].
 
 The trend in the number of Mid-Atlantic fishing communities that were highly engaged (red bar) in commercial fishing has shown a decrease since 2004 (Fig. \ref{fig:MAB-comm-engagement-trend}). Some of the communities that were highly engaged have moved into the moderate (blue bar) or medium-high (orange bar) category, and thus the number of moderately to medium-highly engaged communities have increased. Significant changes in engagement scores have also been observed in medium-highly engaged communities. The average engagement score has decreased since 2004. These changes may be driven by the decline in value landed by primary species such as sea scallops in this group of communities. 
- (Fig. \ref{fig:MAB-comm-reliance-maps-outlined}).
 
-```{r MAB-comm-engagement-trend, fig.height = 8, fig.cap = "Commercial engagement scores (total pounds landed, value landed, commercial permits and commercial dealers in a community ) for  Mid-Atlantic fishing communities, 2004-2018."}
+```{r MAB-comm-engagement-trend, fig.width = 4, fig.asp = 1.0, fig.cap = "Commercial engagement scores (total pounds landed, value landed, commercial permits and commercial dealers in a community ) for  Mid-Atlantic fishing communities, 2004-2018."}
 eng<-ecodata::engagement %>% 
   filter(!Var == "med.high.scores")
 eng$Var <- factor(eng$Var, levels = c("%High","%Medium High","%Moderate", "%Low"))
@@ -520,7 +519,7 @@ ggplot(data = landings_rec)+
 
 Updated indicators for recreational opportunities (effort days) show general increases since the 1990s, peaking in the late 2000s and declining since then. This is similar to previously reported trends (Fig. \ref{fig:rec-op}).
 
-```{r rec-op, fig.width = 4, fig.asp = 0.8, fig.cap = paste0("Recreational effort and number of recreational anglers in the ",region,".")}
+```{r rec-op, fig.width = 4, fig.asp = 0.45, fig.cap = paste0("Recreational effort in the ",region,".")}
 recdat <- ecodata::recdat %>% 
   filter(EPU == region_abbr) %>% 
   group_by(Var) %>% 
@@ -811,7 +810,7 @@ ecodata::narw %>%
   theme_ts()
 ```
 
-```{r NARW-calf-abundance, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2019."}
+```{r NARW-calf-abundance, fig.width = 5, fig.asp = 0.45, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2019."}
 
 ecodata::narw %>% 
   dplyr::filter(Var == "Calves") %>%
@@ -844,9 +843,10 @@ Current information suggests that gray seals eat primarily sand lance, hakes and
 
 ## Nesting seabird abundance (Virginia)
 
-Many nesting seabird species on Virginia barrier islands have declined over the last 20-25 years (https://ccbbirds.org/wp-content/uploads/CCBTR-19-06_Colonial-waterbirds-in-coastal-Virginia-2018.pdf). Between 1993 and 2018, Common Terns declined by 80.6% in coastal Virginia. Considerable declines have been documented in all 3 geographic regions that supported colonies in 1993. These declines have been attributed to habitat loss linked to sea level rise. All functional groups have declined since 1993 (Fig \ref{VA-cote}).
+Many nesting seabird species on Virginia barrier islands have declined over the last 20-25 years (https://ccbbirds.org/wp-content/uploads/CCBTR-19-06_Colonial-waterbirds-in-coastal-Virginia-2018.pdf). Between 1993 and 2018, Common Terns declined by 80.6% in coastal Virginia. Considerable declines have been documented in all 3 geographic regions that supported colonies in 1993. These declines have been attributed to habitat loss linked to sea level rise. All functional groups have declined since 1993 (Fig. \ref{VA-cote}).
 
-```{r VA-cote, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary and Virginia Commonwealth University, Williamsburg, VA. 28 pp. "}
+```{r VA-cote, fig.width = 5, fig.asp = 0.45, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary and Virginia Commonwealth University, Williamsburg, VA. 28 pp."}
+
 bird<- ecodata::seabird_MAB %>% 
   mutate(hline = mean(Value))
 
@@ -940,7 +940,7 @@ ggplot(data = stock_status) +
 Trends for a suite of 48 commercially or ecologically important species along the entire Northeast Shelf continue to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:spec-dist}). Marine mammal distribution maps are available online^[https://www.nefsc.noaa.gov/AMAPPSviewer/]; updated maps and trends are currently being developed.
  
 
-```{r spec-dist,fig.width = 4, fig.asp = 1.2, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem. Along-shelf distance measures the center of biomass along an axis oriented from the southwest to the northwest generally following the slope of coastline."}
+```{r spec-dist,fig.width = 4, fig.asp = 1.0, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem. Along-shelf distance measures the center of biomass along an axis oriented from the southwest to the northwest generally following the slope of coastline."}
 
 spec_dist <- ecodata::species_dist %>% 
   group_by(Var) %>% 
@@ -1317,7 +1317,7 @@ Fish condition, a measure of ‘fatness’ as an indicator of health and a facto
 Statistical analyses indicate that these trends in condition may be related to temperature changes and copepod size structure, but are not likely related to density dependence for most species. Fish condition is an important driver of population productivity as well as market prices, so we will investigate these potential links to changing habitat (temperature) and ecosystem productivity to evaluate whether they can inform decisions on annual catch limits. Work will continue over the coming year to explore relationships between fish condition and other indicators in this report (Fig. **2 Pager #2**)
  
 
-```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB. MAB data are missing for 2017 due to survey delays.", out.width = '\\textwidth'}
+```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB. MAB data are missing for 2017 due to survey delays.", out.width = '100%'}
 
 knitr::include_graphics(file.path(image.dir, "MABcondition_2019_viridis_final.jpg"))
 
@@ -1484,7 +1484,7 @@ mid
 
 Nutritional value of forage fishes as prey (energy content) is related to both environmental conditions and fish growth and reproductive cycles. Energy content is now being measured systematically on NEFSC trawl surveys, revealing both seasonal and interannual variation as well as differences from older measurements. Notably, the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) than earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (lolligo) and shortfin squid (Illex) were also lower than previous estimates. Energy density of Alewife, butterfish and Atlantic mackerel were higher than earlier estimates. Sampling and laboratory analysis is ongoing, with the goal of continuing routine monitoring of energy density of these species.
 
-```{r forage, eval=T, echo=F}
+```{r forage, eval=T, echo=F, out.width='80%'}
 d<-ecodata::energy_density #%>% 
     # rename("Mean ED (SD)" = "Mean.ED..SD.", 
     #        "N" = "n",
@@ -1613,7 +1613,7 @@ gsi %>%
 
 Concurrently, large amplitude Gulf Stream meanders are forming more frequently further west [@andres_recent_2016]. There has also been a regime shift since 2000 after which there has been a significant increase in the number of warm core rings formed each year (Fig \ref{warm-core-rings}; @gangopadhyay_observed_2019. The greater number of warm core rings increases the probability of intrusions of warm/salty Gulf Stream water onto the continental shelf as well as the rate at which the geographical centroid of marine species moves to the north [@gangopadhyay_observed_2019].
 
-```{r warm-core-rings, fig.cap= "Interannual Variability of the WCR formation between 1980 and 2019. The regime shift (denoted by the split in the red solid line) is significant at the turn of the century.  Figure reproduced with permission from Gangopadhyay, et al. (2019).  2018 and 2019 data points based on personal communication with A. Gangopadhyay (2020)."}
+```{r warm-core-rings, fig.width = 4, fig.asp = 0.45, fig.cap= "Interannual Variability of the WCR formation between 1980 and 2019. The regime shift (denoted by the split in the red solid line) is significant at the turn of the century.  Figure reproduced with permission from Gangopadhyay, et al. (2019).  2018 and 2019 data points based on personal communication with A. Gangopadhyay (2020)."}
 upper.line<-ecodata::wcr %>%
   filter(Time>2000) %>% 
   mutate(hline = c(mean(Value)))
@@ -1862,7 +1862,7 @@ ggplot2::ggplot() +
 ## Cold pool index (MAB) 
 Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017]. The average temperature of the cold pool has been getting warmer over time (Fig. \ref{cold-pool}) and the area of the cold pool is shrinking.  These changes can affect distribution and migration timing for species that depend on the cold pool habitat [@miller_state-space_2016].  
 
-```{r cold-pool, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
+```{r cold-pool, fig.width = 4, fig.asp = 0.45, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
 
 ecodata::cold_pool %>% 
     mutate(hline = mean(Value, na.rm = T)) %>% 
@@ -1886,11 +1886,11 @@ ecodata::cold_pool %>%
 ```
 
 ## Marine heat waves (MAB) 
-Marine heatwaves measure not just temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. Heatwaves are measured in terms of intensity (the highest water temperature) and duration (the number of days temperatures are unusually high) using satellite measurements of daily sea surface temperature. Plotted below are maximum intensity and cumulative intensity, which is intensity times duration. Here we define a marine heatwave as a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2010) [@hobday_hierarchical_2016].    
+Marine heatwaves measure not just temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. Marine heatwaves are measured in terms of intensity (water temperature) and duration (the cumulative number of degree days) using satellite measurements of daily sea surface temperature. Plotted below are maximum intensity and cumulative intensity, which is intensity times duration. Here we define a marine heatwave as a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2010) [@hobday_hierarchical_2016].    
 
 The strongest heatwaves on record in the Middle Atlantic Bight occurred in the winter of 2012 in terms of maximum intensity (+5.13 oC above average) and in the winter/summer of 2012 in terms of cumulative intensity (515 oC-days; Fig. \ref{heatwave-mab}).  In 2019, the Middle Atlantic Bight experienced six distinct marine heatwaves in the spring, summer, and fall with one of the strongest events beginning on July 3 and lasting 21 days (Figs. \ref{MAB-heatwave1}, \ref{mab-heatwave-max}).  Relative to prior years, this marine heatwave ranked 17th on record in terms of maximum intensity (+2.88 oC above average on Jul 22).  Another strong marine heatwave began on Aug 1 and lasted 24 days, which was 20th on record in terms of cumulative intensity (46 oC-days).
 
-```{r heatwave-mab, fig.cap="Marine heatwave cumulative intesity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
+```{r heatwave-mab, fig.width = 8, fig.asp = 0.45, fig.cap="Marine heatwave cumulative intesity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
 
 cumu <- ecodata::heatwave %>% 
   filter(Var == "cumulative intensity") %>% 
@@ -2022,7 +2022,7 @@ pp_cci
 ```
 
 
-```{r mab-chl-weekly,fig.width = 5, fig.asp = 0.45, fig.cap = "Weekly chlorophyll concentrations in the Mid-Atlantic are shown by the colored line for 2019. The long-term mean is shown in black, and shading indicates +/- 1 sample SD."}
+```{r mab-chl-weekly,fig.width = 5, fig.asp = 0.9, fig.cap = "Weekly chlorophyll concentrations in the Mid-Atlantic are shown by the colored line for 2019. The long-term mean is shown in black, and shading indicates +/- 1 sample SD."}
 
 interp_chl_pp <- function(epu, year = 2019, Variable){
   out <- ecodata::chl_pp %>% 
@@ -2102,7 +2102,7 @@ knitr::include_graphics(file.path(image.dir,"CHL_SEASONAL_ANOMS_2019.png"))
 ## Zooplankton (MAB)
 The most abundant zooplankton species in the MAB are the small-bodied species  *Centropages typicus*, *Psuedocalanus* spp., and *Temora longicornis* [@morse_distinct_2017]. The large-bodied species *Calanus finmarchicus* is also abundant in the MAB and is an important prey for larval fish and the North Atlantic right whale.  The mean abundance of small-bodied copepods was slightly above average in 2018 (Fig. \ref{fig:MAB-zoo-abund}).  This increase in abundance from the previous year was driven by all members of the small-bodied taxa above in addition to *Centropages hamatus*. While the long term trend in *Psuedocalanus* abundcance remains significantly negative in the MAB, 2018 abundance values were slightly above the long term mean and were the highest abundance values in the MAB since 1998 for this species. *Calanus finmarchicus* abundance was also higher in 2018 than in the previous 10 years, following a period of lower abundance between 2014-2017 (Fig. \ref{fig:MAB-zoo-abund}).
 
-```{r MAB-zoo-abund, fig.width = 8, fig.asp = .35, fig.cap = "Abundance anomaly time series for key zooplankton size groups found in the MAB"}
+```{r MAB-zoo-abund, fig.width = 5, fig.asp = .45, fig.cap = "Abundance anomaly time series for key zooplankton size groups found in the MAB"}
 ecodata::zoo_abund%>%
    filter(EPU == epu_abbr) %>%
    group_by(Time) %>% 
@@ -2132,7 +2132,7 @@ ecodata::zoo_abund%>%
 
 Cnidarians (jellyfish) exhibit an increasing trend in abundance over the long term  record, and higher than normal abundance during the 1990's when the abundance of small-bodied copepods was highest (Fig. \ref{MAB-euph-cnid}). Euphausiids (krill), important prey items for many fish species, also exhibit a long term increasing trend in abundance in the MAB (Fig. \ref{MAB-euph-cnid}).
 
-```{r MAB-euph-cnid, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."}
+```{r MAB-euph-cnid, fig.width = 8, fig.asp = .45, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."}
 zoo_abund <- ecodata::zoo_strat_abun %>% 
   filter(EPU == epu_abbr,
          !str_detect(Var, "Small|Large")) %>% 
