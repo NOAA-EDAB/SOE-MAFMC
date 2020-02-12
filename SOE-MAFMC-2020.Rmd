@@ -675,6 +675,8 @@ cowplot::plot_grid(rec_div,
     theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
 ```
 
+Additional social indicators for Mid-Atlantic communities are available online^[https://www.st.nmfs.noaa.gov/humandimensions/social-indicators/]. 
+
 ## Fish habitat overlap with offshore wind lease areas  (coastwide) 
 
 Habitat modeling [@friedland_changes_2020] indicates that summer flounder, butterfish, longfin squid, and spiny dogfish are among fish species highly likely to occupy wind energy lease areas (Fig. \ref{fig:wind-hab}). Habitat conditions for many of these species have become more favorable over time within wind lease areas (increasing trend in probability of occupancy). Table \ref{tab:wind-habitat-table} lists the top 5 species in each season most likely to occupy the wind lease areas in the northern, central, and southern portions of the MAB, along with observed trends in probability of occupancy.
