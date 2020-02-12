@@ -1958,7 +1958,7 @@ mab.hw %>%
 ```{r MAB-heatwave1, eval= T, echo = F, out.width = "50%", fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2019."}
 
 #knitr::include_graphics(file.path(image.dir,"MAB_Heatwave_timeseries.jpg"))
-knitr::include_graphics(file.path(image.dir,"MAB_heatwaves.jpeg"))
+knitr::include_graphics(file.path(image.dir,"MAB_heatwave.jpeg"))
 
 ```
 
