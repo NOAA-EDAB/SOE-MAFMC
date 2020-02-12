@@ -2127,7 +2127,7 @@ knitr::include_graphics(file.path(image.dir,"CHL_SEASONAL_ANOMS_2019.png"))
 ## Zooplankton (MAB)
 The most abundant zooplankton species in the MAB are the small-bodied species  *Centropages typicus*, *Psuedocalanus* spp., and *Temora longicornis* [@morse_distinct_2017]. The large-bodied species *Calanus finmarchicus* is also abundant in the MAB and is an important prey for larval fish and the North Atlantic right whale.  The mean abundance of small-bodied copepods was slightly above average in 2018 (Fig. \ref{fig:MAB-zoo-abund}).  This increase in abundance from the previous year was driven by all members of the small-bodied taxa above in addition to *Centropages hamatus*. While the long term trend in *Psuedocalanus* abundcance remains significantly negative in the MAB, 2018 abundance values were slightly above the long term mean and were the highest abundance values in the MAB since 1998 for this species. *Calanus finmarchicus* abundance was also higher in 2018 than in the previous 10 years, following a period of lower abundance between 2014-2017 (Fig. \ref{fig:MAB-zoo-abund}).
 
-```{r MAB-zoo-abund, fig.width = 5, fig.asp = .45, fig.cap = "Abundance anomaly time series for key zooplankton size groups found in the MAB"}
+```{r MAB-zoo-abund, fig.width = 5, fig.asp = .45, fig.cap = "Abundance anomaly time series for copepod size groups found in the MAB."}
 ecodata::zoo_abund%>%
    filter(EPU == epu_abbr) %>%
    group_by(Time) %>% 
