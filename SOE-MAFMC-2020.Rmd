@@ -2157,7 +2157,7 @@ ecodata::zoo_abund%>%
 
 Cnidarians (jellyfish) exhibit an increasing trend in abundance over the long term  record, and higher than normal abundance during the 1990's when the abundance of small-bodied copepods was highest (Fig. \ref{fig:MAB-euph-cnid}). Euphausiids (krill), important prey items for many fish species, also exhibit a long term increasing trend in abundance in the MAB (Fig. \ref{fig:MAB-euph-cnid}).
 
-```{r MAB-euph-cnid, fig.width = 8, fig.asp = .35, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."}
+```{r MAB-euph-cnid, fig.width = 8, fig.asp = .25, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."}
 zoo_abund <- ecodata::zoo_strat_abun %>% 
   filter(EPU == epu_abbr,
          !str_detect(Var, "Small|Large")) %>% 
@@ -2189,9 +2189,9 @@ zoo_abund %>%
 
 ```
 
-Fluctuations in primary production over time (Fig. \ref{fig:NE-sli})  may relate to observed patterns in copeopod size structure (Fig. \ref{fig:NE-zoo-abund}). This period also corresponds with regime shifts in fish recruitment [@perretti_regime_2017].
+Fluctuations in primary production over time (Fig. \ref{fig:MAB-sli})  may relate to observed patterns in copeopod size structure (Fig. \ref{fig:MAB-zoo-abund}). This period also corresponds with regime shifts in fish recruitment [@perretti_regime_2017].
 
-```{r MAB-sli, fig.width = 4, fig.asp = 0.9, fig.cap = "MAB small-large zooplankton index and the annual primary production anomaly."}
+```{r MAB-sli, fig.width = 4, fig.asp = 0.45, fig.cap = "MAB small-large zooplankton index and the annual primary production anomaly."}
  # sli <- ecodata::zoo_sli_anom %>%   
  #   filter(EPU == epu_abbr,  
  #          str_detect(Var, "Sm-Lg copepod anom")) %>%   
