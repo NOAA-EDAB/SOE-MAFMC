@@ -861,9 +861,9 @@ The number of grey seals (*Halichoerus grypus*) in U.S. waters has risen dramati
 
 Current information suggests that gray seals eat primarily sand lance, hakes and flatfish, and squids, while harbor seals consume a variety of groundfish (hakes, cod, haddock, flatfish), redfish, herring and squids, however much of this information comes from juvenile animals and more research is needed on animals at other life stages. Additional analysis of gray and harbor seal diet is currently underway at the NEFSC using a variety of techniques (analysis of stomach contents, fatty acids, and DNA). This information can eventually be coupled with estimates of population abundance and consumption rates to estimate total biomass removals of fish due to pinniped predation. 
 
-## Nesting seabird abundance (Virginia)
+## Nesting waterbird abundance (Virginia)
 
-Many nesting seabird species on Virginia barrier islands have declined over the last 20-25 years^[https://ccbbirds.org/wp-content/uploads/CCBTR-19-06_Colonial-waterbirds-in-coastal-Virginia-2018.pdf]. Between 1993 and 2018, Common Terns declined by 80.6% in coastal Virginia. Considerable declines have been documented in all 3 geographic regions that supported colonies in 1993. These declines have been attributed to habitat loss linked to sea level rise. All functional groups have declined since 1993 (Fig. \ref{fig:VA-cote}).
+Many nesting waterbird species on Virginia barrier islands have declined over the last 20-25 years^[https://ccbbirds.org/wp-content/uploads/CCBTR-19-06_Colonial-waterbirds-in-coastal-Virginia-2018.pdf]. Between 1993 and 2018, Common Terns declined by 80.6% in coastal Virginia. Considerable declines have been documented in all 3 geographic regions that supported colonies in 1993. These declines have been attributed to habitat loss linked to sea level rise. All functional groups have declined since 1993 (Fig. \ref{fig:VA-cote}).
 
 ```{r VA-cote, fig.width = 5, fig.asp = 0.5, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary and Virginia Commonwealth University, Williamsburg, VA. 28 pp."}
 
@@ -880,7 +880,7 @@ bird %>%
   geom_point(aes(x = Time, y = Value, color = Group), size = pcex-0.75) +
   #geom_gls(aes(x = Time, y = Value)) +
   scale_x_continuous(expand = c(0.01, 0.01),limits = c(1991,2018)) +
-  ggtitle("Seabird Abundance") +
+  ggtitle("Colonial Waterbird Abundance") +
   ylab(expression("Number of Breeding Pairs")) +
   xlab("")+
   geom_hline(aes(yintercept = hline),
@@ -2257,7 +2257,7 @@ Changes in primary productivity, phytoplankton and zooplankton composition and a
 
 **Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Chris Orphanides 
 
-**Contributors** (NEFSC unless otherwise noted): Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institute), Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Vincent Saba, Laurel Smith, John Walden, Harvey Walsh, Mark Wuenschel.  
+**Contributors** (NEFSC unless otherwise noted): Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Ruth Boettcher (Virginia Department of Game and Inland Fisheries), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institute), Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Vincent Saba, Laurel Smith, John Walden, Harvey Walsh, Mark Wuenschel.  
 
 
 \newpage 
