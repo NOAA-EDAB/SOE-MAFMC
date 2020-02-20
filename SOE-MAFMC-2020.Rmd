@@ -1502,7 +1502,7 @@ mid
 
 ## Forage fish energy content (coastwide) 
 
-Nutritional value of forage fishes as prey (energy content) is related to both environmental conditions and fish growth and reproductive cycles. Energy content is now being measured systematically on NEFSC trawl surveys, revealing both seasonal and interannual variation as well as differences from older measurements (Table \ref{tab:forage}). Notably, the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (*Loligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates. Energy density of Alewife, butterfish and Atlantic mackerel were higher than earlier estimates. Sampling and laboratory analysis is ongoing, with the goal of continuing routine monitoring of energy density of these species.
+Nutritional value of forage fishes as prey (energy content) is related to both environmental conditions and fish growth and reproductive cycles. Energy content is now being measured systematically on NEFSC trawl surveys, revealing both seasonal and interannual variation as well as differences from older measurements (Table \ref{tab:forage}). Notably, the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (*Loligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of Alewife, butterfish and Atlantic mackerel were higher than earlier estimates. Sampling and laboratory analysis is ongoing, with the goal of continuing routine monitoring of energy density of these species.
 
 ```{r forage, eval=T, echo=F, out.width='80%'}
 d<-ecodata::energy_density #%>% 
@@ -1957,7 +1957,8 @@ mab.hw %>%
 
 ```{r MAB-heatwave1, eval= T, echo = F, out.width = "50%", fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2019."}
 
-knitr::include_graphics(file.path(image.dir,"MAB_Heatwave_timeseries.jpg"))
+#knitr::include_graphics(file.path(image.dir,"MAB_Heatwave_timeseries.jpg"))
+knitr::include_graphics(file.path(image.dir,"MAB_heatwave.jpeg"))
 
 ```
 
@@ -2010,7 +2011,7 @@ mab_map
 
 
 ## Primary production (MAB)
-Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem . There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2019 had an early above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with above average blooms in the central portion of the shelf Fig. \ref{fig:MAB-chl-map}).
+Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem . There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2019 had an early above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with above average blooms in the central portion of the shelf (Fig. \ref{fig:MAB-chl-map}).
 
 ```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
 out_pp <- ecodata::chl_pp %>% 
@@ -2126,7 +2127,7 @@ knitr::include_graphics(file.path(image.dir,"CHL_SEASONAL_ANOMS_2019.png"))
 ## Zooplankton (MAB)
 The most abundant zooplankton species in the MAB are the small-bodied species  *Centropages typicus*, *Psuedocalanus* spp., and *Temora longicornis* [@morse_distinct_2017]. The large-bodied species *Calanus finmarchicus* is also abundant in the MAB and is an important prey for larval fish and the North Atlantic right whale.  The mean abundance of small-bodied copepods was slightly above average in 2018 (Fig. \ref{fig:MAB-zoo-abund}).  This increase in abundance from the previous year was driven by all members of the small-bodied taxa above in addition to *Centropages hamatus*. While the long term trend in *Psuedocalanus* abundcance remains significantly negative in the MAB, 2018 abundance values were slightly above the long term mean and were the highest abundance values in the MAB since 1998 for this species. *Calanus finmarchicus* abundance was also higher in 2018 than in the previous 10 years, following a period of lower abundance between 2014-2017 (Fig. \ref{fig:MAB-zoo-abund}).
 
-```{r MAB-zoo-abund, fig.width = 5, fig.asp = .45, fig.cap = "Abundance anomaly time series for key zooplankton size groups found in the MAB"}
+```{r MAB-zoo-abund, fig.width = 5, fig.asp = .45, fig.cap = "Abundance anomaly time series for copepod size groups found in the MAB."}
 ecodata::zoo_abund%>%
    filter(EPU == epu_abbr) %>%
    group_by(Time) %>% 
@@ -2156,7 +2157,7 @@ ecodata::zoo_abund%>%
 
 Cnidarians (jellyfish) exhibit an increasing trend in abundance over the long term  record, and higher than normal abundance during the 1990's when the abundance of small-bodied copepods was highest (Fig. \ref{fig:MAB-euph-cnid}). Euphausiids (krill), important prey items for many fish species, also exhibit a long term increasing trend in abundance in the MAB (Fig. \ref{fig:MAB-euph-cnid}).
 
-```{r MAB-euph-cnid, fig.width = 8, fig.asp = .35, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."}
+```{r MAB-euph-cnid, fig.width = 8, fig.asp = .25, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."}
 zoo_abund <- ecodata::zoo_strat_abun %>% 
   filter(EPU == epu_abbr,
          !str_detect(Var, "Small|Large")) %>% 
@@ -2188,13 +2189,13 @@ zoo_abund %>%
 
 ```
 
-Changes in the abundance of the larger *Calanus finmarchicus* are also reflected in the size distribution of the copepods. The small-large copepod index is a measure of the relative size composition of the dominant copepod taxa. During the 1990s and early 2000s the positive index was driven by high relative abundance of smaller bodied copepods and a lower relative abundance of *Calanus finmarchicus*. This period was also identified with regime shifts to lower fish recruitment [@perretti_regime_2017]. The current trend in the index suggests an increase in the relative abundance of smaller bodied copepods (Fig. \ref{fig:MAB-sli}).
+Fluctuations in primary production over time (Fig. \ref{fig:MAB-sli})  may relate to observed patterns in copeopod size structure (Fig. \ref{fig:MAB-zoo-abund}). This period also corresponds with regime shifts in fish recruitment [@perretti_regime_2017].
 
-```{r MAB-sli, fig.width = 4, fig.asp = 0.9, fig.cap = "MAB small-large zooplankton index and the annual primary production anomaly."}
- sli <- ecodata::zoo_sli_anom %>%   
-   filter(EPU == epu_abbr,  
-          str_detect(Var, "Sm-Lg copepod anom")) %>%   
-   mutate(hline = 0)   
+```{r MAB-sli, fig.width = 4, fig.asp = 0.45, fig.cap = "MAB small-large zooplankton index and the annual primary production anomaly."}
+ # sli <- ecodata::zoo_sli_anom %>%   
+ #   filter(EPU == epu_abbr,  
+ #          str_detect(Var, "Sm-Lg copepod anom")) %>%   
+ #   mutate(hline = 0)   
 
  pp_anom <- ecodata::chl_pp %>%   
    filter(str_detect(Var, "ANNUAL_PPD_RATIO_ANOMALY"),  
@@ -2203,26 +2204,26 @@ Changes in the abundance of the larger *Calanus finmarchicus* are also reflected
           Time = as.numeric(as.character(Time)),  
           Var = "ANNUAL_PPD_RATIO_ANOMALY")  
 
- sli_plt <- sli %>%   
-   ggplot(aes(x = Time, y = Value, group = Var)) +  
-          annotate("rect", fill = shade.fill, alpha = shade.alpha,  
-        xmin = x.shade.min , xmax = x.shade.max,  
-        ymin = -Inf, ymax = Inf) +  
-    geom_line() +  
-    geom_point() +  
-    guides(color = F) +  
-    xlab("")+  
-    ylab("Small-large abundance") +  
-    ggtitle("Small-large copepod abundance") +  
-      scale_x_continuous(expand = c(0.01, 0.01), limits = c(1998, 2018))+  
-        geom_hline(aes(yintercept = hline,  
-                       group = Var),  
-             size = hline.size,  
-             alpha = hline.alpha,  
-             linetype = hline.lty)+  
-    theme_ts() +  
-    theme(strip.text=element_text(hjust=0,  
-                                  face = "italic"))  
+ # sli_plt <- sli %>%   
+ #   ggplot(aes(x = Time, y = Value, group = Var)) +  
+ #          annotate("rect", fill = shade.fill, alpha = shade.alpha,  
+ #        xmin = x.shade.min , xmax = x.shade.max,  
+ #        ymin = -Inf, ymax = Inf) +  
+ #    geom_line() +  
+ #    geom_point() +  
+ #    guides(color = F) +  
+ #    xlab("")+  
+ #    ylab("Small-large abundance") +  
+ #    ggtitle("Small-large copepod abundance") +  
+ #      scale_x_continuous(expand = c(0.01, 0.01), limits = c(1998, 2018))+  
+ #        geom_hline(aes(yintercept = hline,  
+ #                       group = Var),  
+ #             size = hline.size,  
+ #             alpha = hline.alpha,  
+ #             linetype = hline.lty)+  
+ #    theme_ts() +  
+ #    theme(strip.text=element_text(hjust=0,  
+ #                                  face = "italic"))  
 
   pp_anom_plt <- pp_anom %>%   
       ggplot(aes(x = Time, y = Value, group = Var)) +  
@@ -2246,8 +2247,8 @@ Changes in the abundance of the larger *Calanus finmarchicus* are also reflected
     theme(strip.text=element_text(hjust=0,  
                                   face = "italic"))  
 
-
-  sli_plt + pp_anom_plt + plot_layout(ncol = 1) & theme(plot.margin = margin(t = 0))  
+pp_anom_plt
+  # sli_plt + pp_anom_plt + plot_layout(ncol = 1) & theme(plot.margin = margin(t = 0))  
 ```
 
 
