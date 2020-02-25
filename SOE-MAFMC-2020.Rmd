@@ -127,6 +127,7 @@ ylims <- c(ymin, ymax)
 
 
 ```
+\setcounter{page}{3}
 
 # Report Structure
 
@@ -1662,6 +1663,34 @@ wcr %>%
   theme(legend.position = "none")
 ```
 
+## Gulf Stream Index and Labrador Slope Water interaction 
+The changing position of the Gulf Stream north wall described above directly influences oceanic conditions in the Gulf of Maine (GOM). Since the mid-2000’s, warmer, saltier slope water associated with the Gulf Stream has dominated the input into the GOM at the Northeast Channel, with 2017 and 2019 consisting of  99% warm slope water (Fig. \ref{fig:wsw-prop}), the highest estimated in the time series. The changing proportions of source water affect the temperature, salinity, and nutrient inputs to the Gulf of Maine ecosystem. 
+
+```{r wsw-prop, fig.width=5, fig.asp = 0.45, fig.cap = "Proportion of warm slope water (WSW) and Labrador slope water (LSLW) entering the GOM through the Northeast Channel."}
+
+sw.df <- slopewater %>% 
+  mutate(Var, Var = plyr::mapvalues(Var, from = c("WSW proportion ne channel",
+                                                  "LSLW proportion ne channel"),
+                                    to = c("WSW","LSLW"))) %>% 
+  dplyr::rename(Flavor  = Var) %>% 
+  group_by(Flavor) %>% 
+  mutate(hline = mean(Value)) 
+
+sw.df$Origin <- factor(sw.df$Flavor, levels = c("WSW","LSLW"))
+
+ggplot(data = sw.df) +
+  geom_line(aes(x = Time, y = Value, color = Origin))+
+  geom_point(aes(x = Time, y = Value, color = Origin)) +
+  ylab("Percent of Total Slopewater") +
+  xlab(element_blank())+
+  ggtitle("Slopewater Proportions in NE Channel")+
+  scale_x_continuous(expand = c(0.01, 0.01))+
+  geom_hline(aes(yintercept = hline, color = Origin),
+           size = hline.size, alpha = hline.alpha,
+           linetype = hline.lty)+
+  theme_ts() 
+
+```
 
 ## Ocean temperature, surface and bottom (MAB)
 The regional ocean is warming. Annual surface and bottom temperature in the MAB has trended warmer since the early 1980s; while seasonal temperatures have trended warmer in spring, summer, and fall. The 2019 winter MAB temperatures were below average, while the temperatures in the other seasons were among the top six during the satellite data record (1982-2019) (Fig. \ref{fig:MAB-SST-insitu}). 2019 MAB bottom temperature was just above the time series average (Fig. \ref{fig:MAB-bot-temp}).  
@@ -2011,7 +2040,7 @@ mab_map
 
 
 ## Primary production (MAB)
-Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem . There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2019 had an early above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with above average blooms in the central portion of the shelf (Fig. \ref{fig:MAB-chl-map}).
+Phytoplankton primary production is a function of biomass, light, and temperature, and sets the overall level of potential fish and fishery productivity in an ecosystem. All primary production and chlorophyll estimates presented here are satellite-derived. There is a trend of increasing primary production in the Mid-Atlantic, primarily driven by increased summer production, which is due to warmer temperatures and increased bacterial remineralization and nutrient recycling (Fig. \ref{fig:PP-OCCI}). This increased productivity is most likely from smaller-celled species that contribute less to fish production compared to larger phytoplankton. The fall of 2019 had an early above average phytoplankton bloom (Fig. \ref{fig:mab-chl-weekly}), most likely comprised of larger diatom species, with above average blooms in the central portion of the shelf (Fig. \ref{fig:MAB-chl-map}).
 
 ```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
 out_pp <- ecodata::chl_pp %>% 
