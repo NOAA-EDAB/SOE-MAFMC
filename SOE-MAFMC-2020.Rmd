@@ -2220,7 +2220,7 @@ zoo_abund %>%
 
 Fluctuations in primary production over time (Fig. \ref{fig:MAB-sli})  may relate to observed patterns in copeopod size structure (Fig. \ref{fig:MAB-zoo-abund}). This period also corresponds with regime shifts in fish recruitment [@perretti_regime_2017].
 
-```{r MAB-sli, fig.width = 4, fig.asp = 0.45, fig.cap = "MAB small-large zooplankton index and the annual primary production anomaly."}
+```{r MAB-sli, fig.width = 4, fig.asp = 0.45, fig.cap = "MAB annual primary production anomaly."}
  # sli <- ecodata::zoo_sli_anom %>%   
  #   filter(EPU == epu_abbr,  
  #          str_detect(Var, "Sm-Lg copepod anom")) %>%   
