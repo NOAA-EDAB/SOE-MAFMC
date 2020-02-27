@@ -858,7 +858,9 @@ ecodata::narw %>%
 ## Seals (coastwide)
 The best current abundance estimate of harbor seals (*Phoca vitulina*) is 75,834 (CV = 0.15), based on a survey conducted during the pupping season in 2012. A population survey was conducted in 2018 to provide updated abundance estimates and these data are in the process of being analyzed, as part of a larger trend analysis. Tagging studies of both gray and harbor seals demonstrate long-range movements throughout the Gulf of Maine and mid-Atlantic.
 
-The number of grey seals (*Halichoerus grypus*) in U.S. waters has risen dramatically in the last 2 decades, with few observed in the early 1990s to roughly 24,000 observed in southeastern Massachusetts in 2015. Roughly 30,000 - 40,000 gray seals were estimated in southeastern Massachusetts in 2015, using correction factors applied to seal counts visible in Google Earth imagery. As of 2016, the size of the grey seal population in Canada, which is part of the same stock as the grey seals in the U.S., was estimated to be roughly 425,000, and increasing by 4% a year. In U.S. waters, the number of pupping sites has increased from 1 in 1988 to 9 in 2019. Mean rates of increase in the number of pups born at various times since 1988 at 4 of the more data-rich pupping sites (Muskeget, Monomoy, Seal, and Green Islands) ranged from -0.2% (95%CI: -2.3 - 1.9%) to 26.3% (95%CI: 21.6 - 31.4%). These high rates of increase provide further support that seals from Canada are continually supplementing the breeding population in U.S. waters. Fisheries interactions have also increased over the past 2 decades, with fewer than 10 total estimated grey seal interactions in 1993, to more than 1000 annually in four out of the last 5 years. A UME for both gray and harbor seals was declared in 2018, triggering an investigation into the cause of this event. Tests so far suggest phocine distemper virus as a potential cause, although the investigation is not yet complete. Several cases of phocine distemper in harp (*Pagophilus groenlandicus*) and hooded seals (*Cystophora cristata*) have been identified recently, and these two species have been added to the UME^[https://www.fisheries.noaa.gov/new-england-mid-atlantic/marine-life-distress/2018-2019-pinniped-unusual-mortality-event-along]
+The number of grey seals (*Halichoerus grypus*) in U.S. waters has risen dramatically in the last 2 decades, with few observed in the early 1990s to roughly 24,000 observed in southeastern Massachusetts in 2015. Roughly 30,000 - 40,000 gray seals were estimated in southeastern Massachusetts in 2015, using correction factors applied to seal counts visible in Google Earth imagery. As of 2016, the size of the grey seal population in Canada, which is part of the same stock as the grey seals in the U.S., was estimated to be roughly 425,000, and increasing by 4% a year. In U.S. waters, the number of pupping sites has increased from 1 in 1988 to 9 in 2019. Mean rates of increase in the number of pups born at various times since 1988 at 4 of the more data-rich pupping sites (Muskeget, Monomoy, Seal, and Green Islands) ranged from -0.2% (95%CI: -2.3 - 1.9%) to 26.3% (95%CI: 21.6 - 31.4%). These high rates of increase provide further support that seals from Canada are continually supplementing the breeding population in U.S. waters. Fisheries interactions have also increased over the past 2 decades, with fewer than 10 total estimated grey seal interactions in 1993, to more than 1000 annually in four out of the last 5 years; this is the highest bycatch of any US marine mammal species. 
+
+A UME for both gray and harbor seals was declared in 2018, triggering an investigation into the cause of this event. Tests so far suggest phocine distemper virus as a potential cause, although the investigation is not yet complete. Several cases of phocine distemper in harp (*Pagophilus groenlandicus*) and hooded seals (*Cystophora cristata*) have been identified recently, and these two species have been added to the UME^[https://www.fisheries.noaa.gov/new-england-mid-atlantic/marine-life-distress/2018-2019-pinniped-unusual-mortality-event-along].
 
 Current information suggests that gray seals eat primarily sand lance, hakes and flatfish, and squids, while harbor seals consume a variety of groundfish (hakes, cod, haddock, flatfish), redfish, herring and squids, however much of this information comes from juvenile animals and more research is needed on animals at other life stages. Additional analysis of gray and harbor seal diet is currently underway at the NEFSC using a variety of techniques (analysis of stomach contents, fatty acids, and DNA). This information can eventually be coupled with estimates of population abundance and consumption rates to estimate total biomass removals of fish due to pinniped predation. 
 
@@ -1942,7 +1944,7 @@ Marine heatwaves measure not just temperature, but how long the ecosystem is sub
 
 The strongest heatwaves on record in the Middle Atlantic Bight occurred in the winter of 2012 in terms of maximum intensity (+5.13 °C above average) and in the winter/summer of 2012 in terms of cumulative intensity (515 °C-days; Fig. \ref{fig:heatwave-mab}).  In 2019, the Middle Atlantic Bight experienced six distinct marine heatwaves in the spring, summer, and fall with one of the strongest events beginning on July 3 and lasting 21 days (Figs. \ref{fig:MAB-heatwave1}, \ref{fig:mab-heatwave-max}).  Relative to prior years, this marine heatwave ranked 17th on record in terms of maximum intensity (+2.88 °C above average on Jul 22).  Another strong marine heatwave began on Aug 1 and lasted 24 days, which was 20th on record in terms of cumulative intensity (46 °C-days).
 
-```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intesity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
+```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
 
 cumu <- ecodata::heatwave %>% 
   filter(Var == "cumulative intensity") %>% 
@@ -1984,14 +1986,14 @@ mab.hw %>%
 
 ```
 
-```{r MAB-heatwave1, eval= T, echo = F, out.width = "50%", fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2019."}
+```{r MAB-heatwave1, eval= T, echo = F, out.width = "50%", fig.cap="Marine heatwave events (red) in the Mid-Atlantic occurring in 2019."}
 
 #knitr::include_graphics(file.path(image.dir,"MAB_Heatwave_timeseries.jpg"))
 knitr::include_graphics(file.path(image.dir,"MAB_heatwave.jpeg"))
 
 ```
 
-```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occuring on July 22, 2019."}
+```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019."}
 #EPU shapefile
 mab_epu_sf <- ecodata::epu_sf %>% 
   filter(EPU %in% c("MAB"))
