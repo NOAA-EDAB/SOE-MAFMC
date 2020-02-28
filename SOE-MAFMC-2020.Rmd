@@ -2272,7 +2272,7 @@ Fluctuations in primary production over time (Fig. \ref{fig:MAB-sli})  may relat
     ylab("Anomaly ratio") +  
     xlab(element_blank())+  
     ggtitle("Primary production anomaly ratio") +  
-      scale_x_continuous(expand = c(0.01, 0.01), limits = c(1998, 2018))+  
+      scale_x_continuous(expand = c(0.01, 0.01), limits = c(1998, 2019))+  
       scale_y_continuous(limits = c(0.8,1.2)) +  
         geom_hline(aes(yintercept = hline,  
                        group = Var),  
