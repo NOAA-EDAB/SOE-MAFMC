@@ -1,16 +1,18 @@
 ---
-title:
-geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
-output: 
+title: 
+csl: plos.csl
+fontsize: 10pt
+output:
   pdf_document:
     includes:
       in_header: latex/header.tex
     keep_tex: yes
-bibliography: SOE2020.bib
-csl: plos.csl
+  html_document:
+    df_print: paged
 link-citations: yes
-fontsize: 10pt
+geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 subparagraph: yes
+bibliography: SOE2020.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -872,7 +874,7 @@ Many nesting waterbird species on Virginia barrier islands have declined over th
 
 ```{r VA-cote, fig.width = 5, fig.asp = 0.5, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary and Virginia Commonwealth University, Williamsburg, VA. 28 pp."}
 
-bird<- ecodata::seabird_MAB %>% 
+bird<- ecodata::seabird_mab %>% 
   mutate(hline = mean(Value))
 
 bird %>% 
@@ -1103,24 +1105,26 @@ Examining trends in biomass by aggregate groups rather than individual species r
 Stability in biomass for these aggregate groups would suggest no major disturbances to overall trophic structure in the MAB. Both shelfwide and inshore surveys show stability over time for benthivores and planktivores. Similarly, piscivores and benthos are stable over time in the fall and spring, respectively. Including biomass uncertainty also demonstrates the similarity of trend and often magnitude of estimates between the NEFSC and NEAMAP surveys. These patterns will be explored in more detail using spatio-temporal analyses that include both surveys at once. 
 
 ```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean. ", fig.width=8, fig.asp = 0.75}
-agg<-ecodata::agg_bio %>% 
-  filter(!str_detect(Var, "Apex|inshore|offshore|managed|NEFMC|MAFMC|JOINT|NA")) %>% #remove unused datasets
-  separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% 
-  unite("Var", feeding.guild:season, sep = " ") %>% 
-  mutate(stat = recode(Var1, Index = "Mean", 
+
+agg<-ecodata::aggregate_biomass %>% 
+  dplyr::filter(!stringr::str_detect(Var, "Apex|inshore|offshore|managed|NEFMC|MAFMC|JOINT|NA")) %>% #remove unused datasets
+  tidyr::separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% 
+  tidyr::unite("Var", feeding.guild:season, sep = " ") %>% 
+  dplyr::mutate(stat = recode(Var1, Index = "Mean", 
                       Standard = "SD")) %>% 
   dplyr::select(-Biomass, -Var1) %>% 
-  group_by(Var, Time, EPU) %>% 
-  spread(stat, Value) %>% 
-  mutate(upper = Mean + (2*SD), 
+  dplyr::group_by(Var, Time, EPU) %>% 
+  tidyr::spread(stat, Value) %>% 
+  dplyr::mutate(upper = Mean + (2*SD), 
          lower = Mean - (2*SD))
 
 
-agg_bio<-agg %>% filter(EPU == epu_abbr,
+agg_bio<-agg %>% dplyr::filter(EPU %in% c(epu_abbr),
          Time >= 1968) %>% 
-  group_by(Var, EPU) %>% 
-  mutate(hline = mean(Mean, na.rm = T)) %>% 
-  ungroup() 
+  dplyr::group_by(Var, EPU) %>% 
+  dplyr::mutate(hline = mean(Mean, na.rm = T)) %>% 
+  dplyr::ungroup() 
+
 
 agg_bio$Var <- factor(agg_bio$Var,levels = c("Piscivore Spring",
                                                    "Piscivore Fall",
@@ -1885,9 +1889,9 @@ sst_map +
 ```
 
 ```{r MAB-bot-temp, fig.width = 4, fig.asp = .45, fig.cap="Annual bottom temperature in the Mid-Atlantic Bight."}
-temp_anom <- ecodata::oceantemp_insitu %>% 
+temp_anom <- ecodata::bottom_temp %>% 
   dplyr::filter(EPU == epu_abbr) %>% 
-  tidyr::complete(Time = tidyr::full_seq(min(oceantemp_insitu$Time):max(oceantemp_insitu$Time),1),
+  tidyr::complete(Time = tidyr::full_seq(min(bottom_temp$Time):max(bottom_temp$Time),1),
            tidyr::nesting(Var)) %>% 
   dplyr::mutate(hline = 0)
 
@@ -2013,7 +2017,7 @@ ymin = 35.5
 ymax = 43
 xlims <- c(xmin, xmax)
 ylims <- c(ymin, ymax)
-hw <- ecodata::hw_anom_gridded %>% 
+hw <- ecodata::heatwave_anom_gridded %>% 
   filter(EPU == "MAB")
 
 mab_map <- 
