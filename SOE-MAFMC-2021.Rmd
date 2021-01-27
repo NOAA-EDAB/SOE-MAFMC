@@ -156,7 +156,7 @@ Not biomass: most trends are steady, spring piscivores and fall benthos show lon
 Commercial landings decline:  
 - Benthos landings decline likely driven by market dynamics  
     - Surf clam and ocean quahog not binding quotas  
-    - Downward price pressure from international supply [reported in performance reports](link?), increasing costs of aging fleet/closures  
+    - Downward price pressure from international supply [reported in performance reports](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5f075b6737cbe041406404ab/1594317671964/f_FPR_for2020_SurfclamOceanQuahog.pdf), increasing costs of aging fleet/closures  
     - Climate change increases mixing of 2 species, regulatory restrictions on catching a mix  
     - Shifting into deeper water and northward.  
     
@@ -177,7 +177,21 @@ Even if market driven, changes in other indicators require monitoring as they ma
 
 ## Profits 
 
+### Indicators: revenue (a proxy for profits), with price and volume components  
+Total commercial revenue has increased over the long term but the trend may be reversing,with recent total revenue below the long term average. MAFMC managed species revenue continued its downward trend, with recent years near a time series low.
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"), fig.height=1.5}
+```
 
+Revenue trends overall mirror those for the benthos (clams and scallops) group over the past decade.  
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet2.R"), fig.height=3}
+```
+
+### Why  
+Increasing revenue is due to increasing quantities landed, which offset declining prices. Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to overcome declining prices. Falling prices for surf clams and ocean quahogs in particular were likely due to increased competition from international sources, according to the [fishery performance report](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5f075b6737cbe041406404ab/1594317671964/f_FPR_for2020_SurfclamOceanQuahog.pdf).
+
+Even if market driven, changes in other indicators require monitoring as they may become important drivers of revenue in the future:
+- Surf clams and ocean quahogs are vulnerable to climate change because of their sensitivity to warming ocean temperatures and ocean acidification. 
+- New observations of acidification in surf clam summer habitat are approaching, but not yet at, levels affecting surf clam growth (see [Climate Risks section](#climate-and-ecosystem-productivity)). 
 
 ## Recreational Opportunities 
 
