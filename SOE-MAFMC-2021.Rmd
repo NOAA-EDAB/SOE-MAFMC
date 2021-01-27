@@ -129,8 +129,13 @@ The downward trend is most significant in the benthos (clams and scallops) group
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.height=5}
 ```
 
-Recreational landings are also down in the MAB.
+Recreational landings are also down overall in the MAB.
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.height=1.5}
+
+```
+
+Recreational shark landings show increased catch of pelagic sharks over the past decade, with a sharp decrease in the two most recent years.
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.height=1.5}
 
 ```
 
@@ -160,9 +165,9 @@ Commercial landings decline:
     - Climate change increases mixing of 2 species, regulatory restrictions on catching a mix  
     - Shifting into deeper water and northward.  
     
-Recreational landings decline:  
-- Different species  
-- Most recent lows could still be the change in MRIP survey, calibration not quite lining up. Limits actually increased here so less likely management  
+Recreational landings decline: 
+- Recreational shark landings declining due to management (previously less regulated)
+- Most recent lows in all other recreational fish could still be the change in MRIP survey, calibration not quite lining up. Limits actually increased here so less likely management  
 - Won't know till we get more data points  
 - 80s/90s vs recent rec: could also be survey instrument? Could also be change from less management to more active management  
 - Decline in rec effort since 2010, maybe generational shift, not at same rate for catch/landings  
@@ -197,7 +202,11 @@ Even if market driven, changes in other indicators require monitoring as they ma
 
 ### Indicators: Days fished, fleet diversity  
 Recreational days fished have been stable over the long term, with current days fished near the long term average. However, recreational fleet diversity has declined over the long term.
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R"), fig.height=4}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R"), fig.height=1.5}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R"), fig.height=1.5}
+
 ```
 - Overall effort being steady but change in diversity of recreational fleet effort suggests a changing range of opportunities
 - Changes access to types of species that can be caught
@@ -213,14 +222,41 @@ Multiple drivers
 
 ## Stability 
 
-### Indicators: fishery fleet diversity, ecological diversity
-Commercial fishery fleet count, fleet diversity and permit diversity has been stable over time in the MAB with current values near the long term average. This indicates similar commercial fleet composition and species targeting opportunities over time.
+### Indicators: fishery fleet and catch diversity, ecological component diversity
+Commercial fishery fleet count, fleet diversity and permit diversity has been stable over time in the MAB with current values near the long term average. This indicates similar commercial fleet composition and species targeting opportunities over time. 
+-  Reliant on a smaller number of species relative to mid 90s, but now consistent and near long term average
+-  Good to increase diversity or bad? Losing traditional fisheries, cascading effects on newly entered fisheries?
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.height=4}
-
 ```
-Recreational fleet diversity has declined, as noted [above](#recreational-opportunities)
 
+As noted [above](#recreational-opportunities), recreational fleet effort diversity is unstable (declining). However, recreational species catch diversity is stable.
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R"), fig.height=1.5}
+```
+
+Zooplankton diversity is increasing in the MAB, while larval fish and adult fish diversity indices are stable over time with current values near the long term average.
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R"), fig.height=1.5}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-ichthyo-diversity.R"), fig.height=1.5}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-exp-n.R"), fig.height=2}
+```
+
+ 
 ### Why
+Stability in commercial fleets reflects...  adequate capacity to respond to current fishery changes? no big shocks from management or the ecosystem so far? permitting structure that enforces similar composition? 
+
+Declining recreational fleet effort diversity, as noted [above](#recreational-opportunities), indicates that the contraction by the party/charter boat sector continues, with shoreside angling becoming more important, by percentage.
+
+Stability in recreational species catch diversity has been maintained by recent increase in ASMFC and SAFMC managed species.
+
+Increasing zooplankton diversity is driven by ... more southern species (tropicalization?) or the loss of a dominant species (Cal fin?) with everything else staying about the same?
+
+Stable larval and adult fish diversity suggests ... the same overall number and evenness over time, but doesn't rule out species substitutions (e.g., warm-water replacing cold-water). Stable but variable (larval) can indicate changes in a dominant species. 
+
 
 ## Social and Cultural 
 
