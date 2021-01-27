@@ -1,0 +1,307 @@
+---
+title: 
+csl: plos.csl
+fontsize: 10pt
+output:
+  pdf_document:
+    includes:
+      in_header: latex/header.tex
+    keep_tex: yes
+  html_document:
+    df_print: paged
+link-citations: yes
+geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
+subparagraph: yes
+bibliography: SOE2020.bib
+---
+
+```{r setup, include=FALSE}
+
+# library(tint)
+# # invalidate cache when the package version changes
+# knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tint'))
+# options(htmltools.dir.version = FALSE)
+
+#Default Rmd options
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      dev = "cairo_pdf",
+                      warning = FALSE,
+                      fig.align = 'center') #allows for inserting R code into captions
+
+#Plotting and data libraries
+#remotes::install_github("noaa-edab/ecodata@0.1.0") #change to 2020 ecodata version for release
+library(tidyverse)
+library(tidyr)
+library(ecodata)
+library(here)
+library(kableExtra)
+library(ggrepel)
+library(patchwork)
+library(grid)
+library(ggiraph)
+library(vegan)
+library(rpart)
+library(ks)
+library(cowplot)
+
+#GIS libraries
+library(sf)
+library(rgdal)
+library(raster)
+library(rnaturalearth)
+
+#Data directories
+image.dir <- here("images")
+gis.dir <- here("gis")
+
+#GIS directory
+#gis.dir <- here::here("inst","extdata","gridded")
+
+#General inline text input for report
+#Council
+council <- "Mid-Atlantic Fishery Management Council"
+council_abbr <- "MAFMC"
+
+#Region identifiers
+epu <- "Mid-Atlantic Bight"
+epu_abbr <- "MAB"
+region <- "Mid-Atlantic"
+region_abbr <- "MA" #Some commercial data organized by "MA" or "NE" regions, not by EPU 
+
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds1<- c("Piscivore","Planktivore","Benthivore","Benthos")
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2009
+x.shade.max <- 2019
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
+```
+
+
+```{r GIS-setup}
+
+#CRS
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+#Coastline shapefile
+coast <- ne_countries(scale = 10,
+                          continent = "North America",
+                          returnclass = "sf") %>%
+             sf::st_transform(crs = crs)
+
+#State polygons
+ne_states <- ne_states(country = "united states of america",
+                                      returnclass = "sf") %>%
+  sf::st_transform(crs = crs)
+
+#high-res polygon of Maine
+#new_england <- read_sf(gis.dir,"new_england")
+
+#EPU shapefile
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB","GB","GOM"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -77
+xmax = -65
+ymin = 36
+ymax = 45
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+
+```
+\setcounter{page}{3}
+
+# Characterizing ecosystem change for fishery management
+
+The Northeast shelf ecosystem is changing and affecting the services the ecosystem provides. To illustrate how multiple factors are driving change in this complex ecosystem we are using three overarching concepts: multiple system drivers, regime shifts, and ecosystem reorganization. Physical, chemical, biological, and human factors comprise the **multiple system drivers** that influence the quality and distribution of habitat in the ocean, which affects the amount and diversity of fish in the ocean. These environmental drivers combined with multiple social and economic drivers influence the range of fishing opportunities and the seafood, recreation, and other ecosystem services we derive from the ocean. 
+
+```{r, out.width='72%'}
+
+knitr::include_url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/multipledrivers.png")
+
+```
+
+Changes in those drivers can lead to **regime shifts** — large, abrupt and persistent changes in the structure and function of an ecosystem. Regime shifts and changes in how the multiple system drivers interact can result in **ecosystem reorganization** as species and humans respond and adapt to the new environment. 
+
+```{r, out.width='72%'}
+
+knitr::include_url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/RegimeReorg.png")
+```
+
+# Report Structure
+
+The major messages of the report are synthesized in the 2-page summary, above. The information in this report is organized around general ecosystem-level management objectives (Table \ref{tab:management-objectives}), and indicators related to these objectives are grouped into four general categories in the four sections below: economic and social, protected species, fish and invertebrates, and habitat quality and ecosystem productivity. Each section begins with a summary of main messages with links to other sections, including any new information added at the request of the Fishery Management Councils, and includes figures with brief descriptions of all current indicators. Detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc] and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding groups (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
+
+```{r management-objectives}
+
+mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
+                                                 "Profits","Recreation",
+                                                 "Stability","Social & Cultural",
+                                                 "Biomass","Productivity",
+                                                 "Trophic structure","Habitat"),
+"Indicators reported here" = c("Landings by feeding guild","Revenue decomposed to price and volume",
+                               "Days fished; recreational catch",
+                               "Diversity indices (fishery and species)",
+                               "Commercial engagement trends",
+                               "Biomass or abundance by feeding guild from surveys",
+                               "Condition and recruitment of managed species, Primary productivity",
+                               "Relative biomass of feeding guilds, Zooplankton",
+                               "Estuarine and offshore habitat conditions"))
+
+knitr::kable(mng_obj, linesep = "",
+      col.names = c("Objective Categories","Indicators reported here"),
+      caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight",
+      #align = 'c',
+      booktabs = T) %>%
+  kable_styling(latex_options = "hold_position", "scale_down") %>%
+ # column_spec(c(2), width = c("25em")) %>%
+  row_spec(0, bold = TRUE)
+
+```
+ 
+ 
+
+# Contributors
+
+**Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Chris Orphanides 
+
+**Contributors** (NEFSC unless otherwise noted): Andy Beet, Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Ruth Boettcher (Virginia Department of Game and Inland Fisheries), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institute), Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Vincent Saba, Laurel Smith, John Walden, Harvey Walsh, Mark Wuenschel.  
+
+
+\newpage 
+
+# Document Orientation
+
+The figure format is illustrated in Fig \ref{fig:docformat}a. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2018, the shaded region will still cover this time period. The spatial scale of indicators is either coastwide, Mid-Atlantic states (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig. \ref{fig:docformat}b) level.
+
+```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.height = 2.5}
+#fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.49\\linewidth', fig.show="hold" 
+# FIgure orientation subfigure
+m <- 0.1
+x <- 1985:2018
+y <-  m*x + rnorm(30, sd = 0.35)
+
+data <- data.frame(x = x,
+                  y = y)
+
+#Define constants for figure plot
+x.shade.max <- max(x)
+x.shade.min <- x.shade.max - 9 
+hline = mean(y)
+
+#Plot series with trend 
+psample <- ggplot2::ggplot(data = data,aes(x = x, y = y)) +
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_point(size = pcex) +
+  scale_color_manual(aesthetics = "color")+
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline),
+              size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  geom_line() +
+  geom_gls() +
+  scale_y_continuous(labels = function(l){trans = l / 1000})+
+  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
+  ylab(expression("Invented Index, 10"^3*"widgets")) +
+  xlab("Time") +
+  labs(tag = "a")  +
+  theme_ts()
+
+
+# EPU map subfigure
+# Set lat/lon window for map
+xmin = -78
+xmax = -65
+ymin = 36
+ymax = 45
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+#CRS
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+#Specify data frame with lat/lon locations for labels
+epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
+                                 "Gulf of Maine",
+                                 "Georges Bank"),
+                         latitude = c(40,42.85,41),
+                         longitude = c(-72.7,-69,-68.5))
+
+#Map of NE LME
+epumap <- ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  geom_text(data = epu_labels, aes(x = longitude,
+                                    y = latitude,
+                                    label = EPU),
+            size = 1.7)+
+  theme_map() +
+  scale_x_continuous(breaks = seq(-78, -65, by = 4), expand = c(0.01, 0.01)) +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  labs(tag = "b")
+
+psample + plot_spacer() + epumap + plot_layout(ncol = 3, widths=c(3,.5,4.5))
+
+```
+
+Fish and invertebrates are aggregated into similar feeding categories (Table \ref{tab:species-groupings}) to evaluate ecosystem level trends in predators and prey. 
+
+```{r species-groupings, warning=F}
+
+# new table with all species listed by management entity
+df <- ecodata::species_groupings %>%
+  dplyr::select(SOE.20, COMNAME, Fed.Managed) %>%
+  filter(SOE.20 != "Other") %>%
+  distinct() %>%
+  group_by(SOE.20, Fed.Managed) %>%
+  summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
+  spread(Fed.Managed, COMNAME) %>%
+  arrange(factor(SOE.20, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
+df<-df[c(1,3,2,4,5)] %>%
+  mutate_all(tolower)
+
+
+knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodies.', 
+             col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
+  kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>%
+  row_spec(0,bold=TRUE) %>%
+  column_spec(1, width="2cm") %>%
+  column_spec(2, width="4cm") %>%
+  column_spec(3, width="2cm") %>%
+  column_spec(4, width="5cm") %>%
+  column_spec(5, width="6cm") %>%
+  #column_spec(3, width="7.5cm") #%>%
+  collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
+
+```
+
+
+\newpage 
+
+# References
