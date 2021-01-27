@@ -42,6 +42,10 @@ library(kableExtra)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
 ```
 
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
+
+```
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
 ```
 
@@ -111,8 +115,55 @@ knitr::kable(mng_obj, linesep = "",
 
 In this section, we examine indicators related to broad, ecosystem-level fishery management objectives. We also provide hypotheses about *why* we are seeing these trends by identifying interacting drivers (other indicators in this report), and where possible, any regime shifts or potential changes in ecosystem structure. Identifying multiple drivers, regime shifts, and potential changes to ecosystem structure, as well as mapping most vulnerable resources, can help managers determine whether we can do anything differently to meet objectives and how to prioritize for upcoming issues/risks. 
 
+## Seafood Production 
+
+### Indicator: Landings
+
+Total landings and MAFMC's managed landings in the MAB continue to trend down. 
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.height=1.5}
+```
+
+The downward trend is most significant in the benthos (clams and scallops) group.
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.height=5}
+```
+
+### Why
+
+Not ecosystem overfishing
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R"), fig.height=2}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R"), fig.height=2}
+```
+
+Not stock status: most ok
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.height=3}
+```
+
+Most biomass trends are steady (although many surveys not completed in 2020)
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.height=5}
+```
+
+
+## Profits 
+
+## Recreational Opportunities 
+
+## Stability 
+
+## Social and Cultural 
+
+## Protected Species
+
 
 # Risks to meeting fishery management objectives
+
+## Climate and Ecosystem Productivity
+
+## Other Ocean Uses
+
 
 # Contributors
 
