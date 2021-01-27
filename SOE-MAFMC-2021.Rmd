@@ -213,7 +213,12 @@ Multiple drivers
 
 ## Stability 
 
-### Indicators: 
+### Indicators: fishery fleet diversity, ecological diversity
+Commercial fishery fleet count, fleet diversity and permit diversity has been stable over time in the MAB with current values near the long term average. This indicates similar commercial fleet composition and species targeting opportunities over time.
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.height=4}
+
+```
+Recreational fleet diversity has declined, as noted [above](#recreational-opportunities)
 
 ### Why
 
