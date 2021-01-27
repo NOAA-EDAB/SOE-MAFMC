@@ -36,99 +36,18 @@ library(tidyr)
 library(ecodata)
 library(here)
 library(kableExtra)
-library(ggrepel)
-library(patchwork)
-library(grid)
-library(ggiraph)
-library(vegan)
-library(rpart)
-library(ks)
-library(cowplot)
-
-#GIS libraries
-library(sf)
-library(rgdal)
-library(raster)
-library(rnaturalearth)
-
-#Data directories
-image.dir <- here("images")
-gis.dir <- here("gis")
-
-#GIS directory
-#gis.dir <- here::here("inst","extdata","gridded")
-
-#General inline text input for report
-#Council
-council <- "Mid-Atlantic Fishery Management Council"
-council_abbr <- "MAFMC"
-
-#Region identifiers
-epu <- "Mid-Atlantic Bight"
-epu_abbr <- "MAB"
-region <- "Mid-Atlantic"
-region_abbr <- "MA" #Some commercial data organized by "MA" or "NE" regions, not by EPU 
-
-#Time series constants
-shade.alpha <- 0.3
-shade.fill <- "lightgrey"
-lwd <- 1
-pcex <- 2
-trend.alpha <- 0.5
-trend.size <- 2
-hline.size <- 1
-hline.alpha <- 0.35
-hline.lty <- "dashed"
-label.size <- 5
-hjust.label <- 1.5
-letter_size <- 4
-feeding.guilds1<- c("Piscivore","Planktivore","Benthivore","Benthos")
-feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
-x.shade.min <- 2009
-x.shade.max <- 2019
-#Function for custom ggplot facet labels
-label <- function(variable,value){
-  return(facet_names[value])
-}
-```
-
-
-```{r GIS-setup}
-
-#CRS
-crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
-
-#Coastline shapefile
-coast <- ne_countries(scale = 10,
-                          continent = "North America",
-                          returnclass = "sf") %>%
-             sf::st_transform(crs = crs)
-
-#State polygons
-ne_states <- ne_states(country = "united states of america",
-                                      returnclass = "sf") %>%
-  sf::st_transform(crs = crs)
-
-#high-res polygon of Maine
-#new_england <- read_sf(gis.dir,"new_england")
-
-#EPU shapefile
-epu_sf <- ecodata::epu_sf %>% 
-  filter(EPU %in% c("MAB","GB","GOM"))
-
-#Map line parameters
-map.lwd <- 0.4
-
-# Set lat/lon window for maps
-xmin = -77
-xmax = -65
-ymin = 36
-ymax = 45
-xlims <- c(xmin, xmax)
-ylims <- c(ymin, ymax)
-
 
 ```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+```
+
 \setcounter{page}{3}
 
 # Characterizing ecosystem change for fishery management
@@ -150,19 +69,23 @@ knitr::include_url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/E
 
 # Report Structure
 
-The major messages of the report are synthesized in the 2-page summary, above. The information in this report is organized around general ecosystem-level management objectives (Table \ref{tab:management-objectives}), and indicators related to these objectives are grouped into four general categories in the four sections below: economic and social, protected species, fish and invertebrates, and habitat quality and ecosystem productivity. Each section begins with a summary of main messages with links to other sections, including any new information added at the request of the Fishery Management Councils, and includes figures with brief descriptions of all current indicators. Detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc] and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding groups (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
+The purpose of this report is to synthesize ecosystem information to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized in the 2-page summary. The information in this report is organized into two sections; performance against ecosystem-level management objectives (Table \ref{tab:management-objectives}), and risks to fishery management (Climate change and Other Ocean Uses).  
+
+Detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc] and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding groups (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
 
 ```{r management-objectives}
 
 mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                                  "Profits","Recreation",
                                                  "Stability","Social & Cultural",
+                                                 "Protected Species",
                                                  "Biomass","Productivity",
                                                  "Trophic structure","Habitat"),
 "Indicators reported here" = c("Landings by feeding guild","Revenue decomposed to price and volume",
                                "Days fished; recreational catch",
                                "Diversity indices (fishery and species)",
-                               "Commercial engagement trends",
+                               "Community engagement/reliance status",
+                               "",
                                "Biomass or abundance by feeding guild from surveys",
                                "Condition and recruitment of managed species, Primary productivity",
                                "Relative biomass of feeding guilds, Zooplankton",
@@ -175,11 +98,21 @@ knitr::kable(mng_obj, linesep = "",
       booktabs = T) %>%
   kable_styling(latex_options = "hold_position", "scale_down") %>%
  # column_spec(c(2), width = c("25em")) %>%
-  row_spec(0, bold = TRUE)
+  row_spec(0, bold = TRUE) %>%
+ # group_rows("Provisioning/Cultural", 1,4) %>%
+ # group_rows("Supporting/Regulating", 5,9)
+  pack_rows("Provisioning/Cultural Services", 1,6) %>%
+  pack_rows("Supporting/Regulating Services", 7,10)
+
 
 ```
  
- 
+# Performance relative to fishery management objectives
+
+In this section, we examine indicators related to broad, ecosystem-level fishery management objectives. We also provide hypotheses about *why* we are seeing these trends by identifying interacting drivers (other indicators in this report), and where possible, any regime shifts or potential changes in ecosystem structure. Identifying multiple drivers, regime shifts, and potential changes to ecosystem structure, as well as mapping most vulnerable resources, can help managers determine whether we can do anything differently to meet objectives and how to prioritize for upcoming issues/risks. 
+
+
+# Risks to meeting fishery management objectives
 
 # Contributors
 
