@@ -189,17 +189,45 @@ Revenue trends overall mirror those for the benthos (clams and scallops) group o
 ### Why  
 Increasing revenue is due to increasing quantities landed, which offset declining prices. Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to overcome declining prices. Falling prices for surf clams and ocean quahogs in particular were likely due to increased competition from international sources, according to the [fishery performance report](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5f075b6737cbe041406404ab/1594317671964/f_FPR_for2020_SurfclamOceanQuahog.pdf).
 
-Even if market driven, changes in other indicators require monitoring as they may become important drivers of revenue in the future:
-- Surf clams and ocean quahogs are vulnerable to climate change because of their sensitivity to warming ocean temperatures and ocean acidification. 
-- New observations of acidification in surf clam summer habitat are approaching, but not yet at, levels affecting surf clam growth (see [Climate Risks section](#climate-and-ecosystem-productivity)). 
+Even if market driven, changes in other indicators require monitoring as they may become important drivers of revenue in the future:   
+-  Surf clams and ocean quahogs are vulnerable to climate change because of their sensitivity to warming ocean temperatures and ocean acidification.   
+-  New observations of acidification in surf clam summer habitat are approaching, but not yet at, levels affecting surf clam growth (see [Climate Risks section](#climate-and-ecosystem-productivity)).  
 
 ## Recreational Opportunities 
 
+### Indicators: Days fished, fleet diversity  
+Recreational days fished have been stable over the long term, with current days fished near the long term average. However, recreational fleet diversity has declined over the long term.
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R"), fig.height=4}
+```
+- Overall effort being steady but change in diversity of recreational fleet effort suggests a changing range of opportunities
+- Changes access to types of species that can be caught
+- impacts?
+
+### Why
+Multiple drivers
+-  Shift from charter party to shore based over the long term
+    -  Shoreside larger component
+    -  Changing species caught
+(ASMFS and SAFMC managed species maintain catch diversity--next section, will break up plots)
+
+
 ## Stability 
+
+### Indicators: 
+
+### Why
 
 ## Social and Cultural 
 
+### Indicators: 
+
+### Why
+
 ## Protected Species
+
+### Indicators: 
+
+### Why
 
 
 # Risks to meeting fishery management objectives
