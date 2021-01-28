@@ -264,11 +264,9 @@ Stable larval and adult fish diversity suggests ... the same overall number and 
 ### Indicators: Commercial and recreational engagement and reliance by community
 In 2020, we reported that the number of highly engaged Mid-Atlantic commercial fishing communities have declined over time, and the engagement scores have also declined in medium-highly engaged communities. Here we focus on engagement and reliance scores for individual communities, as well as social vulnerability. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.height=4}
-
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.height=4}
-
 ```
 
 
@@ -314,7 +312,43 @@ A marine mammal climate vulnerability assessment is currently underway and for A
 
 ## Climate and Ecosystem Productivity
 
-## Other Ocean Uses
+### Climate Change Indicators: 
+
+
+### Ecosystem Productivity Indicators:
+
+
+### Implications
+
+
+## Other Ocean Uses: Offshore Wind
+
+### Indicators: revenue in lease areas, development timeline, survey overlap
+Commercial fishery revenue in proposed offshore wind lease areas ranges from x-y% of total revenue for MAFMC managed species.
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R"), fig.height=2}
+```
+
+Offshore wind projects may cover more than 1.5 million acres by 2029.
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-dev-speed0.R"), fig.height=2}
+```
+
+Scientific survey area overlap with offshore wind lease areas ranges from 2-25% across ecosystem, shellfish, fish, and protected species surveys.
+```{r}
+knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/SurveysWindFarmAreas_20201229.jpg")
+```
+
+### Implications
+Fishery revenue could be displaced to other areas or foregone if all wind projects are built.  
+Displaced fishing effort can alter fishing methods and change habitat, species (managed and protected), and fleet interactions.  
+Right whales may be displaced and could face possible prey impacts via changed oceanography.  
+Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region.  
+```{r}
+knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/MidAtlantic_2021119-01.jpg")
+```
+
+Offshore wind will pose a risk to scientific data collection for surveys and increased uncertainty for management decision making across physical, low trophic, fish, and protected species.
+
+
 
 
 # Contributors
