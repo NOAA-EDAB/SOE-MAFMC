@@ -312,11 +312,44 @@ A marine mammal climate vulnerability assessment is currently underway and for A
 
 ## Climate and Ecosystem Productivity
 
-### Climate Change Indicators: 
+### Climate Change Indicators: ocean currents, temperature, heatwaves, acidification
+Regional ocean current indicators remain at unprecedented levels. The Gulf Stream Index shows an all time northward progression of this current in 2019. 
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.height=1.5}
+```
+In 2019, we also observed the second lowest proportion of Labrador Shelf water entering the Gulf of Maine since 1978. 
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.height=1.5}
+```
+Ocean temperatures continue to warm at both the surface and bottom. Warming is not seasonally uniform, however: spring 2020 was cooler than average on portions of the shelf.
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.height=2}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.height=2}
+```
+
+The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December.
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.height=2}
+```
+
+<!--
+The MAB cold pool area was near average in 2018, with smallest areas associated with record-warm years (2012).
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool_map.R"), fig.height=2, eval=FALSE}
+```
+-->
+
+### Ecosystem Productivity Indicators: primary production, zooplankton, forage fish, fish condition
 
 
-### Ecosystem Productivity Indicators:
+### Ecosystem Structure Indicators: distribution shifts, diversity, predators
+As noted in the [Landings "Why" section above](#landings), stocks are shifting distribution throughout the region. In aggregate, fish stocks are moving northeast along the shelf and into deeper waters.  
+Zooplankton diversity is increasing in the MAB, while larval fish and adult fish diversity indices are stable over time with current values near the long term average (see [Diversity Indicators section, above](#diversity)).  
+New indicators for shark populations, combined with information on grey seals (see [Protected Species "Why" section, above](#protected-species)), suggests predator populations are stable to increasing in the MAB.
 
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-observed-sharks.R"), fig.height=2}
+```
+
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R"), fig.height=2}
+```
 
 ### Implications
 
