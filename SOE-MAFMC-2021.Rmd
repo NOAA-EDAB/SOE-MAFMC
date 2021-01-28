@@ -144,18 +144,23 @@ Aquaculture production is not yet included in total seafood landings, but we are
 
 ### Why
 
-Not ecosystem overfishing
+Ecosystem overfishing in the MAB is unlikely by two metrics, so unlikely to be driving decreased landings.
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R"), fig.height=2}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R"), fig.height=2}
 ```
 
-Not stock status: most ok
+Fisheries account for a lower proportion of primary production removal now than in the past
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R"), fig.height=2}
+```
+
+
+Stock status is meeting objectives for most MAFMC managed stocks, so stock status and associated management constraints are unlikely to be driving decreased landings.
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.height=4}
 ```
 
-Not biomass: most trends are steady, spring piscivores and fall benthos show long term increase (although many surveys not completed in 2020, NEAMAP Fall is included)
+Aggregate biomass trends are mostly stable in the MAB, while spring piscivores and fall benthos show long term increases (although many surveys not completed in 2020, NEAMAP Fall is included). Overall biomass does not appear to drive declining landings.
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.height=5}
 ```
 
@@ -330,11 +335,10 @@ The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.height=2}
 ```
 
-<!--
 The MAB cold pool area was near average in 2018, with smallest areas associated with record-warm years (2012).
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool_map.R"), fig.height=2, eval=FALSE}
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool_map.R"), fig.height=2}
 ```
--->
+
 
 ### Ecosystem Productivity Indicators: primary production, zooplankton, forage fish, fish condition
 
