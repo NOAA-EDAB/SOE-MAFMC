@@ -3,15 +3,14 @@ title: "null"
 csl: plos.csl
 fontsize: 10pt
 output:
-  word_document: default
   pdf_document:
     includes:
       in_header: latex/header.tex
     keep_tex: yes
   html_document:
     df_print: paged
+  word_document: default
 link-citations: yes
-always_allow_html: true
 geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 subparagraph: yes
 bibliography: SOE2020.bib
@@ -30,8 +29,8 @@ knitr::opts_chunk$set(echo = FALSE,
                       dev = "cairo_pdf",
                       warning = FALSE,
                       fig.width = 4,
-                      fig.asp = 0.45#,
-                      #fig.align = 'center'
+                      fig.asp = 0.45,
+                      fig.align = 'center'
                       ) #allows for inserting R code into captions
 
 #Plotting and data libraries
@@ -104,7 +103,7 @@ knitr::kable(mng_obj, linesep = "",
       caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight",
       #align = 'c',
       booktabs = T) %>%
- # kable_styling(latex_options = "hold_position", "scale_down") %>%
+  kable_styling(latex_options = "hold_position", "scale_down") %>%
  # column_spec(c(2), width = c("25em")) %>%
   row_spec(0, bold = TRUE) %>%
  # group_rows("Provisioning/Cultural", 1,4) %>%
