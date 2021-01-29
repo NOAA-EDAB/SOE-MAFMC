@@ -331,33 +331,64 @@ Ocean temperatures continue to warm at both the surface and bottom. Warming is n
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.height = 7}
 ```
 
-The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December.
+Chesapeake Bay also experienced a warmer-than-average winter and a cooler-than-average spring in 2020, relative to the previous decade.  Water temperatures returned to average during the summer and slightly warmer than average October through December. 
+
+The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December, as observed in Chesapeake Bay.
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.asp=.6}
 ```
 
-New measurements show areas of low pH (7.8) in summer in Mid-Atlantic habitats occupied by surfclams and sea scallops. This seasonal pH minimum is associated with cold pool subsurface and bottom water, which is cut off from ventilation with surface water due to strong stratification.
+New measurements show areas of low pH (7.8) in summer in Mid-Atlantic habitats occupied by surfclams and sea scallops. This seasonal pH minimum is associated with cold pool subsurface and bottom water, which is cut off from ventilation with surface water due to strong stratification. 
+
 ```{r, fig.asp=1}
 knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Seasonal%20pH%20on%20MAB%20shelf%20-%20Grace%20Saba.jpg")
 ```
 
+Nearshore we see lower pH because of freshwater input - during the fall overturn the pH increases because of the input of the salty water, primary productivity increases pH, but increased respiration decreases pH
+
 The MAB cold pool area was near average in 2018, with smallest areas associated with record-warm years (2012).
 
 ### Ecosystem Productivity Indicators: primary production, zooplankton, forage fish, fish condition
-Increased temp, increased rate of photosynthesis in all three EPUs in summer
+Increased temperatures drive increased rates of photosynthesis in summer
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-pp-monthly.R"), fig.width=8}
+```
+
+Increased overall primary production from summer production, larger winter blooms in 2020?
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 5, fig.asp = 0.9}
+```
+
 Climatology of seasonal size fractions confirms that summer production dominated by smaller size classes (pico and nano)
-Increased overall primary production from summer production
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
+```
+
 Less efficient transfer to higher trophic levels
 
 Trends in gelatinous zoops, krill are the same across EPUs as last year, data was updated to 2019. Long term increase almost all regions.
-Driven by warming?
-Related to fish condition? 
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-strat-abun.R"), fig.width=8, fig.asp=.25}
+```
 
-Forage anomaly from zooplankton data, no apparent trend in MA
-Forage energy density
-Lower now for herring than in 80s-90s
-Zooplankton available
-Kjoules per gram wet weight
-Seasonal is only for recent years, change plot. Spring and fall for each species, species specific plots
+Larger zooplankton (Cal fin) had above average abundance in 2018-2019.
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-abund.R")}
+```
+
+Trends in Cal fin overwintering stage important as forage for right whales and forage fish.
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-calanus-stage.R"), fig.width=8, fig.asp=.25}
+```
+
+
+Forage anomaly from zooplankton data, no apparent trend in MAB
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-anomaly.R")}
+```
+
+
+Forage energy density updated; lower now for herring than in 80s-90s, other species seasonal difference but near previous estimates.
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
+```
+
+
+Temperature and zooplankton changes impact fish condition for different species, impacts to fisheries and markets are under investigation.
+```{r, fig.width = 7.5, fig.asp = 0.5}
+knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/condition_proj.png")
+```
 
 
 ### Ecosystem Structure Indicators: distribution shifts, diversity, predators
@@ -393,15 +424,23 @@ ecodata::hms_cpue %>%
   ecodata::theme_ts()
 ```
 
-### Implications
-Surfclam more sensitive than sea scallops
-Surfclam threshold metabolic depression in a pH range of 7.46-7.28
-pH hasn't reached the threshold observed for surfclams in lab studies so far--BUT we haven’t yet tested thresholds for other species or for multiple life stages, specifically larval stages that are typically more vulnerable to OA.
-Only one season of data (mostly 2019)
-Nearshore we see lower pH because of freshwater input - during the fall overturn the pH increases because of the input of the salty water, primary productivity increases pH, but increased respiration decreases pH
-The decrease of pH decreases the feeding rates
+### Habitat Climate Vulnerability
+New habitat climate vulnerability analysis links black sea bass, scup, and summer flounder to several highly vulnerable nearshore habitats from salt marsh through shallow estuarine and marine reefs.
 
-Include Chesapeake info here too (warmer winter) and make connections inshore--offshore and add ideas about mechanisms
+### Implications
+
+Climate-managed species links
+
+The warm winter may have affected key Chesapeake Bay fishery resources during a critical period. Results of the Maryland juvenile striped bass survey, conducted by the Maryland Department of Natural Resources (MDNR), showed low recruitment success in 2020, about fivefold below the long-term average. This low recruitment event may have been caused by a mismatch in striped bass (Morone saxatilis) larval and prey abundance due to the warm winter conditions, resulting in reduced larval survival. Warm winters typically trigger an early plankton bloom, including key copepod prey, which dies out before striped bass larvae are present in the tributary (Millette et al. 2019). 
+
+Conversely, warmer winter temperatures may have reduced overwintering mortality of Chesapeake Bay blue crabs (Callinectes sapidus). Calculations done by MDNR based on data from the annual Bay-wide winter dredge survey indicate that blue crabs experienced the lowest overwintering mortality ever calculated (2020 Chesapeake Bay Blue Crab Advisory Report). Previous studies have demonstrated the correlation between winter water temperature and blue crab survival in the Chesapeake Bay (Bauer & Miller 2010, Hines et al. 2010, Rome et al. 2005). 
+
+In addition to winter water temperature, survival of early life stages of striped bass in the Chesapeake Bay is strongly correlated with freshwater flow (Martino & Houde 2010, Millette et al. 2019, North & Houde 2003); high-flow regimes push zooplankton prey downstream, where they get trapped in the estuarine turbidity maximum with striped bass larvae. In low-flow years, zooplankton prey are less likely to match up with striped bass larvae in space and time, reducing larval survival and recruitment success. The combined effects of warm winter temperatures and low flow in 2020 may be the primary cause of the low recruitment success observed by the MDNR juvenile striped bass survey. 
+
+Conversely, increased salinity often results in high juvenile oyster abundance in the Chesapeake Bay (Kimmel et al. 2014). In Maryland, the 2020 MDNR fall oyster survey documented above-average spatsets along the Eastern Shore as expected given the high salinity; however, the Western Shore did not fare as well, suggesting that local environmental conditions are also important.
+
+Ocean acidification also has different implications, depending on the species and life stage. The decrease of pH decreases the feeding rates. Surfclam more sensitive than sea scallops. Lab studies have found a surfclam threshold metabolic depression in a pH range of 7.46-7.28. 
+Ocean pH from one season of data (mostly 2019) hasn't reached the threshold observed for surfclams in lab studies so far--BUT we haven’t yet tested thresholds for other species or for multiple life stages, specifically larval stages that are typically more vulnerable to OA.
 
 More variable system--not uniformly warmer, more variable too and this makes a wider range of conditions for biota to deal with
 
@@ -409,7 +448,13 @@ More variable system--not uniformly warmer, more variable too and this makes a w
 Lobster was a big one--timing of fishing, markets, etc
 Cobia habitat shifts (and other species)--seen off RI now
 
+Fish Condition Links to Environmental Drivers
 
+General Additive Models (GAMs) were used to test how measures of fishing pressure, stock abundance and individual environmental variables performed in explaining the changes of fish condition (fatness) over time. Some species such as Acadian redfish, butterfish and winter flounder were more affected by fishing pressure and stock size, whereas other species such as weakfish, windowpane and American plaice may be more affected by local bottom temperatures and zooplankton. These relationships can potentially provide insights on which species may be more vulnerable to environmental changes such as climate change, as well as what biomass changes may be expected from certain species given current environmental conditions. Correlations were examined between environmental drivers, and as expected there were strong temperature correlations between seasons as well as correlations between temperature and zooplankton indices. Planned future work includes building full GAM models for each fish species, and linking fish condition to socio-economic models to assess whether fish condition impacts the value generated by that species.
+ 
+Socio-Economic Models
+ 
+Economic theory and empirical analyses have highlighted that many factors can affect the price of fish, including the total quantity of fish in the market (sometimes including internationally), increased demand around holidays, time the fish was in storage, and other issues that either affect the quality of the fish or the amount of fish available for purchase. We plan on empirically exploring whether fish condition is a quality metric people care about. Understanding whether people care about fish condition will help us more holistically understand the impacts of condition change on society, if any.
 
 ## Other Ocean Uses: Offshore Wind
 
