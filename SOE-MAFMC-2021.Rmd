@@ -13,7 +13,7 @@ output:
 link-citations: yes
 geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 subparagraph: yes
-bibliography: SOE2020.bib
+bibliography: SOE2021.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -65,9 +65,9 @@ The purpose of this report is to synthesize ecosystem information to better meet
 
 ## Report structure
 
-The two main sections contain subsections for each management objective or potential risk. Within each subsection, we first review indicator trends, and the status of the most recent year relative to a threshold (if available) or relative to the long-term average. Second, we synthesize results of other indicators and information to outline potential implications for management (i.e., connecting indicator(s) status to management and why an indicator(s) is important) . For example, if there are multiple drivers related to an indicator trend, which drivers may be more or less supported by current information, and which, if any, can be affected by management action? Similarly, which risk indicators warrant continued monitoring to evaluate whether regime shifts or ecosystem reorganization are likely? We emphasize that these implications are intended to represent testable hypotheses at present, rather than “answers,” because the science behind these indicators and syntheses continue to develop.  
+The two main sections contain subsections for each management objective or potential risk. Within each subsection, we first review indicator trends, and the status of the most recent year relative to a threshold (if available) or relative to the long-term average. Second, we synthesize results of other indicators and information to outline potential implications for management (i.e., connecting indicator(s) status to management and why an indicator(s) is important). For example, if there are multiple drivers related to an indicator trend, which drivers may be more or less supported by current information, and which, if any, can be affected by management action? Similarly, which risk indicators warrant continued monitoring to evaluate whether regime shifts or ecosystem reorganization are likely? We emphasize that these implications are intended to represent testable hypotheses at present, rather than “answers,” because the science behind these indicators and syntheses continues to develop.  
 
-Detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc] and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding groups (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
+A glossary of terms^[https://noaa-edab.github.io/tech-doc/glossary.html], detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc] and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding groups (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
 
 ```{r management-objectives}
 
@@ -77,11 +77,12 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                                  "Protected Species",
                                                  "Biomass","Productivity",
                                                  "Trophic structure","Habitat"),
-"Indicators reported here" = c("Landings by feeding guild","Revenue decomposed to price and volume",
+"Indicators reported here" = c("Landings; total and by feeding guild",
+                               "Revenue decomposed to price and volume",
                                "Days fished; recreational catch",
-                               "Diversity indices (fishery and species)",
+                               "Diversity indices (fishery and ecosystem)",
                                "Community engagement/reliance status",
-                               "",
+                               "Bycatch; population (adult and juvenile) numbers, mortalities",
                                "Biomass or abundance by feeding guild from surveys",
                                "Condition and recruitment of managed species, Primary productivity",
                                "Relative biomass of feeding guilds, Zooplankton",
@@ -89,7 +90,7 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
 
 knitr::kable(mng_obj, linesep = "",
       col.names = c("Objective Categories","Indicators reported here"),
-      caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight",
+      caption = "Ecosystem-scale fishery management objectives in the Mid-Atlantic Bight",
       #align = 'c',
       booktabs = T) %>%
   kable_styling(latex_options = "hold_position", "scale_down") %>%
@@ -109,18 +110,16 @@ In this section, we examine indicators related to broad, ecosystem-level fishery
 
 ## Seafood Production 
 
-### Indicator: Landings
-
-Total commercial landings (black) and MAFMC’s managed landings (red) in the Mid-Atlantic Bight (MAB)  continue to trend downward. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")}
+### Indicator: Landings; total and by feeding guild 
+Total commercial landings and MAFMC’s managed landings in the MAB continue to trend downward (Fig. \ref{fig:total-landings}). The downward trend is most significant in the benthos (scallops and clams) group (Fig. \ref{fig:comm-landings}).
+```{r, total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.35}
 ```
 
-The downward trend is most significant in the benthos (scallops and clams) group. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.5}
+```{r, comm-landings, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.5}
 ```
 
-Total recreational landings (retained fish presumed to be eaten) are also down in the MAB. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
+Total recreational landings (retained fish presumed to be eaten) are also down in the MAB (Fig. \ref{fig:rec-landings}). 
+```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest in the ",region," region."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
 
 ```
 
@@ -136,7 +135,7 @@ Aquaculture production is not yet included in total seafood landings, but we are
 Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecological and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
 
 #### Ecosystem Overfishing Indices 
-Thresholds for ecosystem-level overfishing based on system production characteristics have been proposed, and are applied here for the MAB.  Based on either the ratio of total catch to total primary production (Fogarty Index), or to total catch per unit area (Ryther Index), ecosystem overfishing in the MAB is unlikely based on the proposed thresholds, so ecosystem overfishing is unlikely to be a major factor driving decreased landings. 
+Thresholds for ecosystem-level overfishing based on system production characteristics have been proposed [@link_global_2019], and are applied here for the MAB.  Based on either the ratio of total catch to total primary production (Fogarty Index), or to total catch per unit area (Ryther Index), MAB catches are at or below the proposed thresholds, so ecosystem overfishing is unlikely to be a major factor driving decreased landings. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
 ```
 
@@ -144,17 +143,17 @@ Thresholds for ecosystem-level overfishing based on system production characteri
 ```
 
 Fisheries catches are sustained by a lower proportion of the ecosystem's primary production now than in the past, particularly when compared with the 1970s when each of these indices suggest that ecosystem overfishing may have occurred.
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
+```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
 ```
 
 #### Stock Status
-Stock status is meeting objectives for most MAFMC managed stocks, so stock status and associated management constraints are unlikely to be driving decreased landings. To better address the role of management in future reports, we could examine how the total allowable catch (TAC) and the percentage of the TAC taken for each species has changed through time. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
+Single species management objectives of maintaining biomass above minimum thresholds and fishing mortality below limits are being met for all but two MAFMC managed species, though the status of six stocks is unknown (Fig. \ref{fig:stock-status}). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings. To better address the role of management in future reports, we could examine how the total allowable catch (TAC) and the percentage of the TAC taken for each species has changed through time. 
+```{r stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
 #### System Biomass
 Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthos show long-term increases. (The NEAMAP Fall 2020 survey was completed and is included here; NEFSC surveys were not completed in 2020). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
+```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
 ```
 
 #### Effect on Seafood Production
@@ -164,27 +163,27 @@ Climate change also seems to be shifting the distribution of surfclams and ocean
 
 The decline in recreational seafood landings stems from other drivers.  Some of the decline, such as that for recreational shark landings, is driven by management intended to reduce fishing mortality on mako sharks. However, NOAA Fisheries’ Marine Recreational Information Program survey methodology was updated in 2018, so it is unclear whether the record-low landings for 2018 are driven by changes in fishing behavior or the change in the survey methodology.  
 
-Other environmental changes  require monitoring as they may become important drivers of landings in the future:
+Other environmental changes require monitoring as they may become important drivers of landings in the future:
  
-- Climate trending to uncharted territory (see [Climate Risks section](#climate-and-ecosystem-productivity))  
+- Climate is trending into uncharted territory. Globally, 2020 was tied with the warmest year on record^[https://www.nasa.gov/press-release/2020-tied-for-warmest-year-on-record-nasa-analysis-shows] with regional heatwaves apparent (see [Climate Risks section](#climate-and-ecosystem-productivity))  
 - Stocks are shifting distribution throughout the region  
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=1}
+```{r spec-dist, fig.cap = "Aggregate species distribution metrics for fish in the Northeast Large Marine Ecosystem. Along-shelf distance measures the center of biomass along an axis generally following the slope of coastline.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=1}
 ```  
-- Some ecosystem composition and production changes (see [Stability section](#stability))  
-- Engagement declining (see [Social and Cultural section](#social-and-cultural))  
+- Some ecosystem composition and production changes have been observed (see [Stability section](#stability))  
+- Fishing engagement has declined in some communities (see [Social and Cultural section](#social-and-cultural))  
 
 ## Commercial Profits 
 
 ### Indicators: revenue (a proxy for profits), with price and volume components  
 Total commercial revenue (black) has increased over the long term, but the trend may be reversing, with recent total revenue below the long-term average. The MAFMC-managed species revenue (red) has continued its downward trend, with recent years near a time-series low. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
+```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
 ```
 
 Total revenue trends (black line) mirror those for the benthos (clams and scallops; orange in separate volume and price indicator plots) group over the past decade. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R")}
+```{r bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.5}
+```{r bennet-all, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings by feeding guild in the Mid-Atlantic Bight."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
 ### Implications 
@@ -256,7 +255,7 @@ Declining recreational fleet effort diversity, as noted [above](#recreational-op
 
 Stability in recreational species catch diversity has been maintained by a different set of species over time. A recent increase in ASMFC and SAFMC managed species in recreational catch is helping to maintain diversity in the same range that MAFMC and NEFMC species supported in the 1990s.
 
-Ecological diversity indices can provide insight into ecosystem structure. Changes in ecological diversity over time may indicate altered ecosystem structure with implications for fishery productivity and management.
+Ecological diversity indices can provide insight into ecosystem structure. Changes in ecological diversity over time may indicate altered ecosystem structure with implications for fishery productivity and management [@friedland_changes_2020].
 
 Increasing zooplankton diversity is driven by the declining dominance of the calanoid copepod *Centropages typicus*, with a similar composition of other zooplankton species. 
 
@@ -356,12 +355,15 @@ The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that 
 
 New glider-based observations revealed areas of low pH (7.8) during summer in Mid-Atlantic habitats occupied by Atlantic surfclams and sea scallops (Wright-Fairbanks et al. 2020). This seasonal pH minimum is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. However, seawater pH in shelf waters increased during the fall mixing period due to the influence of a slope water mass characterized by warm, salty, highly alkaline seawater. Lower pH in nearshore waters is likely associated with freshwater input. 
 
-```{r, fig.asp=1}
-knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Seasonal%20pH%20on%20MAB%20shelf%20-%20Grace%20Saba.jpg")
+```{r, out.width='70%'}
+#knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Seasonal%20pH%20on%20MAB%20shelf%20-%20Grace%20Saba.jpg")
+
+knitr::include_graphics("images/Seasonal pH on MAB shelf - Grace Saba.jpg")
 ```
 
 The area of the MAB cold pool was near average in 2018.  The size of the cold pool varies annually, with the smallest sizes associated with record-warm years (e.g. 2012). The cold pool temperature shows a similar variation as its extent, both of which are strongly impacted by each early spring setting in temperature on the shelf.
-```{r, fig.asp=1}
+```{r,  fig.asp=1}
+#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool_map.R"),
 knitr::include_graphics("images/cold_pool_area.png")
 ```
 
@@ -446,24 +448,27 @@ The NEAMAP survey saw a doubling of summer flounder catch in the near coastal wa
 Ocean acidification also has different implications, depending on the species and life stage. Recent lab studies have found that surfclams exhibited  metabolic depression in a pH range of 7.46-7.28 (Pousse et al. 2020). In other bivalve species, metabolic depression happened between 7.38 and 7.14. for blue mussels  (Thomsen and Meltzer,2010) and 7.1 for Pacific oysters  (Lannig et al. 2010). At pH=7.51, short term experiments indicated that surfclams were selecting particles differently, which may have long term implications for growth (Pousse et al. 2020). Computer models would help in determining the long term implications of growth on surfclam populations. Data from about one year of observations (2018-2019) show that seasonal ocean pH has not yet reached the metabolic depression threshold observed for surfclams in lab studies so far; however, thresholds at different  life stages, specifically larval stages that are typically more vulnerable to ocean acidification, have not yet been determined. 
 
 
-#### Distribution shifts
-2012 is still the warmest year on record. Recent papers published on the impacts of the 2012 heatwave give insight into the implications of marine heatwaves. Lobster was impacted as well as the timing of fishing and markets.  Cobia and other more southern species exhibited habitat shifts, and were seen off Rhode Island.
+#### Heatwave impacts
+2012 is still the warmest year on record. Recent papers published on the impacts of the 2012 heatwave give insight into the implications of marine heatwaves. Lobster was impacted as well as the timing of fishing and markets [@mills_fisheries_2013].  Cobia and other more southern species exhibited habitat shifts, and were seen off Rhode Island.
 
-Shifting species distributions alter both species interactions and fishery interactions. In particular, shifting species distributions can alter expected management outcomes from spatial allocations based on historical distributions.
+#### Distribution shift impacts
+Trends for a suite of 48 commercially or ecologically important fish species along the entire Northeast Shelf continue to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:spec-dist}). We hope to expand analysis beyond fish. Marine mammal distribution maps are available online^[https://www.nefsc.noaa.gov/AMAPPSviewer/]; updated maps and trends are currently being developed.
 
-#### Ecosystem productivity
+Shifting species distributions alter both species interactions and fishery interactions. In particular, shifting species distributions can alter expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.
+
+#### Ecosystem productivity change impacts
 Climate and associated changes in the physical environment affects ecosystem productivity, with warming waters increasing the rate of photosynthesis at the base of the food web. However, increased summer production in the MAB may not translate to increased fish biomass because smaller phytoplankton dominate in this season. 
 
 While krill and large gelatinous zooplankton are increasing over time, smaller zooplankton are periodically shifting abundance between the larger, more nutritious Calanus finmarchicus and smaller bodied copepods with no apparent overall trend.  Forage species are difficult to survey, but a new index that includes ichthyoplankton suggests high interannual variability in abundance of larval fish and zooplankton prey. The nutritional content of larger bodied forage fish and squid changes seasonally in response to ecosystem conditions, with apparent declines in energy density for Atlantic herring and Illex squid relative to the 1980s, but similar energy density for other forage species. Some of these factors are now being linked to the relative condition of higher level fishes.
 
-#### Fish Condition Links to Environmental Drivers  
+##### *Environmental drivers of fish condition*  
 Generalized Additive Models (GAMs) were used to test how measures of fishing pressure, stock abundance, and individual environmental variables performed in explaining the changes of fish condition (fatness) over time. Some species such as Acadian redfish, butterfish and winter flounder were more affected by fishing pressure and stock size, whereas other species such as weakfish, windowpane flounder,  and American plaice may be more affected by local bottom temperatures and zooplankton. 
 
 These relationships can potentially provide insights on which species may be more vulnerable to environmental changes such as climate change, as well as what biomass changes may be expected from certain species given current environmental conditions. 
 
 Correlations were examined between environmental drivers, and as expected there were strong temperature correlations between seasons as well as correlations between temperature and zooplankton indices. Planned future work includes building full GAM models for each fish species, and linking fish condition to socio-economic models to assess whether fish condition impacts the value generated by that species.
 
-#### Socio-Economic Models  
+##### *Potential economic impacts of fish condition*  
 Economic theory and empirical analyses have highlighted that many factors can affect the price of fish, including the total quantity of fish in the market (sometimes including internationally), increased demand around holidays, time the fish was in storage, and other issues that either affect the quality of the fish or the amount of fish available for purchase. We plan on empirically exploring whether fish condition is a quality metric that drives fish prices. Understanding the socio-economic impact of fish condition will help us more holistically understand the impacts of condition change on society, if any.
 
 
@@ -478,13 +483,13 @@ The surfclam/ocean quahog fishery was the most affected fishery, with a maximum 
 ```
 
 More than 20 offshore wind development projects are proposed for construction over the next decade in the Northeast (projects & construction timelines based on Table E-4 of South Fork Wind Farm Draft Environmental Impact Statement). Offshore wind areas may cover more than 1.7 million acres by 2030. Just over 1,900 foundations and more than 3,000 miles of inter-array and offshore export cables are proposed to date. Each proposed project has a -year construction timeline (BOEM 2021). Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time.  
-```{r, fig.asp=1}
-knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/CumulativeWindDraft_20201231.jpg")
+```{r}
+knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
 ```
 
 Proposed wind energy project areas and NY Bight Call Areas interact with the regions’ federal scientific surveys. The total survey area overlap ranges from 1-14\% across ecosystem, shellfish, fish, shark, and protected species surveys. For example, the sea scallop survey will have significant overlap (up to 96\% of individual strata) while the bottom trawl survey  will have  up to 60\% overlap. Additionally, up to 50\% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. 
 ```{r}
-knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/SurveysWindFarmAreas_20201229.jpg")
+knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/SurveyMap202128_withlines.png")
 ```
 
 ### Implications
@@ -517,7 +522,7 @@ Ron Vogel, Mandy Bromilow and CJ Pellerin (NOAA CBO), Angela Silva, Andrew Lipsk
 
 The figure format is illustrated in Fig \ref{fig:docformat}a. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2018, the shaded region will still cover this time period. The spatial scale of indicators is either coastwide, Mid-Atlantic states (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig. \ref{fig:docformat}b) level.
 
-```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.height = 2.5}
+```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.asp = 0.3}
 #fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.49\\linewidth', fig.show="hold" 
 # FIgure orientation subfigure
 m <- 0.1
