@@ -55,28 +55,17 @@ library(kableExtra)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
 
-\setcounter{page}{3}
+\setcounter{page}{4}
 
-# Characterizing ecosystem change for fishery management
+# Introduction
 
-The Northeast shelf ecosystem is changing and affecting the services the ecosystem provides. To illustrate how multiple factors are driving change in this complex ecosystem we are using three overarching concepts: multiple system drivers, regime shifts, and ecosystem reorganization. Physical, chemical, biological, and human factors comprise the **multiple system drivers** that influence the quality and distribution of habitat in the ocean, which affects the amount and diversity of fish in the ocean. These environmental drivers combined with multiple social and economic drivers influence the range of fishing opportunities and the seafood, recreation, and other ecosystem services we derive from the ocean. 
+## About This Report
 
-```{r, out.width='72%'}
+The purpose of this report is to synthesize ecosystem information to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized in the 2-page summary and synthesis themes are illustrated on page 3. The information in this report is organized into two sections; [performance measured against ecosystem-level management objectives](#performance-relative-to-fishery-management-objectives) (Table \ref{tab:management-objectives}), and potential [risks to meeting fishery management objectives](#risks-to-meeting-fishery-management-objectives) (Climate change and Other Ocean Uses).
 
-knitr::include_url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/multipledrivers.png")
+## Report structure
 
-```
-
-Changes in those drivers can lead to **regime shifts** — large, abrupt and persistent changes in the structure and function of an ecosystem. Regime shifts and changes in how the multiple system drivers interact can result in **ecosystem reorganization** as species and humans respond and adapt to the new environment. 
-
-```{r, out.width='72%'}
-
-knitr::include_url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/RegimeReorg.png")
-```
-
-# Report Structure
-
-The purpose of this report is to synthesize ecosystem information to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized in the 2-page summary. The information in this report is organized into two sections; performance against ecosystem-level management objectives (Table \ref{tab:management-objectives}), and risks to fishery management (Climate change and Other Ocean Uses).  
+The two main sections contain subsections for each management objective or potential risk. Within each subsection, we first review indicator trends, and the status of the most recent year relative to a threshold (if available) or relative to the long-term average. Second, we synthesize results of other indicators and information to outline potential implications for management (i.e., connecting indicator(s) status to management and why an indicator(s) is important) . For example, if there are multiple drivers related to an indicator trend, which drivers may be more or less supported by current information, and which, if any, can be affected by management action? Similarly, which risk indicators warrant continued monitoring to evaluate whether regime shifts or ecosystem reorganization are likely? We emphasize that these implications are intended to represent testable hypotheses at present, rather than “answers,” because the science behind these indicators and syntheses continue to develop.  
 
 Detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc] and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding groups (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
 
@@ -116,71 +105,67 @@ knitr::kable(mng_obj, linesep = "",
  
 # Performance relative to fishery management objectives
 
-In this section, we examine indicators related to broad, ecosystem-level fishery management objectives. We also provide hypotheses about *why* we are seeing these trends by identifying interacting drivers (other indicators in this report), and where possible, any regime shifts or potential changes in ecosystem structure. Identifying multiple drivers, regime shifts, and potential changes to ecosystem structure, as well as mapping most vulnerable resources, can help managers determine whether we can do anything differently to meet objectives and how to prioritize for upcoming issues/risks. 
+In this section, we examine indicators related to broad, ecosystem-level fishery management objectives. We also provide hypotheses on the implications of these trends—*why* we are seeing them, what’s driving them, and potential or observed regime shifts or changes in ecosystem structure. Identifying multiple drivers, regime shifts, and potential changes to ecosystem structure, as well as identifying the most vulnerable resources, can help managers determine whether we can do anything differently to meet objectives and how to prioritize for upcoming issues/risks.
 
 ## Seafood Production 
 
 ### Indicator: Landings
 
-Total commercial landings and MAFMC's managed landings in the MAB continue to trend down. 
-
+Total commercial landings (black) and MAFMC’s managed landings (red) in the Mid-Atlantic Bight (MAB)  continue to trend downward. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")}
 ```
 
-The downward trend is most significant in the benthos (clams and scallops) group.
-
+The downward trend is most significant in the benthos (scallops and clams) group. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.5}
 ```
 
-Recreational landings are also down overall in the MAB.
+Total recreational landings (retained fish presumed to be eaten) are also down in the MAB. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
 
 ```
 
-Recreational shark landings show increased catch of pelagic sharks over the past decade, with a sharp decrease in the two most recent years.
+Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 and 2019. This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R")}
 
 ```
 
-Aquaculture production is not yet included in total seafood landings, but we are working towards that in future reports. Available aquaculture production of oysters for a subset of Mid-Atlantic states is trending upwards^[https://noaa-edab.github.io/catalog/aquaculture.html]
+Aquaculture production is not yet included in total seafood landings, but we are working toward including it in future reports. Available aquaculture production of oysters for a subset of Mid-Atlantic states is trending upward.^[https://noaa-edab.github.io/catalog/aquaculture.html]
 
-### Why
+### Implications
 
-Ecosystem overfishing in the MAB is unlikely by two metrics, so unlikely to be driving decreased landings.
+Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecological and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
+
+#### Ecosystem Overfishing Indices 
+Thresholds for ecosystem-level overfishing based on system production characteristics have been proposed, and are applied here for the MAB.  Based on either the ratio of total catch to total primary production (Fogarty Index), or to total catch per unit area (Ryther Index), ecosystem overfishing in the MAB is unlikely based on the proposed thresholds, so ecosystem overfishing is unlikely to be a major factor driving decreased landings. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
 ```
 
-Fisheries account for a lower proportion of primary production removal now than in the past
+Fisheries catches are sustained by a lower proportion of the ecosystem's primary production now than in the past, particularly when compared with the 1970s when each of these indices suggest that ecosystem overfishing may have occurred.
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
 ```
 
-
-Stock status is meeting objectives for most MAFMC managed stocks, so stock status and associated management constraints are unlikely to be driving decreased landings.
+#### Stock Status
+Stock status is meeting objectives for most MAFMC managed stocks, so stock status and associated management constraints are unlikely to be driving decreased landings. To better address the role of management in future reports, we could examine how the total allowable catch (TAC) and the percentage of the TAC taken for each species has changed through time. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
-Aggregate biomass trends are mostly stable in the MAB, while spring piscivores and fall benthos show long term increases (although many surveys not completed in 2020, NEAMAP Fall is included). Overall biomass does not appear to drive declining landings.
+#### System Biomass
+Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthos show long-term increases. (The NEAMAP Fall 2020 survey was completed and is included here; NEFSC surveys were not completed in 2020). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
 ```
 
-Commercial landings decline:  
-- Benthos landings decline likely driven by market dynamics  
-    - Surf clam and ocean quahog not binding quotas  
-    - Downward price pressure from international supply [reported in performance reports](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5f075b6737cbe041406404ab/1594317671964/f_FPR_for2020_SurfclamOceanQuahog.pdf), increasing costs of aging fleet/closures  
-    - Climate change increases mixing of 2 species, regulatory restrictions on catching a mix  
-    - Shifting into deeper water and northward.  
-    
-Recreational landings decline: 
-- Recreational shark landings declining due to management (previously less regulated)
-- Most recent lows in all other recreational fish could still be the change in MRIP survey, calibration not quite lining up. Limits actually increased here so less likely management  
-- Won't know till we get more data points  
-- 80s/90s vs recent rec: could also be survey instrument? Could also be change from less management to more active management  
-- Decline in rec effort since 2010, maybe generational shift, not at same rate for catch/landings  
+#### Effect on Seafood Production
+Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species. 
 
-Even if market driven, changes in other indicators require monitoring as they may become important drivers of landings in the future:  
+Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings . Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
+
+The decline in recreational seafood landings stems from other drivers.  Some of the decline, such as that for recreational shark landings, is driven by management intended to reduce fishing mortality on mako sharks. However, NOAA Fisheries’ Marine Recreational Information Program survey methodology was updated in 2018, so it is unclear whether the record-low landings for 2018 are driven by changes in fishing behavior or the change in the survey methodology.  
+
+Other environmental changes  require monitoring as they may become important drivers of landings in the future:
+ 
 - Climate trending to uncharted territory (see [Climate Risks section](#climate-and-ecosystem-productivity))  
 - Stocks are shifting distribution throughout the region  
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=1}
@@ -188,62 +173,63 @@ Even if market driven, changes in other indicators require monitoring as they ma
 - Some ecosystem composition and production changes (see [Stability section](#stability))  
 - Engagement declining (see [Social and Cultural section](#social-and-cultural))  
 
-## Profits 
+## Commercial Profits 
 
 ### Indicators: revenue (a proxy for profits), with price and volume components  
-Total commercial revenue has increased over the long term but the trend may be reversing,with recent total revenue below the long term average. MAFMC managed species revenue continued its downward trend, with recent years near a time series low.
+Total commercial revenue (black) has increased over the long term, but the trend may be reversing, with recent total revenue below the long-term average. The MAFMC-managed species revenue (red) has continued its downward trend, with recent years near a time-series low. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
 ```
 
-Revenue trends overall mirror those for the benthos (clams and scallops) group over the past decade.  
+Total revenue trends (black line) mirror those for the benthos (clams and scallops; orange in separate volume and price indicator plots) group over the past decade. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet2.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
-### Why  
-Increasing revenue is due to increasing quantities landed, which offset declining prices. Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to overcome declining prices. Falling prices for surf clams and ocean quahogs in particular were likely due to increased competition from international sources, according to the [fishery performance report](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5f075b6737cbe041406404ab/1594317671964/f_FPR_for2020_SurfclamOceanQuahog.pdf).
+### Implications 
+Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes:  harvest levels, the mix of species landed, price changes, or a combination of these. The Bennet Indicator decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices. 
 
-Even if market driven, changes in other indicators require monitoring as they may become important drivers of revenue in the future:   
--  Surf clams and ocean quahogs are vulnerable to climate change because of their sensitivity to warming ocean temperatures and ocean acidification.   
--  New observations of acidification in surf clam summer habitat are approaching, but not yet at, levels affecting surf clam growth (see [Climate Risks section](#climate-and-ecosystem-productivity)).  
+The Bennet indicator demonstrates that increasing total revenue early in the time series is due to increasing quantities landed, which offset declining prices. Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
+
+Changes in other indicators, particularly those related to climate change, require monitoring as they may become important drivers of revenue in the future:
+
+-  Surfclams and ocean quahogs are  sensitive to warming ocean temperatures and ocean acidification.   
+-  Acidification levels in surfclam summer habitat are approaching, but not yet at, levels affecting surfclam growth (see [Climate Risks section](#climate-and-ecosystem-productivity)).  
 
 ## Recreational Opportunities 
 
 ### Indicators: Days fished, fleet diversity  
-Recreational days fished have been stable over the long term, with current days fished near the long term average. However, recreational fleet diversity has declined over the long term.
+Recreational effort (days fished) has no significant long term trend, with current days fished near the long-term average. However, recreational fleet diversity has declined over the long term. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")}
 
 ```
-- Overall effort being steady but change in diversity of recreational fleet effort suggests a changing range of opportunities
-- Changes access to types of species that can be caught
-- impacts?
 
-### Why
-Multiple drivers
--  Shift from charter party to shore based over the long term
-    -  Shoreside larger component
-    -  Changing species caught
-(ASMFS and SAFMC managed species maintain catch diversity--next section, will break up plots)
+### Implications
+The absence of a long-term trend in recreational days fished suggests relative stability in the overall number of recreational opportunities in the MAB. However,  the decline in recreational fleet diversity suggests a potentially reduced range of opportunities. 
+
+The downward effort diversity trend is driven by party/charter contraction (from a high of 24% of angler trips to 7% currently), and a shift toward shorebased angling. Effort in private boats remained stable between 36-37% of angler trips across the entire series.
+
+Changing recreational fleet diversity can be considered to maintain recreational opportunities. Shore anglers will have access to different species and when the same species, typically smaller fish. Many states have developed shore based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. 
 
 
 ## Stability 
 
-### Indicators: fishery fleet and catch diversity, ecological component diversity
-Commercial fishery fleet count, fleet diversity and permit diversity has been stable over time in the MAB with current values near the long term average. This indicates similar commercial fleet composition and species targeting opportunities over time. 
--  Reliant on a smaller number of species relative to mid 90s, but now consistent and near long term average
--  Good to increase diversity or bad? Losing traditional fisheries, cascading effects on newly entered fisheries?
+### Indicators: fishery fleet and catch diversity, ecological component diversity 
+While there are many potential metrics of stability, we use diversity indices as a first check to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine commercial and recreational fleet and species catch diversity, and diversity in zooplankton, larval, and adult fish. 
 
+#### Fishery Diversity 
+Commercial fishery fleet count, fleet diversity, and permit diversity has been stable over time in the MAB, with current values near the long-term average. This indicates similar commercial fleet composition and species targeting opportunities over time. Commercial fisheries are relying on fewer species relative to the mid -90s, but consistent with, and near, the long term average. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=1}
 ```
 
-As noted [above](#recreational-opportunities), recreational fleet effort diversity is unstable (declining). However, recreational species catch diversity is stable.
+As noted [above](#recreational-opportunities)recreational fleet effort diversity is unstable (declining). However, recreational species catch diversity is stable and has been at or above the long term average in 7 of the last 10 years. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")}
 ```
 
-Zooplankton diversity is increasing in the MAB, while larval fish and adult fish diversity indices are stable over time with current values near the long term average.
+#### Ecological Diversity
 
+Ecological diversity indices show mixed trends. Zooplankton diversity is increasing in the MAB. Larval fish and adult fish diversity indices are stable over time, with current values near the long-term average. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
 ```
 
@@ -254,66 +240,84 @@ Zooplankton diversity is increasing in the MAB, while larval fish and adult fish
 ```
 
  
-### Why
-Stability in commercial fleets reflects...  adequate capacity to respond to current fishery changes? no big shocks from management or the ecosystem so far? permitting structure that enforces similar composition? 
+### Implications
+Fleet diversity indices are used by the MAFMC to evaluate stability objectives as well as risks to fishery resilience and maintaining equity in access to fishery resources [@gaichas_implementing_2018]. 
 
-Declining recreational fleet effort diversity, as noted [above](#recreational-opportunities), indicates that the contraction by the party/charter boat sector continues, with shoreside angling becoming more important, by percentage.
+Stability in commercial fleet diversity metrics suggests stable capacity to respond to the current range of fishing opportunities. 
 
-Stability in recreational species catch diversity has been maintained by recent increase in ASMFC and SAFMC managed species.
+Declining recreational fleet effort diversity, as noted [above](#recreational-opportunities), indicates that the party/charter boat sector continues to contract, with shoreside angling becoming more important, as a percentage of recreational days fished.
 
-Increasing zooplankton diversity is driven by ... more southern species (tropicalization?) or the loss of a dominant species (Cal fin?) with everything else staying about the same?
+Stability in recreational species catch diversity has been maintained by a different set of species over time. A recent increase in ASMFC and SAFMC managed species in recreational catch is helping to maintain diversity in the same range that MAFMC and NEFMC species supported in the 1990s.
 
-Stable larval and adult fish diversity suggests ... the same overall number and evenness over time, but doesn't rule out species substitutions (e.g., warm-water replacing cold-water). Stable but variable (larval) can indicate changes in a dominant species. 
+Ecological diversity indices can provide insight into ecosystem structure. Changes in ecological diversity over time may indicate altered ecosystem structure with implications for fishery productivity and management.
 
+Increasing zooplankton diversity is driven by the declining dominance of the calanoid copepod *Centropages typicus*, with a similar composition of other zooplankton species. 
 
-## Social and Cultural 
+Stable larval and adult fish diversity indicates the same overall number and evenness over time, but doesn’t rule out species substitutions (e.g., warm-water replacing cold-water). Stable but variable larval diversity can indicate interannual changes in a dominant species.
 
-### Indicators: Commercial and recreational engagement and reliance by community
-In 2020, we reported that the number of highly engaged Mid-Atlantic commercial fishing communities have declined over time, and the engagement scores have also declined in medium-highly engaged communities. Here we focus on engagement and reliance scores for individual communities, as well as social vulnerability. 
+In the MAB, existing diversity indicators suggest overall stability in the fisheries and ecosystem components examined. However, declining recreational fleet diversity suggests a potential loss in the range of recreational fishing opportunities, and increasing zooplankton diversity is due to the declining dominance of an important species, suggesting change in the zooplankton community that warrants continued monitoring to determine if managed species are affected. 
+
+## Social Vulnerability 
+
+### Indicators: Social vulnerability in commercial and recreational fishing communities
+Social vulnerability measures social factors that shape a community’s ability to adapt to change and does not consider gentrification pressure vulnerability. Communities that ranked medium-high or above for one or more of the following indicators: poverty, population composition, personal disruption, or labor force structure, are highlighted in  red. 
+
+Commercial fishery engagement measures the number of permits, dealers, and landings in a community, while reliance expresses these numbers based on the level of fishing activity relative to the total population of a community.  
+In 2020, we reported that the number of highly engaged Mid-Atlantic commercial fishing communities had declined over time, and engagement scores had also declined in medium-highly engaged communities. Here we focus on the top ten most engaged, and top ten most reliant commercial fishing communities and their associated  social vulnerability.  Barnegat Light and Cape May, NJ, and Reedville, VA are highly engaged and reliant with medium-high to high social vulnerability.   
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 7.5, fig.asp = 0.75}
 ```
+
+Recreational fishery engagement measures shore, private vessel, and for-hire fishing activity while reliance expresses these numbers based on fishing effort relative to the population of a community. Of the nine recreational communities that are most engaged and reliant, Avon, Ocracoke and Hatteras, NC and Barnegat Light and Cape May, NJ scored medium-high or above for social vulnerability. 
+
+Both commercial and recreational fishing are important activities in  Montauk, NY; Barnegat Light, Cape May, and Point Pleasant Beach, NJ; and Ocracoke and Rodanthe, NC, meaning some of these communities may be impacted simultaneously by commercial and recreational regulatory changes. . Of these communities, three scored medium-high or above for social vulnerability.
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.width = 7.5, fig.asp = 0.75}
 ```
 
 
-### Why
-List multiple drivers of community status: landings, permits, etc (definition of engagement and reliance), as well as drivers of social vulnerability.
+### Implications
+These plots provide a snapshot of the relationship between social vulnerability and the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. Similar plots are used to inform the annual California Current Ecosystem Status Report. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability, they may have lower ability to successfully respond to change. These indicators may also point to communities that are vulnerable to environmental justice issues. Additional analysis related to ecosystem shifts and National Standard 8 of the Magnuson-Stevens Act is ongoing. 
 
-Provide statement of how managers can use this status plot going forward
 
 ## Protected Species
-Protected species include marine mammals (under the Marine Mammal Protection Act), endangered and threatened species (under the Endangered Species Act), and migratory birds (under the Migratory Bird Treaty Act). In the Northeast US, endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and 5 baleen whales. Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration; here we report on the status of these actions as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast US region. 
-
-Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs). 
+Protected species include marine mammals protected under the Marine Mammal Protection Act, endangered and threatened species protected under the Endangered Species Act, and migratory birds protected under the Migratory Bird Treaty Act. In the Northeast U.S., endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and five baleen whales. Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration; here we report on the status of these actions as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast U.S. region.
+Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs).
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
-Both harbor porpoise and gray seal bycatch indices are below current PBR thresholds, meeting management objectives. 
+BAverage indices for both harbor porpoise and gray seal bycatch are below current PBR thresholds, meeting management objectives.  
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R")}
 ```
 
-(Blue line here is specific to New England--did we get Mid specific estimates?)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R")}
 ```
 
 The North Atlantic right whale population was on a recovery trajectory until 2010, but has since declined. Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are only about 100 adult females remaining in the population. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")}
 ```
-North Atlantic right whale calf counts have also been declining. In 2018 there were zero observed new calves, and a drop in annual calves roughly mirrors the abundance decline (Fig above), however seven new calves were born in 2019. Preliminary data suggest that 2020 calf count is not 0; 12 calves have been observed as of January 2021.  
+North Atlantic right whale calf counts have also been declining. In 2018 there were zero observed new calves, and a drop in annual calves roughly mirrors the abundance decline , however seven new calves were born in 2019. Preliminary 2020 observations of 12 calves have been recorded as of January 2021.  
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")}
 ```
 
-This year saw the continuation of four Unusual Mortality Events (UMEs). Three large whale Unusual Mortality Events (UMEs) are ongoing for North Atlantic right whales, humpback whales, and minke whales. In all three cases human interaction appears to have contributed to increased mortalities, although investigations are not complete. Since 2017, the total UME right whale mortalities includes 30 dead stranded whales, 9 in the US and 21 in Canada. During 2019 9 whales have been stranded in Canada and one in the US, 3 of these were determined to have due to vessel strike while the remainder are undetermined at this time. A UME for both gray and harbor seals was declared in 2018, triggering an investigation into the cause of this event. Tests so far suggest phocine distemper virus as a potential cause, although the investigation is not yet complete. 
+This year, four Unusual Mortality Events (UMEs) continued, three for large whales and one for gray and harbor seals.
+The three large whale Unusual Mortality Events (UMEs) are ongoing for North Atlantic right whales, humpback whales, and minke whales. 
 
+Since 2017, the total UME right whale mortalities includes 32 dead stranded whales, 11 in the US and 21 in Canada. When alive but seriously injured whales (14) are taken into account, 46 individual whales are included in the UME. During 2020 two mortalities were documented, however, recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities. The primary cause of death is “human interaction” from entanglements or vessel strikes. 
 
-### Why
-Bycatch management measures have been implemented. The downward trend in harbor porpoise bycatch can also be due to changing seasonal distributions of harbor porpoise and fisheries reducing overlap and a decrease in gill net effort. The increasing trend in gray seal bycatch is related to an increase in the gray seal population (US pup counts). 
+Coastal bottlenose dolphin stocks off North Carolina and Virginia are listed as depleted, so a take reduction team met in 2019 and has been evaluating and implementing some of the team's consensus recommendations. 
 
-The number of grey seals (Halichoerus grypus) in U.S. waters has risen dramatically in the last 2 decades, with few observed in the early 1990s to roughly 24,000 observed in southeastern Massachusetts in 2015. Roughly 30,000 - 40,000 gray seals were estimated in southeastern Massachusetts in 2015, using correction factors applied to seal counts visible in Google Earth imagery. As of 2016, the size of the grey seal population in Canada, which is part of the same stock as the grey seals in the U.S., was estimated to be roughly 425,000, and increasing by 4% a year. In U.S. waters, the number of pupping sites has increased from 1 in 1988 to 9 in 2019. Mean rates of increase in the number of pups born at various times since 1988 at 4 of the more data-rich pupping sites (Muskeget, Monomoy, Seal, and Green Islands) ranged from -0.2% (95%CI: -2.3 - 1.9%) to 26.3% (95%CI: 21.6 - 31.4%). These high rates of increase provide further support that seals from Canada are continually supplementing the breeding population in U.S. waters.
+Also, a UME for both gray and harbor seals was declared in 2018 due to a high number of mortalities thought to be caused by phocine distemper virus.
 
-Strong evidence exists to suggest that the level of interaction between right whales and the combination of offshore lobster gear in the US and snow crab gear in Canada is contributing substantially to the decline of the species. Further, right whale distribution has changed since 2010. The reasons for these changes is unclear, but changes in climate and primary prey (Calanus finmarchicus) are suspected. 
+### Implications
+Bycatch management measures have been implemented to maintain bycatch below thresholds. The downward trend in harbor porpoise bycatch can also be due to a decrease in  harbor porpoise abundance in US waters, which has reduced fisheries overlap; and a decrease in gillnet effort. The increasing trend in gray seal bycatch may be related to an increase in the gray seal population (U.S. pup counts).
 
-A marine mammal climate vulnerability assessment is currently underway and for Atlantic and Gulf of Mexico populations and will be reported on in future versions of this report. 
+The number of gray seals in U.S. waters has risen dramatically in the last three  decades. Based on a survey conducted in 2016, the size of the gray seal population in the U.S. during the breeding season was approximately 27,000 animals, while in Canada the population,was estimated to be roughly 425,000. A survey conducted in 2021 in both countries will provide updated estimates of abundance. The population in Canada is increasing at roughly 4% per year, and contributing to rates of increase in the U.S., where the number of pupping sites has increased from 1 in 1988 to 9 in 2019. Mean rates of increase in the number of pups born at various times since 1988 at four of the more data-rich pupping sites (Muskeget, Monomoy, Seal, and Green Islands) ranged from -0.2% (95\%CI: -2.3 - 1.9\%) to 26.3% (95\%CI: 21.6 - 31.4\%). These high rates of increase provide further support for the hypothesis that seals from Canada are continually supplementing the breeding population in U.S. waters.  
+
+Strong evidence exists to suggest that interactions between right whales and the offshore lobster gear in the U.S. and snow crab gear in Canada is contributing substantially to the decline of the species. Further, right whale distribution has changed since 2010. The reasons for these changes is unclear, but changes in climate and the distribution of their primary prey (*Calanus finmarchicus*) are suspected causes.
+
+The UMEs are under investigation and are likely the result of multiple drivers. For all three large whale UMEs, human interaction appears to have contributed to increased mortalities, although investigations are not complete. An investigation into the cause of the seal UME so far suggests phocine distemper virus as a potential cause. 
+
+A marine mammal climate vulnerability assessment is currently underway for Atlantic and Gulf of Mexico populations and will be reported on in future versions of this report.
+
 
 # Risks to meeting fishery management objectives
 
