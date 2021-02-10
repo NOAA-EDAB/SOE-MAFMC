@@ -331,164 +331,169 @@ A marine mammal climate vulnerability assessment is currently underway for Atlan
 ## Climate and Ecosystem Productivity
 
 ### Climate Change Indicators: ocean currents, temperature, heatwaves, acidification
-Regional ocean current indicators remain at unprecedented levels. The Gulf Stream Index shows an all time northward progression of this current in 2019. 
+Regional ocean current indicators remain at unprecedented levels. In 2019, the Gulf Stream  was  aat its most northern position since 1993.
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
 ```
 In 2019, we also observed the second lowest proportion of Labrador Shelf water entering the Gulf of Maine since 1978. 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R")}
 ```
-Ocean temperatures continue to warm at both the surface and bottom. Warming is not seasonally uniform, however: spring 2020 was cooler than average on portions of the shelf.
+Ocean temperatures continue to warm at both the surface and bottom. Warming is not seasonally uniform, however: spring 2020 was cooler than average on portions of the shelf. 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
 ```
 
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.height = 7}
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = 1}
 ```
 
-Chesapeake Bay also experienced a warmer-than-average winter and a cooler-than-average spring in 2020, relative to the previous decade.  Water temperatures returned to average during the summer and slightly warmer than average October through December. 
+The Chesapeake Bay also experienced a warmer-than-average winter and a cooler-than-average spring in 2020, relative to the previous decade. Water temperatures returned to average during the summer and were slightly above average from October through December.
+```{r}
+
+```
+
 
 The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December, as observed in Chesapeake Bay.
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.asp=.6}
 ```
 
-New measurements show areas of low pH (7.8) in summer in Mid-Atlantic habitats occupied by surfclams and sea scallops. This seasonal pH minimum is associated with cold pool subsurface and bottom water, which is cut off from ventilation with surface water due to strong stratification. 
+New glider-based observations revealed areas of low pH (7.8) during summer in Mid-Atlantic habitats occupied by Atlantic surfclams and sea scallops (Wright-Fairbanks et al. 2020). This seasonal pH minimum is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. However, seawater pH in shelf waters increased during the fall mixing period due to the influence of a slope water mass characterized by warm, salty, highly alkaline seawater. Lower pH in nearshore waters is likely associated with freshwater input. 
 
 ```{r, fig.asp=1}
 knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Seasonal%20pH%20on%20MAB%20shelf%20-%20Grace%20Saba.jpg")
 ```
 
-Nearshore we see lower pH because of freshwater input - during the fall overturn the pH increases because of the input of the salty water, primary productivity increases pH, but increased respiration decreases pH
+The area of the MAB cold pool was near average in 2018.  The size of the cold pool varies annually, with the smallest sizes associated with record-warm years (e.g. 2012). The cold pool temperature shows a similar variation as its extent, both of which are strongly impacted by each early spring setting in temperature on the shelf.
+```{r, fig.asp=1}
+knitr::include_graphics("images/cold_pool_area.png")
+```
 
-The MAB cold pool area was near average in 2018, with smallest areas associated with record-warm years (2012).
 
 ### Ecosystem Productivity Indicators: primary production, zooplankton, forage fish, fish condition
-Increased temperatures drive increased rates of photosynthesis in summer
+Increased temperatures, as reported above, can increase the rate of photosynthesis by phytoplankton (i.e. primary productivity).
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-pp-monthly.R"), fig.width=8}
 ```
 
-Increased overall primary production from summer production, larger winter blooms in 2020?
+Annual primary production has increased over time, primarily driven by increased productivity in the summer months.   Larger-than-average phytoplankton blooms were observed from late fall into winter in 2020.
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 5, fig.asp = 0.9}
 ```
 
-Climatology of seasonal size fractions confirms that summer production dominated by smaller size classes (pico and nano)
+Climatology of seasonal phytoplankton size fractions confirms that the phytoplankton community in the summer is dominated by smaller size classes (pico and nano). 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
 ```
 
-Less efficient transfer to higher trophic levels
+This implies less efficient transfer of primary production to higher trophic levels. 
 
-Trends in gelatinous zoops, krill are the same across EPUs as last year, data was updated to 2019. Long term increase almost all regions.
+Trends in gelatinous zooplankton and krill are the same across ecological production units (EPUs) as last year (data were updated to 2019). There has been a long term increase in almost all regions. 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-strat-abun.R"), fig.width=8, fig.asp=.25}
 ```
 
-Larger zooplankton (Cal fin) had above average abundance in 2018-2019.
+Larger zooplankton (i.e. *Calanus finmarchicus*) had above average abundance in 2018-2019. 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-abund.R")}
 ```
 
-Trends in Cal fin overwintering stage important as forage for right whales and forage fish.
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-calanus-stage.R"), fig.width=8, fig.asp=.25}
-```
-
-
-Forage anomaly from zooplankton data, no apparent trend in MAB
+An index of aggregate forage fish fluctuations (forage anomaly) constructed from zooplankton and ichthyoplankton data has no apparent trend in MAB, but appears to be more variable since 2010.  Changes in environmental conditions, lower tropic levels, and diversity of the plankton community are potentially impacting the prey of zooplankton and ichthyoplankton. 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-anomaly.R")}
 ```
 
-
-Forage energy density updated; lower now for herring than in 80s-90s, other species seasonal difference but near previous estimates.
+Nutritional value (energy content) of forage fishes as prey is related to both environmental conditions, fish growth and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2019 are building toward a time series to evaluate trends. New 2019 measurements were consistent with last year’s report: the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (*Loligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish and Atlantic mackerel show seasonal differences, but bracketing estimates from  previous decades. 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
-
-Temperature and zooplankton changes impact fish condition for different species, impacts to fisheries and markets are under investigation.
+The health and well being of individual fish can be related to morphometric condition indices (i.e. weight at a given length) such as relative condition index which is the ratio of observed weight to predicted weight based on length (Le Cren 1951). Heavier and fatter fish at a given length have higher relative condition which is expected to influence growth, reproductive output and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019. While there were no new data to update the condition indicator this year, preliminary analyses show that temperature and zooplankton changes influence the condition of different fish species. Potential links between fish condition,  fisheries, and markets are under investigation. 
 ```{r, fig.width = 7.5, fig.asp = 0.5}
 knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/condition_proj.png")
 ```
 
 
 ### Ecosystem Structure Indicators: distribution shifts, diversity, predators
-As noted in the [Landings "Why" section above](#landings), stocks are shifting distribution throughout the region. In aggregate, fish stocks are moving northeast along the shelf and into deeper waters.  
-Zooplankton diversity is increasing in the MAB, while larval fish and adult fish diversity indices are stable over time with current values near the long term average (see [Diversity Indicators section, above](#diversity)).  
-New indicators for shark populations, combined with information on grey seals (see [Protected Species "Why" section, above](#protected-species)), suggests predator populations are stable to increasing in the MAB.
+As noted in the [Landings Implications section above](#landings), stocks are shifting distribution throughout the region. In aggregate, fish stocks are moving northeast along the shelf and into deeper waters.
+
+Zooplankton diversity is increasing in the MAB, while larval fish and adult fish diversity indices are stable over time with current values near the long-term average (see [Diversity Indicators section, above](#diversity)).  
+
+New indicators for shark populations, combined with information on gray seals (see [Protected Species "Implications" section, above](#protected-species)), suggests predator populations are stable (sharks)  to increasing (seals) in the MAB.  Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-observed-sharks.R")}
 ```
 
-
-```{r}
-#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R"),
-#sp_cat<- read.csv(here::here("data-raw/hms-mrip/hms_sp_category.csv"))
-sp_cat<- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/data-raw/hms-mrip/hms_sp_category.csv")
-ecodata::hms_cpue %>% 
-  filter(str_detect(Var, "SHARK")) %>% 
-  rename(COMMON_POP = Var) %>% 
-  left_join(sp_cat) %>% 
-  group_by(Year, SP_CATEGORY) %>% 
-  summarise(Value = sum(Value)) %>% 
-  rename(Var = SP_CATEGORY) %>% 
-  filter(!Var == "NA") %>% 
-  ggplot()+
- ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  ggplot2::geom_point(aes(x=Year, y = Value, color = Var))+
-  ggplot2::geom_line(aes(x=Year, y = Value, color = Var))+
-  #ggplot2::facet_wrap(~Var, scales = "free")+
-  ggplot2::ggtitle("HMS POP SHARK CPUE")+
-  ggplot2::ylab("Number per Haul")+
-  ecodata::theme_ts()
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R")}
 ```
 
+As noted in the [Protected Species section](#protected-species), gray seal populations are increasing. Harbor and gray seals occupying New England waters are generalist predators that consume more than 30 different prey species. An evaluation of hard  parts found in seal stomachs showed that harbor and gray seals predominantly exploit abundant demersal fish species (i.e. red, white and silver hake). Other relatively abundant prey species found in hard-part remains include sand lance, yellowtail flounder, four-spotted flounder, Gulf-stream flounder, haddock, herring, redfish, and squids. 
+
+A recent stable isotope study utilizing gray seal scat samples obtained from Massachusetts habitats showed individual gray seals can specialize on particular prey. It also found that gray seals vary their diet seasonally, focusing on demersal inshore species prior to the spring molt, and offshore species such as sand lance after molting. DNA studies on gray seal diet in Gulf of Maine and Massachusetts waters found spiny dogfish and Jonah crab present in gray seal scat samples. Skate and crab remains were also found in gray seal stomach remains. In contrast to direct feeding, it is uncertain if the presence of skates and crabs is due to secondary consumption or scavenging. 
+
+
 ### Habitat Climate Vulnerability
-New habitat climate vulnerability analysis links black sea bass, scup, and summer flounder to several highly vulnerable nearshore habitats from salt marsh through shallow estuarine and marine reefs.
+A recent habitat climate vulnerability analysis links black sea bass, scup, and summer flounder to several highly vulnerable nearshore habitats from salt marsh through shallow estuarine and marine reefs. Details on highly vulnerable habitats with linkages to a variety of species, including which life stages have different levels of dependence on a particular habitat, are available in a detailed table^[https://noaa-edab.github.io/ecodata/Hab_table].
 
 ### Implications
 
-Climate-managed species links
+#### Links between climate change and managed species 
+Estuarine and nearshore habitats are highly climate-vulnerable, and support many life stages of state and federally-managed species as noted above. Below we highlight how recently observed habitat changes affect several key managed species in Chesapeake Bay and in both nearshore and offshore waters of the MAB; overall, multiple drivers interact differently for each species, producing a range population impacts.
 
-The warm winter may have affected key Chesapeake Bay fishery resources during a critical period. Results of the Maryland juvenile striped bass survey, conducted by the Maryland Department of Natural Resources (MDNR), showed low recruitment success in 2020, about fivefold below the long-term average. This low recruitment event may have been caused by a mismatch in striped bass (Morone saxatilis) larval and prey abundance due to the warm winter conditions, resulting in reduced larval survival. Warm winters typically trigger an early plankton bloom, including key copepod prey, which dies out before striped bass larvae are present in the tributary (Millette et al. 2019). 
+##### *Striped bass and blue crabs*  
+The warmer than average winter may have affected key Chesapeake Bay fishery resources during a critical period. Results of the Maryland juvenile striped bass survey, conducted by the Maryland Department of Natural Resources (MDNR), showed low recruitment success in 2020, about fivefold below the long-term average. This low recruitment event may have been caused by a mismatch in striped bass larval and prey abundance due to the warm winter conditions, resulting in reduced larval survival. Warm winters typically trigger early phytoplankton and zooplankton blooms, including key copepod prey, which die before striped bass larvae are present in the tributary (Millette et al. 2019).
 
-Conversely, warmer winter temperatures may have reduced overwintering mortality of Chesapeake Bay blue crabs (Callinectes sapidus). Calculations done by MDNR based on data from the annual Bay-wide winter dredge survey indicate that blue crabs experienced the lowest overwintering mortality ever calculated (2020 Chesapeake Bay Blue Crab Advisory Report). Previous studies have demonstrated the correlation between winter water temperature and blue crab survival in the Chesapeake Bay (Bauer & Miller 2010, Hines et al. 2010, Rome et al. 2005). 
+In addition to winter water temperature, survival of early life stages of striped bass in the Chesapeake Bay is strongly correlated with freshwater flow (Martino & Houde 2010, Millette et al. 2019, North & Houde 2003). High-flow regimes push zooplankton prey downstream, where they get trapped with striped bass larvae in the estuarine turbidity maximum. In low-flow years, such as 2020, zooplankton prey are less likely to match up with striped bass larvae in space and time, reducing striped bass larval survival and recruitment success. The combined effects of warm winter temperatures and low flow in 2020 may be the primary cause of the low recruitment observed by the MDNR juvenile striped bass survey.
 
-In addition to winter water temperature, survival of early life stages of striped bass in the Chesapeake Bay is strongly correlated with freshwater flow (Martino & Houde 2010, Millette et al. 2019, North & Houde 2003); high-flow regimes push zooplankton prey downstream, where they get trapped in the estuarine turbidity maximum with striped bass larvae. In low-flow years, zooplankton prey are less likely to match up with striped bass larvae in space and time, reducing larval survival and recruitment success. The combined effects of warm winter temperatures and low flow in 2020 may be the primary cause of the low recruitment success observed by the MDNR juvenile striped bass survey. 
+Conversely, warmer winter temperatures may have reduced overwintering mortality of Chesapeake Bay blue crabs. Calculations done by MDNR based on data from the annual bay-wide winter dredge survey indicate that blue crabs experienced the lowest overwintering mortality ever observed (2020 Chesapeake Bay Blue Crab Advisory Report). Previous studies have demonstrated the correlation between winter water temperature and blue crab survival in the Chesapeake Bay (Bauer & Miller 2010, Hines et al. 2010, Rome et al. 2005).
 
-Conversely, increased salinity often results in high juvenile oyster abundance in the Chesapeake Bay (Kimmel et al. 2014). In Maryland, the 2020 MDNR fall oyster survey documented above-average spatsets along the Eastern Shore as expected given the high salinity; however, the Western Shore did not fare as well, suggesting that local environmental conditions are also important.
+##### *American oyster*  
+Increased salinity in the Chesapeake Bay often results in high juvenile oyster abundance (Kimmel et al. 2014). In Maryland, the 2020 MDNR fall oyster survey documented above-average spatsets along the Eastern Shore as expected, given the high salinity. However, the Western Shore did not fare as well, suggesting that local environmental conditions are also important.
 
-Ocean acidification also has different implications, depending on the species and life stage. The decrease of pH decreases the feeding rates. Surfclam more sensitive than sea scallops. Lab studies have found a surfclam threshold metabolic depression in a pH range of 7.46-7.28. 
-Ocean pH from one season of data (mostly 2019) hasn't reached the threshold observed for surfclams in lab studies so far--BUT we haven’t yet tested thresholds for other species or for multiple life stages, specifically larval stages that are typically more vulnerable to OA.
+##### *Summer flounder*
+The NEAMAP survey saw a doubling of summer flounder catch in the near coastal waters relative to 2019. It is more likely that environmental conditions made summer flounder more available in nearshore habitats and less likely that the population doubled between 2019 and 2020, but this remains to be confirmed and investigated along with habitat specific information. In upcoming reports, we plan to integrate information on federally managed species in both Chesapeaky Bay (ChesMMAP) and NEAMAP surveys with nearshore environmental information to highlight interactions in these important habitats.
 
-More variable system--not uniformly warmer, more variable too and this makes a wider range of conditions for biota to deal with
+##### *Surfclam*  
+Ocean acidification also has different implications, depending on the species and life stage. Recent lab studies have found that surfclams exhibited  metabolic depression in a pH range of 7.46-7.28 (Pousse et al. 2020). In other bivalve species, metabolic depression happened between 7.38 and 7.14. for blue mussels  (Thomsen and Meltzer,2010) and 7.1 for Pacific oysters  (Lannig et al. 2010). At pH=7.51, short term experiments indicated that surfclams were selecting particles differently, which may have long term implications for growth (Pousse et al. 2020). Computer models would help in determining the long term implications of growth on surfclam populations. Data from about one year of observations (2018-2019) show that seasonal ocean pH has not yet reached the metabolic depression threshold observed for surfclams in lab studies so far; however, thresholds at different  life stages, specifically larval stages that are typically more vulnerable to ocean acidification, have not yet been determined. 
 
-2012 still warmest on record, now papers published on impacts to give insight into what the implications of heatwaves can be
-Lobster was a big one--timing of fishing, markets, etc
-Cobia habitat shifts (and other species)--seen off RI now
 
-Fish Condition Links to Environmental Drivers
+#### Distribution shifts
+2012 is still the warmest year on record. Recent papers published on the impacts of the 2012 heatwave give insight into the implications of marine heatwaves. Lobster was impacted as well as the timing of fishing and markets.  Cobia and other more southern species exhibited habitat shifts, and were seen off Rhode Island.
 
-General Additive Models (GAMs) were used to test how measures of fishing pressure, stock abundance and individual environmental variables performed in explaining the changes of fish condition (fatness) over time. Some species such as Acadian redfish, butterfish and winter flounder were more affected by fishing pressure and stock size, whereas other species such as weakfish, windowpane and American plaice may be more affected by local bottom temperatures and zooplankton. These relationships can potentially provide insights on which species may be more vulnerable to environmental changes such as climate change, as well as what biomass changes may be expected from certain species given current environmental conditions. Correlations were examined between environmental drivers, and as expected there were strong temperature correlations between seasons as well as correlations between temperature and zooplankton indices. Planned future work includes building full GAM models for each fish species, and linking fish condition to socio-economic models to assess whether fish condition impacts the value generated by that species.
- 
-Socio-Economic Models
- 
-Economic theory and empirical analyses have highlighted that many factors can affect the price of fish, including the total quantity of fish in the market (sometimes including internationally), increased demand around holidays, time the fish was in storage, and other issues that either affect the quality of the fish or the amount of fish available for purchase. We plan on empirically exploring whether fish condition is a quality metric people care about. Understanding whether people care about fish condition will help us more holistically understand the impacts of condition change on society, if any.
+Shifting species distributions alter both species interactions and fishery interactions. In particular, shifting species distributions can alter expected management outcomes from spatial allocations based on historical distributions.
+
+#### Ecosystem productivity
+Climate and associated changes in the physical environment affects ecosystem productivity, with warming waters increasing the rate of photosynthesis at the base of the food web. However, increased summer production in the MAB may not translate to increased fish biomass because smaller phytoplankton dominate in this season. 
+
+While krill and large gelatinous zooplankton are increasing over time, smaller zooplankton are periodically shifting abundance between the larger, more nutritious Calanus finmarchicus and smaller bodied copepods with no apparent overall trend.  Forage species are difficult to survey, but a new index that includes ichthyoplankton suggests high interannual variability in abundance of larval fish and zooplankton prey. The nutritional content of larger bodied forage fish and squid changes seasonally in response to ecosystem conditions, with apparent declines in energy density for Atlantic herring and Illex squid relative to the 1980s, but similar energy density for other forage species. Some of these factors are now being linked to the relative condition of higher level fishes.
+
+#### Fish Condition Links to Environmental Drivers  
+Generalized Additive Models (GAMs) were used to test how measures of fishing pressure, stock abundance, and individual environmental variables performed in explaining the changes of fish condition (fatness) over time. Some species such as Acadian redfish, butterfish and winter flounder were more affected by fishing pressure and stock size, whereas other species such as weakfish, windowpane flounder,  and American plaice may be more affected by local bottom temperatures and zooplankton. 
+
+These relationships can potentially provide insights on which species may be more vulnerable to environmental changes such as climate change, as well as what biomass changes may be expected from certain species given current environmental conditions. 
+
+Correlations were examined between environmental drivers, and as expected there were strong temperature correlations between seasons as well as correlations between temperature and zooplankton indices. Planned future work includes building full GAM models for each fish species, and linking fish condition to socio-economic models to assess whether fish condition impacts the value generated by that species.
+
+#### Socio-Economic Models  
+Economic theory and empirical analyses have highlighted that many factors can affect the price of fish, including the total quantity of fish in the market (sometimes including internationally), increased demand around holidays, time the fish was in storage, and other issues that either affect the quality of the fish or the amount of fish available for purchase. We plan on empirically exploring whether fish condition is a quality metric that drives fish prices. Understanding the socio-economic impact of fish condition will help us more holistically understand the impacts of condition change on society, if any.
+
 
 ## Other Ocean Uses: Offshore Wind
 
 ### Indicators: revenue in lease areas, development timeline, survey overlap
-Commercial fishery revenue in proposed offshore wind lease areas ranges from x-y% of total revenue for MAFMC managed species.
+Based on vessel logbook data, average commercial fishery revenue from trips in the proposed offshore wind lease areas and the New York Bight Call Areas represented 2-24\% of the total average revenue for each MAFMC managed fishery from 2008-2018. 
+
+The surfclam/ocean quahog fishery was the most affected fishery, with a maximum of 31\% of annual fishery revenue occurring within potential wind lease areas during this period. The  golden and blueline tilefish fisheries and spiny dogfish fishery were the least affected, at 3-4% maximum annual revenue affected, respectively. A maximum of 11\% of the annual monkfish revenues were affected by these areas, with similar effects for the bluefish (10\%), summer flounder/scup/black sea bass (9\%), and mackerel/squid/butterfish (8\%) fisheries. The New York Bight Call Areas represented only 1-5\% of total average fishery revenue from any fishery during 2008-2018, with the surfclam/ocean quahog fishery most affected.
+
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R")}
 ```
 
-Offshore wind projects may cover more than 1.5 million acres by 2029.
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-dev-speed0.R")}
+More than 20 offshore wind development projects are proposed for construction over the next decade in the Northeast (projects & construction timelines based on Table E-4 of South Fork Wind Farm Draft Environmental Impact Statement). Offshore wind areas may cover more than 1.7 million acres by 2030. Just over 1,900 foundations and more than 3,000 miles of inter-array and offshore export cables are proposed to date. Each proposed project has a -year construction timeline (BOEM 2021). Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time.  
+```{r, fig.asp=1}
+knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/CumulativeWindDraft_20201231.jpg")
 ```
 
-Scientific survey area overlap with offshore wind lease areas ranges from 2-25% across ecosystem, shellfish, fish, and protected species surveys.
+Proposed wind energy project areas and NY Bight Call Areas interact with the regions’ federal scientific surveys. The total survey area overlap ranges from 1-14\% across ecosystem, shellfish, fish, shark, and protected species surveys. For example, the sea scallop survey will have significant overlap (up to 96\% of individual strata) while the bottom trawl survey  will have  up to 60\% overlap. Additionally, up to 50\% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. 
 ```{r}
 knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/SurveysWindFarmAreas_20201229.jpg")
 ```
 
 ### Implications
 Fishery revenue could be displaced to other areas or foregone if all wind projects are built.  
+
 Displaced fishing effort can alter fishing methods and change habitat, species (managed and protected), and fleet interactions.  
-Right whales may be displaced and could face possible prey impacts via changed oceanography.  
+
+Right whales may be displaced and could face possible prey impacts via changed oceanography. 
+
 Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region.  
 ```{r, fig.asp=1.5}
 knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/MidAtlantic_2021119-01.jpg")
@@ -496,14 +501,14 @@ knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/d
 
 Offshore wind will pose a risk to scientific data collection for surveys and increased uncertainty for management decision making across physical, low trophic, fish, and protected species.
 
-
-
-
 # Contributors
 
 **Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Chris Orphanides 
 
-**Contributors** (NEFSC unless otherwise noted): Andy Beet, Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Ruth Boettcher (Virginia Department of Game and Inland Fisheries), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institute), Sean Lucey, Chris Melrose, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Vincent Saba, Laurel Smith, John Walden, Harvey Walsh, Mark Wuenschel.  
+**Contributors** (NEFSC unless otherwise noted): Andy Beet, Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Ruth Boettcher (Virginia Department of Game and Inland Fisheries), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institute), Sean Lucey, Chris Melrose, Shannon Meseck, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Grace Saba (Rutgers University), Emily Slesinger (Rutgers University), Vincent Saba, Laurel Smith, John Walden, Harvey Walsh, Mark Wuenschel, 
+*integrate alphabetically*
+Ron Vogel, Mandy Bromilow and CJ Pellerin (NOAA CBO), Angela Silva, Andrew Lipsky, Jennifer Cudney and Tobey Curtis (NMFS Atlantic HMS Management Division); and Talya ten Brink, Ben Galuardi, Chris Schillaci and Doug Christel (GARFO).
+
 
 
 \newpage 
