@@ -1,5 +1,5 @@
 ---
-title: "null"
+title: 
 csl: plos.csl
 fontsize: 10pt
 output:
@@ -181,7 +181,10 @@ Total commercial revenue (black) has increased over the long term, but the trend
 ```
 
 Total revenue trends (black line) mirror those for the benthos (clams and scallops; orange in separate volume and price indicator plots) group over the past decade. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet2.R"), fig.width = 7.5, fig.asp = 0.5}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
 ### Implications 
@@ -219,11 +222,15 @@ Changing recreational fleet diversity can be considered to maintain recreational
 While there are many potential metrics of stability, we use diversity indices as a first check to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine commercial and recreational fleet and species catch diversity, and diversity in zooplankton, larval, and adult fish. 
 
 #### Fishery Diversity 
-Commercial fishery fleet count, fleet diversity, and permit diversity has been stable over time in the MAB, with current values near the long-term average. This indicates similar commercial fleet composition and species targeting opportunities over time. Commercial fisheries are relying on fewer species relative to the mid -90s, but consistent with, and near, the long term average. 
+Commercial fishery fleet count, fleet diversity, and permit diversity has been stable over time in the MAB, with current values near the long-term average. This indicates similar commercial fleet composition and species targeting opportunities over time. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=1}
 ```
 
-As noted [above](#recreational-opportunities)recreational fleet effort diversity is unstable (declining). However, recreational species catch diversity is stable and has been at or above the long term average in 7 of the last 10 years. 
+Commercial fisheries are relying on fewer species relative to the mid-90s, but current species revenue diversity has been consistent since then and is currently near the long term average. 
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
+```
+
+As noted [above](#recreational-opportunities) recreational fleet effort diversity is unstable (declining). However, recreational species catch diversity is stable and has been at or above the long term average in 7 of the last 10 years. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")}
 ```
 
