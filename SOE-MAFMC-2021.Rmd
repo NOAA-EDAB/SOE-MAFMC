@@ -294,10 +294,10 @@ Protected species objectives include managing bycatch to remain below potential 
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
 Average indices for both harbor porpoise (Fig. \ref{fig:harborporpoise}) and gray seal bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. However, the 2019 bycatch estimate for gray seals was highest in the time series.
-```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England fisheries (blue) and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=6}
+```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England fisheries (blue) and the potential biological removal (red). 2019 estimates are preliminary.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=6}
 ```
 
-```{r grayseal, fig.cap="Gray Seal average bycatch estimate for New England gillnet fisheries (blue) and and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.width=6}
+```{r grayseal, fig.cap="Gray Seal average bycatch estimate for New England gillnet fisheries (blue) and and the potential biological removal (red). 2019 estimates are preliminary.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.width=6}
 ```
 
 The North Atlantic right whale population was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:narw-abundance}). Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are only about 100 adult females remaining in the population. 
@@ -307,10 +307,9 @@ North Atlantic right whale calf counts have also been declining (Fig. \ref{fig:N
 ```{r NARW-calf-abundance, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2019.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")}
 ```
 
-This year, four Unusual Mortality Events (UMEs) continued, three for large whales and one for gray and harbor seals.
-The three large whale Unusual Mortality Events (UMEs) are ongoing for North Atlantic right whales, humpback whales, and minke whales. 
+This year, four Unusual Mortality Events (UMEs) continued, three for large whales (North Atlantic right whales, humpback whales, and minke whales) and one for gray and harbor seals.
 
-Since 2017, the total UME right whale mortalities includes 32 dead stranded whales, 11 in the US and 21 in Canada. When alive but seriously injured whales (14) are taken into account, 46 individual whales are included in the UME. During 2020 two mortalities were documented, however, recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities. The primary cause of death is “human interaction” from entanglements or vessel strikes. 
+Since 2017, the total UME right whale mortalities includes 32 dead stranded whales, 11 in the US and 21 in Canada. When alive but seriously injured whales (14) are taken into account, 46 individual whales are included in the UME. During 2020 two mortalities were documented, however, recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities [@pace_cryptic_2021]. The primary cause of death is “human interaction” from entanglements or vessel strikes. 
 
 Coastal bottlenose dolphin stocks off North Carolina and Virginia are listed as depleted, so a take reduction team met in 2019 and has been evaluating and implementing some of the team's consensus recommendations. 
 
