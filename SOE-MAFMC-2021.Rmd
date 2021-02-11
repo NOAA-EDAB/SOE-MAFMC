@@ -142,7 +142,7 @@ Thresholds for ecosystem-level overfishing based on system production characteri
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
 ```
 
-Fisheries catches are sustained by a lower proportion of the ecosystem's primary production now than in the past, particularly when compared with the 1970s when each of these indices suggest that ecosystem overfishing may have occurred.
+Fisheries catches are sustained by a lower proportion of the ecosystem's primary production now than in the past, particularly when compared with the 1970s when each of these indices suggest that ecosystem overfishing may have occurred (Fig. \ref{fig:ppr-mab}).
 ```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
 ```
 
@@ -152,7 +152,7 @@ Single species management objectives of maintaining biomass above minimum thresh
 ```
 
 #### System Biomass
-Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthos show long-term increases. (The NEAMAP Fall 2020 survey was completed and is included here; NEFSC surveys were not completed in 2020). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. 
+Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). (The NEAMAP Fall 2020 survey was completed and is included here; NEFSC surveys were not completed in 2020). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. 
 ```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
 ```
 
@@ -167,19 +167,20 @@ Other environmental changes require monitoring as they may become important driv
  
 - Climate is trending into uncharted territory. Globally, 2020 was tied with the warmest year on record^[https://www.nasa.gov/press-release/2020-tied-for-warmest-year-on-record-nasa-analysis-shows] with regional heatwaves apparent (see [Climate Risks section](#climate-and-ecosystem-productivity)).   
 - Stocks are shifting distribution throughout the Northeast US Large Marine Ecosystem (Fig. \ref{fig:spec-dist}).  
-```{r spec-dist, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=1}
+```{r spec-dist, fig.cap = "FIX", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=1}
 ```  
+
 - Some ecosystem composition and production changes have been observed (see [Stability section](#stability)). 
 - Fishing engagement has declined in some communities (see [Social and Cultural section](#social-and-cultural)).  
 
 ## Commercial Profits 
 
 ### Indicators: revenue (a proxy for profits), with price and volume components  
-Total commercial revenue (black) has increased over the long term, but the trend may be reversing, with recent total revenue below the long-term average. The MAFMC-managed species revenue (red) has continued its downward trend, with recent years near a time-series low. 
+Total commercial revenue (black) has increased over the long term, but the trend may be reversing, with recent total revenue below the long-term average (Fig. \ref{fig:comm-revenue}). The MAFMC-managed species revenue (red) has continued its downward trend, with recent years near a time-series low. 
 ```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
 ```
 
-Total revenue trends (black line) mirror those for the benthos (clams and scallops; orange in separate volume and price indicator plots) group over the past decade. 
+Total revenue trends decomposed to price and volume indicators (Fig. \ref{fig:bennet}) mirror price and volume indicator trends for the benthos (clams and scallops; orange in Fig. \ref{fig:bennet-all}) group, especially over the past decade. 
 ```{r bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R")}
 ```
 
@@ -191,19 +192,19 @@ Revenue earned by harvesting resources is a function of both the quantity landed
 
 The Bennet indicator demonstrates that increasing total revenue early in the time series is due to increasing quantities landed, which offset declining prices. Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
 
-Changes in other indicators, particularly those related to climate change, require monitoring as they may become important drivers of revenue in the future:
+Changes in other indicators, particularly those driving landings above and those related to climate change, require monitoring as they may become important drivers of revenue in the future:
 
--  Surfclams and ocean quahogs are  sensitive to warming ocean temperatures and ocean acidification.   
+-  Surfclams and ocean quahogs are sensitive to warming ocean temperatures and ocean acidification.   
 -  Acidification levels in surfclam summer habitat are approaching, but not yet at, levels affecting surfclam growth (see [Climate Risks section](#climate-and-ecosystem-productivity)).  
 
 ## Recreational Opportunities 
 
 ### Indicators: Days fished, fleet diversity  
-Recreational effort (days fished) has no significant long term trend, with current days fished near the long-term average. However, recreational fleet diversity has declined over the long term. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")}
+Recreational effort (days fished) has no significant long term trend, with current days fished near the long-term average (Fig. \ref{fig:rec-op}). However, recreational fleet diversity has declined over the long term (Fig. \ref{fig:rec-div}). 
+```{r rec-op, fig.cap = paste0("Recreational effort in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")}
+```{r rec-div, fig.cap = paste0("Recreational fleet effort diversity in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")}
 
 ```
 
@@ -221,16 +222,16 @@ Changing recreational fleet diversity can be considered to maintain recreational
 While there are many potential metrics of stability, we use diversity indices as a first check to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine commercial and recreational fleet and species catch diversity, and diversity in zooplankton, larval, and adult fish. 
 
 #### Fishery Diversity 
-Commercial fishery fleet count, fleet diversity, and permit diversity has been stable over time in the MAB, with current values near the long-term average. This indicates similar commercial fleet composition and species targeting opportunities over time. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=1}
+Diversity estimates have been developed for fleets and species landed by vessels with Mid-Atlantic permits. A fleet is defined here as the combination of gear code (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel length category (Less than 30 ft, 30 to 50 ft, 50 to 75 feet, 75 ft and above). Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average (Fig. \ref{fig:commercial-div}). This indicates similar commercial fleet composition and species targeting opportunities over time. 
+```{r commercial-div, fig.cap = paste0("Fleet diversity and fleet count in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.9}
 ```
 
-Commercial fisheries are relying on fewer species relative to the mid-90s, but current species revenue diversity has been consistent since then and is currently near the long term average. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
+Commercial fisheries are relying on fewer species relative to the mid-90s, but current species revenue diversity has been consistent since then and is currently near the long term average (Fig. \ref{fig:commercial-div-species-div}). 
+```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
 ```
 
-As noted [above](#recreational-opportunities) recreational fleet effort diversity is unstable (declining). However, recreational species catch diversity is stable and has been at or above the long term average in 7 of the last 10 years. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")}
+As noted [above](#recreational-opportunities) recreational fleet effort diversity is unstable (declining; Fig. \ref{fig:rec-div}). However, recreational species catch diversity is stable and has been at or above the long term average in 7 of the last 10 years (rec-div)Fig. \ref{fig:recdat-div-catch}). 
+```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")}
 ```
 
 #### Ecological Diversity
@@ -290,18 +291,18 @@ Protected species include marine mammals protected under the Marine Mammal Prote
 Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs).
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
-BAverage indices for both harbor porpoise and gray seal bycatch are below current PBR thresholds, meeting management objectives.  
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R")}
+Average indices for both harbor porpoise (Fig. \ref{fig:}) and gray seal bycatch (Fig. \ref{fig:}) are below current PBR thresholds, meeting management objectives.  
+```{r harborporpoise, fig.cap="Harbor porpoise bycatch estimate for NEUS Shelf (blue) and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R")}
+```{r grayseal-mab, fig.cap="Gray Seal bycatch estimate for NEUS Shelf (blue) and and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal-mab.R")}
 ```
 
-The North Atlantic right whale population was on a recovery trajectory until 2010, but has since declined. Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are only about 100 adult females remaining in the population. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")}
+The North Atlantic right whale population was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:}). Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are only about 100 adult females remaining in the population. 
+```{r narw-abundance, fig.cap = "Estimated North Atlanic right whale abundance on the Northeast Shelf.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")}
 ```
-North Atlantic right whale calf counts have also been declining. In 2018 there were zero observed new calves, and a drop in annual calves roughly mirrors the abundance decline , however seven new calves were born in 2019. Preliminary 2020 observations of 12 calves have been recorded as of January 2021.  
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")}
+North Atlantic right whale calf counts have also been declining (Fig. \ref{fig:}). In 2018 there were zero observed new calves, and a drop in annual calves roughly mirrors the abundance decline, however seven new calves were born in 2019. Preliminary 2020 observations of 12 calves have been recorded as of January 2021.  
+```{r NARW-calf-abundance, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2019.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")}
 ```
 
 This year, four Unusual Mortality Events (UMEs) continued, three for large whales and one for gray and harbor seals.
@@ -330,30 +331,30 @@ A marine mammal climate vulnerability assessment is currently underway for Atlan
 ## Climate and Ecosystem Productivity
 
 ### Climate Change Indicators: ocean currents, temperature, heatwaves, acidification
-Regional ocean current indicators remain at unprecedented levels. In 2019, the Gulf Stream  was  aat its most northern position since 1993.
+Regional ocean current indicators remain at unprecedented levels. In 2019, the Gulf Stream  was  aat its most northern position since 1993 (Fig. \ref{fig:}).
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
 ```
-In 2019, we also observed the second lowest proportion of Labrador Shelf water entering the Gulf of Maine since 1978. 
+In 2019, we also observed the second lowest proportion of Labrador Shelf water entering the Gulf of Maine since 1978 (Fig. \ref{fig:}). 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R")}
 ```
-Ocean temperatures continue to warm at both the surface and bottom. Warming is not seasonally uniform, however: spring 2020 was cooler than average on portions of the shelf. 
+Ocean temperatures continue to warm at both the surface and bottom (Fig. \ref{fig:}). Warming is not seasonally uniform, however: spring 2020 was cooler than average on portions of the shelf (Fig. \ref{fig:}). 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
 ```
 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = 1}
 ```
 
-The Chesapeake Bay also experienced a warmer-than-average winter and a cooler-than-average spring in 2020, relative to the previous decade. Water temperatures returned to average during the summer and were slightly above average from October through December.
+The Chesapeake Bay also experienced a warmer-than-average winter and a cooler-than-average spring in 2020, relative to the previous decade. Water temperatures returned to average during the summer and were slightly above average from October through December (Fig. \ref{fig:}).
 ```{r}
 
 ```
 
 
-The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December, as observed in Chesapeake Bay.
+The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December, as observed in Chesapeake Bay (Fig. \ref{fig:}).
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.asp=.6}
 ```
 
-New glider-based observations revealed areas of low pH (7.8) during summer in Mid-Atlantic habitats occupied by Atlantic surfclams and sea scallops (Wright-Fairbanks et al. 2020). This seasonal pH minimum is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. However, seawater pH in shelf waters increased during the fall mixing period due to the influence of a slope water mass characterized by warm, salty, highly alkaline seawater. Lower pH in nearshore waters is likely associated with freshwater input. 
+New glider-based observations revealed areas of low pH (7.8) during summer in Mid-Atlantic habitats occupied by Atlantic surfclams and sea scallops (Fig. \ref{fig:}) (Wright-Fairbanks et al. 2020). This seasonal pH minimum is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. However, seawater pH in shelf waters increased during the fall mixing period due to the influence of a slope water mass characterized by warm, salty, highly alkaline seawater. Lower pH in nearshore waters is likely associated with freshwater input. 
 
 ```{r, out.width='70%'}
 #knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Seasonal%20pH%20on%20MAB%20shelf%20-%20Grace%20Saba.jpg")
@@ -361,7 +362,7 @@ New glider-based observations revealed areas of low pH (7.8) during summer in Mi
 knitr::include_graphics("images/Seasonal pH on MAB shelf - Grace Saba.jpg")
 ```
 
-The area of the MAB cold pool was near average in 2018.  The size of the cold pool varies annually, with the smallest sizes associated with record-warm years (e.g. 2012). The cold pool temperature shows a similar variation as its extent, both of which are strongly impacted by each early spring setting in temperature on the shelf.
+The area of the MAB cold pool was near average in 2018 (Fig. \ref{fig:}).  The size of the cold pool varies annually, with the smallest sizes associated with record-warm years (e.g. 2012). The cold pool temperature shows a similar variation as its extent, both of which are strongly impacted by each early spring setting in temperature on the shelf.
 ```{r,  fig.asp=1}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool_map.R"),
 knitr::include_graphics("images/cold_pool_area.png")
@@ -369,37 +370,37 @@ knitr::include_graphics("images/cold_pool_area.png")
 
 
 ### Ecosystem Productivity Indicators: primary production, zooplankton, forage fish, fish condition
-Increased temperatures, as reported above, can increase the rate of photosynthesis by phytoplankton (i.e. primary productivity).
+Increased temperatures, as reported above, can increase the rate of photosynthesis by phytoplankton (i.e. primary productivity). Annual primary production has increased over time, primarily driven by increased productivity in the summer months (Figs. \ref{fig:}, \ref{fig:}).
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-pp-monthly.R"), fig.width=8}
 ```
 
-Annual primary production has increased over time, primarily driven by increased productivity in the summer months.   Larger-than-average phytoplankton blooms were observed from late fall into winter in 2020.
+Larger-than-average phytoplankton blooms were observed from late fall into winter in 2020 (Fig. \ref{fig:}).
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 5, fig.asp = 0.9}
 ```
 
-Climatology of seasonal phytoplankton size fractions confirms that the phytoplankton community in the summer is dominated by smaller size classes (pico and nano). 
+Climatology of seasonal phytoplankton size fractions confirms that the phytoplankton community in the summer is dominated by smaller size classes (pico and nano; Fig. \ref{fig:}). 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
 ```
 
 This implies less efficient transfer of primary production to higher trophic levels. 
 
-Trends in gelatinous zooplankton and krill are the same across ecological production units (EPUs) as last year (data were updated to 2019). There has been a long term increase in almost all regions. 
+Trends in gelatinous zooplankton and krill are the same across ecological production units (EPUs) as last year (data were updated to 2019; Fig. \ref{fig:}). There has been a long term increase in almost all regions. 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-strat-abun.R"), fig.width=8, fig.asp=.25}
 ```
 
-Larger zooplankton (i.e. *Calanus finmarchicus*) had above average abundance in 2018-2019. 
+Larger zooplankton (i.e. *Calanus finmarchicus*) had above average abundance in 2018-2019 (Fig. \ref{fig:}). 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-abund.R")}
 ```
 
-An index of aggregate forage fish fluctuations (forage anomaly) constructed from zooplankton and ichthyoplankton data has no apparent trend in MAB, but appears to be more variable since 2010.  Changes in environmental conditions, lower tropic levels, and diversity of the plankton community are potentially impacting the prey of zooplankton and ichthyoplankton. 
+An index of aggregate forage fish fluctuations (forage anomaly) constructed from zooplankton and ichthyoplankton data has no apparent trend in MAB, but appears to be more variable since 2010 (Fig. \ref{fig:}).  Changes in environmental conditions, lower tropic levels, and diversity of the plankton community are potentially impacting the prey of zooplankton and ichthyoplankton. 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-anomaly.R")}
 ```
 
-Nutritional value (energy content) of forage fishes as prey is related to both environmental conditions, fish growth and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2019 are building toward a time series to evaluate trends. New 2019 measurements were consistent with last year’s report: the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (*Loligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish and Atlantic mackerel show seasonal differences, but bracketing estimates from  previous decades. 
+Nutritional value (energy content) of forage fishes as prey is related to both environmental conditions, fish growth and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2019 are building toward a time series to evaluate trends (Fig. \ref{fig:}). New 2019 measurements were consistent with last year’s report: the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (*Loligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish and Atlantic mackerel show seasonal differences, but bracketing estimates from  previous decades. 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
-The health and well being of individual fish can be related to morphometric condition indices (i.e. weight at a given length) such as relative condition index which is the ratio of observed weight to predicted weight based on length (Le Cren 1951). Heavier and fatter fish at a given length have higher relative condition which is expected to influence growth, reproductive output and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019. While there were no new data to update the condition indicator this year, preliminary analyses show that temperature and zooplankton changes influence the condition of different fish species. Potential links between fish condition,  fisheries, and markets are under investigation. 
+The health and well being of individual fish can be related to morphometric condition indices (i.e. weight at a given length) such as relative condition index which is the ratio of observed weight to predicted weight based on length (Le Cren 1951). Heavier and fatter fish at a given length have higher relative condition which is expected to influence growth, reproductive output and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019. While there were no new data to update the condition indicator this year, preliminary analyses show that temperature and zooplankton changes influence the condition of different fish species (Fig. \ref{fig:}). Potential links between fish condition,  fisheries, and markets are under investigation. 
 ```{r, fig.width = 7.5, fig.asp = 0.5}
 knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/condition_proj.png")
 ```
@@ -410,7 +411,7 @@ As noted in the [Landings Implications section above](#landings), stocks are shi
 
 Zooplankton diversity is increasing in the MAB, while larval fish and adult fish diversity indices are stable over time with current values near the long-term average (see [Diversity Indicators section, above](#diversity)).  
 
-New indicators for shark populations, combined with information on gray seals (see [Protected Species "Implications" section, above](#protected-species)), suggests predator populations are stable (sharks)  to increasing (seals) in the MAB.  Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
+New indicators for shark populations, combined with information on gray seals (see [Protected Species Implications section, above](#protected-species)), suggests predator populations are stable (sharks, Figs. \ref{fig:}, \ref{fig:}) to increasing (seals) in the MAB. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-observed-sharks.R")}
 ```
@@ -475,21 +476,23 @@ Economic theory and empirical analyses have highlighted that many factors can af
 ## Other Ocean Uses: Offshore Wind
 
 ### Indicators: revenue in lease areas, development timeline, survey overlap
-Based on vessel logbook data, average commercial fishery revenue from trips in the proposed offshore wind lease areas and the New York Bight Call Areas represented 2-24\% of the total average revenue for each MAFMC managed fishery from 2008-2018. 
+Based on vessel logbook data, average commercial fishery revenue from trips in the proposed offshore wind lease areas and the New York Bight Call Areas represented 2-24\% of the total average revenue for each MAFMC managed fishery from 2008-2018 (Fig. \ref{fig:wind-revenue}). 
 
 The surfclam/ocean quahog fishery was the most affected fishery, with a maximum of 31\% of annual fishery revenue occurring within potential wind lease areas during this period. The  golden and blueline tilefish fisheries and spiny dogfish fishery were the least affected, at 3-4% maximum annual revenue affected, respectively. A maximum of 11\% of the annual monkfish revenues were affected by these areas, with similar effects for the bluefish (10\%), summer flounder/scup/black sea bass (9\%), and mackerel/squid/butterfish (8\%) fisheries. The New York Bight Call Areas represented only 1-5\% of total average fishery revenue from any fishery during 2008-2018, with the surfclam/ocean quahog fishery most affected.
 
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R")}
+```{r wind-revenue, fig.cap="Wind energy revenue in the Mid-Atlantic", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R")}
 ```
 
-More than 20 offshore wind development projects are proposed for construction over the next decade in the Northeast (projects & construction timelines based on Table E-4 of South Fork Wind Farm Draft Environmental Impact Statement). Offshore wind areas may cover more than 1.7 million acres by 2030. Just over 1,900 foundations and more than 3,000 miles of inter-array and offshore export cables are proposed to date. Each proposed project has a -year construction timeline (BOEM 2021). Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time.  
-```{r}
-knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
+More than 20 offshore wind development projects are proposed for construction over the next decade in the Northeast (projects & construction timelines based on Table E-4 of South Fork Wind Farm Draft Environmental Impact Statement). Offshore wind areas may cover more than 1.7 million acres by 2030 (Fig. \ref{fig:wind-dev-cumul}). Just over 1,900 foundations and more than 3,000 miles of inter-array and offshore export cables are proposed to date. Each proposed project has a -year construction timeline (BOEM 2021). Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time.  
+```{r wind-dev-cumul, fig.cap = ""}
+#knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
+knitr::include_graphics("images/All_2021128_needsgraph-01.jpg")
 ```
 
-Proposed wind energy project areas and NY Bight Call Areas interact with the regions’ federal scientific surveys. The total survey area overlap ranges from 1-14\% across ecosystem, shellfish, fish, shark, and protected species surveys. For example, the sea scallop survey will have significant overlap (up to 96\% of individual strata) while the bottom trawl survey  will have  up to 60\% overlap. Additionally, up to 50\% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. 
-```{r}
-knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/SurveyMap202128_withlines.png")
+Proposed wind energy project areas and NY Bight Call Areas interact with the regions’ federal scientific surveys (Fig. \ref{fig:wind-dev-survey}). The total survey area overlap ranges from 1-14\% across ecosystem, shellfish, fish, shark, and protected species surveys. For example, the sea scallop survey will have significant overlap (up to 96\% of individual strata) while the bottom trawl survey  will have  up to 60\% overlap. Additionally, up to 50\% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. 
+```{r wind-dev-survey, fig.cap = ""}
+#knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/SurveyMap202128_withlines.png")
+knitr::include_graphics("images/SurveyMap202128_withlines.png")
 ```
 
 ### Implications
@@ -499,9 +502,10 @@ Displaced fishing effort can alter fishing methods and change habitat, species (
 
 Right whales may be displaced and could face possible prey impacts via changed oceanography. 
 
-Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region.  
-```{r, fig.asp=1.5}
-knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/MidAtlantic_2021119-01.jpg")
+Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region (Fig. \ref{fig:wind-dev-cumul-MAB}).  
+```{r wind-dev-cumul-MAB, fig.cap = ""}
+#knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/MidAtlantic_2021119-01.jpg")
+knitr::include_graphics("images/MidAtlantic_2021128-01 (1)")
 ```
 
 Offshore wind will pose a risk to scientific data collection for surveys and increased uncertainty for management decision making across physical, low trophic, fish, and protected species.
