@@ -452,7 +452,12 @@ Ocean acidification also has different implications, depending on the species an
 
 
 #### Heatwave impacts
-2012 is still the warmest year on record. Recent papers published on the impacts of the 2012 heatwave give insight into the implications of marine heatwaves. Lobster was impacted as well as the timing of fishing and markets [@mills_fisheries_2013].  Cobia and other more southern species exhibited habitat shifts, and were seen off Rhode Island.
+Marine heatwaves measure not just temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. Marine heatwaves are measured in terms of intensity (water temperature) and duration (the cumulative number of degree days) using satellite measurements of daily sea surface temperature. Plotted below are maximum intensity and cumulative intensity, which is intensity times duration. Here we define a marine heatwave as a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2010) [@hobday_hierarchical_2016].    
+
+The MAB had multiple marine heatwaves in 2020 (Fig. \ref{fig:heatwave-year}). Although the individual maximum intensity heatwave on July 28 was near intensity average (for a heatwave), the combination of multiple heatwaves led to the third highest cumulative heatwave intensity on record in 2020 (Fig. \ref{fig:heatwave}). The strongest heatwaves on record in the Middle Atlantic Bight occurred in the winter of 2012 in terms of maximum intensity (+5.13 °C above average) and in the winter/summer of 2012 in terms of cumulative intensity (515 °C-days). 2012 is still the warmest year on record in the Northeast US LME. Recent papers published on the impacts of the 2012 heatwave give insight into the implications of marine heatwaves. Lobster was impacted as well as the timing of fishing and markets [@mills_fisheries_2013].  Cobia and other more southern species exhibited habitat shifts, and were seen off Rhode Island.
+
+```{r heatwave, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intesity (left) and maximum intensity (right) in the Mid-Atlantic Bight.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
+```
 
 #### Distribution shift impacts
 Trends for a suite of 48 commercially or ecologically important fish species along the entire Northeast Shelf continue to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:species-dist}). We hope to expand analysis beyond fish. Marine mammal distribution maps are available online^[https://www.nefsc.noaa.gov/AMAPPSviewer/]; updated maps and trends are currently being developed.
@@ -482,7 +487,7 @@ Based on vessel logbook data, average commercial fishery revenue from trips in t
 
 The surfclam/ocean quahog fishery was the most affected fishery, with a maximum of 31\% of annual fishery revenue occurring within potential wind lease areas during this period. The  golden and blueline tilefish fisheries and spiny dogfish fishery were the least affected, at 3-4% maximum annual revenue affected, respectively. A maximum of 11\% of the annual monkfish revenues were affected by these areas, with similar effects for the bluefish (10\%), summer flounder/scup/black sea bass (9\%), and mackerel/squid/butterfish (8\%) fisheries. The New York Bight Call Areas represented only 1-5\% of total average fishery revenue from any fishery during 2008-2018, with the surfclam/ocean quahog fishery most affected.
 
-```{r wind-revenue, fig.cap="Wind energy revenue in the Mid-Atlantic", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R")}
+```{r wind-revenue, fig.cap="Wind energy revenue in the Mid-Atlantic", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R"), fig.width=5, fig.asp=.4}
 ```
 
 More than 20 offshore wind development projects are proposed for construction over the next decade in the Northeast (projects & construction timelines based on Table E-4 of South Fork Wind Farm Draft Environmental Impact Statement). Offshore wind areas may cover more than 1.7 million acres by 2030 (Fig. \ref{fig:wind-dev-cumul}). Just over 1,900 foundations and more than 3,000 miles of inter-array and offshore export cables are proposed to date. Each proposed project has a -year construction timeline (BOEM 2021). Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time.  
@@ -494,7 +499,7 @@ knitr::include_graphics("images/All_2021128_needsgraph-01.jpg")
 Proposed wind energy project areas and NY Bight Call Areas interact with the regions’ federal scientific surveys (Fig. \ref{fig:wind-dev-survey}). The total survey area overlap ranges from 1-14\% across ecosystem, shellfish, fish, shark, and protected species surveys. For example, the sea scallop survey will have significant overlap (up to 96\% of individual strata) while the bottom trawl survey  will have  up to 60\% overlap. Additionally, up to 50\% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. 
 ```{r wind-dev-survey, fig.cap = ""}
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/SurveyMap202128_withlines.png")
-knitr::include_graphics("images/SurveyMap202128_withlines.png")
+knitr::include_graphics("images/SurveyMap2021210_renamed.png")
 ```
 
 ### Implications
