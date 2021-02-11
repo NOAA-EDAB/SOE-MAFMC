@@ -110,7 +110,7 @@ In this section, we examine indicators related to broad, ecosystem-level fishery
 
 ## Seafood Production 
 
-### Indicator: Landings; total and by feeding guild 
+### Indicators: Landings; total and by feeding guild 
 Total commercial landings and MAFMC’s managed landings in the MAB continue to trend downward (Fig. \ref{fig:total-landings}). The downward trend is most significant in the benthos (scallops and clams) group (Fig. \ref{fig:comm-landings}).
 ```{r, total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.35}
 ```
@@ -135,11 +135,12 @@ Aquaculture production is not yet included in total seafood landings, but we are
 Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecological and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
 
 #### Ecosystem Overfishing Indices 
-Thresholds for ecosystem-level overfishing based on system production characteristics have been proposed [@link_global_2019], and are applied here for the MAB.  Based on either the ratio of total catch to total primary production (Fogarty Index), or to total catch per unit area (Ryther Index), MAB catches are at or below the proposed thresholds, so ecosystem overfishing is unlikely to be a major factor driving decreased landings. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
+Thresholds for ecosystem-level overfishing based on system production characteristics have been proposed [@link_global_2019], and are applied here for the MAB.  Based on either the ratio of total catch to total primary production (Fogarty Index, Fig. \ref{fig:fogarty}), or to total catch per unit area (Ryther Index, Fig. \ref{fig:ryther}), MAB catches are at or below the proposed thresholds, so ecosystem overfishing is unlikely to be a major factor driving decreased landings. 
+```{r fogarty, fig.cap="Fogarty Index; the ratio of total catches to total primary productivity in an ecosystem. Link and Watson (2019) give an optimal range of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that catches relative to primary production exceeding 1 to 2 PPT led to ecosystem tipping points.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
+
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
+```{r ryther, fig.cap="Ryther index; total catch presented on a unit area basis for an ecosystem. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems. Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
 ```
 
 Fisheries catches are sustained by a lower proportion of the ecosystem's primary production now than in the past, particularly when compared with the 1970s when each of these indices suggest that ecosystem overfishing may have occurred (Fig. \ref{fig:ppr-mab}).
@@ -168,8 +169,7 @@ Other environmental changes require monitoring as they may become important driv
 - Climate is trending into uncharted territory. Globally, 2020 was tied with the warmest year on record^[https://www.nasa.gov/press-release/2020-tied-for-warmest-year-on-record-nasa-analysis-shows] with regional heatwaves apparent (see [Climate Risks section](#climate-and-ecosystem-productivity)).   
 - Stocks are shifting distribution throughout the Northeast US Large Marine Ecosystem (Fig. \ref{fig:species-dist}).  
   
-```{r species-dist, fig.cap = " ", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=.9}
-#Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.
+```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=.9}
 ```  
 
 - Some ecosystem composition and production changes have been observed (see [Stability section](#stability)). 
@@ -186,7 +186,7 @@ Total revenue trends decomposed to price and volume indicators (Fig. \ref{fig:be
 ```{r bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"), fig.width=6, fig.asp=.35}
 ```
 
-```{r bennet-all, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings by feeding guild in the Mid-Atlantic Bight."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.35}
+```{r bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.35}
 ```
 
 ### Implications 
@@ -273,7 +273,7 @@ Social vulnerability measures social factors that shape a community’s ability 
 
 Commercial fishery engagement measures the number of permits, dealers, and landings in a community, while reliance expresses these numbers based on the level of fishing activity relative to the total population of a community.  
 In 2020, we reported that the number of highly engaged Mid-Atlantic commercial fishing communities had declined over time, and engagement scores had also declined in medium-highly engaged communities. Here we focus on the top ten most engaged, and top ten most reliant commercial fishing communities and their associated  social vulnerability (Fig. \ref{fig:commercial-engagement}).  Barnegat Light and Cape May, NJ, and Reedville, VA are highly engaged and reliant with medium-high to high social vulnerability.   
-```{r commercial-engagement, fig.cap= "Cecreational engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
+```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
 ```
 
 Recreational fishery engagement measures shore, private vessel, and for-hire fishing activity while reliance expresses these numbers based on fishing effort relative to the population of a community. Of the nine recreational communities that are most engaged and reliant, Avon, Ocracoke and Hatteras, NC and Barnegat Light and Cape May, NJ scored medium-high or above for social vulnerability (Fig. \ref{fig:recreational-engagement}). 
@@ -340,7 +340,7 @@ In 2019, we also observed the second lowest proportion of Labrador Shelf water e
 ```{r wsw-prop, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador slope water (LSLW) entering the GOM through the Northeast Channel.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=5, fig.asp=.35}
 ```
 Ocean temperatures continue to warm at both the bottom (Fig. \ref{fig:bottom-temp}) and the surface (Fig. \ref{fig:seasonal-sst-anom-gridded}). Warming is not seasonally uniform, however: spring 2020 was cooler than average on portions of the shelf. 
-```{r bottom-temp, fig.cap="Annual bottom temperature in the Mid-Atlantic Bight. (black = observatioms, red = reanalysis)", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
+```{r bottom-temp, fig.cap="Annual bottom temperature in the Mid-Atlantic Bight. (black = observations, red = reanalysis)", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
 ```
 
 ```{r seasonal-sst-anom-gridded, fig.cap="MAB seasonal sea surface temperature time series overlaid onto 2020 seasonal spatial anomalies.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = .875}
@@ -356,8 +356,8 @@ The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that 
 ```{r heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
 ```
 
-Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017]. The average temperature of the cold pool has been getting warmer over time, calculated based on [@miller_state-space_2016]).  These changes can affect distribution and migration timing for species that depend on the cold pool habitat.  The area of the MAB cold pool was near average in 2018 (Fig. \ref{fig:cold-pool-map}.  The size of the cold pool varies annually, with the smallest sizes associated with record-warm years (e.g. 2012). The cold pool temperature shows a similar variation as its extent, both of which are strongly impacted by each early spring setting in temperature on the shelf.
-```{r cold_pool_map, eval = T, echo = F, fig.cap="Map of cold pool area. Time series of cold pool spatial extent FROM 1993-2018. Black = 2018 (Last year in time series), Red = 2012 Minimum area, Blue = 2005 Maximum area." }
+Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017]. The average temperature of the cold pool has been getting warmer over time, calculated based on [@miller_state-space_2016]).  These changes can affect distribution and migration timing for species that depend on the cold pool habitat.  The area of the MAB cold pool was near average in 2018 (Fig. \ref{fig:cold-pool-map}).  The size of the cold pool varies annually, with the smallest sizes associated with record-warm years (e.g. 2012). The cold pool temperature shows a similar variation as its extent, both of which are strongly impacted by each early spring setting in temperature on the shelf.
+```{r cold-pool-map, eval = T, echo = F, fig.cap="Map of cold pool area. Time series of cold pool spatial extent FROM 1993-2018. Black = 2018 (Last year in time series), Red = 2012 Minimum area, Blue = 2005 Maximum area." }
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool_map.R"),
 knitr::include_graphics("images/cold_pool_area.png")
 ```
