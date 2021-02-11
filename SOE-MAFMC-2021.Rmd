@@ -165,12 +165,12 @@ The decline in recreational seafood landings stems from other drivers.  Some of 
 
 Other environmental changes require monitoring as they may become important drivers of landings in the future:
  
-- Climate is trending into uncharted territory. Globally, 2020 was tied with the warmest year on record^[https://www.nasa.gov/press-release/2020-tied-for-warmest-year-on-record-nasa-analysis-shows] with regional heatwaves apparent (see [Climate Risks section](#climate-and-ecosystem-productivity))  
-- Stocks are shifting distribution throughout the region  
-```{r spec-dist, fig.cap = "Aggregate species distribution metrics for fish in the Northeast Large Marine Ecosystem. Along-shelf distance measures the center of biomass along an axis generally following the slope of coastline.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=1}
+- Climate is trending into uncharted territory. Globally, 2020 was tied with the warmest year on record^[https://www.nasa.gov/press-release/2020-tied-for-warmest-year-on-record-nasa-analysis-shows] with regional heatwaves apparent (see [Climate Risks section](#climate-and-ecosystem-productivity)).   
+- Stocks are shifting distribution throughout the Northeast US Large Marine Ecosystem (Fig. \ref{fig:spec-dist}).  
+```{r spec-dist, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=1}
 ```  
-- Some ecosystem composition and production changes have been observed (see [Stability section](#stability))  
-- Fishing engagement has declined in some communities (see [Social and Cultural section](#social-and-cultural))  
+- Some ecosystem composition and production changes have been observed (see [Stability section](#stability)). 
+- Fishing engagement has declined in some communities (see [Social and Cultural section](#social-and-cultural)).  
 
 ## Commercial Profits 
 
