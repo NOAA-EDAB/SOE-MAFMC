@@ -77,9 +77,9 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                                  "Protected Species",
                                                  "Biomass","Productivity",
                                                  "Trophic structure","Habitat"),
-"Indicators reported here" = c("Landings; total and by feeding guild",
+"Indicators reported here" = c("Landings; commercial total and by feeding guild; recreational harvest",
                                "Revenue decomposed to price and volume",
-                               "Days fished; recreational catch",
+                               "Days fished; recreational fleet diversity",
                                "Diversity indices (fishery and ecosystem)",
                                "Community engagement/reliance status",
                                "Bycatch; population (adult and juvenile) numbers, mortalities",
@@ -115,11 +115,11 @@ Total commercial landings and MAFMC’s managed landings in the MAB continue to 
 ```{r, total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.35}
 ```
 
-```{r, comm-landings, fig.cap = paste0(council_abbr," managed species landings (red) and total commercial landings (black) by feeding guild."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.5}
+```{r, comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.5}
 ```
 
-Total recreational landings (retained fish presumed to be eaten) are also down in the MAB (Fig. \ref{fig:rec-landings}). 
-```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest in the ",region," region."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
+Total recreational harvest (retained fish presumed to be eaten) is also down in the MAB (Fig. \ref{fig:rec-landings}). 
+```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
 
 ```
 
@@ -132,19 +132,19 @@ Aquaculture production is not yet included in total seafood landings, but we are
 
 ### Implications
 
-Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecological and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
+Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
 
 #### Ecosystem Overfishing Indices 
-Thresholds for ecosystem-level overfishing based on system production characteristics have been proposed [@link_global_2019], and are applied here for the MAB.  Based on either the ratio of total catch to total primary production (Fogarty Index, Fig. \ref{fig:fogarty}), or to total catch per unit area (Ryther Index, Fig. \ref{fig:ryther}), MAB catches are at or below the proposed thresholds, so ecosystem overfishing is unlikely to be a major factor driving decreased landings. 
-```{r fogarty, fig.cap="Fogarty Index; the ratio of total catches to total primary productivity in an ecosystem. Link and Watson (2019) give an optimal range of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that catches relative to primary production exceeding 1 to 2 PPT led to ecosystem tipping points.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
+Thresholds for ecosystem-level overfishing based on system production characteristics have been proposed [@link_global_2019], and are applied here for the MAB.  Based on either the ratio of total landings to total primary production (Fogarty Index, Fig. \ref{fig:fogarty}), or total landings per unit area (Ryther Index, Fig. \ref{fig:ryther}), MAB landings are at or below the proposed thresholds, so ecosystem overfishing is unlikely to be a major factor driving decreased landings. In future reports we may be able to include discards to evaluate total catch. 
+```{r fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in an ecosystem. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (red shading) led to ecosystem tipping points.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
 
 ```
 
-```{r ryther, fig.cap="Ryther index; total catch presented on a unit area basis for an ecosystem. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems. Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
+```{r ryther, fig.cap="Ryther index; total landings presented on a unit area basis for an ecosystem. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (red shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
 ```
 
-Fisheries catches are sustained by a lower proportion of the ecosystem's primary production now than in the past, particularly when compared with the 1970s when each of these indices suggest that ecosystem overfishing may have occurred (Fig. \ref{fig:ppr-mab}).
-```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
+The amount of potential yield we can expect from a marine ecosystem depends on the amount of production entering at the base of the food web, primarily in the form of phytoplankton; the pathways this energy follows to reach harvested species; the efficiency of transfer of energy at each step in the food web; and the fraction of this production that is removed by the fisheries. Fisheries catches are sustained by a lower proportion of the ecosystem's primary production now than in the past, particularly when compared with the 1970s when each of these indices suggest that ecosystem overfishing may have occurred (Fig. \ref{fig:ppr-mab}).
+```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels. PPD is total primary production. The solid line is based on satellite-derived PPD and the dashed line is based on reconstructed PPD.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
 ```
 
 #### Stock Status
@@ -153,7 +153,7 @@ Single species management objectives of maintaining biomass above minimum thresh
 ```
 
 #### System Biomass
-Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). (The NEAMAP Fall 2020 survey was completed and is included here; NEFSC surveys were not completed in 2020). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. 
+Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). The NEAMAP Fall 2020 survey was completed and is included here; NEFSC surveys were not completed in 2020. While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. 
 ```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
 ```
 
@@ -166,8 +166,8 @@ The decline in recreational seafood landings stems from other drivers.  Some of 
 
 Other environmental changes require monitoring as they may become important drivers of landings in the future:
  
-- Climate is trending into uncharted territory. Globally, 2020 was tied with the warmest year on record^[https://www.nasa.gov/press-release/2020-tied-for-warmest-year-on-record-nasa-analysis-shows] with regional heatwaves apparent (see [Climate Risks section](#climate-and-ecosystem-productivity)).   
-- Stocks are shifting distribution throughout the Northeast US Large Marine Ecosystem (Fig. \ref{fig:species-dist}).  
+- Climate is trending into uncharted territory. Globally, 2020 was tied with the warmest year on record^[https://www.nasa.gov/press-release/2020-tied-for-warmest-year-on-record-nasa-analysis-shows] with regional marine heatwaves apparent (see [Climate Risks section](#climate-and-ecosystem-productivity)).   
+- Stocks are shifting distribution, moving towards the northeast and into deeper waters throughout the Northeast US Large Marine Ecosystem (Fig. \ref{fig:species-dist}).  
   
 ```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=.9}
 ```  
@@ -182,7 +182,9 @@ Total commercial revenue (black) has increased over the long term, but the trend
 ```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
 ```
 
-Total revenue trends decomposed to price and volume indicators (Fig. \ref{fig:bennet}) mirror price and volume indicator trends for the benthos (clams and scallops; orange in Fig. \ref{fig:bennet-all}) group, especially over the past decade. 
+Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes:  harvest levels, the mix of species landed, price changes, or a combination of these. The Bennet Indicator decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices.
+
+Total revenue trends, decomposed to price and volume indicators (Fig. \ref{fig:bennet}), mirror price and volume indicator trends for the benthos (clams and scallops; orange in Fig. \ref{fig:bennet-all}) group, especially over the past decade. 
 ```{r bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"), fig.width=6, fig.asp=.35}
 ```
 
@@ -190,19 +192,17 @@ Total revenue trends decomposed to price and volume indicators (Fig. \ref{fig:be
 ```
 
 ### Implications 
-Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes:  harvest levels, the mix of species landed, price changes, or a combination of these. The Bennet Indicator decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices. 
-
 The Bennet indicator demonstrates that increasing total revenue early in the time series is due to increasing quantities landed, which offset declining prices. Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
 
-Changes in other indicators, particularly those driving landings above and those related to climate change, require monitoring as they may become important drivers of revenue in the future:
+Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
 
 -  Surfclams and ocean quahogs are sensitive to warming ocean temperatures and ocean acidification.   
 -  Acidification levels in surfclam summer habitat are approaching, but not yet at, levels affecting surfclam growth (see [Climate Risks section](#climate-and-ecosystem-productivity)).  
 
 ## Recreational Opportunities 
 
-### Indicators: Days fished, fleet diversity  
-Recreational effort (days fished) has no significant long term trend, with current days fished near the long-term average (Fig. \ref{fig:rec-op}). However, recreational fleet diversity has declined over the long term (Fig. \ref{fig:rec-div}). 
+### Indicators: Angler trips, fleet diversity  
+Recreational effort (angler trips) has no significant long term trend, with current effort near the long-term average (Fig. \ref{fig:rec-op}). However, recreational fleet diversity has declined over the long term (Fig. \ref{fig:rec-div}). 
 ```{r rec-op, fig.cap = paste0("Recreational effort in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")}
 ```
 
@@ -211,11 +211,11 @@ Recreational effort (days fished) has no significant long term trend, with curre
 ```
 
 ### Implications
-The absence of a long-term trend in recreational days fished suggests relative stability in the overall number of recreational opportunities in the MAB. However,  the decline in recreational fleet diversity suggests a potentially reduced range of opportunities. 
+The absence of a long-term trend in recreational effort suggests relative stability in the overall number of recreational opportunities in the MAB. However, the decline in recreational fleet diversity suggests a potentially reduced range of opportunities. 
 
 The downward effort diversity trend is driven by party/charter contraction (from a high of 24% of angler trips to 7% currently), and a shift toward shorebased angling. Effort in private boats remained stable between 36-37% of angler trips across the entire series.
 
-Changing recreational fleet diversity can be considered to maintain recreational opportunities. Shore anglers will have access to different species and when the same species, typically smaller fish. Many states have developed shore based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. 
+Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species and when the same species, typically smaller fish. Many states have developed shore based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. 
 
 
 ## Stability 
@@ -224,7 +224,7 @@ Changing recreational fleet diversity can be considered to maintain recreational
 While there are many potential metrics of stability, we use diversity indices as a first check to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine commercial and recreational fleet and species catch diversity, and diversity in zooplankton, larval, and adult fish. 
 
 #### Fishery Diversity 
-Diversity estimates have been developed for fleets and species landed by vessels with Mid-Atlantic permits. A fleet is defined here as the combination of gear code (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel length category (Less than 30 ft, 30 to 50 ft, 50 to 75 feet, 75 ft and above). Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average (Fig. \ref{fig:commercial-div}). This indicates similar commercial fleet composition and species targeting opportunities over time. 
+Diversity estimates have been developed for fleets and species landed by vessels with Mid-Atlantic permits. A fleet is defined here as the combination of gear type (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel length category (Less than 30 ft, 30 to 50 ft, 50 to 75 feet, 75 ft and above). Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average (Fig. \ref{fig:commercial-div}). This indicates similar commercial fleet composition and species targeting opportunities over time. 
 ```{r commercial-div, fig.cap = paste0("Fleet diversity and fleet count in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.9}
 ```
 
@@ -232,7 +232,7 @@ Commercial fisheries are relying on fewer species relative to the mid-90s, but c
 ```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
 ```
 
-As noted [above](#recreational-opportunities) recreational fleet effort diversity is unstable (declining; Fig. \ref{fig:rec-div}). However, recreational species catch diversity is stable and has been at or above the long term average in 7 of the last 10 years (rec-div)Fig. \ref{fig:recdat-div-catch}). 
+As noted [above](#recreational-opportunities) recreational fleet effort diversity is unstable (declining; Fig. \ref{fig:rec-div}). However, recreational species catch diversity is stable and has been at or above the long term average in 7 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
 ```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")}
 ```
 
@@ -262,14 +262,14 @@ Ecological diversity indices can provide insight into ecosystem structure. Chang
 
 Increasing zooplankton diversity is driven by the declining dominance of the calanoid copepod *Centropages typicus*, with a similar composition of other zooplankton species. 
 
-Stable larval and adult fish diversity indicates the same overall number and evenness over time, but doesn’t rule out species substitutions (e.g., warm-water replacing cold-water). Stable but variable larval diversity can indicate interannual changes in a dominant species.
+Stable larval and adult fish diversity indicates the same overall number and evenness over time, but doesn’t rule out species substitutions (e.g., warm-water replacing cold-water). While larval fish diversity is near the long-term mean, the dominance of a few warm-southern taxa has increased. Stable but variable larval diversity can indicate interannual changes in a dominant species.  
 
 In the MAB, existing diversity indicators suggest overall stability in the fisheries and ecosystem components examined. However, declining recreational fleet diversity suggests a potential loss in the range of recreational fishing opportunities, and increasing zooplankton diversity is due to the declining dominance of an important species, suggesting change in the zooplankton community that warrants continued monitoring to determine if managed species are affected. 
 
 ## Social Vulnerability 
 
 ### Indicators: Social vulnerability in commercial and recreational fishing communities
-Social vulnerability measures social factors that shape a community’s ability to adapt to change and does not consider gentrification pressure vulnerability. Communities that ranked medium-high or above for one or more of the following indicators: poverty, population composition, personal disruption, or labor force structure, are highlighted in  red. 
+Social vulnerability measures social factors that shape a community’s ability to adapt to change and does not consider gentrification pressure vulnerability. Communities that ranked medium-high or above for one or more of the following indicators: poverty, population composition, personal disruption, or labor force structure, are highlighted in red. 
 
 Commercial fishery engagement measures the number of permits, dealers, and landings in a community, while reliance expresses these numbers based on the level of fishing activity relative to the total population of a community.  
 In 2020, we reported that the number of highly engaged Mid-Atlantic commercial fishing communities had declined over time, and engagement scores had also declined in medium-highly engaged communities. Here we focus on the top ten most engaged, and top ten most reliant commercial fishing communities and their associated  social vulnerability (Fig. \ref{fig:commercial-engagement}).  Barnegat Light and Cape May, NJ, and Reedville, VA are highly engaged and reliant with medium-high to high social vulnerability.   
