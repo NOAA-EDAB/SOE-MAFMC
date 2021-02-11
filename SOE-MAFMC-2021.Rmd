@@ -238,7 +238,7 @@ As noted [above](#recreational-opportunities) recreational fleet effort diversit
 
 #### Ecological Diversity
 
-Ecological diversity indices show mixed trends. Zooplankton diversity is increasing in the MAB. Larval fish and adult fish diversity indices are stable over time, with current values near the long-term average. 
+Ecological diversity indices show mixed trends. Zooplankton diversity is increasing in the MAB. Adult fish diversity is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey; because there is no vessel correction for this metric, Albatross and Bigelow years are calculated separately. Larval fish and adult fish diversity indices are stable over time, with current values near the long-term average. 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
 ```
 
