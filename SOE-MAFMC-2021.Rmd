@@ -350,7 +350,6 @@ The Chesapeake Bay also experienced a warmer-than-average winter and a cooler-th
 knitr::include_graphics("images/ches-temp-temp.png")
 ```
 
-
 The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December, as observed in Chesapeake Bay (Fig. \ref{fig:heatwave-year}).
 ```{r heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
 ```
@@ -392,7 +391,7 @@ Larger zooplankton (i.e. *Calanus finmarchicus*) had above average abundance in 
 ```{r zoo-abund,  fig.cap= "Large (red) and small-bodied (blue) copepod abundance in the Mid-Atlantic Bight.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-abund.R")}
 ```
 
-An index of aggregate forage fish fluctuations (forage anomaly) constructed from zooplankton and ichthyoplankton data has no apparent trend in MAB, but appears to be more variable since 2010 (Fig. \ref{fig:forage-anomaly}).  Changes in environmental conditions, lower tropic levels, and diversity of the plankton community are potentially impacting the prey of zooplankton and ichthyoplankton. 
+An index of aggregate zooplankton and forage fish fluctuations (forage anomaly) constructed from zooplankton and ichthyoplankton data has no apparent trend in MAB, but appears to be more variable since 2010 (Fig. \ref{fig:forage-anomaly}).  Changes in environmental conditions, lower tropic levels, and diversity of the plankton community are potentially impacting the prey of zooplankton and ichthyoplankton. 
 ```{r forage-anomaly, fig.cap=" ", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-anomaly.R")}
 ```
 
@@ -490,39 +489,39 @@ The surfclam/ocean quahog fishery was the most affected fishery, with a maximum 
 ```
 
 More than 20 offshore wind development projects are proposed for construction over the next decade in the Northeast (projects & construction timelines based on Table E-4 of South Fork Wind Farm Draft Environmental Impact Statement). Offshore wind areas may cover more than 1.7 million acres by 2030 (Fig. \ref{fig:wind-dev-cumul}). Just over 1,900 foundations and more than 3,000 miles of inter-array and offshore export cables are proposed to date. Each proposed project has a -year construction timeline (BOEM 2021). Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time.  
-```{r wind-dev-cumul, fig.cap = ""}
+```{r wind-dev-cumul, fig.cap = "All Northeast Project areas by year construction ends (each project has 2 year construction period). Data for cumulative project areas, number of foundations, offshore cable area (acres) and offshore cable and interarray cable (mile) are displayed in the graph.", out.width='90%'}
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
 knitr::include_graphics("images/All_2021128_needsgraph-01.jpg")
 ```
 
 Proposed wind energy project areas and NY Bight Call Areas interact with the regions’ federal scientific surveys (Fig. \ref{fig:wind-dev-survey}). The total survey area overlap ranges from 1-14\% across ecosystem, shellfish, fish, shark, and protected species surveys. For example, the sea scallop survey will have significant overlap (up to 96\% of individual strata) while the bottom trawl survey  will have  up to 60\% overlap. Additionally, up to 50\% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. 
-```{r wind-dev-survey, fig.cap = ""}
+```{r wind-dev-survey, fig.cap = "Interaction of Greater Atlantic Fisheries Scientific Surveys and Offshore Wind Development", out.width='90%'}
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/SurveyMap202128_withlines.png")
 knitr::include_graphics("images/SurveyMap2021210_renamed.png")
 ```
 
 ### Implications
-Fishery revenue could be displaced to other areas or foregone if all wind projects are built.  
+2-24% of total average revenue for major Mid-Atlantic species in lease areas could be displaced if all sites are developed. 
 
-Displaced fishing effort can alter fishing methods and change habitat, species (managed and protected), and fleet interactions.  
+Displaced fishing effort can alter fishing methods, which can in turn change habitat, species (managed and protected), and fleet interactions. 
 
-Right whales may be displaced and could face possible prey impacts via changed oceanography. 
+Right whales may be displaced, and altered local oceanography could affect distribution of their zooplankton prey.
 
 Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region (Fig. \ref{fig:wind-dev-cumul-MAB}).  
-```{r wind-dev-cumul-MAB, fig.cap = ""}
+```{r wind-dev-cumul-MAB, fig.cap = "Zoomed in areas with name of Project, number of foundations within each project area and the states that have declared power purchase agreements.", out.width='90%'}
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/MidAtlantic_2021119-01.jpg")
 knitr::include_graphics("images/MidAtlantic_2021128-01 (1).jpg")
 ```
 
-Offshore wind will pose a risk to scientific data collection for surveys and increased uncertainty for management decision making across physical, low trophic, fish, and protected species.
+Scientific data collection surveys for ocean and ecosystem conditions, fish, and protected species will be altered, potentially increasing uncertainty for management decision making. 
 
 # Contributors
 
 **Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Chris Orphanides 
 
-**Contributors** (NEFSC unless otherwise noted): Andy Beet, Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Ruth Boettcher (Virginia Department of Game and Inland Fisheries), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institute), Sean Lucey, Chris Melrose, Shannon Meseck, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Grace Saba (Rutgers University), Emily Slesinger (Rutgers University), Vincent Saba, Laurel Smith, John Walden, Harvey Walsh, Mark Wuenschel, 
+**Contributors** (NEFSC unless otherwise noted): Andy Beet, Patricia Clay, Lisa Colburn, Geret DePiper, Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Ruth Boettcher (Virginia Department of Game and Inland Fisheries), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institute), Sean Lucey, Chris Melrose, Shannon Meseck, Ryan Morse, Kimberly Murray, Chris Orphanides, Richard Pace, Charles Perretti, Grace Saba (Rutgers University), Emily Slesinger (Rutgers University), Vincent Saba, Laurel Smith, John Walden, Harvey Walsh, Changhua Weng, Mark Wuenschel 
 *integrate alphabetically*
-Ron Vogel, Mandy Bromilow and CJ Pellerin (NOAA CBO), Angela Silva, Andrew Lipsky, Jennifer Cudney and Tobey Curtis (NMFS Atlantic HMS Management Division); and Talya ten Brink, Ben Galuardi, Chris Schillaci and Doug Christel (GARFO).
+Ron Vogel (University of Maryland Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research), Mandy Bromilow and CJ Pellerin (NOAA CBO), Angela Silva, Andrew Lipsky, Jennifer Cudney and Tobey Curtis (NMFS Atlantic HMS Management Division); and Talya ten Brink, Ben Galuardi, Chris Schillaci and Doug Christel (GARFO).
 
 
 
