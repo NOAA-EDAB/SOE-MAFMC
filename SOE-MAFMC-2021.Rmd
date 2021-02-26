@@ -402,10 +402,11 @@ Nutritional value (energy content) of forage fishes as prey is related to both e
 ```{r energy-density, fig.cap=" ", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
-The health and well being of individual fish can be related to morphometric condition indices (i.e. weight at a given length) such as relative condition index which is the ratio of observed weight to predicted weight based on length (Le Cren 1951). Heavier and fatter fish at a given length have higher relative condition which is expected to influence growth, reproductive output and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019. While there were no new data to update the condition indicator this year, preliminary analyses show that temperature and zooplankton changes influence the condition of different fish species (Fig. \ref{fig:cond-drivers}). Potential links between fish condition,  fisheries, and markets are under investigation. 
-```{r cond-drivers, fig.cap="GAM fish condition deviance explained by environmental variables, with darker cells indicating more important variables for that species.", out.width='60%'}
-#knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/condition_proj.png")
-knitr::include_graphics("images/Condition_table.png")
+The health and well being of individual fish can be related to morphometric condition indices (i.e. weight at a given length) such as relative condition index which is the ratio of observed weight to predicted weight based on length (Le Cren 1951). Heavier and fatter fish at a given length have higher relative condition which is expected to influence growth, reproductive output and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019  (Fig. \ref{fig:mab-cf}). While there were no new data to update the condition indicator this year, preliminary results of synthetic analyses described in the [Implications section](#environmental-drivers-of-fish-condition) show that changes in fishing pressure, population size, temperature, and zooplankton influence the condition of different fish species. Potential links between fish condition, fisheries, and markets are under investigation. 
+
+```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", out.width = '100%'}
+
+knitr::include_graphics("images/MABcondition_2019_viridis_final.jpg")
 ```
 
 
