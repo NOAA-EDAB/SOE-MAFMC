@@ -349,8 +349,22 @@ Ocean temperatures continue to warm at both the bottom (Fig. \ref{fig:bottom-tem
 ```
 
 The Chesapeake Bay also experienced a warmer-than-average winter and a cooler-than-average spring in 2020, relative to the previous decade. Water temperatures returned to average during the summer and were slightly above average from October through December (Fig. \ref{fig:ches-temp}).
-```{r ches-temp, out.width='50%', fig.cap="Chesapeake Bay sea surface temperature (SST) seasonal spatial anomalies for 2020, from NOAA multisatellite SST composite. Positive values (red) above 2008-2019 average; negative values (blue) below 2008-2019 average. A) Jan, Feb, Mar; B) Apr, May, Jun; C) Jul, Aug, Sep; D) Oct, Nov, Dec."}
+```{r ches-temp, out.width='50%', fig.cap="Left panel: Chesapeake Bay sea surface temperature (SST) seasonal spatial anomalies for 2020, from NOAA multisatellite SST composite. Positive values (red) above 2008-2019 average; negative values (blue) below 2008-2019 average. A) Jan, Feb, Mar; B) Apr, May, Jun; C) Jul, Aug, Sep; D) Oct, Nov, Dec. Right panel: Annual temperature cycle; Blue = 2020, red = Long term avergae 2010-2019.", fig.show='hold'}
 knitr::include_graphics("images/ches-temp-temp.png")
+
+ecodata::ch_bay_temp %>%
+  tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
+  ggplot2::ggplot() +
+  ggplot2::geom_ribbon(aes(x = Time, ymin = minLTA, ymax = maxLTA), fill = "grey", alpha = 0.5)+
+  
+  ggplot2::geom_line(aes(x = Time, y = YearLTA, color= "Long Term Average 2010-2019")) +
+  ggplot2::geom_line(aes(x = Time, y = Year2020, color = "Daily 2020")) +
+  ggplot2::ylab("Temperature (F)") +
+  ggplot2::ggtitle("Chesapeake Bay Temperature") +
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank())+
+  ecodata::theme_ts()+
+  ecodata::theme_title()
 ```
 
 The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December, as observed in Chesapeake Bay (Fig. \ref{fig:heatwave-year}).
@@ -363,7 +377,7 @@ Changes in ocean temperature and circulation alter habitat features such as the 
 knitr::include_graphics("images/cold_pool_area.png")
 ```
 
-New glider-based observations revealed areas of low pH (7.8) during summer in Mid-Atlantic habitats occupied by Atlantic surfclams and sea scallops (Fig. \ref{fig:mab-oa}) (Wright-Fairbanks et al. 2020). This seasonal pH minimum is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. However, seawater pH in shelf waters increased during the fall mixing period due to the influence of a slope water mass characterized by warm, salty, highly alkaline seawater. Lower pH in nearshore waters is likely associated with freshwater input. 
+New glider-based observations revealed areas of low pH (7.8) during summer in Mid-Atlantic habitats occupied by Atlantic surfclams and sea scallops (Fig. \ref{fig:mab-oa}) [@wrightfairbanks_autonomous_2020]. This seasonal pH minimum is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. However, seawater pH in shelf waters increased during the fall mixing period due to the influence of a slope water mass characterized by warm, salty, highly alkaline seawater. Lower pH in nearshore waters is likely associated with freshwater input. 
 
 ```{r mab-oa, fig.cap = " Seasonal glider-based pH observations on the Mid-Atlantic Bight shelf (New Jersey cross-shelf transect) in relation to Atlantic surfclam and Atlantic sea scallop habitats (modified from Wright-Fairbanks et al. 2020).", out.width='70%'}
 #knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Seasonal%20pH%20on%20MAB%20shelf%20-%20Grace%20Saba.jpg")
@@ -402,7 +416,7 @@ Nutritional value (energy content) of forage fishes as prey is related to both e
 ```{r energy-density, fig.cap=" ", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
-The health and well being of individual fish can be related to morphometric condition indices (i.e. weight at a given length) such as relative condition index which is the ratio of observed weight to predicted weight based on length (Le Cren 1951). Heavier and fatter fish at a given length have higher relative condition which is expected to influence growth, reproductive output and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019  (Fig. \ref{fig:mab-cf}). While there were no new data to update the condition indicator this year, preliminary results of synthetic analyses described in the [Implications section](#environmental-drivers-of-fish-condition) show that changes in fishing pressure, population size, temperature, and zooplankton influence the condition of different fish species. Potential links between fish condition, fisheries, and markets are under investigation. 
+The health and well being of individual fish can be related to morphometric condition indices (i.e. weight at a given length) such as relative condition index which is the ratio of observed weight to predicted weight based on length [@le_cren_length-weight_1951]. Heavier and fatter fish at a given length have higher relative condition which is expected to influence growth, reproductive output and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019  (Fig. \ref{fig:mab-cf}). While there were no new data to update the condition indicator this year, preliminary results of synthetic analyses described in the [Implications section](#environmental-drivers-of-fish-condition) show that changes in fishing pressure, population size, temperature, and zooplankton influence the condition of different fish species. Potential links between fish condition, fisheries, and markets are under investigation. 
 
 ```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", out.width = '100%'}
 
@@ -437,11 +451,11 @@ A recent habitat climate vulnerability analysis links black sea bass, scup, and 
 Estuarine and nearshore habitats are highly climate-vulnerable, and support many life stages of state and federally-managed species as noted above. Below we highlight how recently observed habitat changes affect several key managed species in Chesapeake Bay and in both nearshore and offshore waters of the MAB; overall, multiple drivers interact differently for each species, producing a range population impacts.
 
 ##### *Striped bass and blue crabs*  
-The warmer than average winter may have affected key Chesapeake Bay fishery resources during a critical period. Results of the Maryland juvenile striped bass survey, conducted by the Maryland Department of Natural Resources (MDNR), showed low recruitment success in 2020, about fivefold below the long-term average. This low recruitment event may have been caused by a mismatch in striped bass larval and prey abundance due to the warm winter conditions, resulting in reduced larval survival. Warm winters typically trigger early phytoplankton and zooplankton blooms, including key copepod prey, which die before striped bass larvae are present in the tributary (Millette et al. 2019).
+The warmer than average winter may have affected key Chesapeake Bay fishery resources during a critical period. Results of the Maryland juvenile striped bass survey, conducted by the Maryland Department of Natural Resources (MDNR), showed low recruitment success in [2020](https://news.maryland.gov/dnr/2020/10/13/chesapeake-bay-young-of-year-survey-results-released/), about fivefold below the long-term average. This low recruitment event may have been caused by a mismatch in striped bass larval and prey abundance due to the warm winter conditions, resulting in reduced larval survival. Warm winters typically trigger early phytoplankton and zooplankton blooms, including key copepod prey, which die before striped bass larvae are present in the tributary (Millette et al. 2019).
 
 In addition to winter water temperature, survival of early life stages of striped bass in the Chesapeake Bay is strongly correlated with freshwater flow (Martino & Houde 2010, Millette et al. 2019, North & Houde 2003). High-flow regimes push zooplankton prey downstream, where they get trapped with striped bass larvae in the estuarine turbidity maximum. In low-flow years, such as 2020, zooplankton prey are less likely to match up with striped bass larvae in space and time, reducing striped bass larval survival and recruitment success. The combined effects of warm winter temperatures and low flow in 2020 may be the primary cause of the low recruitment observed by the MDNR juvenile striped bass survey.
 
-Conversely, warmer winter temperatures may have reduced overwintering mortality of Chesapeake Bay blue crabs. Calculations done by MDNR based on data from the annual bay-wide winter dredge survey indicate that blue crabs experienced the lowest overwintering mortality ever observed (2020 Chesapeake Bay Blue Crab Advisory Report). Previous studies have demonstrated the correlation between winter water temperature and blue crab survival in the Chesapeake Bay (Bauer & Miller 2010, Hines et al. 2010, Rome et al. 2005).
+Conversely, warmer winter temperatures may have reduced overwintering mortality of Chesapeake Bay blue crabs. Calculations done by MDNR based on data from the annual bay-wide winter dredge survey indicate that blue crabs experienced the lowest overwintering mortality ever observed ( [2020 Chesapeake Bay Blue Crab Advisory Report](https://www.chesapeakebay.net/documents/2020_Blue_Crab_Advisory_Report_Final_06-22-20.pdf)). Previous studies have demonstrated the correlation between winter water temperature and blue crab survival in the Chesapeake Bay (Bauer & Miller 2010, Hines et al. 2010, Rome et al. 2005).
 
 ##### *American oyster*  
 Increased salinity in the Chesapeake Bay often results in high juvenile oyster abundance (Kimmel et al. 2014). In Maryland, the 2020 MDNR fall oyster survey documented above-average spatsets along the Eastern Shore as expected, given the high salinity. However, the Western Shore did not fare as well, suggesting that local environmental conditions are also important.
