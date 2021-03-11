@@ -161,7 +161,7 @@ Although aggregate biomass trends derived from scientific resource surveys are m
 ```
 
 #### Effect on Seafood Production
-Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species. 
+Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. 
 
 Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
 
