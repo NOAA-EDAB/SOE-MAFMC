@@ -62,7 +62,7 @@ library(kableExtra)
 
 ## About This Report
 
-The purpose of this report is to synthesize ecosystem information to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized on pages 1 and 2, and synthesis themes are illustrated on page 3. The information in this report is organized into two sections; [performance measured against ecosystem-level management objectives](#performance-relative-to-fishery-management-objectives) (Table \ref{tab:management-objectives}), and potential [risks to meeting fishery management objectives](#risks-to-meeting-fishery-management-objectives) ([climate change](#climate-and-ecosystem-productivity) and [other ocean uses](#other-ocean-uses:-offshore-wind)).
+This report is for the Mid-Atlantic Fishery Management Council (MAFMC). The purpose of this report is to synthesize ecosystem information to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized on pages 1 and 2, and synthesis themes are illustrated on page 3. The information in this report is organized into two sections; [performance measured against ecosystem-level management objectives](#performance-relative-to-fishery-management-objectives) (Table \ref{tab:management-objectives}), and potential [risks to meeting fishery management objectives](#risks-to-meeting-fishery-management-objectives) ([climate change](#climate-and-ecosystem-productivity) and [other ocean uses](#other-ocean-uses:-offshore-wind)).
 
 ## Report structure
 
