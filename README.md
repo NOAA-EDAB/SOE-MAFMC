@@ -16,8 +16,8 @@ Please see the associated package [ecodata](https://github.com/NOAA-EDAB/ecodata
 | 2020 | [2020.0.0](https://github.com/NOAA-EDAB/SOE-MAFMC/releases/tag/2020.0.0) | [2020.0.0](https://github.com/NOAA-EDAB/memos/releases/tag/2020.1.0) | [1.0.0](https://github.com/NOAA-EDAB/ecodata/releases/tag/1.0.0) | [2.0.0](https://github.com/NOAA-EDAB/tech-doc/tree/2.0.0) | Version for Internal Review |
 | 2020 |  [2020.1.0](https://github.com/NOAA-EDAB/SOE-MAFMC/releases/tag/2020.1.0) | [2020.1.0](https://github.com/NOAA-EDAB/memos/releases/tag/2020.1.0) | [1.1.0](https://github.com/NOAA-EDAB/ecodata/releases/tag/1.1.0) | [2.0.0](https://github.com/NOAA-EDAB/tech-doc/tree/2.0.0) | Version for MAFMC SSC |
 | [2020*](https://repository.library.noaa.gov/view/noaa/23889) |  [2020.2.0](https://github.com/NOAA-EDAB/SOE-MAFMC/releases/tag/2020.2.0) | [2020.1.0](https://github.com/NOAA-EDAB/memos/releases/tag/2020.1.0) | [1.1.0](https://github.com/NOAA-EDAB/ecodata/releases/tag/1.1.0) | [2.0.0](https://github.com/NOAA-EDAB/tech-doc/tree/2.0.0) | Final Version for MAFMC, *Link to PDF |
-| 2021 | [2021.0.0](https://github.com/NOAA-EDAB/SOE-MAFMC/releases/tag/2021.0.0) | TBD | TBD | TBD | Version for Internal Review |
-| 2021 | [2021.1.0](https://github.com/NOAA-EDAB/SOE-MAFMC/releases/tag/2021.1.0) | TBD | TBD | TBD | Version for MAFMC SSC |
+| 2021 | [2021.0.0](https://github.com/NOAA-EDAB/SOE-MAFMC/releases/tag/2021.0.0) | NA | TBD | TBD | Version for Internal Review |
+| 2021 | [2021.1.0](https://github.com/NOAA-EDAB/SOE-MAFMC/releases/tag/2021.1.0) | [2021.0.0](https://github.com/NOAA-EDAB/memos) | TBD | TBD | Version for MAFMC SSC |
 | 2021* | [2021.2.0](https://github.com/NOAA-EDAB/SOE-MAFMC/releases/tag/2021.2.0) | TBD | TBD | TBD | Final Version for MAFMC, *Link to PDF to be added |
 
 
