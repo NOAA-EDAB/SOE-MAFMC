@@ -13,7 +13,7 @@ output:
 link-citations: yes
 geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 subparagraph: yes
-bibliography: SOE2021.bib
+bibliography: SOE2022.bib
 urlcolor: blue
 ---
 
@@ -111,25 +111,22 @@ In this section, we examine indicators related to broad, ecosystem-level fishery
 
 *Special note on data availability for the 2022 report*
 
-The Catch Accounting and Monitoring System (CAMS) that will be used to provide commercial landings and discard information at the Ecological Production Unit (EPU) is under development.  As of February 2022, our standard indicators relying on EPU scale landings data cannot be calculated for 2020 (commercial seafood production, commercial profits, ecosystem overfishing). We provide information based on coastwide commercial landings information available at this time in https://spo.nmfs.noaa.gov/sites/default/files/TM221.pdf, and will calculate our standard indicators at EPU scales with disaggregated 2020 commercial landings data when they are available. Data for 2020 will be reported along with data for 2021 in the 2023 SOE.
+The Catch Accounting and Monitoring System (CAMS) that will be used to provide commercial landings and discard information at the Ecological Production Unit (EPU) is under development.  As of February 2022, our standard indicators relying on EPU scale landings data cannot be calculated for 2020 (commercial seafood production, commercial profits, ecosystem overfishing). We provide information based on coastwide commercial landings information available at this time in @thunberg_northeast_2021^[https://spo.nmfs.noaa.gov/sites/default/files/TM221.pdf], and will calculate our standard indicators at EPU scales with disaggregated 2020 commercial landings data when they are available. Data for 2020 will be reported along with data for 2021 in the 2023 SOE.
 
 
 ## Seafood Production 
 
 ### Indicators: Landings; total and by feeding guild 
-All seafood landed by commercial fisheries (total landings) and MAFMC’s managed species landings (a subset of the total) continue to trend downward in the MAB (Fig. \ref{fig:total-landings}). The downward trend is most significant in the benthos (clams) group (Fig. \ref{fig:comm-landings}).
-```{r, total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
-```
+Commercial landings within the Mid-Atlantic are not yet available for 2020, but coastwide landings for federally managed species were mixed when compared to recent years [@thunberg_northeast_2021].
 
-```{r, comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.4}
-```
+Surfclam and ocean quahog, and monkfish landings declined, while summer flounder, scup, and black sea bass, and squids in aggregate landings increased in 2020. 
 
-Total recreational harvest (retained fish presumed to be eaten) is also down in the MAB (Fig. \ref{fig:rec-landings}). 
+Total recreational harvest (retained fish presumed to be eaten) is down in the MAB (Fig. \ref{fig:rec-landings}). Although harvest has increased from a historic low in 2018, it is still below the average value for the series.
 ```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
 
 ```
 
-Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 and 2019 (Fig \ref{fig:rec_hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. 
+Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2021 (Fig \ref{fig:rec_hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. In 2021 the International Commission for the Conservation of Atlantic Tunas (ICCAT) finalized recommendations for a two-year retention ban (ICCAT Rec.21-09), which will also affect total overall landings of pelagic sharks in coming years.
 ```{r rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5, fig.asp=.35}
 
 ```
@@ -138,26 +135,22 @@ Aquaculture production is not yet included in total seafood landings, but we are
 
 ### Implications
 
-Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
+Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions (including Covid disruptions), and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which stock status and system biomass trends may play a role.  
 
-#### Ecosystem Overfishing Indices 
-Thresholds for ecosystem-level overfishing based on system production characteristics have been proposed [@link_global_2019], and are applied here for the MAB. The proposed ecosystem overfishing thresholds are calculated based on *total catch* while our preliminary indicators are based on *commercial landings*. Therefore, our current indicators are underestimated compared with the proposed thresholds. In future reports we may be able to include commercial discards and recreational removals to evaluate total catch. 
-
-Based on either the ratio of total landings to total primary production (Fogarty Index, Fig. \ref{fig:fogarty}), or total landings per unit area (Ryther Index, Fig. \ref{fig:ryther}), MAB landings are at or below the proposed thresholds, so ecosystem overfishing is unlikely to be a major factor driving decreased landings.   
-```{r fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in the MAB. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (orange shading) led to ecosystem tipping points.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
-
-```
-
-```{r ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
-```
-
-The amount of potential yield we can expect from a marine ecosystem depends on the amount of production entering at the base of the food web, primarily in the form of phytoplankton; the pathways this energy follows to reach harvested species; the efficiency of transfer of energy at each step in the food web; and the fraction of this production that is removed by the fisheries. The fraction of production removed by fisheries has declined since the late 1990s (Fig. \ref{fig:ppr-mab}). The overall trend is largely driven by the decrease in landings with an increase in primary production over the same period. Current fisheries remove a lower proportion of the ecosystem's primary production now than in the 1970s, when the Fogarty and Ryther indices suggest that ecosystem overfishing may have occurred.
-```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels. PPD is total primary production. The solid line is based on satellite-derived PPD and the dashed line is based on primary production reconstructed using the mean of satellite-derived PPD from 1998-2010.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
-```
-
-#### Stock Status
-Single species management objectives of maintaining biomass above minimum thresholds and fishing mortality below limits are being met for all but two MAFMC managed species, though the status of six stocks is unknown (Fig. \ref{fig:stock-status}). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings. To better address the role of management in future reports, we could examine how the total allowable catch (TAC) and the percentage of the TAC taken for each species has changed through time. 
+#### Stock Status and Catch Limits
+Single species management objectives of maintaining biomass above minimum thresholds and fishing mortality below limits are being met for all but two MAFMC managed species, though the status of six stocks is unknown (Fig. \ref{fig:stock-status}). 
 ```{r stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
+```
+
+Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total
+
+```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries.", readLines(https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R)}
+
+```
+
+
+```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. Chub mackerel removed due extremely low catch. Outliers = Recreational Black Sea Bass.", readLines(https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R)}
+
 ```
 
 #### System Biomass
