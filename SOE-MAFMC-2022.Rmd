@@ -144,12 +144,12 @@ Single species management objectives of maintaining biomass above minimum thresh
 
 Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total
 
-```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries.", readLines(https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R)}
+```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")}
 
 ```
 
 
-```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. Chub mackerel removed due extremely low catch. Outliers = Recreational Black Sea Bass.", readLines(https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R)}
+```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. Chub mackerel removed due extremely low catch. Outliers = Recreational Black Sea Bass.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R")}
 
 ```
 
