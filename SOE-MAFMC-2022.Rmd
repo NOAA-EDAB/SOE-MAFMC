@@ -116,10 +116,13 @@ The Catch Accounting and Monitoring System (CAMS) that will be used to provide c
 
 ## Seafood Production 
 
-### Indicators: Landings; total and by feeding guild 
-Commercial landings within the Mid-Atlantic are not yet available for 2020, but coastwide landings for federally managed species were mixed when compared to recent years [@thunberg_northeast_2021].
+### Indicators: Landings; commercial and recreational 
+Total commercial landings (black) within the Mid-Atlantic are not yet available for 2020; Figure \ref{fig:total-landings} includes data only through 2019. However, we do not anticipate the long-term declining trend in landings to change.
 
-Surfclam and ocean quahog, and monkfish landings declined, while summer flounder, scup, and black sea bass, and squids in aggregate landings increased in 2020. 
+Coastwide landings for federally managed species were mixed in 2020 when compared to recent years [@thunberg_northeast_2021]. Surfclam and ocean quahog, and monkfish landings declined, while summer flounder, scup, and black sea bass, and squids in aggregate landings increased in 2020. 
+
+```{r, total-landings, fig.cap = paste0("Total commercial seafood landings through 2019 (black) and ",region," managed seafood landings (red)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
+```
 
 Total recreational harvest (retained fish presumed to be eaten) is down in the MAB (Fig. \ref{fig:rec-landings}). Although harvest has increased from a historic low in 2018, it is still below the average value for the series.
 ```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
@@ -127,7 +130,7 @@ Total recreational harvest (retained fish presumed to be eaten) is down in the M
 ```
 
 Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2021 (Fig \ref{fig:rec_hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. In 2021 the International Commission for the Conservation of Atlantic Tunas (ICCAT) finalized recommendations for a two-year retention ban (ICCAT Rec.21-09), which will also affect total overall landings of pelagic sharks in coming years.
-```{r rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5, fig.asp=.35}
+```{r rec_hms, fig.cap="Recreational shark landings from Marine Recreational Information Program.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5, fig.asp=.35}
 
 ```
 
@@ -276,7 +279,7 @@ Communities plotted in the upper right section of Fig.\ref{fig:commercial-engage
 
 Fig. \ref{fig:commercial-EJ} shows the detailed scores of the three environmental justice indicators for the same communities plotted in Fig.\ref{fig:commercial-engagement}. Communities are plotted clockwise in a descending order of commercial engagement scores from high to low, with the most highly engaged community, Cape May, NJ, listed on the top. Among the communities ranked medium-high or above for environmental justice vulnerability, Newport News, VA scored medium-high for the population composition index. Atlantic City, NJ scored high for all of the three environmental justice indicators. Hampton Bays/Shinnecock, NY scored medium-high for the population composition index. Beaufort, NC scored medium-high and very close to high for the poverty index. Columbia, NC scored high for the personal disruption index and the poverty index, and medium-high for the population composition index. Hobucken, NC scored high for the personal disruption index and the poverty index.
 
-```{r commercial-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic.", out.width='70%'}
+```{r commercial-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. *Scored high (1.00 and above)) for both commercial engagement and reliance indicators", out.width='70%'}
 knitr::include_graphics("images/EJ_Commercial_MAB.png")
 ```
 
@@ -289,7 +292,7 @@ Communities plotted in the upper right section of Fig.\ref{fig:recreational-enga
 
 Fig. \ref{fig:recreational-EJ} orders communities clockwise in a descending order of recreational engagement scores from high to low, with the most highly engaged community, Babylon, NY, listed on the top. The two communities with environmental justice concerns, Hatteras and Morehead City, NC, both scored medium-high for the poverty index. 
 
-```{r recreational-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top recreational fishing communities in Mid-Atlantic.", out.width='70%'}
+```{r recreational-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top recreational fishing communities in Mid-Atlantic. *Scored high (1.00 and above)) for both commercial engagement and reliance indicators", out.width='70%'}
 knitr::include_graphics("images/EJ_Recreational_MAB.png")
 ```
 
@@ -305,7 +308,7 @@ Protected species include marine mammals protected under the Marine Mammal Prote
 Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs).
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
-As of 2019, average bycatch indices for both harbor porpoise and gray seal bycatch were below current PBR thresholds, thus meeting management objectives. However, the 2019 bycatch estimate for gray seals was highest in the time series. Bycatch indices were not updated because of low 2020 observer coverage caused by COVID-19 restrictions.
+As of 2019, average bycatch indices for both harbor porpoise and gray seal bycatch were below current PBR thresholds, thus meeting management objectives. However, the 2019 bycatch estimate for gray seals was the highest in the time series. Bycatch indices were not updated because of low 2020 observer coverage caused by COVID-19 restrictions.
 ```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England fisheries (blue) and the potential biological removal (red). 2019 estimates are preliminary; not updated in 2020.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=6}
 ```
 
@@ -342,45 +345,136 @@ A marine mammal climate vulnerability assessment is currently underway for Atlan
 
 ## Climate and Ecosystem Productivity
 
-### Climate Change Indicators: ocean currents, temperature, heatwaves, acidification
-Regional ocean current indicators remain at unprecedented levels. In 2019, the Gulf Stream  was at its most northern position since 1993 (Fig. \ref{fig:GSI}). A more northerly Gulf Stream position is associated with warmer ocean temperature on the Northeast US shelf [@zhang_role_2007], a higher proportion of Warm Slope Water in the Northeast Channel, and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
-```{r GSI, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
-```
-In 2019, we also observed the second lowest proportion of Labrador Slope Water entering the Gulf of Maine since 1978 (Fig. \ref{fig:wsw-prop}). The changing proportions of source water affect the temperature, salinity, and nutrient inputs to the Gulf of Maine ecosystem.
-```{r wsw-prop, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSLW) entering the GOM through the Northeast Channel.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=5, fig.asp=.35}
-```
-Ocean temperatures continue to warm at both the bottom (Fig. \ref{fig:bottom-temp}) and the surface (Fig. \ref{fig:seasonal-sst-anom-gridded}). Warming is not seasonally uniform, however: spring 2020 was cooler than average on portions of the shelf. 
-```{r bottom-temp, fig.cap="Annual bottom temperature in the Mid-Atlantic Bight. (black = in situ observations, red = observations assimilated by ocean model for comparison)", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
-```
+Large scale climate related changes in the ecosystem can lead to ecosystem reorganization and regime shifts.  
+
+### Climate Change Indicators: ocean temperature, heatwaves, currents, acidification
+
+#### Ocean and estuarine temperature and salinity
+Ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-sst-anom-gridded}) and bottom (Fig. \ref{fig:bottom-temp}) throughout the Northeast Shelf. Seasonal sea surface temperatures in 2021 were above average throughout the year, with some seasons rivaling or exceeding the record warm temperatures observed in 2012.
 
 ```{r seasonal-sst-anom-gridded, fig.cap="MAB seasonal sea surface temperature (SST) time series overlaid onto 2020 seasonal spatial anomalies.",  fig.width = 8, fig.asp = 1}
 
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"),
 ```
 
-The Chesapeake Bay also experienced a warmer-than-average winter and a cooler-than-average spring in 2020, relative to the previous decade. Water temperatures returned to average during the summer and were slightly above average from October through December, as measured by both satellites and bouys (Fig. \ref{fig:ches-temp}).  
-```{r ches-temp, fig.show='hold', out.width='49%', fig.cap="Left panel: Chesapeake Bay sea surface temperature (SST) seasonal spatial anomalies for 2020, from NOAA multisatellite SST composite. Positive values (red) above 2008-2019 average; negative values (blue) below 2008-2019 average. A) Jan, Feb, Mar; B) Apr, May, Jun; C) Jul, Aug, Sep; D) Oct, Nov, Dec. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature; Blue = 2020, red = Long term average 2010-2019.", fig.align = "default", fig.asp=1.2 }
-
-# knitr::include_graphics("images/ches-temp-temp.png")
-# 
-# ecodata::ch_bay_temp %>%
-#   tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
-#   ggplot2::ggplot() +
-#   ggplot2::geom_ribbon(aes(x = Time, ymin = minLTA, ymax = maxLTA), fill = "grey", alpha = 0.5)+
-#   
-#   ggplot2::geom_line(aes(x = Time, y = YearLTA, color= "Long Term Average 2010-2019")) +
-#   ggplot2::geom_line(aes(x = Time, y = Year2020, color = "Daily 2020")) +
-#   ggplot2::ylab("Temperature (F)") +
-#   ggplot2::ggtitle("Chesapeake Bay Temperature") +
-#   ggplot2::theme(legend.position = "bottom", 
-#                  legend.title = element_blank())+
-#   ecodata::theme_ts()+
-#   ecodata::theme_title()
+```{r bottom-temp, fig.cap="Annual bottom temperature in the Mid-Atlantic Bight. (black = in situ observations, red = observations assimilated by ocean model for comparison)", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
 ```
 
-A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011) [@hobday_hierarchical_2016]. The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December (Fig. \ref{fig:heatwave-year}), similar to warming observed in Chesapeake Bay (Fig. \ref{fig:ches-temp}).
+The Chesapeake Bay experienced a warmer-than-average winter and fall in 2021, and average conditions in the spring and summer, relative to the baseline period 2008-2020 (Fig. \ref{fig:ches-temp-sal}) as measured by satellites^[https://coastwatch.noaa.gov/cw/index.html]. (The seasonal definitions and baseline periods are different from the sea surface temperature anomalies reported in Fig.\ref{fig:seasonal-sst-anom-gridded} for the full Mid-Atlantic region.) Similar 2021 seasonal temperature patterns were observed by bouys^[https://buoybay.noaa.gov/] (Fig. \ref{fig:ches-temp-sal}), which also indicated above-average salinity in the Chesapeake Bay throughout the summer, with a decrease in salinity from late July to early August (Fig. \ref{fig:ches-temp-sal}). Salinity fell below average in September and remained at lower levels throughout fall 2021.
+
+```{r ches-temp-sal, fig.cap="Left panel: 2021 sea surface temperature anomalies for the Chesapeake Bay.  Data are from NOAA’s multi-satellite SST products and produced by NOAA’s Coastwatch Program. Seasons are defined to match the annual life cycles of many biological resources in Chesapeake Bay: Dec-Feb for winter, Mar-May for spring, Jun-Aug for summer, and Sep-Nov for fall. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature (top) and salinity (bottom); Red = 2021, Blue = Long term average 2010-2020.", fig.asp=1.2 }
+
+library(patchwork)
+# Left panel
+sst<- ecodata::ches_bay_sst
+
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -77.5
+xmax = -74.5
+ymin = 36.5
+ymax = 40
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+#sst <- ecodata::seasonal_sst_anomaly_gridded
+crs<- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+sst$Season <- factor(sst$Season, levels = c("Winter",
+                                            "Spring",
+                                            "Summer",
+                                            "Fall"))
+
+sst<- sst %>% dplyr::mutate(Value = replace(Value, Value > 5, 5))
+sst_map <-
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(data = ecodata::coast, size = map.lwd) +
+  ggplot2::scale_fill_gradient2(name = "Temp.\nAnomaly (C)",
+                                low = scales::muted("blue"),
+                                mid = "white",
+                                high = scales::muted("red"),
+                                limits = c(-4,4),
+                                labels = c("<-5", "-2.5", "0", "2.5", ">5")) +
+  ggplot2::coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+
+  ggplot2::geom_tile(data = sst, aes(x = Latitude, y = Longitude,fill = Value)) +
+  ggplot2::facet_wrap(Season~.) +
+  ecodata::theme_map() +
+  ggplot2::ggtitle("Chesapeake Bay SST anomaly (2021)") +
+  ggplot2::xlab(element_blank()) +
+  ggplot2::ylab(element_blank()) +
+  scale_y_continuous(breaks = seq(37, 40, by = 1))+
+  scale_x_continuous(breaks = seq(-77, -75, by = 1))+
+  ggplot2::theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+                 legend.key = element_blank(),
+                 axis.title = element_text(size = 6),
+                 strip.background = element_blank(),
+                 strip.text=element_text(hjust=0),
+                 axis.text = element_text(size = 6),
+                 axis.title.y = element_text(angle = 90) )+
+  ecodata::theme_title()
+
+
+#sst_map
+
+# Right panel top
+tempbouy <- ecodata::ch_bay_temp %>%
+  tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
+  dplyr::mutate(YearLTAC = (YearLTA - 32)*(5/9),
+                minLTAC = (minLTA - 32)*(5/9),
+                maxLTAC = (maxLTA - 32)*(5/9), 
+                YearC = (Year - 32)*(5/9)) %>% 
+  ggplot2::ggplot() +
+  ggplot2::geom_ribbon(aes(x = Time, ymin = minLTAC, ymax = maxLTAC), fill = "grey", alpha = 0.5)+
+  
+  ggplot2::geom_line(aes(x = Time, y = YearLTAC, color= "Long Term Average 2010-2020")) +
+  ggplot2::geom_line(aes(x = Time, y = YearC, color = "Daily 2021")) +
+  ggplot2::ylab("Temperature (C)") +
+  ggplot2::ggtitle("Chesapeake Bay Temperature") +
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank())+
+  ecodata::theme_ts()+
+  ecodata::theme_title()
+
+# Right panel bottom
+salbouy <- ecodata::ch_bay_sal %>%
+  tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
+  ggplot2::ggplot() +
+  ggplot2::geom_ribbon(aes(x = Time, ymin = minLTA, ymax = maxLTA), fill = "grey", alpha = 0.5)+
+  
+  ggplot2::geom_line(aes(x = Time, y = YearLTA, color= "Long Term Average 2010-2020")) +
+  ggplot2::geom_line(aes(x = Time, y = Year, color = "Daily 2021")) +
+  ggplot2::ylab("Salinity") +
+  ggplot2::ggtitle("Chesapeake Bay Salinity") +
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank())+
+  ecodata::theme_ts()+
+  ecodata::theme_title()
+
+sst_map + (tempbouy + salbouy + plot_layout(ncol=1)) + plot_layout(ncol=2)
+
+```
+
+#### Marine heatwaves
+A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures warmer than 90% of all previously observed temperatures for that date between 1982 and 2011 [@hobday_hierarchical_2016]. Marine heatwaves measure not just high temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. The region is experiencing more frequent marine heatwaves over the last decade, including this year, compared to the historical period from 1980’s to early 2000’s.
+
+In 2021, the Middle Atlantic Bight experienced seven distinct marine heatwaves with the strongest event beginning on September 13 and lasting 53 days (Fig. \ref{fig:heatwave-year}). Relative to prior years, this marine heatwave ranked 9th on record in terms of maximum intensity (+3.37 °C above average on October 16th) and 4th on record in terms of cumulative intensity (121 °C-days ) (Fig. \ref{fig:heatwave-year}). 
+
 ```{r heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
+
 ```
+
+#### Ocean currents and features
+Variability of the Gulf Stream is one of the major drivers of changes in the oceanographic conditions of the Slope Sea and subsequently the Northeast U.S. continental shelf [@gangopadhyay ]  (Gangopadhyay et al., 2020). Changes in the Gulf Stream and Slope Sea can affect large-scale climate phenomena as well as local ecosystems and coastal communities. During the last decade, the Gulf Stream has become less stable and shifted northward [@andres ; @caesar ] (Andres, 2016; Caesar et al 2018)(Fig. \ref{fig:GSI}).  A more northern Gulf Stream position is associated with warmer ocean temperature on the northeast shelf [@zhang_role_2007], a higher proportion of Warm Slope Water in the Northeast Channel, and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
+
+```{r GSI, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
+```
+
+Since 2008, there have been more frequent impingements of the Gulf Stream at the Tail of the Grand Banks, reducing the supply of cold, fresh and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf.  This perturbation propagates along the slope and is observed in the Gulf of Maine source water data after a roughly 1 year lag [@Gonçalves Neto] (Gonçalves Neto et al, 2021). With the exception of 2014, more than 75% of the annual slope water proportions entering the Gulf of Maine since 2010 are attributed to the warm slope water.  During the more recent years, almost no Labrador Slope water is entering the Gulf of Maine through the Northeast Channel (Fig. \ref{fig:wsw-prop}).  The changing proportions of source water affect the temperature, salinity, and nutrient inputs to the Gulf of Maine ecosystem.  In 2021, warm slope water continued to dominate (86.1%) the Gulf of Maine source water, but the proportion was below the previous 5 year average. The position of the north wall of the Gulf Stream is forecasted to be similar to 2021 [@silver] (Silver et al., 2021).
+
+```{r wsw-prop, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSLW) entering the GOM through the Northeast Channel.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=5, fig.asp=.35}
+```
+
+
 
 Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017]. The average temperature of the cold pool has been getting warmer over time  [@miller_state-space_2016]).  These changes can affect distribution and migration timing for species that depend on the cold pool habitat.  The area of the MAB cold pool was near average in 2018 (Fig. \ref{fig:cold-pool-map}), the last complete year of the dataset.  The size of the cold pool varies annually, with the smallest sizes associated with record-warm years (e.g. 2012). The cold pool temperature shows a similar variation as its extent, both of which are strongly impacted by each early spring setting in temperature on the shelf.
 ```{r cold-pool-map, eval = T, echo = F, fig.cap="Map of cold pool area. Time series of cold pool spatial extent from1993-2018. Black = 2018 (Last year in time series), Red = 2012 Minimum area, Blue = 2005 Maximum area." }
