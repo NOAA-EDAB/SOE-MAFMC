@@ -144,7 +144,7 @@ Single species management objectives of maintaining biomass above minimum thresh
 
 Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL)increased in 2017 due to the addition of Blueline Tilefish management (Fig. \ref{fig:abcacl-stacked}). Discounting blueline tilefish, the totals ABC or ACL are on the lower end of the historical series, with much of that decrease due to Atlantic mackerel. 
 
-```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")}
+```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R"), fig.width = 6, fig.asp = 0.5}
 
 ```
 
@@ -181,7 +181,7 @@ Other environmental changes require monitoring as they may become important driv
 
 ### Indicators: revenue (a proxy for profits)  
 Total commercial revenues (black) within the Mid-Atlantic are not yet available for 2020; Figure \ref{fig:comm-revenue} includes data only through 2019. However, we do not anticipate the long-term declining trend in revenue from managed species (red) to change. Coast-wide, a number of species managed by the MAFMC have seen decreases in revenue when compared to the average revenue generated 2015 - 2019 [@thunberg_northeast_2021]. This decline was driven by a mix of landings declines (monkfish, surfclam, ocean quahog) and price declines (monkfish, summer flounder, scup, and black sea bass, combined squid species). 
-```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Revenue through 2019 for the for the Mid-Atlantic region: total (black) and revenue from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
+```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Revenue through 2019 for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
 ```
 
 ### Implications 
@@ -333,27 +333,29 @@ Ocean temperatures continue to warm at both the bottom (Fig. \ref{fig:bottom-tem
 ```{r bottom-temp, fig.cap="Annual bottom temperature in the Mid-Atlantic Bight. (black = in situ observations, red = observations assimilated by ocean model for comparison)", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
 ```
 
-```{r seasonal-sst-anom-gridded, fig.cap="MAB seasonal sea surface temperature (SST) time series overlaid onto 2020 seasonal spatial anomalies.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = 1}
+```{r seasonal-sst-anom-gridded, fig.cap="MAB seasonal sea surface temperature (SST) time series overlaid onto 2020 seasonal spatial anomalies.",  fig.width = 8, fig.asp = 1}
+
+#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"),
 ```
 
 The Chesapeake Bay also experienced a warmer-than-average winter and a cooler-than-average spring in 2020, relative to the previous decade. Water temperatures returned to average during the summer and were slightly above average from October through December, as measured by both satellites and bouys (Fig. \ref{fig:ches-temp}).  
 ```{r ches-temp, fig.show='hold', out.width='49%', fig.cap="Left panel: Chesapeake Bay sea surface temperature (SST) seasonal spatial anomalies for 2020, from NOAA multisatellite SST composite. Positive values (red) above 2008-2019 average; negative values (blue) below 2008-2019 average. A) Jan, Feb, Mar; B) Apr, May, Jun; C) Jul, Aug, Sep; D) Oct, Nov, Dec. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature; Blue = 2020, red = Long term average 2010-2019.", fig.align = "default", fig.asp=1.2 }
 
-knitr::include_graphics("images/ches-temp-temp.png")
-
-ecodata::ch_bay_temp %>%
-  tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
-  ggplot2::ggplot() +
-  ggplot2::geom_ribbon(aes(x = Time, ymin = minLTA, ymax = maxLTA), fill = "grey", alpha = 0.5)+
-  
-  ggplot2::geom_line(aes(x = Time, y = YearLTA, color= "Long Term Average 2010-2019")) +
-  ggplot2::geom_line(aes(x = Time, y = Year2020, color = "Daily 2020")) +
-  ggplot2::ylab("Temperature (F)") +
-  ggplot2::ggtitle("Chesapeake Bay Temperature") +
-  ggplot2::theme(legend.position = "bottom", 
-                 legend.title = element_blank())+
-  ecodata::theme_ts()+
-  ecodata::theme_title()
+# knitr::include_graphics("images/ches-temp-temp.png")
+# 
+# ecodata::ch_bay_temp %>%
+#   tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
+#   ggplot2::ggplot() +
+#   ggplot2::geom_ribbon(aes(x = Time, ymin = minLTA, ymax = maxLTA), fill = "grey", alpha = 0.5)+
+#   
+#   ggplot2::geom_line(aes(x = Time, y = YearLTA, color= "Long Term Average 2010-2019")) +
+#   ggplot2::geom_line(aes(x = Time, y = Year2020, color = "Daily 2020")) +
+#   ggplot2::ylab("Temperature (F)") +
+#   ggplot2::ggtitle("Chesapeake Bay Temperature") +
+#   ggplot2::theme(legend.position = "bottom", 
+#                  legend.title = element_blank())+
+#   ecodata::theme_ts()+
+#   ecodata::theme_title()
 ```
 
 A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011) [@hobday_hierarchical_2016]. The MAB experienced frequent ocean heatwaves of moderate intensity in 2020 that extended well into December (Fig. \ref{fig:heatwave-year}), similar to warming observed in Chesapeake Bay (Fig. \ref{fig:ches-temp}).
@@ -589,21 +591,21 @@ epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
                          longitude = c(-72.7,-69,-68.5))
 
 #Map of NE LME
-epumap <- ggplot() +
-  geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
-  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
-  geom_text(data = epu_labels, aes(x = longitude,
-                                    y = latitude,
-                                    label = EPU),
-            size = 1.7)+
-  theme_map() +
-  scale_x_continuous(breaks = seq(-78, -65, by = 4), expand = c(0.01, 0.01)) +
-  xlab("Longitude") +
-  ylab("Latitude") +
-  labs(tag = "b")
-
-psample + plot_spacer() + epumap + plot_layout(ncol = 3, widths=c(3,.5,4.5))
+# epumap <- ggplot() +
+#   geom_sf(data = coast, size = map.lwd) +
+#   geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
+#   coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+#   geom_text(data = epu_labels, aes(x = longitude,
+#                                     y = latitude,
+#                                     label = EPU),
+#             size = 1.7)+
+#   theme_map() +
+#   scale_x_continuous(breaks = seq(-78, -65, by = 4), expand = c(0.01, 0.01)) +
+#   xlab("Longitude") +
+#   ylab("Latitude") +
+#   labs(tag = "b")
+# 
+# psample + plot_spacer() + epumap + plot_layout(ncol = 3, widths=c(3,.5,4.5))
 
 ```
 
