@@ -257,13 +257,18 @@ Stable adult fish diversity indicates the same overall number and evenness over 
 
 In the MAB, existing diversity indicators suggest overall stability in the fisheries and ecosystem components examined. However, declining recreational fleet diversity suggests a potential loss in the range of recreational fishing opportunities, and increasing zooplankton diversity is due to the declining dominance of an important species, suggesting change in the zooplankton community that warrants continued monitoring to determine if managed species are affected. 
 
-## Social Vulnerability 
+## Environmental Justice and Social Vulnerability 
 
-### Indicators: Social vulnerability in commercial and recreational fishing communities
-Social vulnerability measures social factors that shape a community’s ability to adapt to change and does not consider gentrification pressure (see [detailed definitions](https://www.fisheries.noaa.gov/national/socioeconomics/social-indicator-definitions)). Communities that ranked medium-high or above for one or more of the following indicators: poverty, population composition, personal disruption, or labor force structure, are highlighted in red. 
+### Indicators: Environmental Justice and Social Vulnerability in commercial and recreational fishing communities
 
-Commercial fishery engagement measures the number of permits, dealers, and landings in a community, while reliance expresses these numbers based on the level of fishing activity relative to the total population of a community.  
-In 2020, we reported that the number of highly engaged Mid-Atlantic commercial fishing communities had declined over time, and engagement scores had also declined in medium-highly engaged communities. Here we focus on the top ten most engaged, and top ten most reliant commercial fishing communities and their associated  social vulnerability (Fig. \ref{fig:commercial-engagement}).  Barnegat Light and Cape May, NJ, and Reedville, VA are highly engaged and reliant with medium-high to high social vulnerability.   
+Social vulnerability measures social factors that shape a community’s ability to adapt to change. A subset of these can be used to assess potential environmental justice issues. Environmental Justice is defined in E.O. 12898 as federal actions intended to address disproportionately high and adverse human health and environmental effects of federal actions on minority and low-income populations. Three of the existing NOAA Fisheries Community Social Vulnerability Indicators (CSVIs), the Poverty Index, Population Composition Index, and Personal Disruption Index, can be used for mandated Environmental Justice analysis^[https://www.fisheries.noaa.gov/national/socioeconomics/social-indicators-coastal-communities]. 
+
+Commercial fishery engagement measures the number of permits and dealers, and pounds and value landed in a community, while reliance expresses these numbers based on the level of fishing activity relative to the total population of a community. Recreational fishery engagement measures shore, private vessel, and for-hire fishing effort while reliance expresses these numbers based on fishing effort relative to the population of a community.
+
+In 2021, we reported the top ten most engaged, and top ten most reliant commercial and recreational fishing communities and their associated social vulnerability. Here we apply the same selection standard for top ten fishing communities for both sectors, and focus on examining the environmental justice vulnerability in these communities.
+
+
+  
 ```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
 ```
 
