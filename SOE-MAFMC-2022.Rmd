@@ -352,9 +352,8 @@ Large scale climate related changes in the ecosystem can lead to ecosystem reorg
 #### Ocean and estuarine temperature and salinity
 Ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-sst-anom-gridded}) and bottom (Fig. \ref{fig:bottom-temp}) throughout the Northeast Shelf. Seasonal sea surface temperatures in 2021 were above average throughout the year, with some seasons rivaling or exceeding the record warm temperatures observed in 2012.
 
-```{r seasonal-sst-anom-gridded, fig.cap="MAB seasonal sea surface temperature (SST) time series overlaid onto 2020 seasonal spatial anomalies.",  fig.width = 8, fig.asp = 1}
+```{r seasonal-sst-anom-gridded, fig.cap="MAB seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = 1}
 
-#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"),
 ```
 
 ```{r bottom-temp, fig.cap="Annual bottom temperature in the Mid-Atlantic Bight. (black = in situ observations, red = observations assimilated by ocean model for comparison)", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
@@ -515,7 +514,7 @@ Phytoplankton are a major component of the food web and a primary food source fo
 ```{r chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a new satellite source). The long-term mean is shown in black and shading indicates +/- 1 sample SD.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 5, fig.asp = 0.9}
 ```
 
-The seasonal cycle of phytoplankton size distribution of phytoplankton shows that the spring and fall bloom periods are dominated by microplankton (>20 𝛍m), while nanoplankton (2-20 𝛍m) dominates during the warmer summer months. The proportion of the smallest phytoplankton, picoplankton (0.2-2 𝛍m), are relatively constant throughout the year. In 2021, microplankton proportions were above average during the winter and fall bloom periods, but below average for the summer months (Fig. \ref{fig:weekly-phyto-size}). 
+The seasonal cycle of phytoplankton size distribution of phytoplankton shows that the spring and fall bloom periods are dominated by microplankton (>20 microns), while nanoplankton (2-20 microns) dominates during the warmer summer months. The proportion of the smallest phytoplankton, picoplankton (0.2-2 microns), are relatively constant throughout the year. In 2021, microplankton proportions were above average during the winter and fall bloom periods, but below average for the summer months (Fig. \ref{fig:weekly-phyto-size}). 
 ```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2020) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations in the shaded portions.  The 2021 proportions for the microplankton (green) and nanoplankton (orange) are shown in the bold lines.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
 ```
 
@@ -560,7 +559,7 @@ New indicators for shark populations, combined with information on gray seals (s
 
 Stock status is mixed for Atlantic Highly Migratory Species (HMS) stocks (including sharks, swordfish, billfish, and tunas) occurring in the Mid-Atlantic region. While there are several HMS species considered to be overfished or that have unknown stock status, the population status for some managed Atlantic sharks and tunas is at or above the biomass target (Fig. \ref{fig:hms-stock-status} ), suggesting the potential for robust predator populations among these managed species. 
 
-```{r hms-stock-status, fig.cap = paste0("Summary of single species status for HMS stocks.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R")}
+```{r hms-stock-status, fig.cap = "Summary of single species status for HMS stocks.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R")}
 
 ```
 
@@ -741,21 +740,21 @@ epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
                          longitude = c(-72.7,-69,-68.5))
 
 #Map of NE LME
-# epumap <- ggplot() +
-#   geom_sf(data = coast, size = map.lwd) +
-#   geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
-#   coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
-#   geom_text(data = epu_labels, aes(x = longitude,
-#                                     y = latitude,
-#                                     label = EPU),
-#             size = 1.7)+
-#   theme_map() +
-#   scale_x_continuous(breaks = seq(-78, -65, by = 4), expand = c(0.01, 0.01)) +
-#   xlab("Longitude") +
-#   ylab("Latitude") +
-#   labs(tag = "b")
-# 
-# psample + plot_spacer() + epumap + plot_layout(ncol = 3, widths=c(3,.5,4.5))
+epumap <- ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  geom_text(data = epu_labels, aes(x = longitude,
+                                    y = latitude,
+                                    label = EPU),
+            size = 1.7)+
+  theme_map() +
+  scale_x_continuous(breaks = seq(-78, -65, by = 4), expand = c(0.01, 0.01)) +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  labs(tag = "b")
+
+psample + plot_spacer() + epumap + plot_layout(ncol = 3, widths=c(3,.5,4.5))
 
 ```
 
