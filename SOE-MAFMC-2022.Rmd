@@ -488,7 +488,6 @@ The increased instability of the Gulf Stream and warming of the slope sea may al
 When warm core rings and eddies interact with the continental slope they can transport warm, salty water to the continental shelf and create an offshore flow of continental shelf water (Chen et al., 2022). Recent observations suggest that warm, salty offshore waters intrude onto the continental shelf more frequently and penetrate further onshore than in previous decades (Gawarkiewicz et al., 2018; Gawarkiewicz et al., in review). When these intrusions push the shelf break front further inshore they can be significant contributors to marine heatwaves in the Mid-Atlantic Bight (Gawarkiewicz et al., 2019; Chen et al., 2022) and the movement of species associated with the front inshore (Gawarkiewicz et al., 2018; Potter et al., 2011; Worm et al., 2003).  In addition, the timing and magnitude of the episodic warming related to these cross-shelf exchange events or the cumulative impact of a string of events over time could alter critical habitat and affect recruitment of commercially important species (Gawarkiewicz et al, 2018).
 
 
-
 ##### Cold Pool
 Changes in ocean temperature and circulation alter habitat features such as the seasonal cold pool, a 20–60 m thick band of cold, relatively uniform near-bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017; @chen] Chen et al., 2018). The cold pool plays an essential role in the structuring of the MAB ecosystem. It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017; @miles] Miles et al., 2021). The average temperature of the cold pool has been getting warmer over time [@miller_state-space_2016; @dupontavice], du Pontavice et al., in revision), the area is getting smaller [@friedland ]  Friedland et al., 2022), and the duration is getting shorter (Fig. \ref{fig:cold-pool}).
 
@@ -498,7 +497,6 @@ Changes in ocean temperature and circulation alter habitat features such as the 
 
 
 #### Ocean Acidification
-
 Ocean acidification (OA) has caused measured declines in global ocean pH. In the Northeast Shelf, the sparsity of data limits our ability to observe decadal-scale trends in pH, particularly in bottom water where potentially vulnerable commercially important species reside. Summer bottom pH (2007-2021) varied spatially and temporally, ranging from 7.69-8.07 (Fig. \ref{fig:mab-oa}, left panel). The lowest pH values were recorded in western Long Island Sound, and nearshore to mid-shelf waters off the coast of New Jersey. In summer 2021, water column pH from the glider-based profiles ranged from 7.67-8.22 (Fig. \ref{fig:mab-oa}, right panel). The highest pH values occurred in the subsurface and were associated with the depth of the chlorophyll maximum (20-26 m). Lowest pH occurred in bottom waters, reaching minimum values in shallow waters typically inhabited by Atlantic surfclams (27-56 m) in the southern flank of the Hudson canyon (mean pH = 7.80). 
 
 This seasonal pH minimum in the Mid-Atlantic is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. Fall mixing and slope water intrusions act to increase the pH in outer shelf waters [@wrightfairbanks_autonomous_2020]. 
@@ -524,7 +522,7 @@ The seasonal cycle of phytoplankton size distribution of phytoplankton shows tha
 #### Zooplankton  
 Limited zooplankton and ichthyoplankton data were collected during 2020 due to survey disruptions and 2021 samples are still being processed so diversity indices and biomass trends could not be updated for this report.  However, previous data showed long-term increasing trends of gelatinous zooplankton and krill on the northeast shelf.  In 2021, the plankton displacement volume (a measure of the total volume of plankton caught in the bongo net), was significantly greater than the previous years (Fig. \ref{fig:salps}). Gelatinous zooplankton, predominantly salps (*Thalia democratica*), accounted for the increased plankton volume. Salps were found throughout the northeast shelf and in the slope sea at anomalously high concentrations during summer 2021. The presence of salp blooms has previously been associated with water mass intrusions at the shelf break (Madin et al., 2006; Deibel and Paffenhöfer, 2009). Salps are filter feeders feeding on phytoplankton and other small particles and may have contributed to the below average CHL concentrations in summer (Fig. \ref{fig:chl-weekly}).
 
-```{r salps, }
+```{r salps, eval=FALSE }
 
 ```
 
@@ -553,7 +551,7 @@ We describe patterns of aggregate fish productivity in the Mid-Atlantic with the
 ### Ecosystem Structure Indicators: distribution shifts, diversity, predators
 As noted in the [Landings Implications section above](#implications), stocks are shifting distribution throughout the region. In aggregate, fish stocks are moving northeast along the shelf and into deeper waters.
 
-Zooplankton diversity (as of 2019) is increasing in the MAB, while adult fish diversity indices are stable over time with current values near the long-term average (see [Diversity Indicators section, above](#ecological-diversity)).  
+Zooplankton diversity was increasing in the MAB as of 2019, while adult fish diversity indices are stable over time with current values near the long-term average (see [Diversity Indicators section, above](#ecological-diversity)).  
 
 New indicators for shark populations, combined with information on gray seals (see [Protected Species Implications section, above](#protected-species)), suggests predator populations range from stable (sharks, Fig. \ref{fig:hms-cpue-sharks}) to increasing (seals) in the MAB. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
 
@@ -571,10 +569,30 @@ As noted in the [Protected Species section](#protected-species), gray seal popul
 A recent stable isotope study utilizing gray seal scat samples obtained from Massachusetts habitats showed individual gray seals can specialize on particular prey. It also found that gray seals vary their diet seasonally, focusing on demersal inshore species prior to the spring molt, and offshore species such as sand lance after molting. DNA studies on gray seal diet in Gulf of Maine and Massachusetts waters found spiny dogfish and Jonah crab present in gray seal scat samples. Skate and crab remains were also found in gray seal stomach remains. In contrast to direct feeding, it is uncertain if the presence of skates and crabs is due to secondary consumption or scavenging. 
 
 
-### Habitat Risks
+### Habitat Risk Indicators: habitat assessments, submerged aquatic vegetation, estuarine habitat quality, fishing gear impacts
 
+#### Habitat Assessments
+The Northeast Regional Marine Fish Habitat Assessment (NRHA) is a collaborative effort to describe and characterize estuarine, coastal, and offshore fish habitat distribution, abundance, and quality in the Northeast. This includes mapping inshore and offshore habitat types used by focal fish species, summarizing impacts of habitat climate vulnerability on focal species, modeling predicted future species distributions, and developing a publicly accessible decision support tool to visualize these results. This is a three-year project led by the New England and Mid-Atlantic Fishery Management Councils in collaboration with many partners including NOAA Fisheries, and will be completed in July 2022.^[https://www.mafmc.org/nrha]
 
-A recent habitat climate vulnerability analysis links black sea bass, scup, and summer flounder to several highly vulnerable nearshore habitats from salt marsh through shallow estuarine and marine reefs. Details on highly vulnerable habitats with linkages to a variety of species, including which life stages have different levels of dependence on a particular habitat, are available in a detailed table.^[https://noaa-edab.github.io/ecodata/Hab_table]
+As part of the NRHA work, climate vulnerability information from NOAA’s Habitat Climate Vulnerability Assessment and the Northeast Fish and Shellfish Climate Vulnerability Assessment^[https://www.fisheries.noaa.gov/new-england-mid-atlantic/climate/northeast-vulnerability-assessment] is synthesized for approximately 70 species in the northeast region. For example, black sea bass, scup, and summer founder have been linked to several highly vulnerable nearshore habitats from salt marsh, submerged aquatic vegetation, and shallow estuarine and marine reefs. Details on highly vulnerable habitats with linkages to a variety of species, including which life stages have different levels of dependence on a particular habitat, are available in a detailed table^[https://noaa-edab.github.io/ecodata/Hab_table]
+
+#### Submerged Aquatic Vegetation
+Submerged aquatic vegetation (SAV) is designated as a Habitat Area of Particular Concern (HAPC) for summer flounder and is important habitat for many fish species, particularly during vulnerable juvenile stages. Increased SAV coverage (including wild celery, water stargrass, and hydrilla) in the tidal fresh areas of the Chesapeake Bay (Fig. \ref{fig:sav}, right panel) has been attributed to restoration efforts. This ecosystem engineering has improved water quality, promoting further expansions of SAV meadows. However, in the higher salinity region near the mouth of the Chesapeake Bay (Fig. \ref{fig:sav}, left panel), increased water temperatures, especially during the summer, have led to a decline in eelgrass coverage.
+
+```{r sav, fig.cap="", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R")}
+
+```
+
+#### Estuarine Habitat Quality (Chesapeake Bay)
+Many important MAFMC managed species (e.g. summer flounder, scup, black sea bass, and bluefish) use estuarine habitats as nurseries or are considered estuarine and nearshore coastal-dependent, and interact with other important estuarine-dependent species (e.g., striped bass and menhaden). An integrated measure of multiple water quality criteria shows a significantly increasing proportion of Chesapeake Bay waters meeting or exceeding EPA water quality standards over time (@zhang_chesapeake_2018; Fig. \ref{fig:cb-attainment}). This pattern was statistically linked to total nitrogen reduction, indicating responsiveness of water quality status to management actions implemented to reduce nutrients. Water quality trends and status may be used to inform aquaculture siting decisions in Chesapeake Bay.
+
+```{r cb-attainment, fig.cap="Water quality attainment in Chesapeake Bay following rolling three year assessment periods.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R")}
+
+```
+
+#### Fishing Gear Impacts
+Estimates of the impacts of fishing gear on habitat are available through the habitat section of the Northeast Ocean Data Portal^[https://www.northeastoceandata.org/data-explorer/]. The data portal hosts selected outputs from the Northeast Fishing Effects Model which combines seafloor data (sediment type, energy regime) with fishing effort data to generate percent habitat disturbance estimates in space and time. More detailed information can be found in the Synthetic Indicator Catalog.^[https://noaa-edab.github.io/catalog/northeast-fishing-effects-model.html]
+
 
 ### Implications
 
