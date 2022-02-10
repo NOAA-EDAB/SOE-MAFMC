@@ -345,7 +345,7 @@ A marine mammal climate vulnerability assessment is currently underway for Atlan
 
 ## Climate and Ecosystem Productivity
 
-Large scale climate related changes in the ecosystem can lead to ecosystem reorganization and regime shifts.  
+Large scale climate related changes in the ecosystem can lead to changes in important habitats and ecological interactions, potentially resulting in ecosystem reorganization and regime shifts.  
 
 ### Climate Change Indicators: ocean temperature, heatwaves, currents, acidification
 
@@ -361,7 +361,7 @@ Ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-
 
 The Chesapeake Bay experienced a warmer-than-average winter and fall in 2021, and average conditions in the spring and summer, relative to the baseline period 2008-2020 (Fig. \ref{fig:ches-temp-sal}) as measured by satellites^[https://coastwatch.noaa.gov/cw/index.html]. (The seasonal definitions and baseline periods are different from the sea surface temperature anomalies reported in Fig.\ref{fig:seasonal-sst-anom-gridded} for the full Mid-Atlantic region.) Similar 2021 seasonal temperature patterns were observed by bouys^[https://buoybay.noaa.gov/] (Fig. \ref{fig:ches-temp-sal}), which also indicated above-average salinity in the Chesapeake Bay throughout the summer, with a decrease in salinity from late July to early August (Fig. \ref{fig:ches-temp-sal}). Salinity fell below average in September and remained at lower levels throughout fall 2021.
 
-```{r ches-temp-sal, fig.cap="Left panel: 2021 sea surface temperature anomalies for the Chesapeake Bay.  Data are from NOAA’s multi-satellite SST products and produced by NOAA’s Coastwatch Program. Seasons are defined to match the annual life cycles of many biological resources in Chesapeake Bay: Dec-Feb for winter, Mar-May for spring, Jun-Aug for summer, and Sep-Nov for fall. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature (top) and salinity (bottom); Red = 2021, Blue = Long term average 2010-2020.", fig.asp=1.2 }
+```{r ches-temp-sal, fig.cap="Left panel: 2021 sea surface temperature anomalies for the Chesapeake Bay.  Data are from NOAA’s multi-satellite SST products and produced by NOAA’s Coastwatch Program. Seasons are defined to match the annual life cycles of many biological resources in Chesapeake Bay: Dec-Feb for winter, Mar-May for spring, Jun-Aug for summer, and Sep-Nov for fall. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature (top) and salinity (bottom); Red = 2021, Blue = Long term average 2010-2020.", fig.width = 10, fig.asp=1.2 }
 
 library(patchwork)
 # Left panel
@@ -454,9 +454,9 @@ sst_map + (tempbouy + salbouy + plot_layout(ncol=1)) + plot_layout(ncol=2)
 ```
 
 #### Marine heatwaves
-A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures warmer than 90% of all previously observed temperatures for that date between 1982 and 2011 [@hobday_hierarchical_2016]. Marine heatwaves measure not just high temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. The region is experiencing more frequent marine heatwaves over the last decade, including this year, compared to the historical period from 1980’s to early 2000’s.
+A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures warmer than 90% of previously observed (1982-2011) temperatures for that date [@hobday_hierarchical_2016]. Marine heatwaves measure not just high temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. The region is experiencing more frequent marine heatwaves over the last decade, including this year, compared to the historical period.
 
-In 2021, the Middle Atlantic Bight experienced seven distinct marine heatwaves with the strongest event beginning on September 13 and lasting 53 days (Fig. \ref{fig:heatwave-year}). Relative to prior years, this marine heatwave ranked 9th on record in terms of maximum intensity (+3.37 °C above average on October 16th) and 4th on record in terms of cumulative intensity (121 °C-days ) (Fig. \ref{fig:heatwave-year}). 
+In 2021, the Middle Atlantic Bight experienced seven distinct marine heatwaves with the strongest event beginning on September 13 and lasting 53 days (Fig. \ref{fig:heatwave-year}). Relative to prior years, this marine heatwave ranked 9th on record in terms of maximum intensity and 4th on record in terms of cumulative intensity. 
 
 ```{r heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
 
@@ -464,31 +464,57 @@ In 2021, the Middle Atlantic Bight experienced seven distinct marine heatwaves w
 
 #### Ocean currents and features
 
-##### Gulf Stream
-Variability of the Gulf Stream is one of the major drivers of changes in the oceanographic conditions of the Slope Sea and subsequently the Northeast U.S. continental shelf [@gangopadhyay ]  (Gangopadhyay et al., 2020). Changes in the Gulf Stream and Slope Sea can affect large-scale climate phenomena as well as local ecosystems and coastal communities. During the last decade, the Gulf Stream has become less stable and shifted northward [@andres ; @caesar ] (Andres, 2016; Caesar et al 2018)(Fig. \ref{fig:GSI}).  A more northern Gulf Stream position is associated with warmer ocean temperature on the northeast shelf [@zhang_role_2007], a higher proportion of Warm Slope Water in the Northeast Channel, and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
+Variability of the Gulf Stream is one of the major drivers of changes in the oceanographic conditions of the Slope Sea and subsequently the Northeast U.S. continental shelf [@gangopadhyay_census_2020]. Changes in the Gulf Stream and Slope Sea can affect large-scale climate phenomena as well as local ecosystems and coastal communities. During the last decade, the Gulf Stream has become less stable and shifted northward [@andres_recent_2016; @caesar_observed_2018] (Fig. \ref{fig:GSI}).  A more northern Gulf Stream position is associated with warmer ocean temperature on the northeast shelf [@zhang_role_2007], a higher proportion of Warm Slope Water in the Northeast Channel, and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
 
 ```{r GSI, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
 ```
 
-Since 2008, there have been more frequent impingements of the Gulf Stream at the Tail of the Grand Banks, reducing the supply of cold, fresh and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf.  This perturbation propagates along the slope and is observed in the Gulf of Maine source water data after a roughly 1 year lag [@Gonçalves Neto] (Gonçalves Neto et al, 2021). With the exception of 2014, more than 75% of the annual slope water proportions entering the Gulf of Maine since 2010 are attributed to the warm slope water.  During the more recent years, almost no Labrador Slope water is entering the Gulf of Maine through the Northeast Channel (Fig. \ref{fig:wsw-prop}).  The changing proportions of source water affect the temperature, salinity, and nutrient inputs to the Gulf of Maine ecosystem.  In 2021, warm slope water continued to dominate (86.1%) the Gulf of Maine source water, but the proportion was below the previous 5 year average. The position of the north wall of the Gulf Stream is forecasted to be similar to 2021 [@silver] (Silver et al., 2021).
+Since 2008, the Gulf Stream has moved closer to the Grand Banks, reducing the supply of cold, fresh and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf [@goncalves_neto_changes_2021]. Nearly every year since 2010, warm slope water made up more than 75% of the annual slope water proportions entering the Gulf of Maine.  In 2017 and 2019, almost no cooler Labrador Slope water entered the Gulf of Maine through the Northeast Channel (Fig. \ref{fig:wsw-prop}).  The changing proportions of source water affect the temperature, salinity, and nutrient inputs to the Gulf of Maine ecosystem.  In 2021, warm slope water continued to dominate (86.1%) inputs to the Gulf of Maine. The 2022 position of the north wall of the Gulf Stream is forecasted to be similar to 2021 [@silver_forecasting_2021], extending this pattern.
 
 ```{r wsw-prop, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSLW) entering the GOM through the Northeast Channel.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=5, fig.asp=.35}
 ```
 
-##### Warm Core Rings
-The increased instability of the Gulf Stream and warming of the slope sea may also be connected to the regime shift increase in the number of warm core rings formed annually in the Northwest Atlantic (Gangopadhyay et al., 2020). Warm core rings can encroach on the Slope Sea and may contribute to the increased warming north of the Gulf Stream over the past two decades (Seidov et al., 2021). In 2021, 29 warm core rings were formed, which is slightly below the current regime (2000-2021) average (Fig. \ref{fig:wcr}). There were, however, 5 rings formed in January 2021 (the average is 1.35 rings/January), which likely contributed to the anomalously high number of rings observed near the shelf break in June. The interaction of shelf streamers with the shelf break jet on the eastern side of warm core rings results in intense upwelling, which can input nutrients into the euphotic zone fueling phytoplankton blooms and creating biological hotspots (Oliver et al., 2021).  When warm core ring water moves onto the continental shelf, it can alter the habitat and disrupt seasonal movements of fish (Gawarkiewicz et al., 2018).
+The increased instability of the Gulf Stream and warming of the Slope Sea may also be connected to the regime shift increase in the number of warm core rings formed annually in the Northwest Atlantic [@gangopadhyay_observed_2019; @gangopadhyay_census_2020] (Fig. \ref{fig:wcr}). Timing of ring formation may also be changing. In 2021, a remarkable number of rings were observed simultaneously near the shelf break in June. When warm core ring water moves onto the continental shelf, it can alter the habitat and disrupt seasonal movements of fish [@gawarkiewicz_changing_2018].
 
-```{r wcr, fig.cap= "Warm core ring formation on the Northeast US Shelf.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
+```{r wcr, fig.show = 'hold', out.width = "49%", fig.cap= "Warm core ring formation on the Northeast US Shelf: Annual number of rings (Left) and June 2021 rings (right).", fig.width=8}
+#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")
+
+#left
+upper.line<-ecodata::wcr %>%
+  dplyr::filter(Time>2000) %>% 
+  dplyr::mutate(hline = c(mean(Value)))
+lower.line<-ecodata::wcr%>%
+  dplyr::filter(Time<2000) %>% 
+  dplyr::mutate(hline = c(mean(Value)))
+wcr<- upper.line %>% 
+  rbind(lower.line)
+
+wcr %>% 
+  ggplot2::ggplot(aes(x = Time, y = Value))+
+    ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  ggplot2::geom_point()+
+  ggplot2::geom_line()+
+  ggplot2::ylab("Warm Core Ring Births")+
+  ggplot2::xlab(element_blank())+
+  ggplot2::ggtitle("Warm Core Rings")+
+  ecodata::theme_ts()+
+  ggplot2::geom_segment(data = upper.line, aes(x = min(Time), y = hline, 
+                                      xend = max(Time), yend = hline, color = "segment") )+
+  ggplot2::geom_segment(data = lower.line, aes(x = min(Time), y = hline, 
+                                    xend = max(Time), yend = hline, color = "segment") )+
+  ggplot2::theme(legend.position = "none")+
+  ecodata::theme_title()
+
+# right
+knitr::include_graphics("images/D_20210608-MUR-SST-WCR.PNG")
 
 ```
 
+When warm core rings and eddies interact with the continental slope they can transport warm, salty water to the continental shelf [@chen-mesoscale-2022], and this is now happening more frequently [@gawarkiewicz_changing_2018; @gawarkiewicz_inreview]. These interactions can be significant contributors to marine heatwaves in the Mid-Atlantic Bight [@gawarkiewicz_characteristics_2019; @chen-mesoscale-2022] as well as moving shelf-break species inshore [@gawarkiewicz_changing_2018; @potter_horizontal_2011; @worm_predator_2003]. 
 
-##### Shelf Break Water Exchange
-When warm core rings and eddies interact with the continental slope they can transport warm, salty water to the continental shelf and create an offshore flow of continental shelf water (Chen et al., 2022). Recent observations suggest that warm, salty offshore waters intrude onto the continental shelf more frequently and penetrate further onshore than in previous decades (Gawarkiewicz et al., 2018; Gawarkiewicz et al., in review). When these intrusions push the shelf break front further inshore they can be significant contributors to marine heatwaves in the Mid-Atlantic Bight (Gawarkiewicz et al., 2019; Chen et al., 2022) and the movement of species associated with the front inshore (Gawarkiewicz et al., 2018; Potter et al., 2011; Worm et al., 2003).  In addition, the timing and magnitude of the episodic warming related to these cross-shelf exchange events or the cumulative impact of a string of events over time could alter critical habitat and affect recruitment of commercially important species (Gawarkiewicz et al, 2018).
-
-
-##### Cold Pool
-Changes in ocean temperature and circulation alter habitat features such as the seasonal cold pool, a 20–60 m thick band of cold, relatively uniform near-bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017; @chen] Chen et al., 2018). The cold pool plays an essential role in the structuring of the MAB ecosystem. It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017; @miles] Miles et al., 2021). The average temperature of the cold pool has been getting warmer over time [@miller_state-space_2016; @dupontavice], du Pontavice et al., in revision), the area is getting smaller [@friedland ]  Friedland et al., 2022), and the duration is getting shorter (Fig. \ref{fig:cold-pool}).
+Changes in ocean temperature and circulation alter habitat features such as the seasonal cold pool, a 20–60 m thick band of cold, relatively uniform near-bottom water that persists from spring to fall over the mid and outer shelf of the MAB and southern flank of Georges Bank [@lentz_seasonal_2017; @chen_seasonal_2018]. The cold pool plays an essential role in the structuring of the MAB ecosystem. It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017; @miles_offshore_2021]. The average temperature of the cold pool has been getting warmer over time [@miller_state-space_2016; @dupontavice_inreview], the area is getting smaller [@friedland_middle_2022], and the duration is getting shorter (Fig. \ref{fig:cold-pool}).
 
 ```{r cold-pool, fig.cap="Cold pool index: Temperature, persistence, and spatial extent",  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R"), fig.width=10}
 
@@ -496,11 +522,11 @@ Changes in ocean temperature and circulation alter habitat features such as the 
 
 
 #### Ocean Acidification
-Ocean acidification (OA) has caused measured declines in global ocean pH. In the Northeast Shelf, the sparsity of data limits our ability to observe decadal-scale trends in pH, particularly in bottom water where potentially vulnerable commercially important species reside. Summer bottom pH (2007-2021) varied spatially and temporally, ranging from 7.69-8.07 (Fig. \ref{fig:mab-oa}, left panel). The lowest pH values were recorded in western Long Island Sound, and nearshore to mid-shelf waters off the coast of New Jersey. In summer 2021, water column pH from the glider-based profiles ranged from 7.67-8.22 (Fig. \ref{fig:mab-oa}, right panel). The highest pH values occurred in the subsurface and were associated with the depth of the chlorophyll maximum (20-26 m). Lowest pH occurred in bottom waters, reaching minimum values in shallow waters typically inhabited by Atlantic surfclams (27-56 m) in the southern flank of the Hudson canyon (mean pH = 7.80). 
+Ocean acidification (OA) has caused measured declines in global ocean pH. On the Northeast Shelf, summer bottom pH (2007-2021) varied spatially and temporally, ranging from 7.69-8.07 (Fig. \ref{fig:mab-oa}, left panel). The lowest pH values were recorded in western Long Island Sound, and nearshore to mid-shelf waters off the coast of New Jersey. In summer 2021, water column pH from the glider-based profiles ranged from 7.67-8.22 (Fig. \ref{fig:mab-oa}, right panel). Lowest pH occurred in bottom waters, reaching minimum values in shallow waters typically inhabited by Atlantic surfclams (27-56 m) in the southern flank of the Hudson canyon (mean pH = 7.80). 
 
 This seasonal pH minimum in the Mid-Atlantic is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. Fall mixing and slope water intrusions act to increase the pH in outer shelf waters [@wrightfairbanks_autonomous_2020]. 
 
-```{r mab-oa, fig.cap = "Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021 Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic"}
+```{r mab-oa, out.width = '50%', fig.cap = "Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021 Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic"}
 
 knitr::include_graphics("images/Saba_Fig_SOE_MAFMC - Grace Saba.png")
 
