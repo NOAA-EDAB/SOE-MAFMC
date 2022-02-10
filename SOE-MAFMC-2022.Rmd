@@ -464,6 +464,8 @@ In 2021, the Middle Atlantic Bight experienced seven distinct marine heatwaves w
 ```
 
 #### Ocean currents and features
+
+##### Gulf Stream
 Variability of the Gulf Stream is one of the major drivers of changes in the oceanographic conditions of the Slope Sea and subsequently the Northeast U.S. continental shelf [@gangopadhyay ]  (Gangopadhyay et al., 2020). Changes in the Gulf Stream and Slope Sea can affect large-scale climate phenomena as well as local ecosystems and coastal communities. During the last decade, the Gulf Stream has become less stable and shifted northward [@andres ; @caesar ] (Andres, 2016; Caesar et al 2018)(Fig. \ref{fig:GSI}).  A more northern Gulf Stream position is associated with warmer ocean temperature on the northeast shelf [@zhang_role_2007], a higher proportion of Warm Slope Water in the Northeast Channel, and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
 
 ```{r GSI, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
@@ -474,20 +476,37 @@ Since 2008, there have been more frequent impingements of the Gulf Stream at the
 ```{r wsw-prop, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSLW) entering the GOM through the Northeast Channel.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=5, fig.asp=.35}
 ```
 
+##### Warm Core Rings
+The increased instability of the Gulf Stream and warming of the slope sea may also be connected to the regime shift increase in the number of warm core rings formed annually in the Northwest Atlantic (Gangopadhyay et al., 2020). Warm core rings can encroach on the Slope Sea and may contribute to the increased warming north of the Gulf Stream over the past two decades (Seidov et al., 2021). In 2021, 29 warm core rings were formed, which is slightly below the current regime (2000-2021) average (Fig. \ref{fig:wcr}). There were, however, 5 rings formed in January 2021 (the average is 1.35 rings/January), which likely contributed to the anomalously high number of rings observed near the shelf break in June. The interaction of shelf streamers with the shelf break jet on the eastern side of warm core rings results in intense upwelling, which can input nutrients into the euphotic zone fueling phytoplankton blooms and creating biological hotspots (Oliver et al., 2021).  When warm core ring water moves onto the continental shelf, it can alter the habitat and disrupt seasonal movements of fish (Gawarkiewicz et al., 2018).
 
+```{r wcr, fig.cap= "Warm core ring formation on the Northeast US Shelf.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
 
-Changes in ocean temperature and circulation alter habitat features such as the cold pool, a 20–60 m thick band of cold, relatively uniform near‐bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017]. The cold pool plays an essential role in the structuring of the MAB ecosystem.  It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017]. The average temperature of the cold pool has been getting warmer over time  [@miller_state-space_2016]).  These changes can affect distribution and migration timing for species that depend on the cold pool habitat.  The area of the MAB cold pool was near average in 2018 (Fig. \ref{fig:cold-pool-map}), the last complete year of the dataset.  The size of the cold pool varies annually, with the smallest sizes associated with record-warm years (e.g. 2012). The cold pool temperature shows a similar variation as its extent, both of which are strongly impacted by each early spring setting in temperature on the shelf.
-```{r cold-pool-map, eval = T, echo = F, fig.cap="Map of cold pool area. Time series of cold pool spatial extent from1993-2018. Black = 2018 (Last year in time series), Red = 2012 Minimum area, Blue = 2005 Maximum area." }
-#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool_map.R"),
-knitr::include_graphics("images/cold_pool_area.png")
 ```
 
-New glider-based observations revealed areas of low pH (7.8) during summer in Mid-Atlantic habitats occupied by Atlantic surfclams and sea scallops (Fig. \ref{fig:mab-oa}) [@wrightfairbanks_autonomous_2020]. This seasonal pH minimum is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. However, seawater pH in shelf waters increased during the fall mixing period due to the influence of a slope water mass characterized by warm, salty, highly alkaline seawater. Lower pH in nearshore waters is likely associated with freshwater input. 
 
-```{r mab-oa, fig.cap = " Seasonal glider-based pH observations on the Mid-Atlantic Bight shelf (New Jersey cross-shelf transect) in relation to Atlantic surfclam and Atlantic sea scallop habitats (modified from Wright-Fairbanks et al. 2020).", out.width='70%'}
-#knitr::include_url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Seasonal%20pH%20on%20MAB%20shelf%20-%20Grace%20Saba.jpg")
+##### Shelf Break Water Exchange
+When warm core rings and eddies interact with the continental slope they can transport warm, salty water to the continental shelf and create an offshore flow of continental shelf water (Chen et al., 2022). Recent observations suggest that warm, salty offshore waters intrude onto the continental shelf more frequently and penetrate further onshore than in previous decades (Gawarkiewicz et al., 2018; Gawarkiewicz et al., in review). When these intrusions push the shelf break front further inshore they can be significant contributors to marine heatwaves in the Mid-Atlantic Bight (Gawarkiewicz et al., 2019; Chen et al., 2022) and the movement of species associated with the front inshore (Gawarkiewicz et al., 2018; Potter et al., 2011; Worm et al., 2003).  In addition, the timing and magnitude of the episodic warming related to these cross-shelf exchange events or the cumulative impact of a string of events over time could alter critical habitat and affect recruitment of commercially important species (Gawarkiewicz et al, 2018).
 
-knitr::include_graphics("images/Seasonal pH on MAB shelf - Grace Saba.jpg")
+
+
+##### Cold Pool
+Changes in ocean temperature and circulation alter habitat features such as the seasonal cold pool, a 20–60 m thick band of cold, relatively uniform near-bottom water that persists from spring to fall over the mid-shelf and outer shelf of the Middle Atlantic Bight (MAB) and Southern Flank of Georges Bank [@lentz_seasonal_2017; @chen] Chen et al., 2018). The cold pool plays an essential role in the structuring of the MAB ecosystem. It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017; @miles] Miles et al., 2021). The average temperature of the cold pool has been getting warmer over time [@miller_state-space_2016; @dupontavice], du Pontavice et al., in revision), the area is getting smaller [@friedland ]  Friedland et al., 2022), and the duration is getting shorter (Fig. \ref{fig:cold-pool}).
+
+```{r cold-pool, fig.cap="Cold pool index: Temperature, persistence, and spatial extent",  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R"), fig.width=10}
+
+```
+
+
+#### Ocean Acidification
+
+Ocean acidification (OA) has caused measured declines in global ocean pH. In the Northeast Shelf, the sparsity of data limits our ability to observe decadal-scale trends in pH, particularly in bottom water where potentially vulnerable commercially important species reside. Summer bottom pH (2007-2021) varied spatially and temporally, ranging from 7.69-8.07 (Fig. \ref{fig:mab-oa}, left panel). The lowest pH values were recorded in western Long Island Sound, and nearshore to mid-shelf waters off the coast of New Jersey. In summer 2021, water column pH from the glider-based profiles ranged from 7.67-8.22 (Fig. \ref{fig:mab-oa}, right panel). The highest pH values occurred in the subsurface and were associated with the depth of the chlorophyll maximum (20-26 m). Lowest pH occurred in bottom waters, reaching minimum values in shallow waters typically inhabited by Atlantic surfclams (27-56 m) in the southern flank of the Hudson canyon (mean pH = 7.80). 
+
+This seasonal pH minimum in the Mid-Atlantic is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. Fall mixing and slope water intrusions act to increase the pH in outer shelf waters [@wrightfairbanks_autonomous_2020]. 
+
+```{r mab-oa, fig.cap = "Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021 Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic"}
+
+knitr::include_graphics("images/Saba_Fig_SOE_MAFMC - Grace Saba.png")
+
 ```
 
 ### Ecosystem Productivity Indicators: primary production, zooplankton, forage fish, fish condition
