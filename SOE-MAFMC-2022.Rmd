@@ -309,11 +309,6 @@ Protected species objectives include managing bycatch to remain below potential 
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
 As of 2019, average bycatch indices for both harbor porpoise and gray seal bycatch were below current PBR thresholds, thus meeting management objectives. However, the 2019 bycatch estimate for gray seals was the highest in the time series. Bycatch indices were not updated because of low 2020 observer coverage caused by COVID-19 restrictions.
-```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England fisheries (blue) and the potential biological removal (red). 2019 estimates are preliminary; not updated in 2020.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=6}
-```
-
-```{r grayseal, fig.cap="Gray Seal average bycatch estimate for New England gillnet fisheries (blue) and and the potential biological removal (red). 2019 estimates are preliminary; not updated in 2020.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.width=6}
-```
 
 The North Atlantic right whale population was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:narw-abundance}). Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are only about 100 adult females remaining in the population. 
 ```{r narw-abundance, fig.cap = "Estimated North Atlanic right whale abundance on the Northeast Shelf.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")}
@@ -352,7 +347,7 @@ Large scale climate related changes in the ecosystem can lead to changes in impo
 #### Ocean and estuarine temperature and salinity
 Ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-sst-anom-gridded}) and bottom (Fig. \ref{fig:bottom-temp}) throughout the Northeast Shelf. Seasonal sea surface temperatures in 2021 were above average throughout the year, with some seasons rivaling or exceeding the record warm temperatures observed in 2012.
 
-```{r seasonal-sst-anom-gridded, fig.cap="MAB seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = 1}
+```{r seasonal-sst-anom-gridded, fig.cap="MAB seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = .6}
 
 ```
 
@@ -361,7 +356,7 @@ Ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-
 
 The Chesapeake Bay experienced a warmer-than-average winter and fall in 2021, and average conditions in the spring and summer, relative to the baseline period 2008-2020 (Fig. \ref{fig:ches-temp-sal}) as measured by satellites^[https://coastwatch.noaa.gov/cw/index.html]. (The seasonal definitions and baseline periods are different from the sea surface temperature anomalies reported in Fig.\ref{fig:seasonal-sst-anom-gridded} for the full Mid-Atlantic region.) Similar 2021 seasonal temperature patterns were observed by bouys^[https://buoybay.noaa.gov/] (Fig. \ref{fig:ches-temp-sal}), which also indicated above-average salinity in the Chesapeake Bay throughout the summer, with a decrease in salinity from late July to early August (Fig. \ref{fig:ches-temp-sal}). Salinity fell below average in September and remained at lower levels throughout fall 2021.
 
-```{r ches-temp-sal, fig.cap="Left panel: 2021 sea surface temperature anomalies for the Chesapeake Bay.  Data are from NOAA’s multi-satellite SST products and produced by NOAA’s Coastwatch Program. Seasons are defined to match the annual life cycles of many biological resources in Chesapeake Bay: Dec-Feb for winter, Mar-May for spring, Jun-Aug for summer, and Sep-Nov for fall. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature (top) and salinity (bottom); Red = 2021, Blue = Long term average 2010-2020.", fig.width = 10, fig.asp=1.2 }
+```{r ches-temp-sal, fig.cap="Left panel: 2021 sea surface temperature anomalies for the Chesapeake Bay.  Data are from NOAA’s multi-satellite SST products and produced by NOAA’s Coastwatch Program. Seasons are defined to match the annual life cycles of many biological resources in Chesapeake Bay: Dec-Feb for winter, Mar-May for spring, Jun-Aug for summer, and Sep-Nov for fall. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature (top) and salinity (bottom); Red = 2021, Blue = Long term average 2010-2020.", fig.width = 10, fig.asp=0.6 }
 
 library(patchwork)
 # Left panel
@@ -449,7 +444,10 @@ salbouy <- ecodata::ch_bay_sal %>%
   ecodata::theme_ts()+
   ecodata::theme_title()
 
-sst_map + (tempbouy + salbouy + plot_layout(ncol=1)) + plot_layout(ncol=2)
+design <- "12
+           13"
+
+sst_map + tempbouy + salbouy + plot_layout(design = design) 
 
 ```
 
@@ -512,11 +510,11 @@ knitr::include_graphics("images/D_20210608-MUR-SST-WCR.PNG")
 
 ```
 
-When warm core rings and eddies interact with the continental slope they can transport warm, salty water to the continental shelf [@chen-mesoscale-2022], and this is now happening more frequently [@gawarkiewicz_changing_2018; @gawarkiewicz_inreview]. These interactions can be significant contributors to marine heatwaves in the Mid-Atlantic Bight [@gawarkiewicz_characteristics_2019; @chen-mesoscale-2022] as well as moving shelf-break species inshore [@gawarkiewicz_changing_2018; @potter_horizontal_2011; @worm_predator_2003]. 
+When warm core rings and eddies interact with the continental slope they can transport warm, salty water to the continental shelf [@chen_mesoscale_2022], and this is now happening more frequently [@gawarkiewicz_changing_2018; @gawarkiewicz_inreview]. These interactions can be significant contributors to marine heatwaves in the Mid-Atlantic Bight [@gawarkiewicz_characteristics_2019; @chen_mesoscale_2022] as well as moving shelf-break species inshore [@gawarkiewicz_changing_2018; @potter_horizontal_2011; @worm_predator_2003]. 
 
 Changes in ocean temperature and circulation alter habitat features such as the seasonal cold pool, a 20–60 m thick band of cold, relatively uniform near-bottom water that persists from spring to fall over the mid and outer shelf of the MAB and southern flank of Georges Bank [@lentz_seasonal_2017; @chen_seasonal_2018]. The cold pool plays an essential role in the structuring of the MAB ecosystem. It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017; @miles_offshore_2021]. The average temperature of the cold pool has been getting warmer over time [@miller_state-space_2016; @dupontavice_inreview], the area is getting smaller [@friedland_middle_2022], and the duration is getting shorter (Fig. \ref{fig:cold-pool}).
 
-```{r cold-pool, fig.cap="Cold pool index: Temperature, persistence, and spatial extent",  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R"), fig.width=10}
+```{r cold-pool, fig.cap="Cold pool index: Temperature, persistence, and spatial extent",  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R"), fig.width=10, fig.asp=.35}
 
 ```
 
@@ -526,7 +524,7 @@ Ocean acidification (OA) has caused measured declines in global ocean pH. On the
 
 This seasonal pH minimum in the Mid-Atlantic is associated with cold-pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. Fall mixing and slope water intrusions act to increase the pH in outer shelf waters [@wrightfairbanks_autonomous_2020]. 
 
-```{r mab-oa, out.width = '50%', fig.cap = "Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021 Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic"}
+```{r mab-oa, out.width = '80%', fig.cap = "Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021 Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic"}
 
 knitr::include_graphics("images/Saba_Fig_SOE_MAFMC - Grace Saba.png")
 
@@ -535,21 +533,17 @@ knitr::include_graphics("images/Saba_Fig_SOE_MAFMC - Grace Saba.png")
 ### Ecosystem Productivity Indicators: phytoplankton, zooplankton, forage fish, fish condition
 
 #### Phytoplankton
-Phytoplankton are a major component of the food web and a primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors interact to influence the abundance, composition, spatial distribution, and productivity of phytoplankton. In 2021, phytoplankton biomass (measured as chlorophyll a concentration) was above average in winter, but below average during the spring and summer months. Below average surface chlorophyll could be due to increased stratification reducing the influx of deep water nutrients to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average throughout 2021 (Fig. \ref{fig:chl-weekly}).
+Phytoplankton support the food web as the primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors interact to drive the abundance, composition, spatial distribution, and productivity of phytoplankton. In 2021, MAB phytoplankton biomass (surface chlorophyll) was above average in winter, but below average during the spring and summer months. Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average throughout 2021 (Fig. \ref{fig:chl-weekly}).
 
 ```{r chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a new satellite source). The long-term mean is shown in black and shading indicates +/- 1 sample SD.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 5, fig.asp = 0.9}
 ```
 
-The seasonal cycle of phytoplankton size distribution of phytoplankton shows that the spring and fall bloom periods are dominated by microplankton (>20 microns), while nanoplankton (2-20 microns) dominates during the warmer summer months. The proportion of the smallest phytoplankton, picoplankton (0.2-2 microns), are relatively constant throughout the year. In 2021, microplankton proportions were above average during the winter and fall bloom periods, but below average for the summer months (Fig. \ref{fig:weekly-phyto-size}). 
-```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2020) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations in the shaded portions.  The 2021 proportions for the microplankton (green) and nanoplankton (orange) are shown in the bold lines.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
+The seasonal cycle of phytoplankton size distribution shows that the spring and fall bloom periods are dominated by larger-celled microplankton, while smaller-celled nanoplankton dominate during the warmer summer months. The proportion of the smallest phytoplankton, picoplankton (0.2-2 microns), is relatively constant throughout the year. In 2021, microplankton proportions were above average during the winter and fall bloom periods, but below average for the summer months (Fig. \ref{fig:weekly-phyto-size}). 
+```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2020) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations in the shaded portions.  The 2021 proportions for the microplankton (>20 microns, green) and nanoplankton (2-20 microns, orange) are shown in the bold lines.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
 ```
 
 #### Zooplankton  
-Limited zooplankton and ichthyoplankton data were collected during 2020 due to survey disruptions and 2021 samples are still being processed so diversity indices and biomass trends could not be updated for this report.  However, previous data showed long-term increasing trends of gelatinous zooplankton and krill on the northeast shelf.  In 2021, the plankton displacement volume (a measure of the total volume of plankton caught in the bongo net), was significantly greater than the previous years (Fig. \ref{fig:salps}). Gelatinous zooplankton, predominantly salps (*Thalia democratica*), accounted for the increased plankton volume. Salps were found throughout the northeast shelf and in the slope sea at anomalously high concentrations during summer 2021. The presence of salp blooms has previously been associated with water mass intrusions at the shelf break (Madin et al., 2006; Deibel and Paffenhöfer, 2009). Salps are filter feeders feeding on phytoplankton and other small particles and may have contributed to the below average CHL concentrations in summer (Fig. \ref{fig:chl-weekly}).
-
-```{r salps, eval=FALSE }
-
-```
+While zooplankton indicators could not be updated for this report due to 2020 survey disruptions and lags in sample processing, data up to 2019 showed long-term increasing trends of gelatinous zooplankton and krill on the northeast shelf. In 2021, the total volume of plankton caught in the bongo net was significantly greater than the previous years due to increased gelatinous zooplankton, predominantly salps (*Thalia democratica*). Unusually high concentrations of salps were found throughout the Northeast shelf and in the Slope Sea during other summer 2021 scientific surveys, which may be associated with water mass intrusions at the shelf break (Madin et al., 2006; Deibel and Paffenhöfer, 2009). Salps are filter feeders feeding on phytoplankton and other small particles and may have contributed to the below average phytoplankton biomass in summer 2021 (Fig. \ref{fig:chl-weekly}).
 
 #### Forage Fish Energy Content
 Nutritional value (energy content) of juvenile and adult forage fish as prey is related to both environmental conditions, fish growth and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2021 are building toward a time series to evaluate trends (Fig. \ref{fig:energy-density}). Limited data from the spring 2020 survey, and complete spring 2021 survey  measurements were consistent with previous reports: the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, longfin squid (*Loligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish, sand lance, and Atlantic mackerel varies seasonally, with seasonal estimates both higher and lower than estimates from previous decades. 
