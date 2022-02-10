@@ -509,54 +509,61 @@ knitr::include_graphics("images/Saba_Fig_SOE_MAFMC - Grace Saba.png")
 
 ```
 
-### Ecosystem Productivity Indicators: primary production, zooplankton, forage fish, fish condition
-Increased temperatures, as reported above, can increase the rate of photosynthesis by phytoplankton (i.e. primary productivity). Annual primary production has increased over time, primarily driven by increased productivity in the summer months (Figs. \ref{fig:pp-monthly}, \ref{fig:chl-weekly}).
-```{r pp-monthly,  fig.cap="Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-pp-monthly.R"), fig.width=8}
+### Ecosystem Productivity Indicators: phytoplankton, zooplankton, forage fish, fish condition
+
+#### Phytoplankton
+Phytoplankton are a major component of the food web and a primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors interact to influence the abundance, composition, spatial distribution, and productivity of phytoplankton. In 2021, phytoplankton biomass (measured as chlorophyll a concentration) was above average in winter, but below average during the spring and summer months. Below average surface chlorophyll could be due to increased stratification reducing the influx of deep water nutrients to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average throughout 2021 (Fig. \ref{fig:chl-weekly}).
+
+```{r chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a new satellite source). The long-term mean is shown in black and shading indicates +/- 1 sample SD.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 5, fig.asp = 0.9}
 ```
 
-Larger-than-average phytoplankton blooms were observed from late fall into winter in 2020 (Fig. \ref{fig:chl-weekly}).
-```{r chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown for by the colored line for 2020 (dashed portion indicates preliminary data from a new satellite source). The long-term mean is shown in black and shading indicates +/- 1 sample SD.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 5, fig.asp = 0.9}
+The seasonal cycle of phytoplankton size distribution of phytoplankton shows that the spring and fall bloom periods are dominated by microplankton (>20 𝛍m), while nanoplankton (2-20 𝛍m) dominates during the warmer summer months. The proportion of the smallest phytoplankton, picoplankton (0.2-2 𝛍m), are relatively constant throughout the year. In 2021, microplankton proportions were above average during the winter and fall bloom periods, but below average for the summer months (Fig. \ref{fig:weekly-phyto-size}). 
+```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2020) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations in the shaded portions.  The 2021 proportions for the microplankton (green) and nanoplankton (orange) are shown in the bold lines.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
 ```
 
-Climatology of seasonal phytoplankton size fractions confirms that the phytoplankton community in the summer is dominated by smaller (pico and nano) size classes (Fig. \ref{fig:weekly-phyto-size}). This implies less efficient transfer of primary production to higher trophic levels. 
-```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2019) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
+#### Zooplankton  
+Limited zooplankton and ichthyoplankton data were collected during 2020 due to survey disruptions and 2021 samples are still being processed so diversity indices and biomass trends could not be updated for this report.  However, previous data showed long-term increasing trends of gelatinous zooplankton and krill on the northeast shelf.  In 2021, the plankton displacement volume (a measure of the total volume of plankton caught in the bongo net), was significantly greater than the previous years (Fig. \ref{fig:salps}). Gelatinous zooplankton, predominantly salps (*Thalia democratica*), accounted for the increased plankton volume. Salps were found throughout the northeast shelf and in the slope sea at anomalously high concentrations during summer 2021. The presence of salp blooms has previously been associated with water mass intrusions at the shelf break (Madin et al., 2006; Deibel and Paffenhöfer, 2009). Salps are filter feeders feeding on phytoplankton and other small particles and may have contributed to the below average CHL concentrations in summer (Fig. \ref{fig:chl-weekly}).
+
+```{r salps, }
+
 ```
 
-Trends in gelatinous zooplankton and krill are the same across ecological production units (EPUs) as last year (data were updated to 2019; Fig. \ref{fig:zoo-strat-abun}). There has been a long term increase in both groups on Georges Bank and for krill in the Gulf of Maine as well. 
-```{r zoo-strat-abun, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-strat-abun.R"), fig.width=8, fig.asp=.25}
-```
-
-Larger zooplankton (i.e. *Calanus finmarchicus*) had above average abundance in 2018-2019, while smaller-bodied copepods were near or below average (Fig. \ref{fig:zoo-abund}). 
-```{r zoo-abund,  fig.cap= "Large (red) and small-bodied (blue) copepod abundance in the Mid-Atlantic Bight.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-abund.R")}
-```
-
-An index of aggregate zooplankton and forage fish fluctuations (forage anomaly) constructed from zooplankton and ichthyoplankton data has no apparent trend in MAB, but appears to be more variable since 2010 (Fig. \ref{fig:forage-anomaly}).  Changes in environmental conditions, lower tropic levels, and diversity of the plankton community are potentially impacting the prey of zooplankton and ichthyoplankton, which may affect this index. 
-```{r forage-anomaly, fig.cap="Changes from 2000-2019 average abundance for an aggregate of 13 zooplankton and 16 ichthyoplankton groups sampled on NEFSC ECOMON surveys.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-anomaly.R")}
-```
-
-Nutritional value (energy content) of juvenile and adult forage fishes as prey is related to both environmental conditions, fish growth and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2019 are building toward a time series to evaluate trends (Fig. \ref{fig:energy-density}). New 2019 measurements were consistent with last year’s report: the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, sandlance, longfin squid (*Loligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish and Atlantic mackerel varies seasonally, with seasonal estimates both higher and lower than estimates from  previous decades. 
+#### Forage Fish Energy Content
+Nutritional value (energy content) of juvenile and adult forage fish as prey is related to both environmental conditions, fish growth and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2021 are building toward a time series to evaluate trends (Fig. \ref{fig:energy-density}). Limited data from the spring 2020 survey, and complete spring 2021 survey  measurements were consistent with previous reports: the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, longfin squid (*Loligo* below) and shortfin squid (*Illex* below) were also lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish, sand lance, and Atlantic mackerel varies seasonally, with seasonal estimates both higher and lower than estimates from previous decades. 
 ```{r energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
-The health and well being of individual fish can be related to body shape condition indices (i.e. weight at a given length) such as relative condition index, which is the ratio of observed weight to predicted weight based on length [@le_cren_length-weight_1951]. Heavier and fatter fish at a given length have higher relative condition which is expected to influence growth, reproductive output and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019  (Fig. \ref{fig:mab-cf}). While there were no new data to update the condition indicator this year, preliminary results of synthetic analyses described in the [Implications section](#environmental-drivers-of-fish-condition) show that changes in fishing pressure, population size, temperature, and zooplankton influence the condition of different fish species. Potential links between fish condition, fisheries, and markets are under investigation. 
+#### Fish Condition
+The health and well being of individual fish can be related to body shape condition indices (i.e. weight at a given length) such as relative condition index, which is the ratio of observed weight to predicted weight based on length [@le_cren_length-weight_1951]. Heavier and fatter fish at a given length have higher relative condition which is expected to improve growth, reproductive output and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019. However, most species had below average or poor condition again in 2021 (Fig. \ref{fig:mab-cf}). Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species. 
+
 
 ```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", out.width = '100%'}
 
-knitr::include_graphics("images/MABcondition_2019_viridis_final.jpg")
+knitr::include_graphics("images/MAB_Condition_allsex_2022_viridis.jpg")
+```
+
+#### Fish Productivity
+We describe patterns of aggregate fish productivity in the Mid-Atlantic with the small fish per large fish anomaly indicator, derived from NEFSC bottom trawl survey data (Fig. \ref{fig:MAB-productivity-anomaly}). The indicator shows that productivity has been declining in this region since 2010. *Cite Perretti's paper and note update with assessment info*
+
+```{r productivity-anomaly, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R")}
+
 ```
 
 
 ### Ecosystem Structure Indicators: distribution shifts, diversity, predators
 As noted in the [Landings Implications section above](#implications), stocks are shifting distribution throughout the region. In aggregate, fish stocks are moving northeast along the shelf and into deeper waters.
 
-Zooplankton diversity is increasing in the MAB, while larval fish and adult fish diversity indices are stable over time with current values near the long-term average (see [Diversity Indicators section, above](#ecological-diversity)).  
+Zooplankton diversity (as of 2019) is increasing in the MAB, while adult fish diversity indices are stable over time with current values near the long-term average (see [Diversity Indicators section, above](#ecological-diversity)).  
 
-New indicators for shark populations, combined with information on gray seals (see [Protected Species Implications section, above](#protected-species)), suggests predator populations range from stable (sharks, Figs. \ref{fig:observed-sharks}, \ref{fig:hms-cpue-sharks}) to increasing (seals) in the MAB. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
-
-```{r observed-sharks, fig.cap="Estimated number of sharks per unit effort from Northeast Fisheries Observer Program data.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-observed-sharks.R")}
-```
+New indicators for shark populations, combined with information on gray seals (see [Protected Species Implications section, above](#protected-species)), suggests predator populations range from stable (sharks, Fig. \ref{fig:hms-cpue-sharks}) to increasing (seals) in the MAB. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
 
 ```{r hms-cpue-sharks, fig.cap="Estimated number of sharks per unit effort from Highly Migratory Species Pelagic Observer Program data.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R")}
+```
+
+Stock status is mixed for Atlantic Highly Migratory Species (HMS) stocks (including sharks, swordfish, billfish, and tunas) occurring in the Mid-Atlantic region. While there are several HMS species considered to be overfished or that have unknown stock status, the population status for some managed Atlantic sharks and tunas is at or above the biomass target (Fig. \ref{fig:hms-stock-status} ), suggesting the potential for robust predator populations among these managed species. 
+
+```{r hms-stock-status, fig.cap = paste0("Summary of single species status for HMS stocks.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R")}
+
 ```
 
 As noted in the [Protected Species section](#protected-species), gray seal populations are increasing. Harbor and gray seals occupying New England waters are generalist predators that consume more than 30 different prey species. An evaluation of hard  parts found in seal stomachs showed that harbor and gray seals predominantly exploit abundant demersal fish species (i.e. red, white and silver hake). Other relatively abundant prey species found in hard-part remains include sand lance, yellowtail flounder, four-spotted flounder, Gulf-stream flounder, haddock, herring, redfish, and squids. 
@@ -564,7 +571,9 @@ As noted in the [Protected Species section](#protected-species), gray seal popul
 A recent stable isotope study utilizing gray seal scat samples obtained from Massachusetts habitats showed individual gray seals can specialize on particular prey. It also found that gray seals vary their diet seasonally, focusing on demersal inshore species prior to the spring molt, and offshore species such as sand lance after molting. DNA studies on gray seal diet in Gulf of Maine and Massachusetts waters found spiny dogfish and Jonah crab present in gray seal scat samples. Skate and crab remains were also found in gray seal stomach remains. In contrast to direct feeding, it is uncertain if the presence of skates and crabs is due to secondary consumption or scavenging. 
 
 
-### Habitat Climate Vulnerability
+### Habitat Risks
+
+
 A recent habitat climate vulnerability analysis links black sea bass, scup, and summer flounder to several highly vulnerable nearshore habitats from salt marsh through shallow estuarine and marine reefs. Details on highly vulnerable habitats with linkages to a variety of species, including which life stages have different levels of dependence on a particular habitat, are available in a detailed table.^[https://noaa-edab.github.io/ecodata/Hab_table]
 
 ### Implications
