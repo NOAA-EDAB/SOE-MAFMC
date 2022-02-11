@@ -21,7 +21,7 @@
 %\usepackage{everypage-1x}
 \usepackage{float}
 %\usepackage{subfig}
-\usepackage{subcaption}
+%\usepackage{subcaption}
 
 % Avoid struggling over figure and table float in Rmarkdown
 \let\origfigure\figure
@@ -48,7 +48,7 @@
 \cfoot{\thepage}
 
 \fancyheadinit{%
-   \ifthenelse{\value{page}=X}%
+   \ifthenelse{\value{page}=4}%
       {\fancyhead[R]{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \textsf{\emph{February 11, 2022}}}
        \fancyhead[L]{\textsf{\LARGE State of the Ecosystem 2022: Mid-Atlantic}}
       }%

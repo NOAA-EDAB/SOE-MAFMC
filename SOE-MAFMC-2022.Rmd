@@ -5,7 +5,7 @@ fontsize: 10pt
 output:
   pdf_document:
     includes:
-      in_header: latex/header.tex
+      in_header: latex/header1.tex
     keep_tex: yes
   html_document:
     df_print: paged
