@@ -148,7 +148,7 @@ Single species management objectives of maintaining biomass above minimum thresh
 
 Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL)increased in 2017 due to the addition of Blueline Tilefish management (Fig. \ref{fig:abcacl-stacked}). Discounting blueline tilefish, the totals ABC or ACL are on the lower end of the historical series, with much of that decrease due to Atlantic mackerel. 
 
-```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R"), fig.width = 6, fig.asp = 0.5}
+```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R"), fig.width = 5, fig.asp = 0.5}
 
 ```
 
