@@ -84,9 +84,10 @@
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{ifthen}
-\usepackage{everypage}
+%\usepackage{everypage-1x}
 \usepackage{float}
-\usepackage{subfig}
+%\usepackage{subfig}
+%\usepackage{subcaption}
 
 % Avoid struggling over figure and table float in Rmarkdown
 \let\origfigure\figure
@@ -109,17 +110,20 @@
 \pagestyle{fancy}
 \fancyhf{}
 \setlength\headheight{40pt}
+\fancyheadoffset[L]{0.5cm}
 \cfoot{\thepage}
 
-\AddEverypageHook{%
+\fancyheadinit{%
    \ifthenelse{\value{page}=4}%
-     {\rhead{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \textsf{\emph{February 11, 2022}}}
-      \lhead{\textsf{\LARGE State of the Ecosystem 2022: Mid-Atlantic}}
+      {\fancyhead[R]{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \textsf{\emph{February 11, 2022}}}
+       \fancyhead[L]{\textsf{\LARGE State of the Ecosystem 2022: Mid-Atlantic}}
       }%
-     {\rhead{}
-      \lhead{\textsf{\emph{State of the Ecosystem 2022: Mid-Atlantic}}}
-     }
+      {\fancyhead[R]{}
+       \fancyhead[L]{\textsf{\emph{State of the Ecosystem 2022: Mid-Atlantic}}}
+      }
 }
+
+
 
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -340,10 +344,6 @@ sharks in coming years.
 
 \caption{Recreational shark landings from Marine Recreational Information Program.}\label{fig:rec_hms}
 \end{figure}
-
-\begin{verbatim}
-## NULL
-\end{verbatim}
 
 Aquaculture production is not yet included in total seafood landings,
 but we are working toward including it in future reports. Available
@@ -1037,7 +1037,7 @@ observed in 2012.
 
 }
 
-\caption{MAB seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies.}\label{fig:seasonal-sst-anom-gridded}
+\caption{MAB seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall.}\label{fig:seasonal-sst-anom-gridded}
 \end{figure}
 
 \begin{figure}
@@ -1046,7 +1046,7 @@ observed in 2012.
 
 }
 
-\caption{Annual bottom temperature in the Mid-Atlantic Bight. (black = in situ observations, red = observations assimilated by ocean model for comparison)}\label{fig:bottom-temp}
+\caption{Annual bottom temperature in the Mid-Atlantic Bight. (black = in situ observations, red - observations from modeled reanalysis for comparison)}\label{fig:bottom-temp}
 \end{figure}
 
 The Chesapeake Bay experienced a warmer-than-average winter and fall in
@@ -1172,7 +1172,7 @@ movements of fish
 
 }
 
-\caption{Warm core ring formation on the Northeast US Shelf: Annual number of rings (Left) and June 2021 rings (right).}\label{fig:wcr}
+\caption{Warm core ring formation on the Northeast US Shelf: Annual number of rings (Left) and June 2021 rings (right), where the black line is the 200 m isobath (the shelf break) and the red lines are the 20 and 24 degree isotherms.}\label{fig:wcr}
 \end{figure}
 
 When warm core rings and eddies interact with the continental slope they
@@ -1183,7 +1183,7 @@ happening more frequently
 These interactions can be significant contributors to marine heatwaves
 in the Mid-Atlantic Bight
 {[}\protect\hyperlink{ref-chen_mesoscale_2022}{19},\protect\hyperlink{ref-gawarkiewicz_characteristics_2019}{20}{]}
-as well as moving shelf-break species inshore
+as well as the movement of shelf-break species inshore
 {[}\protect\hyperlink{ref-gawarkiewicz_changing_2018}{18},\protect\hyperlink{ref-potter_horizontal_2011}{21},\protect\hyperlink{ref-worm_predator_2003}{22}{]}.
 
 Changes in ocean temperature and circulation alter habitat features such
@@ -1196,8 +1196,7 @@ ecosystem. It is a reservoir of nutrients that feeds phytoplankton
 productivity, is essential fish spawning and nursery habitat, and
 affects fish distribution and behavior
 {[}\protect\hyperlink{ref-lentz_seasonal_2017}{23},\protect\hyperlink{ref-miles_offshore_2021}{25}{]}.
-The average temperature of the cold pool has been getting warmer over
-time
+The average temperature of the cold pool is getting warmer over time
 {[}\protect\hyperlink{ref-miller_state-space_2016}{26},\protect\hyperlink{ref-dupontavice_inreview}{\textbf{dupontavice\_inreview?}}{]},
 the area is getting smaller
 {[}\protect\hyperlink{ref-friedland_middle_2022}{27}{]}, and the
@@ -1209,7 +1208,7 @@ duration is getting shorter (Fig. \ref{fig:cold-pool}).
 
 }
 
-\caption{Cold pool index: Temperature, persistence, and spatial extent}\label{fig:cold-pool}
+\caption{Cold pool indices: Temperature, persistence, and spatial extent}\label{fig:cold-pool}
 \end{figure}
 
 \hypertarget{ocean-acidification}{%
@@ -1221,10 +1220,10 @@ spatially and temporally, ranging from 7.69-8.07 (Fig. \ref{fig:mab-oa},
 left panel). The lowest pH values were recorded in western Long Island
 Sound, and nearshore to mid-shelf waters off the coast of New Jersey. In
 summer 2021, water column pH from the glider-based profiles ranged from
-7.67-8.22 (Fig. \ref{fig:mab-oa}, right panel). Lowest pH occurred in
-bottom waters, reaching minimum values in shallow waters typically
+7.67-8.22 (Fig. \ref{fig:mab-oa}, right panel). The lowest pH occurred
+in bottom waters, reaching minimum values in shallow waters typically
 inhabited by Atlantic surfclams (27-56 m) in the southern flank of the
-Hudson canyon (mean pH = 7.80).
+Hudson Canyon (mean pH = 7.80).
 
 This seasonal pH minimum in the Mid-Atlantic is associated with
 cold-pool subsurface and bottom water, which is cut off from mixing with
@@ -1258,7 +1257,8 @@ but below average during the spring and summer months. Below average
 phytoplankton biomass could be due to reduced nutrient flow to the
 surface and/or increased grazing pressure. A short fall bloom was
 detected in November. Primary productivity (the rate of photosynthesis)
-was average throughout 2021 (Fig. \ref{fig:chl-weekly}).
+was average to below average throughout throughout 2021 (Fig.
+\ref{fig:chl-weekly}).
 
 \begin{figure}
 
@@ -1266,7 +1266,7 @@ was average throughout 2021 (Fig. \ref{fig:chl-weekly}).
 
 }
 
-\caption{Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a new satellite source). The long-term mean is shown in black and shading indicates +/- 1 sample SD.}\label{fig:chl-weekly}
+\caption{Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 sample standard deviation.}\label{fig:chl-weekly}
 \end{figure}
 
 The seasonal cycle of phytoplankton size distribution shows that the
@@ -1284,7 +1284,7 @@ winter and fall bloom periods, but below average for the summer months
 
 }
 
-\caption{The annual climatology (1998-2020) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations in the shaded portions.  The 2021 proportions for the microplankton (>20 microns, green) and nanoplankton (2-20 microns, orange) are shown in the bold lines.}\label{fig:weekly-phyto-size}
+\caption{The annual climatology (1998-2020) percent composition of the phytoplankton size classes in the Mid-Atlantic based on satellite observations in the shaded portions.  The 2021 proportions for the microplankton (>20 microns, green) and nanoplankton (2-20 microns, orange) are shown in the bold lines.}\label{fig:weekly-phyto-size}
 \end{figure}
 
 \hypertarget{zooplankton}{%
@@ -1318,8 +1318,8 @@ survey, and complete spring 2021 survey measurements were consistent
 with previous reports: the energy density of Atlantic herring was almost
 half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier
 studies (10.6-9.4 kJ/ g wet weight). Silver hake, longfin squid
-(\emph{Loligo} below) and shortfin squid (\emph{Illex} below) were also
-lower than previous estimates
+(\emph{Loligo} in figure) and shortfin squid (\emph{Illex} in figure)
+were also lower than previous estimates
 {[}\protect\hyperlink{ref-steimle_energy_1985}{31},\protect\hyperlink{ref-lawson_important_1998}{32}{]}.
 Energy density of alewife, butterfish, sand lance, and Atlantic mackerel
 varies seasonally, with seasonal estimates both higher and lower than
@@ -1331,7 +1331,7 @@ estimates from previous decades.
 
 }
 
-\caption{Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.}\label{fig:energy-density}
+\caption{Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.}\label{fig:energy-density}
 \end{figure}
 
 \hypertarget{fish-condition}{%
@@ -1366,10 +1366,9 @@ population size influence the condition of different fish species.
 
 We describe patterns of aggregate fish productivity in the Mid-Atlantic
 with the small fish per large fish anomaly indicator, derived from NEFSC
-bottom trawl survey data (Fig. \ref{fig:MAB-productivity-anomaly}). The
+bottom trawl survey data (Fig. \ref{fig:productivity-anomaly}). The
 indicator shows that productivity has been declining in this region
-since 2010. \emph{Cite Perretti's paper and note update with assessment
-info}
+since 2010.
 
 \begin{figure}
 
@@ -1427,7 +1426,7 @@ robust predator populations among these managed species.
 
 }
 
-\caption{Summary of single species status for HMS stocks.}\label{fig:hms-stock-status}
+\caption{Summary of single species status for HMS stocks; key to species names at https://noaa-edab.github.io/tech-doc/atlantic-highly-migratory-species-stock-status.html.}\label{fig:hms-stock-status}
 \end{figure}
 
 As noted in the \protect\hyperlink{protected-species}{Protected Species
@@ -1437,7 +1436,7 @@ than 30 different prey species. An evaluation of hard parts found in
 seal stomachs showed that harbor and gray seals predominantly exploit
 abundant demersal fish species (i.e.~red, white and silver hake). Other
 relatively abundant prey species found in hard-part remains include sand
-lance, yellowtail flounder, four-spotted flounder, Gulf-stream flounder,
+lance, yellowtail flounder, four-spotted flounder, Gulf Stream flounder,
 haddock, herring, redfish, and squids.
 
 A recent stable isotope study utilizing gray seal scat samples obtained
@@ -1464,7 +1463,7 @@ collaborative effort to describe and characterize estuarine, coastal,
 and offshore fish habitat distribution, abundance, and quality in the
 Northeast. This includes mapping inshore and offshore habitat types used
 by focal fish species, summarizing impacts of habitat climate
-vulnerability on focal species, modeling predicted future species
+vulnerability on these species, modeling predicted future species
 distributions, and developing a publicly accessible decision support
 tool to visualize these results. This is a three-year project led by the
 New England and Mid-Atlantic Fishery Management Councils in
@@ -1480,7 +1479,7 @@ several highly vulnerable nearshore habitats from salt marsh, submerged
 aquatic vegetation, and shallow estuarine and marine reefs. Details on
 highly vulnerable habitats with linkages to a variety of species,
 including which life stages have different levels of dependence on a
-particular habitat, are available in a detailed table\footnote{\url{https://noaa-edab.github.io/ecodata/Hab_table}}
+particular habitat, are available in a detailed table.\footnote{\url{https://noaa-edab.github.io/ecodata/Hab_table}}
 
 \hypertarget{submerged-aquatic-vegetation}{%
 \paragraph{Submerged Aquatic
@@ -1491,12 +1490,12 @@ Particular Concern (HAPC) for summer flounder and is important habitat
 for many fish species, particularly during vulnerable juvenile stages.
 Increased SAV coverage (including wild celery, water stargrass, and
 hydrilla) in the tidal fresh areas of the Chesapeake Bay (Fig.
-\ref{fig:sav}, right panel) has been attributed to restoration efforts.
-This ecosystem engineering has improved water quality, promoting further
+\ref{fig:sav}) has been attributed to restoration efforts. This
+ecosystem engineering has improved water quality, promoting further
 expansions of SAV meadows. However, in the higher salinity region near
-the mouth of the Chesapeake Bay (Fig. \ref{fig:sav}, left panel),
-increased water temperatures, especially during the summer, have led to
-a decline in eelgrass coverage.
+the mouth of the Chesapeake Bay (Fig. \ref{fig:sav}), increased water
+temperatures, especially during the summer, have led to a decline in
+eelgrass coverage.
 
 \begin{figure}
 
@@ -1504,6 +1503,7 @@ a decline in eelgrass coverage.
 
 }
 
+\caption{Submerged Aquatic Vegetation (SAV) coverage in tidal fresh and high salinity regions of the Chesapeake Bay.}\label{fig:sav}
 \end{figure}
 
 \hypertarget{estuarine-habitat-quality-chesapeake-bay}{%
@@ -1586,9 +1586,9 @@ success.
 Understanding habitat conditions can enhance recreational fishery
 management. Maryland Department of Natural Resources is incorporating
 habitat conditions into striped bass catch-and-release management,
-including a two-week summer closure directed at reducing
+including 1) a two-week summer closure directed at reducing
 catch-and-release mortality\footnote{\url{https://dnr.maryland.gov/fisheries/Documents/StripedBass_regulations2022.pdf}}
-as a substitute for harvest season reductions, and the Striped Bass
+as a substitute for harvest season reductions, and 2) the Striped Bass
 Fishing Advisory\footnote{\url{https://dnr.maryland.gov/fisheries/Pages/SB_forecast.aspx}},
 which lets anglers know the relative level of risk of released fish
 dying due to high temperatures.
@@ -1597,17 +1597,14 @@ dying due to high temperatures.
 \subparagraph{\texorpdfstring{\emph{Blue
 Crabs}}{Blue Crabs}}\label{blue-crabs}}
 
-Conversely, warmer winter temperatures may have reduced overwintering
-mortality of Chesapeake Bay blue crabs, an important commercial and
-forage species. Above-average fall and winter temperatures in 2021 may
-have reduced overwintering mortality
+Warmer winter temperatures may benefit Chesapeake Bay blue crabs, an
+important commercial and forage species. Above-average fall and winter
+temperatures in 2021 may have reduced overwintering mortality
 {[}\protect\hyperlink{ref-bauer_temperature-_2010}{35}--\protect\hyperlink{ref-rome_linking_2005}{37}{]}
-and contributed to increased productivity of blue crabs going into 2022,
-as warmer temperatures often promote growth and development up to
-species-specific temperature thresholds. Longer growth seasons are
-associated with increased production of blue crabs and oysters in
-Chesapeake Bay. Blue crabs are moving northward with warming
-temperatures and have been documented in the Gulf of Maine
+and contributed to increased productivity of blue crabs going into 2022.
+Longer growth seasons are associated with increased production of blue
+crabs and oysters in Chesapeake Bay. Blue crabs are moving northward
+with warming temperatures and have been documented in the Gulf of Maine
 {[}\protect\hyperlink{ref-johnson_savory_2015}{38}{]}, with implications
 for both their management and for the inshore ecosystems.
 
@@ -1622,7 +1619,7 @@ salinity has been linked to high juvenile oyster abundance
 high oyster spat set was predicted based on high summer
 salinity\footnote{\url{https://content.buoybay.noaa.gov/sites/default/files/NCBOSeasonalSummary2021Summer.pdf}},
 and was observed in Maryland during fall 2021. Virginia oyster
-recruitment as been at record levels 2019-2020 and was above average in
+recruitment was at record levels 2019-2020 and was above average in
 2021.
 
 \hypertarget{summer-flounder-and-black-sea-bass}{%
@@ -1649,9 +1646,9 @@ exhibited metabolic depression in a pH range of 7.46-7.28
 {[}\protect\hyperlink{ref-pousse_energetic_2020}{40}{]}. Computer models
 are in development to help determine the long term implications of
 growth on surf clam populations. Aggregated data from 2007-2021 show
-that summer bottom ocean pH (7.69-8.07) has not yet reached the
-metabolic depression threshold observed for surf clams in lab studies so
-far.
+that summer bottom ocean pH (7.69-8.07, Fig. \ref{fig:mab-oa}) has not
+yet reached the metabolic depression threshold observed for surf clams
+in lab studies so far.
 
 \hypertarget{northern-shortfin-squid}{%
 \subparagraph{\texorpdfstring{\emph{Northern Shortfin
@@ -1673,8 +1670,8 @@ associated with upwelling and enhanced productivity.
 \paragraph{Heatwave impacts}\label{heatwave-impacts}}
 
 While marine heatwaves lasting over days may disturb the marine
-environment, long lasting events such as the warming in 2012 can have
-the most significant impact to the ecosystem
+environment, long lasting events such as the warming in 2012 (Fig.
+\ref{fig:heatwave}) can have significant impacts to the ecosystem
 {[}\protect\hyperlink{ref-gawarkiewicz_characteristics_2019}{20}{]}. The
 2012 heatwave affected the lobster fishery most notably, but other
 species also shifted their geographic distributions and seasonal cycles
@@ -1782,11 +1779,11 @@ coastal community
 vulnerability}\label{indicators-development-timeline-revenue-in-lease-areas-coastal-community-vulnerability}}
 
 As of February 2022, 24 offshore wind development projects are proposed
-for construction over the next decade in the Northeast ( timelines and
+for construction over the next decade in the Northeast (timelines and
 project data are based on Tables E-2, E-4, and E-4-2 of South Fork Wind
 Farm Final Environmental Impact Statement). Offshore wind areas are
 anticipated to cover more than 1.7 million acres by 2030 in the Greater
-Atlantic region (Fig. \ref{fig:wind-dev-cumul}). Beyond 2030 values
+Atlantic region (Fig. \ref{fig:wind-proposed-dev}). Beyond 2030 values
 include acreage for the NY Wind Energy Areas (WEA) and Gulf of Maine
 Area of Interest for floating research array.
 
@@ -1800,22 +1797,22 @@ Area of Interest for floating research array.
 \end{figure}
 
 Just over 2,500 foundations and more than 7,000 miles of inter-array and
-offshore export cables are proposed to date. Fig.
-\ref{fig:wind-dev-cumul}) also presents the offshore wind development
-timeline in the Greater Atlantic region. The colored chart displays the
-estimated year that foundations would be constructed (matches the color
-of the wind areas). These timelines and data estimates are expected to
-shift but represent the most recent information available at the time of
-this report. Based on current timelines, the areas affected would be
-spread out such that it is unlikely that any one particular area would
-experience full development at one time. Future wind development areas
-are also presented here. Additional lease areas, totalling over 488,000
-acres in the NY Bight are available for BOEM's 2022 lease sale. It's
-anticipated that the NY Bight leases will fulfill outstanding offshore
-wind energy production goals for NY and NJ. VA and NC have outstanding
-goals that cannot be fulfilled within the existing lease areas, and it
-is expected that these will be fulfilled with future development in the
-Central Atlantic.
+offshore export cables are proposed to date. The colored chart in Fig.
+\ref{fig:wind-dev-cumul} also presents the offshore wind development
+timeline in the Greater Atlantic region with the estimated year that
+foundations would be constructed (matches the color of the wind areas).
+These timelines and data estimates are expected to shift but represent
+the most recent information available at the time of this report. Based
+on current timelines, the areas affected would be spread out such that
+it is unlikely that any one particular area would experience full
+development at one time. Future wind development areas are also
+presented here. Additional lease areas, totalling over 488,000 acres in
+the NY Bight are available for BOEM's 2022 lease sale. It's anticipated
+that the NY Bight leases will fulfill outstanding offshore wind energy
+production goals for NY and NJ. VA and NC have outstanding goals that
+cannot be fulfilled within the existing lease areas, and it is expected
+that these will be fulfilled with future development off the Delmarva
+Peninsula.
 
 \begin{figure}
 
@@ -1841,13 +1838,13 @@ federal waters from 2008-2019 (Fig. \ref{fig:wea-spp-rev}).
 \caption{Wind energy revenue in the Mid-Atlantic}\label{fig:wea-spp-rev}
 \end{figure}
 
-The surfclam/ocean quahog fishery was the most affected fishery, with a
-maximum of 20\% of annual fshery revenue occurring within potential wind
-lease areas during this period, followed by chub mackerel (15\%), ocean
-quahog (13\%), and Atlantic mackerel (10\%). The Illex squid and
-bluefish fisheries were the least affected, at 1-2\% maximum annual
-revenue affected, respectively. A maximum of 9\% of the annual scup
-revenues were affected by these areas, with similar effects for the
+The surfclam/ocean quahog fishery could be the most affected fishery,
+with a maximum of 20\% of annual fshery revenue occurring within
+potential wind lease areas during this period, followed by chub mackerel
+(15\%), ocean quahog (13\%), and Atlantic mackerel (10\%). The Illex
+squid and bluefish fisheries were the least affected, at 1-2\% maximum
+annual revenue affected, respectively. A maximum of 9\% of the annual
+scup revenues were affected by these areas, with similar effects for the
 longfin squid (8\%), blueline tilefish and black sea bass (7\%), and
 monkfish and golden tilefish (6\%) fisheries. The proposed New York
 Bight lease areas represented up to 5\% of total annual fishery revenue
@@ -1887,7 +1884,7 @@ significant interaction with wind, including the sea scallop survey (up
 to 96\% of individual strata) and the bottom trawl survey (up to 60\%
 strata overlap). Additionally, up to 50\% of the southern New England
 North Atlantic right whale survey's area overlaps with proposed project
-areas. A region-wide survey mitigation program has begun (Table
+areas. A region-wide survey mitigation program is underway (Table
 \ref{tab:wind-survey-table})
 
 \begin{table}
@@ -1923,16 +1920,14 @@ within all wind lease areas as a proportion of the port's total revenue
 based on vessel trip reports as described in the revenue and landings of
 species in the wind indicator above. The range (minimum and maximum) of
 total percent revenue from within wind energy areas is presented in the
-graph and ports are sorted with the highest revenue from within wind
-areas to least.
+graph and ports are sorted from greatest to least revenue from within
+wind areas.
 
 \begin{figure}
 
-{\centering \includegraphics{docs/images/wea-port-rev-1} 
+\includegraphics{docs/images/wea-port-rev-1} \hfill{}
 
-}
-
-\caption{Percent of port revenue from Wind Energy Areas(WEA) in descending order of most to least port revenue from WEA.}\label{fig:wea-port-rev}
+\caption{Percent of port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA.}\label{fig:wea-port-rev}
 \end{figure}
 
 For example, Atlantic City, NJ had a minimum of 11\% and maximum of 30\%
@@ -1944,13 +1939,14 @@ see indicator definitions) are noted with a triangle. Gentrification
 pressure is also highlighted here, with those communities that score
 Med-High or higher in one or more gentrification pressure indicators
 (i.e., Housing Disruption, Retiree Migration, Urban Sprawl) represented
-with a circle. BOEM reports that cumulative offshore wind development
-(if all proposed projects are developed) could have moderate impacts on
-low-income members of environmental justice communities who work in the
-commercial fishing and for-hire fishing industry due to disruptions to
-fish populations, restrictions on navigation and increased vessel
-traffic as well as existing vulnerabilities of low-income workers to
-economic impacts {[}\protect\hyperlink{ref-boem_vineyard_2020}{45}{]}.
+with a circle (Fig. \ref{fig:wea-port-rev}). BOEM reports that
+cumulative offshore wind development (if all proposed projects are
+developed) could have moderate impacts on low-income members of
+environmental justice communities who work in the commercial fishing and
+for-hire fishing industry due to disruptions to fish populations,
+restrictions on navigation and increased vessel traffic, as well as
+existing vulnerabilities of low-income workers to economic impacts
+{[}\protect\hyperlink{ref-boem_vineyard_2020}{45}{]}.
 
 Top fishing communities high in environmental justice concerns (i.e.,
 Atlantic City, NJ, Newport News, VA, Hobucken and Beaufort, NC) should
@@ -2011,28 +2007,31 @@ City, MD and Beaufort, NC.
 Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott
 Large, Sean Lucey, Chris Orphanides
 
-\textbf{Contributors} (NEFSC unless otherwise noted): Andy Beet, Ruth
-Boettcher (Virginia Department of Game and Inland Fisheries), Mandy
-Bromilow and CJ Pellerin (NOAA Chesapeake Bay Office), Joseph Caracappa,
-Doug Christel (GARFO), Patricia Clay, Lisa Colburn, Jennifer Cudney and
-Tobey Curtis (NMFS Atlantic HMS Management Division), Geret DePiper,
-Emily Farr and Grace Roskar (NMFS Office of Habitat Conservation),
-Michael Fogarty, Paula Fratantoni, Kevin Friedland, Sarah Gaichas, Ben
-Galuardi (GAFRO), Avijit Gangopadhyay (School for Marine Science and
-Technology, University of Massachusetts Dartmouth), James Gartland
-(Virginia Institute of Marine Science), Glen Gawarkiewicz (Woods Hole
-Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik,
-Steve Kress and Don Lyons (National Audubon Society's Seabird
-Restoration Program), Young-Oh Kwon and Zhuomin Chen (Woods Hole
-Oceanographic Institution), Andrew Lipsky, Sean Lucey, Chris Melrose,
-Shannon Meseck, Ryan Morse, Brandon Muffley (MAFMC), Kimberly Murray,
-Chris Orphanides, Richard Pace, Charles Perretti, Grace Saba and Emily
-Slesinger (Rutgers University), Vincent Saba, Chris Schillaci (GARFO),
-Angela Silva, Laurel Smith, Talya ten Brink (GARFO), Bruce Vogt (NOAA
-Chesapeake Bay Office), Ron Vogel (University of Maryland Cooperative
-Institute for Satellite Earth System Studies and NOAA/NESDIS Center for
-Satellite Applications and Research), John Walden, Harvey Walsh,
-Changhua Weng, Mark Wuenschel
+\textbf{Contributors} (NEFSC unless otherwise noted): Aaron Beaver
+(Anchor QEA), Andy Beet, Ruth Boettcher (Virginia Department of Game and
+Inland Fisheries), Mandy Bromilow and CJ Pellerin (NOAA Chesapeake Bay
+Office), Joseph Caracappa, Doug Christel (GARFO), Patricia Clay, Lisa
+Colburn, Jennifer Cudney and Tobey Curtis (NMFS Atlantic HMS Management
+Division), Geret DePiper, Dan Dorfman (NOAA-NOS-NCCOS), Hubert du
+Pontavice, Emily Farr and Grace Roskar (NMFS Office of Habitat
+Conservation), Michael Fogarty, Paula Fratantoni, Kevin Friedland, Marjy
+Friedrichs (VIMS), Sarah Gaichas, Ben Galuardi (GAFRO), Avijit
+Gangopadhyay (School for Marine Science and Technology, University of
+Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine
+Science), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean
+Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National
+Audubon Society's Seabird Restoration Program), Young-Oh Kwon and
+Zhuomin Chen (Woods Hole Oceanographic Institution), Andrew Lipsky, Sean
+Lucey, Chris Melrose, Shannon Meseck, Ryan Morse, Brandon Muffley
+(MAFMC), Kimberly Murray, Chris Orphanides, Richard Pace, Tom Parham
+(Maryland DNR), Charles Perretti, Grace Saba and Emily Slesinger
+(Rutgers University), Vincent Saba, Sarah Salois, Chris Schillaci
+(GARFO), Dave Secor (CBL), Angela Silva, Adrienne Silver (UMass/SMAST),
+Laurel Smith, Talya ten Brink (GARFO), Bruce Vogt (NOAA Chesapeake Bay
+Office), Ron Vogel (University of Maryland Cooperative Institute for
+Satellite Earth System Studies and NOAA/NESDIS Center for Satellite
+Applications and Research), John Walden, Harvey Walsh, Changhua Weng,
+Mark Wuenschel
 
 \newpage
 
