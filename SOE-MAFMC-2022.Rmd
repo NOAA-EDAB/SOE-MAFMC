@@ -742,7 +742,7 @@ kable(dat, col.names = column_names, "latex", booktabs = TRUE,
 
 Equity and environmental justice are priority concerns with offshore wind development and fisheries impacts in the Northeast. Fig. \ref{fig:wea-port-rev} links historic port revenue (2008-2019) from within all wind lease areas as a proportion of the port’s total revenue based on vessel trip reports as described in the revenue and landings of species in the wind indicator above. The range (minimum and maximum) of total percent revenue from within wind energy areas is presented in the graph and ports are sorted with the highest revenue from within wind areas to least. 
 
-```{r wea-port-rev, fig.cap="Percent of port revenue from Wind Energy Areas(WEA) in descending order of most to least port revenue from WEA.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=5.5, fig.asp=1}
+```{r wea-port-rev, fig.cap="Percent of port revenue from Wind Energy Areas(WEA) in descending order of most to least port revenue from WEA.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=5.5, fig.asp=1, fig.align='left'}
 
 ```
 
