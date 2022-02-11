@@ -599,7 +599,7 @@ As part of the NRHA work, climate vulnerability information from NOAA’s Habita
 #### Submerged Aquatic Vegetation
 Submerged aquatic vegetation (SAV) is designated as a Habitat Area of Particular Concern (HAPC) for summer flounder and is important habitat for many fish species, particularly during vulnerable juvenile stages. Increased SAV coverage (including wild celery, water stargrass, and hydrilla) in the tidal fresh areas of the Chesapeake Bay (Fig. \ref{fig:sav}) has been attributed to restoration efforts. This ecosystem engineering has improved water quality, promoting further expansions of SAV meadows. However, in the higher salinity region near the mouth of the Chesapeake Bay (Fig. \ref{fig:sav}), increased water temperatures, especially during the summer, have led to a decline in eelgrass coverage.
 
-```{r sav, fig.cap="Submerged Aquatic Vegetation (SAV) coverage in tidal fresh and high salinity regions of the Chesapeake Bay", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R"), fig.width = 8, fig.asp = 0.35}
+```{r sav, fig.cap="Submerged Aquatic Vegetation (SAV) coverage in tidal fresh and high salinity regions of the Chesapeake Bay.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R"), fig.width = 8, fig.asp = 0.35}
 
 ```
 
