@@ -57,6 +57,7 @@ library(kableExtra)
 ```
 
 \setcounter{page}{4}
+\thispagestyle{fancy}
 
 # Introduction
 
@@ -562,7 +563,7 @@ knitr::include_graphics("images/MAB_Condition_allsex_2022_viridis.jpg")
 #### Fish Productivity
 We describe patterns of aggregate fish productivity in the Mid-Atlantic with the small fish per large fish anomaly indicator, derived from NEFSC bottom trawl survey data (Fig. \ref{fig:MAB-productivity-anomaly}). The indicator shows that productivity has been declining in this region since 2010. *Cite Perretti's paper and note update with assessment info*
 
-```{r productivity-anomaly, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.width=8}
+```{r productivity-anomaly, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.width=5, fig.asp=.7}
 
 ```
 
@@ -579,7 +580,7 @@ New indicators for shark populations, combined with information on gray seals (s
 
 Stock status is mixed for Atlantic Highly Migratory Species (HMS) stocks (including sharks, swordfish, billfish, and tunas) occurring in the Mid-Atlantic region. While there are several HMS species considered to be overfished or that have unknown stock status, the population status for some managed Atlantic sharks and tunas is at or above the biomass target (Fig. \ref{fig:hms-stock-status} ), suggesting the potential for robust predator populations among these managed species. 
 
-```{r hms-stock-status, fig.cap = "Summary of single species status for HMS stocks.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
+```{r hms-stock-status, fig.cap = "Summary of single species status for HMS stocks.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R"), fig.width = 6.5, fig.asp = 0.5}
 
 ```
 
@@ -665,7 +666,7 @@ The apparent decline in productivity across multiple managed species in the MAB,
 
 ### Indicators: development timeline, revenue in lease areas, coastal community vulnerability
 As of February 2022, 24 offshore wind development projects are proposed for construction over the next decade in the Northeast ( timelines and project data are based on Tables E-2, E-4, and E-4-2 of South Fork Wind Farm Final Environmental Impact Statement). Offshore wind areas are anticipated to cover more than 1.7 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-dev-cumul}). Beyond 2030 values include acreage for the NY Wind Energy Areas (WEA) and Gulf of Maine Area of Interest for floating research array. 
-```{r wind-proposed-dev, fig.cap='Proposed wind development on the northeast shelf.', code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-dev-speed0.R")}
+```{r wind-proposed-dev, fig.cap='Proposed wind development on the northeast shelf.', code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R")}
 ```
 
 
@@ -680,22 +681,68 @@ Based on federal vessel logbook data, average commercial fishery revenue from tr
 ```{r wea-spp-rev, fig.cap="Wind energy revenue in the Mid-Atlantic", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"), fig.width=5, fig.asp=.4}
 ```
 
-The surfclam/ocean quahog fishery was the most affected fishery, with a maximum of 20% of annual fshery revenue occurring within potential wind lease areas during this period, followed by chub mackerel (15%), ocean quahog (13%), and Atlantic mackerel (10%). The Illex squid and bluefish  fisheries were the least affected, at 1-2% maximum annual revenue affected, respectively. A maximum of 9% of the annual scup revenues were affected by these areas, with similar effects for the longfin squid (8%), blueline tilefish and black sea bass (7%), and monkfish and golden tilefish  (6%) fisheries. The proposed New York Bight lease areas represented up to 5% of total annual fishery revenue from any MAFMC fishery during 2008-2019, with the surfclam fishery most affected. Similar patterns are observed when examining the proportion of annual fishery landings within current and proposed lease areas (see Table \ref{tab:wind-revenue}).
+The surfclam/ocean quahog fishery was the most affected fishery, with a maximum of 20% of annual fshery revenue occurring within potential wind lease areas during this period, followed by chub mackerel (15%), ocean quahog (13%), and Atlantic mackerel (10%). The Illex squid and bluefish  fisheries were the least affected, at 1-2% maximum annual revenue affected, respectively. A maximum of 9% of the annual scup revenues were affected by these areas, with similar effects for the longfin squid (8%), blueline tilefish and black sea bass (7%), and monkfish and golden tilefish  (6%) fisheries. The proposed New York Bight lease areas represented up to 5% of total annual fishery revenue from any MAFMC fishery during 2008-2019, with the surfclam fishery most affected. Similar patterns are observed when examining the proportion of annual fishery landings within current and proposed lease areas (see Table \ref{tab:wea-landings-rev}).
 
 
-```{r wea-landings-rev,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-landings-rev.R")}
+```{r wea-landings-rev}
 #fig.cap="Percent Landings and Revenue from wind energy areas. Data from GARFO VTR.",
+#, out.width="90%", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-landings-rev.R")
+
+dt<- ecodata::wea_landings_rev[1:10, 1:5] %>% 
+  dplyr::select("GARFO and ASMFC Managed Species", "perc_landings_max"  ,"perc_landings_min",
+                "perc_revenue_max","perc_revenue_min" ) %>% 
+  dplyr::rename("Maximum Percent Total Annual Regional Species Landings"="perc_landings_max",
+    "Maximum Percent Total Annual Regional Species Revenue"="perc_revenue_max",
+    "Minimum Percent Total Annual Regional Species Landings"="perc_landings_min",
+    "Minimum Percent Total Annual Regional Species Revenue"="perc_revenue_min",) 
+kable(dt,"latex", booktabs = TRUE,
+      caption = "Top ten species Landings and Revenue from Wind Energy Areas.") %>% 
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  column_spec(2:5, width = "10em") %>%
+  kable_styling(latex_options = "scale_down")
+
 ```
 
 Proposed wind development areas interact with the region’s federal scientific surveys. The total survey area overlap ranges from 1-14% for all Greater Atlantic federal surveys. Individual survey strata have significant interaction with wind, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey  (up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. A region-wide survey mitigation program has begun (Table \ref{tab:wind-survey-table})
 
-```{r wind-survey-table, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-survey-table.R")}
+```{r wind-survey-table}
+#, out.width="90%", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-survey-table.R")
+
+dat<- data.frame(XSurvey= c("Fall BTS", "Spring BTS", "EcoMon", "Scallop",
+                            "Shellfish(Clams)", "Right Whale (Air)", 
+                            "Marine Mammal/Turtle (Ship/Air)",
+                            "Altantic Shark (Bottom Long-Line",
+                            "GOM Bottom Long-Line", "GOM Shrimp Survey", 
+                            "Atlantic Shark COASTPAN"), 
+                 X1 = c("Started", "Started", "No",
+                                                    "Started", "No", "Inital", 
+                                                    "No", "No","No", "No","No"), 
+                 X2 = c("Inital", "Initial", "No", "Initial", 
+                                            "No", "Initial","No", "No","No", "No",
+                                            "No" ), 
+                 X3 = c( "No", "No","No",
+                        "No","No",  "Initial", "No", "No","No", "No","No"), 
+                 X4 = c("No", "No","No", "No","No","No", 
+                                         "No","No", "No","No","No"), 
+                 X5 = c("No", "No","No", "No","No","No", 
+                                         "No","No", "No","No","No"),
+                 X6 = c("Initial", "Initial","No", "No","No","No", 
+                                         "No","No", "No","No","No"))
+
+column_names <- c("Survey","1.Evaluate designs & Impacts","2.Design New Methods","3.Calibrate New/Existing Surveys","4.Bridge Solutions","5.Conduct New Surveys","6.Comms & Data")
+#DT::datatable(dat, colnames = column_names)
+
+kable(dat, col.names = column_names, "latex", booktabs = TRUE,
+      caption = "Survey mitigation planning.") %>% 
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  column_spec(2:7, width = "10em") %>%
+  kable_styling(latex_options = "scale_down")
 
 ```
 
-Equity and environmental justice are priority concerns with offshore wind development and fisheries impacts in the Northeast. Fig. \ref{fig.wea-port-rev} links historic port revenue (2008-2019) from within all wind lease areas as a proportion of the port’s total revenue based on vessel trip reports as described in the revenue and landings of species in the wind indicator above. The range (minimum and maximum) of total percent revenue from within wind energy areas is presented in the graph and ports are sorted with the highest revenue from within wind areas to least. 
+Equity and environmental justice are priority concerns with offshore wind development and fisheries impacts in the Northeast. Fig. \ref{fig:wea-port-rev} links historic port revenue (2008-2019) from within all wind lease areas as a proportion of the port’s total revenue based on vessel trip reports as described in the revenue and landings of species in the wind indicator above. The range (minimum and maximum) of total percent revenue from within wind energy areas is presented in the graph and ports are sorted with the highest revenue from within wind areas to least. 
 
-```{r wea-port-rev, fig.cap="Percent of port revenue from Wind Energy Areas(WEA) in descending order of most to least port revenue from WEA.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=6, fig.asp=1}
+```{r wea-port-rev, fig.cap="Percent of port revenue from Wind Energy Areas(WEA) in descending order of most to least port revenue from WEA.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=5.5, fig.asp=1}
 
 ```
 
@@ -709,9 +756,9 @@ Current plans for rapid buildout of offshore wind in a patchwork of areas spread
 
 Up to 20% of total average revenue for major Mid-Atlantic commercial species in lease areas could be displaced if all sites are developed. Displaced fishing effort can alter historic fishing area, timing, and method patterns, which can in turn change habitat, species (managed and protected), and fleet interactions. Several factors, including fishery regulations, fishery availability, and user conflicts affect where, when, and how fishing effort may be displaced. 
 
-Right whales have been observed foraging in proposed wind areas (Fig \ref{fig.whales-wind}). Altered local oceanography could affect right whale prey availability.
+Right whales have been observed foraging in proposed wind areas (Fig \ref{fig:whales-wind}). Altered local oceanography could affect right whale prey availability.
 
-```{r whales-wind, fig.cap="Northern Right Whale persistent hotspots and Wind Energy Areas."}
+```{r whales-wind, out.width="60%", fig.cap="Northern Right Whale persistent hotspots and Wind Energy Areas."}
 knitr::include_graphics("images/NARW_hotpsot_persistence_2_1_2022_TPW.png")
 ```
 
