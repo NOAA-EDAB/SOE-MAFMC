@@ -115,7 +115,7 @@
 
 \fancyheadinit{%
    \ifthenelse{\value{page}=4}%
-      {\fancyhead[R]{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \textsf{\emph{February 11, 2022}}}
+      {\fancyhead[R]{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \textsf{\emph{March 1, 2022}}}
        \fancyhead[L]{\textsf{\LARGE State of the Ecosystem 2022: Mid-Atlantic}}
       }%
       {\fancyhead[R]{}
@@ -208,9 +208,9 @@ uses}).
 
 The two main sections contain subsections for each management objective
 or potential risk. Within each subsection, we first review indicator
-trends, and the status of the most recent year relative to a threshold
-(if available) or relative to the long-term average. Second, we
-synthesize results of other indicators and information to outline
+trends, and the status of the most recent data year relative to a
+threshold (if available) or relative to the long-term average. Second,
+we synthesize results of other indicators and information to outline
 potential implications for management (i.e., connecting indicator(s)
 status to management and why an indicator(s) is important). For example,
 if there are multiple drivers related to an indicator trend, which
@@ -223,11 +223,11 @@ rather than ``answers,'' because the science behind these indicators and
 syntheses continues to develop.
 
 A glossary of terms\footnote{\url{https://noaa-edab.github.io/tech-doc/glossary.html}},
-detailed technical methods documentation\footnote{\url{https://NOAA-EDAB.github.io/tech-doc}}
+detailed technical methods documentation\footnote{\url{https://NOAA-EDAB.github.io/tech-doc}},
 and indicator data\footnote{\url{https://github.com/NOAA-EDAB/ecodata}}
 are available online. The details of standard figure formatting (Fig.
 \ref{fig:docformat}a), categorization of fish and invertebrate species
-into feeding groups (Table \ref{tab:species-groupings}), and definitions
+into feeding guilds (Table \ref{tab:species-groupings}), and definitions
 of ecological production units (EPUs, including the Mid-Atlantic Bight,
 MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document.
 
@@ -237,21 +237,21 @@ MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document.
 \centering
 \begin{tabular}[t]{ll}
 \toprule
-\textbf{Objective Categories} & \textbf{Indicators reported here}\\
+\textbf{Objective Categories} & \textbf{Indicators reported}\\
 \midrule
 \addlinespace[0.3em]
 \multicolumn{2}{l}{\textbf{Provisioning and Cultural Services}}\\
 \hspace{1em}Seafood Production & Landings; commercial total and by feeding guild; recreational harvest\\
 \hspace{1em}Profits & Revenue decomposed to price and volume\\
-\hspace{1em}Recreation & Days fished; recreational fleet diversity\\
+\hspace{1em}Recreation & Angler trips; recreational fleet diversity\\
 \hspace{1em}Stability & Diversity indices (fishery and ecosystem)\\
-\hspace{1em}Social \& Cultural & Community engagement/reliance status\\
+\hspace{1em}Social \& Cultural & Community engagement/reliance and environmental justice status\\
 \hspace{1em}Protected Species & Bycatch; population (adult and juvenile) numbers, mortalities\\
 \addlinespace[0.3em]
 \multicolumn{2}{l}{\textbf{Supporting and Regulating Services}}\\
 \hspace{1em}Biomass & Biomass or abundance by feeding guild from surveys\\
-\hspace{1em}Productivity & Condition and recruitment of managed species, Primary productivity\\
-\hspace{1em}Trophic structure & Relative biomass of feeding guilds, Zooplankton\\
+\hspace{1em}Productivity & Condition and recruitment of managed species, primary productivity\\
+\hspace{1em}Trophic structure & Relative biomass of feeding guilds, zooplankton\\
 \hspace{1em}Habitat & Estuarine and offshore habitat conditions\\
 \bottomrule
 \end{tabular}
@@ -275,15 +275,14 @@ upcoming issues/risks.
 
 The Catch Accounting and Monitoring System (CAMS) that will be used to
 provide commercial landings and discard information at the Ecological
-Production Unit (EPU) is under development. As of February 2022, our
-standard indicators relying on EPU scale landings data cannot be
+Production Unit (EPU) scale is under development. As of February 2022,
+our standard indicators relying on EPU scale landings data cannot be
 calculated for 2020 (commercial seafood production, commercial profits,
 ecosystem overfishing). We provide information based on coastwide
 commercial landings information available at this time in
 {[}\protect\hyperlink{ref-thunberg_northeast_2021}{1}{]}\footnote{\url{https://spo.nmfs.noaa.gov/sites/default/files/TM221.pdf}},
 and will calculate our standard indicators at EPU scales with
 disaggregated 2020 commercial landings data when they are available.
-Data for 2020 will be reported along with data for 2021 in the 2023 SOE.
 
 \hypertarget{seafood-production}{%
 \subsection{Seafood Production}\label{seafood-production}}
@@ -297,12 +296,12 @@ available for 2020; Figure \ref{fig:total-landings} includes data only
 through 2019. However, we do not anticipate the long-term declining
 trend in landings to change.
 
-Coastwide landings for federally managed species were mixed in 2020 when
-compared to recent years
-{[}\protect\hyperlink{ref-thunberg_northeast_2021}{1}{]}. Surfclam and
-ocean quahog, and monkfish landings declined, while summer flounder,
-scup, and black sea bass, and squids in aggregate landings increased in
-2020.
+Coastwide landings at the Federal fishery management plan (FMP) level
+were mixed in 2020 when compared to recent years
+{[}\protect\hyperlink{ref-thunberg_northeast_2021}{1}{]}. Landings of
+monkfish and of combined surfclam and ocean quahog declined in 2020,
+while landings of combined summer flounder, scup, and black sea bass
+increased, and landings of combined squid species increased in 2020.
 
 \begin{figure}
 
@@ -324,7 +323,7 @@ series.
 
 }
 
-\caption{Total recreational seafood harvest (millions of fish) in the Mid-Atlantic region.}\label{fig:rec-landings}
+\caption{Total recreational seafood harvest (millions of pounds) in the Mid-Atlantic region.}\label{fig:rec-landings}
 \end{figure}
 
 Recreational shark landings show an increase in pelagic sharks over the
@@ -356,7 +355,7 @@ trending upward.\footnote{\url{https://noaa-edab.github.io/ecodata/human_dimensi
 
 Declining commercial and recreational landings can be driven by many
 interacting factors, including combinations of ecosystem and stock
-production, management actions, market conditions (including Covid
+production, management actions, market conditions (including COVID-19
 disruptions), and environmental change. While we cannot evaluate all
 possible drivers at present, here we evaluate the extent to which stock
 status and system biomass trends may play a role.
@@ -365,10 +364,11 @@ status and system biomass trends may play a role.
 \paragraph{Stock Status and Catch
 Limits}\label{stock-status-and-catch-limits}}
 
-Single species management objectives of maintaining biomass above
-minimum thresholds and fishing mortality below limits are being met for
-all but two MAFMC managed species, though the status of six stocks is
-unknown (Fig. \ref{fig:stock-status}).
+Single species management objectives (1. maintaining biomass above
+minimum thresholds and 2. maintaining fishing mortality below
+overfishing limits) are being met for all but two MAFMC managed species,
+though the status of six stocks is unknown (Fig.
+\ref{fig:stock-status}).
 
 \begin{figure}
 
@@ -376,16 +376,18 @@ unknown (Fig. \ref{fig:stock-status}).
 
 }
 
-\caption{Summary of single species status for MAFMC and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).}\label{fig:stock-status}
+\caption{Summary of single species status for MAFMC and jointly federally managed stocks (Spiny dogfish and both Goosefish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).}\label{fig:stock-status}
 \end{figure}
 
 Stock status affects catch limits established by the Council, which in
 turn may affect landings trends. Summed across all MAFMC managed
 species, total Acceptable Biological Catch or Annual Catch Limits (ABC
-or ACL)increased in 2017 due to the addition of Blueline Tilefish
-management (Fig. \ref{fig:abcacl-stacked}). Discounting blueline
-tilefish, the totals ABC or ACL are on the lower end of the historical
-series, with much of that decrease due to Atlantic mackerel.
+or ACL) have been relatively stable 2012-2020 (Fig.
+\ref{fig:abcacl-stacked}). With the addition of blueline tilefish
+management in 2017, an additional ABC and ACL contribute to the total
+2017-2020. Discounting blueline tilefish, the recent total ABC or ACL is
+lower relative to 2012-2013, with much of that decrease due to declining
+Atlantic mackerel ABC.
 
 \begin{figure}
 
@@ -429,7 +431,7 @@ the decline in landings.
 
 }
 
-\caption{Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.}\label{fig:nefsc-biomass-mab}
+\caption{Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.}\label{fig:nefsc-biomass-mab}
 \end{figure}
 
 \hypertarget{effect-on-seafood-production}{%
@@ -505,11 +507,11 @@ available for 2020; Figure \ref{fig:comm-revenue} includes data only
 through 2019. However, we do not anticipate the long-term declining
 trend in revenue from managed species (red) to change. Coast-wide, a
 number of species managed by the MAFMC have seen decreases in revenue
-when compared to the average revenue generated 2015 - 2019
+when compared to the average revenue generated between 2015 and 2019
 {[}\protect\hyperlink{ref-thunberg_northeast_2021}{1}{]}. This decline
-was driven by a mix of landings declines (monkfish, surfclam, ocean
-quahog) and price declines (monkfish, summer flounder, scup, and black
-sea bass, combined squid species).
+was driven by a mix of landings declines (monkfish, combined surfclam
+and ocean quahog) and price declines (monkfish, combined squid species,
+and combined summer flounder, scup, and black sea bass).
 
 \begin{figure}
 
@@ -552,10 +554,10 @@ Opportunities}\label{recreational-opportunities}}
 diversity}\label{indicators-angler-trips-fleet-diversity}}
 
 Recreational effort (angler trips) has increased over the long term,
-with current effort above the long-term average (Fig. \ref{fig:rec-op}).
-However, recreational fleet diversity (i.e.~effort by shoreside, private
-boat, and for-hire anglers) has declined over the long term (Fig.
-\ref{fig:rec-div}).
+with 2020 effort above the long-term average (Fig. \ref{fig:rec-op}).
+However, recreational fleet diversity (i.e., effort by shoreside,
+private boat, and for-hire anglers) has declined over the long term
+(Fig. \ref{fig:rec-div}).
 
 \begin{figure}
 
@@ -615,7 +617,8 @@ significant change in diversity over time does not necessarily indicate
 a problem or an improvement, but does indicate a need for further
 investigation. We examine commercial fleet and species catch diversity,
 and recreational species catch diversity (with fleet effort diversity
-discussed above), and diversity in zooplankton, larval, and adult fish.
+discussed above), and diversity in zooplankton, and larval and adult
+fishes.
 
 \hypertarget{fishery-diversity}{%
 \paragraph{Fishery Diversity}\label{fishery-diversity}}
@@ -625,7 +628,7 @@ species, and species landed by commercial vessels with Mid-Atlantic
 permits. A fleet is defined here as the combination of gear type
 (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom
 Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel
-length category (Less than 30 ft, 30 to 50 ft, 50 to 75 ft, 75 ft and
+length category (less than 30 ft, 30 to 50 ft, 50 to 75 ft, 75 ft and
 above). Commercial fishery fleet count and fleet diversity have been
 stable over time in the MAB, with current values near the long-term
 average (Fig. \ref{fig:commercial-div}). This indicates similar
@@ -638,7 +641,7 @@ time.
 
 }
 
-\caption{Fleet diversity and fleet count in the Mid-Atlantic.}\label{fig:commercial-div}
+\caption{Commercial fleet count and diversity in the Mid-Atlantic.}\label{fig:commercial-div}
 \end{figure}
 
 Commercial fisheries are relying on fewer species relative to the
@@ -656,10 +659,12 @@ then and is currently near, but below, the long term average (Fig.
 \end{figure}
 
 As noted \protect\hyperlink{recreational-opportunities}{above},
-recreational fleet effort diversity is unstable (declining; Fig.
-\ref{fig:rec-div}). However, recreational species catch diversity is
-stable and has been at or above the long term average in 7 of the last
-10 years (Fig. \ref{fig:recdat-div-catch}).
+recreational fleet effort diversity is declining (Fig.
+\ref{fig:rec-div}), so this metric suggests an unstable range of
+recreational fishing opportunties. However, recreational species catch
+diversity has no long term trend so is considered stable, and has been
+at or above the long term average in 7 of the last 10 years (Fig.
+\ref{fig:recdat-div-catch}).
 
 \begin{figure}
 
@@ -674,15 +679,17 @@ stable and has been at or above the long term average in 7 of the last
 \paragraph{Ecological Diversity}\label{ecological-diversity}}
 
 Ecological diversity indices show mixed trends. Up to 2019, zooplankton
-diversity was increasing in the MAB (Fig. \ref{fig:zoo-diversity}). This
-indicator will be updated once 2021 survey results have been processed.
-Adult fish diversity is measured as the expected number of species in a
-standard number of individuals sampled from the NEFSC bottom trawl
-survey. There is no vessel correction for this metric, so indices
-collected aboard the research vessel Albatross IV (up to 2008) and
-research vessel Bigelow (2009-2021) are calculated separately. Adult
-fish diversity indices are stable over time, with current values near
-the long-term average (Fig. \ref{fig:exp-n}).
+diversity was increasing in the MAB (Fig. \ref{fig:zoo-diversity}). 2020
+surveys were incomplete due to COVID-19. Zooplankton and larval fish
+diversity indicators will be updated once 2021 survey results have been
+processed. Adult fish diversity is measured as the expected number of
+species in a standard number of individuals sampled from the NEFSC
+bottom trawl survey. There is no vessel correction for this metric, so
+indices collected aboard the research vessel Albatross IV (up to 2008)
+and research vessel Bigelow (2009-2021) are calculated separately.
+Despite this, adult fish diversity indices appear stable over time, with
+current values within one standard deviation from most historic
+estimates (Fig. \ref{fig:exp-n}).
 
 \begin{figure}
 
@@ -699,7 +706,7 @@ the long-term average (Fig. \ref{fig:exp-n}).
 
 }
 
-\caption{Adult fish diversity the Mid-Atlantic Bight, based on expected number of species.}\label{fig:exp-n}
+\caption{Adult fish diversity in the Mid-Atlantic Bight, based on expected number of species. Results from survey vessels Albatross and Bigelow are reported separately due to catchability differences.}\label{fig:exp-n}
 \end{figure}
 
 \hypertarget{implications-3}{%
@@ -738,7 +745,8 @@ similar composition of other zooplankton species.
 
 Stable adult fish diversity indicates the same overall number and
 evenness over time, but doesn't rule out species substitutions (e.g.,
-warm-water replacing cold-water).
+warm-water replacing cold-water). In addition, the change in survey
+vessels complicates interpretation of long term fish diversity trends.
 
 In the MAB, existing diversity indicators suggest overall stability in
 the fisheries and ecosystem components examined. However, declining
@@ -760,12 +768,12 @@ communities}\label{indicators-environmental-justice-and-social-vulnerability-in-
 Social vulnerability measures social factors that shape a community's
 ability to adapt to change. A subset of these can be used to assess
 potential environmental justice issues. Environmental Justice is defined
-in E.O. 12898 as federal actions intended to address disproportionately
-high and adverse human health and environmental effects of federal
-actions on minority and low-income populations. Three of the existing
-NOAA Fisheries Community Social Vulnerability Indicators (CSVIs), the
-Poverty Index, Population Composition Index, and Personal Disruption
-Index, can be used for mandated Environmental Justice
+in Executive Order 12898 as federal actions intended to address
+disproportionately high and adverse human health and environmental
+effects of federal actions on minority and low-income populations. Three
+of the existing NOAA Fisheries Community Social Vulnerability Indicators
+(CSVIs), the Poverty Index, Population Composition Index, and Personal
+Disruption Index, can be used for mandated Environmental Justice
 analysis\footnote{\url{https://www.fisheries.noaa.gov/national/socioeconomics/social-indicators-coastal-communities}}.
 
 Commercial fishery engagement measures the number of permits and
@@ -796,7 +804,7 @@ NY; and Beaufort, Columbia and Hobucken, NC.
 
 }
 
-\caption{Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange.}\label{fig:commercial-engagement}
+\caption{Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.}\label{fig:commercial-engagement}
 \end{figure}
 
 Fig. \ref{fig:commercial-EJ} shows the detailed scores of the three
@@ -821,7 +829,7 @@ poverty index.
 
 }
 
-\caption{Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. *Scored high (1.00 and above)) for both commercial engagement and reliance indicators}\label{fig:commercial-EJ}
+\caption{Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.}\label{fig:commercial-EJ}
 \end{figure}
 
 Communities plotted in the upper right section of
@@ -837,7 +845,7 @@ Hatteras and Morehead City, NC.
 
 }
 
-\caption{Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic. Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange.}\label{fig:recreational-engagement}
+\caption{Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic. Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. Community scored high (1.00 and above) for both commercial engagement and reliance indicators.}\label{fig:recreational-engagement}
 \end{figure}
 
 Fig. \ref{fig:recreational-EJ} orders communities clockwise in a
@@ -852,7 +860,7 @@ Morehead City, NC, both scored medium-high for the poverty index.
 
 }
 
-\caption{Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top recreational fishing communities in Mid-Atlantic. *Scored high (1.00 and above)) for both commercial engagement and reliance indicators}\label{fig:recreational-EJ}
+\caption{Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top recreational fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.}\label{fig:recreational-EJ}
 \end{figure}
 
 Both commercial and recreational fishing are important activities in
@@ -897,17 +905,19 @@ endangered populations, and monitoring unusual mortality events (UMEs).
 numbers,
 mortalities}\label{indicators-bycatch-population-adult-and-juvenile-numbers-mortalities}}
 
-As of 2019, average bycatch indices for both harbor porpoise and gray
-seal bycatch were below current PBR thresholds, thus meeting management
-objectives. However, the 2019 bycatch estimate for gray seals was the
-highest in the time series. Bycatch indices were not updated because of
-low 2020 observer coverage caused by COVID-19 restrictions.
+As of 2019, rolling 5 year average bycatch indices for both harbor
+porpoise and gray seal bycatch were below current PBR thresholds, thus
+meeting management objectives. However, the 2019 bycatch estimate for
+gray seals was the highest in the time series and above PBR for that
+year (see 2021 report\footnote{\url{https://repository.library.noaa.gov/view/noaa/29525}}).
+Bycatch indices were not updated because of low 2020 observer coverage
+caused by COVID-19 restrictions.
 
 The North Atlantic right whale population was on a recovery trajectory
 until 2010, but has since declined (Fig. \ref{fig:narw-abundance}).
 Reduced survival rates of adult females and diverging abundance trends
 between sexes have also been observed. It is estimated that there are
-only about 100 adult females remaining in the population.
+fewer than 100 adult females remaining in the population.
 
 \begin{figure}
 
@@ -918,8 +928,8 @@ only about 100 adult females remaining in the population.
 \caption{Estimated North Atlanic right whale abundance on the Northeast Shelf.}\label{fig:narw-abundance}
 \end{figure}
 
-North Atlantic right whale calf counts have generally declined from 2009
-- 2018, when there were zero observed new calves (Fig.
+North Atlantic right whale calf counts have generally declined after
+2009 to the point of having zero new calves observed in 2018 (Fig.
 \ref{fig:NARW-calf-abundance}). However, seven new calves were born in
 2019, 10 were born in 2020, and preliminary 2021 observations of 18
 calves have been recorded as of January 2022.\\
@@ -933,64 +943,63 @@ calves have been recorded as of January 2022.\\
 \caption{Number of North Atlantic right whale calf births, 1990 - 2021.}\label{fig:NARW-calf-abundance}
 \end{figure}
 
-This year, three Unusual Mortality Events (UMEs) continued from previous
-years for large whales (North Atlantic right whales, humpback whales,
-and minke whales).
-
-Since 2017, the total UME right whale mortalities includes 34 dead
-stranded whales, 13 in the US and 21 in Canada. When alive but seriously
-injured whales (16) are taken into account, 50 individual whales are
-included in the UME. During 2020, two mortalities were documented,
-however, recent research suggests that many mortalities go unobserved
-and the true number of mortalities are about three times the count of
-the observed mortalities
+This year, the Unusual Mortality Event (UME) for North Atlantic right
+whales continued. Since 2017, the total UME right whale mortalities
+includes 34 dead stranded whales, 13 in the US and 21 in Canada. When
+alive but seriously injured whales (16) are taken into account, 50
+individual whales are included in the UME. During 2020, two mortalities
+were documented, however, recent research suggests that many mortalities
+go unobserved and the true number of mortalities are about three times
+the count of the observed mortalities
 {[}\protect\hyperlink{ref-pace_cryptic_2021}{4}{]}. The primary cause of
 death is ``human interaction'' from entanglements or vessel
 strikes\footnote{\url{https://www.fisheries.noaa.gov/national/marine-life-distress/2017-2022-north-atlantic-right-whale-unusual-mortality-event}}.
 
-A UME for both gray and harbor seals was declared from 2018-2020 due to
-a high number of mortalities thought to be caused by phocine distemper
-virus, but is now pending closure\footnote{\url{https://www.fisheries.noaa.gov/national/marine-life-distress/active-and-closed-unusual-mortality-events}}.
+Two additional UMEs continued from previous years for humpback whales
+and minke whales; suspected causes include human interactions and/or
+infectious disease. A UME for both gray and harbor seals was declared
+from 2018-2020 due to a high number of mortalities thought to be caused
+by phocine distemper virus, but is pending closure as of January
+2022\footnote{\url{https://www.fisheries.noaa.gov/national/marine-life-distress/active-and-closed-unusual-mortality-events}}.
 
 \hypertarget{implications-5}{%
 \subsubsection{Implications}\label{implications-5}}
 
 Bycatch management measures have been implemented to maintain bycatch
-below Potential Biological Removal (PBR) thresholds. The downward trend
-in harbor porpoise bycatch could also be due to a decrease in harbor
-porpoise abundance in US waters, reducing their overlap with fisheries,
-and a decrease in gillnet effort. The increasing trend in gray seal
-bycatch may be related to an increase in the gray seal population (U.S.
-pup counts).
+below PBR thresholds. The downward trend in harbor porpoise bycatch
+could also be due to a decrease in harbor porpoise abundance in US
+waters, reducing their overlap with fisheries, and a decrease in gillnet
+effort. The increasing trend in gray seal bycatch may be related to an
+increase in the gray seal population (U.S. pup counts).
 
 The number of gray seals in U.S. waters has risen dramatically in the
 last three decades. Based on a survey conducted in 2016, the size of the
 gray seal population in the U.S. during the breeding season was
 approximately 27,000 animals, while in Canada the population was
-estimated to be roughly 425,000. A survey conducted in 2021 in both
-countries will provide updated estimates of abundance. The population in
-Canada is increasing at roughly 4\% per year, and contributing to rates
-of increase in the U.S., where the number of pupping sites has increased
-from 1 in 1988 to 9 in 2019. Mean rates of increase in the number of
-pups born at various times since 1988 at four of the more data-rich
-pupping sites (Muskeget, Monomoy, Seal, and Green Islands) ranged from
-no change on Green Island to high rates increase on the other three
-islands, with a maximum increase of 26.3\% (95\%CI: 21.6 - 31.4\%;
-{[}\protect\hyperlink{ref-wood_rates_2020}{5}{]} and see Figure in New
-England SOE report). These high rates of increase provide further
-support for the hypothesis that seals from Canada are continually
-supplementing the breeding population in U.S. waters.
+estimated to be roughly 425,000. The population in Canada is increasing
+at roughly 4\% per year, and contributing to rates of increase in the
+U.S., where the number of pupping sites has increased from one in 1988
+to nine in 2019. Mean rates of increase in the number of pups born at
+various times since 1988 at four of the more data-rich pupping sites
+(Muskeget, Monomoy, Seal, and Green Islands) ranged from no change on
+Green Island to high rates of increase on the other three islands, with
+a maximum increase of 26.3\% (95\%CI: 21.6 - 31.4\%;
+{[}\protect\hyperlink{ref-wood_rates_2020}{5}{]}, and see the 2021 New
+England report\footnote{\url{https://repository.library.noaa.gov/view/noaa/29524}}).
+These high rates of increase provide further support for the hypothesis
+that seals from Canada are continually supplementing the breeding
+population in U.S. waters.
 
 Strong evidence exists to suggest that interactions between right whales
-and the fixed gear fisheries in the U.S. and Canada is contributing
-substantially to the decline of the species
-{[}\protect\hyperlink{ref-hayes_north_2018}{6}{]}. Further, right whale
-distribution has changed since 2010. New research suggests that recent
-climate driven changes in ocean circulation have resulted in right whale
-distribution changes driven by increased warm water influx through the
-Northeast Channel, which has reduced the primary right whale prey
-(\emph{Calanus finmarchicus}) in the central and eastern portions of the
-Gulf of Maine
+and both the fixed gear fisheries in the U.S. and Canada and vessel
+strikes in the U.S. are contributing substantially to the decline of the
+species {[}\protect\hyperlink{ref-hayes_north_2018}{6}{]}. Further,
+right whale distribution has changed since 2010. New research suggests
+that recent climate driven changes in ocean circulation have resulted in
+right whale distribution changes driven by increased warm water influx
+through the Northeast Channel, which has reduced the primary right whale
+prey (\emph{Calanus finmarchicus}) in the central and eastern portions
+of the Gulf of Maine
 {[}\protect\hyperlink{ref-hayes_north_2018}{6}--\protect\hyperlink{ref-sorochan_north_2019}{8}{]}.
 
 The UMEs are under investigation and are likely the result of multiple
@@ -1013,7 +1022,7 @@ Productivity}\label{climate-and-ecosystem-productivity}}
 
 Large scale climate related changes in the ecosystem can lead to changes
 in important habitats and ecological interactions, potentially resulting
-in ecosystem reorganization and regime shifts.
+in regime shifts and ecosystem reorganization.
 
 \hypertarget{climate-change-indicators-ocean-temperature-heatwaves-currents-acidification}{%
 \subsubsection{Climate Change Indicators: ocean temperature, heatwaves,
@@ -1026,10 +1035,10 @@ salinity}\label{ocean-and-estuarine-temperature-and-salinity}}
 
 Ocean temperatures continue to warm at both the surface (Fig.
 \ref{fig:seasonal-sst-anom-gridded}) and bottom (Fig.
-\ref{fig:bottom-temp}) throughout the Northeast Shelf. Seasonal sea
-surface temperatures in 2021 were above average throughout the year,
-with some seasons rivaling or exceeding the record warm temperatures
-observed in 2012.
+\ref{fig:bottom-temp}) throughout the Northeast Shelf including the
+Mid-Atlantic. Seasonal sea surface temperatures in 2021 were above
+average throughout the year, with some seasons rivaling or exceeding the
+record warm temperatures observed in 2012.
 
 \begin{figure}
 
@@ -1037,7 +1046,7 @@ observed in 2012.
 
 }
 
-\caption{MAB seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall.}\label{fig:seasonal-sst-anom-gridded}
+\caption{MAB (grey outline) seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall.}\label{fig:seasonal-sst-anom-gridded}
 \end{figure}
 
 \begin{figure}
@@ -1046,17 +1055,17 @@ observed in 2012.
 
 }
 
-\caption{Annual bottom temperature in the Mid-Atlantic Bight. (black = in situ observations, red - observations from modeled reanalysis for comparison)}\label{fig:bottom-temp}
+\caption{Annual bottom temperature in the MAB (black = in situ observations, red = observations from modeled reanalysis for comparison).}\label{fig:bottom-temp}
 \end{figure}
 
 The Chesapeake Bay experienced a warmer-than-average winter and fall in
 2021, and average conditions in the spring and summer, relative to the
 baseline period 2008-2020 (Fig. \ref{fig:ches-temp-sal}) as measured by
-satellites\footnote{\url{https://coastwatch.noaa.gov/cw/index.html}}.
-(The seasonal definitions and baseline periods are different from the
-sea surface temperature anomalies reported in
+satellites\footnote{\url{https://coastwatch.noaa.gov/cw/index.html}}
+(note that Chesapeake Bay seasonal definitions and baseline periods are
+different from the sea surface temperature anomalies reported in
 Fig.\ref{fig:seasonal-sst-anom-gridded} for the full Mid-Atlantic
-region.) Similar 2021 seasonal temperature patterns were observed by
+region). Similar 2021 seasonal temperature patterns were observed by
 bouys\footnote{\url{https://buoybay.noaa.gov/}} (Fig.
 \ref{fig:ches-temp-sal}), which also indicated above-average salinity in
 the Chesapeake Bay throughout the summer, with a decrease in salinity
@@ -1084,14 +1093,15 @@ heatwaves measure not just high temperature, but how long the ecosystem
 is subjected to the high temperature. They are driven by both
 atmospheric and oceanographic factors and can have dramatic impacts on
 marine ecosystems. The region is experiencing more frequent marine
-heatwaves over the last decade, including this year, compared to the
+heatwaves over the last decade, including 2021, compared to the
 historical period.
 
-In 2021, the Middle Atlantic Bight experienced seven distinct marine
+In 2021, the Mid-Atlantic Bight experienced seven distinct marine
 heatwaves with the strongest event beginning on September 13 and lasting
 53 days (Fig. \ref{fig:heatwave-year}). Relative to prior years, this
-marine heatwave ranked 9th on record in terms of maximum intensity and
-4th on record in terms of cumulative intensity.
+marine heatwave ranked 9\textsuperscript{th} on record in terms of
+maximum intensity and 4\textsuperscript{th} on record in terms of
+cumulative intensity.
 
 \begin{figure}
 
@@ -1099,7 +1109,7 @@ marine heatwave ranked 9th on record in terms of maximum intensity and
 
 }
 
-\caption{Marine heatwave events (red) in the Mid-Atlantic occuring in 2020.}\label{fig:heatwave-year}
+\caption{Marine heatwave events (red shading above black line) in the Mid-Atlantic occuring in 2021.}\label{fig:heatwave-year}
 \end{figure}
 
 \hypertarget{ocean-currents-and-features}{%
@@ -1131,7 +1141,7 @@ height along the U.S. east coast
 \end{figure}
 
 Since 2008, the Gulf Stream has moved closer to the Grand Banks,
-reducing the supply of cold, fresh and oxygen-rich Labrador Current
+reducing the supply of cold, fresh, and oxygen-rich Labrador Current
 waters to the Northwest Atlantic Shelf
 {[}\protect\hyperlink{ref-goncalves_neto_changes_2021}{15}{]}. Nearly
 every year since 2010, warm slope water made up more than 75\% of the
@@ -1152,12 +1162,12 @@ this pattern.
 
 }
 
-\caption{Proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSLW) entering the GOM through the Northeast Channel.}\label{fig:wsw-prop}
+\caption{Proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSLW) entering the Gulf of Maine through the Northeast Channel.}\label{fig:wsw-prop}
 \end{figure}
 
-The increased instability of the Gulf Stream and warming of the Slope
-Sea may also be connected to the regime shift increase in the number of
-warm core rings formed annually in the Northwest Atlantic
+The increased instability of the Gulf Stream position and warming of the
+Slope Sea may also be connected to the regime shift increase in the
+number of warm core rings formed annually in the Northwest Atlantic
 {[}\protect\hyperlink{ref-gangopadhyay_census_2020}{10},\protect\hyperlink{ref-gangopadhyay_observed_2019}{17}{]}
 (Fig. \ref{fig:wcr}). Timing of ring formation may also be changing. In
 2021, a remarkable number of rings were observed simultaneously near the
@@ -1172,34 +1182,34 @@ movements of fish
 
 }
 
-\caption{Warm core ring formation on the Northeast US Shelf: Annual number of rings (Left) and June 2021 rings (right), where the black line is the 200 m isobath (the shelf break) and the red lines are the 20 and 24 degree isotherms.}\label{fig:wcr}
+\caption{Warm core ring formation on the Northeast U.S. Shelf: Annual number of rings (left) and June 2021 rings (right), where the black line is the 200 m isobath (the shelf break) and the red lines are the 20 and 24 degree isotherms.}\label{fig:wcr}
 \end{figure}
 
 When warm core rings and eddies interact with the continental slope they
 can transport warm, salty water to the continental shelf
 {[}\protect\hyperlink{ref-chen_mesoscale_2022}{19}{]}, and this is now
 happening more frequently
-{[}\protect\hyperlink{ref-gawarkiewicz_changing_2018}{18},\protect\hyperlink{ref-gawarkiewicz_inreview}{\textbf{gawarkiewicz\_inreview?}}{]}.
+{[}\protect\hyperlink{ref-gawarkiewicz_changing_2018}{18},\protect\hyperlink{ref-gawarkiewicz_increasing_nodate}{20}{]}.
 These interactions can be significant contributors to marine heatwaves
 in the Mid-Atlantic Bight
-{[}\protect\hyperlink{ref-chen_mesoscale_2022}{19},\protect\hyperlink{ref-gawarkiewicz_characteristics_2019}{20}{]}
+{[}\protect\hyperlink{ref-chen_mesoscale_2022}{19},\protect\hyperlink{ref-gawarkiewicz_characteristics_2019}{21}{]}
 as well as the movement of shelf-break species inshore
-{[}\protect\hyperlink{ref-gawarkiewicz_changing_2018}{18},\protect\hyperlink{ref-potter_horizontal_2011}{21},\protect\hyperlink{ref-worm_predator_2003}{22}{]}.
+{[}\protect\hyperlink{ref-gawarkiewicz_changing_2018}{18},\protect\hyperlink{ref-potter_horizontal_2011}{22},\protect\hyperlink{ref-worm_predator_2003}{23}{]}.
 
 Changes in ocean temperature and circulation alter habitat features such
 as the seasonal cold pool, a 20--60 m thick band of cold, relatively
 uniform near-bottom water that persists from spring to fall over the mid
 and outer shelf of the MAB and southern flank of Georges Bank
-{[}\protect\hyperlink{ref-lentz_seasonal_2017}{23},\protect\hyperlink{ref-chen_seasonal_2018}{24}{]}.
+{[}\protect\hyperlink{ref-lentz_seasonal_2017}{24},\protect\hyperlink{ref-chen_seasonal_2018}{25}{]}.
 The cold pool plays an essential role in the structuring of the MAB
 ecosystem. It is a reservoir of nutrients that feeds phytoplankton
 productivity, is essential fish spawning and nursery habitat, and
 affects fish distribution and behavior
-{[}\protect\hyperlink{ref-lentz_seasonal_2017}{23},\protect\hyperlink{ref-miles_offshore_2021}{25}{]}.
+{[}\protect\hyperlink{ref-lentz_seasonal_2017}{24},\protect\hyperlink{ref-miles_offshore_2021}{26}{]}.
 The average temperature of the cold pool is getting warmer over time
-{[}\protect\hyperlink{ref-miller_state-space_2016}{26},\protect\hyperlink{ref-dupontavice_inreview}{\textbf{dupontavice\_inreview?}}{]},
+{[}\protect\hyperlink{ref-miller_state-space_2016}{27},\protect\hyperlink{ref-du_pontavice_incorporating_nodate}{28}{]},
 the area is getting smaller
-{[}\protect\hyperlink{ref-friedland_middle_2022}{27}{]}, and the
+{[}\protect\hyperlink{ref-friedland_middle_2022}{29}{]}, and the
 duration is getting shorter (Fig. \ref{fig:cold-pool}).
 
 \begin{figure}
@@ -1208,7 +1218,7 @@ duration is getting shorter (Fig. \ref{fig:cold-pool}).
 
 }
 
-\caption{Cold pool indices: Temperature, persistence, and spatial extent}\label{fig:cold-pool}
+\caption{Seasonal cold pool indices: mean temperature within the cold pool, cold pool persistence, and spatial extent.}\label{fig:cold-pool}
 \end{figure}
 
 \hypertarget{ocean-acidification}{%
@@ -1225,11 +1235,11 @@ in bottom waters, reaching minimum values in shallow waters typically
 inhabited by Atlantic surfclams (27-56 m) in the southern flank of the
 Hudson Canyon (mean pH = 7.80).
 
-This seasonal pH minimum in the Mid-Atlantic is associated with
-cold-pool subsurface and bottom water, which is cut off from mixing with
+This seasonal pH minimum in the Mid-Atlantic is associated with cold
+pool subsurface and bottom water, which is cut off from mixing with
 surface water by strong stratification. Fall mixing and slope water
 intrusions act to increase the pH in outer shelf waters
-{[}\protect\hyperlink{ref-wrightfairbanks_autonomous_2020}{28}{]}.
+{[}\protect\hyperlink{ref-wrightfairbanks_autonomous_2020}{30}{]}.
 
 \begin{figure}
 
@@ -1237,7 +1247,7 @@ intrusions act to increase the pH in outer shelf waters
 
 }
 
-\caption{Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021 Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic}\label{fig:mab-oa}
+\caption{Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021. Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic.}\label{fig:mab-oa}
 \end{figure}
 
 \hypertarget{ecosystem-productivity-indicators-phytoplankton-zooplankton-forage-fish-fish-condition}{%
@@ -1257,7 +1267,7 @@ but below average during the spring and summer months. Below average
 phytoplankton biomass could be due to reduced nutrient flow to the
 surface and/or increased grazing pressure. A short fall bloom was
 detected in November. Primary productivity (the rate of photosynthesis)
-was average to below average throughout throughout 2021 (Fig.
+was average to below average throughout 2021 (Fig.
 \ref{fig:chl-weekly}).
 
 \begin{figure}
@@ -1266,7 +1276,7 @@ was average to below average throughout throughout 2021 (Fig.
 
 }
 
-\caption{Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 sample standard deviation.}\label{fig:chl-weekly}
+\caption{Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 standard deviation.}\label{fig:chl-weekly}
 \end{figure}
 
 The seasonal cycle of phytoplankton size distribution shows that the
@@ -1293,14 +1303,15 @@ winter and fall bloom periods, but below average for the summer months
 While zooplankton indicators could not be updated for this report due to
 2020 survey disruptions and lags in sample processing, data up to 2019
 showed long-term increasing trends of gelatinous zooplankton and krill
-on the northeast shelf. In 2021, the total volume of plankton caught in
-the bongo net was significantly greater than the previous years due to
-increased gelatinous zooplankton, predominantly salps (\emph{Thalia
+on the northeast shelf (see 2021 report\footnote{\url{https://repository.library.noaa.gov/view/noaa/29525}}).
+Preliminary 2021 observations found the total volume of plankton caught
+in the bongo net was significantly greater than the previous years due
+to increased gelatinous zooplankton, predominantly salps (\emph{Thalia
 democratica}). Unusually high concentrations of salps were found
 throughout the Northeast shelf and in the Slope Sea during other summer
 2021 scientific surveys, which may be associated with water mass
 intrusions at the shelf break
-{[}\protect\hyperlink{ref-madin_periodic_2006}{29},\protect\hyperlink{ref-deibel_predictability_2009}{30}{]}.
+{[}\protect\hyperlink{ref-madin_periodic_2006}{31},\protect\hyperlink{ref-deibel_predictability_2009}{32}{]}.
 Salps are filter feeders feeding on phytoplankton and other small
 particles and may have contributed to the below average phytoplankton
 biomass in summer 2021 (Fig. \ref{fig:chl-weekly}).
@@ -1320,7 +1331,7 @@ half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier
 studies (10.6-9.4 kJ/ g wet weight). Silver hake, longfin squid
 (\emph{Loligo} in figure) and shortfin squid (\emph{Illex} in figure)
 were also lower than previous estimates
-{[}\protect\hyperlink{ref-steimle_energy_1985}{31},\protect\hyperlink{ref-lawson_important_1998}{32}{]}.
+{[}\protect\hyperlink{ref-steimle_energy_1985}{33},\protect\hyperlink{ref-lawson_important_1998}{34}{]}.
 Energy density of alewife, butterfish, sand lance, and Atlantic mackerel
 varies seasonally, with seasonal estimates both higher and lower than
 estimates from previous decades.
@@ -1331,19 +1342,19 @@ estimates from previous decades.
 
 }
 
-\caption{Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.}\label{fig:energy-density}
+\caption{Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.}\label{fig:energy-density}
 \end{figure}
 
 \hypertarget{fish-condition}{%
 \paragraph{Fish Condition}\label{fish-condition}}
 
 The health and well being of individual fish can be related to body
-shape condition indices (i.e.~weight at a given length) such as relative
-condition index, which is the ratio of observed weight to predicted
-weight based on length
-{[}\protect\hyperlink{ref-le_cren_length-weight_1951}{33}{]}. Heavier
+shape condition indices (i.e., weight at a given length) such as
+relative condition index, which is the ratio of observed weight to
+predicted weight based on length
+{[}\protect\hyperlink{ref-le_cren_length-weight_1951}{35}{]}. Heavier
 and fatter fish at a given length have higher relative condition which
-is expected to improve growth, reproductive output and survival. A
+is expected to improve growth, reproductive output, and survival. A
 pattern of generally good condition was observed across many MAB species
 prior to 2000, followed by a period of generally poor condition from
 2001-2010, with a mix of good and poor condition 2011-2019. However,
@@ -1390,8 +1401,8 @@ In aggregate, fish stocks are moving northeast along the shelf and into
 deeper waters.
 
 Zooplankton diversity was increasing in the MAB as of 2019, while adult
-fish diversity indices are stable over time with current values near the
-long-term average (see
+fish diversity indices appear stable over time, with current values
+within one standard deviation from most historic estimates (see
 \protect\hyperlink{ecological-diversity}{Diversity Indicators section,
 above}).
 
@@ -1434,10 +1445,10 @@ section}, gray seal populations are increasing. Harbor and gray seals
 occupying New England waters are generalist predators that consume more
 than 30 different prey species. An evaluation of hard parts found in
 seal stomachs showed that harbor and gray seals predominantly exploit
-abundant demersal fish species (i.e.~red, white and silver hake). Other
-relatively abundant prey species found in hard-part remains include sand
-lance, yellowtail flounder, four-spotted flounder, Gulf Stream flounder,
-haddock, herring, redfish, and squids.
+abundant demersal fish species (i.e., red, white, and silver hake).
+Other relatively abundant prey species found in hard-part remains
+include sand lance, yellowtail flounder, four-spotted flounder, Gulf
+Stream flounder, haddock, herring, redfish, and squids.
 
 A recent stable isotope study utilizing gray seal scat samples obtained
 from Massachusetts habitats showed individual gray seals can specialize
@@ -1468,7 +1479,7 @@ distributions, and developing a publicly accessible decision support
 tool to visualize these results. This is a three-year project led by the
 New England and Mid-Atlantic Fishery Management Councils in
 collaboration with many partners including NOAA Fisheries, and will be
-completed in July 2022.\footnote{\url{https://www.mafmc.org/nrha}}
+completed in July 2022\footnote{\url{https://www.mafmc.org/nrha}}.
 
 As part of the NRHA work, climate vulnerability information from NOAA's
 Habitat Climate Vulnerability Assessment and the Northeast Fish and
@@ -1479,7 +1490,7 @@ several highly vulnerable nearshore habitats from salt marsh, submerged
 aquatic vegetation, and shallow estuarine and marine reefs. Details on
 highly vulnerable habitats with linkages to a variety of species,
 including which life stages have different levels of dependence on a
-particular habitat, are available in a detailed table.\footnote{\url{https://noaa-edab.github.io/ecodata/Hab_table}}
+particular habitat, are available in a detailed table\footnote{\url{https://noaa-edab.github.io/ecodata/Hab_table}}.
 
 \hypertarget{submerged-aquatic-vegetation}{%
 \paragraph{Submerged Aquatic
@@ -1510,14 +1521,14 @@ eelgrass coverage.
 \paragraph{Estuarine Habitat Quality (Chesapeake
 Bay)}\label{estuarine-habitat-quality-chesapeake-bay}}
 
-Many important MAFMC managed species (e.g.~summer flounder, scup, black
+Many important MAFMC managed species (e.g., summer flounder, scup, black
 sea bass, and bluefish) use estuarine habitats as nurseries or are
 considered estuarine and nearshore coastal-dependent, and interact with
 other important estuarine-dependent species (e.g., striped bass and
 menhaden). An integrated measure of multiple water quality criteria
 shows a significantly increasing proportion of Chesapeake Bay waters
 meeting or exceeding EPA water quality standards over time
-({[}\protect\hyperlink{ref-zhang_chesapeake_2018}{34}{]}; Fig.
+({[}\protect\hyperlink{ref-zhang_chesapeake_2018}{36}{]}; Fig.
 \ref{fig:cb-attainment}). This pattern was statistically linked to total
 nitrogen reduction, indicating responsiveness of water quality status to
 management actions implemented to reduce nutrients. Water quality trends
@@ -1553,7 +1564,7 @@ the Synthetic Indicator Catalog.\footnote{\url{https://noaa-edab.github.io/catal
 species}\label{links-between-climate-change-and-managed-species}}
 
 Estuarine, nearshore, and offshore habitats support many life stages of
-state and federally-managed species, and are highly vulnerable to
+state and federally managed species, and are highly vulnerable to
 climate change. Below we highlight how recently observed habitat changes
 affect several key managed species in Chesapeake Bay and in both
 nearshore and offshore waters of the MAB. Overall, multiple drivers
@@ -1564,10 +1575,10 @@ impacts.
 \subparagraph{\texorpdfstring{\emph{Striped
 Bass}}{Striped Bass}}\label{striped-bass}}
 
-Increasing water temperatures in the Chesapeake Bay have negative
-impacts on striped bass at all life stages, although impovements in
-water quality mitigate some impacts. Declining recruitment since 2000 is
-associated with higher winter and spring water temperatures and lower
+Increasing water temperatures in Chesapeake Bay have negative impacts on
+striped bass at all life stages, although impovements in water quality
+mitigate some impacts. Declining recruitment since 2000 is associated
+with higher winter and spring water temperatures and lower freshwater
 flows, which compress the reproductive season, cause production of
 zooplankton prey earlier in the season before striped bass larvae are
 feeding, and reduce concentration of zooplankton prey in larval habitat.
@@ -1600,12 +1611,12 @@ Crabs}}{Blue Crabs}}\label{blue-crabs}}
 Warmer winter temperatures may benefit Chesapeake Bay blue crabs, an
 important commercial and forage species. Above-average fall and winter
 temperatures in 2021 may have reduced overwintering mortality
-{[}\protect\hyperlink{ref-bauer_temperature-_2010}{35}--\protect\hyperlink{ref-rome_linking_2005}{37}{]}
+{[}\protect\hyperlink{ref-bauer_temperature-_2010}{37}--\protect\hyperlink{ref-rome_linking_2005}{39}{]}
 and contributed to increased productivity of blue crabs going into 2022.
 Longer growth seasons are associated with increased production of blue
 crabs and oysters in Chesapeake Bay. Blue crabs are moving northward
 with warming temperatures and have been documented in the Gulf of Maine
-{[}\protect\hyperlink{ref-johnson_savory_2015}{38}{]}, with implications
+{[}\protect\hyperlink{ref-johnson_savory_2015}{40}{]}, with implications
 for both their management and for the inshore ecosystems.
 
 \hypertarget{eastern-oyster}{%
@@ -1615,7 +1626,7 @@ Oyster}}{Eastern Oyster}}\label{eastern-oyster}}
 Oyster reefs provide habitat for several managed fish species including
 juvenile black sea bass and summer flounder. Increased Chesapeake Bay
 salinity has been linked to high juvenile oyster abundance
-{[}\protect\hyperlink{ref-kimmel_relationship_2014}{39}{]}. In 2021,
+{[}\protect\hyperlink{ref-kimmel_relationship_2014}{41}{]}. In 2021,
 high oyster spat set was predicted based on high summer
 salinity\footnote{\url{https://content.buoybay.noaa.gov/sites/default/files/NCBOSeasonalSummary2021Summer.pdf}},
 and was observed in Maryland during fall 2021. Virginia oyster
@@ -1643,12 +1654,12 @@ impact recruitment survival.
 Ocean acidification also has different implications, depending on the
 species and life stage. Recent lab studies have found that surf clams
 exhibited metabolic depression in a pH range of 7.46-7.28
-{[}\protect\hyperlink{ref-pousse_energetic_2020}{40}{]}. Computer models
+{[}\protect\hyperlink{ref-pousse_energetic_2020}{42}{]}. Computer models
 are in development to help determine the long term implications of
 growth on surf clam populations. Aggregated data from 2007-2021 show
 that summer bottom ocean pH (7.69-8.07, Fig. \ref{fig:mab-oa}) has not
-yet reached the metabolic depression threshold observed for surf clams
-in lab studies so far.
+yet reached the metabolic depression threshold observed for surfclams in
+lab studies so far.
 
 \hypertarget{northern-shortfin-squid}{%
 \subparagraph{\texorpdfstring{\emph{Northern Shortfin
@@ -1672,16 +1683,16 @@ associated with upwelling and enhanced productivity.
 While marine heatwaves lasting over days may disturb the marine
 environment, long lasting events such as the warming in 2012 (Fig.
 \ref{fig:heatwave}) can have significant impacts to the ecosystem
-{[}\protect\hyperlink{ref-gawarkiewicz_characteristics_2019}{20}{]}. The
+{[}\protect\hyperlink{ref-gawarkiewicz_characteristics_2019}{21}{]}. The
 2012 heatwave affected the lobster fishery most notably, but other
 species also shifted their geographic distributions and seasonal cycles
-{[}\protect\hyperlink{ref-mills_fisheries_2013}{41}{]}. The 2012
+{[}\protect\hyperlink{ref-mills_fisheries_2013}{43}{]}. The 2012
 heatwave was caused by a shift in the atmospheric Jet Stream, whereas
 the 2017 marine heatwave in the Mid-Atlantic was associated with a
 strong positive salinity anomaly and is likely related to cross-shelf
 flow driven by the presence of a warm core ring adjacent to the
 shelfbreak south of New England
-{[}\protect\hyperlink{ref-gawarkiewicz_characteristics_2019}{20}{]}.
+{[}\protect\hyperlink{ref-gawarkiewicz_characteristics_2019}{21}{]}.
 During the 2017 event, warm water fish typically found in the Gulf
 Stream were caught in shallow waters near Block Island, RI
 {[}\protect\hyperlink{ref-gawarkiewicz_changing_2018}{18}{]}. Ocean
@@ -1704,21 +1715,21 @@ Changes in the cold pool habitat can affect species distribution,
 recruitment, and migration timing for multiple federally managed
 species. Southern New England-Mid Atlantic yellowtail flounder
 recruitment and settlement are related to the strength of the cold pool
-{[}\protect\hyperlink{ref-miller_state-space_2016}{26}{]}. The
+{[}\protect\hyperlink{ref-miller_state-space_2016}{27}{]}. The
 settlement of pre-recruits during the cold pool event represents a
 bottleneck in yellowtail life history, during which a local and
 temporary increase in bottom temperature negatively impacts the survival
 of the settlers. Including the effect of cold pool variations on
 yellowtail recruitment reduced retrospective patterns and improved the
 skill of short-term forecasts in a stock assessment model
-{[}\protect\hyperlink{ref-miller_state-space_2016}{26},\protect\hyperlink{ref-dupontavice_inreview}{\textbf{dupontavice\_inreview?}}{]}.
+{[}\protect\hyperlink{ref-miller_state-space_2016}{27},\protect\hyperlink{ref-du_pontavice_incorporating_nodate}{28}{]}.
 The cold pool also provides habitat for the ocean quahog
-{[}\protect\hyperlink{ref-friedland_middle_2022}{27},\protect\hyperlink{ref-powell_ocean_2020}{42}{]}.
+{[}\protect\hyperlink{ref-friedland_middle_2022}{29},\protect\hyperlink{ref-powell_ocean_2020}{44}{]}.
 Growth rates of ocean quahogs in the MAB (southern portion of their
 range) have increased over the last 200 years whereas little to no
 change has been documented in the northern portion of their range in
 southern New England, likely a response to a warming and shrinking cold
-pool {[}\protect\hyperlink{ref-pace_two-hundred_2018}{43}{]}.
+pool {[}\protect\hyperlink{ref-pace_two-hundred_2018}{45}{]}.
 
 \hypertarget{distribution-shift-impacts}{%
 \paragraph{Distribution shift
@@ -1762,7 +1773,7 @@ suggest changing ecosystem productivity at multiple levels. During the
 1990s and early 2000s high relative abundance of smaller bodied copepods
 and a lower relative abundance of \emph{Calanus finmarchicus} was
 associated with regime shifts to lower fish recruitment
-{[}\protect\hyperlink{ref-perretti_regime_2017}{44}{]}. The
+{[}\protect\hyperlink{ref-perretti_regime_2017}{46}{]}. The
 unprecedented climate signals along with the trends toward lower
 productivity across multiple managed species indicate a need to
 continually evaluate whether management reference points remain
@@ -1802,13 +1813,13 @@ offshore export cables are proposed to date. The colored chart in Fig.
 timeline in the Greater Atlantic region with the estimated year that
 foundations would be constructed (matches the color of the wind areas).
 These timelines and data estimates are expected to shift but represent
-the most recent information available at the time of this report. Based
-on current timelines, the areas affected would be spread out such that
-it is unlikely that any one particular area would experience full
+the most recent information available as of February 2022. Based on
+current timelines, the areas affected would be spread out such that it
+is unlikely that any one particular area would experience full
 development at one time. Future wind development areas are also
-presented here. Additional lease areas, totalling over 488,000 acres in
-the NY Bight are available for BOEM's 2022 lease sale. It's anticipated
-that the NY Bight leases will fulfill outstanding offshore wind energy
+presented. Additional lease areas, totalling over 488,000 acres in the
+NY Bight are available for BOEM's 2022 lease sale. It's anticipated that
+the NY Bight leases will fulfill outstanding offshore wind energy
 production goals for NY and NJ. VA and NC have outstanding goals that
 cannot be fulfilled within the existing lease areas, and it is expected
 that these will be fulfilled with future development off the Delmarva
@@ -1835,16 +1846,16 @@ federal waters from 2008-2019 (Fig. \ref{fig:wea-spp-rev}).
 
 }
 
-\caption{Wind energy revenue in the Mid-Atlantic}\label{fig:wea-spp-rev}
+\caption{Wind energy revenue in the Mid-Atlantic.}\label{fig:wea-spp-rev}
 \end{figure}
 
-The surfclam/ocean quahog fishery could be the most affected fishery,
-with a maximum of 20\% of annual fshery revenue occurring within
-potential wind lease areas during this period, followed by chub mackerel
-(15\%), ocean quahog (13\%), and Atlantic mackerel (10\%). The Illex
-squid and bluefish fisheries were the least affected, at 1-2\% maximum
-annual revenue affected, respectively. A maximum of 9\% of the annual
-scup revenues were affected by these areas, with similar effects for the
+The surfclam fishery could be the most affected fishery, with a maximum
+of 20\% of annual fishery revenue occurring within potential wind lease
+areas during this period, followed by chub mackerel (15\%), ocean quahog
+(13\%), and Atlantic mackerel (10\%). The \emph{Illex} squid and
+bluefish fisheries were the least affected, at 1-2\% maximum annual
+revenue affected, respectively. A maximum of 9\% of the annual scup
+revenues were affected by these areas, with similar effects for the
 longfin squid (8\%), blueline tilefish and black sea bass (7\%), and
 monkfish and golden tilefish (6\%) fisheries. The proposed New York
 Bight lease areas represented up to 5\% of total annual fishery revenue
@@ -1881,11 +1892,11 @@ Proposed wind development areas interact with the region's federal
 scientific surveys. The total survey area overlap ranges from 1-14\% for
 all Greater Atlantic federal surveys. Individual survey strata have
 significant interaction with wind, including the sea scallop survey (up
-to 96\% of individual strata) and the bottom trawl survey (up to 60\%
-strata overlap). Additionally, up to 50\% of the southern New England
-North Atlantic right whale survey's area overlaps with proposed project
-areas. A region-wide survey mitigation program is underway (Table
-\ref{tab:wind-survey-table})
+to 96\% of individual strata) and the bottom trawl survey (BTS, up to
+60\% strata overlap). Additionally, up to 50\% of the southern New
+England North Atlantic right whale survey's area overlaps with proposed
+project areas. A region-wide survey mitigation program is underway
+(Table \ref{tab:wind-survey-table})
 
 \begin{table}
 
@@ -1913,8 +1924,8 @@ Atlantic Shark COASTPAN & No & No & No & No & No & No\\
 \end{tabular}}
 \end{table}
 
-Equity and environmental justice are priority concerns with offshore
-wind development and fisheries impacts in the Northeast. Fig.
+Equity and environmental justice (EJ) are priority concerns with
+offshore wind development and fisheries impacts in the Northeast. Fig.
 \ref{fig:wea-port-rev} links historic port revenue (2008-2019) from
 within all wind lease areas as a proportion of the port's total revenue
 based on vessel trip reports as described in the revenue and landings of
@@ -1927,7 +1938,7 @@ wind areas.
 
 \includegraphics{docs/images/wea-port-rev-1} \hfill{}
 
-\caption{Percent of port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA.}\label{fig:wea-port-rev}
+\caption{Percent of port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.}\label{fig:wea-port-rev}
 \end{figure}
 
 For example, Atlantic City, NJ had a minimum of 11\% and maximum of 30\%
@@ -1946,7 +1957,7 @@ environmental justice communities who work in the commercial fishing and
 for-hire fishing industry due to disruptions to fish populations,
 restrictions on navigation and increased vessel traffic, as well as
 existing vulnerabilities of low-income workers to economic impacts
-{[}\protect\hyperlink{ref-boem_vineyard_2020}{45}{]}.
+{[}\protect\hyperlink{ref-boem_vineyard_2020}{47}{]}.
 
 Top fishing communities high in environmental justice concerns (i.e.,
 Atlantic City, NJ, Newport News, VA, Hobucken and Beaufort, NC) should
@@ -1990,15 +2001,15 @@ fish, and protected species will be altered, potentially increasing
 uncertainty for management decision making.
 
 The increase of offshore wind development can have both positive (e.g.,
-employment opportunities) and negative effects (e.g., space-use
-conflicts). Continued increase in coastal development and gentrification
+employment opportunities) and negative (e.g., space-use conflicts)
+effects. Continued increase in coastal development and gentrification
 pressure has resulted in loss of fishing infrastructure space within
 ports. Understanding these existing pressures can allow for avoiding and
 mitigating negative impacts to our shore support industry and
 communities dependent on fishing. Some of the communities with the
 highest revenue overlap with offshore wind that are also vulnerable to
 gentrification pressure are Point Pleasant and Atlantic City, NJ, Ocean
-City, MD and Beaufort, NC.
+City, MD, and Beaufort, NC.
 
 \hypertarget{contributors}{%
 \section{Contributors}\label{contributors}}
@@ -2046,7 +2057,7 @@ introduced by small sample size, no trend is fit for \textless{} 30 year
 time series. Dashed lines represent mean values of time series unless
 the indicator is an anomaly, in which case the dashed line is equal to
 0. Shaded regions indicate the past ten years. If there are no new data
-for 2018, the shaded region will still cover this time period. The
+for 2021, the shaded region will still cover this time period. The
 spatial scale of indicators is either coastwide, Mid-Atlantic states
 (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or
 at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig.
@@ -2240,8 +2251,15 @@ doi:\href{https://doi.org/10.5670/oceanog.2018.110}{10.5670/oceanog.2018.110}}
 {Marine} {Heatwave}. Journal of Geophysical Research: Oceans. 2022;127:
 e2021JC017927. doi:\url{https://doi.org/10.1029/2021JC017927}}
 
-\leavevmode\hypertarget{ref-gawarkiewicz_characteristics_2019}{}%
+\leavevmode\hypertarget{ref-gawarkiewicz_increasing_nodate}{}%
 \CSLLeftMargin{20. }
+\CSLRightInline{Gawarkiewicz G, Fratantoni P, Bahr F, Ellertson A.
+Increasing {Frequency} of {Mid}-depth {Salinity} {Maximum} {Intrusions}
+in the {Middle} {Atlantic} {Bight}. Journal of Geophysical Research:
+Oceans. In Review; }
+
+\leavevmode\hypertarget{ref-gawarkiewicz_characteristics_2019}{}%
+\CSLLeftMargin{21. }
 \CSLRightInline{Gawarkiewicz G, Chen K, Forsyth J, Bahr F, Mercer AM,
 Ellertson A, et al. Characteristics of an {Advective} {Marine}
 {Heatwave} in the {Middle} {Atlantic} {Bight} in {Early} 2017. Frontiers
@@ -2249,28 +2267,28 @@ in Marine Science. 2019;6. Available:
 \url{https://www.frontiersin.org/article/10.3389/fmars.2019.00712}}
 
 \leavevmode\hypertarget{ref-potter_horizontal_2011}{}%
-\CSLLeftMargin{21. }
+\CSLLeftMargin{22. }
 \CSLRightInline{Potter IF, Galuardi B, Howell WH. Horizontal movement of
 ocean sunfish, {Mola} mola, in the northwest {Atlantic}. Marine Biology.
 2011;158: 531--540.
 doi:\href{https://doi.org/10.1007/s00227-010-1578-2}{10.1007/s00227-010-1578-2}}
 
 \leavevmode\hypertarget{ref-worm_predator_2003}{}%
-\CSLLeftMargin{22. }
+\CSLLeftMargin{23. }
 \CSLRightInline{Worm B, Lotze HK, Myers RA. Predator diversity hotspots
 in the blue ocean. Proceedings of the National Academy of Sciences.
 2003;100: 9884--9888.
 doi:\href{https://doi.org/10.1073/pnas.1333941100}{10.1073/pnas.1333941100}}
 
 \leavevmode\hypertarget{ref-lentz_seasonal_2017}{}%
-\CSLLeftMargin{23. }
+\CSLLeftMargin{24. }
 \CSLRightInline{Lentz SJ. Seasonal warming of the {Middle} {Atlantic}
 {Bight} {Cold} {Pool}. Journal of Geophysical Research: Oceans.
 2017;122: 941--954.
 doi:\href{https://doi.org/10.1002/2016JC012201}{10.1002/2016JC012201}}
 
 \leavevmode\hypertarget{ref-chen_seasonal_2018}{}%
-\CSLLeftMargin{24. }
+\CSLLeftMargin{25. }
 \CSLRightInline{Chen Z, Curchitser E, Chant R, Kang D. Seasonal
 {Variability} of the {Cold} {Pool} {Over} the {Mid}-{Atlantic} {Bight}
 {Continental} {Shelf}. Journal of Geophysical Research: Oceans.
@@ -2278,7 +2296,7 @@ doi:\href{https://doi.org/10.1002/2016JC012201}{10.1002/2016JC012201}}
 doi:\href{https://doi.org/10.1029/2018JC014148}{10.1029/2018JC014148}}
 
 \leavevmode\hypertarget{ref-miles_offshore_2021}{}%
-\CSLLeftMargin{25. }
+\CSLLeftMargin{26. }
 \CSLRightInline{Miles T, Murphy S, Kohut J, Borsetti S, Munroe D.
 Offshore {Wind} {Energy} and the {Mid}-{Atlantic} {Cold} {Pool}: {A}
 {Review} of {Potential} {Interactions}. Marine Technology Society
@@ -2286,7 +2304,7 @@ Journal. 2021;55: 72--87.
 doi:\href{https://doi.org/10.4031/MTSJ.55.4.8}{10.4031/MTSJ.55.4.8}}
 
 \leavevmode\hypertarget{ref-miller_state-space_2016}{}%
-\CSLLeftMargin{26. }
+\CSLLeftMargin{27. }
 \CSLRightInline{Miller TJ, Hare JA, Alade LA. A state-space approach to
 incorporating environmental effects on recruitment in an age-structured
 assessment model with an application to southern {New} {England}
@@ -2294,8 +2312,14 @@ yellowtail flounder. Canadian Journal of Fisheries and Aquatic Sciences.
 2016;73: 1261--1270.
 doi:\href{https://doi.org/10.1139/cjfas-2015-0339}{10.1139/cjfas-2015-0339}}
 
+\leavevmode\hypertarget{ref-du_pontavice_incorporating_nodate}{}%
+\CSLLeftMargin{28. }
+\CSLRightInline{Pontavice H du, Miller TJ, Stock BC, Chen Z, Saba VS.
+Incorporating environmental effects from ocean models improves a marine
+fish stock assessment. ICES Journal of Marine Science. In Review; }
+
 \leavevmode\hypertarget{ref-friedland_middle_2022}{}%
-\CSLLeftMargin{27. }
+\CSLLeftMargin{29. }
 \CSLRightInline{Friedland KD, Miles T, Goode AG, Powell EN, Brady DC.
 The {Middle} {Atlantic} {Bight} {Cold} {Pool} is warming and shrinking:
 {Indices} from in situ autumn seafloor temperatures. Fisheries
@@ -2303,7 +2327,7 @@ Oceanography. 2022;31: 217--223.
 doi:\href{https://doi.org/10.1111/fog.12573}{10.1111/fog.12573}}
 
 \leavevmode\hypertarget{ref-wrightfairbanks_autonomous_2020}{}%
-\CSLLeftMargin{28. }
+\CSLLeftMargin{30. }
 \CSLRightInline{Wright‐Fairbanks EK, Miles TN, Cai W-J, Chen B, Saba GK.
 Autonomous {Observation} of {Seasonal} {Carbonate} {Chemistry}
 {Dynamics} in the {Mid}-{Atlantic} {Bight}. Journal of Geophysical
@@ -2311,7 +2335,7 @@ Research: Oceans. 2020;125: e2020JC016505.
 doi:\url{https://doi.org/10.1029/2020JC016505}}
 
 \leavevmode\hypertarget{ref-madin_periodic_2006}{}%
-\CSLLeftMargin{29. }
+\CSLLeftMargin{31. }
 \CSLRightInline{Madin LP, Kremer P, Wiebe PH, Purcell JE, Horgan EH,
 Nemazie DA. Periodic swarms of the salp {Salpa} aspera in the {Slope}
 {Water} off the {NE} {United} {States}: {Biovolume}, vertical migration,
@@ -2320,21 +2344,21 @@ Research Papers. 2006;53: 804--819.
 doi:\href{https://doi.org/10.1016/j.dsr.2005.12.018}{10.1016/j.dsr.2005.12.018}}
 
 \leavevmode\hypertarget{ref-deibel_predictability_2009}{}%
-\CSLLeftMargin{30. }
+\CSLLeftMargin{32. }
 \CSLRightInline{Deibel D, Paffenhofer G-A. Predictability of patches of
 neritic salps and doliolids ({Tunicata}, {Thaliacea}). Journal of
 Plankton Research. 2009;31: 1571--1579.
 doi:\href{https://doi.org/10.1093/plankt/fbp091}{10.1093/plankt/fbp091}}
 
 \leavevmode\hypertarget{ref-steimle_energy_1985}{}%
-\CSLLeftMargin{31. }
+\CSLLeftMargin{33. }
 \CSLRightInline{Steimle F, Terranova R. Energy {Equivalents} of {Marine}
 {Organisms} from the {Continental} {Shelf} of the {Temperate}
 {Northwest} {Atlantic}. Journal of Northwest Atlantic Fishery Science.
 1985;6. doi:\href{https://doi.org/10.2960/J.v6.a11}{10.2960/J.v6.a11}}
 
 \leavevmode\hypertarget{ref-lawson_important_1998}{}%
-\CSLLeftMargin{32. }
+\CSLLeftMargin{34. }
 \CSLRightInline{Lawson JW, Magalhães AM, Miller EH. Important prey
 species of marine vertebrate predators in the northwest {Atlantic}:
 Proximate composition and energy density. Marine Ecology Progress
@@ -2342,14 +2366,14 @@ Series. 1998;164: 13--20. Available:
 \url{https://www.jstor.org/stable/24825521}}
 
 \leavevmode\hypertarget{ref-le_cren_length-weight_1951}{}%
-\CSLLeftMargin{33. }
+\CSLLeftMargin{35. }
 \CSLRightInline{Le Cren ED. The {Length}-{Weight} {Relationship} and
 {Seasonal} {Cycle} in {Gonad} {Weight} and {Condition} in the {Perch}
 ({Perca} fluviatilis). Journal of Animal Ecology. 1951;20: 201--219.
 doi:\href{https://doi.org/10.2307/1540}{10.2307/1540}}
 
 \leavevmode\hypertarget{ref-zhang_chesapeake_2018}{}%
-\CSLLeftMargin{34. }
+\CSLLeftMargin{36. }
 \CSLRightInline{Zhang Q, Murphy RR, Tian R, Forsyth MK, Trentacoste EM,
 Keisman J, et al. Chesapeake {Bay}'s water quality condition has been
 recovering: {Insights} from a multimetric indicator assessment of thirty
@@ -2358,14 +2382,14 @@ years of tidal monitoring data. Science of The Total Environment.
 doi:\href{https://doi.org/10.1016/j.scitotenv.2018.05.025}{10.1016/j.scitotenv.2018.05.025}}
 
 \leavevmode\hypertarget{ref-bauer_temperature-_2010}{}%
-\CSLLeftMargin{35. }
+\CSLLeftMargin{37. }
 \CSLRightInline{Bauer LJ, Miller TJ. Temperature-, {Salinity}-, and
 {Size}-{Dependent} {Winter} {Mortality} of {Juvenile} {Blue} {Crabs} (
 {Callinectes} sapidus ). Estuaries and Coasts. 2010;33: 668--677.
 Available: \url{https://www.jstor.org/stable/40663676}}
 
 \leavevmode\hypertarget{ref-hines_predicting_2011}{}%
-\CSLLeftMargin{36. }
+\CSLLeftMargin{38. }
 \CSLRightInline{Hines AH, Johnson EG, Darnell MZ, Rittschof D, Miller
 TJ, Bauer LJ, et al. Predicting {Effects} of {Climate} {Change} on
 {Blue} {Crabs} in {Chesapeake} {Bay}. Biology and {Management} of
@@ -2374,7 +2398,7 @@ Grant, University of Alaska Fairbanks; 2011. pp. 109--127.
 doi:\href{https://doi.org/10.4027/bmecpcc.2010.22}{10.4027/bmecpcc.2010.22}}
 
 \leavevmode\hypertarget{ref-rome_linking_2005}{}%
-\CSLLeftMargin{37. }
+\CSLLeftMargin{39. }
 \CSLRightInline{Rome MS, Young-Williams AC, Davis GR, Hines AH. Linking
 temperature and salinity tolerance to winter mortality of {Chesapeake}
 {Bay} blue crabs ({Callinectes} sapidus). Journal of Experimental Marine
@@ -2382,14 +2406,14 @@ Biology and Ecology. 2005;319: 129--145.
 doi:\href{https://doi.org/10.1016/j.jembe.2004.06.014}{10.1016/j.jembe.2004.06.014}}
 
 \leavevmode\hypertarget{ref-johnson_savory_2015}{}%
-\CSLLeftMargin{38. }
+\CSLLeftMargin{40. }
 \CSLRightInline{Johnson DS. The {Savory} {Swimmer} {Swims} {North}: {A}
 {Northern} {Range} {Extension} of the {Blue} {Crab} {Callinectes}
 {Sapidus}? Journal of Crustacean Biology. 2015;35: 105--110.
 doi:\href{https://doi.org/10.1163/1937240X-00002293}{10.1163/1937240X-00002293}}
 
 \leavevmode\hypertarget{ref-kimmel_relationship_2014}{}%
-\CSLLeftMargin{39. }
+\CSLLeftMargin{41. }
 \CSLRightInline{Kimmel DG, Tarnowski M, Newell RIE. The {Relationship}
 between {Interannual} {Climate} {Variability} and {Juvenile} {Eastern}
 {Oyster} {Abundance} at a {Regional} {Scale} in {Chesapeake} {Bay}.
@@ -2397,7 +2421,7 @@ North American Journal of Fisheries Management. 2014;34: 1--15.
 doi:\href{https://doi.org/10.1080/02755947.2013.830999}{10.1080/02755947.2013.830999}}
 
 \leavevmode\hypertarget{ref-pousse_energetic_2020}{}%
-\CSLLeftMargin{40. }
+\CSLLeftMargin{42. }
 \CSLRightInline{Pousse E, Poach ME, Redman DH, Sennefelder G, White LE,
 Lindsay JM, et al. Energetic response of {Atlantic} surfclam {Spisula}
 solidissima to ocean acidification. Marine Pollution Bulletin. 2020;161:
@@ -2405,7 +2429,7 @@ solidissima to ocean acidification. Marine Pollution Bulletin. 2020;161:
 doi:\href{https://doi.org/10.1016/j.marpolbul.2020.111740}{10.1016/j.marpolbul.2020.111740}}
 
 \leavevmode\hypertarget{ref-mills_fisheries_2013}{}%
-\CSLLeftMargin{41. }
+\CSLLeftMargin{43. }
 \CSLRightInline{Mills K, Pershing A, Brown C, Chen Y, Chiang F-S,
 Holland D, et al. Fisheries {Management} in a {Changing} {Climate}:
 {Lessons} {From} the 2012 {Ocean} {Heat} {Wave} in the {Northwest}
@@ -2413,7 +2437,7 @@ Holland D, et al. Fisheries {Management} in a {Changing} {Climate}:
 doi:\href{https://doi.org/10.5670/oceanog.2013.27}{10.5670/oceanog.2013.27}}
 
 \leavevmode\hypertarget{ref-powell_ocean_2020}{}%
-\CSLLeftMargin{42. }
+\CSLLeftMargin{44. }
 \CSLRightInline{Powell EN, Ewing AM, Kuykendall KM. Ocean quahogs
 ({Arctica} islandica) and {Atlantic} surfclams ({Spisula} solidissima)
 on the {Mid}-{Atlantic} {Bight} continental shelf and {Georges} {Bank}:
@@ -2423,7 +2447,7 @@ Palaeoclimatology, Palaeoecology. 2020;537: 109205.
 doi:\href{https://doi.org/10.1016/j.palaeo.2019.05.027}{10.1016/j.palaeo.2019.05.027}}
 
 \leavevmode\hypertarget{ref-pace_two-hundred_2018}{}%
-\CSLLeftMargin{43. }
+\CSLLeftMargin{45. }
 \CSLRightInline{Pace SM, Powell EN, Mann R. Two-hundred year record of
 increasing growth rates for ocean quahogs ({Arctica} islandica) from the
 northwestern {Atlantic} {Ocean}. Journal of Experimental Marine Biology
@@ -2431,14 +2455,14 @@ and Ecology. 2018;503: 8--22.
 doi:\href{https://doi.org/10.1016/j.jembe.2018.01.010}{10.1016/j.jembe.2018.01.010}}
 
 \leavevmode\hypertarget{ref-perretti_regime_2017}{}%
-\CSLLeftMargin{44. }
+\CSLLeftMargin{46. }
 \CSLRightInline{Perretti C, Fogarty M, Friedland K, Hare J, Lucey S,
 McBride R, et al. Regime shifts in fish recruitment on the {Northeast}
 {US} {Continental} {Shelf}. Marine Ecology Progress Series. 2017;574:
 1--11. doi:\href{https://doi.org/10.3354/meps12183}{10.3354/meps12183}}
 
 \leavevmode\hypertarget{ref-boem_vineyard_2020}{}%
-\CSLLeftMargin{45. }
+\CSLLeftMargin{47. }
 \CSLRightInline{BOEM. Vineyard {Wind} 1 {Offshore} {Wind} {Energy}
 {Project} {Supplement} to the {Draft} {Environmental} {Impact}
 {Statement}. {OCS} {EIS}/{EA}, {BOEM} 2020-025 {[}Internet{]}. 2020.
