@@ -143,7 +143,7 @@ Declining commercial and recreational landings can be driven by many interacting
 
 #### Stock Status and Catch Limits
 Single species management objectives (1. maintaining biomass above minimum thresholds and 2. maintaining fishing mortality below overfishing limits) are being met for all but two MAFMC managed species, though the status of six stocks is unknown (Fig. \ref{fig:stock-status}). 
-```{r stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Spiny dogfish and both Goosefish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
+```{r stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Spiny dogfish and both Goosefish). The dotted verticxal line is the target bioomass reference point of Bmsy. The dashed lines are the management trehsolds of one half Bmsy (vertical) or Fmsy (horizontal). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
 Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (Fig. \ref{fig:abcacl-stacked}). With the addition of blueline tilefish management in 2017, an additional ABC and ACL contribute to the total 2017-2020. Discounting blueline tilefish, the recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. 
@@ -253,7 +253,7 @@ Declining recreational fleet effort diversity, as noted [above](#recreational-op
 
 Stability in recreational species catch diversity has been maintained by a different set of species over time. A recent increase in Atlantic States Marine Fisheries Commission (ASMFC) and South Atlantic Fishery Management Council (SAFMC) managed species in recreational catch is helping to maintain diversity in the same range that MAFMC and New England Fishery Management Council (NEFMC) species supported in the 1990s.
 
-Ecological diversity indices can provide insight into ecosystem structure. Changes in ecological diversity over time may indicate altered ecosystem structure with implications for fishery productivity and management [@friedland_changes_2020].
+Ecological diversity indices can provide insight into ecosystem structure. Changes in ecological diversity over time may indicate altered ecosystem structure with implications for fishery productivity and management [@friedland_changes_2020]. 
 
 Increasing zooplankton diversity through 2019 is driven by the declining dominance of the calanoid copepod *Centropages typicus*, with a similar composition of other zooplankton species. 
 
@@ -360,7 +360,7 @@ Strong evidence exists to suggest that interactions between right whales and bot
 
 The UMEs are under investigation and are likely the result of multiple drivers. For all three large whale UMEs, human interaction appears to have contributed to increased mortalities, although investigations are not complete. An investigation into the cause of the seal UME so far suggests phocine distemper virus as a potential cause. 
 
-A marine mammal climate vulnerability assessment is currently underway for Atlantic and Gulf of Mexico populations and will be reported on in future versions of this report.
+A climate vulnerability assessment is currently underway for Atlantic and Gulf of Mexico marine mammal populations and will be reported on in future versions of this report.
 
 
 # Risks to meeting fishery management objectives
@@ -877,7 +877,19 @@ epumap <- ggplot() +
   ylab("Latitude") +
   labs(tag = "b")
 
+#epumap <- magick::image_read("images/EPU_Designations_Map.jpg")
+
 psample + plot_spacer() + epumap + plot_layout(ncol = 3, widths=c(3,.5,4.5))
+
+# psample
+# 
+# knitr::include_graphics("images/EPU_Designations_Map.jpg")
+# magick::image_read("images/EPU_Designations_Map.jpg")
+# epumap <- magick::image_read("images/EPU_Designations_Map.jpg") %>%
+#  magick::image_scale("10%")
+# epumap <- magick::image_scale(epumap, "50%")
+
+# epumap
 
 ```
 
