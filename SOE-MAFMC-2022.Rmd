@@ -729,7 +729,7 @@ kable(dt,"latex", booktabs = TRUE,
 
 ```
 
-Proposed wind development areas interact with the region’s federal scientific surveys. The total survey area overlap ranges from 1-14% for all Greater Atlantic federal surveys. Individual survey strata have significant interaction with wind, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey  (BTS, up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. A region-wide survey mitigation program is underway (Table \ref{tab:wind-survey-table})
+Proposed wind development areas interact with the region’s federal scientific surveys. Scientific surveys are impacted by offshore wind in four ways: 1. Exclusion of NOAA Fisheries’ sampling platforms from the wind development area due to operational and safety limitations; 2.Impacts on the random-stratified statistical design that is the basis for scientific assessments, advice, and analyses; 3.Alteration of benthic and pelagic habitats, and airspace in and around the wind energy development, requiring new designs and methods to sample new habitats; and, 4.Reduced sampling productivity through navigation impacts of wind energy infrastructure on aerial and vessel survey operations. Increase vessel transit between stations may decrease data collections that are already limited by annual days-at-sea day allocations. The total survey area overlap ranges from 1-14% for all Greater Atlantic federal surveys. Individual survey strata have significant interaction with wind, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey  (BTS, up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. A region-wide survey mitigation program is underway (Table \ref{tab:wind-survey-table})
 
 ```{r wind-survey-table}
 #, out.width="90%", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-survey-table.R")
@@ -768,7 +768,7 @@ kable(dat, col.names = column_names, "latex", booktabs = TRUE,
 
 Equity and environmental justice (EJ) are priority concerns with offshore wind development and fisheries impacts in the Northeast. Fig. \ref{fig:wea-port-rev} links historic port revenue (2008-2019) from within all wind lease areas as a proportion of the port’s total revenue based on vessel trip reports as described in the revenue and landings of species in the wind indicator above. The range (minimum and maximum) of total percent revenue from within wind energy areas is presented in the graph and ports are sorted from greatest to least revenue from within wind areas. 
 
-```{r wea-port-rev, fig.cap="Percent of port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=5.5, fig.asp=1, fig.align='left'}
+```{r wea-port-rev, fig.cap="Percent of port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=6.5, fig.asp=.85, fig.align='left'}
 
 ```
 
@@ -780,7 +780,7 @@ Top fishing communities high in environmental justice concerns (i.e., Atlantic C
 ### Implications
 Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region (Fig. \ref{fig:wind-dev-cumul}).  
 
-Up to 20% of total average revenue for major Mid-Atlantic commercial species in lease areas could be displaced if all sites are developed. Displaced fishing effort can alter historic fishing area, timing, and method patterns, which can in turn change habitat, species (managed and protected), and fleet interactions. Several factors, including fishery regulations, fishery availability, and user conflicts affect where, when, and how fishing effort may be displaced. 
+Up to 20% of total average revenue for major Mid-Atlantic commercial species in lease areas could be forgone or reduced and associated effort displaced if all sites are developed. Displaced fishing effort can alter historic fishing area, timing, and method patterns, which can in turn change habitat, species (managed and protected), and fleet interactions. Several factors, including fishery regulations, fishery availability, and user conflicts affect where, when, and how fishing effort may be displaced. 
 
 Right whales have been observed foraging in proposed wind areas (Fig \ref{fig:whales-wind}). Altered local oceanography could affect right whale prey availability.
 
