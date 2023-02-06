@@ -3,18 +3,20 @@ title:
 csl: plos.csl
 fontsize: 10pt
 output:
-  pdf_document:
+  bookdown::word_document2:
+    toc: false
+  bookdown::html_document2: 
+    df_print: paged
+  bookdown::pdf_document2:
     includes:
       in_header: latex/header1.tex
     keep_tex: yes
-  html_document:
-    df_print: paged
-  word_document: default
 link-citations: yes
 geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 subparagraph: yes
 bibliography: SOE2022.bib
 urlcolor: blue
+always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
@@ -90,18 +92,30 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                "Relative biomass of feeding guilds, zooplankton",
                                "Estuarine and offshore habitat conditions"))
 
-knitr::kable(mng_obj, linesep = "",
-      col.names = c("Objective Categories","Indicators reported"),
-      caption = "Ecosystem-scale fishery management objectives in the Mid-Atlantic Bight",
-      #align = 'c',
-      booktabs = T) %>%
-  kable_styling(latex_options = "hold_position", "scale_down") %>%
- # column_spec(c(2), width = c("25em")) %>%
-  row_spec(0, bold = TRUE) %>%
- # group_rows("Provisioning/Cultural", 1,4) %>%
- # group_rows("Supporting/Regulating", 5,9)
-  pack_rows("Provisioning and Cultural Services", 1,6) %>%
-  pack_rows("Supporting and Regulating Services", 7,10)
+# knitr::kable(mng_obj, linesep = "",
+#       col.names = c("Objective Categories","Indicators reported"),
+#       caption = "Ecosystem-scale fishery management objectives in the Mid-Atlantic Bight",
+#       #align = 'c',
+#       booktabs = T) %>%
+#   kable_styling(latex_options = "hold_position", "scale_down") %>%
+#  # column_spec(c(2), width = c("25em")) %>%
+#   row_spec(0, bold = TRUE) %>%
+#  # group_rows("Provisioning/Cultural", 1,4) %>%
+#  # group_rows("Supporting/Regulating", 5,9)
+#   pack_rows("Provisioning and Cultural Services", 1,6) %>%
+#   pack_rows("Supporting and Regulating Services", 7,10)
+
+mng_obj$service <- c(rep("Provisioning and Cultural Services", 6), 
+                     rep("Supporting and Regulating Services", 4))
+
+flextable::as_grouped_data(mng_obj, groups = "service") %>% 
+  flextable::as_flextable(hide_grouplabel=TRUE) %>% 
+  flextable::align(i = ~ !is.na(service), align = "left") %>% 
+  flextable::set_header_labels(Objective.Cateories = "Objective Categories",
+                               Indicators.reported = "Indicators reported") %>%
+  flextable::set_caption("Ecosystem-scale fishery management objectives in the Mid-Atlantic Bight") %>%
+  flextable::autofit()
+  
 
 
 ```
@@ -124,6 +138,10 @@ Coastwide landings at the Federal fishery management plan (FMP) level were mixed
 
 ```{r, total-landings, fig.cap = paste0("Total commercial seafood landings through 2019 (black) and ",region," managed seafood landings (red)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
 ```
+
+```{r, comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.4}
+```
+
 
 Total recreational harvest (retained fish presumed to be eaten) is down in the MAB (Fig. \ref{fig:rec-landings}). Although harvest has increased from a historic low in 2018, it is still below the average value for the series.
 ```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of pounds) in the ",region," region."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
@@ -186,6 +204,15 @@ Other environmental changes require monitoring as they may become important driv
 ### Indicators: revenue (a proxy for profits)  
 Total commercial revenues (black) within the Mid-Atlantic are not yet available for 2020; Figure \ref{fig:comm-revenue} includes data only through 2019. However, we do not anticipate the long-term declining trend in revenue from managed species (red) to change. Coast-wide, a number of species managed by the MAFMC have seen decreases in revenue when compared to the average revenue generated between 2015 and 2019 [@thunberg_northeast_2021]. This decline was driven by a mix of landings declines (monkfish, combined surfclam and ocean quahog) and price declines (monkfish, combined squid species, and combined summer flounder, scup, and black sea bass). 
 ```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Revenue through 2019 for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
+```
+
+Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes:  harvest levels, the mix of species landed, price changes, or a combination of these. The Bennet Indicator decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices.
+
+Total revenue trends, decomposed to price and volume indicators (Fig. \ref{fig:bennet}), mirror price and volume indicator trends for the benthos (clams; orange in Fig. \ref{fig:bennet-all}) group, especially over the past decade. 
+```{r bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"), fig.width=6, fig.asp=.35}
+```
+
+```{r bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.35}
 ```
 
 ### Implications 
@@ -285,7 +312,7 @@ Fig. \ref{fig:commercial-EJ} shows the detailed scores of the three environmenta
 #knitr::include_graphics("images/EJ_Commercial_MAB.png")
 
 #get rid of the gray excel outline using R package magick
-ComEJ <- magick::image_read("images/EJ_Commercial_MAB.png") 
+ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Commercial_MAB_2023.PNG") 
 
 # from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 # get height, width and crop longer side to match shorter side
@@ -312,7 +339,7 @@ Fig. \ref{fig:recreational-EJ} orders communities clockwise in a descending orde
 
 
 #get rid of the gray excel outline using R package magick
-RecEJ <- magick::image_read("images/EJ_Recreational_MAB.png") 
+RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Recreational_MAB_2023.PNG") 
 
 # from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 # get height, width and crop longer side to match shorter side
@@ -337,7 +364,13 @@ Protected species include marine mammals protected under the Marine Mammal Prote
 Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs).
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
-As of 2019, rolling 5 year average bycatch indices for both harbor porpoise and gray seal bycatch were below current PBR thresholds, thus meeting management objectives. However, the 2019 bycatch estimate for gray seals was the highest in the time series and above PBR for that year (see 2021 report^[https://repository.library.noaa.gov/view/noaa/29525]). Bycatch indices were not updated because of low 2020 observer coverage caused by COVID-19 restrictions.
+Average indices for both harbor porpoise (Fig. \ref{fig:harborporpoise}) and gray seal bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. However, the 2019 bycatch estimate for gray seals was highest in the time series.
+```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England fisheries (blue) and the potential biological removal (red). 2019 estimates are preliminary.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=6}
+```
+
+```{r grayseal, fig.cap="Gray Seal average bycatch estimate for New England gillnet fisheries (blue) and and the potential biological removal (red). 2019 estimates are preliminary.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.width=6}
+```
+
 
 The North Atlantic right whale population was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:narw-abundance}). Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are fewer than 100 adult females remaining in the population. 
 ```{r narw-abundance, fig.cap = "Estimated North Atlanic right whale abundance on the Northeast Shelf.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")}
@@ -378,7 +411,11 @@ Ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-
 
 ```
 
-```{r bottom-temp, fig.cap="Annual bottom temperature in the MAB (black = in situ observations, red = observations from modeled reanalysis for comparison).", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
+```{r bottom-temp, fig.cap="MAB seasonal bottom temperature (BT) anomaly time series. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall. The final 2 years of each time series (open circles) are modeled estimates subject to change.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp-hi-res-ts.R"), fig.width = 8, fig.asp = .6}
+```
+
+```{r transition, fig.cap="The annual total number of days between the spring thermal transition date and the fall thermal transition date.  The transition dates are defined as the day of the year when surface temperatures changeover from cool to warm conditions in the spring and back to cool conditions in the fall.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")}
+
 ```
 
 The Chesapeake Bay experienced a warmer-than-average winter and fall in 2021, and average conditions in the spring and summer, relative to the baseline period 2008-2020 (Fig. \ref{fig:ches-temp-sal}) as measured by satellites^[https://coastwatch.noaa.gov/cw/index.html] (note that Chesapeake Bay seasonal definitions and baseline periods are different from the sea surface temperature anomalies reported in Fig.\ref{fig:seasonal-sst-anom-gridded} for the full Mid-Atlantic region). Similar 2021 seasonal temperature patterns were observed by bouys^[https://buoybay.noaa.gov/] (Fig. \ref{fig:ches-temp-sal}), which also indicated above-average salinity in the Chesapeake Bay throughout the summer, with a decrease in salinity from late July to early August (Fig. \ref{fig:ches-temp-sal}). Salinity fell below average in September and remained at lower levels throughout fall 2021.
@@ -448,7 +485,7 @@ tempbouy <- ecodata::ch_bay_temp %>%
   ggplot2::geom_ribbon(aes(x = Time, ymin = minLTAC, ymax = maxLTAC), fill = "grey", alpha = 0.5)+
   
   ggplot2::geom_line(aes(x = Time, y = YearLTAC, color= "Long Term Average 2010-2020")) +
-  ggplot2::geom_line(aes(x = Time, y = YearC, color = "Daily 2021")) +
+  ggplot2::geom_line(aes(x = Time, y = YearC, color = "Daily 2022")) +
   ggplot2::ylab("Temperature (C)") +
   ggplot2::ggtitle("Chesapeake Bay Temperature") +
   ggplot2::theme(legend.position = "bottom", 
@@ -463,7 +500,7 @@ salbouy <- ecodata::ch_bay_sal %>%
   ggplot2::geom_ribbon(aes(x = Time, ymin = minLTA, ymax = maxLTA), fill = "grey", alpha = 0.5)+
   
   ggplot2::geom_line(aes(x = Time, y = YearLTA, color= "Long Term Average 2010-2020")) +
-  ggplot2::geom_line(aes(x = Time, y = Year, color = "Daily 2021")) +
+  ggplot2::geom_line(aes(x = Time, y = Year, color = "Daily 2022")) +
   ggplot2::ylab("Salinity") +
   ggplot2::ggtitle("Chesapeake Bay Salinity") +
   ggplot2::theme(legend.position = "bottom", 
@@ -483,7 +520,7 @@ A marine heatwave is a warming event that lasts for five or more days with sea s
 
 In 2021, the Mid-Atlantic Bight experienced seven distinct marine heatwaves with the strongest event beginning on September 13 and lasting 53 days (Fig. \ref{fig:heatwave-year}). Relative to prior years, this marine heatwave ranked 9^th^ on record in terms of maximum intensity and 4^th^ on record in terms of cumulative intensity. 
 
-```{r heatwave-year, fig.cap="Marine heatwave events (red shading above black line) in the Mid-Atlantic occuring in 2021.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
+```{r heatwave-year, fig.cap="Marine heatwave events (red shading above black line) in the Mid-Atlantic occuring in 2021.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year-detrended.R"), fig.width=5, fig.asp=.6}
 
 ```
 
@@ -533,7 +570,7 @@ wcr %>%
   ecodata::theme_title()
 
 # right
-knitr::include_graphics("images/D_20210608-MUR-SST-WCR.PNG")
+#knitr::include_graphics("images/D_20210608-MUR-SST-WCR.PNG")
 
 ```
 
@@ -553,7 +590,7 @@ This seasonal pH minimum in the Mid-Atlantic is associated with cold pool subsur
 
 ```{r mab-oa, out.width = '80%', fig.cap = "Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021. Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic."}
 
-knitr::include_graphics("images/Saba_Fig_SOE_MAFMC - Grace Saba.png")
+knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC%20-%20Grace%20Saba.jpg")
 
 ```
 
@@ -577,13 +614,18 @@ Nutritional value (energy content) of juvenile and adult forage fish as prey is 
 ```{r energy-density, fig.cap="Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
+#### Forage Fish Biomass Index
+New. Add text, decide on location
+```{r foragebio, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.6}
+```
+
 #### Fish Condition
 The health and well being of individual fish can be related to body shape condition indices (i.e., weight at a given length) such as relative condition index, which is the ratio of observed weight to predicted weight based on length [@le_cren_length-weight_1951]. Heavier and fatter fish at a given length have higher relative condition which is expected to improve growth, reproductive output, and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019. However, most species in the MAB had below average or poor condition again in 2021 (Fig. \ref{fig:mab-cf}). Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species. 
 
 
 ```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", out.width = '100%'}
 
-knitr::include_graphics("images/MAB_Condition_allsex_2022_viridis.jpg")
+knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg")
 ```
 
 #### Fish Productivity
@@ -593,6 +635,10 @@ We describe patterns of aggregate fish productivity in the Mid-Atlantic with the
 
 ```
 
+Use?
+```{r productivity-assessment, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R"), fig.asp=.75}
+
+```
 
 ### Ecosystem Structure Indicators: distribution shifts, diversity, predators
 As noted in the [Landings Implications section above](#implications), stocks are shifting distribution throughout the region. In aggregate, fish stocks are moving northeast along the shelf and into deeper waters.
@@ -619,6 +665,15 @@ A recent stable isotope study utilizing gray seal scat samples obtained from Mas
 
 #### Habitat Assessments
 The Northeast Regional Marine Fish Habitat Assessment (NRHA) is a collaborative effort to describe and characterize estuarine, coastal, and offshore fish habitat distribution, abundance, and quality in the Northeast. This includes mapping inshore and offshore habitat types used by focal fish species, summarizing impacts of habitat climate vulnerability on these species, modeling predicted future species distributions, and developing a publicly accessible decision support tool to visualize these results. This is a three-year project led by the New England and Mid-Atlantic Fishery Management Councils in collaboration with many partners including NOAA Fisheries, and will be completed in July 2022^[https://www.mafmc.org/nrha].
+
+#### New habitat model-based richness estimates
+Add text
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-habitat-richness.R"), fig.asp=0.8}
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-habitat-shannon.R"), fig.asp=0.8}
+```
 
 As part of the NRHA work, climate vulnerability information from NOAA’s Habitat Climate Vulnerability Assessment [@farr_assessment_2021] and the Northeast Fish and Shellfish Climate Vulnerability Assessment [@hare_vulnerability_2016]^[https://www.fisheries.noaa.gov/new-england-mid-atlantic/climate/northeast-vulnerability-assessment] is synthesized for approximately 70 species in the northeast region. For example, black sea bass, scup, and summer founder have been linked to several highly vulnerable nearshore habitats from salt marsh, submerged aquatic vegetation, and shallow estuarine and marine reefs. Details on highly vulnerable habitats with linkages to a variety of species, including which life stages have different levels of dependence on a particular habitat, are available in a detailed table^[https://noaa-edab.github.io/ecodata/Hab_table].
 
@@ -679,6 +734,10 @@ Changes in the cold pool habitat can affect species distribution, recruitment, a
 #### Distribution shift impacts
 Trends for a suite of 48 commercially or ecologically important fish species along the entire Northeast Shelf continue to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:species-dist}). We hope to expand this analysis beyond fish. Marine mammal distribution maps are available online^[https://www.nefsc.noaa.gov/AMAPPSviewer/]; updated maps and trends are currently being developed.
 
+*New Indicator: protected species shifts*
+```{r protectedspp-dist-shifts, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=7, fig.asp=0.8}
+```
+
 Shifting species distributions alter both species interactions and fishery interactions. In particular, shifting species distributions can alter expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.
 
 #### Ecosystem productivity change impacts
@@ -695,9 +754,10 @@ As of February 2022, 24 offshore wind development projects are proposed for cons
 ```{r wind-proposed-dev, fig.cap='Proposed wind development on the northeast shelf.', code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R")}
 ```
 
+*2023 fig not yet on github*
 ```{r wind-dev-cumul, fig.cap = "All Northeast Project areas by year construction ends (each project has 2 year construction period).", out.width='90%'}
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
-knitr::include_graphics("images/offshore_wind_timeline.png")
+knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/offshore_wind_timeline.png")
 ```
 
 Just over 2,500 foundations and more than 7,000 miles of inter-array and offshore export cables are proposed to date. The colored chart in Fig. \ref{fig:wind-dev-cumul} also presents the offshore wind development timeline in the Greater Atlantic region with the estimated year that foundations would be constructed (matches the color of the wind areas). These timelines and data estimates are expected to shift but represent the most recent information available as of February 2022. Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time. Future wind development areas are also presented. Additional lease areas, totalling over 488,000 acres in the NY Bight are available for BOEM's 2022 lease sale. It’s anticipated that the NY Bight leases will fulfill outstanding offshore wind energy production goals for NY and NJ. VA and NC have outstanding goals that cannot be fulfilled within the existing lease areas, and it is expected that these will be fulfilled with future development off the Delmarva Peninsula. 
@@ -714,18 +774,30 @@ The surfclam fishery could be the most affected fishery, with a maximum of 20% o
 #fig.cap="Percent Landings and Revenue from wind energy areas. Data from GARFO VTR.",
 #, out.width="90%", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-landings-rev.R")
 
-dt<- ecodata::wea_landings_rev[1:10, 1:5] %>% 
-  dplyr::select("GARFO and ASMFC Managed Species", "perc_landings_max"  ,"perc_landings_min",
-                "perc_revenue_max","perc_revenue_min" ) %>% 
+# dt<- ecodata::wea_landings_rev[1:10, 1:5] %>% 
+#   dplyr::select("GARFO and ASMFC Managed Species", "perc_landings_max"  ,"perc_landings_min",
+#                 "perc_revenue_max","perc_revenue_min" ) %>% 
+#   dplyr::rename("Maximum Percent Total Annual Regional Species Landings"="perc_landings_max",
+#     "Maximum Percent Total Annual Regional Species Revenue"="perc_revenue_max",
+#     "Minimum Percent Total Annual Regional Species Landings"="perc_landings_min",
+#     "Minimum Percent Total Annual Regional Species Revenue"="perc_revenue_min",) 
+# kable(dt,"latex", booktabs = TRUE,
+#       caption = "Top ten species Landings and Revenue from Wind Energy Areas.") %>% 
+#   kable_classic(full_width = F, html_font = "Cambria") %>%
+#   column_spec(2:5, width = "10em") %>%
+#   kable_styling(latex_options = "scale_down")
+
+dt<- ecodata::wea_landings_rev[1:20,] %>% 
+  dplyr::select("NEFMC, MAFMC, and ASMFC Managed Species", "perc_landings_max",
+                "perc_revenue_max" ) %>%
   dplyr::rename("Maximum Percent Total Annual Regional Species Landings"="perc_landings_max",
-    "Maximum Percent Total Annual Regional Species Revenue"="perc_revenue_max",
-    "Minimum Percent Total Annual Regional Species Landings"="perc_landings_min",
-    "Minimum Percent Total Annual Regional Species Revenue"="perc_revenue_min",) 
-kable(dt,"latex", booktabs = TRUE,
-      caption = "Top ten species Landings and Revenue from Wind Energy Areas.") %>% 
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  column_spec(2:5, width = "10em") %>%
-  kable_styling(latex_options = "scale_down")
+    "Maximum Percent Total Annual Regional Species Revenue"="perc_revenue_max")
+
+flextable::flextable(dt) %>%
+  flextable::set_caption("Top 20 species Landings and Revenue from Wind Energy Areas.") %>%
+  flextable::width(width = c(3,2,2))
+
+  
 
 ```
 
@@ -758,12 +830,17 @@ dat<- data.frame(XSurvey= c("Fall BTS", "Spring BTS", "EcoMon", "Scallop",
 column_names <- c("Survey","1.Evaluate designs & Impacts","2.Design New Methods","3.Calibrate New/Existing Surveys","4.Bridge Solutions","5.Conduct New Surveys","6.Comms & Data")
 #DT::datatable(dat, colnames = column_names)
 
-kable(dat, col.names = column_names, "latex", booktabs = TRUE,
-      caption = "Survey mitigation planning.") %>% 
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  column_spec(2:7, width = "10em") %>%
-  kable_styling(latex_options = "scale_down")
+# kable(dat, col.names = column_names, "latex", booktabs = TRUE,
+#       caption = "Survey mitigation planning.") %>% 
+#   kable_classic(full_width = F, html_font = "Cambria") %>%
+#   column_spec(2:7, width = "10em") %>%
+#   kable_styling(latex_options = "scale_down")
 
+names(dat) <- column_names
+
+flextable::flextable(dat) %>%
+  flextable::set_caption("Survey mitigation planning.")
+  
 ```
 
 Equity and environmental justice (EJ) are priority concerns with offshore wind development and fisheries impacts in the Northeast. Fig. \ref{fig:wea-port-rev} links historic port revenue (2008-2019) from within all wind lease areas as a proportion of the port’s total revenue based on vessel trip reports as described in the revenue and landings of species in the wind indicator above. The range (minimum and maximum) of total percent revenue from within wind energy areas is presented in the graph and ports are sorted from greatest to least revenue from within wind areas. 
@@ -786,7 +863,7 @@ Planned development overlaps right whale mother and calf migration corridors and
 
 
 ```{r whales-wind, out.width="60%", fig.cap="Northern Right Whale persistent hotspots and Wind Energy Areas."}
-knitr::include_graphics("images/NARW_hotpsot_persistence_2_1_2022_TPW.png")
+knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/right_whales.png")
 ```
 
 Scientific data collection surveys for ocean and ecosystem conditions, fish, and protected species will be altered, potentially increasing uncertainty for management decision making.
@@ -835,7 +912,7 @@ psample <- ggplot2::ggplot(data = data,aes(x = x, y = y)) +
              alpha = hline.alpha,
              linetype = hline.lty)+
   geom_line() +
-  geom_gls() +
+  geom_gls(aes(x = x, y = y)) +
   scale_y_continuous(labels = function(l){trans = l / 1000})+
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   ylab(expression("Invented Index, 10"^3*"widgets")) +
@@ -911,17 +988,23 @@ df<-df[c(1,3,2,4,5)] %>%
   mutate_all(tolower)
 
 
-knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodies.', 
-             col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
-  kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>%
-  row_spec(0,bold=TRUE) %>%
-  column_spec(1, width="2cm") %>%
-  column_spec(2, width="4cm") %>%
-  column_spec(3, width="2cm") %>%
-  column_spec(4, width="5cm") %>%
-  column_spec(5, width="6cm") %>%
-  #column_spec(3, width="7.5cm") #%>%
-  collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
+# knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodies.', 
+#              col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
+#   kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>%
+#   row_spec(0,bold=TRUE) %>%
+#   column_spec(1, width="2cm") %>%
+#   column_spec(2, width="4cm") %>%
+#   column_spec(3, width="2cm") %>%
+#   column_spec(4, width="5cm") %>%
+#   column_spec(5, width="6cm") %>%
+#   #column_spec(3, width="7.5cm") #%>%
+#   collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
+
+flextable::flextable(df) %>%
+  flextable::set_caption('Feeding guilds and management bodies.') %>%
+  #flextable::autofit()
+  flextable::fontsize(i = NULL, j = NULL, size = 10, part = "body") %>%
+  flextable::width(width = c(1,2,1,2.5,3))
 
 ```
 
