@@ -8,6 +8,7 @@ output:
       in_header: latex/header1.tex
     keep_tex: yes
     toc: false
+    number_sections: false
   bookdown::html_document2: 
     df_print: paged
   bookdown::word_document2:
@@ -125,47 +126,41 @@ flextable::as_grouped_data(mng_obj, groups = "service") %>%
 
 In this section, we examine indicators related to broad, ecosystem-level fishery management objectives. We also provide hypotheses on the implications of these trends—*why* we are seeing them, what’s driving them, and potential or observed regime shifts or changes in ecosystem structure. Identifying multiple drivers, regime shifts, and potential changes to ecosystem structure, as well as identifying the most vulnerable resources, can help managers determine whether we can do anything differently to meet objectives and how to prioritize for upcoming issues/risks.
 
-*Special note on data availability for the 2022 report*
-
-The Catch Accounting and Monitoring System (CAMS) that will be used to provide commercial landings and discard information at the Ecological Production Unit (EPU) scale is under development.  As of February 2022, our standard indicators relying on EPU scale landings data cannot be calculated for 2020 (commercial seafood production, commercial profits, ecosystem overfishing). We provide information based on coastwide commercial landings information available at this time in @thunberg_northeast_2021^[https://spo.nmfs.noaa.gov/sites/default/files/TM221.pdf], and will calculate our standard indicators at EPU scales with disaggregated 2020 commercial landings data when they are available. 
-
-
 ## Seafood Production 
 
 ### Indicators: Landings; commercial and recreational 
-Total commercial landings (black) within the Mid-Atlantic are not yet available for 2020; Figure \ref{fig:total-landings} includes data only through 2019. However, we do not anticipate the long-term declining trend in landings to change.
+This year, we present updated indicators for total commercial landings (all species, all uses, fleets from all nations),  US seafood landings (species for human consumption landed by US fleets), and Council-managed US seafood landings (Mid-Atlantic Fishery Management Council (MAFMC) and jointly managed species landed by US fleets for human consumption).  Total commercial landings (black) within the Mid-Atlantic have declined over the long term, and total US seafood landings are near their all time low. Because there is no long term trend in MAFMC managed US seafood landings, the decline in US seafood landings in the Mid-Atlantic region is likely driven by recent declines in species not managed by the Mid-Atlantic Council (Fig. \ref{fig:total-landings}).
 
-Coastwide landings at the Federal fishery management plan (FMP) level were mixed in 2020 when compared to recent years [@thunberg_northeast_2021]. Landings of monkfish and of combined surfclam and ocean quahog declined in 2020, while landings of combined summer flounder, scup, and black sea bass increased, and landings of combined squid species increased in 2020. 
-
-```{r, total-landings, fig.cap = paste0("Total commercial seafood landings through 2019 (black) and ",region," managed seafood landings (red)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
+```{r, total-landings, fig.cap = paste0("Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red)"), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
 ```
 
-```{r, comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.4}
+Landings by guild include all species and all uses, and are reported as total for the guild and the MAFMC managed species within the guild. As reported in previous years, landings of benthos presented a significant downward trend, primarily driven by surf clam and ocean quahog. However, total landings of planktivores is now also presenting a significant downward trend, primarily due to decreases in species not managed by the Mid-Atlantic Council (Atlantic herring and Atlantic menhaden; Fig. \ref{fig:comm-landings}).
+
+```{r, comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed U.S seafood landings (red) by feeding guild."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.4}
 ```
 
-
-Total recreational harvest (retained fish presumed to be eaten) is down in the MAB (Fig. \ref{fig:rec-landings}). Although harvest has increased from a historic low in 2018, it is still below the average value for the series.
+Total recreational harvest (retained fish presumed to be eaten) is down in the MAB (Fig. \ref{fig:rec-landings}). Although harvest has increased from a historic low in 2018, it is still below the long term average.
 ```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of pounds) in the ",region," region."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
 
 ```
 
-Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2021 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. In 2021 the International Commission for the Conservation of Atlantic Tunas (ICCAT) finalized recommendations for a two-year retention ban (ICCAT Rec.21-09), which will also affect total overall landings of pelagic sharks in coming years.
+Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2022 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. In 2021 the International Commission for the Conservation of Atlantic Tunas (ICCAT) finalized recommendations for a two-year retention ban for shortfin mako (ICCAT Rec.21-09), which will also affect total overall landings of pelagic sharks in coming years. 
 ```{r rec-hms, fig.cap="Recreational shark landings from Marine Recreational Information Program.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5, fig.asp=.35}
 
 ```
 
-Aquaculture production is not yet included in total seafood landings, but we are working toward including it in future reports. Available aquaculture production of oysters for a subset of Mid-Atlantic states is trending upward.^[https://noaa-edab.github.io/ecodata/human_dimensions_MAB#Commercial; "Oyster Aquaculture" tab]
+Aquaculture production is not yet included in total seafood landings, but we are working toward including it in future reports. Available aquaculture production of oysters for a subset of Mid-Atlantic states indicates a decline in recent years.^[https://noaa-edab.github.io/ecodata/human_dimensions_MAB#Commercial; "Oyster Aquaculture" tab]
 
 ### Implications
 
-Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions (including COVID-19 disruptions), and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which stock status and system biomass trends may play a role.  
+Declining commercial (total and seafood) and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions (including COVID-19 disruptions), and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which stock status and system biomass trends may play a role.  
 
 #### Stock Status and Catch Limits
-Single species management objectives (1. maintaining biomass above minimum thresholds and 2. maintaining fishing mortality below overfishing limits) are being met for all but two MAFMC managed species, though the status of six stocks is unknown (Fig. \ref{fig:stock-status}). 
-```{r stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Spiny dogfish and both Goosefish). The dotted verticxal line is the target bioomass reference point of Bmsy. The dashed lines are the management trehsolds of one half Bmsy (vertical) or Fmsy (horizontal). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing)."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
+Single species management objectives (1. maintaining biomass above minimum thresholds and 2. maintaining fishing mortality below overfishing limits) are being met for all but one MAFMC managed species, though the status of six stocks is unknown (Fig. \ref{fig:stock-status}). In addition, the status of Spiny dogfish and bluefish are based on 2022 research track assessments and are thus waiting for a management track update to finalize stock status. 
+```{r stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Spiny dogfish and both Goosefish). The dotted verticxal line is the target bioomass reference point of Bmsy. The dashed lines are the management trehsolds of one half Bmsy (vertical) or Fmsy (horizontal). Stocks in red are below the biomass threshold (overfished) and have fishing mortality above the limit (subject to overfishing), stocks in green are above the biomass threshold but have fishing mortality above the limit. Remaining stocks have fishing mortality within limits: stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
-Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (Fig. \ref{fig:abcacl-stacked}). The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2020, due to that fishery's small relative size. 
+Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (Fig. \ref{fig:abcacl-stacked}). Although these figures have not been updated with 2021 data, we do not expect a single year’s update to change the narrative. The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2020, due to that fishery's small relative size. 
 
 ```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R"), fig.width = 5, fig.asp = 0.5}
 
@@ -173,25 +168,25 @@ Stock status affects catch limits established by the Council, which in turn may 
 
 Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that these catch limits are not generally constraining as most species are well below the 1/1 ratio (Fig. \ref{fig:abcacl-catch}). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings for the majority of species.
 
-```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. Chub mackerel removed due extremely low catch. Outliers = Recreational Black Sea Bass.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R")}
+```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. High points = Recreational Black Sea Bass. Red line indicates the median ratio across all fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R")}
 
 ```
 
 #### System Biomass
-Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
+Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores, spring benthivores, and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
 ```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
 ```
 
 #### Effect on Seafood Production
-Stock status is mostly acceptable, and aggregate biomass trends appear stable, so the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. 
+Stock status is mostly acceptable, and aggregate biomass trends appear stable, so the decline in commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. The long term decline in total planktivore landings is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s.
 
-Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
+Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council.
 
-The decline in recreational seafood landings stems from other drivers. Some of the decline, such as that for recreational shark landings, is driven by management intended to reduce fishing mortality on mako sharks. However, NOAA Fisheries’ Marine Recreational Information Program survey methodology was updated in 2018, so it is unclear whether the record-low landings for species other than sharks in 2018 are driven by changes in fishing behavior or the change in the survey methodology. 
+The decline in recreational seafood harvest stems from other drivers. Some of the decline, such as that for recreational shark landings, is driven by management intended to reduce fishing mortality on mako sharks. However, NOAA Fisheries’ Marine Recreational Information Program survey methodology was updated in 2018, so it is unclear whether the record-low landings for species other than sharks in 2018 are driven by changes in fishing behavior or the change in the survey methodology. Nevertheless, the recreational harvest seems to be stabilizing at a lower level than historical estimates.
 
 Other environmental changes require monitoring as they may become important drivers of landings in the future:
  
-- Climate is trending into uncharted territory. Globally, 2021 was the sixth warmest year on record^[https://www.climate.gov/news-features/features/2021-global-climate-summary-6th-warmest-year-record] with regional marine heatwaves apparent (see [Climate Risks section](#climate-and-ecosystem-productivity)).   
+- Climate is trending into uncharted territory. Globally, 2022 was among the warmest years on record^[https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature] (see [Climate Risks section](#climate-and-ecosystem-productivity)).   
 - Stocks are shifting distribution, moving towards the northeast and into deeper waters throughout the Northeast US Large Marine Ecosystem (Fig. \ref{fig:species-dist}).  
   
 ```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=.9}
@@ -203,13 +198,13 @@ Other environmental changes require monitoring as they may become important driv
 ## Commercial Profits 
 
 ### Indicators: revenue (a proxy for profits)  
-Total commercial revenues (black) within the Mid-Atlantic are not yet available for 2020; Figure \ref{fig:comm-revenue} includes data only through 2019. However, we do not anticipate the long-term declining trend in revenue from managed species (red) to change. Coast-wide, a number of species managed by the MAFMC have seen decreases in revenue when compared to the average revenue generated between 2015 and 2019 [@thunberg_northeast_2021]. This decline was driven by a mix of landings declines (monkfish, combined surfclam and ocean quahog) and price declines (monkfish, combined squid species, and combined summer flounder, scup, and black sea bass). 
+Total commercial revenues (black) within the Mid-Atlantic and Mid-Atlantic managed species revenue both present long-term declining trends. Total revenue is at, and revenue from Mid-Atlantic managed species is near, an all-time low (Fig. \ref{fig:comm-revenue}). 
 ```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Revenue through 2019 for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
 ```
 
-Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes:  harvest levels, the mix of species landed, price changes, or a combination of these. The Bennet Indicator decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices.
+Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes: harvest levels, the mix of species landed, price changes, or a combination of these. The Bennet Indicator decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices.
 
-Total revenue trends, decomposed to price and volume indicators (Fig. \ref{fig:bennet}), mirror price and volume indicator trends for the benthos (clams; orange in Fig. \ref{fig:bennet-all}) group, especially over the past decade. 
+Total revenue trends, decomposed to price and volume indicators (Fig. \ref{fig:bennet}), mirror price and volume indicator trends for the benthos (clams; orange in Fig. \ref{fig:bennet-all}) group, especially over the past decade. However, of note is that only piscivore volume is up across species guilds for either prices or volume when compared to the 2015 benchmark year. 
 ```{r bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"), fig.width=6, fig.asp=.35}
 ```
 
@@ -217,9 +212,7 @@ Total revenue trends, decomposed to price and volume indicators (Fig. \ref{fig:b
 ```
 
 ### Implications 
-The Bennet indicator evaluating changes in landings volume and price for the Mid-Atlantic will be updated when 2020 Mid-Atlantic landings become available.
-
-Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
+In a similar manner to seafood landings, the results here are driven in large part by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
 
 -  Surfclams and ocean quahogs are sensitive to warming ocean temperatures and ocean acidification.   
 -  Acidification levels in surfclam summer habitat are approaching, but not yet at, levels affecting surfclam growth (see [Climate Risks section](#climate-and-ecosystem-productivity)).  
@@ -227,7 +220,7 @@ Changes in other indicators, particularly those driving landings and those relat
 ## Recreational Opportunities 
 
 ### Indicators: Angler trips, fleet diversity  
-Recreational effort (angler trips) has increased over the long term, with 2020 effort above the long-term average (Fig. \ref{fig:rec-op}). However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
+Recreational effort (angler trips) in 2021 is around the long-term average (Fig. \ref{fig:rec-op}). However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
 ```{r rec-op, fig.cap = paste0("Recreational effort in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")}
 ```
 
@@ -236,9 +229,9 @@ Recreational effort (angler trips) has increased over the long term, with 2020 e
 ```
 
 ### Implications
-Increased angler trips in 2020 relative to previous years strongly influence the long term increase in recreational effort. While the overall number of recreational opportunities in the MAB is above the long term average, the continuing decline in recreational fleet effort diversity suggests a potentially reduced range of recreational fishing options.
+While the overall number of recreational opportunities in the MAB is above the long-term average, the continuing decline in recreational fleet effort diversity suggests a potentially reduced range of recreational fishing options, despite the slight increase in this indicator’s value between 2020 and 2021.
 
-The downward effort diversity trend is driven by party/charter contraction (from a high of 24% of angler trips to 7% currently), and a shift toward shorebased angling. Effort in private boats remained stable between 36-37% of angler trips across the entire series. 
+The downward effort diversity trend is driven by party/charter contraction (2% currently), and a shift toward shorebased angling, which currently makes up 61% of angler trips.. Effort in private boats remains stable at around 37% of trips.
 
 Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species is accessible both from shore and from a vessel, shore anglers typically have access to smaller individuals. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector.
 
@@ -249,22 +242,22 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 While there are many potential metrics of stability, we use diversity indices as a first check to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine commercial fleet and species catch diversity, and recreational species catch diversity (with fleet effort diversity discussed above), and diversity in zooplankton, and larval and adult fishes.
 
 #### Fishery Diversity 
-Diversity estimates have been developed for fleets landing managed species, and species landed by commercial vessels with Mid-Atlantic permits. A fleet is defined here as the combination of gear type (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel length category (less than 30 ft, 30 to 50 ft, 50 to 75 ft, 75 ft and above). Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average (Fig. \ref{fig:commercial-div}). This indicates similar commercial fleet composition and species targeting opportunities over time. 
+Diversity estimates have been developed for fleets landing managed species, and species landed by commercial vessels with Mid-Atlantic permits. A fleet is defined here as the combination of gear type (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel length category (less than 30 ft, 30 to 50 ft, 50 to 75 ft, 75 ft and above). Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average (Fig. \ref{fig:commercial-div}). This indicates similar commercial fleet composition and species targeting opportunities over time.  
 ```{r commercial-div, fig.cap = paste0("Commercial fleet count and diversity in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.9}
 ```
 
-Commercial fisheries are relying on fewer species relative to the mid-90s, but current species revenue diversity has been consistent since then and is currently near, but below, the long term average (Fig. \ref{fig:commercial-div-species-div}). 
+Commercial fisheries are relying on fewer species relative to the mid-90s, and current species revenue diversity is near the historical low point (Fig. \ref{fig:commercial-div-species-div}). Although with precedent, the drop between 2020 and 2021 is relatively large.
 ```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
 ```
 
-As noted [above](#recreational-opportunities), recreational fleet effort diversity is declining (Fig. \ref{fig:rec-div}), so this metric suggests an unstable range of recreational fishing opportunties. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average in 7 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
+As noted [above](#recreational-opportunities), recreational fleet effort diversity is declining (Fig. \ref{fig:rec-div}), so this metric suggests an unstable range of recreational fishing opportunities. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average in 7 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
 ```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")}
 ```
 
 #### Ecological Diversity
 
-Ecological diversity indices show mixed trends. Up to 2019, zooplankton diversity was increasing in the MAB (Fig. \ref{fig:zoo-diversity}). 2020 surveys were incomplete due to COVID-19. Zooplankton and larval fish diversity indicators will be updated once 2021 survey results have been processed. Adult fish diversity is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. There is no vessel correction for this metric, so indices collected aboard the research vessel Albatross IV (up to 2008) and research vessel Bigelow (2009-2021) are calculated separately. Despite this, adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
-```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight up to 2019, based on Shannon diversity index.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
+Ecological diversity indices show mixed trends. Zooplankton diversity is increasing in the MAB (Fig. \ref{fig:zoo-diversity}). Larval fish diversity shows no trend, and high interannual variability with 2021 values at the mean. Adult fish diversity is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. There is no vessel correction for this metric, so indices collected aboard the research vessel Albatross IV (up to 2008) and research vessel Bigelow (2009-2021) are calculated separately. Despite this, adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
+```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, based on Shannon diversity index.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
 ```
 
 
@@ -273,9 +266,9 @@ Ecological diversity indices show mixed trends. Up to 2019, zooplankton diversit
 
  
 ### Implications
-Fleet diversity indices are used by the MAFMC to evaluate stability objectives as well as risks to fishery resilience and maintaining equity in access to fishery resources [@gaichas_implementing_2018]. 
+Fleet diversity indices are used by the MAFMC to evaluate stability objectives as well as risks to fishery resilience and maintaining equity in access to fishery resources  [@gaichas_implementing_2018]. 
 
-Stability in commercial fleet diversity metrics suggests stable capacity to respond to the current range of fishing opportunities. 
+Stability in commercial fleet diversity metrics suggests stable capacity to respond to the current range of fishing opportunities. However, commercial species diversity is relatively low, indicating substantial changes in fishing activities even as the fleet composition sees relative stability. 
 
 Declining recreational fleet effort diversity, as noted [above](#recreational-opportunities), indicates that the party/charter boat sector continues to contract, with shoreside angling becoming more important, as a percentage of recreational angler trips.
 
@@ -283,11 +276,12 @@ Stability in recreational species catch diversity has been maintained by a diffe
 
 Ecological diversity indices can provide insight into ecosystem structure. Changes in ecological diversity over time may indicate altered ecosystem structure with implications for fishery productivity and management [@friedland_changes_2020]. 
 
-Increasing zooplankton diversity through 2019 is driven by the declining dominance of the calanoid copepod *Centropages typicus*, with a similar composition of other zooplankton species. 
+Increasing zooplankton diversity through 2021 is driven by abundance increases of zooplankton groups including *Paracalanus* species, Diplostraca (cladocera), Tunicates (salps and larvaceans), Echinoderms (sea cucumbers, sea stars), and Chaetognatha (arrow worms).
 
-Stable adult fish diversity indicates the same overall number and evenness over time, but doesn’t rule out species substitutions (e.g., warm-water replacing cold-water). In addition, the change in survey vessels complicates interpretation of long term fish diversity trends.
+Stable adult fish diversity indicates the same overall number and evenness over time, but doesn’t rule out species substitutions (e.g., warm-water replacing cold-water). In addition, the change in survey vessels complicates interpretation of long-term fish diversity trends.
 
-In the MAB, existing diversity indicators suggest overall stability in the fisheries and ecosystem components examined. However, declining recreational fleet diversity suggests a potential loss in the range of recreational fishing opportunities, and increasing zooplankton diversity is due to the declining dominance of an important species, suggesting change in the zooplankton community that warrants continued monitoring to determine if managed species are affected. 
+In the MAB, existing diversity indicators suggest overall stability in the fisheries and ecosystem components examined. However, declining recreational fleet diversity suggests a potential loss in the range of recreational fishing opportunities.Increasing zooplankton diversity due to increases in abundance of several taxa and stable or declining dominance of an important copepod species, suggests a shift in the zooplankton community that warrants continued monitoring to determine if managed species are affected. In addition, the species diversity in landings warrants continued attention given its relatively low value and large year over year decline.
+
 
 ## Environmental Justice and Social Vulnerability 
 
