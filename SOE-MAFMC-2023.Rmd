@@ -3,14 +3,15 @@ title:
 csl: plos.csl
 fontsize: 10pt
 output:
-  bookdown::word_document2:
-    toc: false
-  bookdown::html_document2: 
-    df_print: paged
   bookdown::pdf_document2:
     includes:
       in_header: latex/header1.tex
     keep_tex: yes
+    toc: false
+  bookdown::html_document2: 
+    df_print: paged
+  bookdown::word_document2:
+    toc: false
 link-citations: yes
 geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 subparagraph: yes
@@ -148,8 +149,8 @@ Total recreational harvest (retained fish presumed to be eaten) is down in the M
 
 ```
 
-Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2021 (Fig \ref{fig:rec_hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. In 2021 the International Commission for the Conservation of Atlantic Tunas (ICCAT) finalized recommendations for a two-year retention ban (ICCAT Rec.21-09), which will also affect total overall landings of pelagic sharks in coming years.
-```{r rec_hms, fig.cap="Recreational shark landings from Marine Recreational Information Program.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5, fig.asp=.35}
+Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2021 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. In 2021 the International Commission for the Conservation of Atlantic Tunas (ICCAT) finalized recommendations for a two-year retention ban (ICCAT Rec.21-09), which will also affect total overall landings of pelagic sharks in coming years.
+```{r rec-hms, fig.cap="Recreational shark landings from Marine Recreational Information Program.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5, fig.asp=.35}
 
 ```
 
@@ -414,6 +415,8 @@ Ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-
 ```{r bottom-temp, fig.cap="MAB seasonal bottom temperature (BT) anomaly time series. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall. The final 2 years of each time series (open circles) are modeled estimates subject to change.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp-hi-res-ts.R"), fig.width = 8, fig.asp = .6}
 ```
 
+In addition to increasing seasonal temperatures, we are observing changes in the transition dates between seasons. In the MAB, the thermal transition date from warm stratified summer conditions to well mixed cool fall temperatures is getting later, thus increasing the total number of days when the surface temperatures are in the warm summer conditions (Fig ).
+
 ```{r transition, fig.cap="The annual total number of days between the spring thermal transition date and the fall thermal transition date.  The transition dates are defined as the day of the year when surface temperatures changeover from cool to warm conditions in the spring and back to cool conditions in the fall.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")}
 
 ```
@@ -590,7 +593,9 @@ This seasonal pH minimum in the Mid-Atlantic is associated with cold pool subsur
 
 ```{r mab-oa, out.width = '80%', fig.cap = "Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021. Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic."}
 
-knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC%20-%20Grace%20Saba.jpg")
+#knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
+
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
 
 ```
 
@@ -625,7 +630,10 @@ The health and well being of individual fish can be related to body shape condit
 
 ```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", out.width = '100%'}
 
-knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg")
+#knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg")
+
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg")
+
 ```
 
 #### Fish Productivity
@@ -757,7 +765,10 @@ As of February 2022, 24 offshore wind development projects are proposed for cons
 *2023 fig not yet on github*
 ```{r wind-dev-cumul, fig.cap = "All Northeast Project areas by year construction ends (each project has 2 year construction period).", out.width='90%'}
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
-knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/offshore_wind_timeline.png")
+#knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/offshore_wind_timeline.png")
+
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Cumulative_Timeline_Full_Region_SoE2023_DRAFT1-01.png")
+
 ```
 
 Just over 2,500 foundations and more than 7,000 miles of inter-array and offshore export cables are proposed to date. The colored chart in Fig. \ref{fig:wind-dev-cumul} also presents the offshore wind development timeline in the Greater Atlantic region with the estimated year that foundations would be constructed (matches the color of the wind areas). These timelines and data estimates are expected to shift but represent the most recent information available as of February 2022. Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time. Future wind development areas are also presented. Additional lease areas, totalling over 488,000 acres in the NY Bight are available for BOEM's 2022 lease sale. It’s anticipated that the NY Bight leases will fulfill outstanding offshore wind energy production goals for NY and NJ. VA and NC have outstanding goals that cannot be fulfilled within the existing lease areas, and it is expected that these will be fulfilled with future development off the Delmarva Peninsula. 
@@ -863,7 +874,14 @@ Planned development overlaps right whale mother and calf migration corridors and
 
 
 ```{r whales-wind, out.width="60%", fig.cap="Northern Right Whale persistent hotspots and Wind Energy Areas."}
-knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/right_whales.png")
+#knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/right_whales.png")
+
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/right_whales.jpg")
+
+# NEW FILE NOT YET ON GITHUB
+#magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/SOE_2023_right_whales_hatteras_frame_v3.jpg")
+
+
 ```
 
 Scientific data collection surveys for ocean and ecosystem conditions, fish, and protected species will be altered, potentially increasing uncertainty for management decision making.

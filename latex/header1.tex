@@ -2,16 +2,15 @@
 \usepackage[urw-palatino]{mathdesign}
 \usepackage[T1]{fontenc}
 
+% Add accessibility support from http://www.richschwinn.com/accessibility
+\RequirePackage{accsupp}
+\RequirePackage{pdfcomment}
+\newcommand{\AccTool}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
 
 % Set the language for 508
 \hypersetup{
   pdftitle = {title},
   pdflang = en-US}
-
-% Add accessibility support from http://www.richschwinn.com/accessibility
-\RequirePackage{accsupp}
-\RequirePackage{pdfcomment}
-\newcommand{\AccTool}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
 
 
 % Set up the headers and footers
@@ -49,11 +48,11 @@
 
 \fancyheadinit{%
    \ifthenelse{\value{page}=4}%
-      {\fancyhead[R]{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \textsf{\emph{March 17, 2022}}}
-       \fancyhead[L]{\textsf{\LARGE State of the Ecosystem 2022: Mid-Atlantic}}
+      {\fancyhead[R]{\includegraphics[width=40pt]{images/NOAA_logo.png} \\ \textsf{\emph{Feb 10, 2022}}}
+       \fancyhead[L]{\textsf{\LARGE DRAFT State of the Ecosystem 2023: Mid-Atlantic}}
       }%
       {\fancyhead[R]{}
-       \fancyhead[L]{\textsf{\emph{State of the Ecosystem 2022: Mid-Atlantic}}}
+       \fancyhead[L]{\textsf{\emph{DRAFT State of the Ecosystem 2023: Mid-Atlantic}}}
       }
 }
 
