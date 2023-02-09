@@ -44,7 +44,13 @@ library(tidyverse)
 library(tidyr)
 library(ecodata)
 library(here)
-library(kableExtra)
+library(flextable)
+
+set_flextable_defaults(
+  font.size = 9,
+  padding = 2,
+  line_spacing = 1,
+  font.family = "Palatino")
 
 ```
 
@@ -113,10 +119,11 @@ mng_obj$service <- c(rep("Provisioning and Cultural Services", 6),
 flextable::as_grouped_data(mng_obj, groups = "service") %>% 
   flextable::as_flextable(hide_grouplabel=TRUE) %>% 
   flextable::align(i = ~ !is.na(service), align = "left") %>% 
-  flextable::set_header_labels(Objective.Cateories = "Objective Categories",
+  flextable::bold(i = ~ !is.na(service), bold = TRUE) %>%
+  flextable::set_header_labels(Objective.Categories = "Objective categories",
                                Indicators.reported = "Indicators reported") %>%
   flextable::set_caption("Ecosystem-scale fishery management objectives in the Mid-Atlantic Bight") %>%
-  flextable::autofit()
+  flextable::autofit() 
   
 
 
@@ -131,7 +138,7 @@ In this section, we examine indicators related to broad, ecosystem-level fishery
 ### Indicators: Landings; commercial and recreational 
 This year, we present updated indicators for total commercial landings (all species, all uses, fleets from all nations),  US seafood landings (species for human consumption landed by US fleets), and Council-managed US seafood landings (Mid-Atlantic Fishery Management Council (MAFMC) and jointly managed species landed by US fleets for human consumption).  Total commercial landings (black) within the Mid-Atlantic have declined over the long term, and total US seafood landings are near their all time low. Because there is no long term trend in MAFMC managed US seafood landings, the decline in US seafood landings in the Mid-Atlantic region is likely driven by recent declines in species not managed by the Mid-Atlantic Council (Fig. \ref{fig:total-landings}).
 
-```{r, total-landings, fig.cap = paste0("Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red)"), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
+```{r, total-landings, fig.cap = paste0("Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red)"), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")}
 ```
 
 Landings by guild include all species and all uses, and are reported as total for the guild and the MAFMC managed species within the guild. As reported in previous years, landings of benthos presented a significant downward trend, primarily driven by surf clam and ocean quahog. However, total landings of planktivores is now also presenting a significant downward trend, primarily due to decreases in species not managed by the Mid-Atlantic Council (Atlantic herring and Atlantic menhaden; Fig. \ref{fig:comm-landings}).
@@ -199,7 +206,7 @@ Other environmental changes require monitoring as they may become important driv
 
 ### Indicators: revenue (a proxy for profits)  
 Total commercial revenues (black) within the Mid-Atlantic and Mid-Atlantic managed species revenue both present long-term declining trends. Total revenue is at, and revenue from Mid-Atlantic managed species is near, an all-time low (Fig. \ref{fig:comm-revenue}). 
-```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Revenue through 2019 for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
+```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Revenue for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
 ```
 
 Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes: harvest levels, the mix of species landed, price changes, or a combination of these. The Bennet Indicator decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices.
@@ -291,19 +298,21 @@ Social vulnerability measures social factors that shape a community’s ability 
 
 Commercial fishery engagement measures the number of permits and dealers, and pounds and value landed in a community, while reliance expresses these numbers based on the level of fishing activity relative to the total population of a community. Recreational fishery engagement measures shore, private vessel, and for-hire fishing effort while reliance expresses these numbers based on fishing effort relative to the population of a community.
 
-In 2022, we reported the top ten most engaged, and top ten most reliant commercial and recreational fishing communities and their associated environmental justice vulnerability based on 2019 data. Here we apply the same selection standard for top ten fishing communities for both sectors using 2020 data, and again examine the environmental justice vulnerability in this updated set of communities. Changes in fishing activity between years changed community engagement and reliance scores, and changes in vulnerability indicators changed environmental justice vulnerability scores.
+In 2022, we reported the top ten most engaged, and top ten most reliant commercial and recreational fishing communities and their associated environmental justice vulnerability based on 2019 data. Here we apply the same selection standard for top ten fishing communities for both sectors using 2020 data, and again examine the environmental justice vulnerability in this updated set of communities. Changes in fishing activity between years changed community engagement and reliance rankings, and changes in vulnerability indicators changed environmental justice vulnerability scores.
 
 Communities plotted in the upper right section of Fig.\ref{fig:commercial-engagement} scored high for both commercial engagement and reliance using both 2019 and 2020 data, including Cape May and Barnegat Light, NJ, and Reedville, VA. Communities that ranked medium-high or above for one or more of the environmental justice indicators in 2020 are highlighted in bright orange, including Newport News, VA; Atlantic City, NJ; and Beaufort, Columbia and Hobucken, NC. Hampton Bays/Shinnecock, NY ranked medium-high based on 2019 data but decreased to medium for its environmental justice vulnerability based on 2020 data reported here.
 
-```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
+```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 7.5, fig.asp = 0.5}
 
+#fig.width = 6.5, fig.asp = 0.75
 #(* Scored high (1.00 and above)) for both commercial engagement and reliance indicators)
 ```
 
 Fig. \ref{fig:commercial-EJ} shows the detailed scores of the three environmental justice indicators for the same communities plotted in Fig.\ref{fig:commercial-engagement}. Communities are plotted clockwise in a descending order of commercial engagement scores from high to low, with the most highly engaged community, Cape May, NJ, listed on the top.  Among the communities ranked medium-high or above for environmental justice vulnerability, Atlantic City, NJ scored high for all of the three environmental justice indicators. Columbia, NC scored high for the personal disruption index and the poverty index. Hobucken, NC scored high for the personal disruption index. Newport News, VA scored medium-high for the population composition index^[Due to missing data, the Poverty Index is missing for Hobucken and Rodanthe, NC]. Beaufort, NC scored medium-high for the poverty index. 
 
-```{r commercial-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", out.width='80%'}
+```{r commercial-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", out.width='70%'}
 
+# out.width='80%'
 #knitr::include_graphics("images/EJ_Commercial_MAB.png")
 
 #get rid of the gray excel outline using R package magick
@@ -320,16 +329,20 @@ cropComEJ <- ComEJ %>%
 cropComEJ
 ```
 
-Communities plotted in the upper right section of Fig.\ref{fig:recreational-engagement} scored high for both recreational engagement and reliance, including Barnegat Light, NJ and Deal Island, MD. Communities that ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange: Hatteras and Morehead City, NC.
+Considerably more communities scored high for both recreational engagement and reliance based on 2020 data relative to 2019. Joining Barnegat Light, NJ in the upper right section are Babylon, NY, Nags Head, NC, Hatters, NC, Stevensville, MD, Atlantic Highlands, NJ, Morehead City, NC, Montauk, NY, Point Pleasant Beach, NJ, Ocean City, MD, Point Lookout, NY, Manteo, NC, and Vandemere, NC. Fig.\ref{fig:recreational-engagement}. Communities that ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange, including Ocean City and Bivale, MD; Hatteras, Manteo, Vandemere, and Hobuken, NC. 
 
-```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic. Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
+```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic. Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.width = 7.5, fig.asp = 0.5}
+
+#fig.width = 6.5, fig.asp = 0.75
 
 #(* Scored high (1.00 and above) for both recreational engagement and reliance indicators; 
 ```
 
-Fig. \ref{fig:recreational-EJ} orders communities clockwise in a descending order of recreational engagement scores from high to low, with the most highly engaged community, Babylon, NY, listed on the top. The two communities with environmental justice concerns, Hatteras and Morehead City, NC, both scored medium-high for the poverty index. 
+Fig. \ref{fig:recreational-EJ} orders communities clockwise in a descending order of recreational engagement scores from high to low, with the most highly engaged community, Babylon, NY, listed on the top. Among the communities with environmental justice concerns, Hatteras and Vandemere, NC scored medium-high for personal disruption and poverty index. Ocean City, MD and Hobucken, NC scored medium-high for personal disruption index. Manteo, NC scored high for poverty index. Bivale, MD scored medium-high for population composition index^[Due to missing data, the Poverty Index is missing for Hobucken,  NC, Bivalve and Georgetown, MD]. 
 
-```{r recreational-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top recreational fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", out.width='80%'}
+```{r recreational-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top recreational fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", out.width='70%'}
+
+# out.width='80%'
 #knitr::include_graphics("images/EJ_Recreational_MAB.png")
 
 
@@ -348,35 +361,38 @@ cropRecEJ
 ```
 
 
-Both commercial and recreational fishing are important activities in Montauk, NY, Barnegat Light, Cape May and Point Pleasant Beach, NJ, meaning these communities may be impacted simultaneously by commercial and recreational regulatory changes. All of these communities scored lower than medium-high for all of the three environmental justice indicators, indicating that environmental justice may not be a major concern in these communities at the moment based on the indicators analyzed.
+Both commercial and recreational fishing are important activities in Montauk, NY, Barnegat Light and Point Pleasant Beach, NJ, Hatteras and Hobuken, NC, meaning these communities may be impacted simultaneously by commercial and recreational regulatory changes. Among these communities, Hobucken scored high for the personal disruption index^[Due to missing data, the Poverty Index is missing for Hobucken,  NC].  Hatteras scored medium-high for the personal disruption index and Poverty Index. Montauk, NY, Barnegat Light, Cape May  and Point Pleasant Beach, NJ scored lower than medium-high for all of the three environmental justice indicators, indicating that environmental justice may not be a major concern in these communities at the moment based on the indicators analyzed. 
 
 ### Implications
-These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
+There was an increase in recreational fishing activities in the many of the top recreational communities from 2019 to 2020. This increase may be due to multiple factors including the recreational boating boom across the country^[National Marine Manufacturers Association. 2021. U.S. Boat Sales Reached 13-Year High in 2020, Recreational Boating Boom to Continue through 2021. Available at: https://www.nmma.org/press/article/23527] and increasing interest in for-hire/charter recreational fishing trips as an preferred outdoor recreation activities and ways to social distance in response to the COVID-19 pandemic [@thunberg_northeast_2021].
+
+These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change.
 
 
 ## Protected Species
-Protected species include marine mammals protected under the Marine Mammal Protection Act, endangered and threatened species protected under the Endangered Species Act, and migratory birds protected under the Migratory Bird Treaty Act. In the Northeast U.S., endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and five baleen whales. Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration. Here we report on the status of these actions as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast U.S.
-Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs).
+Protected species include marine mammals protected under the Marine Mammal Protection Act, endangered and threatened species protected under the Endangered Species Act, and migratory birds protected under the Migratory Bird Treaty Act. In the Northeast U.S., endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and five baleen whales. Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration. Here we report on the status of these actions as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast U.S. Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs).
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
-Average indices for both harbor porpoise (Fig. \ref{fig:harborporpoise}) and gray seal bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. However, the 2019 bycatch estimate for gray seals was highest in the time series.
-```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England fisheries (blue) and the potential biological removal (red). 2019 estimates are preliminary.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=6}
+Average indices for both harbor porpoise (Fig. \ref{fig:harborporpoise}) and gray seal bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. However, the 2019 bycatch estimate for gray seals was highest in the time series, with declines since then.
+```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England fisheries (blue) and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=5}
+#fig.width=6}
 ```
 
-```{r grayseal, fig.cap="Gray Seal average bycatch estimate for New England gillnet fisheries (blue) and and the potential biological removal (red). 2019 estimates are preliminary.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.width=6}
+```{r grayseal, fig.cap="Gray Seal average bycatch estimate for New England gillnet fisheries (blue) and and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.width=5}
+#fig.width=6}
 ```
 
 
 The North Atlantic right whale population was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:narw-abundance}). Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are fewer than 100 adult females remaining in the population. 
 ```{r narw-abundance, fig.cap = "Estimated North Atlanic right whale abundance on the Northeast Shelf.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")}
 ```
-North Atlantic right whale calf counts have generally declined after 2009 to the point of having zero new calves observed in 2018 (Fig. \ref{fig:NARW-calf-abundance}). However, seven new calves were born in 2019, 10 were born in 2020, and preliminary 2021 observations of 18 calves have been recorded as of January 2022.  
+North Atlantic right whale calf counts have generally declined after 2009 to the point of having zero new calves observed in 2018 (Fig. \ref{fig:NARW-calf-abundance}). However, since 2019, we have seen more calf births each year, with 20 births in 2022.   
 ```{r NARW-calf-abundance, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2021.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")}
 ```
 
-This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. Since 2017, the total UME right whale mortalities includes 34 dead stranded whales, 13 in the US and 21 in Canada. When alive but seriously injured whales (16) are taken into account, 50 individual whales are included in the UME. During 2020, two mortalities were documented, however, recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities [@pace_cryptic_2021]. The primary cause of death is “human interaction” from entanglements or vessel strikes^[https://www.fisheries.noaa.gov/national/marine-life-distress/2017-2022-north-atlantic-right-whale-unusual-mortality-event]. 
+This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. Since 2017, the total UME right whale mortalities includes 35 dead stranded whales, 14 in the US and 21 in Canada. When alive but seriously injured whales (22) and sublethal injuries or ill whales (37) are taken into account, 94 individual whales are included in the UME. Recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities [@pace_cryptic_2021]. The primary cause of death is “human interaction” from entanglements or vessel strikes^[https://www.fisheries.noaa.gov/national/marine-life-distress/2017-2023-north-atlantic-right-whale-unusual-mortality-event]. 
 
-Two additional UMEs continued from previous years for humpback whales and minke whales; suspected causes include human interactions and/or infectious disease. A UME for both gray and harbor seals was declared from 2018-2020 due to a high number of mortalities thought to be caused by phocine distemper virus, but is pending closure as of January 2022^[https://www.fisheries.noaa.gov/national/marine-life-distress/active-and-closed-unusual-mortality-events].
+A UME continued from previous years for humpback whales (2016-present); suspected causes include human interactions. A UME for both gray and harbor seals on the Maine coast was declared in June 2022 due to a high number of mortalities thought to be caused by highly pathogenic avian influenza virus. A UME for minke whales lasted from 2018-2022 and is pending closure as of January 2023^[https://www.fisheries.noaa.gov/national/marine-life-distress/active-and-closed-unusual-mortality-events].
 
 
 ### Implications
@@ -386,7 +402,7 @@ The number of gray seals in U.S. waters has risen dramatically in the last three
 
 Strong evidence exists to suggest that interactions between right whales and both the fixed gear fisheries in the U.S. and Canada and vessel strikes in the U.S. are contributing substantially to the decline of the species [@hayes_north_2018]. Further, right whale distribution has changed since 2010. New research suggests that recent climate driven changes in ocean circulation have resulted in right whale distribution changes driven by increased warm water influx through the Northeast Channel, which has reduced the primary right whale prey (*Calanus finmarchicus*) in the central and eastern portions of the Gulf of Maine [@hayes_north_2018; @record_rapid_2019; @sorochan_north_2019]. Additional potential stressors include offshore wind development, which overlaps with important habitat areas used year-round by right whales, including mother and calf migration corridors and foraging habitat [@quintana-rizzo_residency_2021; @schick_striking_2009]. This area is also the only known right whale winter foraging habitat. Additional information can be found in the [offshore wind risks section](#other-ocean-uses-offshore-wind).
 
-The UMEs are under investigation and are likely the result of multiple drivers. For all three large whale UMEs, human interaction appears to have contributed to increased mortalities, although investigations are not complete. An investigation into the cause of the seal UME so far suggests phocine distemper virus as a potential cause. 
+The UMEs are under investigation and are likely the result of multiple drivers. For both large whale UMEs, human interaction appears to have contributed to increased mortalities, although investigations are not complete. An investigation into the cause of the seal UME so far suggests avian flu virus as a potential cause. 
 
 A climate vulnerability assessment is currently underway for Atlantic and Gulf of Mexico marine mammal populations and will be reported on in future versions of this report.
 
@@ -806,47 +822,7 @@ flextable::flextable(dt) %>%
 
 ```
 
-Proposed wind development areas interact with the region’s federal scientific surveys. Scientific surveys are impacted by offshore wind in four ways: 1. Exclusion of NOAA Fisheries’ sampling platforms from the wind development area due to operational and safety limitations; 2.Impacts on the random-stratified statistical design that is the basis for scientific assessments, advice, and analyses; 3.Alteration of benthic and pelagic habitats, and airspace in and around the wind energy development, requiring new designs and methods to sample new habitats; and, 4.Reduced sampling productivity through navigation impacts of wind energy infrastructure on aerial and vessel survey operations. Increase vessel transit between stations may decrease data collections that are already limited by annual days-at-sea day allocations. The total survey area overlap ranges from 1-14% for all Greater Atlantic federal surveys. Individual survey strata have significant interaction with wind, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey  (BTS, up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. A region-wide survey mitigation program is underway (Table \ref{tab:wind-survey-table})
-
-```{r wind-survey-table}
-#, out.width="90%", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-survey-table.R")
-
-dat<- data.frame(XSurvey= c("Fall BTS", "Spring BTS", "EcoMon", "Scallop",
-                            "Shellfish(Clams)", "Right Whale (Air)", 
-                            "Marine Mammal/Turtle (Ship/Air)",
-                            "Altantic Shark (Bottom Long-Line",
-                            "GOM Bottom Long-Line", "GOM Shrimp Survey", 
-                            "Atlantic Shark COASTPAN"), 
-                 X1 = c("Started", "Started", "No",
-                                                    "Started", "No", "Inital", 
-                                                    "No", "No","No", "No","No"), 
-                 X2 = c("Inital", "Initial", "No", "Initial", 
-                                            "No", "Initial","No", "No","No", "No",
-                                            "No" ), 
-                 X3 = c( "No", "No","No",
-                        "No","No",  "Initial", "No", "No","No", "No","No"), 
-                 X4 = c("No", "No","No", "No","No","No", 
-                                         "No","No", "No","No","No"), 
-                 X5 = c("No", "No","No", "No","No","No", 
-                                         "No","No", "No","No","No"),
-                 X6 = c("Initial", "Initial","No", "No","No","No", 
-                                         "No","No", "No","No","No"))
-
-column_names <- c("Survey","1.Evaluate designs & Impacts","2.Design New Methods","3.Calibrate New/Existing Surveys","4.Bridge Solutions","5.Conduct New Surveys","6.Comms & Data")
-#DT::datatable(dat, colnames = column_names)
-
-# kable(dat, col.names = column_names, "latex", booktabs = TRUE,
-#       caption = "Survey mitigation planning.") %>% 
-#   kable_classic(full_width = F, html_font = "Cambria") %>%
-#   column_spec(2:7, width = "10em") %>%
-#   kable_styling(latex_options = "scale_down")
-
-names(dat) <- column_names
-
-flextable::flextable(dat) %>%
-  flextable::set_caption("Survey mitigation planning.")
-  
-```
+Proposed wind development areas interact with the region’s federal scientific surveys. Scientific surveys are impacted by offshore wind in four ways: 1. Exclusion of NOAA Fisheries’ sampling platforms from the wind development area due to operational and safety limitations; 2.Impacts on the random-stratified statistical design that is the basis for scientific assessments, advice, and analyses; 3.Alteration of benthic and pelagic habitats, and airspace in and around the wind energy development, requiring new designs and methods to sample new habitats; and, 4.Reduced sampling productivity through navigation impacts of wind energy infrastructure on aerial and vessel survey operations. Increase vessel transit between stations may decrease data collections that are already limited by annual days-at-sea day allocations. The total survey area overlap ranges from 1-14% for all Greater Atlantic federal surveys. Individual survey strata have significant interaction with wind, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey  (BTS, up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. A region-wide survey mitigation program is underway [@northeast_fisheries_science_center_us_noaa_2022]. 
 
 Equity and environmental justice (EJ) are priority concerns with offshore wind development and fisheries impacts in the Northeast. Fig. \ref{fig:wea-port-rev} links historic port revenue (2008-2019) from within all wind lease areas as a proportion of the port’s total revenue based on vessel trip reports as described in the revenue and landings of species in the wind indicator above. The range (minimum and maximum) of total percent revenue from within wind energy areas is presented in the graph and ports are sorted from greatest to least revenue from within wind areas. 
 
@@ -1014,9 +990,14 @@ df<-df[c(1,3,2,4,5)] %>%
 
 flextable::flextable(df) %>%
   flextable::set_caption('Feeding guilds and management bodies.') %>%
-  #flextable::autofit()
-  flextable::fontsize(i = NULL, j = NULL, size = 10, part = "body") %>%
-  flextable::width(width = c(1,2,1,2.5,3))
+  flextable::set_header_labels(SOE.20 = "Guild",
+                               MAFMC = "MAFMC",
+                               JOINT = "Joint",
+                               NEFMC = "NEFMC",
+                               "<NA>" = "State or Other") %>%
+  flextable::autofit()
+  #flextable::fontsize(i = NULL, j = NULL, size = 10, part = "body") %>%
+  #flextable::width(width = c(1,2,1,2.5,3))
 
 ```
 
