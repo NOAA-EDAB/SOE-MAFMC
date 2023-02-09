@@ -169,7 +169,7 @@ Single species management objectives (1. maintaining biomass above minimum thres
 
 Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (Fig. \ref{fig:abcacl-stacked}). Although these figures have not been updated with 2021 data, we do not expect a single year’s update to change the narrative. The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2020, due to that fishery's small relative size. 
 
-```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R"), fig.width = 5, fig.asp = 0.5}
+```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed commercial (C) and recreational (R) fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R"), fig.width = 6, fig.asp = 0.4}
 
 ```
 
@@ -411,83 +411,31 @@ A climate vulnerability assessment is currently underway for Atlantic and Gulf o
 
 ## Climate and Ecosystem Productivity
 
-Large scale climate related changes in the ecosystem can lead to changes in important habitats and ecological interactions, potentially resulting in regime shifts and ecosystem reorganization.  
+Large scale climate related changes in the ecosystem can lead to changes in important habitats and ecological interactions, potentially resulting in regime shifts and ecosystem reorganization.   
 
 ### Climate Change Indicators: ocean temperature, heatwaves, currents, acidification
 
 #### Ocean and estuarine temperature and salinity
-Ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-sst-anom-gridded}) and bottom (Fig. \ref{fig:bottom-temp}) throughout the Northeast Shelf including the Mid-Atlantic. Seasonal sea surface temperatures in 2021 were above average throughout the year, with some seasons rivaling or exceeding the record warm temperatures observed in 2012.
+The ocean continues to warm, altering habitat conditions experienced by a wide range of species. 2022 was among the warmest years on record in the North Atlantic and ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-sst-anom-gridded}) and bottom (Fig. \ref{fig:bottom-temp}) throughout the Mid-Atlantic. Bottom temperature shows a long term warming trend in all seasons, while sea surface temperature shows significant long term warming in spring, summer, and fall. Seasonal sea surface temperatures in 2022 were above average for most of the year,  however late spring storms caused deep mixing, which delayed stratification and surface warming in late spring and early summer.
 
 ```{r seasonal-sst-anom-gridded, fig.cap="MAB (grey outline) seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = .6}
 
 ```
 
-```{r bottom-temp, fig.cap="MAB seasonal bottom temperature (BT) anomaly time series. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall. The final 2 years of each time series (open circles) are modeled estimates subject to change.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp-hi-res-ts.R"), fig.width = 8, fig.asp = .6}
+```{r bottom-temp, fig.cap="MAB seasonal bottom temperature (BT) anomaly time series. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall. The final 2 years of each time series (open circles) are modeled estimates subject to change.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp-hi-res-ts.R"), fig.width = 6, fig.asp = .4}
 ```
 
-In addition to increasing seasonal temperatures, we are observing changes in the transition dates between seasons. In the MAB, the thermal transition date from warm stratified summer conditions to well mixed cool fall temperatures is getting later, thus increasing the total number of days when the surface temperatures are in the warm summer conditions (Fig ).
+In addition to increasing temperatures overall, ocean summer conditions now last longer within each year. In the MAB, the transition date from warm stratified summer conditions to well mixed cool fall conditions is getting later (Fig. \ref{fig:transition}).
 
-```{r transition, fig.cap="The annual total number of days between the spring thermal transition date and the fall thermal transition date.  The transition dates are defined as the day of the year when surface temperatures changeover from cool to warm conditions in the spring and back to cool conditions in the fall.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")}
+```{r transition, fig.cap="Ocean summer length in the MAB: the annual total number of days between the spring thermal transition date and the fall thermal transition date.  The transition dates are defined as the day of the year when surface temperatures changeover from cool to warm conditions in the spring and back to cool conditions in the fall.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")}
 
 ```
 
-The Chesapeake Bay experienced a warmer-than-average winter and fall in 2021, and average conditions in the spring and summer, relative to the baseline period 2008-2020 (Fig. \ref{fig:ches-temp-sal}) as measured by satellites^[https://coastwatch.noaa.gov/cw/index.html] (note that Chesapeake Bay seasonal definitions and baseline periods are different from the sea surface temperature anomalies reported in Fig.\ref{fig:seasonal-sst-anom-gridded} for the full Mid-Atlantic region). Similar 2021 seasonal temperature patterns were observed by bouys^[https://buoybay.noaa.gov/] (Fig. \ref{fig:ches-temp-sal}), which also indicated above-average salinity in the Chesapeake Bay throughout the summer, with a decrease in salinity from late July to early August (Fig. \ref{fig:ches-temp-sal}). Salinity fell below average in September and remained at lower levels throughout fall 2021.
+The Chesapeake Bay experienced a warmer-than-average winter 2022, and average conditions in the spring and summer. Fall 2022 was cooler relative to the baseline period 2008-2021 as measured by satellites^[https://coastwatch.noaa.gov/cw/index.html] and by buoys^[https://buoybay.noaa.gov/] (Fig. \ref{fig:ches-temp-sal}), which also indicated above-average salinity in the Chesapeake Bay throughout the summer and fall (Fig. \ref{fig:ches-temp-sal}). 
 
-```{r ches-temp-sal, fig.cap="Left panel: 2021 sea surface temperature anomalies for the Chesapeake Bay.  Data are from NOAA’s multi-satellite SST products and produced by NOAA’s Coastwatch Program. Seasons are defined to match the annual life cycles of many biological resources in Chesapeake Bay: Dec-Feb for winter, Mar-May for spring, Jun-Aug for summer, and Sep-Nov for fall. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature (top) and salinity (bottom); Red = 2021, Blue = Long term average 2010-2020.", fig.width = 10, fig.asp=0.6 }
+```{r ches-temp-sal,  out.width = '35%', fig.show='hold', fig.cap="NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature (left) and salinity (right); Red = 2022, Blue = Long term average 2010-2020.", fig.width = 6, fig.asp=0.5}
 
-library(patchwork)
-# Left panel
-sst<- ecodata::ches_bay_sst
-
-map.lwd <- 0.4
-
-# Set lat/lon window for maps
-xmin = -77.5
-xmax = -74.5
-ymin = 36.5
-ymax = 40
-xlims <- c(xmin, xmax)
-ylims <- c(ymin, ymax)
-#sst <- ecodata::seasonal_sst_anomaly_gridded
-crs<- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
-sst$Season <- factor(sst$Season, levels = c("Winter",
-                                            "Spring",
-                                            "Summer",
-                                            "Fall"))
-
-sst<- sst %>% dplyr::mutate(Value = replace(Value, Value > 5, 5))
-sst_map <-
-  ggplot2::ggplot() +
-  ggplot2::geom_sf(data = ecodata::coast, size = map.lwd) +
-  ggplot2::scale_fill_gradient2(name = "Temp.\nAnomaly (C)",
-                                low = scales::muted("blue"),
-                                mid = "white",
-                                high = scales::muted("red"),
-                                limits = c(-4,4),
-                                labels = c("<-5", "-2.5", "0", "2.5", ">5")) +
-  ggplot2::coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
-
-  ggplot2::geom_tile(data = sst, aes(x = Latitude, y = Longitude,fill = Value)) +
-  ggplot2::facet_wrap(Season~.) +
-  ecodata::theme_map() +
-  ggplot2::ggtitle("Chesapeake Bay SST anomaly (2021)") +
-  ggplot2::xlab(element_blank()) +
-  ggplot2::ylab(element_blank()) +
-  scale_y_continuous(breaks = seq(37, 40, by = 1))+
-  scale_x_continuous(breaks = seq(-77, -75, by = 1))+
-  ggplot2::theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
-                 legend.key = element_blank(),
-                 axis.title = element_text(size = 6),
-                 strip.background = element_blank(),
-                 strip.text=element_text(hjust=0),
-                 axis.text = element_text(size = 6),
-                 axis.title.y = element_text(angle = 90) )+
-  ecodata::theme_title()
-
-
-#sst_map
-
-# Right panel top
+# Left
 tempbouy <- ecodata::ch_bay_temp %>%
   tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
   dplyr::mutate(YearLTAC = (YearLTA - 32)*(5/9),
@@ -501,12 +449,14 @@ tempbouy <- ecodata::ch_bay_temp %>%
   ggplot2::geom_line(aes(x = Time, y = YearC, color = "Daily 2022")) +
   ggplot2::ylab("Temperature (C)") +
   ggplot2::ggtitle("Chesapeake Bay Temperature") +
-  ggplot2::theme(legend.position = "bottom", 
+  ggplot2::theme(legend.position = "none", 
                  legend.title = element_blank())+
   ecodata::theme_ts()+
   ecodata::theme_title()
 
-# Right panel bottom
+tempbouy
+
+# Right 
 salbouy <- ecodata::ch_bay_sal %>%
   tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
   ggplot2::ggplot() +
@@ -516,24 +466,21 @@ salbouy <- ecodata::ch_bay_sal %>%
   ggplot2::geom_line(aes(x = Time, y = Year, color = "Daily 2022")) +
   ggplot2::ylab("Salinity") +
   ggplot2::ggtitle("Chesapeake Bay Salinity") +
-  ggplot2::theme(legend.position = "bottom", 
+  ggplot2::theme(legend.position = "none", 
                  legend.title = element_blank())+
   ecodata::theme_ts()+
   ecodata::theme_title()
 
-design <- "12
-           13"
-
-sst_map + tempbouy + salbouy + plot_layout(design = design) 
+salbouy
 
 ```
 
-#### Marine heatwaves
-A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures warmer than 90% of previously observed (1982-2011) temperatures for that date [@hobday_hierarchical_2016]. Marine heatwaves measure not just high temperature, but how long the ecosystem is subjected to the high temperature. They are driven by both atmospheric and oceanographic factors and can have dramatic impacts on marine ecosystems. The region is experiencing more frequent marine heatwaves over the last decade, including 2021, compared to the historical period.
+#### Extreme temperature events
+The increase in surface and bottom water temperature observed in the Northeast US may represent long term incremental stress on marine organisms, especially those relying on cooler water habitats for some or all life stages. In addition to changes in long-term average conditions, short-term extreme temperature events can produce acute stress on marine organisms, especially when the baseline temperature is increasing. To identify these extreme events separately from the baseline warming, we have changed our methods describing marine heatwaves (MHWs, @; @; @) to remove the global warming signal. Therefore, these indicators look different than in previous reports, but MHWs identified now are truly extreme departures from an already warming ecosystem.  A combination of long-term ocean warming and MHWs should be used to assess total heat stress on marine organisms. 
 
-In 2021, the Mid-Atlantic Bight experienced seven distinct marine heatwaves with the strongest event beginning on September 13 and lasting 53 days (Fig. \ref{fig:heatwave-year}). Relative to prior years, this marine heatwave ranked 9^th^ on record in terms of maximum intensity and 4^th^ on record in terms of cumulative intensity. 
+In 2022, the Mid-Atlantic Bight experienced two distinct surface marine heatwaves starting on August 29th and November 7th, lasting 9 and 11 days respectively  (Fig. \ref{fig:heatwave-year}). Both ranked low among all recorded MWHs (75th and 73rd respectively), so were unlikely to represent additional stress to organisms in this system. The top 4 strongest surface MHWs in the MAB occurred during the last ten years, with the two events in 2012 ranked as 1st and 3rd. No bottom MHWs were observed in 2022. The strongest bottom MHWs occurred in the fall of 1985 followed by the second strongest in the winter/spring of 2012.
 
-```{r heatwave-year, fig.cap="Marine heatwave events (red shading above black line) in the Mid-Atlantic occuring in 2021.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year-detrended.R"), fig.width=5, fig.asp=.6}
+```{r heatwave-year, fig.cap="Marine heatwave events (red shading above black line) in the Mid-Atlantic occuring in 2022.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year-detrended.R"), fig.width=4.5, fig.asp=.6}
 
 ```
 
@@ -544,50 +491,18 @@ Variability of the Gulf Stream is one of the major drivers of changes in the oce
 ```{r GSI, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
 ```
 
-Since 2008, the Gulf Stream has moved closer to the Grand Banks, reducing the supply of cold, fresh, and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf [@goncalves_neto_changes_2021]. Nearly every year since 2010, warm slope water made up more than 75% of the annual slope water proportions entering the Gulf of Maine.  In 2017 and 2019, almost no cooler Labrador Slope water entered the Gulf of Maine through the Northeast Channel (Fig. \ref{fig:wsw-prop}).  The changing proportions of source water affect the temperature, salinity, and nutrient inputs to the Gulf of Maine ecosystem.  In 2021, warm slope water continued to dominate (86.1%) inputs to the Gulf of Maine. The 2022 position of the north wall of the Gulf Stream is forecasted to be similar to 2021 [@silver_forecasting_2021], extending this pattern.
+Since 2008, the Gulf Stream has moved closer to the Grand Banks, reducing the supply of cold, fresh, and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf [@goncalves_neto_changes_2021]. Nearly every year since 2010, warm slope water made up more than 75% of the annual slope water proportions entering the Gulf of Maine.  In 2017 and 2019, almost no cooler Labrador Slope water entered the Gulf of Maine through the Northeast Channel (Fig. \ref{fig:wsw-prop}).  The changing proportions of source water affect the temperature, salinity, and nutrient inputs to the Gulf of Maine ecosystem.  In 2021, warm slope water continued to dominate (86.1%) inputs to the Gulf of Maine.
 
 ```{r wsw-prop, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSLW) entering the Gulf of Maine through the Northeast Channel.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=5, fig.asp=.35}
 ```
 
-The increased instability of the Gulf Stream position and warming of the Slope Sea may also be connected to the regime shift increase in the number of warm core rings formed annually in the Northwest Atlantic [@gangopadhyay_observed_2019; @gangopadhyay_census_2020] (Fig. \ref{fig:wcr}). Timing of ring formation may also be changing. In 2021, a remarkable number of rings were observed simultaneously near the shelf break in June. When warm core ring water moves onto the continental shelf, it can alter the habitat and disrupt seasonal movements of fish [@gawarkiewicz_changing_2018].
+The increased instability of the Gulf Stream position and warming of the Slope Sea may also be connected to the regime shift increase in the number of warm core rings formed annually in the Northwest Atlantic [@gangopadhyay_observed_2019; @gangopadhyay_census_2020] (Fig. \ref{fig:wcr}). When warm core rings and eddies interact with the continental slope they can transport warm, salty water to the continental shelf [@chen_mesoscale_2022], which can alter the habitat and disrupt seasonal movements of fish [@gawarkiewicz_changing_2018]. Transport of offshore water onto the shelf is happening more frequently [@gawarkiewicz_changing_2018; @gawarkiewicz_increasing_nodate], and can contribute to marine heatwaves in the Mid-Atlantic Bight [@gawarkiewicz_characteristics_2019; @chen_mesoscale_2022] as well as the movement of shelf-break species inshore [@gawarkiewicz_changing_2018; @potter_horizontal_2011; @worm_predator_2003]. 
 
-```{r wcr, fig.show = 'hold', out.width = "49%", fig.cap= "Warm core ring formation on the Northeast U.S. Shelf: Annual number of rings (left) and June 2021 rings (right), where the black line is the 200 m isobath (the shelf break) and the red lines are the 20 and 24 degree isotherms.", fig.width=8}
-#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")
+2022 had the same number of warm core rings (21) as 2021, but most of the 2022 rings formed east of 60 W and fewer were observed near the shelf break region. 
 
-#left
-upper.line<-ecodata::wcr %>%
-  dplyr::filter(Time>2000) %>% 
-  dplyr::mutate(hline = c(mean(Value)))
-lower.line<-ecodata::wcr%>%
-  dplyr::filter(Time<2000) %>% 
-  dplyr::mutate(hline = c(mean(Value)))
-wcr<- upper.line %>% 
-  rbind(lower.line)
-
-wcr %>% 
-  ggplot2::ggplot(aes(x = Time, y = Value))+
-    ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  ggplot2::geom_point()+
-  ggplot2::geom_line()+
-  ggplot2::ylab("Warm Core Ring Births")+
-  ggplot2::xlab(element_blank())+
-  ggplot2::ggtitle("Warm Core Rings")+
-  ecodata::theme_ts()+
-  ggplot2::geom_segment(data = upper.line, aes(x = min(Time), y = hline, 
-                                      xend = max(Time), yend = hline, color = "segment") )+
-  ggplot2::geom_segment(data = lower.line, aes(x = min(Time), y = hline, 
-                                    xend = max(Time), yend = hline, color = "segment") )+
-  ggplot2::theme(legend.position = "none")+
-  ecodata::theme_title()
-
-# right
-#knitr::include_graphics("images/D_20210608-MUR-SST-WCR.PNG")
+```{r wcr, fig.cap= "Warm core ring formation on the Northeast U.S. Shelf: Annual number of rings.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
 
 ```
-
-When warm core rings and eddies interact with the continental slope they can transport warm, salty water to the continental shelf [@chen_mesoscale_2022], and this is now happening more frequently [@gawarkiewicz_changing_2018; @gawarkiewicz_increasing_nodate]. These interactions can be significant contributors to marine heatwaves in the Mid-Atlantic Bight [@gawarkiewicz_characteristics_2019; @chen_mesoscale_2022] as well as the movement of shelf-break species inshore [@gawarkiewicz_changing_2018; @potter_horizontal_2011; @worm_predator_2003]. 
 
 Changes in ocean temperature and circulation alter habitat features such as the seasonal cold pool, a 20–60 m thick band of cold, relatively uniform near-bottom water that persists from spring to fall over the mid and outer shelf of the MAB and southern flank of Georges Bank [@lentz_seasonal_2017; @chen_seasonal_2018]. The cold pool plays an essential role in the structuring of the MAB ecosystem. It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017; @miles_offshore_2021]. The average temperature of the cold pool is getting warmer over time [@miller_state-space_2016; @du_pontavice_incorporating_nodate], the area is getting smaller [@friedland_middle_2022], and the duration is getting shorter (Fig. \ref{fig:cold-pool}).
 
@@ -597,11 +512,11 @@ Changes in ocean temperature and circulation alter habitat features such as the 
 
 
 #### Ocean Acidification
-Ocean acidification (OA) has caused measured declines in global ocean pH. On the Northeast Shelf, summer bottom pH (2007-2021) varied spatially and temporally, ranging from 7.69-8.07 (Fig. \ref{fig:mab-oa}, left panel). The lowest pH values were recorded in western Long Island Sound, and nearshore to mid-shelf waters off the coast of New Jersey. In summer 2021, water column pH from the glider-based profiles ranged from 7.67-8.22 (Fig. \ref{fig:mab-oa}, right panel). The lowest pH occurred in bottom waters, reaching minimum values in shallow waters typically inhabited by Atlantic surfclams (27-56 m) in the southern flank of the Hudson Canyon (mean pH = 7.80). 
+Ocean acidification (OA) has caused measured declines in global ocean pH, and is projected to continue declining by up to 0.30 pH units over the course of the 21st century if high carbon dioxide emissions continue (IPCC 2019). OA also changes the availability of minerals required by organisms to form calcified structures such as shells. Calcifying conditions in seawater can be determined by measuring aragonite saturation state ($\Omega_{Arag}$), the tendency of a common type of calcium carbonate, aragonite, to form or dissolve. When $\Omega_{Arag}$ is less than 1, shells and other calcium carbonate structures begin to dissolve. Typical surface ocean $\Omega_{Arag}$ is 2-4, but extremes can be <1 or >5. As the ocean absorbs carbon dioxide, both pH and $\Omega_{Arag}$ decrease and can cause organisms to respond with reduced survival, calcification rates, growth, and reproduction, as well as impaired development, and/or changes in energy allocation (reviewed in Kroeker et al. 2013, Saba et al. 2019). However, sensitivity levels vary, and some organisms exhibit negative responses to calcification and other processes when $\Omega_{Arag}$ is as low as 3.
 
-This seasonal pH minimum in the Mid-Atlantic is associated with cold pool subsurface and bottom water, which is cut off from mixing with surface water by strong stratification. Fall mixing and slope water intrusions act to increase the pH in outer shelf waters [@wrightfairbanks_autonomous_2020]. 
+Summer-time (2007-present) $\Omega_{Arag}$ on the U.S. Northeast Shelf varies in space and time, ranging from 0.64 to 2.49 (Fig. \ref{fig:mab-oa}, left panel). Spatially, the lowest bottom $\Omega_{Arag}$ has occurred in the Gulf of Maine, western Long Island Sound, nearshore to mid-shelf waters of the Mid-Atlantic Bight off the coast of New Jersey, and in waters > 1000 meters. $\Omega_{Arag}$ was at or below the sensitivity levels for both Atlantic sea scallop  and longfin squid in Long Island Sound and the nearshore and mid-shelf regions of the New Jersey shelf (Fig. \ref{fig:mab-oa}, right panels). The sensitivity levels of bottom $\Omega_{Arag}$ occurred during August 2016, July 2018, and August 2019 for both species, and additionally in August 2021 for the Atlantic sea scallop.
 
-```{r mab-oa, out.width = '80%', fig.cap = "Left: Summer bottom pH collated from all quality-controlled vessel- and glider-based measurements from 2007-2021. Right: Glider-based pH profiles collected during summer 2021 in the Mid-Atlantic."}
+```{r mab-oa, out.width = '80%', fig.cap = "Left panel: Bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) on the U.S. Northeast Shelf based on quality-controlled vessel- and glider-based datasets from 2007-present. Right panel: Locations where summer bottom $\\Omega_{Arag}$ were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (top panel) and longfin squid (bottom). Gray circles indicate locations where carbonate chemistry samples were collected, but bottom $\\Omega_{Arag}$ values were higher than sensitivity values determined for that species."}
 
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
 
@@ -612,31 +527,34 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/
 ### Ecosystem Productivity Indicators: phytoplankton, zooplankton, forage fish, fish condition
 
 #### Phytoplankton
-Phytoplankton support the food web as the primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors interact to drive the abundance, composition, spatial distribution, and productivity of phytoplankton. In 2021, MAB phytoplankton biomass (surface chlorophyll) was above average in winter, but below average during the spring and summer months. Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average to below average throughout 2021 (Fig. \ref{fig:chl-weekly}).
+Phytoplankton support the food web as the primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors interact to drive the abundance, composition, spatial distribution, and productivity of phytoplankton. In 2022, MAB phytoplankton biomass (surface chlorophyll) was above average in winter, but below average during the summer months. Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. Chlorophyll concentrations were above average in early fall and a  fall bloom was detected in November/December. Primary productivity (the rate of photosynthesis) was average through spring, above average in the summer and below average in the fall (Fig. \ref{fig:chl-weekly}).
 
-```{r chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 standard deviation.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 5, fig.asp = 0.9}
+```{r chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2022 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 standard deviation.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 4, fig.asp = 0.9}
 ```
 
-The seasonal cycle of phytoplankton size distribution shows that the spring and fall bloom periods are dominated by larger-celled microplankton, while smaller-celled nanoplankton dominate during the warmer summer months. The proportion of the smallest phytoplankton, picoplankton (0.2-2 microns), is relatively constant throughout the year. In 2021, microplankton proportions were above average during the winter and fall bloom periods, but below average for the summer months (Fig. \ref{fig:weekly-phyto-size}). 
-```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2020) percent composition of the phytoplankton size classes in the Mid-Atlantic based on satellite observations in the shaded portions.  The 2021 proportions for the microplankton (>20 microns, green) and nanoplankton (2-20 microns, orange) are shown in the bold lines.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
+The seasonal cycle of phytoplankton size distribution shows that the winter/spring and fall bloom periods are dominated by larger-celled microplankton, while smaller-celled nanoplankton dominate during the warmer summer months. The proportion of the smallest phytoplankton, picoplankton (0.2-2 microns), is relatively constant throughout the year. In 2022, microplankton proportions were average for most of the year, but below average during the early fall bloom period. (Fig. \ref{fig:weekly-phyto-size}). 
+```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2020) percent composition of the phytoplankton size classes in the Mid-Atlantic based on satellite observations in the shaded portions.  The 2022 proportions for the microplankton (>20 microns, green) and nanoplankton (2-20 microns, orange) are shown in the bold lines.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
 ```
 
 #### Zooplankton  
-While zooplankton indicators could not be updated for this report due to 2020 survey disruptions and lags in sample processing, data up to 2019 showed long-term increasing trends of gelatinous zooplankton and krill on the northeast shelf (see 2021 report^[https://repository.library.noaa.gov/view/noaa/29525]). Preliminary 2021 observations found the total volume of plankton caught in the bongo net was significantly greater than the previous years due to increased gelatinous zooplankton, predominantly salps (*Thalia democratica*). Unusually high concentrations of salps were found throughout the Northeast shelf and in the Slope Sea during other summer 2021 scientific surveys, which may be associated with water mass intrusions at the shelf break [@madin_periodic_2006; @deibel_predictability_2009]. Salps are filter feeders feeding on phytoplankton and other small particles and may have contributed to the below average phytoplankton biomass in summer 2021 (Fig. \ref{fig:chl-weekly}).
+The zooplankton community is changing in the MAB. Two dominant groups show long term trends:  ‘sea butterflies’ (pteropods) show a long term increase in the MAB,  and the copepod *Pseudocalanus* spp. has a long term decreasing trend (Fig. \ref{fig:zoo-pseudo-thecos}). Pteropods are important prey items for planktivores such as herring and mackerel, as well as some sea birds. Despite being susceptible to shell degradation by ocean acidification, their abundance has remained above long term mean since 2004. Pseudocalanus spp. are important prey for many larval fish species, and can influence phytoplankton standing stock through grazing. Pseudocalanus spp. abundance has been below the long term mean since 2000 and continues to decrease with increasing temperature. 
+```{r zoo-pseudo-thecos, fig.cap="Abundance Annomalies of pseudocalanus and pteropods in Mid-Atlantic Bight.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-pseudo_thecos.R")}
+
+```
+
 
 #### Forage Fish Energy Content
-Nutritional value (energy content) of juvenile and adult forage fish as prey is related to environmental conditions, fish growth, and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2021 are building toward a time series to evaluate trends (Fig. \ref{fig:energy-density}). Limited data from the spring 2020 survey, and complete spring 2021 survey  measurements were consistent with previous reports: the energy density of Atlantic herring was almost half the value (5.69 +/- 0.07 kJ/g wet weight) reported in earlier studies (10.6-9.4 kJ/ g wet weight). Silver hake, longfin squid (*Loligo* in figure) and shortfin squid (*Illex* in figure) were also lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish, sand lance, and Atlantic mackerel varies seasonally, with seasonal estimates both higher and lower than estimates from previous decades. 
+Nutritional value (energy content) of juvenile and adult forage fish as prey is related to environmental conditions, fish growth, and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2022 are building toward a time series to evaluate trends (Fig. \ref{fig:energy-density}). Data from the fall 2021 and spring 2022 survey measurements were consistent with previous reports: the energy density of Atlantic herring increased to over 7 kJ/g wet weight, but was still well below that observed in the 1980s and 1990s (10.6-9.4 kJ/ g wet weight). Silver hake, longfin squid (*Loligo* in figure) and shortfin squid (*Illex* in figure) remain lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish, sand lance, and Atlantic mackerel varies seasonally, with seasonal estimates both higher and lower than estimates from previous decades.  
 ```{r energy-density, fig.cap="Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
 
 #### Forage Fish Biomass Index
-New. Add text, decide on location
+The amount of forage fish available in the ecosystem combined with the energy content of the forage species determines the amount of energy potentially available to predators in the ecosystem.  Overall trends in small pelagic forage fish biomass are difficult to assess with bottom trawl gear designed to capture larger demersal species. To include key unmanaged forage species such as anchovies and sandlance as well as managed species such as herrings and mackerel, we estimated the combined biomass of 20 forage species using stomach contents information from 22 predatory fish species collected on bottom trawl surveys. While the resulting indices show no long term trends in the Mid-Atlantic, they do show overall higher forage fish in fall relative to spring (Fig. \ref{fig:foragebio}). Fall forage biomass was highest in the mid-1980s, while spring forage biomass was highest in the mid-2000s. This index can be partitioned spatially to address how changes in the distribution of forage biomass affects predator distribution. A version of this index was included in the bluefish research track stock assessment to investigate forage-driven changes in bluefish availability to recreational fisheries and surveys.  
 ```{r foragebio, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.6}
 ```
 
 #### Fish Condition
-The health and well being of individual fish can be related to body shape condition indices (i.e., weight at a given length) such as relative condition index, which is the ratio of observed weight to predicted weight based on length [@le_cren_length-weight_1951]. Heavier and fatter fish at a given length have higher relative condition which is expected to improve growth, reproductive output, and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition 2011-2019. However, most species in the MAB had below average or poor condition again in 2021 (Fig. \ref{fig:mab-cf}). Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species. 
-
+The health and well being of individual fish can be related to body shape condition indices (i.e., weight at a given length) such as relative condition index, which is the ratio of observed weight to predicted weight based on length [@le_cren_length-weight_1951]. Heavier and fatter fish at a given length have higher relative condition which is expected to improve growth, reproductive output, and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition from 2011-2019. Condition was again mixed in 2022, but a number of species improved in condition from the relatively low condition year in 2021 (Fig. \ref{fig:mab-cf}). Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
 
 ```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", out.width = '100%'}
 
@@ -647,14 +565,207 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/
 ```
 
 #### Fish Productivity
-We describe patterns of aggregate fish productivity in the Mid-Atlantic with the small fish per large fish anomaly indicator, derived from NEFSC bottom trawl survey data (Fig. \ref{fig:productivity-anomaly}). The indicator shows that productivity has been declining in this region since 2010.
+We describe patterns of aggregate fish productivity in the Mid-Atlantic with the small fish per large fish anomaly indicator, derived from NEFSC bottom trawl survey data (Fig. \ref{fig:productivity-anomaly}). The indicator shows that productivity has been declining in this region since 2010.  A similar analysis based on stock assessment model outputs (recruitment per spawning stock biomass anomaly) for stocks primarily inhabiting the Mid-Atlantic region also shows a decline in productivity. 
 
-```{r productivity-anomaly, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.width=5, fig.asp=.7}
+```{r productivity-anomaly, out.width='49%', fig.show='hold', fig.cap = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Mid-Atlantic Bight. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in the Mid-Atlantic. The summed anomaly across species is shown by the black line.", fig.width=8, fig.asp=.7}
 
-```
+#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R"), 
 
-Use?
-```{r productivity-assessment, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R"), fig.asp=.75}
+#source("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R", local = knitr::knit_global())
+#source("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R", local = knitr::knit_global())
+
+# Left survey
+#### Adjust plot properties -------------------------------
+adjustAxes <- 
+  ggplot2::theme(axis.title   = element_text(size = 10),
+                 axis.text    = element_text(size = 10),
+                 plot.title   = element_text(size = 15))
+
+
+#### Plot stacked bar with cpts for single var ------------
+plot_stackbarcpts_single <- function(YEAR, var2bar,
+                                     x, xlab, ylab,
+                                     titl,
+                                     file_suffix,
+                                     leg_font_size = 6,
+                                     remove_leg = FALSE,
+                                     leg_ncol = 1,
+                                     wcpts = TRUE,
+                                     wdashed = TRUE,
+                                     height = 5.5,
+                                     width = 8,
+                                     filt = TRUE,
+                                     label = label,
+                                     y.text = y.text,
+                                     aggregate = FALSE) {
+  
+  dat2bar <- data.frame(YEAR, var2bar,
+                        x)
+  if (filt == TRUE){mab_species <-  list("SUMMER FLOUNDER","SCUP","BLACK SEA BASS","BLUEFISH",
+                                         "NORTHERN SHORTFIN SQUID", "LONGFIN SQUID", "ATLANTIC MACKEREL",
+                                         "BUTTERFISH","ATLANTIC SURFCLAM", "OCEAN QUAHOG", "TILEFISH",
+                                         "BLUELINE TILEFISH","SPINY DOGFISH", "GOOSEFISH")
+  dat2plot <-
+    dat2bar %>%
+    tidyr::gather(variable, value, -YEAR, -var2bar) %>%
+    dplyr::mutate(var2bar = gsub(pattern      = "_", 
+                                 replacement  = " ", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl.", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "NS and combined", 
+                                 replacement  = "", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "YT", 
+                                 replacement  = "Yellowtail", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " GoM", 
+                                 replacement  = " GOM", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " by EPU", 
+                                 replacement  = "", 
+                                 x            = var2bar)) %>%
+    dplyr::filter(var2bar %in% mab_species)
+} else if (filt == FALSE){
+    dat2plot <-
+    dat2bar %>%
+    tidyr::gather(variable, value, -YEAR, -var2bar) %>%
+    dplyr::mutate(var2bar = gsub(pattern      = "_", 
+                                 replacement  = " ", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl.", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "NS and combined", 
+                                 replacement  = "", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "YT", 
+                                 replacement  = "Yellowtail", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " GoM", 
+                                 replacement  = " GOM", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " by EPU", 
+                                 replacement  = "", 
+                                 x            = var2bar))
+}
+  if (aggregate){
+   agg <- dat2plot %>%
+     dplyr::group_by(YEAR) %>%
+     dplyr::summarise(Total = sum(value, na.rm = T)) %>% 
+     dplyr::mutate(Total = ifelse(Total == 0, NA, Total))
+  }
+  
+  p <-   
+    ggplot2::ggplot(dat2plot,
+           aes(x = YEAR)) +
+    ggplot2::geom_bar(data = dat2plot %>% filter(value > 0),
+             aes(y = value, fill = var2bar),
+             stat = "identity") +
+    ggplot2::geom_bar(data = dat2plot %>% filter(value < 0),
+             aes(y = value, fill = var2bar),
+             stat = "identity") +
+    {if(aggregate) geom_line(data = agg,aes(x = YEAR, y = Total),
+                             size = 1)} +
+    ggplot2::geom_hline(size = 0.3, aes(yintercept = 0)) +
+    ggplot2::xlab(xlab) +
+    ggplot2::ylab(ylab) +
+    ggplot2::ggtitle(titl) +
+    ggplot2::guides(fill = guide_legend(ncol = leg_ncol)) +
+    ecodata::theme_ts()+
+    ggplot2::theme(axis.title   = element_text(size = 12),
+          axis.text    = element_text(size = 12),
+          plot.title   = element_text(size = 15),
+          legend.text  = element_text(size = leg_font_size),
+          legend.title = element_blank()) +
+    ggplot2::annotate("text", label = label, x = 1980, y = y.text,size = 8, colour = "black")
+  
+
+  
+  if(remove_leg) p <- p + theme(legend.position = "none")
+  
+  return(p)
+}
+
+bar_dat <- ecodata::productivity_anomaly %>% 
+  dplyr::filter(EPU == "MAB") %>% 
+  tidyr::separate(Var, into = c("Var", "Survey"), sep = "_")
+
+# mafmc <-plot_stackbarcpts_single(YEAR = bar_dat$Time,
+#                          var2bar = bar_dat$Var,
+#                          x = bar_dat$Value,
+#                          titl = "",
+#                          xlab = "",
+#                          ylab = "Small fish per large fish biomass (anomaly)",
+#                          height = 5.5,
+#                          width = 9,
+#                          filt = TRUE,
+#                          label = "A",
+#                          y.text = 4.5)
+
+# 
+mid <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
+                         var2bar = bar_dat$Var,
+                         x = bar_dat$Value,
+                         titl = "MAB Production Anomaly from surveys",
+                         xlab = "",
+                         ylab = "Small fish per large fish biomass (anomaly)",
+                         height = 5.5,
+                         width = 9,
+                         filt = FALSE,
+                         label = "",
+                         y.text = 5,
+                         aggregate = TRUE)
+
+mid
+
+
+# Right assessment
+total<- ecodata::productivity_anomaly %>% 
+  tidyr::separate(Var, into = c("Stock", "Var"), sep = "-")  %>% 
+  dplyr::filter(EPU == "MA", 
+                Var == "rs_anom") %>% 
+  dplyr::group_by(Time) %>% 
+  dplyr::summarise(Total = sum(Value, na.rm = T),
+                      Count = n()) %>% # SG add a count of species
+  dplyr::mutate(Totalold = ifelse(Total == 0, NA, Total),
+            Total = ifelse(Count < max(Count), NA, Total))
+  
+prod<- ecodata::productivity_anomaly %>% 
+  tidyr::separate(Var, into = c("Stock", "Var"), sep = "-")  %>% 
+  dplyr::filter(EPU == "MA", 
+                Var == "rs_anom")
+
+p <-   
+    ggplot2::ggplot(prod,
+           aes(x = Time)) +
+    ggplot2::geom_bar(data = prod %>% filter(Value > 0),
+             aes(y = Value, fill = Stock),
+             stat = "identity") +
+    ggplot2::geom_bar(data = prod %>% filter(Value < 0),
+             aes(y = Value, fill = Stock),
+             stat = "identity") +
+    ggplot2::geom_line(data = total, aes(x = Time, y = Total),
+                             size = 1) +
+    ggplot2::geom_hline(size = 0.3, aes(yintercept = 0)) +
+    ggplot2::xlab("") +
+    ggplot2::ylab("Recruitment/SSB Anomaly") +
+    ggplot2::ggtitle("MAB Production Anomaly from Stock Assessments") +
+    #ggplot2::guides(fill = guide_legend(ncol = leg_ncol)) +
+    ecodata::theme_ts()+
+    ggplot2::theme(axis.title   = element_text(size = 10),
+          axis.text    = element_text(size = 10),
+          plot.title   = element_text(size = 12),
+          #legend.text  = element_text(size = leg_font_size),
+          legend.title = element_blank()) 
+p
 
 ```
 
