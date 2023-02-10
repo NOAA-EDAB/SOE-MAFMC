@@ -82,7 +82,7 @@ The two main sections contain subsections for each management objective or poten
 
 A glossary of terms^[https://noaa-edab.github.io/tech-doc/glossary.html], detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc], and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding guilds (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
 
-```{r management-objectives}
+```{r management-objectives, ft.arraystretch = 1}
 
 mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                                  "Profits","Recreation",
@@ -871,9 +871,9 @@ Based on federal vessel logbook data, commercial fishery revenue from trips in t
 ```{r wea-spp-rev, fig.cap="THIS FIGURE TO BE UPDATED BASED ON DATA FROM CENTRAL ATLANTIC Wind energy revenue in the Mid-Atlantic.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"), fig.width=5, fig.asp=.4}
 ```
 
-Of MAFMC-managed fisheries, the chub mackerel fishery could be the fishery most affected by offshore wind development, with a maximum of 17% of annual regional fishery revenue occurring within potential wind lease areas and the Central Atlantic draft call areas during this period, followed by the surfclam (16%), black sea bass (15%), ocean quahog (13%), and blueline tilefish fisheries (10%). The spiny dogfish fishery was the least affected, at 3% maximum annual revenue affected, while 5% of annual revenues were affected for several others (bluefish, butterfish, and summer flounder).  A maximum of 10% of the annual longfin squid revenues were affected by these areas, with similar effects for the scup (9%), Atlantic mackerel (8%), monkfish (7%) and golden tilefish (6%) fisheries (see Table ). While up to 14% of annual *Illex* squid revenue overlapped with offshore wind areas, this is likely overestimated due to the precision of logbook data when compared to vessel monitoring system data (see Table \ref{tab:wea-landings-rev}).
+Of MAFMC-managed fisheries, the chub mackerel fishery could be the fishery most affected by offshore wind development, with a maximum of 17% of annual regional fishery revenue occurring within potential wind lease areas and the Central Atlantic draft call areas during this period, followed by the surfclam (16%), black sea bass (15%), ocean quahog (13%), and blueline tilefish fisheries (10%). The spiny dogfish fishery was the least affected, at 3% maximum annual revenue affected, while 5% of annual revenues were affected for several others (bluefish, butterfish, and summer flounder).  A maximum of 10% of the annual longfin squid revenues were affected by these areas, with similar effects for the scup (9%), Atlantic mackerel (8%), monkfish (7%) and golden tilefish (6%) fisheries (see Table \ref{tab:wea-landings-rev}). While up to 14% of annual *Illex* squid revenue overlapped with offshore wind areas, this is likely overestimated due to the precision of logbook data when compared to vessel monitoring system data (see Table \ref{tab:wea-landings-rev}).
 
-```{r wea-landings-rev}
+```{r wea-landings-rev, ft.arraystretch = 1}
 #fig.cap="Percent Landings and Revenue from wind energy areas. Data from GARFO VTR.",
 #, out.width="90%", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-landings-rev.R")
 
@@ -963,7 +963,7 @@ The increase of offshore wind development can have both positive (e.g., employme
 
 The figure format is illustrated in Fig \ref{fig:docformat}a. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2022, the shaded region will still cover this time period. The spatial scale of indicators is either coastwide, Mid-Atlantic states (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig. \ref{fig:docformat}b) level.
 
-```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.asp = 0.3}
+```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.asp = 0.3, ft.arraystretch = 1}
 #fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.49\\linewidth', fig.show="hold" 
 # FIgure orientation subfigure
 m <- 0.1
@@ -1088,7 +1088,7 @@ flextable::flextable(df) %>%
                                JOINT = "Joint",
                                NEFMC = "NEFMC",
                                "<NA>" = "State or Other") %>%
-  flextable::width(width = c(1,1.5,1,1.5,1.5))
+  flextable::width(width = c(1,1,1,1,3))
 
   #flextable::fit_to_width(max_width = 20)
   #flextable::autofit()
