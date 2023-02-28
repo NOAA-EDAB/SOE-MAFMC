@@ -860,7 +860,7 @@ As of January 2023, 24 offshore wind development projects are proposed for const
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/offshore_wind_timeline.png")
 
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Cumulative_Timeline_Full_Region_SoE2023_DRAFT1-01.png")
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Cumulative_Timeline_Full_Region_SoE2023_v2-01.png")
 
 ```
 
@@ -868,7 +868,7 @@ Just over 2,500 foundations and more than 7,000 miles of inter-array and offshor
 
 Based on federal vessel logbook data, commercial fishery revenue from trips in the current offshore wind lease areas and the draft Central Atlantic Bight Primary and Secondary Call Areas have varied annually from 2008-2021, with less than \$1 million in revenue overlapping with these areas for most fisheries. However, some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including up to \$4.7 million affected in the surfclam fishery and nearly $4.3 million affected in the longfin squid fishery in 2008 and 2016, respectively.(Fig. \ref{fig:wea-spp-rev}). 
 
-```{r wea-spp-rev, fig.cap="THIS FIGURE TO BE UPDATED BASED ON DATA FROM CENTRAL ATLANTIC Wind energy revenue in the Mid-Atlantic.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"), fig.width=5, fig.asp=.4}
+```{r wea-spp-rev, fig.cap="Fishery revenue in wind energy lease areas in the Mid-Atlantic.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"), fig.width=5, fig.asp=.4}
 ```
 
 Of MAFMC-managed fisheries, the chub mackerel fishery could be the fishery most affected by offshore wind development, with a maximum of 17% of annual regional fishery revenue occurring within potential wind lease areas and the Central Atlantic draft call areas during this period, followed by the surfclam (16%), black sea bass (15%), ocean quahog (13%), and blueline tilefish fisheries (10%). The spiny dogfish fishery was the least affected, at 3% maximum annual revenue affected, while 5% of annual revenues were affected for several others (bluefish, butterfish, and summer flounder).  A maximum of 10% of the annual longfin squid revenues were affected by these areas, with similar effects for the scup (9%), Atlantic mackerel (8%), monkfish (7%) and golden tilefish (6%) fisheries (see Table \ref{tab:wea-landings-rev}). While up to 14% of annual *Illex* squid revenue overlapped with offshore wind areas, this is likely overestimated due to the precision of logbook data when compared to vessel monitoring system data (see Table \ref{tab:wea-landings-rev}).
@@ -917,13 +917,74 @@ flextable::flextable(dt) %>%
 
 Proposed wind development areas interact with the region’s federal scientific surveys. Scientific surveys are impacted by offshore wind in four ways: 1. Exclusion of NOAA Fisheries’ sampling platforms from the wind development area due to operational and safety limitations; 2.Impacts on the random-stratified statistical design that is the basis for scientific assessments, advice, and analyses; 3.Alteration of benthic and pelagic habitats, and airspace in and around the wind energy development, requiring new designs and methods to sample new habitats; and, 4.Reduced sampling productivity through navigation impacts of wind energy infrastructure on aerial and vessel survey operations. Increase vessel transit between stations may decrease data collections that are already limited by annual days-at-sea day allocations. The total survey area overlap ranges from 1-14% for all Greater Atlantic federal surveys. Individual survey strata have significant interaction with wind, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey  (BTS, up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. A region-wide survey mitigation program is underway [@northeast_fisheries_science_center_us_noaa_2022]. 
 
-Equity and environmental justice (EJ) are priority concerns with offshore wind development and fisheries impacts in the Northeast. Fig. \ref{fig:wea-port-rev} links historic port revenue (2008-2021) from within all wind lease areas as a proportion of the port’s total revenue based on vessel trip reports as described in the revenue and landings of species in the wind indicator above. The range (minimum and maximum) of total percent revenue from within wind energy areas is presented in the graph and ports are sorted from greatest to least revenue from within wind areas. 
+Equity and environmental justice (EJ) are priority concerns with offshore wind development and fisheries impacts in the Northeast. Fig. \ref{fig:wea-port-rev} links historic port revenue (2008-2021) from within all wind lease areas as a proportion of the port’s total revenue based on vessel trip reports as described in the revenue and landings of species in the wind indicator above. The range (minimum and maximum) of total percent revenue from within wind energy areas is presented in the graph and Mid-Atlantic ports are sorted from greatest to least revenue from within wind areas. 
 
-```{r wea-port-rev, fig.cap="Percent of port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=6.5, fig.asp=.85, fig.align='left'}
+```{r wea-port-rev, fig.cap="Percent of Mid-Atlantic port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=6.5, fig.asp=.85, fig.align='left'}
 
 ```
 
 For example, Atlantic City, NJ had a minimum of 11% and maximum of 30% overlap of fisheries revenue in potential wind development areas to the total port fisheries revenue between 2008-2021. Those communities that score Med-High or higher in at least one of the vulnerability indicators that address environmental justice concerns (i.e., Poverty, Population Composition, Personal Disruption; see indicator definitions) are noted with a triangle. Gentrification pressure is also highlighted here, with those communities that score Med-High or higher in one or more gentrification pressure indicators (i.e., Housing Disruption, Retiree Migration, Urban Sprawl) represented with a circle (Fig. \ref{fig:wea-port-rev}). BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of environmental justice communities who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts [@boem_vineyard_2020]. 
+
+Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Barnstable, MA, Boston, MA, Hyannis, MA, North Kingstown/Davisville, RI, and Point Judith, RI. Woods Hole, MA would be added to this list based on pounds only, but did not exceed 50% of value from Mid-Atlantic managed species within wind areas.
+
+```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.36, fig.align='left'}
+df.symbol <- ecodata::wind_port %>% filter(EPU == "NE", 
+                                           !Var %in% c("WEA_MAX", "TOT_MAX", 
+                                                     "perc_MIN", "perc_MAX")) %>% 
+   pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(City = paste0(City,State)) %>% 
+  dplyr::filter(City %in% c("POINT JUDITH RI",
+                            "NORTH KINGSTOWN RI",
+                            "BOSTON MA",
+                            "WOODS HOLE MA",
+                            "HYANNIS MA",
+                            "BARNSTABLE MA")) %>%
+  dplyr::select(City, EJ, Gent) %>% 
+  pivot_longer(cols = c(EJ, Gent), names_to = "Variable") %>% 
+  filter(!value == "NA") %>% 
+  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gent = -3), 
+                Variable = recode(Variable,"EJ"= "Mid-High to High EJ Concerns" , 
+                                  "Gent" ="Mid-High to High Gentrificaiton Concerns"))
+
+# Percentage plot
+
+df.all.perc<- ecodata::wind_port %>% filter(EPU == "NE") %>%
+  pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(ordering = WEA_MAX,  
+                City = paste0(City, State), 
+                TOT_MAX = c(100 - perc_MIN - perc_MAX)) %>% 
+  pivot_longer(cols = c(perc_MIN,  perc_MAX, TOT_MAX), names_to="Var", values_to = "Value") %>% 
+  dplyr::arrange(desc(ordering)) %>%
+  dplyr::filter(City %in% c("POINT JUDITH RI",
+                            "NORTH KINGSTOWN RI",
+                            "BOSTON MA",
+                            "WOODS HOLE MA",
+                            "HYANNIS MA",
+                            "BARNSTABLE MA")) %>%
+  dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
+  dplyr::filter(!Var %in% c("WEA_MAX", "EJ", "Gent")) %>% 
+  dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
+                             "perc_MAX" ="WEA Revenue Range", 
+                             "TOT_MAX" = "Non-WEA Revenue"), 
+                Var = factor(Var, levels = c("Non-WEA Revenue", 
+                                             "WEA Revenue Range", 
+                                             "WEA Revenue")))
+p2<-ggplot2::ggplot()+
+  ggplot2::geom_bar(data = df.all.perc, aes(fill = Var, y = reorder(City, ordering), x = Value), stat="identity" )+
+  scale_fill_brewer()+
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank(), 
+                 legend.box="vertical", legend.margin=margin())+
+  ggplot2::geom_point(data = df.symbol, aes(x = symbol,y = City, shape = Variable)) +
+  scale_shape_manual(values = c(17, 16)) +
+  ggplot2::ggtitle("Port Revenue from WEA, majority MAFMC species")+
+  ggplot2::xlab(expression("Port Revenue (%)"))+
+  ggplot2::ylab(element_blank())+
+  ecodata::theme_ts()
+
+p2
+```
+
 
 Top fishing communities high in environmental justice concerns (i.e., Atlantic City, NJ, Newport News, VA, Hobucken and Beaufort, NC) should be considered in decision making to reduce the social and economic impacts and aid in the resilience and adaptive capacity of underserved communities. It also highlights communities where we need to provide further resources to reach underserved and underrepresented groups and create opportunities for and directly involve these groups in the decision-making process. 
 
