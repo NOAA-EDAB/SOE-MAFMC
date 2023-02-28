@@ -307,7 +307,7 @@ Communities plotted in the upper right section of Fig.\ref{fig:commercial-engage
 
 Fig. \ref{fig:commercial-EJ} shows the detailed scores of the three environmental justice indicators for the same communities plotted in Fig.\ref{fig:commercial-engagement}. Communities are plotted clockwise in a descending order of commercial engagement scores from high to low, with the most highly engaged community, Cape May, NJ, listed on the top.  Among the communities ranked medium-high or above for environmental justice vulnerability, Atlantic City, NJ scored high for all of the three environmental justice indicators. Columbia, NC scored high for the personal disruption index and the poverty index. Hobucken, NC scored high for the personal disruption index. Newport News, VA scored medium-high for the population composition index^[Due to missing data, the Poverty Index is missing for Hobucken and Rodanthe, NC]. Beaufort, NC scored medium-high for the poverty index. 
 
-```{r commercial-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", out.width='60%'}
+```{r commercial-EJ, crop=TRUE, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", out.width='75%'}
 
 # out.width='80%'
 #knitr::include_graphics("images/EJ_Commercial_MAB.png")
@@ -315,13 +315,16 @@ Fig. \ref{fig:commercial-EJ} shows the detailed scores of the three environmenta
 #get rid of the gray excel outline using R package magick
 ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Commercial_MAB_2023.PNG") 
 
+ComEJ <- magick::image_read("images/MidCommSpider2023.png")
+
 # from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 # get height, width and crop longer side to match shorter side
 ii <- magick::image_info(ComEJ)
 
 cropComEJ <- ComEJ %>%
   #magick::image_crop(cropComEJ, "820x580+5+5")
-  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5"))
+  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5")) %>%
+  magick::image_trim()
 
 cropComEJ
 ```
@@ -337,7 +340,7 @@ Considerably more communities scored high for both recreational engagement and r
 
 Fig. \ref{fig:recreational-EJ} orders communities clockwise in a descending order of recreational engagement scores from high to low, with the most highly engaged community, Babylon, NY, listed on the top. Among the communities with environmental justice concerns, Hatteras and Vandemere, NC scored medium-high for personal disruption and poverty index. Ocean City, MD and Hobucken, NC scored medium-high for personal disruption index. Manteo, NC scored high for poverty index. Bivale, MD scored medium-high for population composition index^[Due to missing data, the Poverty Index is missing for Hobucken,  NC, Bivalve and Georgetown, MD]. 
 
-```{r recreational-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top recreational fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", out.width='60%'}
+```{r recreational-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top recreational fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", out.width='75%'}
 
 # out.width='80%'
 #knitr::include_graphics("images/EJ_Recreational_MAB.png")
@@ -346,13 +349,16 @@ Fig. \ref{fig:recreational-EJ} orders communities clockwise in a descending orde
 #get rid of the gray excel outline using R package magick
 RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Recreational_MAB_2023.PNG") 
 
+RecEJ <- magick::image_read("images/MidRecSpider2023.png")
+
 # from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 # get height, width and crop longer side to match shorter side
 ii <- magick::image_info(RecEJ)
 
 cropRecEJ <- RecEJ %>%
   #magick::image_crop(cropComEJ, "820x580+5+5")
-  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5"))
+  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5")) %>%
+  magick::image_trim()
 
 cropRecEJ
 ```
@@ -529,7 +535,7 @@ Phytoplankton support the food web as the primary food source for zooplankton an
 ```
 
 The seasonal cycle of phytoplankton size distribution shows that the winter/spring and fall bloom periods are dominated by larger-celled microplankton, while smaller-celled nanoplankton dominate during the warmer summer months. The proportion of the smallest phytoplankton, picoplankton (0.2-2 microns), is relatively constant throughout the year. In 2022, microplankton proportions were average for most of the year, but below average during the early fall bloom period. (Fig. \ref{fig:weekly-phyto-size}). 
-```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2020) percent composition of the phytoplankton size classes in the Mid-Atlantic based on satellite observations in the shaded portions.  The 2022 proportions for the microplankton (>20 microns, green) and nanoplankton (2-20 microns, orange) are shown in the bold lines.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
+```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2021) percent composition of the phytoplankton size classes in the Mid-Atlantic based on satellite observations in the shaded portions.  The 2022 proportions for the microplankton (>20 microns, green) and nanoplankton (2-20 microns, orange) are shown in the bold lines.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
 ```
 
 #### Zooplankton  
@@ -919,11 +925,11 @@ Proposed wind development areas interact with the region’s federal scientific 
 
 Equity and environmental justice (EJ) are priority concerns with offshore wind development and fisheries impacts in the Northeast. Fig. \ref{fig:wea-port-rev} links historic port revenue (2008-2021) from within all wind lease areas as a proportion of the port’s total revenue based on vessel trip reports as described in the revenue and landings of species in the wind indicator above. The range (minimum and maximum) of total percent revenue from within wind energy areas is presented in the graph and Mid-Atlantic ports are sorted from greatest to least revenue from within wind areas. 
 
+For example, Atlantic City, NJ had a minimum of 11% and maximum of 30% overlap of fisheries revenue in potential wind development areas to the total port fisheries revenue between 2008-2021. Those communities that score Med-High or higher in at least one of the vulnerability indicators that address environmental justice concerns (i.e., Poverty, Population Composition, Personal Disruption; see indicator definitions) are noted with a triangle. Gentrification pressure is also highlighted here, with those communities that score Med-High or higher in one or more gentrification pressure indicators (i.e., Housing Disruption, Retiree Migration, Urban Sprawl) represented with a circle (Fig. \ref{fig:wea-port-rev}). BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of environmental justice communities who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts [@boem_vineyard_2020]. 
+
 ```{r wea-port-rev, fig.cap="Percent of Mid-Atlantic port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=6.5, fig.asp=.85, fig.align='left'}
 
 ```
-
-For example, Atlantic City, NJ had a minimum of 11% and maximum of 30% overlap of fisheries revenue in potential wind development areas to the total port fisheries revenue between 2008-2021. Those communities that score Med-High or higher in at least one of the vulnerability indicators that address environmental justice concerns (i.e., Poverty, Population Composition, Personal Disruption; see indicator definitions) are noted with a triangle. Gentrification pressure is also highlighted here, with those communities that score Med-High or higher in one or more gentrification pressure indicators (i.e., Housing Disruption, Retiree Migration, Urban Sprawl) represented with a circle (Fig. \ref{fig:wea-port-rev}). BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of environmental justice communities who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts [@boem_vineyard_2020]. 
 
 Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Barnstable, MA, Boston, MA, Hyannis, MA, North Kingstown/Davisville, RI, and Point Judith, RI. Woods Hole, MA would be added to this list based on pounds only, but did not exceed 50% of value from Mid-Atlantic managed species within wind areas.
 
