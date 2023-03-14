@@ -377,11 +377,11 @@ Protected species include marine mammals protected under the Marine Mammal Prote
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
 Average indices for both harbor porpoise (Fig. \ref{fig:harborporpoise}) and gray seal bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. However, the 2019 bycatch estimate for gray seals was highest in the time series. 
-```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England fisheries (blue) and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=5}
+```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=5}
 #fig.width=6}
 ```
 
-The annual estimate for gray seal bycatch has declined since 2019, in part driven by declining gillnet landings, though this estimate is uncertain due to low observer coverage since 2019. The rolling mean confidence interval remains just below the threshold.
+The annual estimate for gray seal bycatch has declined since 2019, in part driven by declining gillnet landings. In addition, estimates since 2019 have greater uncertainty stemming from low observer coverage since 2019. The rolling mean confidence interval remains just below the removal threshold.
 ```{r grayseal, fig.cap="Gray Seal average bycatch estimate for gillnet fisheries (blue) and and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.width=5}
 #fig.width=6}
 ```
