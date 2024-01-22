@@ -267,11 +267,16 @@ In a similar manner to seafood landings, the results here are driven in large pa
 
 ### Indicators: Angler trips, fleet diversity  
 Recreational effort (angler trips) in 2021 is around the long-term average (Fig. \ref{fig:rec-op}). However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
-```{r rec-op, fig.cap = paste0("Recreational effort in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")}
+```{r rec-op, fig.cap = paste0("Recreational effort in the ",region,".")}
+# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")
+
+ecodata::plot_recdat(report = "MidAtlantic", varName = "effort")
 ```
 
-```{r rec-div, fig.cap = paste0("Recreational fleet effort diversity in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")}
+```{r rec-div, fig.cap = paste0("Recreational fleet effort diversity in the ",region,".")}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")
 
+ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity")
 ```
 
 ### Implications
@@ -289,25 +294,44 @@ While there are many potential metrics of stability, we use diversity indices as
 
 #### Fishery Diversity 
 Diversity estimates have been developed for fleets landing managed species, and species landed by commercial vessels with Mid-Atlantic permits. A fleet is defined here as the combination of gear type (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel length category (less than 30 ft, 30 to 50 ft, 50 to 75 ft, 75 ft and above). Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average (Fig. \ref{fig:commercial-div}). This indicates similar commercial fleet composition and species targeting opportunities over time.  
-```{r commercial-div, fig.cap = paste0("Commercial fleet count and diversity in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.9}
+```{r commercial-div, fig.cap = paste0("Commercial fleet count and diversity in the ",region,"."), fig.asp=.9}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R")
+
+a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count")
+
+b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diversity in revenue")
+
+a/b
 ```
 
 Commercial fisheries are relying on fewer species relative to the mid-90s, and current species revenue diversity is near the historical low point (Fig. \ref{fig:commercial-div-species-div}). Although with precedent, the drop between 2020 and 2021 is relatively large.
-```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
+```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the ",region,".")}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
+
+ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity")
 ```
 
 As noted [above](#recreational-opportunities), recreational fleet effort diversity is declining (Fig. \ref{fig:rec-div}), so this metric suggests an unstable range of recreational fishing opportunities. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average in 7 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
-```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")}
+```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")
+
+ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity")
 ```
 
 #### Ecological Diversity
 
 Ecological diversity indices show mixed trends. Zooplankton diversity is increasing in the MAB (Fig. \ref{fig:zoo-diversity}). Larval fish diversity shows no trend, and high interannual variability with 2021 values at the mean. Adult fish diversity is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. There is no vessel correction for this metric, so indices collected aboard the research vessel Albatross IV (up to 2008) and research vessel Bigelow (2009-2021) are calculated separately. Despite this, adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
-```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, based on Shannon diversity index.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
+```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, based on Shannon diversity index."}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")
+
+ecodata::plot_zoo_diversity(report = "MidAtlantic")
 ```
 
 
-```{r exp-n, fig.cap = "Adult fish diversity in the Mid-Atlantic Bight, based on expected number of species. Results from survey vessels Albatross and Bigelow are reported separately due to catchability differences.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-exp-n.R"), fig.width=5, fig.asp=.4}
+```{r exp-n, fig.cap = "Adult fish diversity in the Mid-Atlantic Bight, based on expected number of species. Results from survey vessels Albatross and Bigelow are reported separately due to catchability differences.", fig.width=5, fig.asp=.4}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-exp-n.R")
+
+ecodata::plot_exp_n(report = "MidAtlantic", varName = "fall")
 ```
 
  
