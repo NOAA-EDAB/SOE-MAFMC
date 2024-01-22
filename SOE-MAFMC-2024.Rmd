@@ -3,20 +3,20 @@ title:
 csl: plos.csl
 fontsize: 10pt
 output:
+  bookdown::word_document2:
+    toc: false
+  bookdown::html_document2: 
+    df_print: paged
   bookdown::pdf_document2:
     includes:
       in_header: latex/header1.tex
     keep_tex: yes
     toc: false
     number_sections: false
-  bookdown::html_document2: 
-    df_print: paged
-  bookdown::word_document2:
-    toc: false
 link-citations: yes
 geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 subparagraph: yes
-bibliography: SOE2023.bib
+bibliography: SOE2024.bib
 urlcolor: blue
 always_allow_html: true
 ---
@@ -41,10 +41,10 @@ knitr::opts_chunk$set(echo = FALSE,
 #Plotting and data libraries
 #remotes::install_github("noaa-edab/ecodata@0.1.0") #change to 2020 ecodata version for release
 library(tidyverse)
-library(tidyr)
 library(ecodata)
 library(here)
 library(flextable)
+library(patchwork)
 
 set_flextable_defaults(
   font.size = 9,
@@ -53,18 +53,6 @@ set_flextable_defaults(
   line_spacing = 1,
   font.family = "Palatino")
 
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
 
 \setcounter{page}{4}
@@ -139,22 +127,32 @@ In this section, we examine indicators related to broad, ecosystem-level fishery
 ### Indicators: Landings; commercial and recreational 
 This year, we present updated indicators for total commercial landings (all species, all uses, fleets from all nations),  US seafood landings (species for human consumption landed by US fleets), and Council-managed US seafood landings (Mid-Atlantic Fishery Management Council (MAFMC) and jointly managed species landed by US fleets for human consumption).  Total commercial landings (black) within the Mid-Atlantic have declined over the long term, and total US seafood landings are near their all time low. Because there is no long term trend in MAFMC managed US seafood landings, the decline in US seafood landings in the Mid-Atlantic region is likely driven by recent declines in species not managed by the Mid-Atlantic Council (Fig. \ref{fig:total-landings}).
 
-```{r, total-landings, fig.cap = paste0("Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red)"), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")}
+```{r, total-landings, fig.asp=.8, fig.cap = paste0("Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red)")}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")
+ecodata::plot_comdat(report = "MidAtlantic", varName = "landings")
 ```
 
 Landings by guild include all species and all uses, and are reported as total for the guild and the MAFMC managed species within the guild. As reported in previous years, landings of benthos presented a significant downward trend, primarily driven by surf clam and ocean quahog. However, total landings of planktivores is now also presenting a significant downward trend, primarily due to decreases in species not managed by the Mid-Atlantic Council (Atlantic herring and Atlantic menhaden; Fig. \ref{fig:comm-landings}).
 
-```{r, comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed U.S seafood landings (red) by feeding guild."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.4}
+```{r, comm-landings, fig.asp=1.6, fig.cap = paste0("Total commercial landings (black) and Mid-Atlantic managed U.S seafood landings (red) by feeding guild.")}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"),
+
+ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild")
+
 ```
 
 Total recreational harvest (retained fish presumed to be eaten) is down in the MAB (Fig. \ref{fig:rec-landings}). Although harvest has increased from a historic low in 2018, it is still below the long term average.
-```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of pounds) in the ",region," region."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
+```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of pounds) in the Mid-Atlantic region.")}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")
 
+ecodata::plot_recdat(report = "MidAtlantic", varName ="landings")
 ```
 
 Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2022 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. In 2021 the International Commission for the Conservation of Atlantic Tunas (ICCAT) finalized recommendations for a two-year retention ban for shortfin mako (ICCAT Rec.21-09), which will also affect total overall landings of pelagic sharks in coming years. 
-```{r rec-hms, fig.cap="Recreational shark landings from Marine Recreational Information Program.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5, fig.asp=.35}
+```{r rec-hms, fig.cap="Recreational shark landings from Large Pelagics Survey.",  fig.width=5, fig.asp=.35}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"),
 
+ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="MidAtlantic")
 ```
 
 Aquaculture production is not yet included in total seafood landings, but we are working toward including it in future reports. Available aquaculture production of oysters for a subset of Mid-Atlantic states indicates a decline in recent years.^[https://noaa-edab.github.io/ecodata/human_dimensions_MAB#Commercial; "Oyster Aquaculture" tab]
@@ -165,24 +163,46 @@ Declining commercial (total and seafood) and recreational landings can be driven
 
 #### Stock Status and Catch Limits
 Single species management objectives (1. maintaining biomass above minimum thresholds and 2. maintaining fishing mortality below overfishing limits) are being met for all but one MAFMC managed species, though the status of six stocks is unknown (Fig. \ref{fig:stock-status}). In addition, the status of Spiny dogfish and bluefish are based on 2022 research track assessments and are thus waiting for a management track update to finalize stock status. 
-```{r stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Spiny dogfish and both Goosefish). The dotted verticxal line is the target bioomass reference point of Bmsy. The dashed lines are the management trehsolds of one half Bmsy (vertical) or Fmsy (horizontal). Stocks in red are below the biomass threshold (overfished) and have fishing mortality above the limit (subject to overfishing), stocks in green are above the biomass threshold but have fishing mortality above the limit. Remaining stocks have fishing mortality within limits: stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
+```{r stock-status, , fig.width = 7.5,  fig.asp = 0.5, fig.cap = paste0("Summary of single species status for MAFMC and jointly federally managed stocks (Spiny dogfish and both Goosefish). The dotted vertical line is the target bioomass reference point of Bmsy. The dashed lines are the management trehsolds of one half Bmsy (vertical) or Fmsy (horizontal). Stocks in red are below the biomass threshold (overfished) and have fishing mortality above the limit (subject to overfishing), stocks in green are above the biomass threshold but have fishing mortality above the limit. Remaining stocks have fishing mortality within limits: stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target.")}
+
+# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), 
+
+a <- ecodata::plot_stock_status(report = "MidAtlantic")
+
+a$p + ggplot2::coord_cartesian(xlim=c(0,2), ylim=c(0,2)) +
+  ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown,
+                             theme = gridExtra::ttheme_default(base_size = 7), 
+                             rows=NULL), 
+                             xmin=0.8, xmax=1.8, ymin=1.5, ymax=2)
+
 ```
 
 Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (Fig. \ref{fig:abcacl-stacked}). Although these figures have not been updated with 2021 data, we do not expect a single year’s update to change the narrative. The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2020, due to that fishery's small relative size. 
 
-```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed commercial (C) and recreational (R) fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R"), fig.width = 6, fig.asp = 0.4}
+```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed commercial (C) and recreational (R) fisheries.", fig.width = 6, fig.asp = 0.4}
+#, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")
+
+ecodata::plot_abc.acl(report = "MidAtlantic", plottype = "Stacked")
 
 ```
 
 Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that these catch limits are not generally constraining as most species are well below the 1/1 ratio (Fig. \ref{fig:abcacl-catch}). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings for the majority of species.
 
-```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. High points = Recreational Black Sea Bass. Red line indicates the median ratio across all fisheries.", code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R")}
+```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. High points = Recreational Black Sea Bass. Red line indicates the median ratio across all fisheries."}
+#, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R")
+
+ecodata::plot_abc.acl(report = "MidAtlantic", plottype = "Catch")
 
 ```
 
 #### System Biomass
 Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores, spring benthivores, and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
-```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
+```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", fig.width=8, fig.asp = 0.75}
+
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R")
+
+ecodata::plot_aggregate_biomass(report = "MidAtlantic") 
+
 ```
 
 #### Effect on Seafood Production
@@ -197,7 +217,14 @@ Other environmental changes require monitoring as they may become important driv
 - Climate is trending into uncharted territory. Globally, 2022 was among the warmest years on record^[https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature] (see [Climate Risks section](#climate-and-ecosystem-productivity)).   
 - Stocks are shifting distribution, moving towards the northeast and into deeper waters throughout the Northeast US Large Marine Ecosystem (Fig. \ref{fig:species-dist}).  
   
-```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=.9}
+```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", fig.asp=.9}
+
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")
+
+a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(expand = FALSE)
+b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(expand = FALSE) 
+
+a/b
 ```  
 
 - Some ecosystem composition and production changes have been observed (see [Stability section](#stability)). 
@@ -207,16 +234,27 @@ Other environmental changes require monitoring as they may become important driv
 
 ### Indicators: revenue (a proxy for profits)  
 Total commercial revenues (black) within the Mid-Atlantic and Mid-Atlantic managed species revenue both present long-term declining trends. Total revenue is at, and revenue from Mid-Atlantic managed species is near, an all-time low (Fig. \ref{fig:comm-revenue}). 
-```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Revenue for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
+```{r comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Revenue for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red)."}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")
+
+ecodata::plot_comdat(report="MidAtlantic", varName="revenue")
+
 ```
 
 Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes: harvest levels, the mix of species landed, price changes, or a combination of these. The Bennet Indicator decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices.
 
 Total revenue trends, decomposed to price and volume indicators (Fig. \ref{fig:bennet}), mirror price and volume indicator trends for the benthos (clams; orange in Fig. \ref{fig:bennet-all}) group, especially over the past decade. However, of note is that only piscivore volume is up across species guilds for either prices or volume when compared to the 2015 benchmark year. 
-```{r bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"), fig.width=6, fig.asp=.35}
+```{r bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), fig.width=6, fig.asp=.35}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R")
+
+ecodata::plot_bennet(report = "MidAtlantic", varName = "total")
+
 ```
 
-```{r bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.35}
+```{r bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight.",  fig.width = 7.5, fig.asp = 0.35}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"),
+
+ecodata::plot_bennet(report="MidAtlantic") #+ ggplot2::facet_wrap(~Var, ncol=1)
 ```
 
 ### Implications 
