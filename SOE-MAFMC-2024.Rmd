@@ -361,10 +361,12 @@ In 2022, we reported the top ten most engaged, and top ten most reliant commerci
 
 Communities plotted in the upper right section of Fig.\ref{fig:commercial-engagement} scored high for both commercial engagement and reliance using both 2019 and 2020 data, including Cape May and Barnegat Light, NJ, and Reedville, VA. Communities that ranked medium-high or above for one or more of the environmental justice indicators in 2020 are highlighted in bright orange, including Newport News, VA; Atlantic City, NJ; and Beaufort, Columbia and Hobucken, NC. Hampton Bays/Shinnecock, NY ranked medium-high based on 2019 data but decreased to medium for its environmental justice vulnerability based on 2020 data reported here.
 
-```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 7.5, fig.asp = 0.5}
-
+```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", fig.width = 7.5, fig.asp = 0.5, results='hide'}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
 #(* Scored high (1.00 and above)) for both commercial engagement and reliance indicators)
+
+ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial")
 ```
 
 Fig. \ref{fig:commercial-EJ} shows the detailed scores of the three environmental justice indicators for the same communities plotted in Fig.\ref{fig:commercial-engagement}. Communities are plotted clockwise in a descending order of commercial engagement scores from high to low, with the most highly engaged community, Cape May, NJ, listed on the top.  Among the communities ranked medium-high or above for environmental justice vulnerability, Atlantic City, NJ scored high for all of the three environmental justice indicators. Columbia, NC scored high for the personal disruption index and the poverty index. Hobucken, NC scored high for the personal disruption index. Newport News, VA scored medium-high for the population composition index^[Due to missing data, the Poverty Index is missing for Hobucken and Rodanthe, NC]. Beaufort, NC scored medium-high for the poverty index. 
@@ -375,9 +377,9 @@ Fig. \ref{fig:commercial-EJ} shows the detailed scores of the three environmenta
 #knitr::include_graphics("images/EJ_Commercial_MAB.png")
 
 #get rid of the gray excel outline using R package magick
-ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Commercial_MAB_2023.PNG") 
+ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Commercial_MAB_2024.PNG")  
 
-ComEJ <- magick::image_read("images/MidCommSpider2023.png")
+#ComEJ <- magick::image_read("images/MidCommSpider2023.png")
 
 # from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 # get height, width and crop longer side to match shorter side
@@ -393,11 +395,13 @@ cropComEJ
 
 Considerably more communities scored high for both recreational engagement and reliance based on 2020 data relative to 2019. Joining Barnegat Light, NJ in the upper right section are Babylon, NY, Nags Head, NC, Hatters, NC, Stevensville, MD, Atlantic Highlands, NJ, Morehead City, NC, Montauk, NY, Point Pleasant Beach, NJ, Ocean City, MD, Point Lookout, NY, Manteo, NC, and Vandemere, NC. Fig.\ref{fig:recreational-engagement}. Communities that ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange, including Ocean City and Bivale, MD; Hatteras, Manteo, Vandemere, and Hobuken, NC. 
 
-```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic. Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.width = 7.5, fig.asp = 0.5}
-
+```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic. Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", fig.width = 7.5, fig.asp = 0.5, results='hide'}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
 
-#(* Scored high (1.00 and above) for both recreational engagement and reliance indicators; 
+#(* Scored high (1.00 and above) for both recreational engagement and reliance indicators;
+
+ecodata::plot_engagement(report = "MidAtlantic", varName = "Recreational")
 ```
 
 Fig. \ref{fig:recreational-EJ} orders communities clockwise in a descending order of recreational engagement scores from high to low, with the most highly engaged community, Babylon, NY, listed on the top. Among the communities with environmental justice concerns, Hatteras and Vandemere, NC scored medium-high for personal disruption and poverty index. Ocean City, MD and Hobucken, NC scored medium-high for personal disruption index. Manteo, NC scored high for poverty index. Bivale, MD scored medium-high for population composition index^[Due to missing data, the Poverty Index is missing for Hobucken,  NC, Bivalve and Georgetown, MD]. 
@@ -409,9 +413,9 @@ Fig. \ref{fig:recreational-EJ} orders communities clockwise in a descending orde
 
 
 #get rid of the gray excel outline using R package magick
-RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Recreational_MAB_2023.PNG") 
+RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Recreational_MAB_2024.PNG") 
 
-RecEJ <- magick::image_read("images/MidRecSpider2023.png")
+#RecEJ <- magick::image_read("images/MidRecSpider2023.png")
 
 # from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 # get height, width and crop longer side to match shorter side
@@ -439,20 +443,32 @@ Protected species include marine mammals protected under the Marine Mammal Prote
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
 Average indices for both harbor porpoise (Fig. \ref{fig:harborporpoise}) and gray seal bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. However, the 2019 bycatch estimate for gray seals was highest in the time series. 
-```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.width=5}
+```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).",, fig.width=5}
+# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R")
 #fig.width=6}
+
+ecodata::plot_harborporpoise()
 ```
 
 The annual estimate for gray seal bycatch has declined since 2019, in part driven by declining gillnet landings. In addition, estimates since 2019 have greater uncertainty stemming from low observer coverage since 2019. The rolling mean confidence interval remains just below the removal threshold.
-```{r grayseal, fig.cap="Gray Seal average bycatch estimate for gillnet fisheries (blue) and and the potential biological removal (red).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.width=5}
+```{r grayseal, fig.cap="Gray Seal average bycatch estimate for gillnet fisheries (blue) and and the potential biological removal (red).", fig.width=5}
+# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R")
 #fig.width=6}
+
+ecodata::plot_grayseal()
 ```
 
 The North Atlantic right whale population was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:narw-abundance}). Reduced survival rates of adult females and diverging abundance trends between sexes have also been observed. It is estimated that there are fewer than 70 adult females remaining in the population. 
-```{r narw-abundance, fig.cap = "Estimated North Atlanic right whale abundance on the Northeast Shelf.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")}
+```{r narw-abundance, fig.cap = "Estimated North Atlanic right whale abundance on the Northeast Shelf."}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")
+
+ecodata::plot_narw(varName = "adult")
 ```
 North Atlantic right whale calf counts have generally declined after 2009 to the point of having zero new calves observed in 2018 (Fig. \ref{fig:NARW-calf-abundance}). However, since 2019, we have seen more calf births each year, with 20 births in 2022.   
-```{r NARW-calf-abundance, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2021.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")}
+```{r NARW-calf-abundance, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2021."}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")
+
+ecodata::plot_narw(varName = "calf")
 ```
 
 This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. Since 2017, the total UME right whale mortalities includes 35 dead stranded whales, 14 in the US and 21 in Canada. When alive but seriously injured whales (22) and sublethal injuries or ill whales (37) are taken into account, 94 individual whales are included in the UME. Recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities [@pace_cryptic_2021]. The primary cause of death is “human interaction” from entanglements or vessel strikes^[https://www.fisheries.noaa.gov/national/marine-life-distress/2017-2023-north-atlantic-right-whale-unusual-mortality-event]. 
