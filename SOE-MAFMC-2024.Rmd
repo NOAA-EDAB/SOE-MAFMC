@@ -267,13 +267,13 @@ In a similar manner to seafood landings, the results here are driven in large pa
 
 ### Indicators: Angler trips, fleet diversity  
 Recreational effort (angler trips) in 2021 is around the long-term average (Fig. \ref{fig:rec-op}). However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
-```{r rec-op, fig.cap = paste0("Recreational effort in the ",region,".")}
+```{r rec-op, fig.cap = paste0("Recreational effort in the Mid Atlantic.")}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "effort")
 ```
 
-```{r rec-div, fig.cap = paste0("Recreational fleet effort diversity in the ",region,".")}
+```{r rec-div, fig.cap = paste0("Recreational fleet effort diversity in the Mid Atlantic.")}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity")
@@ -294,7 +294,7 @@ While there are many potential metrics of stability, we use diversity indices as
 
 #### Fishery Diversity 
 Diversity estimates have been developed for fleets landing managed species, and species landed by commercial vessels with Mid-Atlantic permits. A fleet is defined here as the combination of gear type (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel length category (less than 30 ft, 30 to 50 ft, 50 to 75 ft, 75 ft and above). Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average (Fig. \ref{fig:commercial-div}). This indicates similar commercial fleet composition and species targeting opportunities over time.  
-```{r commercial-div, fig.cap = paste0("Commercial fleet count and diversity in the ",region,"."), fig.asp=.9}
+```{r commercial-div, fig.cap = paste0("Commercial fleet count and diversity in the Mid Atlantic."), fig.asp=.9}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R")
 
 a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count")
@@ -305,14 +305,14 @@ a/b
 ```
 
 Commercial fisheries are relying on fewer species relative to the mid-90s, and current species revenue diversity is near the historical low point (Fig. \ref{fig:commercial-div-species-div}). Although with precedent, the drop between 2020 and 2021 is relatively large.
-```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the ",region,".")}
+```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the Mid Atlantic.")}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
 
 ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity")
 ```
 
 As noted [above](#recreational-opportunities), recreational fleet effort diversity is declining (Fig. \ref{fig:rec-div}), so this metric suggests an unstable range of recreational fishing opportunities. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average in 7 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
-```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")}
+```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the Mid Atlantic.")}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity")
@@ -494,460 +494,24 @@ A climate vulnerability assessment is currently underway for Atlantic and Gulf o
 
 Large scale climate related changes in the ecosystem can lead to changes in important habitats and ecological interactions, potentially resulting in regime shifts and ecosystem reorganization.   
 
-### Climate Change Indicators: ocean temperature, heatwaves, currents, acidification
-
-#### Ocean and estuarine temperature and salinity
-The ocean continues to warm, altering habitat conditions experienced by a wide range of species. 2022 was among the warmest years on record in the North Atlantic [@cheng_another_2023] and ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-sst-anom-gridded}) and bottom (Fig. \ref{fig:bottom-temp}) throughout the Mid-Atlantic. Bottom temperature shows a long term warming trend in all seasons, while sea surface temperature shows significant long term warming in spring, summer, and fall. Seasonal sea surface temperatures in 2022 were above average for most of the year,  however late spring storms caused deep mixing, which delayed stratification and surface warming in late spring and early summer.
-
-```{r seasonal-sst-anom-gridded, fig.cap="MAB (grey outline) seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = .6}
-
-```
-
-```{r bottom-temp, fig.cap="MAB seasonal bottom temperature (BT) anomaly time series. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall. The final 2 years of each time series (open circles) are modeled estimates subject to change.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp-hi-res-ts.R"), fig.width = 6, fig.asp = .4}
-```
-
-In addition to increasing temperatures overall, ocean summer conditions now last longer within each year. In the MAB, the transition date from warm stratified summer conditions to well mixed cool fall conditions is getting later (Fig. \ref{fig:transition}).
-
-```{r transition, fig.cap="Ocean summer length in the MAB: the annual total number of days between the spring thermal transition date and the fall thermal transition date.  The transition dates are defined as the day of the year when surface temperatures changeover from cool to warm conditions in the spring and back to cool conditions in the fall.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")}
-
-```
-
-The Chesapeake Bay experienced a warmer-than-average winter 2022, and average conditions in the spring and summer. Fall 2022 was cooler relative to the baseline period 2008-2021 as measured by satellites^[https://coastwatch.noaa.gov/cw/index.html] and by buoys^[https://buoybay.noaa.gov/] (Fig. \ref{fig:ches-temp-sal}, left panel), which also indicated above-average salinity in the Chesapeake Bay throughout the summer and fall (Fig. \ref{fig:ches-temp-sal}, right panel). 
-
-```{r ches-temp-sal,  out.width = '49%', fig.show='hold', fig.cap="NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature (left) and salinity (right); Red = 2022, Blue = Long term average 2010-2020.", fig.width = 6, fig.asp=0.5}
-
-# Left
-tempbouy <- ecodata::ch_bay_temp %>%
-  tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
-  dplyr::mutate(YearLTAC = (YearLTA - 32)*(5/9),
-                minLTAC = (minLTA - 32)*(5/9),
-                maxLTAC = (maxLTA - 32)*(5/9), 
-                YearC = (Year - 32)*(5/9)) %>% 
-  ggplot2::ggplot() +
-  ggplot2::geom_ribbon(aes(x = Time, ymin = minLTAC, ymax = maxLTAC), fill = "grey", alpha = 0.5)+
-  
-  ggplot2::geom_line(aes(x = Time, y = YearLTAC, color= "Long Term Average 2010-2020")) +
-  ggplot2::geom_line(aes(x = Time, y = YearC, color = "Daily 2022")) +
-  ggplot2::ylab("Temperature (C)") +
-  ggplot2::ggtitle("Chesapeake Bay Temperature") +
-  ggplot2::theme(legend.position = "none", 
-                 legend.title = element_blank())+
-  ecodata::theme_ts()+
-  ecodata::theme_title()
-
-tempbouy
-
-# Right 
-salbouy <- ecodata::ch_bay_sal %>%
-  tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
-  ggplot2::ggplot() +
-  ggplot2::geom_ribbon(aes(x = Time, ymin = minLTA, ymax = maxLTA), fill = "grey", alpha = 0.5)+
-  
-  ggplot2::geom_line(aes(x = Time, y = YearLTA, color= "Long Term Average 2010-2020")) +
-  ggplot2::geom_line(aes(x = Time, y = Year, color = "Daily 2022")) +
-  ggplot2::ylab("Salinity") +
-  ggplot2::ggtitle("Chesapeake Bay Salinity") +
-  ggplot2::theme(legend.position = "none", 
-                 legend.title = element_blank())+
-  ecodata::theme_ts()+
-  ecodata::theme_title()
-
-salbouy
-
-```
-
-#### Extreme temperature events
-The increase in surface and bottom water temperature observed in the Northeast US may represent long term incremental stress on marine organisms, especially those relying on cooler water habitats for some or all life stages. In addition to changes in long-term average conditions, short-term extreme temperature events can produce acute stress on marine organisms, especially when the baseline temperature is increasing. To identify these extreme events separately from the baseline warming, we have changed our methods describing marine heatwaves (MHWs, @hobday_hierarchical_2016; @jacox_thermal_2020; @jacox_global_2022) to remove the global warming signal. Therefore, these indicators look different than in previous reports, but MHWs identified now are truly extreme departures from an already warming ecosystem.  A combination of long-term ocean warming and MHWs should be used to assess total heat stress on marine organisms. 
-
-In 2022, the Mid-Atlantic Bight experienced two distinct surface marine heatwaves starting on August 29th and November 7th, lasting 9 and 11 days respectively  (Fig. \ref{fig:heatwave-year}). Both ranked low among all recorded MWHs (75th and 73rd respectively). The top 4 strongest surface MHWs in the MAB occurred during the last ten years, with the two events in 2012 ranked as 1st and 3rd. No bottom MHWs were observed in 2022. The strongest bottom MHWs occurred in the fall of 1985 followed by the second strongest in the winter/spring of 2012.
-
-```{r heatwave-year, fig.cap="Marine heatwave events (red shading above black line) in the Mid-Atlantic occuring in 2022.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year-detrended.R"), fig.width=4.5, fig.asp=.6}
-
-```
-
-#### Ocean currents and features
-
-Variability of the Gulf Stream is one of the major drivers of changes in the oceanographic conditions of the Slope Sea and subsequently the Northeast U.S. continental shelf [@gangopadhyay_census_2020]. Changes in the Gulf Stream and Slope Sea can affect large-scale climate phenomena as well as local ecosystems and coastal communities. During the last decade, the Gulf Stream has become less stable and shifted northward [@andres_recent_2016; @caesar_observed_2018] (Fig. \ref{fig:GSI}).  A more northern Gulf Stream position is associated with warmer ocean temperature on the northeast shelf [@zhang_role_2007], a higher proportion of Warm Slope Water in the Northeast Channel, and increased sea surface height along the U.S. east coast [@goddard_extreme_2015]. 
-
-```{r GSI, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
-```
-
-Since 2008, the Gulf Stream has moved closer to the Grand Banks, reducing the supply of cold, fresh, and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf [@goncalves_neto_changes_2021]. Nearly every year since 2010, warm slope water made up more than 75% of the annual slope water proportions entering the Gulf of Maine.  In 2017 and 2019, almost no cooler Labrador Slope water entered the Gulf of Maine through the Northeast Channel (Fig. \ref{fig:wsw-prop}).  The changing proportions of source water affect the temperature, salinity, and nutrient inputs to the Gulf of Maine ecosystem.  In 2021, warm slope water continued to dominate (86.1%) inputs to the Gulf of Maine.
-
-```{r wsw-prop, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSLW) entering the Gulf of Maine through the Northeast Channel.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=5, fig.asp=.35}
-```
-
-The increased instability of the Gulf Stream position and warming of the Slope Sea may also be connected to the regime shift increase in the number of warm core rings formed annually in the Northwest Atlantic [@gangopadhyay_observed_2019; @gangopadhyay_census_2020] (Fig. \ref{fig:wcr}). When warm core rings and eddies interact with the continental slope they can transport warm, salty water to the continental shelf [@chen_mesoscale_2022], which can alter the habitat and disrupt seasonal movements of fish [@gawarkiewicz_changing_2018]. Transport of offshore water onto the shelf is happening more frequently [@gawarkiewicz_changing_2018; @gawarkiewicz_increasing_nodate], and can contribute to marine heatwaves in the Mid-Atlantic Bight [@gawarkiewicz_characteristics_2019; @chen_mesoscale_2022] as well as the movement of shelf-break species inshore [@gawarkiewicz_changing_2018; @potter_horizontal_2011; @worm_predator_2003]. 
-
-2022 had the same number of warm core rings (21) as 2021, but most of the 2022 rings formed east of 60 W and fewer were observed near the shelf break region. 
-
-```{r wcr, fig.cap= "Warm core ring formation on the Northeast U.S. Shelf: Annual number of rings.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
-
-```
-
-Changes in ocean temperature and circulation alter habitat features such as the seasonal cold pool, a 20–60 m thick band of cold, relatively uniform near-bottom water that persists from spring to fall over the mid and outer shelf of the MAB and southern flank of Georges Bank [@lentz_seasonal_2017; @chen_seasonal_2018]. The cold pool plays an essential role in the structuring of the MAB ecosystem. It is a reservoir of nutrients that feeds phytoplankton productivity, is essential fish spawning and nursery habitat, and affects fish distribution and behavior [@lentz_seasonal_2017; @miles_offshore_2021]. The average temperature of the cold pool is getting warmer over time [@miller_state-space_2016; @du_pontavice_incorporating_nodate], the area is getting smaller [@friedland_middle_2022], and the duration is getting shorter (Fig. \ref{fig:cold-pool}).
-
-```{r cold-pool, fig.cap="Seasonal cold pool indices: mean temperature within the cold pool, cold pool persistence, and spatial extent.",  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R"), fig.width=10, fig.asp=.35}
-
-```
-
-
-#### Ocean Acidification
-Ocean acidification (OA) has caused measured declines in global ocean pH, and is projected to continue declining if high carbon dioxide emissions continue [@intergovernmental_panel_on_climate_change_ipcc_technical_2022]. OA also changes the availability of minerals required by organisms to form calcified structures such as shells. Calcifying conditions in seawater can be determined by measuring aragonite saturation state ($\Omega_{Arag}$), the tendency of a common type of calcium carbonate, aragonite, to form or dissolve. When $\Omega_{Arag}$ is less than 1, shells and other calcium carbonate structures begin to dissolve. Typical surface ocean $\Omega_{Arag}$ is 2-4, but extremes can be <1 or >5 [@jiang_climatological_2015]. As the ocean absorbs carbon dioxide, both pH and $\Omega_{Arag}$ decrease and can cause organisms to respond with reduced survival, calcification rates, growth, and reproduction, as well as impaired development, and/or changes in energy allocation [@kroeker_impacts_2013 @saba_recommended_2019]. However, sensitivity levels vary, and some organisms exhibit negative responses to calcification and other processes when $\Omega_{Arag}$ is as low as 3.
-
-Summer-time (2007-present) $\Omega_{Arag}$ on the U.S. Northeast Shelf varies in space and time, ranging from 0.64 to 2.49 (Fig. \ref{fig:mab-oa}, left panel). Spatially, the lowest bottom $\Omega_{Arag}$ has occurred in the Gulf of Maine, western Long Island Sound, nearshore to mid-shelf waters of the Mid-Atlantic Bight off the coast of New Jersey, and in waters > 1000 meters. $\Omega_{Arag}$ was at or below the sensitivity levels for both Atlantic sea scallop [@cameron_effects_2022] and longfin squid [@zakroff_dose-dependence_2019; @zakroff_antagonistic_2020] in Long Island Sound and the nearshore and mid-shelf regions of the New Jersey shelf (Fig. \ref{fig:mab-oa}, right panels). The sensitivity levels of bottom $\Omega_{Arag}$ occurred during August 2016, July 2018, and August 2019 for both species, and additionally in August 2021 for the Atlantic sea scallop.
-
-```{r mab-oa, out.width = '100%', fig.cap = "Left panel: Bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) on the U.S. Northeast Shelf based on quality-controlled vessel- and glider-based datasets from 2007-present. Right panel: Locations where summer bottom $\\Omega_{Arag}$ were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (top panel) and longfin squid (bottom). Gray circles indicate locations where carbonate chemistry samples were collected, but bottom $\\Omega_{Arag}$ values were higher than sensitivity values determined for that species."}
-
-#knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
-
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC.jpg")
-
-#magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC - Grace Saba.jpg")
-
-```
-
-### Ecosystem Productivity Indicators: phytoplankton, zooplankton, forage fish, fish condition
-
-#### Phytoplankton
-Phytoplankton support the food web as the primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors interact to drive the abundance, composition, spatial distribution, and productivity of phytoplankton. In 2022, MAB phytoplankton biomass (surface chlorophyll) was above average in winter, but below average in August and September. Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. Chlorophyll concentrations were above average in early fall and a  fall bloom was detected in November/December. Primary productivity (the rate of photosynthesis) was average through spring, above average in the summer and average in the fall (Fig. \ref{fig:chl-weekly}).
-
-```{r chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2022. The long-term mean is shown in black and shading indicates +/- 1 standard deviation.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.width = 4, fig.asp = 0.9}
-```
-
-The seasonal cycle of phytoplankton size distribution shows that the winter/spring and fall bloom periods are dominated by larger-celled microplankton, while smaller-celled nanoplankton dominate during the warmer summer months. The proportion of the smallest phytoplankton, picoplankton (0.2-2 microns), is relatively constant throughout the year. In 2022, microplankton proportions were average for most of the year, and above average peaks correspond to the bloom periods observed in chlorophyll concentration (Fig. \ref{fig:weekly-phyto-size}). 
-```{r weekly-phyto-size, fig.cap="The annual climatology (1998-2022) percent composition of the phytoplankton size classes in the Mid-Atlantic based on satellite observations in the shaded portions.  The 2022 proportions for the microplankton (>20 microns, green) and nanoplankton (2-20 microns, orange) are shown in the bold lines.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.6}
-```
-
-#### Zooplankton  
-The zooplankton community is changing in the MAB. Two dominant groups show long term trends:  ‘sea butterflies’ (pteropods) show a long term increase in the MAB, and the copepod *Pseudocalanus* spp. has a long term decreasing trend (Fig. \ref{fig:zoo-pseudo-thecos}). Pteropods are important prey items for planktivores such as herring and mackerel, as well as some sea birds. Despite being susceptible to shell degradation by ocean acidification, their abundance has remained above long term mean since 2004. Pseudocalanus spp. are important prey for many larval fish species, and can influence phytoplankton standing stock through grazing. Pseudocalanus spp. abundance has been below the long term mean since 2000 and continues to decrease with increasing temperature. 
-```{r zoo-pseudo-thecos, fig.cap="Abundance Annomalies of pseudocalanus and pteropods in Mid-Atlantic Bight.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-pseudo_thecos.R")}
-
-```
-
-
-#### Forage Fish Energy Content
-Nutritional value (energy content) of juvenile and adult forage fish as prey is related to environmental conditions, fish growth, and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2022 are building toward a time series to evaluate trends (Fig. \ref{fig:energy-density}). Data from the fall 2021 and spring 2022 survey measurements were consistent with previous reports: the energy density of Atlantic herring increased to over 7 kJ/g wet weight, but was still well below that observed in the 1980s and 1990s (10.6-9.4 kJ/ g wet weight). Silver hake, longfin squid (*Loligo* in figure) and shortfin squid (*Illex* in figure) remain lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish, sand lance, and Atlantic mackerel varies seasonally, with seasonal estimates both higher and lower than estimates from previous decades.  
-```{r energy-density, fig.cap="Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
-```
-
-#### Forage Fish Biomass Index
-The amount of forage fish available in the ecosystem combined with the energy content of the forage species determines the amount of energy potentially available to predators in the ecosystem. Changes in the forage base could pose a risk to managed and protected species production. A new spatially-explicit forage index estimated the combined biomass of 20 forage species using stomach contents information from 22 predatory fish species collected on bottom trawl surveys. While the resulting indices show no long term trends in the Mid-Atlantic, they do show overall higher forage fish in fall relative to spring (Fig. \ref{fig:foragebio}), with highest forage biomass during fall in the mid-1980s. Changes in the distribution of forage biomass also affects predator distribution. Spatial subsets of this index were included in the bluefish research track stock assessment to investigate forage-driven changes in bluefish availability to recreational fisheries and surveys.  
-```{r foragebio, fig.cap = "Forage fish index based on spring and fall survey predator diets.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.6}
-```
-
-#### Fish Condition
-The health and well being of individual fish can be related to body shape condition indices (i.e., weight at a given length) such as relative condition index, which is the ratio of observed weight to predicted weight based on length [@le_cren_length-weight_1951]. Heavier and fatter fish at a given length have higher relative condition which is expected to improve growth, reproductive output, and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010, with a mix of good and poor condition from 2011-2019. Condition was again mixed in 2022, but a number of species improved in condition from the relatively low condition year in 2021 (Fig. \ref{fig:mab-cf}). Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
-
-```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", out.width = '100%'}
-
-#knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg")
-
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg")
-
-```
-
-#### Fish Productivity
-We describe patterns of aggregate fish productivity in the Mid-Atlantic with the small fish per large fish anomaly indicator, derived from NEFSC bottom trawl survey data (Fig. \ref{fig:productivity-anomaly}). The indicator shows that productivity has been declining in this region since 2010.  A similar analysis based on stock assessment model outputs (recruitment per spawning stock biomass anomaly) for stocks primarily inhabiting the Mid-Atlantic region also shows a decline in productivity. 
-
-```{r productivity-anomaly, out.width='49%', fig.show='hold', fig.cap = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Mid-Atlantic Bight. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in the Mid-Atlantic. The summed anomaly across species is shown by the black line.", fig.width=8, fig.asp=.7}
-
-#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R"), 
-
-#source("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R", local = knitr::knit_global())
-#source("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R", local = knitr::knit_global())
-
-# Left survey
-#### Adjust plot properties -------------------------------
-adjustAxes <- 
-  ggplot2::theme(axis.title   = element_text(size = 10),
-                 axis.text    = element_text(size = 10),
-                 plot.title   = element_text(size = 15))
-
-
-#### Plot stacked bar with cpts for single var ------------
-plot_stackbarcpts_single <- function(YEAR, var2bar,
-                                     x, xlab, ylab,
-                                     titl,
-                                     file_suffix,
-                                     leg_font_size = 6,
-                                     remove_leg = FALSE,
-                                     leg_ncol = 1,
-                                     wcpts = TRUE,
-                                     wdashed = TRUE,
-                                     height = 5.5,
-                                     width = 8,
-                                     filt = TRUE,
-                                     label = label,
-                                     y.text = y.text,
-                                     aggregate = FALSE) {
-  
-  dat2bar <- data.frame(YEAR, var2bar,
-                        x)
-  if (filt == TRUE){mab_species <-  list("SUMMER FLOUNDER","SCUP","BLACK SEA BASS","BLUEFISH",
-                                         "NORTHERN SHORTFIN SQUID", "LONGFIN SQUID", "ATLANTIC MACKEREL",
-                                         "BUTTERFISH","ATLANTIC SURFCLAM", "OCEAN QUAHOG", "TILEFISH",
-                                         "BLUELINE TILEFISH","SPINY DOGFISH", "GOOSEFISH")
-  dat2plot <-
-    dat2bar %>%
-    tidyr::gather(variable, value, -YEAR, -var2bar) %>%
-    dplyr::mutate(var2bar = gsub(pattern      = "_", 
-                                 replacement  = " ", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = "Atl.", 
-                                 replacement  = "ATLANTIC", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = "Atl", 
-                                 replacement  = "ATLANTIC", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = "NS and combined", 
-                                 replacement  = "", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = "YT", 
-                                 replacement  = "Yellowtail", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = " GoM", 
-                                 replacement  = " GOM", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = " by EPU", 
-                                 replacement  = "", 
-                                 x            = var2bar)) %>%
-    dplyr::filter(var2bar %in% mab_species)
-} else if (filt == FALSE){
-    dat2plot <-
-    dat2bar %>%
-    tidyr::gather(variable, value, -YEAR, -var2bar) %>%
-    dplyr::mutate(var2bar = gsub(pattern      = "_", 
-                                 replacement  = " ", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = "Atl.", 
-                                 replacement  = "ATLANTIC", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = "Atl", 
-                                 replacement  = "ATLANTIC", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = "NS and combined", 
-                                 replacement  = "", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = "YT", 
-                                 replacement  = "Yellowtail", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = " GoM", 
-                                 replacement  = " GOM", 
-                                 x            = var2bar),
-                  var2bar = gsub(pattern      = " by EPU", 
-                                 replacement  = "", 
-                                 x            = var2bar))
-}
-  if (aggregate){
-   agg <- dat2plot %>%
-     dplyr::group_by(YEAR) %>%
-     dplyr::summarise(Total = sum(value, na.rm = T)) %>% 
-     dplyr::mutate(Total = ifelse(Total == 0, NA, Total))
-  }
-  
-  p <-   
-    ggplot2::ggplot(dat2plot,
-           aes(x = YEAR)) +
-    ggplot2::geom_bar(data = dat2plot %>% filter(value > 0),
-             aes(y = value, fill = var2bar),
-             stat = "identity") +
-    ggplot2::geom_bar(data = dat2plot %>% filter(value < 0),
-             aes(y = value, fill = var2bar),
-             stat = "identity") +
-    {if(aggregate) geom_line(data = agg,aes(x = YEAR, y = Total),
-                             size = 1)} +
-    ggplot2::geom_hline(size = 0.3, aes(yintercept = 0)) +
-    ggplot2::xlab(xlab) +
-    ggplot2::ylab(ylab) +
-    ggplot2::ggtitle(titl) +
-    ggplot2::guides(fill = guide_legend(ncol = leg_ncol)) +
-    ecodata::theme_ts()+
-    ggplot2::theme(axis.title   = element_text(size = 12),
-          axis.text    = element_text(size = 12),
-          plot.title   = element_text(size = 15),
-          legend.text  = element_text(size = leg_font_size),
-          legend.title = element_blank()) +
-    ggplot2::annotate("text", label = label, x = 1980, y = y.text,size = 8, colour = "black")
-  
-
-  
-  if(remove_leg) p <- p + theme(legend.position = "none")
-  
-  return(p)
-}
-
-bar_dat <- ecodata::productivity_anomaly %>% 
-  dplyr::filter(EPU == "MAB") %>% 
-  tidyr::separate(Var, into = c("Var", "Survey"), sep = "_")
-
-# mafmc <-plot_stackbarcpts_single(YEAR = bar_dat$Time,
-#                          var2bar = bar_dat$Var,
-#                          x = bar_dat$Value,
-#                          titl = "",
-#                          xlab = "",
-#                          ylab = "Small fish per large fish biomass (anomaly)",
-#                          height = 5.5,
-#                          width = 9,
-#                          filt = TRUE,
-#                          label = "A",
-#                          y.text = 4.5)
-
-# 
-mid <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
-                         var2bar = bar_dat$Var,
-                         x = bar_dat$Value,
-                         titl = "MAB Production Anomaly from surveys",
-                         xlab = "",
-                         ylab = "Small fish per large fish biomass (anomaly)",
-                         height = 5.5,
-                         width = 9,
-                         filt = FALSE,
-                         label = "",
-                         y.text = 5,
-                         aggregate = TRUE)
-
-mid
-
-
-# Right assessment
-total<- ecodata::productivity_anomaly %>% 
-  tidyr::separate(Var, into = c("Stock", "Var"), sep = "-")  %>% 
-  dplyr::filter(EPU == "MA", 
-                Var == "rs_anom") %>% 
-  dplyr::group_by(Time) %>% 
-  dplyr::summarise(Total = sum(Value, na.rm = T),
-                      Count = n()) %>% # SG add a count of species
-  dplyr::mutate(Totalold = ifelse(Total == 0, NA, Total),
-            Total = ifelse(Count < max(Count), NA, Total))
-  
-prod<- ecodata::productivity_anomaly %>% 
-  tidyr::separate(Var, into = c("Stock", "Var"), sep = "-")  %>% 
-  dplyr::filter(EPU == "MA", 
-                Var == "rs_anom")
-
-p <-   
-    ggplot2::ggplot(prod,
-           aes(x = Time)) +
-    ggplot2::geom_bar(data = prod %>% filter(Value > 0),
-             aes(y = Value, fill = Stock),
-             stat = "identity") +
-    ggplot2::geom_bar(data = prod %>% filter(Value < 0),
-             aes(y = Value, fill = Stock),
-             stat = "identity") +
-    ggplot2::geom_line(data = total, aes(x = Time, y = Total),
-                             size = 1) +
-    ggplot2::geom_hline(size = 0.3, aes(yintercept = 0)) +
-    ggplot2::xlab("") +
-    ggplot2::ylab("Recruitment/SSB Anomaly") +
-    ggplot2::ggtitle("MAB Production Anomaly from Stock Assessments") +
-    #ggplot2::guides(fill = guide_legend(ncol = leg_ncol)) +
-    ecodata::theme_ts()+
-    ggplot2::theme(axis.title   = element_text(size = 10),
-          axis.text    = element_text(size = 10),
-          plot.title   = element_text(size = 12),
-          #legend.text  = element_text(size = leg_font_size),
-          legend.title = element_blank()) 
-p
-
-```
-
-### Ecosystem Structure Indicators: distribution shifts, diversity, predators
-As noted in the [Landings Implications section above](#implications), stocks are shifting distribution throughout the region. In aggregate, fish stocks are moving northeast along the shelf and into deeper waters.
-
-Zooplankton diversity is increasing in the MAB, while adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (see [Diversity Indicators section, above](#ecological-diversity)).  
-
-Indicators for shark populations, combined with information on gray seals (see [Protected Species Implications section, above](#protected-species)), suggests predator populations range from stable (sharks, Fig. \ref{fig:hms-cpue-sharks}) to increasing (seals) in the MAB. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
-
-```{r hms-cpue-sharks, fig.cap="Estimated number of sharks per unit effort from Highly Migratory Species Pelagic Observer Program data.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R"), fig.width=5}
-```
-
-Stock status is mixed for Atlantic Highly Migratory Species (HMS) stocks (including sharks, swordfish, billfish, and tunas) occurring in the Mid-Atlantic region. While there are several HMS species considered to be overfished or that have unknown stock status, the population status for some managed Atlantic sharks and tunas is at or above the biomass target (Fig. \ref{fig:hms-stock-status}), suggesting the potential for robust predator populations among these managed species. 
-
-```{r hms-stock-status, fig.cap = "Summary of single species status for HMS stocks; key to species names at https://noaa-edab.github.io/tech-doc/atlantic-highly-migratory-species-stock-status.html.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R"), fig.width = 6, fig.asp = 0.5}
-
-```
-
-As noted in the [Protected Species section](#protected-species), gray seal populations are increasing. Harbor and gray seals occupying New England waters are generalist predators that consume more than 30 different prey species. An evaluation of hard  parts found in seal stomachs showed that harbor and gray seals predominantly exploit abundant demersal fish species (i.e., red, white, and silver hake). Other relatively abundant prey species found in hard-part remains include sand lance, yellowtail flounder, four-spotted flounder, Gulf Stream flounder, haddock, herring, redfish, and squids. 
-
-A stable isotope study utilizing gray seal scat samples obtained from Massachusetts habitats showed individual gray seals can specialize on particular prey [@hernandez_seasonal_2019]. It also found that gray seals vary their diet seasonally, focusing on demersal inshore species prior to the spring molt, and offshore species such as sandlance after molting. DNA studies on gray seal diet in Gulf of Maine and Massachusetts waters found spiny dogfish and Jonah crab present in gray seal scat samples [@ono_detecting_2019; @mccosker_metabarcoding_2020], with sandlance and menhaden dominant off Monomoy, MA [@flanders_utilizing_2020]. Skate and crab remains were also found in gray seal stomach remains. In contrast to direct feeding, it is uncertain if the presence of skates and crabs is due to secondary consumption or scavenging. 
-
-
-### Habitat Risk Indicators: habitat assessments, submerged aquatic vegetation, estuarine habitat quality, fishing gear impacts
-
-#### Habitat Assessments
-The Northeast Regional Marine Fish Habitat Assessment (NRHA) is a collaborative effort to describe and characterize estuarine, coastal, and offshore fish habitat distribution, abundance, and quality in the Northeast. This includes mapping inshore and offshore habitat types used by focal fish species, summarizing impacts of habitat climate vulnerability on these species, modeling predicted future species distributions, and developing a publicly accessible decision support tool to visualize these results. This is a three-year project led by the New England and Mid-Atlantic Fishery Management Councils in collaboration with many partners including NOAA Fisheries^[https://www.mafmc.org/nrha].
-
-#### New habitat model-based richness estimates
-Species richness was derived from habitat models for 55 common species sampled by the spring and fall NEFSC bottom trawl surveys during the years 2000-2019 as part of the NRHA. The joint species distribution model controls for differences in capture efficiency across survey vessels, revealing patterns of declining richness in the Mid-Atlantic Bight and increasing richness in more northerly regions (i.e., the Gulf of Maine; Fig. \ref{fig:habitat-richness}). These patterns reflect the decreasing probability of occurrence of cooler-water species in the south (Atlantic cod, American plaice, pollock, thorny skate) and the growing prevalence of warm-water species in the north (weakfish, spotted hake, and black sea bass), likely as a result of rising water temperatures. 
-
-```{r habitat-richness, fig.cap="Habitat model-based species richness for 55 common species sampled by NEFSC bottom trawl surveys.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-habitat-richness.R"), fig.asp=0.8}
-```
-
-#### Submerged Aquatic Vegetation
-Submerged aquatic vegetation (SAV) is designated as a Habitat Area of Particular Concern (HAPC) for summer flounder and is important habitat for many fish species, particularly during vulnerable juvenile stages. Increased SAV coverage (including wild celery, water stargrass, and hydrilla) in the tidal fresh areas of the Chesapeake Bay (Fig. \ref{fig:sav}) has been attributed to restoration efforts. This ecosystem engineering has improved water quality, promoting further expansions of SAV meadows. However, in the higher salinity region near the mouth of the Chesapeake Bay (Fig. \ref{fig:sav}), increased water temperatures continue to inhibit eelgrass expansion. In 2021, the return to normal water temperature in the summer corresponded to a slight improvement in both eelgrass and widgeon grass coverage.
-
-```{r sav, fig.cap="Submerged Aquatic Vegetation (SAV) coverage in tidal fresh and high salinity regions of the Chesapeake Bay.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R"), fig.width = 8, fig.asp = 0.35}
-
-```
-
-#### Fishing Gear Impacts
-Estimates of the impacts of fishing gear on habitat are available through the habitat section of the Northeast Ocean Data Portal^[https://www.northeastoceandata.org/data-explorer/]. The data portal hosts selected outputs from the Northeast Fishing Effects Model which combines seafloor data (sediment type, energy regime) with fishing effort data to generate percent habitat disturbance estimates in space and time. More detailed information can be found in the Synthetic Indicator Catalog.^[https://noaa-edab.github.io/catalog/northeast-fishing-effects-model.html]
-
-
-### Implications
-
-#### Links between climate change and managed species 
-Estuarine, nearshore, and offshore habitats support many life stages of state and federally managed species, and are highly vulnerable to climate change. Below we highlight how recently observed habitat changes affect several key managed species in Chesapeake Bay and in both nearshore and offshore waters of the MAB. Overall, multiple drivers interact differently for each species, producing a range of population impacts.
-
-##### *Estuarine habitat and managed species*
-Relative habitat use of Chesapeake Bay by several finfish species, including Atlantic croaker, spot, summer flounder, weakfish, clearnose skate, and horseshoe crab is declining [@schonfeld_spatial_2022].  There is evidence suitable habitat for juvenile summer flounder growth has declined by 50% or more [@fabrizio_characterization_2022]. Climate change is expected to continue impacting habitat function and use for multiple species. Restoration of oyster reefs (see below) and marshes could help address these challenges.
-
-Average water temperatures in 2022 (Fig. \ref{fig:ches-temp-sal}, left) and below-average hypoxic volume throughout the summer suggest favorable conditions for striped bass and blue crabs. Strong winds from the remnants of Hurricane Ian reduced hypoxia by mixing the water column in early October. However, the juvenile striped bass index was low, similar to the past four years, and the total population of blue crabs was at its lowest point in the history of the winter dredge survey. Lower winter temperatures may have contributed to higher overwintering mortality of adult female and juvenile blue crabs. The updated ASMFC striped bass stock assessment shows population numbers remain below the management threshold. Habitat conditions in the Chesapeake Bay could be one factor limiting striped bass population recovery and may have contributed to poor blue crab recruitment over the past few years, leading to lower overall abundances.
-
-Forage and structure-forming species were likely favored by 2022 conditions in Chesapeake Bay. Average water temperatures in 2022 and above-average salinity conditions mean a suitable habitat year for bay anchovy, a key forage species. Bay anchovy abundances are directly correlated with the area of suitable habitat. Above-average salinities beginning in June 2022 (Fig.\ref{fig:ches-temp-sal}, right) were associated with strong oyster recruitment [@kimmel_relationship_2014]. However, oyster populations are severely depleted from historical levels.  Large-scale restoration in 10 tributaries across the Chesapeake Bay is helping recover oyster reef habitat and populations in select areas.
-
-##### *Offshore habitat and managed species*  
-Ocean acidification also has different implications, depending on the species and life stage. Summer aragonite saturation was at or below the sensitivity levels for both Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid-shelf regions of the New Jersey shelf (Fig. \ref{fig:mab-oa}, right panels) several times over the past decade. Recent lab studies have found that surf clams exhibited metabolic depression in a pH range of 7.46-7.28 [@pousse_energetic_2020]. Aggregated data from 2007-2021 show that summer bottom ocean pH (7.69-8.07) has not yet reached the metabolic depression threshold observed for surfclams in lab studies so far.  The projected effects of changing temperature and ocean chemistry over the coming century may alter surfclam growth and reproduction [@pousse_dynamic_2022]. 
-
-While offshore habitat conditions have degraded for some species, they have improved for others. Between  2017 and 2021, extraordinarily high availability of northern shortfin squid (*Illex*) were observed in the Mid-Atlantic, resulting in high fishery catch per unit effort (CPUE) and early fishery closures. High instances of squid catch near the shelf break are significantly related to low bottom temperatures (< 10 degrees C), high salinity ( >35.6 psu), increased chlorophyll frontal activity, as well as the presence and orientation of warm core rings. Warm core rings are an important contributor to squid availability, likely influencing habitat conditions across different life stages and as a transport mechanism of higher salinity water to the shelf. In addition, fishing effort is often concentrated on the eastern edge of warm core rings, which are associated with upwelling and enhanced productivity. There were fewer warm core rings near the continental shelf in 2022, which combined with economic fishery drivers may have contributed to total catch of *Illex* squid being less than 20% of the total catch reported in 2021.
-
-#### Marine heatwave impacts
-The adjustment to the marine heatwave methodology shows that extreme temperature events happen intermittently in many years, but have not been increasing over time in the Mid-Atlantic. While temperature variability in isolation has not changed, considering the overall increase in ocean temperature at both the surface and the bottom in the region, extreme events can represent additional stress to organisms. While marine heatwaves lasting over days may disturb the marine environment, long lasting events such as the warming in 2012 (Fig. \ref{fig:heatwave}) can have significant impacts to the ecosystem [@gawarkiewicz_characteristics_2019]. The 2012 heatwave affected the lobster fishery most notably, but other species also shifted their geographic distributions and seasonal cycles [@mills_fisheries_2013]. During the 2017 event, warm water fish typically found in the Gulf Stream were caught in shallow waters near Block Island, RI [@gawarkiewicz_changing_2018]. 
-
-```{r heatwave, fig.width = 6, fig.asp = 0.35, fig.cap="Marine heatwave maximum intesity (left) and total days each year (right) in the Mid-Atlantic Bight.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
-```
-
-#### Cold pool impacts
-Changes in the cold pool habitat can affect species distribution, recruitment, and migration timing for multiple federally managed species. Southern New England-Mid Atlantic yellowtail flounder recruitment and settlement are related to the strength of the cold pool [@miller_state-space_2016]. The settlement of pre-recruits during the cold pool event represents a bottleneck in yellowtail life history, during which a local and temporary increase in bottom temperature negatively impacts the survival of the settlers. Including the effect of cold pool variations on yellowtail recruitment reduced retrospective patterns and improved the skill of short-term forecasts in a stock assessment model [@du_pontavice_incorporating_nodate; @miller_state-space_2016]. The cold pool also provides habitat for the ocean quahog [@powell_ocean_2020; @friedland_middle_2022]. Growth rates of ocean quahogs in the MAB (southern portion of their range) have increased over the last 200 years whereas little to no change has been documented in the northern portion of their range in southern New England, likely a response to a warming and shrinking cold pool [@pace_two-hundred_2018]. 
-
-#### Distribution shift impacts
-Trends for a suite of 48 commercially or ecologically important fish species along the entire Northeast Shelf continue to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:species-dist}). Habitat model-based species richness suggests shifts of both cooler and warmer water species to the northeast (Fig. \ref{fig:habitat-richness}). Similar patterns have been found for marine mammals, with multiple species shifting northeast between 2010 and 2017 in most seasons (Fig. \ref{fig:protectedspp-dist-shifts}, @chavez-rosales_detection_2022).
-
-```{r protectedspp-dist-shifts, fig.cap="Direction and magnitude of core habitat shifts, represented by the length of the line of the seasonal weighted centroid for species with more than 70 km difference between 2010 and 2017 (tip of arrow).", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=7, fig.asp=0.8}
-```
-
-Shifting species distributions alter both species interactions and fishery interactions. In particular, shifting species distributions can alter expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.
-
-#### Ecosystem productivity change impacts
-Climate and associated changes in the physical environment affect ecosystem productivity, with warming waters affecting the rate of photosynthesis at the base of the food web. Warm temperatures can increase the rate of primary production, however they also increase stratification, which limits the flux of deep water nutrients to the surface. Thus most of the increased summer production in the MAB is from smaller phytoplankton and may not translate into increased fish biomass. 
-
-While pteropods are increasing over time, smaller zooplankton are periodically shifting abundance between the larger, more nutritious copepod *Calanus finmarchicus* and smaller bodied copepods, and common *Pseudocalanus* copepods show a long term decrease in the MAB. The nutritional content of forage fish changes seasonally in response to ecosystem conditions, with apparent declines in energy density for Atlantic herring and *Illex* squid relative to the 1980s, but similar energy density for other forage species. Overall forage fish biomass has fluctuated in the MAB over time. Some of these factors are now being linked to the relative condition of managed fish.
-
-The apparent decline in productivity across multiple managed species in the MAB, along with mixed fish conditions in 2022, also suggest changing ecosystem productivity at multiple levels. During the 1990s high relative abundance of smaller bodied copepods and a lower relative abundance of *Calanus finmarchicus* was associated with regime shifts to higher fish recruitment [@perretti_regime_2017]. The unprecedented climate signals along with the trends toward lower productivity across multiple managed species indicate a need to continually evaluate whether management reference points remain appropriate, and to evaluate if ecosystem regime shifts have occurred or reorganization is in progress.
 
 ## Other Ocean Uses: Offshore Wind
 
 ### Indicators: development timeline, revenue in lease areas, coastal community vulnerability
 As of January 2023, 31 offshore wind development projects are proposed for construction over the next decade in the Northeast (timelines and project data are based on Tables E-2, E-4, and E-4-2 of South Fork Wind Farm Final Environmental Impact Statement). Offshore wind areas are anticipated to cover 2.4 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-proposed-dev}). Beyond 2030 values include acreage for future areas in the Central Atlantic and Gulf of Maine Area planning area for floating research array. 
-```{r wind-proposed-dev, fig.cap='Proposed wind development on the northeast shelf.', code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R")}
+```{r wind-proposed-dev, fig.cap='Proposed wind development on the northeast shelf.'}
+#, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R")
+
+ecodata::plot_wind_dev_speed()
 ```
 
 ```{r wind-dev-cumul, fig.cap = "All Northeast Project areas by year construction ends (each project has 2 year construction period).", out.width='90%'}
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/offshore_wind_timeline.png")
 
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Cumulative_Timeline_Full_Region_SoE2023_v2-01.png")
+#magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/Cumulative_Timeline_FullRegion_SoE2024_v2_2024.png")
+
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/Cumulative_Timeline_FullRegion_SoE2024_v2_2024.png")
 
 ```
 
@@ -955,7 +519,11 @@ Just over 3,400 foundations and more than 9,000 miles of inter-array and offshor
 
 Based on federal vessel logbook data, commercial fishery revenue from trips in the current offshore wind lease areas and the draft Central Atlantic Bight Primary and Secondary Call Areas have varied annually from 2008-2021, with less than \$1 million in revenue overlapping with these areas for most fisheries. However, some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including up to \$4.7 million affected in the surfclam fishery and nearly $4.3 million affected in the longfin squid fishery in 2008 and 2016, respectively.(Fig. \ref{fig:wea-spp-rev}). 
 
-```{r wea-spp-rev, fig.cap="Fishery revenue in wind energy lease areas in the Mid-Atlantic.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"), fig.width=5, fig.asp=.4}
+```{r wea-spp-rev, fig.cap="Fishery revenue in wind energy lease areas in the Mid-Atlantic.",  fig.width=5, fig.asp=.4}
+#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"),
+
+ecodata::plot_wind_revenue(report = "MidAtlantic", varName = "value")
+
 ```
 
 Of MAFMC-managed fisheries, the chub mackerel fishery could be the fishery most affected by offshore wind development, with a maximum of 17% of annual regional fishery revenue occurring within potential wind lease areas and the Central Atlantic draft call areas during this period, followed by the surfclam (16%), black sea bass (15%), ocean quahog (13%), and blueline tilefish fisheries (10%). The spiny dogfish fishery was the least affected, at 3% maximum annual revenue affected, while 5% of annual revenues were affected for several others (bluefish, butterfish, and summer flounder).  A maximum of 10% of the annual longfin squid revenues were affected by these areas, with similar effects for the scup (9%), Atlantic mackerel (8%), monkfish (7%) and golden tilefish (6%) fisheries (see Table \ref{tab:wea-landings-rev}). While up to 14% of annual *Illex* squid revenue overlapped with offshore wind areas, this is likely overestimated due to the precision of logbook data when compared to vessel monitoring system data (see Table \ref{tab:wea-landings-rev}).
@@ -1008,7 +576,27 @@ Equity and environmental justice (EJ) are priority concerns with offshore wind d
 
 For example, Atlantic City, NJ had a minimum of 11% and maximum of 30% overlap of fisheries revenue in potential wind development areas to the total port fisheries revenue between 2008-2021. Those communities that score Med-High or higher in at least one of the vulnerability indicators that address environmental justice concerns (i.e., Poverty, Population Composition, Personal Disruption; see indicator definitions) are noted with a triangle. Gentrification pressure is also highlighted here, with those communities that score Med-High or higher in one or more gentrification pressure indicators (i.e., Housing Disruption, Retiree Migration, Urban Sprawl) represented with a circle (Fig. \ref{fig:wea-port-rev}). BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of environmental justice communities who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts [@boem_vineyard_2020]. 
 
-```{r wea-port-rev, fig.cap="Percent of Mid-Atlantic port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.width=6.5, fig.asp=.85, fig.align='left'}
+```{r wea-port-rev, fig.cap="Percent of Mid-Atlantic port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.",  fig.width=6.5, fig.asp=.85, fig.align='left'}
+#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"),
+
+df.symbol <- ecodata::wind_port |>
+  dplyr::filter(EPU == "MAB",
+                !Var %in% c("WEA_MAX", "TOT_MAX", 
+                                                     "perc_MIN", "perc_MAX")) |>
+   pivot_wider( names_from = Var, values_from = Value) |>
+  dplyr::mutate(City = paste0(City,State)) |>
+  dplyr::select(City, EJ, Gent) |>
+  pivot_longer(cols = c(EJ, Gent), names_to = "Variable") |>
+  filter(!value == "NA") |>
+  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gent = -3), 
+                Variable = recode(Variable,"EJ"= "Mid-High to High EJ Concerns" , 
+                                  "Gent" ="Mid-High to High Gentrificaiton Concerns"))
+
+  
+
+ecodata::plot_wind_port(report = "MidAtlantic") +
+  ggplot2::geom_point(data = df.symbol, aes(x = symbol,y = City, shape = Variable)) +
+  ggplot2::scale_shape_manual(values = c(17, 16))
 
 ```
 
@@ -1089,7 +677,7 @@ Planned development overlaps right whale mother and calf migration corridors and
 #magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/right_whales.jpg")
 
 # NEW FILE 
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/SOE_2023_right_whales_hatteras_frame_v3.jpg")
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/SOE_2023_right_whales_hatteras_frame_v3_2024.jpg")
 
 
 ```
@@ -1113,7 +701,7 @@ The figure format is illustrated in Fig \ref{fig:docformat}a. Trend lines are sh
 
 ```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.asp = 0.3, ft.arraystretch = 1}
 #fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.49\\linewidth', fig.show="hold" 
-# FIgure orientation subfigure
+# Figure orientation subfigure
 m <- 0.1
 x <- 1985:2022
 y <-  m*x + rnorm(30, sd = 0.35)
@@ -1126,19 +714,21 @@ x.shade.max <- max(x)
 x.shade.min <- x.shade.max - 9 
 hline = mean(y)
 
+setup <- ecodata::plot_setup(shadedRegion = c(2014,2023), report = "MidAtlantic")
+
 #Plot series with trend 
 psample <- ggplot2::ggplot(data = data,aes(x = x, y = y)) +
   #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
+  annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      xmin = setup$x.shade.min , xmax = setup$x.shade.max,
       ymin = -Inf, ymax = Inf) +
-  geom_point(size = pcex) +
+  geom_point(size = setup$pcex) +
   scale_color_manual(aesthetics = "color")+
   guides(color = FALSE) +
   geom_hline(aes(yintercept = hline),
-              size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
+              size = setup$hline.size,
+             alpha = setup$hline.alpha,
+             linetype = setup$hline.lty)+
   geom_line() +
   geom_gls(aes(x = x, y = y)) +
   scale_y_continuous(labels = function(l){trans = l / 1000})+
@@ -1170,9 +760,9 @@ epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
 
 #Map of NE LME
 epumap <- ggplot() +
-  geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
-  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  geom_sf(data = coast, size = setup$map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = setup$map.lwd) +
+  coord_sf(crs = setup$crs, xlim = setup$xlims, ylim = setup$ylims) +
   geom_text(data = epu_labels, aes(x = longitude,
                                     y = latitude,
                                     label = EPU),
@@ -1205,13 +795,13 @@ Fish and invertebrates are aggregated into similar feeding categories (Table \re
 
 # new table with all species listed by management entity
 df <- ecodata::species_groupings %>%
-  dplyr::select(SOE.20, COMNAME, Fed.Managed) %>%
-  filter(SOE.20 != "Other") %>%
+  dplyr::select(SOE.24, COMNAME, Fed.Managed) %>%
+  filter(SOE.24 != "Other") %>%
   distinct() %>%
-  group_by(SOE.20, Fed.Managed) %>%
+  group_by(SOE.24, Fed.Managed) %>%
   summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
   spread(Fed.Managed, COMNAME) %>%
-  arrange(factor(SOE.20, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
+  arrange(factor(SOE.24, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
 df<-df[c(1,3,2,4,5)] %>%
   mutate_all(tolower)
 
