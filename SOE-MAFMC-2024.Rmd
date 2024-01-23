@@ -492,9 +492,13 @@ A climate vulnerability assessment is currently underway for Atlantic and Gulf o
 
 # Risks to meeting fishery management objectives
 
-## Climate and Ecosystem Productivity
+## Climate and Ecosystem Change
 
-Large scale climate related changes in the ecosystem can lead to changes in important habitats and ecological interactions. These changes can pose specific risks to fisheries management decisions, including spatial management, seasonal management, quota setting, and rebuilding depleted stocks. In the sections below, we review long term trends in indicators related to each of these risks, and provide an overview of notable climate and ecosystem observations from 2023.
+Regulations and measures designed to meet fishery management objectives are often based on historical information about stocks: their distribution in space and time, and their overall productivity. Large scale climate related changes in the ecosystem can lead to changes in important habitats and ecological interactions, altering distributions and productivity. With large enough ecosystem changes, management measures may be less effective, and management objectives may not be met. 
+
+This year, we have restructured this section to focus on three categories of management decisions and the risk posed to them by climate and ecosystem change: spatial management, seasonal management, and quota setting or rebuilding depleted stocks. In each section, we highlight observed changes in distribution, timing, and productivity of fish and protected species. Then, we review possible drivers for these observed changes, in order to determine how management might be adjusted to account for the observed changes. Finally, we provide an overview of notable climate and ecosystem observations from 2023.  
+
+*describe the layout and define the usage of "risks" , "observations", and "drivers"*
 
 ### Risks to Spatial Management
 
