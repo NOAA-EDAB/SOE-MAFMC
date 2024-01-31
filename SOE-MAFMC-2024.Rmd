@@ -182,7 +182,7 @@ Stock status affects catch limits established by the Council, which in turn may 
 ```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed commercial (C) and recreational (R) fisheries.", fig.width = 6, fig.asp = 0.4}
 #, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")
 
-ecodata::plot_abc.acl(report = "MidAtlantic", plottype = "Stacked")
+ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Stacked")
 
 ```
 
@@ -191,7 +191,7 @@ Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that the
 ```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. High points = Recreational Black Sea Bass. Red line indicates the median ratio across all fisheries."}
 #, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R")
 
-ecodata::plot_abc.acl(report = "MidAtlantic", plottype = "Catch")
+ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
 
 ```
 
@@ -269,13 +269,13 @@ In a similar manner to seafood landings, the results here are driven in large pa
 
 ### Indicators: Angler trips, fleet diversity  
 Recreational effort (angler trips) in 2021 is around the long-term average (Fig. \ref{fig:rec-op}). However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
-```{r rec-op, fig.cap = paste0("Recreational effort in the Mid Atlantic.")}
+```{r rec-op, fig.cap = "Recreational effort in the Mid Atlantic."}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "effort")
 ```
 
-```{r rec-div, fig.cap = paste0("Recreational fleet effort diversity in the Mid Atlantic.")}
+```{r rec-div, fig.cap = "Recreational fleet effort diversity in the Mid Atlantic."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity")
