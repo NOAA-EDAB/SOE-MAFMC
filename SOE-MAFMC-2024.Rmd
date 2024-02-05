@@ -155,7 +155,7 @@ Recreational shark landings show an increase in pelagic sharks over the past dec
 ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="MidAtlantic")
 ```
 
-Aquaculture production is not yet included in total seafood landings, but we are working toward including it in future reports. Available aquaculture production of oysters for a subset of Mid-Atlantic states indicates a decline in recent years.^[https://noaa-edab.github.io/ecodata/human_dimensions_MAB#Commercial; "Oyster Aquaculture" tab]
+Aquaculture production is not yet included in total seafood landings. Available [aquaculture production](https://noaa-edab.github.io/catalog/aquaculture-production.html) of oysters for a subset of Mid-Atlantic states indicates a decline in recent years.
 
 ### Implications
 
@@ -788,16 +788,16 @@ Of MAFMC-managed fisheries, the chub mackerel fishery could be the fishery most 
 #   column_spec(2:5, width = "10em") %>%
 #   kable_styling(latex_options = "scale_down")
 
-dt<- ecodata::wea_landings_rev[1:20,] %>% 
-  dplyr::select("NEFMC, MAFMC, and ASMFC Managed Species", "perc_landings_max",
-                "perc_revenue_max" ) %>%
-  dplyr::filter(`NEFMC, MAFMC, and ASMFC Managed Species` != "Ocean pout" ) %>%
-  dplyr::rename("Maximum Percent Total Annual Regional Species Landings"="perc_landings_max",
-    "Maximum Percent Total Annual Regional Species Revenue"="perc_revenue_max")
-
-flextable::flextable(dt) %>%
-  flextable::set_caption("Top Species Landings and Revenue from Wind Energy Areas. * Landings and revenue for these species are likely underestimated due to limited coverage of these fisheries in historic reporting requirements for vessels issued federal permits by the NMFS Greater Atlantic Regional Fisheries Office. However, such limitations also suggest an inaccurately higher proportion of such landings and revenues in existing lease areas. ** Clearnose skates were reported separately from skates, which is presumed to include all skates managed under the Northeast skate complex. *** Based on comparison with other data sources, the high values for Illex squid are likely overestimates affected by the methods used to model logbook data to estimate spatial overlap of fishign operations with wind energy areas.") %>%
-  flextable::width(width = c(2,2,2)) #%>%
+# dt<- ecodata::wea_landings_rev[1:20,] %>% 
+#   dplyr::select("NEFMC, MAFMC, and ASMFC Managed Species", "perc_landings_max",
+#                 "perc_revenue_max" ) %>%
+#   dplyr::filter(`NEFMC, MAFMC, and ASMFC Managed Species` != "Ocean pout" ) %>%
+#   dplyr::rename("Maximum Percent Total Annual Regional Species Landings"="perc_landings_max",
+#     "Maximum Percent Total Annual Regional Species Revenue"="perc_revenue_max")
+# 
+# flextable::flextable(dt) %>%
+#   flextable::set_caption("Top Species Landings and Revenue from Wind Energy Areas. * Landings and revenue for these species are likely underestimated due to limited coverage of these fisheries in historic reporting requirements for vessels issued federal permits by the NMFS Greater Atlantic Regional Fisheries Office. However, such limitations also suggest an inaccurately higher proportion of such landings and revenues in existing lease areas. ** Clearnose skates were reported separately from skates, which is presumed to include all skates managed under the Northeast skate complex. *** Based on comparison with other data sources, the high values for Illex squid are likely overestimates affected by the methods used to model logbook data to estimate spatial overlap of fishign operations with wind energy areas.") %>%
+#   flextable::width(width = c(2,2,2)) #%>%
   # flextable::footnote(i=, j = 1,
   #              value = as_paragraph(
   #                c("* Landings and revenue for these species are likely underestimated due to limited coverage of these fisheries in historic reporting requirements for vessels issued federal permits by the NMFS Greater Atlantic Regional Fisheries Office. However, such limitations also suggest an inaccurately higher proportion of such landings and revenues in existing lease areas.",
@@ -810,6 +810,8 @@ flextable::flextable(dt) %>%
 # ** Clearnose skates were reported separately from skates, which is presumed to include all skates managed under the Northeast skate complex. 
 # 
 # *** Based on comparison with other data sources, the high values for Illex squid are likely overestimates affected by the methods used to model logbook data to estimate spatial overlap of fishign operations with wind energy areas.
+
+ecodata::plot_wea_landings_rev(n=Inf)
 
 ```
 
