@@ -261,23 +261,23 @@ Although the Mid-Atlantic region shows declining revenue trends since 2016, infl
 ## Recreational Opportunities 
 
 ### Indicators: Angler trips, fleet diversity  
-Recreational effort (angler trips) in 2021 is around the long-term average (Fig. \ref{fig:rec-op}). However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
-```{r rec-op, fig.cap = "Recreational effort in the Mid Atlantic."}
+[Recreational effort](https://noaa-edab.github.io/catalog/recreational-fishing-indicators.html) (angler trips) in 2022 has increased and is above the long-term average (Fig. \ref{fig:rec-op}). in the MAB. However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
+```{r rec-op, fig.cap = "Recreational effort in the Mid-Atlantic."}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "effort")
 ```
 
-```{r rec-div, fig.cap = "Recreational fleet effort diversity in the Mid Atlantic."}
+```{r rec-div, fig.cap = "Recreational fleet effort diversity in the Mid-Atlantic."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity")
 ```
 
 ### Implications
-While the overall number of recreational opportunities in the MAB is above the long-term average, the continuing decline in recreational fleet effort diversity suggests a potentially reduced range of recreational fishing options, despite the slight increase in this indicator’s value between 2020 and 2021.
+While the overall number of recreational opportunities in the MAB is above the long-term average, the continuing decline in recreational fleet effort diversity suggests a potentially reduced range of recreational fishing options, despite the slight increase in this indicator’s value between 2020 and 2022.
 
-The downward effort diversity trend is driven by party/charter contraction (2% currently), and a shift toward shorebased angling, which currently makes up 61% of angler trips. Effort in private boats remains stable at around 37% of trips.
+The downward effort diversity trend is driven by party/charter contraction (down from 2% in 2021 to 1.4% in 2023), and a shift toward shorebased angling, which currently makes up 59% of angler trips. Effort in private boats has increased slightly to 40% of trips from 37% in 2021.
 
 Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species is accessible both from shore and from a vessel, shore anglers typically have access to smaller individuals. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector.
 
