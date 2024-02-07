@@ -66,9 +66,9 @@ This report is for the Mid-Atlantic Fishery Management Council (MAFMC). The purp
 
 ## Report structure
 
-The two main sections contain subsections for each management objective or potential risk. Within each subsection, we first review indicator trends, and the status of the most recent data year relative to a threshold (if available) or relative to the long-term average. Second, we synthesize results of other indicators and information to outline potential implications for management (i.e., connecting indicator(s) status to management and why an indicator(s) is important). For example, if there are multiple drivers related to an indicator trend, which drivers may be more or less supported by current information, and which, if any, can be affected by management action(s)? Similarly, which risk indicators warrant continued monitoring to evaluate whether regime shifts or ecosystem reorganization are likely? We emphasize that these implications are intended to represent testable hypotheses at present, rather than “answers,” because the science behind these indicators and syntheses continues to develop.  
+The two main sections contain subsections for each management objective or potential risk. Within each subsection, we first review observed trends for indicators representing each objective or risk, including the status of the most recent data year relative to a threshold (if available) or relative to the long-term average. Second, we identify potential drivers of observed trends, and synthesize results of indicators related to those drivers to outline potential implications for management. For example, if there are multiple drivers related to an indicator trend, which drivers may be more or less supported by current information, and which, if any, can be affected by management action(s)? We emphasize that these implications are intended to represent testable hypotheses at present, rather than “answers,” because the science behind these indicators and syntheses continues to develop.
 
-A glossary of terms^[https://noaa-edab.github.io/tech-doc/glossary.html], detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc], and indicator data^[https://github.com/NOAA-EDAB/ecodata] are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding guilds (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
+A glossary of terms^[https://noaa-edab.github.io/tech-doc/glossary.html], detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc], indicator data^[https://github.com/NOAA-EDAB/ecodata], and detailed indicator descriptions^[https://noaa-edab.github.io/catalog/index.html]  are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding guilds (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
 
 ```{r management-objectives, ft.arraystretch = 1}
 
@@ -83,7 +83,7 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                "Angler trips; recreational fleet diversity",
                                "Diversity indices (fishery and ecosystem)",
                                "Community engagement/reliance and environmental justice status",
-                               "Bycatch; population (adult and juvenile) numbers, mortalities",
+                               "Bycatch; population (adult and juvenile) numbers; mortalities",
                                "Biomass or abundance by feeding guild from surveys",
                                "Condition and recruitment of managed species, primary productivity",
                                "Relative biomass of feeding guilds, zooplankton",
@@ -120,35 +120,37 @@ flextable::as_grouped_data(mng_obj, groups = "service") %>%
  
 # Performance Relative to Fishery Management Objectives
 
-In this section, we examine indicators related to broad, ecosystem-level fishery management objectives. We also provide hypotheses on the implications of these trends—*why* we are seeing them, what’s driving them, and potential or observed regime shifts or changes in ecosystem structure. Identifying multiple drivers, regime shifts, and potential changes to ecosystem structure, as well as identifying the most vulnerable resources, can help managers determine whether we can do anything differently to meet objectives and how to prioritize for upcoming issues/risks.
+In this section, we examine indicators related to broad, ecosystem-level fishery management objectives. We also provide hypotheses on the implications of these trends—why we are seeing them, what’s driving them, and potential or observed regime shifts or changes in ecosystem structure. Identifying multiple drivers, regime shifts, and potential changes to ecosystem structure, as well as identifying the most vulnerable resources, can help managers determine whether anything differently needs to be done to meet objectives and how to prioritize upcoming issues/risks.
 
 ## Seafood Production 
 
 ### Indicators: Landings; commercial and recreational 
-This year, we present updated indicators for total commercial landings (all species, all uses, fleets from all nations),  US seafood landings (species for human consumption landed by US fleets), and Council-managed US seafood landings (Mid-Atlantic Fishery Management Council (MAFMC) and jointly managed species landed by US fleets for human consumption).  Total commercial landings (black) within the Mid-Atlantic have declined over the long term, and total US seafood landings are near their all time low. Because there is no long term trend in MAFMC managed US seafood landings, the decline in US seafood landings in the Mid-Atlantic region is likely driven by recent declines in species not managed by the Mid-Atlantic Council (Fig. \ref{fig:total-landings}).
+This year, we present updated [indicators](https://noaa-edab.github.io/catalog/commercial-landings-and-revenue.html) for total commercial landings U.S. seafood landings, and Council-managed U.S. seafood landings. Total commercial landings within the Mid-Atlantic have declined over the long term, and total U.S. Mid-Atlantic seafood landings are near their all time low. Because there is no long term trend in MAFMC-managed U.S. seafood landings, the decline in U.S. seafood landings in the Mid-Atlantic region is likely driven by recent declines in species not managed by the Mid-Atlantic Council (Fig. \ref{fig:total-landings}).
 
-```{r, total-landings, fig.asp=.8, fig.cap = paste0("Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red)")}
+```{r, total-landings, fig.asp=.8, fig.cap = "Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red)."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")
 ecodata::plot_comdat(report = "MidAtlantic", varName = "landings")
 ```
 
-Landings by guild include all species and all uses, and are reported as total for the guild and the MAFMC managed species within the guild. As reported in previous years, landings of benthos presented a significant downward trend, primarily driven by surf clam and ocean quahog. However, total landings of planktivores is now also presenting a significant downward trend, primarily due to decreases in species not managed by the Mid-Atlantic Council (Atlantic herring and Atlantic menhaden; Fig. \ref{fig:comm-landings}).
+Commercial landings by guild include all species and all uses, and are reported as total for the guild and the MAFMC managed species within the [guild](https://noaa-edab.github.io/catalog/feeding-guilds-by-management-bodies.html). As reported in previous years, landings of benthos presented a significant downward trend, primarily driven by surf clam and ocean quahog, with scallops now contributing to the decline as well. However, total landings of planktivores is now also presenting a significant downward trend, primarily due to decreases in species not managed by the MAFMC (Atlantic herring and Atlantic menhaden; Fig. \ref{fig:comm-landings}).
 
-```{r, comm-landings, fig.asp=1.6, fig.cap = paste0("Total commercial landings (black) and Mid-Atlantic managed U.S seafood landings (red) by feeding guild.")}
+```{r, comm-landings, fig.asp=1.6, fig.cap ="Total commercial landings in the Mid-Atlantic Bight (black) and MAFMC-managed U.S seafood landings (red) by feeding guild."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"),
 
 ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild")
 
 ```
 
-Total recreational harvest (retained fish presumed to be eaten) is down in the MAB (Fig. \ref{fig:rec-landings}). Although harvest has increased from a historic low in 2018, it is still below the long term average.
-```{r, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of pounds) in the Mid-Atlantic region.")}
+Although total [recreational harvest](https://noaa-edab.github.io/catalog/recreational-fishing-indicators.html) (retained fish presumed to be eaten) has increased from a historic low in 2018, there is a long-term decline in the MAB (Fig. \ref{fig:rec-landings}). 
+
+```{r, rec-landings, fig.cap ="Total recreational seafood harvest (millions of pounds) in the Mid-Atlantic region."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName ="landings")
 ```
 
-Recreational shark landings show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2022 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. In 2021 the International Commission for the Conservation of Atlantic Tunas (ICCAT) finalized recommendations for a two-year retention ban for shortfin mako (ICCAT Rec.21-09), which will also affect total overall landings of pelagic sharks in coming years. 
+[Recreational shark landings](https://noaa-edab.github.io/catalog/highly-migratory-species-landings.html) show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2022 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. 
+
 ```{r rec-hms, fig.cap="Recreational shark landings from Large Pelagics Survey.",  fig.width=5, fig.asp=.35}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"),
 
@@ -159,11 +161,12 @@ Aquaculture production is not yet included in total seafood landings. Available 
 
 ### Implications
 
-Declining commercial (total and seafood) and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions (including COVID-19 disruptions), and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which stock status and system biomass trends may play a role.  
+Declining commercial (total and seafood) and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which stock status and system biomass trends may play a role.
 
 #### Stock Status and Catch Limits
-Single species management objectives (1. maintaining biomass above minimum thresholds and 2. maintaining fishing mortality below overfishing limits) are being met for all but one MAFMC managed species, though the status of six stocks is unknown (Fig. \ref{fig:stock-status}). In addition, the status of Spiny dogfish and bluefish are based on 2022 research track assessments and are thus waiting for a management track update to finalize stock status. 
-```{r stock-status, fig.width = 7.5,  fig.asp = 0.5, fig.cap = "Summary of single species status for MAFMC and jointly federally managed stocks (Spiny dogfish and both Goosefish). The dotted vertical line is the target biomass reference point of Bmsy. The dashed lines are the management thresholds of one half Bmsy (vertical) or Fmsy (horizontal). Stocks in red are below the biomass threshold (overfished) and have fishing mortality above the limit (subject to overfishing), stocks in green are above the biomass threshold but have fishing mortality above the limit. Remaining stocks have fishing mortality within limits: stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target."}
+Single species [management objectives](https://noaa-edab.github.io/catalog/stock-status.html) (1. maintaining biomass above minimum thresholds and 2. maintaining fishing mortality below overfishing limits) are being met for all but two MAFMC-managed species, though the status of six stocks is unknown (Fig. \ref{fig:stock-status}). 
+
+```{r stock-status, fig.width = 7.5,  fig.asp = 0.5, fig.cap = "Summary of single species status for MAFMC and jointly federally managed stocks (Spiny dogfish and both Goosefish). The dotted vertical line is the target biomass reference point of B_MSY. The dashed lines are the management thresholds of one half B_MSY. (vertical) or F_MSY. (horizontal). Stocks in orange are below the biomass threshold (overfished) or have fishing mortality above the limit (subject to overfishing), so are not meeting objectives. Stocks in purple  are above the biomass threshold but below the biomass target with fishing mortality within the limit. Stocks in green are above the biomass target, with fishing mortality within the limit."}
 
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), 
 
@@ -177,7 +180,7 @@ a$p + ggplot2::coord_cartesian(xlim=c(0,2), ylim=c(0,2)) +
 
 ```
 
-Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (Fig. \ref{fig:abcacl-stacked}). Although these figures have not been updated with 2021 data, we do not expect a single year’s update to change the narrative. The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2020, due to that fishery's small relative size. 
+Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2022 (Fig. \ref{fig:abcacl-stacked}). The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2022, due to that fishery’s small relative size.
 
 ```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed commercial (C) and recreational (R) fisheries.", fig.width = 6, fig.asp = 0.4}
 #, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")
@@ -186,9 +189,9 @@ ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Stacked")
 
 ```
 
-Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that these catch limits are not generally constraining as most species are well below the 1/1 ratio (Fig. \ref{fig:abcacl-catch}). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings for the majority of species.
+Nevertheless, the percentage caught (landings and discards) for each stock’s ABC/ACL suggests that these catch limits are not generally constraining as most species are well below the 1/1 ratio (Fig. \ref{fig:abcacl-catch}). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings for the majority of species.
 
-```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. High points = Recreational Black Sea Bass. Red line indicates the median ratio across all fisheries."}
+```{r abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheries. High points are recreational black sea bass (up to 2021) and scup (2022). Red line indicates the median ratio across all fisheries."}
 #, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R")
 
 ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
@@ -196,7 +199,7 @@ ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
 ```
 
 #### System Biomass
-Although aggregate biomass trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores, spring benthivores, and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
+Although [aggregate biomass](https://noaa-edab.github.io/catalog/aggregate-survey-biomass.html) trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthivores show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
 ```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", fig.width=8, fig.asp = 0.75}
 
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R")
@@ -206,27 +209,16 @@ ecodata::plot_aggregate_biomass(report = "MidAtlantic")
 ```
 
 #### Effect on Seafood Production
-Stock status is above the minimum threshold for all but one stock, and aggregate biomass trends appear stable, so the decline in commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. The long term decline in total planktivore landings is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s.
+Stock status is above the minimum threshold for all but two stocks, and aggregate biomass trends appear stable, so the decline in managed commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. In addition, regional availability of scallops has contributed to the decline of benthos landings not managed by the MAFMC, with some of the most productive grounds currently closed through rotational management. The long term decline in total planktivore landings is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s. 
 
 Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council.
 
-The decline in recreational seafood harvest stems from other drivers. Some of the decline, such as that for recreational shark landings, is driven by management intended to reduce fishing mortality on mako sharks. However, NOAA Fisheries’ Marine Recreational Information Program survey methodology was updated in 2018, so it is unclear whether the record-low landings for species other than sharks in 2018 are driven by changes in fishing behavior or the change in the survey methodology. Nevertheless, the recreational harvest seems to be stabilizing at a lower level than historical estimates.
+The decline in recreational seafood harvest stems from other drivers. Some of the decline, such as that for recreational shark landings, is driven by management intended to reduce fishing mortality on mako sharks. However, NOAA Fisheries’ Marine Recreational Information Program survey methodology was updated in 2018, so it is unclear whether the lower than average landings for species other than sharks since 2018 are driven by changes in fishing behavior or the change in the survey methodology. Nevertheless, the recreational harvest seems to be stabilizing at a lower level than historical estimates.
 
 Other environmental changes require monitoring as they may become important drivers of landings in the future:
  
-- Climate is trending into uncharted territory. Globally, 2022 was among the warmest years on record^[https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature] (see [Climate Risks section](#climate-and-ecosystem-productivity)).   
-- Stocks are shifting distribution, moving towards the northeast and into deeper waters throughout the Northeast US Large Marine Ecosystem (Fig. \ref{fig:species-dist}).  
-  
-```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", fig.asp=.9}
-
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")
-
-a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(expand = FALSE)
-b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(expand = FALSE) 
-
-a/b
-```  
-
+- Climate is trending into uncharted territory. Globally, 2023 was the warmest year on record (see [2023 Highlights section](#2023-highlights)).   
+- Stocks are shifting their distributions, moving towards the northeast and into deeper waters throughout the Northeast US Large Marine Ecosystem (see [Climate Risks section](#climate-and-ecosystem-productivity)).
 - Some ecosystem composition and production changes have been observed (see [Stability section](#stability)). 
 - Some fishing communities are affected by environmental justice vulnerabilities (see [Environmental Justice and Social Vulnerability section](#social-vulnerability)).  
 
@@ -503,7 +495,19 @@ This year, we have restructured this section to focus on three categories of man
 Shifting species distributions alter both species interactions and fishery interactions. In particular, shifting species distributions can alter expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions. Species availability to surveys can change as distributions shift within survey footprints.
 
 #### Observations: Fish and protected species distribution shifts
-As noted in the [Landings Implications section above](#implications), trends for a suite of 48 commercially or ecologically important fish species along the entire Northeast Shelf continue to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:species-dist}). Habitat model-based species richness suggests shifts of both cooler and warmer water species to the northeast [*link to catalog page*]. Similar patterns have been found for marine mammals, with multiple species shifting northeast between 2010 and 2017 in most seasons (Fig. \ref{fig:protectedspp-dist-shifts}, @chavez-rosales_detection_2022).
+As noted in the [Landings Implications section above](#implications), trends for a suite of 48 commercially or ecologically important fish species along the entire Northeast Shelf continue to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:species-dist}). 
+  
+```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", fig.asp=.9}
+
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")
+
+a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(expand = FALSE)
+b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(expand = FALSE) 
+
+a/b
+```  
+
+Habitat model-based species richness suggests shifts of both cooler and warmer water species to the northeast [*link to catalog page*]. Similar patterns have been found for marine mammals, with multiple species shifting northeast between 2010 and 2017 in most seasons (Fig. \ref{fig:protectedspp-dist-shifts}, @chavez-rosales_detection_2022).
 
 ```{r protectedspp-dist-shifts, fig.cap="Direction and magnitude of core habitat shifts, represented by the length of the line of the seasonal weighted centroid for species with more than 70 km difference between 2010 and 2017 (tip of arrow).", fig.width=7, fig.asp=0.8}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R")
