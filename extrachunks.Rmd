@@ -1,0 +1,25 @@
+---
+title: "Plots we got rid of"
+author: "Sarah Gaichas"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Because I'm too lazy to type them again
+
+Commercial diversity  (Fig. \ref{fig:commercial-div})
+
+```{r commercial-div, fig.cap = "Commercial fleet count and diversity in the Mid-Atlantic.", fig.asp=.9}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R")
+
+a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count")
+
+b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diversity in revenue")
+
+a/b
+```
+
