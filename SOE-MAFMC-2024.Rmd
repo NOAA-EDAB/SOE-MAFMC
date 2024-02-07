@@ -342,15 +342,13 @@ In the MAB, existing diversity indicators suggest overall stability in the fishe
 
 ### Indicators: Environmental Justice and Social Vulnerability in commercial and recreational fishing communities
 
-Social vulnerability measures social factors that shape a community’s ability to adapt to change. A subset of these factors can be used to assess potential environmental justice issues. Environmental Justice is defined in Executive Order 12898 as federal actions intended to address disproportionately high and adverse human health and environmental effects of federal actions on minority and low-income populations. Three of the existing NOAA Fisheries Community Social Vulnerability Indicators (CSVIs), the Poverty Index, Population Composition Index, and Personal Disruption Index, can be used for mandated Environmental Justice analysis^[https://www.fisheries.noaa.gov/national/socioeconomics/social-indicators-coastal-communities]. 
+Social vulnerability measures social factors that shape a community’s ability to adapt to change. A subset of these factors can be used to assess potential environmental justice issues. We report the top ten communities most engaged in, and/or reliant upon, commercial and recreational fisheries and the degree to which these communities may be vulnerable to environmental justice issues (i.e., Poverty, Population Composition, and Personal Disruption) based on 2021 data. The engagement and reliance indices demonstrate the importance of commercial and recreational fishing to a given community relative to other coastal communities in a region. Similarly, the environmental justice indices characterize different facets and levels of social vulnerability in a given community relative to other coastal communities in a region. 
 
-Commercial fishery engagement measures the number of permits and dealers, and pounds and value landed in a community, while reliance expresses these numbers based on the level of fishing activity relative to the total population of a community. Recreational fishery engagement measures shore, private vessel, and for-hire fishing effort while reliance expresses these numbers based on fishing effort relative to the population of a community.
+Changes in fishing activity between years changed community engagement and reliance rankings, and changes in vulnerability indicators changed environmental justice vulnerability scores.  The largest change from last year’s report is that Reedville, VA and  Hatteras, and Hobucken, NC are no longer listed as top ten commercial fishing communities, replaced by Hampton, VA; Swan Quarter, NC; Bowers and Little Creek, DE (Fig.\ref{fig:commercial-engagement}). 
 
-In 2022, we reported the top ten most engaged, and top ten most reliant commercial and recreational fishing communities and their associated environmental justice vulnerability based on 2019 data. Here we apply the same selection standard for top ten fishing communities for both sectors using 2020 data, and again examine the environmental justice vulnerability in this updated set of communities. Changes in fishing activity between years changed community engagement and reliance rankings, and changes in vulnerability indicators changed environmental justice vulnerability scores.
-
-Communities plotted in the upper right section of Fig.\ref{fig:commercial-engagement} scored high for both commercial engagement and reliance using both 2019 and 2020 data, including Cape May and Barnegat Light, NJ, and Reedville, VA. Communities that ranked medium-high or above for one or more of the environmental justice indicators in 2020 are highlighted in bright orange, including Newport News, VA; Atlantic City, NJ; and Beaufort, Columbia and Hobucken, NC. Hampton Bays/Shinnecock, NY ranked medium-high based on 2019 data but decreased to medium for its environmental justice vulnerability based on 2020 data reported here.
-
-```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", fig.width = 7.5, fig.asp = 0.5, results='hide'}
+Manteo, Vandemere, and Hobuken, NC are no longer listed as top ten recreational communities, replaced by Cape May and Barnegat Light, NJ; Orient, NY; Topsail Beach, Avon and Rodanthe, NC (Fig.\ref{fig:recreational-engagement}). 
+ 
+```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", fig.width = 7.5, fig.asp = 0.7, results='hide'}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
 #(* Scored high (1.00 and above)) for both commercial engagement and reliance indicators)
@@ -358,7 +356,17 @@ Communities plotted in the upper right section of Fig.\ref{fig:commercial-engage
 ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial")
 ```
 
-Fig. \ref{fig:commercial-EJ} shows the detailed scores of the three environmental justice indicators for the same communities plotted in Fig.\ref{fig:commercial-engagement}. Communities are plotted clockwise in a descending order of commercial engagement scores from high to low, with the most highly engaged community, Cape May, NJ, listed on the top.  Among the communities ranked medium-high or above for environmental justice vulnerability, Atlantic City, NJ scored high for all of the three environmental justice indicators. Columbia, NC scored high for the personal disruption index and the poverty index. Hobucken, NC scored high for the personal disruption index. Newport News, VA scored medium-high for the population composition index^[Due to missing data, the Poverty Index is missing for Hobucken and Rodanthe, NC]. Beaufort, NC scored medium-high for the poverty index. 
+
+```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic. Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", fig.width = 7.5, fig.asp = 0.7, results='hide'}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R")
+#fig.width = 6.5, fig.asp = 0.75
+
+#(* Scored high (1.00 and above) for both recreational engagement and reliance indicators;
+
+ecodata::plot_engagement(report = "MidAtlantic", varName = "Recreational")
+```
+
+Scores for environmental justice concerns remain similar for communities based on 2020 and 2021 data, with top commercial ports (Fig. \ref{fig:commercial-EJ}) showing more concerns than top recreational ports overall (Fig. \ref{fig:recreational-EJ}).  Atlantic City, NJ ranks highest for all three environmental justice concerns. There is variability in the specific issues facing communities with environmental justice concerns.  Higher scores in population composition indicate community vulnerability related to the presence of non-white, non-English speaking, and younger populations. 
 
 ```{r commercial-EJ, crop=TRUE, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", out.width='75%'}
 
@@ -382,18 +390,6 @@ cropComEJ <- ComEJ %>%
 cropComEJ
 ```
 
-Considerably more communities scored high for both recreational engagement and reliance based on 2020 data relative to 2019. Joining Barnegat Light, NJ in the upper right section are Babylon, NY, Nags Head, NC, Hatters, NC, Stevensville, MD, Atlantic Highlands, NJ, Morehead City, NC, Montauk, NY, Point Pleasant Beach, NJ, Ocean City, MD, Point Lookout, NY, Manteo, NC, and Vandemere, NC. Fig.\ref{fig:recreational-engagement}. Communities that ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange, including Ocean City and Bivale, MD; Hatteras, Manteo, Vandemere, and Hobuken, NC. 
-
-```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic. Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", fig.width = 7.5, fig.asp = 0.5, results='hide'}
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R")
-#fig.width = 6.5, fig.asp = 0.75
-
-#(* Scored high (1.00 and above) for both recreational engagement and reliance indicators;
-
-ecodata::plot_engagement(report = "MidAtlantic", varName = "Recreational")
-```
-
-Fig. \ref{fig:recreational-EJ} orders communities clockwise in a descending order of recreational engagement scores from high to low, with the most highly engaged community, Babylon, NY, listed on the top. Among the communities with environmental justice concerns, Hatteras and Vandemere, NC scored medium-high for personal disruption and poverty index. Ocean City, MD and Hobucken, NC scored medium-high for personal disruption index. Manteo, NC scored high for poverty index. Bivale, MD scored medium-high for population composition index^[Due to missing data, the Poverty Index is missing for Hobucken,  NC, Bivalve and Georgetown, MD]. 
 
 ```{r recreational-EJ, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top recreational fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", out.width='75%'}
 
@@ -419,12 +415,13 @@ cropRecEJ
 ```
 
 
-Both commercial and recreational fishing are important activities in Montauk, NY, Barnegat Light and Point Pleasant Beach, NJ, Hatteras and Hobuken, NC, meaning these communities may be impacted simultaneously by commercial and recreational regulatory changes. Among these communities, Hobucken scored high for the personal disruption index^[Due to missing data, the Poverty Index is missing for Hobucken,  NC].  Hatteras scored medium-high for the personal disruption index and Poverty Index. Montauk, NY, Barnegat Light, Cape May  and Point Pleasant Beach, NJ scored lower than medium-high for all of the three environmental justice indicators, indicating that environmental justice may not be a major concern in these communities at the moment based on the indicators analyzed. 
+Both commercial and recreational fishing are important activities in Montauk, NY, Cape May, Barnegat Light and Point Pleasant Beach, NJ; and Rodanthe, NC, meaning these communities may be impacted simultaneously by commercial and recreational regulatory changes. However, in all but Point Pleasant Beach NJ,  environmental justice may not be a major concern in these communities given the index scores (Figs \ref{fig:commercial-EJ} and \ref{fig:recreational-EJ})). Point Pleasant Beach, NJ scored medium for the personal disruption index, indicating that environmental justice may  be a moderate concern in Point Pleasant Beach.
+
 
 ### Implications
-There was an increase in recreational fishing activities in many of the top recreational communities from 2019 to 2020. This increase may be due to multiple factors including the recreational boating boom across the country^[National Marine Manufacturers Association. 2021. U.S. Boat Sales Reached 13-Year High in 2020, Recreational Boating Boom to Continue through 2021. Available at: https://www.nmma.org/press/article/23527] and increasing interest in for-hire/charter recreational fishing trips as an preferred outdoor recreation activities and ways to social distance in response to the COVID-19 pandemic [@thunberg_northeast_2021].
+A range of environmental justice concerns are found throughout Mid-Atlantic fishing communities. However, index scores for these concerns are higher overall in the top commercial communities relative to the top recreational communities. 
 
-These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change.
+These indicators provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be especially vulnerable to changes in fishing patterns due to regulations and/or climate change. Some changes occurred among the top fishing communities due to shifts in fishing activities, both commercial and recreational. Many of these communities, especially top commercial fishing communities, demonstrated medium to high environmental justice vulnerability, indicating that they may be at a disadvantage when responding to change.
 
 
 ## Protected Species
