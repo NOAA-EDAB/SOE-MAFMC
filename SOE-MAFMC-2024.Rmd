@@ -285,37 +285,36 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 ## Stability 
 
 ### Indicators: fishery fleet and catch diversity, ecological component diversity 
-While there are many potential metrics of stability, we use diversity indices as a first check to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine commercial fleet and species catch diversity, and recreational species catch diversity (with fleet effort diversity discussed above), and diversity in zooplankton, and larval and adult fishes.
+While there are many potential metrics of stability, we use diversity indices to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine diversity in commercial fleet and species catch, recreational species catch (with fleet effort diversity discussed above), zooplankton, and adult fishes.
 
-#### Fishery Diversity 
-Diversity estimates have been developed for fleets landing managed species, and species landed by commercial vessels with Mid-Atlantic permits. A fleet is defined here as the combination of gear type (Scallop Dredge, Other Dredge, Gillnet, Hand Gear, Longline, Bottom Trawl, Midwater Trawl, Pot, Purse Seine, or Clam Dredge) and vessel length category (less than 30 ft, 30 to 50 ft, 50 to 75 ft, 75 ft and above). Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average (Fig. \ref{fig:commercial-div}). This indicates similar commercial fleet composition and species targeting opportunities over time.  
-```{r commercial-div, fig.cap = paste0("Commercial fleet count and diversity in the Mid Atlantic."), fig.asp=.9}
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R")
+#### Fishery Stability 
+[Diversity](https://noaa-edab.github.io/catalog/commercial-catch-and-fleet-diversity.html)  estimates have been developed for fleets landing managed species, and species landed by commercial vessels with Mid-Atlantic permits. Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average. This indicates similar commercial fleet composition and species targeting opportunities over time. Commercial fisheries are relying on fewer species relative to the mid-90s, although current species revenue diversity has recovered somewhat in the last year (Fig. \ref{fig:commercial-div-species-div}). 
 
-a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count")
-
-b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diversity in revenue")
-
-a/b
-```
-
-Commercial fisheries are relying on fewer species relative to the mid-90s, and current species revenue diversity is near the historical low point (Fig. \ref{fig:commercial-div-species-div}). Although with precedent, the drop between 2020 and 2021 is relatively large.
 ```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the Mid Atlantic.")}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
 
 ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity")
 ```
 
-As noted [above](#recreational-opportunities), recreational fleet effort diversity is declining (Fig. \ref{fig:rec-div}), so this metric suggests an unstable range of recreational fishing opportunities. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average in 7 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
+As noted [above](#recreational-opportunities), [recreational fleet effort diversity](https://noaa-edab.github.io/catalog/recreational-fishing-indicators.html) is declining (Fig. \ref{fig:rec-div}), suggesting a shift in recreational fishing opportunities. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average in 8 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
+
 ```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the Mid Atlantic.")}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity")
 ```
 
-#### Ecological Diversity
+#### Ecological Stability
 
-Ecological diversity indices show mixed trends. Zooplankton diversity is increasing in the MAB (Fig. \ref{fig:zoo-diversity}). Larval fish diversity shows no trend, and high interannual variability with 2021 values at the mean. Adult fish diversity is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. There is no vessel correction for this metric, so indices collected aboard the research vessel Albatross IV (up to 2008) and research vessel Bigelow (2009-2021) are calculated separately. Despite this, adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
+Total [primary production](https://noaa-edab.github.io/catalog/phytoplankton-chlorophyll-size-class-and-primary-production.html) (PP) is a measure of the total energy input into a system per year. Total primary production in the Mid Atlantic has no clear trend, suggesting stability in energy at the base of the food web. 
+
+```{r totpp, fig.cap="Total areal annual primary production for the MAB. The dashed line represents the long-term (1998-2023) annual mean."}
+
+ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "total")
+```
+
+Ecological diversity indices show mixed trends. [Zooplankton diversity](https://noaa-edab.github.io/catalog/zooplankton-diversity.html) is increasing in the MAB (Fig. \ref{fig:zoo-diversity}). [Adult fish diversity](https://noaa-edab.github.io/catalog/expected-number-of-species.html) is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. Adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
+
 ```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, based on Shannon diversity index."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")
 
@@ -331,18 +330,13 @@ ecodata::plot_exp_n(report = "MidAtlantic", varName = "fall")
 
  
 ### Implications
-Fleet diversity indices are used by the MAFMC to evaluate stability objectives as well as risks to fishery resilience and maintaining equity in access to fishery resources  [@gaichas_implementing_2018]. 
+Fleet diversity indices are used by the MAFMC to evaluate stability objectives as well as risks to fishery resilience and maintaining equity in access to fishery resources. Stability in commercial fleet diversity metrics suggests stable capacity to respond to the current range of fishing opportunities. However, commercial species diversity remains low when compared to historical levels.
 
-Stability in commercial fleet diversity metrics suggests stable capacity to respond to the current range of fishing opportunities. However, commercial species diversity is relatively low, indicating substantial changes in fishing activities even as the fleet composition sees relative stability. 
+Declining recreational fleet effort diversity, as noted above, indicates that the party/charter boat sector continues to contract, with shoreside angling becoming more important as a percentage of recreational angler trips. Stability in recreational species catch diversity has been maintained by a different set of species over time. A recent increase in Atlantic States Marine Fisheries Commission (ASMFC) and South Atlantic Fishery Management Council (SAFMC) managed species in recreational catch is helping to maintain diversity in the same range that MAFMC and New England Fishery Management Council (NEFMC) managed species supported in the 1990s.
 
-Declining recreational fleet effort diversity, as noted [above](#recreational-opportunities), indicates that the party/charter boat sector continues to contract, with shoreside angling becoming more important, as a percentage of recreational angler trips.
+Production at the base of the food web is variable, but stable over time. Ecological diversity indices can provide insight into ecosystem structure. Changes in ecological diversity over time may indicate altered ecosystem structure with implications for fishery productivity and management. Stable adult fish diversity indicates the same overall number and evenness over time, but doesn’t rule out species substitutions (e.g., warm-water replacing cold-water). In addition, the change in survey vessels complicates interpretation of long-term fish diversity trends.
 
-Stability in recreational species catch diversity has been maintained by a different set of species over time. A recent increase in Atlantic States Marine Fisheries Commission (ASMFC) and South Atlantic Fishery Management Council (SAFMC) managed species in recreational catch is helping to maintain diversity in the same range that MAFMC and New England Fishery Management Council (NEFMC) species supported in the 1990s.
-
-Ecological diversity indices can provide insight into ecosystem structure. Changes in ecological diversity over time may indicate altered ecosystem structure with implications for fishery productivity and management [@friedland_changes_2020]. Stable adult fish diversity indicates the same overall number and evenness over time, but doesn’t rule out species substitutions (e.g., warm-water replacing cold-water). In addition, the change in survey vessels complicates interpretation of long-term fish diversity trends.
-
-In the MAB, existing diversity indicators suggest overall stability in the fisheries and ecosystem components examined. However, declining recreational fleet diversity suggests a potential loss in the range of recreational fishing opportunities. Increasing zooplankton diversity (due to increases in abundance of several taxa and stable or declining dominance of an important copepod species) suggests a shift in the zooplankton community that warrants continued monitoring to determine if managed species are affected. In addition, the species diversity in landings warrants continued attention given its relatively low value and large year over year decline.
-
+In the MAB, existing diversity indicators suggest overall stability in the fisheries and ecosystem components examined. However, declining recreational fleet diversity suggests a potential loss in the range of recreational fishing opportunities. Increasing zooplankton diversity (due to increases in abundance of several taxa and stable or declining dominance of an important copepod species) suggests a shift in the zooplankton community that warrants continued monitoring to determine if managed species are affected. In addition, the species diversity in commercial landings warrants continued attention given its relatively low index value indicating average reliance on a small number of species for revenue.
 
 ## Environmental Justice and Social Vulnerability 
 
