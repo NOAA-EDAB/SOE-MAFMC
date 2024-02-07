@@ -180,7 +180,7 @@ a$p + ggplot2::coord_cartesian(xlim=c(0,2), ylim=c(0,2)) +
 
 ```
 
-Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2022 (Fig. \ref{fig:abcacl-stacked}). The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2022, due to that fishery’s small relative size.
+Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits [(ABC or ACL)](https://noaa-edab.github.io/catalog/abc-or-acl-for-managed-stocks.html) have been relatively stable 2012-2022 (Fig. \ref{fig:abcacl-stacked}). The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2022, due to that fishery’s small relative size.
 
 ```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed commercial (C) and recreational (R) fisheries.", fig.width = 6, fig.asp = 0.4}
 #, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")
@@ -225,7 +225,7 @@ Other environmental changes require monitoring as they may become important driv
 ## Commercial Profits 
 
 ### Indicators: revenue (a proxy for profits)  
-Total commercial revenues (black) within the Mid-Atlantic and Mid-Atlantic managed species revenue both present long-term declining trends. Total revenue is at, and revenue from Mid-Atlantic managed species is near, an all-time low (Fig. \ref{fig:comm-revenue}). 
+Total [commercial revenue](https://noaa-edab.github.io/catalog/commercial-landings-and-revenue.html) and MAFMC managed species revenue within the Mid-Atlantic Bight have declined over the past 20-30 years. In 2022, total revenue was at an all-time low, and revenue from MAFMC managed species was near an all-time low (Fig. \ref{fig:comm-revenue}). 
 ```{r comm-revenue, fig.width = 6, fig.asp = 0.45, fig.cap = "Revenue for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red)."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")
 
@@ -235,27 +235,28 @@ ecodata::plot_comdat(report="MidAtlantic", varName="revenue") +
 
 ```
 
-Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes: harvest levels, the mix of species landed, price changes, or a combination of these. The Bennet Indicator decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices.
+Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes: harvest levels, the mix of species landed, price changes, or a combination of these. The [Bennet Indicator](https://noaa-edab.github.io/catalog/bennet-indicator.html) decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices. All changes are in relation to a base year (1982).
 
-Total revenue trends, decomposed to price and volume indicators (Fig. \ref{fig:bennet}), mirror price and volume indicator trends for the benthos (clams; orange in Fig. \ref{fig:bennet-all}) group, especially over the past decade. However, of note is that only piscivore volume is up across species guilds for either prices or volume when compared to the 2015 benchmark year. 
-```{r bennet, fig.cap = "Revenue change from 1982 values in dollars (black); Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight.", fig.width=6, fig.asp=.35}
+In the Mid-Atlantic region revenues were above the 1982 baseline for all years in the series until 2022 (Fig. \ref{fig:bennet}).  Both increasing prices and volumes contributed to the positive revenue change in most years.  In terms of prices, since 2000 Benthos contributed the most to increasing prices (Fig.  \ref{fig:bennet-all}). Beginning in the 1990s, in most years benthivores contributed the most to increasing volumes (Fig.  \ref{fig:bennet-all}). 
+```{r bennet, fig.cap = "Revenue change from 1982 values in 2022 dollars (black); Price (PI), and Volume Indicators (VI) for total commercial landings in the Mid-Atlantic Bight.", fig.width=6, fig.asp=.35}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R")
 
 ecodata::plot_bennet(report = "MidAtlantic", varName = "total")
 
 ```
 
-```{r bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight.",  fig.width = 7.5, fig.asp = 0.35}
+```{r bennet-all, fig.cap = "Total price and volume indicators in 2022 dollars (black) for commercial landings, and individual guild contributions to each indicator, in the Mid-Atlantic Bight.",  fig.width = 7.5, fig.asp = 0.35}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"),
 
 ecodata::plot_bennet(report="MidAtlantic") #+ ggplot2::facet_wrap(~Var, ncol=1)
 ```
 
 ### Implications 
-In a similar manner to seafood landings, the results here are driven in large part by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
+Although the Mid-Atlantic region shows declining revenue trends since 2016, inflation-adjusted revenue from harvested species was still greater than 1982 levels until 2022. In a similar manner to seafood landings, the results here are driven in large part by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species, as well as lower quotas for Atlantic scallops. The declining Benthos category since 2012 may be partially caused by decreases in surfclam and ocean quahogs in the southern part of their range as harvest have shifted northward. Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
 
--  Surfclams and ocean quahogs are sensitive to warming ocean temperatures and ocean acidification.   
--  Acidification levels in surfclam summer habitat are approaching, but not yet at, levels affecting surfclam growth (see [Climate Risks section](#climate-and-ecosystem-productivity)).  
+-  Surfclams, ocean quahogs, and scallops are sensitive to warming ocean temperatures and ocean acidification.   
+-  [Multiple stressors](https://noaa-edab.github.io/catalog/ocean-acidification-and-other-stressors.html) are interacting in Mid-Atlantic shellfish habitats.
+  
 
 ## Recreational Opportunities 
 
