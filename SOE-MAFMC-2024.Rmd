@@ -306,7 +306,7 @@ ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity")
 
 #### Ecological Stability
 
-Total [primary production](https://noaa-edab.github.io/catalog/phytoplankton-chlorophyll-size-class-and-primary-production.html) (PP) is a measure of the total energy input into a system per year. Total primary production in the Mid Atlantic has no clear trend, suggesting stability in energy at the base of the food web. 
+Total [primary production](https://noaa-edab.github.io/catalog/phytoplankton-chlorophyll-size-class-and-primary-production.html) (PP) is a measure of the total energy input into a system per year. Total primary production in the Mid Atlantic has no clear trend (Fig. \ref{fig:totpp}), suggesting stability in energy at the base of the food web. 
 
 ```{r totpp, fig.cap="Total areal annual primary production for the MAB. The dashed line represents the long-term (1998-2023) annual mean."}
 
@@ -651,30 +651,31 @@ ecodata::plot_forage_index()
 
 ##### Biological Drivers: Lower trophic levels
 
-Phytoplankton are the foundation of the food web and are the primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors affect the abundance, composition, spatial distribution, and productivity of phytoplankton. While changes in fish productivity (including forage) could result from changing primary productivity, total primary production in the Mid Atlantic has no clear trend (Fig above in stability section).
+Phytoplankton are the foundation of the food web and are the primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors affect the abundance, composition, spatial distribution, and productivity of phytoplankton. While changes in fish productivity (including forage) could result from changing primary productivity, total primary production in the Mid Atlantic has no clear trend (Fig. \ref{fig:totpp}).
 
-Zooplankton communities in the Mid-Atlantic have increasing trends for smaller bodied copepods and gelatinous species (Cnidaria). Smaller bodied copepods and gelatinous species are less energy-rich than Eupausiids (krill) or the larger-bodied copepod Calanus finmarchicus. A changing mix of zooplankton prey can impact forage fish energy content and abundance, as well as the prey field of filter feeding whales. 
+Zooplankton communities in the Mid-Atlantic have increasing trends for smaller bodied copepods and gelatinous species (Cnidaria; Fig. \ref{fig:zoopanom}). Smaller bodied copepods and gelatinous species are less energy-rich than Eupausiids (krill) or the larger-bodied copepod *Calanus finmarchicus*. A changing mix of zooplankton prey can impact forage fish energy content and abundance, as well as the prey field of filter feeding whales. 
 
+```{r zoopanom, fig.cap="Changes in zooplankton abundance in the MAB for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right)", fig.width=7, fig.asp=.8}
+a <- ecodata::plot_zoo_abundance_anom(report = "MidAtlantic", varName = "copepod")
+b <- ecodata::plot_zoo_abundance_anom(report = "MidAtlantic", varName = "euphausid")
 
-```{r}
-ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "total")
+a/b
+
 ```
 
-Temperature increases at both the surface (Fig. \ref{fig:seasonal-oisst_anom}) and bottom (Fig. \ref{fig:bottom-temp}) can exceed thermal tolerance limits for some fish. For example, 2015 had the warmest summer and fall bottom temperatures in the Mid-Atlantic. A large proportion of the region had bottom temperatures above the thermal tolerance for groundfish... with some days exceeding the mortality limit (Fig. \ref{fig:therm-hab-persist-2015}).
+##### Environmental Drivers
 
-```{r therm-hab-persist-2015, fig.width=8, fig.asp=1}
+Fish production can also be directly related to the prevailing environmental conditions by altering metabolic processes (growth) and reproduction. Many species possess thermal tolerances and can experience stressful or lethal conditions if temperatures exceed certain levels. Extreme temperatures at both the surface (catalog) and bottom (catalog ) can exceed thermal tolerance limits for some fish. For example, 2015 had the warmest summer and fall bottom temperatures in the Mid-Atlantic (catalog). A large proportion of the region had bottom temperatures above the 15℃ [thermal tolerance](https://noaa-edab.github.io/catalog/thermal-habitat-persistence.html) for most groundfish, with some days exceeding the 24℃ potential mortality limit (Fig. \ref{fig:therm-hab-persist-2015}). Many Mid-Atlantic species have different thermal tolerance limits from groundfish, and we will work to include those next year.
+
+
+```{r therm-hab-persist-2015, fig.cap = "The number of days in 2015 where bottom temperature exceeds 15℃ (left) and 24℃ (right) based on the GLORYS 1/12 degree grid.", fig.width=8, fig.asp=1}
 year = 2015
 ecodata::plot_thermal_habitat_persistence(year=year) + ggplot2::ggtitle(paste(year))
 ```
 
+[Ocean acidification](https://noaa-edab.github.io/catalog/ocean-acidification-and-other-stressors.html) (OA) risks vary among species and include reduced survival, growth, reproduction, and productivity, where high OA risk indicates potential negative effects to species.  High OA risk conditions were observed for Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid shelf regions of the New Jersey shelf during summer of 2016, 2018, 2019, and 2023 (Fig. \ref{fig:mab-oa}).
 
-
-Ocean acidification (OA) has caused measured declines in global ocean pH, and is projected to continue declining if high carbon dioxide emissions continue [@intergovernmental_panel_on_climate_change_ipcc_technical_2022]. OA also changes the availability of minerals required by organisms to form calcified structures such as shells. Calcifying conditions in seawater can be determined by measuring aragonite saturation state ($\Omega_{Arag}$), the tendency of a common type of calcium carbonate, aragonite, to form or dissolve. When $\Omega_{Arag}$ is less than 1, shells and other calcium carbonate structures begin to dissolve. Typical surface ocean $\Omega_{Arag}$ is 2-4, but extremes can be <1 or >5 [@jiang_climatological_2015]. As the ocean absorbs carbon dioxide, both pH and $\Omega_{Arag}$ decrease and can cause organisms to respond with reduced survival, calcification rates, growth, and reproduction, as well as impaired development, and/or changes in energy allocation [@kroeker_impacts_2013 @saba_recommended_2019]. However, sensitivity levels vary, and some organisms exhibit negative responses to calcification and other processes when $\Omega_{Arag}$ is as low as 3.
-
-*OLD TEXT REWRITE FOR NEW FIGURES*
-Summer-time (2007-present) $\Omega_{Arag}$ on the U.S. Northeast Shelf varies in space and time, ranging from 0.64 to 2.49 (Fig. \ref{fig:mab-oa}, left panel). Spatially, the lowest bottom $\Omega_{Arag}$ has occurred in the Gulf of Maine, western Long Island Sound, nearshore to mid-shelf waters of the Mid-Atlantic Bight off the coast of New Jersey, and in waters > 1000 meters. $\Omega_{Arag}$ was at or below the sensitivity levels for both Atlantic sea scallop [@cameron_effects_2022] and longfin squid [@zakroff_dose-dependence_2019; @zakroff_antagonistic_2020] in Long Island Sound and the nearshore and mid-shelf regions of the New Jersey shelf (Fig. \ref{fig:mab-oa}, right panels). The sensitivity levels of bottom $\Omega_{Arag}$ occurred during August 2016, July 2018, and August 2019 for both species, and additionally in August 2021 for the Atlantic sea scallop.
-
-```{r mab-oa, out.width = '100%', fig.cap = "Bottom summer-time (June-August) pH (left panel) and aragonite saturation state (right panel) on the U.S. Northeast Shelf from 2007-2023 plotted from available quality-controlled vessel- and glider-based datasets."}
+```{r mab-oa, out.width = '100%', fig.cap = "Locations where bottom aragonite saturation state (Arag; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan) and 2023 only (magenta). Gray circles indicate locations where bottom Arag values were above the species specific sensitivity values.."}
 
 
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
@@ -685,74 +686,16 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images
 
 ```
 
-```{r oa-spp, out.width = '100%', fig.cap ="Locations where bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (top panels) and longfin squid (bottom panels) for the time periods 2007-2022 (left panels) and 2007-2023 (right panels). Gray circles indicate locations where carbonate chemistry samples were collected, but bottom $\\Omega_{Arag}$ values were higher than sensitivity values determined for that species."}
+Biological and oceanographic processes can affect the amount of oxygen present in the water column. During low oxygen (hypoxic) events, species growth is negatively affected, and very low oxygen can result in mortality. The duration and extent of hypoxic events is being monitored, but long-term shelf-wide observations are not yet available. However, [hypoxic events](https://noaa-edab.github.io/catalog/ocean-acidification-and-other-stressors.html) were detected off the coast of New Jersey in 2023 and were potentially responsible for fish, lobster, and crab [mortalities](https://sebsnjaesnews.rutgers.edu/2023/12/rutgers-scientists-observe-unusual-ocean-conditions-possibly-linked-to-mortality-in-marine-life-off-new-jersey/).
 
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/Figure5-GraceSaba_2024.png")
-```
+#### Drivers: Predation
+The abundance and distribution of predators can affect both the productivity and mortality rates on managed stocks. Species that prey on managed species can increase their natural mortality if more abundant and can decrease managed stock productivity if competing for the same resources. The northeast shift in [whales and dolphins](https://noaa-edab.github.io/catalog/cetacean-distribution-shifts.html)  (Fig. \ref{fig:protectedspp-dist-shifts}) indicates a change in the overlap between predators and prey. Since we also observe distribution shifts in managed species as well as forage species, the effect of changing predator distributions alone is difficult to quantify. 
 
-Low oxygen events
+Indicators for shark populations, combined with information on gray seals (see [Protected Species Implications section, above](#protected-species)), suggests predator populations range from stable ([sharks](https://noaa-edab.github.io/catalog/highly-migratory-species-pop-catch-per-unit-effort.html)) to increasing ([gray seals](https://noaa-edab.github.io/catalog/gray-seal-pups.html))  in the MAB. [Stock status](https://noaa-edab.github.io/catalog/highly-migratory-species-stock-status.html) is mixed for Atlantic Highly Migratory Species (HMS) stocks (including sharks, swordfish, billfish, and tunas) occurring throughout the Northeast U.S. shelf. While there are several HMS species considered to be overfished or that have unknown stock status, the population status for some managed Atlantic sharks and tunas is at or above the biomass target, suggesting the potential for robust predator populations among these managed species. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
 
+### Future Considerations
+The processes that control fish productivity and mortality are dynamic, complex, and are the result of the interactions between multiple system drivers. There is a real risk that short-term predictions in assessments and rebuilding plans that assume unchanging underlying conditions will not be as effective, given the observed change documented in the prior sections in both ecological and environmental processes. Assumptions for species’ growth, reproduction, and natural mortality should continue to be evaluated for individual species. With observations of system-wide productivity shifts of multiple managed stocks, more research is needed to determine whether regime shifts or ecosystem reorganization are occurring, and how this should be incorporated into management.
 
-
-### Current status: 2023 overview
-
-Multiple anomalous conditions and extreme events were observed in 2023 that could have brief local effects and/or widespread long-term ecosystem, fishery and management implications. Reported observations should be noted and taken into consideration for future analyses and assessments.
-
-Globally, 2023 was the warmest year on record with record high global sea surface temperatures. North Atlantic surface temperatures were also the highest on record, however temperatures in the Northeast U.S. shelf ecosystem were more variable, near record highs in winter and near average in other seasons. Chesapeake Bay rarely exceeded temperature thresholds.
-
-Bottom temperatures likely thresholds of X and Y degrees for N days in 2023, especially along the Mid-Atlantic coast. *which species care?*
-
-```{r therm-hab-persist-2023, fig.width=8, fig.asp=1}
-year = 2023
-ecodata::plot_thermal_habitat_persistence(year=year) + ggplot2::ggtitle(paste(year))
-```
-
-The 2020-2022 La Niña conditions ended in late winter and shifted to strong El Niño conditions in late spring 2023.  The current El Niño is expected to gradually weaken and transition to neutral conditions in spring 2024.  During El Niño winters, there is a noted increased frequency of East Coast storms. *add potential implications for fisheries*
-
-Fall tropical and coastal storms caused several flash flood events, above average coastal water levels, strong winds and high rainfall totals throughout the Northeast. *add potential implications for fisheries*
-
-Gulf Stream instability resulted in variability throughout the year. In the fall, the Gulf Stream was in a northward position along the Mid-Atlantic shelf break for an extended period of time. This severely constricted the Slope Sea waters that are normally between the Gulf Stream and continental shelf break. Warm salty surface Gulf Stream waters with strong currents were observed on the continental shelf in the southern MAB in October. *add potential implications for fisheries*
-
-The number of warm core rings (18) was well below the current regime (2000-2022) average of 31. One large early season ring was observed along the Northeast Shelf Break in spring, which generated an anomalously large shelf streamer that pulled continental shelf water into the Slope Sea.  *add potential implications for fisheries*
-
-High abundances of large baleen whale species (North Atlantic rRight wWhales and , humpback whales, minke, (others)) were observed feeding near a warm core rings that wereas adjacent to the continental shelf break in spring.
-Summer bottom temperatures in the Gulf of Maine were the warmest on record (since 1993) and the second largest bottom marine heatwave occurred from FebruaryMarch to August, peaked in May, and likely continued into the fall (pending data update). 
-
-Record high (since 1998) chlorophyll concentrations were up to ten times greater than average during a wide-spread, long-duration phytoplankton bloom in the Gulf of Maine that extended onto Georges Bank and the northern Mid-Atlantic Bight (Fig. \ref{fig:chl-current-year}). 
-
-*add potential implications for fisheries: such as:*
-
-A large phytoplankton bloom could represent either an influx of energy into the system, boosting productivity of zooplankton or higher trophic levels, or a settling of unconsumed dead phytoplankton cells to the bottom, where low oxygen could result due to increased bacterial activity consuming the settled material, or both.
-
-NEITHER HAPPENED
-
-It wasn't the typical bloom species.
-
-This species wasn't consumed so we don't expect it to boost fish productivity
-
-This species didn't sink to the bottom so we didn't get low oxygen
-
-
-```{r chl-current-year, fig.cap="", fig.width=8}
-
-a <- ecodata::plot_chl_pp(report = "MidAtlantic") + ggplot2::ggtitle("Mid Atlantic 2023")
-
-b <- ecodata::plot_chl_pp(report = "NewEngland") + ggplot2::ggtitle("New England 2023")
-
-a + b + patchwork::plot_layout(widths = c(2.6, 5.2))
-
-```
-
-
-Documented die off of scallops in the Mid-Atlantic Elephant trunk regions between the 2022 and 2023 surveys. 
-A fish and shellfish mortality event was observed in coastal New Jersey linked to hypoxia (low dissolved oxygen) and ocean acidification.
-
-In Chesapeake Bay, hypoxia conditions were the lowest on record (since 1995), creating more suitable habitat for adult and juvenile striped bass.
-
-
-### Implications
-
-*SUMMARIZE IMPLICATIONS OF THE WHOLE SECTION*
 
 ## Other Ocean Uses: Offshore Wind
 
@@ -947,6 +890,63 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images
 Scientific data collection surveys for ocean and ecosystem conditions, fish, and protected species will be altered, potentially increasing uncertainty for stock assessments and associated management decision making.
 
 The increase of offshore wind development can have both positive (e.g., employment opportunities) and negative (e.g., space-use conflicts) effects. Continued increase in coastal development and gentrification pressure has resulted in loss of fishing infrastructure space within ports. Understanding these existing pressures can allow for avoiding and mitigating negative impacts to our shore support industry and communities dependent on fishing. Some of the communities with the highest fisheries revenue overlap with offshore wind development areas that are also vulnerable to gentrification pressure are Point Pleasant and Atlantic City, NJ, Ocean City, MD, and Beaufort, NC.
+
+
+### Current status: 2023 overview
+
+Multiple anomalous conditions and extreme events were observed in 2023 that could have brief local effects and/or widespread long-term ecosystem, fishery and management implications. Reported observations should be noted and taken into consideration for future analyses and assessments.
+
+Globally, 2023 was the warmest year on record with record high global sea surface temperatures. North Atlantic surface temperatures were also the highest on record, however temperatures in the Northeast U.S. shelf ecosystem were more variable, near record highs in winter and near average in other seasons. Chesapeake Bay rarely exceeded temperature thresholds.
+
+Bottom temperatures likely thresholds of X and Y degrees for N days in 2023, especially along the Mid-Atlantic coast. *which species care?*
+
+```{r therm-hab-persist-2023, fig.width=8, fig.asp=1}
+year = 2023
+ecodata::plot_thermal_habitat_persistence(year=year) + ggplot2::ggtitle(paste(year))
+```
+
+The 2020-2022 La Niña conditions ended in late winter and shifted to strong El Niño conditions in late spring 2023.  The current El Niño is expected to gradually weaken and transition to neutral conditions in spring 2024.  During El Niño winters, there is a noted increased frequency of East Coast storms. *add potential implications for fisheries*
+
+Fall tropical and coastal storms caused several flash flood events, above average coastal water levels, strong winds and high rainfall totals throughout the Northeast. *add potential implications for fisheries*
+
+Gulf Stream instability resulted in variability throughout the year. In the fall, the Gulf Stream was in a northward position along the Mid-Atlantic shelf break for an extended period of time. This severely constricted the Slope Sea waters that are normally between the Gulf Stream and continental shelf break. Warm salty surface Gulf Stream waters with strong currents were observed on the continental shelf in the southern MAB in October. *add potential implications for fisheries*
+
+The number of warm core rings (18) was well below the current regime (2000-2022) average of 31. One large early season ring was observed along the Northeast Shelf Break in spring, which generated an anomalously large shelf streamer that pulled continental shelf water into the Slope Sea.  *add potential implications for fisheries*
+
+High abundances of large baleen whale species (North Atlantic rRight wWhales and , humpback whales, minke, (others)) were observed feeding near a warm core rings that wereas adjacent to the continental shelf break in spring.
+Summer bottom temperatures in the Gulf of Maine were the warmest on record (since 1993) and the second largest bottom marine heatwave occurred from FebruaryMarch to August, peaked in May, and likely continued into the fall (pending data update). 
+
+Record high (since 1998) chlorophyll concentrations were up to ten times greater than average during a wide-spread, long-duration phytoplankton bloom in the Gulf of Maine that extended onto Georges Bank and the northern Mid-Atlantic Bight (Fig. \ref{fig:chl-current-year}). 
+
+*add potential implications for fisheries: such as:*
+
+A large phytoplankton bloom could represent either an influx of energy into the system, boosting productivity of zooplankton or higher trophic levels, or a settling of unconsumed dead phytoplankton cells to the bottom, where low oxygen could result due to increased bacterial activity consuming the settled material, or both.
+
+NEITHER HAPPENED
+
+It wasn't the typical bloom species.
+
+This species wasn't consumed so we don't expect it to boost fish productivity
+
+This species didn't sink to the bottom so we didn't get low oxygen
+
+
+```{r chl-current-year, fig.cap="", fig.width=8}
+
+a <- ecodata::plot_chl_pp(report = "MidAtlantic") + ggplot2::ggtitle("Mid Atlantic 2023")
+
+b <- ecodata::plot_chl_pp(report = "NewEngland") + ggplot2::ggtitle("New England 2023")
+
+a + b + patchwork::plot_layout(widths = c(2.6, 5.2))
+
+```
+
+
+Documented die off of scallops in the Mid-Atlantic Elephant trunk regions between the 2022 and 2023 surveys. 
+A fish and shellfish mortality event was observed in coastal New Jersey linked to hypoxia (low dissolved oxygen) and ocean acidification.
+
+In Chesapeake Bay, hypoxia conditions were the lowest on record (since 1995), creating more suitable habitat for adult and juvenile striped bass.
+
 
 
 # Contributors
