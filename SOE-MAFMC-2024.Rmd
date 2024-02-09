@@ -340,15 +340,14 @@ In the MAB, existing diversity indicators suggest overall stability in the fishe
 
 ## Environmental Justice and Social Vulnerability 
 
-**A data error was found immediately prior to submission to internal review, therefore this section is preliminary, subject to change, and will be updated ASAP.**
-
 ### Indicators: Environmental Justice and Social Vulnerability in commercial and recreational fishing communities
 
-Social vulnerability measures social factors that shape a community’s ability to adapt to change. A subset of these factors can be used to assess potential environmental justice issues. We report the top ten communities most engaged in, and/or reliant upon, commercial and recreational fisheries and the degree to which these communities may be vulnerable to environmental justice issues (i.e., Poverty, Population Composition, and Personal Disruption) based on 2021 data. The engagement and reliance indices demonstrate the importance of commercial and recreational fishing to a given community relative to other coastal communities in a region. Similarly, the environmental justice indices characterize different facets and levels of social vulnerability in a given community relative to other coastal communities in a region. 
+[Social vulnerability](https://noaa-edab.github.io/catalog/engagement-reliance-and-environmental-justice-in-top-fishing-communities.html) measures social factors that shape a community’s ability to adapt to change. A subset of these factors can be used to assess potential environmental justice issues. We report the top ten communities most engaged in, and/or reliant upon, commercial and recreational fisheries and the degree to which these communities may be vulnerable to environmental justice issues (i.e., Poverty, Population Composition, and Personal Disruption) based on 2021 data. The engagement and reliance indices demonstrate the importance of commercial and recreational fishing to a given community relative to other coastal communities in a region. Similarly, the environmental justice indices characterize different facets and levels of social vulnerability in a given community relative to other coastal communities in a region. 
 
-Changes in fishing activity between years changed community engagement and reliance rankings, and changes in vulnerability indicators changed environmental justice vulnerability scores.  The largest change from last year’s report is that Hatteras and Hobucken, NC are no longer listed as top ten commercial fishing communities, replaced by Hampton, VA; Swan Quarter, NC; Bowers and Little Creek, DE (Fig.\ref{fig:commercial-engagement}).
+Changes in fishing activity between years changed community engagement and reliance rankings, and changes in vulnerability indicators changed environmental justice vulnerability scores.  The largest change from last year’s report is that Hatteras and Hobucken, NC are no longer listed as top ten commercial fishing communities, replaced by Hampton, VA; Swan Quarter, NC; Bowers and Little Creek, DE (Fig.\ref{fig:commercial-engagement}).  Manteo, Vandemere, and Hobuken, NC are no longer listed as top ten recreational communities, replaced by Cape May and Barnegat Light, NJ; Orient, NY; Topsail Beach, Avon and Rodanthe, NC (Fig.\ref{fig:recreational-engagement}). 
 
-Manteo, Vandemere, and Hobuken, NC are no longer listed as top ten recreational communities, replaced by Cape May and Barnegat Light, NJ; Orient, NY; Topsail Beach, Avon and Rodanthe, NC (Fig.\ref{fig:recreational-engagement}). 
+Scores for environmental justice concerns remain similar for communities based on 2020 and 2021 data, with top commercial ports (Fig. \ref{fig:commercial-EJ}) showing more concerns than top recreational ports overall (Fig. \ref{fig:recreational-EJ}).  Atlantic City, NJ ranks highest for all three environmental justice concerns. There is variability in the specific issues facing communities with environmental justice concerns.  Higher scores in population composition indicate community vulnerability related to the presence of non-white, non-English speaking, and younger populations. 
+
  
 ```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", fig.width = 7, fig.asp = 0.5, results='hide'}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
@@ -368,7 +367,6 @@ ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial")
 ecodata::plot_engagement(report = "MidAtlantic", varName = "Recreational")
 ```
 
-Scores for environmental justice concerns remain similar for communities based on 2020 and 2021 data, with top commercial ports (Fig. \ref{fig:commercial-EJ}) showing more concerns than top recreational ports overall (Fig. \ref{fig:recreational-EJ}).  Atlantic City, NJ ranks highest for all three environmental justice concerns. There is variability in the specific issues facing communities with environmental justice concerns.  Higher scores in population composition indicate community vulnerability related to the presence of non-white, non-English speaking, and younger populations. 
 
 ```{r commercial-EJ, crop=TRUE, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", out.width='75%'}
 
@@ -430,7 +428,7 @@ These indicators provide a snapshot of the presence of environmental justice iss
 Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration. Protected species include marine mammals protected under the Marine Mammal Protection Act, endangered and threatened species protected under the Endangered Species Act, and migratory birds protected under the Migratory Bird Treaty Act. In the Northeast U.S., endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and five baleen whales. Here we report on the status of these actions as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast U.S. Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs).
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
-Average indices for both harbor porpoise](https://noaa-edab.github.io/catalog/harbor-porpoise-bycatch.html) (Fig. \ref{fig:harborporpoise}) and [gray seal](https://noaa-edab.github.io/catalog/gray-seal-bycatch.html) bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. 
+Average indices for both [harbor porpoise](https://noaa-edab.github.io/catalog/harbor-porpoise-bycatch.html) (Fig. \ref{fig:harborporpoise}) and [gray seal](https://noaa-edab.github.io/catalog/gray-seal-bycatch.html) bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. 
 ```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).",, fig.width=5}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R")
 #fig.width=6}
@@ -517,7 +515,7 @@ ecodata::plot_forage_index(varName = "cog")
 
 Ocean temperatures influence the distribution, seasonal timing, and productivity of managed species (see sections below). The Northeast US shelf, including the Mid-Atlantic, has experienced a continued warming trend for both the [surface](https://noaa-edab.github.io/catalog/sea-surface-temperature-anomaly.html) (Fig. \ref{fig:long-term-sst}) and [bottom](https://noaa-edab.github.io/catalog/bottom-temperature---seasonal-anomaly.html) in all seasons.
 
-```{r long-term-sst, fig.cap="Northeast US annual sea surface temperature (SST) time series.", fig.width = 9, fig.asp = .3}
+```{r long-term-sst, fig.cap="Northeast US annual sea surface temperature (SST) time series."}
 
 ecodata::plot_long_term_sst()
 ```
@@ -709,11 +707,13 @@ The processes that control fish productivity and mortality are dynamic, complex,
 
 ### Indicators: development timeline, revenue in lease areas, coastal community vulnerability
 As of January 2024, 30 offshore [wind development](https://noaa-edab.github.io/catalog/speed-and-scale-of-offshore-wind-development-in-the-northeast.html) projects are proposed for construction over the next decade in the Northeast (timelines and project data for 2024 are based on the Ocean Wind 1 Offshore Wind Farm Final Environmental Impact Statement. Volume II: Appendix F). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-proposed-dev}). It is anticipated that all states will be able to reach their 2030 offshore wind goals with existing lease areas.  
-```{r wind-proposed-dev, fig.cap='Proposed wind development on the northeast shelf.'}
+```{r wind-proposed-dev, fig.cap='Proposed wind development on the northeast shelf.', fig.width=5}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R")
 
 ecodata::plot_wind_dev_speed()
 ```
+
+Just over 3,300 foundations and more than 12,000 miles of inter-array and offshore export cables are proposed to date. Fig. \ref{fig:wind-dev-cumul}. Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time. Construction of two projects in Southern New England (South Fork Wind and Vineyard Wind 1) during 2023 affected fisheries managed by the Mid-Atlantic Fishery Management Council, while construction activities began for Revolution Wind in early 2024. It is likely that construction will begin on other projects in Southern New England and possibly the New York Bight during 2024 that will further affect regional fisheries. 
 
 ```{r wind-dev-cumul, fig.cap = "All Northeast Project areas by year construction ends (each project has 2 year construction period).", out.width='90%'}
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
@@ -724,8 +724,6 @@ ecodata::plot_wind_dev_speed()
 magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/Cumulative_Timeline_FullRegion_SoE2024_v2_2024.png")
 
 ```
-
-Just over 3,300 foundations and more than 12,000 miles of inter-array and offshore export cables are proposed to date. Fig. \ref{fig:wind-dev-cumul}. Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time. Construction of two projects in Southern New England (South Fork Wind and Vineyard Wind 1) during 2023 affected fisheries managed by the Mid-Atlantic Fishery Management Council, while construction activities began for Revolution Wind in early 2024. It is likely that construction will begin on other projects in Southern New England and possibly the New York Bight during 2024 that will further affect regional fisheries. 
 
 Based on federal vessel logbook data, [commercial fishery revenue](https://noaa-edab.github.io/catalog/fishery-impacts-from-offshore-wind-development.html) from trips in the current offshore wind lease areas, including the newly designated lease areas in the Central Atlantic, have varied annually from 2008-2022, with less than \$1 million in maximum annual revenue overlapping with these areas for most fisheries with the exception of the surfclam, monkfish, and longfin squid fisheries. Some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including the surfclam (\$6.6 million), longfin squid (\$4.7 million), monkfish (\$4.3 million), and summer flounder (\$1.3 million) fisheries (Fig. \ref{fig:wea-spp-rev}). 
 
@@ -779,7 +777,18 @@ Of MAFMC-managed fisheries, the monkfish fishery would be the fishery most affec
 # 
 # *** Based on comparison with other data sources, the high values for Illex squid are likely overestimates affected by the methods used to model logbook data to estimate spatial overlap of fishign operations with wind energy areas.
 
-ecodata::plot_wea_landings_rev(n=Inf)
+#ecodata::plot_wea_landings_rev(n=Inf)
+
+dt<- ecodata::wea_landings_rev |> 
+  dplyr::filter(Council %in% c("MAFMC", "MAFMC/NEFMC")) |>
+  dplyr::select("NEFMC, MAFMC, and ASMFC Managed Species", "perc_landings_max",
+                "perc_revenue_max" ) %>%
+  dplyr::rename("Maximum Percent Total Annual Regional Species Landings"="perc_landings_max",
+    "Maximum Percent Total Annual Regional Species Revenue"="perc_revenue_max")
+
+flextable::flextable(dt) %>%
+  flextable::set_caption("Mid-Atlantic managed species Landings and Revenue from Wind Energy Areas.") %>%
+  flextable::width(width = c(2,2,2))
 
 ```
 
@@ -928,11 +937,11 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images
 ```
 
 
-Summer [bottom temperatures](https://noaa-edab.github.io/catalog/bottom-temperature---seasonal-anomaly.html) in the Gulf of Maine were the warmest on record (since 1959) resulting in the second largest [bottom marine heatwave](https://noaa-edab.github.io/catalog/marine-heatwaves---bottom.html). The heatwave started in February, peaked in May and likely continued beyond August (pending data update). [2023 bottom temperature](https://noaa-edab.github.io/catalog/thermal-habitat-persistence.html) exceeded the 15oC threshold for up to 59 days along the shelf break. 
+Summer [bottom temperatures](https://noaa-edab.github.io/catalog/bottom-temperature---seasonal-anomaly.html) in the Gulf of Maine were the warmest on record (since 1959) resulting in the second largest [bottom marine heatwave](https://noaa-edab.github.io/catalog/marine-heatwaves---bottom.html). The heatwave started in February, peaked in May and likely continued beyond August (pending data update). [2023 bottom temperature](https://noaa-edab.github.io/catalog/thermal-habitat-persistence.html) exceeded the 15 ℃ threshold for up to 59 days along the shelf break. 
 
 A wide-spread, long-duration [phytoplankton bloom](https://noaa-edab.github.io/catalog/observation-synthesis.html) of the dinoflagellate *Tripos muelleri* was observed in the GOM and generated chlorophyll concentrations up to ten times greater than average (a record high since 1998) from March to August. The bloom severely reduced water clarity, impacting harpoon fishing and likely affecting visual predators. Despite *Tripos* being a similar size to typical large phytoplankton (diatoms), this extra production was not grazed nor did it sink to the bottom. The specific drivers of the bloom and implications to the food web are still under investigation. 
 
-```{r chl-current-year, fig.cap="", fig.width=8}
+```{r chl-current-year, fig.cap="", fig.width=7}
 
 a <- ecodata::plot_chl_pp(report = "MidAtlantic") + ggplot2::ggtitle("Mid Atlantic 2023")
 
