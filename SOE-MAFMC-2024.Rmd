@@ -200,7 +200,7 @@ ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
 
 #### System Biomass
 Although [aggregate biomass](https://noaa-edab.github.io/catalog/aggregate-survey-biomass.html) trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthivores show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
-```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", fig.width=8, fig.asp = 0.75}
+```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", fig.width=8, fig.asp = 0.75, results='hide'}
 
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R")
 
@@ -928,6 +928,16 @@ Summer bottom temperatures in the Gulf of Maine were the warmest on record (sinc
 
 A wide-spread, long-duration phytoplankton bloom of the dinoflagellate *Tripos muelleri* was observed in the GOM and generated chlorophyll concentrations up to ten times greater than average (a record high since 1998) from March to August. The bloom severely reduced water clarity, impacting harpoon fishing and likely affecting visual predators. Despite Tripos being a similar size to typical large phytoplankton (diatoms), this extra production was not grazed nor did it sink to the bottom. The specific drivers of the bloom and implications to the food web are still under investigation. 
 
+```{r chl-current-year, fig.cap="", fig.width=8}
+
+a <- ecodata::plot_chl_pp(report = "MidAtlantic") + ggplot2::ggtitle("Mid Atlantic 2023")
+
+b <- ecodata::plot_chl_pp(report = "NewEngland") + ggplot2::ggtitle("New England 2023")
+
+a + b + patchwork::plot_layout(widths = c(2.6, 5.2))
+
+```
+
 ```{r GOMbloom, out.width='50%'}
 magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/2023-GOMbloom-internalreview.png")
 ```
@@ -953,8 +963,6 @@ Multiple fall 2023 tropical and coastal storms caused several flash flood events
 **Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Joseph Caracappa, Andy Beet, Brandon Beltz, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith
 
 **Contributors** (NEFSC unless otherwise noted): Kimberly Bastille, Aaron Beaver (Anchor QEA), Andy Beet, Brandon Beltz, Ruth Boettcher (Virginia Department of Game and Inland Fisheries), Mandy Bromilow and CJ Pellerin (NOAA Chesapeake Bay Office), Joseph Caracappa, Baoshan Chen (Stony Brook University), Doug Christel (GARFO), Patricia Clay, Lisa Colburn, Jennifer Cudney and Tobey Curtis (NMFS Atlantic HMS Management Division), Geret DePiper, Dan Dorfman (NOAA-NOS-NCCOS), Hubert du Pontavice, Emily Farr and Grace Roskar (NMFS Office of Habitat Conservation), Michael Fogarty, Paula Fratantoni, Kevin Friedland, Marjy Friedrichs (VIMS), Sarah Gaichas, Ben Galuardi (GAFRO), Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Lori Garzio (Rutgers University), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Kimberly Hyde, John Kosik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institution), Andrew Lipsky, Sean Lucey, Chris Melrose, Shannon Meseck, Ryan Morse, Ray Mroch (SEFSC), Brandon Muffley (MAFMC), Kimberly Murray, Janet Nye (University of North Carolina at Chapel Hill), Chris Orphanides, Richard Pace,Debi Palka, Tom Parham (Maryland DNR), Charles Perretti, Grace Saba and Emily Slesinger (Rutgers University), Vincent Saba, Sarah Salois, Chris Schillaci (GARFO), Amy Schueller (SEFSC), Teresa Schwemmer (Stony Brook University), Dave Secor (CBL), Angela Silva, Adrienne Silver (UMass/SMAST), Laurel Smith, Talya ten Brink (GARFO), Bruce Vogt (NOAA Chesapeake Bay Office), Ron Vogel (University of Maryland Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research), John Walden, Harvey Walsh, Changhua Weng, Timothy White (Environmental Studies Program, BOEM), Mark Wuenschel 
-
-\newpage 
 
 # Document Orientation
 
