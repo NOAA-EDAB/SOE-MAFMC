@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Climate Change Indicators: ocean temperature, heatwaves, currents, acidification
 
+Symbol for Omega 0x038F
+
 #### Ocean and estuarine temperature and salinity
 The ocean continues to warm, altering habitat conditions experienced by a wide range of species. 2022 was among the warmest years on record in the North Atlantic [@cheng_another_2023] and ocean temperatures continue to warm at both the surface (Fig. \ref{fig:seasonal-sst-anom-gridded}) and bottom (Fig. \ref{fig:bottom-temp}) throughout the Mid-Atlantic. Bottom temperature shows a long term warming trend in all seasons, while sea surface temperature shows significant long term warming in spring, summer, and fall. Seasonal sea surface temperatures in 2022 were above average for most of the year,  however late spring storms caused deep mixing, which delayed stratification and surface warming in late spring and early summer.
 

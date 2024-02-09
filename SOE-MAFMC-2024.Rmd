@@ -512,7 +512,7 @@ ecodata::plot_HMS_species_distribution() + ggplot2::ggtitle("Whale and Dolphin D
 
 Mobile populations shift distributions to maintain suitable temperature and prey fields, possibly expanding ranges if new suitable habitat exists.   Changes in managed species distribution is related, in part, to the [distribution of forage biomass](https://noaa-edab.github.io/catalog/forage-fish-index.html). Since 1982, the fall center of gravity of forage fish (20 species combined) has moved to the north and east (Fig. \ref{fig:forageshifts}). Spring forage fish center of gravity has been more variable over time. 
 
-```{r forageshifts, fig.cap="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf."}
+```{r forageshifts, fig.cap="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf.", fig.width = 5, fig.asp=.5}
 
 ecodata::plot_forage_index(varName = "cog")
 ```
@@ -562,7 +562,7 @@ The effectiveness of seasonal management actions (fishing seasons or area openin
 
 Spawning timing is shifting earlier for multiple stocks, including haddock and yellowtail flounder. Spawning of both haddock stocks occurred earlier in the year, as indicated by more resting (post-spawning) stage fish in the 2010s as compared to earlier in the time series (Fig. \ref{fig:spawntiming}). The northern (CC/GOM) stock shows earlier active spawning in recent years with a decline in pre-spawning resting females.The recent increase in resting females in the southern (SNE) stock also indicates a shift to earlier spawning (i.e. more post-spawn fish). Yellowtail flounder spawning is related to bottom temperature, week of year, and decade sampled for each of the three stocks.
 
-```{r spawntiming, fig.cap="Percent resting stage (non-spawning) mature female fish from two haddock and three yellowtail flounder stocks: CC = Cape Cod Gulf of Maine, GOM = Gulf of Maine, GB = Georges Bank, SNE = Southern New England."}
+```{r spawntiming, fig.cap="Percent resting stage (non-spawning) mature female fish from two haddock and three yellowtail flounder stocks: CC = Cape Cod Gulf of Maine, GOM = Gulf of Maine, GB = Georges Bank, SNE = Southern New England.", fig.width = 7, fig.asp=.5}
 
 ecodata::plot_spawn_timing() + ggplot2::ggtitle("Spring Resting Maturity Stage")
 
@@ -582,12 +582,12 @@ Along with the overall warming trends in the Mid Atlantic, ocean summer conditio
 ```{r transition, fig.cap="Ocean summer length in the MAB: the annual total number of days between the spring thermal transition date and the fall thermal transition date.  The transition dates are defined as the day of the year when surface temperatures changeover from cool to warm conditions in the spring and back to cool conditions in the fall."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")
 
-ecodata::plot_trans_dates()
+ecodata::plot_trans_dates(varName = "length")
 ```
 
 The [cold pool](https://noaa-edab.github.io/catalog/cold-pool-index.html) is a seasonal feature within the MAB that creates seasonally suitable habitat for many species. In 8 of the past 10 years, cold pool persistence has been well below average, so this habitat was available for a shorter portion of the year  (Fig. \ref{fig:cold-pool-time}). A change in the timing of the cold pool may impact the recruitment of species that depend on it for juvenile habitat, such as yellowtail flounder.
 
-```{r cold-pool-time, fig.cap="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.asp=.5, results='hide'}
+```{r cold-pool-time, fig.cap="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.width = 3.5, fig.asp=.5, results='hide'}
 #, fig.width = 5,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
 
 ecodata::plot_cold_pool(varName = "persistence")
@@ -605,15 +605,19 @@ The efficacy of short-term stock projections and rebuilding plans rely on an acc
 #### Observations: Fish productivity and condition shifts
 Indicators of [fish productivity](https://noaa-edab.github.io/catalog/fish-productivity-indicators.html) are derived from observations (surveys) or models (stock assessments). Fish productivity has been declining in the Mid-Atlantic since the early 2000s, as described by the small-fish-per-large-fish anomaly indicator (derived from NEFSC bottom trawl survey) (Fig. \ref{fig:productivity-anomaly}). This decline in fish productivity is also shown by a similar analysis based on stock assessment model outputs (recruitment per spawning stock biomass anomaly).
 
-```{r productivity-anomaly, fig.cap = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Mid-Atlantic Bight. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in the Mid-Atlantic. The summed anomaly across species is shown by the black line, drawn across all years with the same number of stocks analyzed.", fig.width=8, fig.asp=1}
+```{r productivity-anomaly, fig.cap = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Mid-Atlantic Bight. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in the Mid-Atlantic. The summed anomaly across species is shown by the black line, drawn across all years with the same number of stocks analyzed.", fig.width=8, fig.asp=0.6}
 #out.width='49%', fig.show='hold',
 a <- ecodata::plot_productivity_anomaly(report = "MidAtlantic") + 
+  ggplot2::guides(fill=guide_legend(ncol=2)) + 
   ggplot2::theme(legend.position = "bottom",
-                      legend.title = ggplot2::element_blank())
+                      legend.title = ggplot2::element_blank(),
+                 plot.title =element_text(size = 11))
 
 b <- ecodata::plot_productivity_anomaly(report = "MidAtlantic", varName = "assessment")+ 
+  ggplot2::guides(fill=guide_legend(ncol=2)) +
   ggplot2::theme(legend.position = "bottom",
-                      legend.title = ggplot2::element_blank())
+                      legend.title = ggplot2::element_blank(),
+                 plot.title =element_text(size = 11))
 
 a + b
 
@@ -655,7 +659,7 @@ Phytoplankton are the foundation of the food web and are the primary food source
 
 Zooplankton communities in the Mid-Atlantic have increasing trends for smaller bodied copepods and gelatinous species (Cnidaria; Fig. \ref{fig:zoopanom}). Smaller bodied copepods and gelatinous species are less energy-rich than Eupausiids (krill) or the larger-bodied copepod *Calanus finmarchicus*. A changing mix of zooplankton prey can impact forage fish energy content and abundance, as well as the prey field of filter feeding whales. 
 
-```{r zoopanom, fig.cap="Changes in zooplankton abundance in the MAB for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right)", fig.width=7, fig.asp=.8}
+```{r zoopanom, fig.cap="Changes in zooplankton abundance in the MAB for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right)", fig.width=5, fig.asp=.8}
 a <- ecodata::plot_zoo_abundance_anom(report = "MidAtlantic", varName = "copepod")
 b <- ecodata::plot_zoo_abundance_anom(report = "MidAtlantic", varName = "euphausid")
 
@@ -675,12 +679,12 @@ ecodata::plot_thermal_habitat_persistence(year=year) + ggplot2::ggtitle(paste(ye
 
 [Ocean acidification](https://noaa-edab.github.io/catalog/ocean-acidification-and-other-stressors.html) (OA) risks vary among species and include reduced survival, growth, reproduction, and productivity, where high OA risk indicates potential negative effects to species.  High OA risk conditions were observed for Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid shelf regions of the New Jersey shelf during summer of 2016, 2018, 2019, and 2023 (Fig. \ref{fig:mab-oa}).
 
-```{r mab-oa, out.width = '100%', fig.cap = "Locations where bottom aragonite saturation state (Arag; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan) and 2023 only (magenta). Gray circles indicate locations where bottom Arag values were above the species specific sensitivity values.."}
+```{r mab-oa, out.width = '100%', fig.cap = "Locations where bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan) and 2023 only (magenta). Gray circles indicate locations where bottom $\\Omega_{Arag}$ values were above the species specific sensitivity values.."}
 
 
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
 
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/Figure4-GraceSaba_2024.png")
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/Figure6_GraceSaba_2024.png")
 
 #magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC - Grace Saba.jpg")
 
@@ -719,7 +723,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images
 
 Just over 3,300 foundations and more than 12,000 miles of inter-array and offshore export cables are proposed to date. Fig. \ref{fig:wind-dev-cumul}. Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time. Construction of two projects in Southern New England (South Fork Wind and Vineyard Wind 1) during 2023 affected fisheries managed by the Mid-Atlantic Fishery Management Council, while construction activities began for Revolution Wind in early 2024. It is likely that construction will begin on other projects in Southern New England and possibly the New York Bight during 2024 that will further affect regional fisheries. 
 
-Based on federal vessel logbook data, commercial fishery revenue from trips in the current offshore wind lease areas, including the newly designated lease areas in the Central Atlantic, have varied annually from 2008-2022, with less than \$1 million in maximum annual revenue overlapping with these areas for most fisheries with the exception of the surfclam, monkfish, and longfin squid fisheries. Some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including the surfclam (\$6.6 million), longfin squid (\$4.7 million), monkfish (\$4.3 million), and summer flounder (\$1.3 million) fisheries (Fig. \ref{fig:wea-spp-rev}). 
+Based on federal vessel logbook data, [commercial fishery revenue](https://noaa-edab.github.io/catalog/fishery-impacts-from-offshore-wind-development.html) from trips in the current offshore wind lease areas, including the newly designated lease areas in the Central Atlantic, have varied annually from 2008-2022, with less than \$1 million in maximum annual revenue overlapping with these areas for most fisheries with the exception of the surfclam, monkfish, and longfin squid fisheries. Some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including the surfclam (\$6.6 million), longfin squid (\$4.7 million), monkfish (\$4.3 million), and summer flounder (\$1.3 million) fisheries (Fig. \ref{fig:wea-spp-rev}). 
 
 ```{r wea-spp-rev, fig.cap="Fishery revenue in wind energy lease areas in the Mid-Atlantic.",  fig.width=5, fig.asp=.4}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"),
@@ -783,7 +787,7 @@ Proposed wind development areas interact with the region’s federal scientific 
 
 Increased vessel transit between stations may decrease data collections that are already limited by annual days-at-sea day allocations. The total survey area overlap ranges from 1-70% for all Greater Atlantic federal surveys. The Gulf of Maine Cooperative Research Bottom Longline Survey (41%) and the Shrimp Survey (70%) have the largest percent overlap with the draft Gulf of Maine Wind Energy Areas. The remaining surveys range from 1-16% overlap.  Individual survey strata have significant interaction with wind, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey (up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas and A region-wide survey mitigation program is underway
 
-Equity and environmental justice (EJ) are priority concerns with offshore wind development and fisheries impacts in the Northeast Fig. \ref{fig:wea-port-rev}.  Atlantic City, NJ had a minimum of 11% and maximum of 30% overlap of fisheries revenue in potential wind development areas to the total port fisheries revenue between 2008-2022. BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of environmental justice communities who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts.
+Equity and environmental justice (EJ) are priority concerns with offshore wind development and fisheries impacts in the Northeast,and the impacts of offshore wind development are expected to differentially [impact specific coastal communities](https://noaa-edab.github.io/catalog/community-port-landings-and-revenue-from-wind-energy-areas-weas.html) (Fig. \ref{fig:wea-port-rev}). Additionally, impacts of offshore wind development may unevenly affect individual operators, with some permit holders deriving a much higher proportion of revenue from wind areas than the port-based mean.   
 
 ```{r wea-port-rev, fig.cap="Percent of Mid-Atlantic port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.",  fig.width=6.5, fig.asp=.85, fig.align='left'}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"),
@@ -809,10 +813,12 @@ ecodata::plot_wind_port(report = "MidAtlantic") #+
 
 ```
 
+For example, Atlantic City, NJ had the highest potential revenue loss (minimum of 10% and maximum of 23% ) from potential wind development areas based on 2008-2022 total port fisheries revenue. BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of environmental justice communities who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts.
+
 *This section still to be updated, ports may change*
 Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Barnstable, MA, Boston, MA, Hyannis, MA, North Kingstown/Davisville, RI, and Point Judith, RI. Woods Hole, MA would be added to this list based on pounds only, but did not exceed 50% of value from Mid-Atlantic managed species within wind areas.
 
-```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.36, fig.align='left'}
+```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.4, fig.align='left'}
 df.symbol <- ecodata::wind_port %>% filter(EPU == "NE", 
                                            !Var %in% c("MaxVal", "TOT_MAX", 
                                                      "perc_MIN", "perc_MAX")) %>% 
@@ -827,9 +833,9 @@ df.symbol <- ecodata::wind_port %>% filter(EPU == "NE",
   dplyr::select(City, EJ, Gentrification) %>% 
   pivot_longer(cols = c(EJ, Gentrification), names_to = "Variable") %>% 
   filter(!value == "NA") %>% 
-  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gent = -3), 
+  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gentrification = -3), 
                 Variable = recode(Variable,"EJ"= "Mid-High to High EJ Concerns" , 
-                                  "Gent" ="Mid-High to High Gentrificaiton Concerns"))
+                                  "Gentrification" ="Mid-High to High Gentrificaiton Concerns"))
 
 # Percentage plot
 
@@ -839,30 +845,30 @@ df.all.perc<- ecodata::wind_port %>% filter(EPU == "NE") %>%
                    City = paste0(City, State),
                    perc_dif =  c(perc_MAX - perc_MIN),
                    TOT_MAX = c(100 - perc_dif - perc_MIN)) %>% 
-  pivot_longer(cols = c(perc_MIN,  perc_MAX, TOT_MAX), names_to="Var", values_to = "Value") %>% 
+  tidyr::pivot_longer(cols = c(perc_MIN,  perc_dif, TOT_MAX), names_to="Var", values_to = "Value") %>% 
   dplyr::arrange(desc(ordering)) %>%
-  dplyr::filter(City %in% c("POINT JUDITH RI",
-                            "NORTH KINGSTOWN RI",
-                            "BOSTON MA",
-                            "WOODS HOLE MA",
-                            "HYANNIS MA",
-                            "BARNSTABLE MA")) %>%
+  dplyr::filter(City %in% c("Point Judith RI",
+                            "North Kingstown RI",
+                            "Boston MA",
+                            "Woods Hole MA",
+                            "Hyannis MA",
+                            "Barnstable MA")) %>%
   dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
   dplyr::filter(!Var %in% c("MaxVal", "EJ", "Gentrification")) %>% 
   dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
-                             "perc_MAX" ="WEA Revenue Range", 
+                             "perc_dif" ="WEA Revenue Range", 
                              "TOT_MAX" = "Non-WEA Revenue"), 
                 Var = factor(Var, levels = c("Non-WEA Revenue", 
                                              "WEA Revenue Range", 
                                              "WEA Revenue")))
 p2<-ggplot2::ggplot()+
   ggplot2::geom_bar(data = df.all.perc, aes(fill = Var, y = reorder(City, ordering), x = Value), stat="identity" )+
-  scale_fill_brewer()+
+  ggplot2::scale_fill_brewer()+
   ggplot2::theme(legend.position = "bottom", 
                  legend.title = element_blank(), 
                  legend.box="vertical", legend.margin=margin())+
   ggplot2::geom_point(data = df.symbol, aes(x = symbol,y = City, shape = Variable)) +
-  scale_shape_manual(values = c(17, 16)) +
+  ggplot2::scale_shape_manual(values = c(17, 16)) +
   ggplot2::ggtitle("Port Revenue from WEA, majority MAFMC species")+
   ggplot2::xlab(expression("Port Revenue (%)"))+
   ggplot2::ylab(element_blank())+
@@ -872,14 +878,14 @@ p2
 ```
 
 
-Top fishing communities high in environmental justice concerns (i.e., Atlantic City, NJ, Newport News, VA, Hobucken and Beaufort, NC) should be considered in decision making to reduce the social and economic impacts and aid in the resilience and adaptive capacity of underserved communities. It also highlights communities where we need to provide further resources to reach underserved and underrepresented groups and create opportunities for and directly involve these groups in the decision-making process. 
+Top fishing communities high in [environmental justice concerns](https://noaa-edab.github.io/catalog/engagement-reliance-and-environmental-justice-in-top-fishing-communities.html) (i.e., Atlantic City, NJ, Newport News, VA, Hobucken and Beaufort, NC) should be considered in decision making to reduce the social and economic impacts and aid in the resilience and adaptive capacity of underserved communities. It also highlights communities where we need to provide further resources to reach underserved and underrepresented groups and create opportunities for and directly involve these groups in the decision-making process. 
 
 ### Implications
 Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region (Fig. \ref{fig:wind-dev-cumul}).  
 
-Up to 17% of maximum annual fisheries revenue for major Mid-Atlantic commercial species in lease areas and draft call areas could be forgone or reduced and associated effort displaced if all sites are developed. Displaced fishing effort can alter historic fishing area, timing, and method patterns, which can in turn change habitat, species (managed and protected), and fleet interactions. Several factors, including fishery regulations, fishery availability, and user conflicts affect where, when, and how fishing effort may be displaced, along with impacts to and responses of affected fish species.
+Up to 17\% of maximum annual fisheries revenue for major Mid-Atlantic commercial species in lease areas and draft call areas could be forgone or reduced and associated effort displaced if all sites are developed. Displaced fishing effort can alter historic fishing area, timing, and method patterns, which can in turn change habitat, species (managed and protected), and fleet interactions. Several factors, including fishery regulations, fishery availability, and user conflicts affect where, when, and how fishing effort may be displaced, along with impacts to and responses of affected fish species.
 
-Planned development overlaps right whale mother and calf migration corridors and a significant foraging habitat that is used throughout the year [@quintana-rizzo_residency_2021] (Fig \ref{fig:whales-wind}). Turbine presence and extraction of energy from the system could alter local oceanography [@christiansen_emergence_2022] and may affect right whale prey availability. For example, persistent foraging hotspots of right whales and seabirds overlap on Nantucket Shoals, where unique hydrography aggregates enhanced prey densities [@white_ducks_2020; @sorochan_narw_forage_2021]. Wind leases (OCS-A 0521 and OCS-A 0522) currently intersect these hotspots on the southwestern corner of Nantucket Shoals and a prominent tidal front associated with invertebrate prey swarms important to seabirds and possibly right whales. Proposed wind development areas also bring increased vessel strike risk to whales from construction and operation vessels, in addition to potential impacts such as displacement, increased levels of communication masking, and elevated stress hormones from pile driving and operational noise.
+Planned development [overlaps NARW](https://noaa-edab.github.io/catalog/right-whale-abundance.html) mother and calf migration corridors and a significant foraging habitat that is used throughout the year (Fig. \ref{fig:whales-wind}). Turbine presence and extraction of energy from the system could alter local oceanography and may affect right whale prey availability. For example, persistent foraging hotspots of right whales and seabirds overlap on Nantucket Shoals, where unique hydrography aggregates enhanced prey densities. Wind leases (OCS-A 0521 and OCS-A 0522) currently intersect these hotspots on the southwestern corner of Nantucket Shoals and a prominent tidal front associated with invertebrate prey swarms important to seabirds and possibly right whales. Proposed wind development areas also bring increased vessel strike risk from construction and operation vessels. In addition, there are a number of potential impacts to whales from pile driving and operational noise such as displacement, increased levels of communication masking, and elevated stress hormones.
 
 
 ```{r whales-wind, out.width="55%", fig.cap="Northern Right Whale persistent hotspots and Wind Energy Areas."}
@@ -1071,4 +1077,3 @@ flextable::flextable(df) %>%
 
 ```
 
-# References
