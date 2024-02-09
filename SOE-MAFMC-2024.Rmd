@@ -619,7 +619,7 @@ a + b
 
 ```
 
-The health and well being of individual fish can determine population productivity. Heavier and fatter fish at a given length have higher relative condition (the ratio of observed weight to predicted weight based on length [@le_cren_length-weight_1951]) which is expected to improve growth, reproductive output, and survival. A pattern of generally good condition was observed across many MAB species prior to 2000, followed by a period of generally poor condition from 2001-2010 (concurrent with declines in productivity, Fig. \ref{fig:productivity-anomaly}), with a mix of good and poor condition since 2011. Condition was again mixed in 2023, but many species improved in condition from the relatively low condition year in 2021 (Fig. \ref{fig:mab-cf}). Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
+The health of individual fish (i.e. fish condition) can contribute to population productivity through improved growth, reproduction and survival. [Fish condition](https://noaa-edab.github.io/catalog/relative-condition.html) in the MAB was generally good prior to 2000, poor from 2001-2010 (concurrent with declines in productivity, Fig. \ref{fig:productivity-anomaly}), and a mix of good and poor since 2011. In 2023, condition was mixed, with general improvement since a relatively low condition year in 2021 (Fig. \ref{fig:mab-cf}). Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
 
 ```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", fig.width=8}
 
@@ -628,30 +628,33 @@ ecodata::plot_condition()
 
 #### Drivers: 
 
-Fish productivity and condition are affected by increasing metabolic demands from increasing temperature, combined with changes in the availability and quality of prey. Episodic extreme temperatures, ocean acidification, and low oxygen events represent multiple stressors that can affect growth rates and cause mortality.
+Fish productivity and condition are affected by increasing metabolic demands from increasing temperature, combined with changes in the availability and quality of prey.  Long-term environmental trends and episodic extreme temperatures, ocean acidification, and low oxygen events represent multiple stressors that can affect growth rates, reproductive success, recruitment, and cause mortality.
 
-##### Forage quality and abundance
+##### Biological Drivers: Forage quality and abundance
 The amount of forage fish available in the ecosystem combined with the energy content of the forage species determines the amount of energy potentially available to predators in the ecosystem. Changes in the forage base can drive to managed and protected species production. 
 
-Nutritional value (energy content) of juvenile and adult forage fish as prey is related to environmental conditions, fish growth, and reproductive cycles. Forage energy density measurements from NEFSC trawl surveys 2017-2022 are building toward a time series to evaluate trends (Fig. \ref{fig:energy-density}). Data from the fall 2021 and spring 2022 survey measurements were consistent with previous reports: the energy density of Atlantic herring increased to over 7 kJ/g wet weight, but was still well below that observed in the 1980s and 1990s (10.6-9.4 kJ/ g wet weight). Silver hake, longfin squid (*Loligo* in figure) and shortfin squid (*Illex* in figure) remain lower than previous estimates [@steimle_energy_1985; @lawson_important_1998]. Energy density of alewife, butterfish, sand lance, and Atlantic mackerel varies seasonally, with seasonal estimates both higher and lower than estimates from previous decades.  
-```{r energy-density, fig.cap="Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.",  fig.width = 7.5, fig.asp = 0.5}
+Fish productivity is dependent on the energy potentially available to them based on the nutritional value (energy content) and abundance of prey. Changes in this forage base can drive managed and protected species production.
+The energy content of juvenile and adult forage fish as prey is related to forage fish growth and reproductive cycles, as well as environmental conditions.  The energy content of Atlantic herring from the NEFSC trawl surveys has increased recently (Fig. \ref{fig:energy-density}) but is still well below that observed in the 1980s and 1990s. Silver hake, longfin squid (Loligo in figure) and shortfin squid (Illex in figure) remain lower than previous estimates.
+  
+```{r energy-density, fig.cap="Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line) and 1990s (dashed line) values.",  fig.width = 7.5, fig.asp = 0.5}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"),
 
 ecodata::plot_energy_density()
 ```
 
-A spatially-explicit forage index estimated the combined biomass of 20 forage species using stomach contents information from 22 predatory fish species collected on bottom trawl surveys. The resulting indices for the Mid-Atlantic show a declining long term trend in fall the Mid-Atlantic, and overall higher forage fish in fall relative to spring (Fig. \ref{fig:foragebio}), with highest forage biomass during fall in the early-1980s.   
-```{r foragebio, fig.cap = "Forage fish index based on spring and fall survey predator diets.", fig.asp=.6}
+Changes in the overall abundance of forage fish can influence managed species productivity as it relates to changes in food availability. A spatially-explicit forage index for the Mid-Atlantic shows a long term declining trend in fall, with higher forage biomass in fall than spring (Fig. \ref{fig:foragebio}). Forage biomass was highest during fall in the early-1980s.   
+```{r foragebio, fig.cap = "Forage fish index in the MAB for spring (blue) and fall (red) surveys. Index values are relative to the maximum observation within a region across surveys.", fig.asp=.6}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R")
 
 ecodata::plot_forage_index()
 ```
 
-*This is where we would put in overall zooplankton production as well as comments on zoop energy content. We have neither in the Mid. Talk about Cal fin availability in New England*
+##### Biological Drivers: Lower trophic levels
 
-Phytoplankton support the food web as the primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors interact to drive the abundance, composition, spatial distribution, and productivity of phytoplankton.
+Phytoplankton are the foundation of the food web and are the primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors affect the abundance, composition, spatial distribution, and productivity of phytoplankton. While changes in fish productivity (including forage) could result from changing primary productivity, total primary production in the Mid Atlantic has no clear trend (Fig above in stability section).
 
-While changes in fish productivity could result from changing primary productivity, total primary production in the Mid Atlantic has no clear trend. 
+Zooplankton communities in the Mid-Atlantic have increasing trends for smaller bodied copepods and gelatinous species (Cnidaria). Smaller bodied copepods and gelatinous species are less energy-rich than Eupausiids (krill) or the larger-bodied copepod Calanus finmarchicus. A changing mix of zooplankton prey can impact forage fish energy content and abundance, as well as the prey field of filter feeding whales. 
+
 
 ```{r}
 ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "total")
