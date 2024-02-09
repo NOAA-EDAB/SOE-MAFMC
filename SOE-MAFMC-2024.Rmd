@@ -894,7 +894,7 @@ Planned development [overlaps NARW](https://noaa-edab.github.io/catalog/right-wh
 #magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/right_whales.jpg")
 
 # NEW FILE 
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/SOE_2023_right_whales_hatteras_frame_v3_2024.jpg")
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/NARW_hotspots_final_2024.jpg")
 
 
 ```
@@ -914,12 +914,13 @@ Globally, 2023 was the warmest year on record with record high sea surface tempe
 #### Regional/Coastal phenomena
 There was a documented die-off of scallops in the Mid-Atlantic Elephant Trunk regions between the 2022 and 2023 surveys. In 2022, Elephant Trunk experienced stressful temperatures for scallops (17 - 19 ℃) for an average of 30 days (Fig. \ref{fig:elephantrunk}), but ongoing research is being conducted to identify contributing factors. A  fish and shellfish mortality event was observed in coastal New Jersey linked to hypoxia and ocean acidification (Fig. \ref{fig:NJhypoxia}).
 
-```{r elephantrunk}
+```{r elephantrunk, out.width='50%'}
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/bottom_temp_threshold_17_19_Elephant_Trunk.png")
 
 ```
 
-```{r NJhypoxia}
-
+```{r NJhypoxia, out.width='50%'}
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/Figure2-GraceSaba_2024.png")
 ```
 
 
@@ -927,8 +928,8 @@ Summer bottom temperatures in the Gulf of Maine were the warmest on record (sinc
 
 A wide-spread, long-duration phytoplankton bloom of the dinoflagellate *Tripos muelleri* was observed in the GOM and generated chlorophyll concentrations up to ten times greater than average (a record high since 1998) from March to August. The bloom severely reduced water clarity, impacting harpoon fishing and likely affecting visual predators. Despite Tripos being a similar size to typical large phytoplankton (diatoms), this extra production was not grazed nor did it sink to the bottom. The specific drivers of the bloom and implications to the food web are still under investigation. 
 
-```{r}
-
+```{r GOMbloom, out.width='50%'}
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/2023-GOMbloom-internalreview.png")
 ```
 
 In Chesapeake Bay, hypoxia conditions were the lowest on record (since 1995), creating more suitable habitat for multiple fin fish and benthic species. Cooler Chesapeake Bay water temperatures paired with low hypoxia in the summer suggest conditions that season were favorable for striped bass. Cooler summer temperatures also support juvenile summer flounder growth.  However, warmer winter and spring water temperatures in the Chesapeake Bay, along with other environmental factors (such as low flow), may have played a role in low production of juvenile striped bass in 2023.
@@ -937,7 +938,8 @@ Higher-than-average salinity across the Bay was likely driven by low precipitati
 
 #### Shelf-wide Phenomena
 The Gulf Stream was highly variable in 2023, with northward shifts intermittently throughout the year and a more notable prolonged shift north along the continental shelf break in the southern Mid-Atlantic in the fall [Fig .]. This shift severely constricted the Slope Sea (the waters between the Gulf Stream and continental shelf), inhibited warm core ring formation and interactions, resulted in unusually warm and salty surface waters, and strong northeastward currents in the southern Mid-Atlantic. Intermittent warm waters like this can be threats to temperature sensitive species, especially species at the southern end of their range or are not mobile (e.g. scallops), while also providing suitable habitat for more southern species. 
-```{r}
+```{r gulfstream23, out.width='50%'}
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/2023-GS-October-internalreview.png")
 
 ```
 
