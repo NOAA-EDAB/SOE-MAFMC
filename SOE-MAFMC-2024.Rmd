@@ -62,13 +62,13 @@ set_flextable_defaults(
 
 ## About This Report
 
-This report is for the Mid-Atlantic Fishery Management Council (MAFMC). The purpose of this report is to synthesize ecosystem information to allow the MAFMC to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized on pages 1 and 2, and synthesis themes are illustrated on page 3. The information in this report is organized into two sections; [performance measured against ecosystem-level management objectives](#performance-relative-to-fishery-management-objectives) (Table \ref{tab:management-objectives}), and potential [risks to meeting fishery management objectives](#risks-to-meeting-fishery-management-objectives) ([climate change](#climate-and-ecosystem-productivity) and [other ocean uses](#other-ocean-uses-offshore-wind)).
+This report is for the Mid-Atlantic Fishery Management Council (MAFMC). The purpose of this report is to synthesize ecosystem information to allow the MAFMC to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized on pages 1 and 2, with highlights of 2023 ecosystem events on page 3. The information in this report is organized into two main sections; [performance measured against ecosystem-level management objectives](#performance-relative-to-fishery-management-objectives) (Table \ref{tab:management-objectives}), and potential [risks to meeting fishery management objectives](#risks-to-meeting-fishery-management-objectives) ([climate change](#climate-and-ecosystem-productivity) and [other ocean uses](#other-ocean-uses-offshore-wind)). A final new section introduced this year highlights [notable 2023 ecosystem observations](#2023-highlights). 
 
 ## Report structure
 
 The two main sections contain subsections for each management objective or potential risk. Within each subsection, we first review observed trends for indicators representing each objective or risk, including the status of the most recent data year relative to a threshold (if available) or relative to the long-term average. Second, we identify potential drivers of observed trends, and synthesize results of indicators related to those drivers to outline potential implications for management. For example, if there are multiple drivers related to an indicator trend, do indicators associated with the drivers have similar trends, and can any drivers be affected by management action(s)? We emphasize that these implications are intended to represent testable hypotheses at present, rather than “answers,” because the science behind these indicators and syntheses continues to develop.
 
-A glossary of terms^[https://noaa-edab.github.io/tech-doc/glossary.html], detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc], indicator data^[https://github.com/NOAA-EDAB/ecodata], and detailed indicator descriptions^[https://noaa-edab.github.io/catalog/index.html]  are available online. The details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding guilds (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) are provided at the end of the document. 
+A glossary of terms^[https://noaa-edab.github.io/tech-doc/glossary.html], detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc], indicator data^[https://github.com/NOAA-EDAB/ecodata], and detailed indicator descriptions^[https://noaa-edab.github.io/catalog/index.html]  are available online. We recommend new readers first review the details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding guilds (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) provided at the end of the document. 
 
 ```{r management-objectives, ft.arraystretch = 1}
 
@@ -125,7 +125,7 @@ In this section, we examine indicators related to broad, ecosystem-level fishery
 ## Seafood Production 
 
 ### Indicators: Landings; commercial and recreational 
-This year, we present updated indicators for total [commercial landings](https://noaa-edab.github.io/catalog/commercial-landings-and-revenue.html), U.S. seafood landings, and Council-managed U.S. seafood landings. Total commercial landings within the Mid-Atlantic have declined over the long term, and total U.S. Mid-Atlantic seafood landings are near their all time low. Because there is no long term trend in MAFMC-managed U.S. seafood landings, the decline in U.S. seafood landings in the Mid-Atlantic region is likely driven by recent declines in species not managed by the Mid-Atlantic Council (Fig. \ref{fig:total-landings}).
+This year, we present updated indicators for total [commercial landings](https://noaa-edab.github.io/catalog/comdat.html), U.S. seafood landings, and Council-managed U.S. seafood landings. Total commercial landings within the Mid-Atlantic have declined over the long term, and total U.S. Mid-Atlantic seafood landings are near their all time low. Because there is no long term trend in MAFMC-managed U.S. seafood landings, the decline in U.S. seafood landings in the Mid-Atlantic region is likely driven by recent declines in species not managed by the Mid-Atlantic Council (Fig. \ref{fig:total-landings}).
 
 ```{r, total-landings, fig.asp=.8, fig.cap = "Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red), with significant declines (purple) in total and U.S. seafood landings."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")
@@ -135,7 +135,7 @@ ecodata::plot_comdat(report = "MidAtlantic", varName = "landings") +
 
 Commercial landings by guild include all species and all uses, and are reported as total for the guild and the MAFMC managed species within the [guild](https://noaa-edab.github.io/catalog/feeding-guilds-by-management-bodies.html). As reported in previous years, landings of benthos presented a significant downward trend, primarily driven by surf clam and ocean quahog, with scallops now contributing to the decline as well. However, total landings of planktivores is now also presenting a significant downward trend, primarily due to decreases in species not managed by the MAFMC (Atlantic herring and Atlantic menhaden; Fig. \ref{fig:comm-landings}).
 
-```{r, comm-landings, fig.asp=1.6, fig.cap ="Total commercial landings in the Mid-Atlantic Bight (black) and MAFMC-managed U.S seafood landings (red) by feeding guild."}
+```{r, comm-landings, fig.asp=1.6, fig.cap ="Total commercial landings in the Mid-Atlantic Bight (black) and MAFMC-managed U.S seafood landings (red) by feeding guild, with significant declines (purple) in total planktivore landings and both total and MAFMC managed benthos landings and a significant increase (orange) in total benthivore landings."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"),
 
 ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild")
@@ -144,7 +144,7 @@ ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild")
 
 Although total [recreational harvest](https://noaa-edab.github.io/catalog/recreational-fishing-indicators.html) (retained fish presumed to be eaten) has increased from a historic low in 2018, there is a long-term decline in the MAB (Fig. \ref{fig:rec-landings}). 
 
-```{r, rec-landings, fig.cap ="Total recreational seafood harvest (millions of pounds) in the Mid-Atlantic region."}
+```{r, rec-landings, fig.cap ="Total recreational seafood harvest (millions of pounds, black, significant decrease, purple) in the Mid-Atlantic region."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName ="landings")
@@ -220,7 +220,7 @@ ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
 
 #### System Biomass
 Although [aggregate biomass](https://noaa-edab.github.io/catalog/aggregate-survey-biomass.html) trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthivores show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
-```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean.", fig.width=8, fig.asp = 0.75, results='hide'}
+```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. Significant increases (orange lines) are present for spring piscivore and fall benthivore biomass. The shaded area around each annual mean represents 2 standard deviations from the mean.", fig.width=8, fig.asp = 0.75, results='hide'}
 
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R")
 
@@ -246,7 +246,7 @@ Other environmental changes require monitoring as they may become important driv
 
 ### Indicators: revenue (a proxy for profits)  
 Total [commercial revenue](https://noaa-edab.github.io/catalog/commercial-landings-and-revenue.html) and MAFMC managed species revenue within the Mid-Atlantic Bight have declined over the past 20-30 years. In 2022, total revenue was at an all-time low, and revenue from MAFMC managed species was near an all-time low (Fig. \ref{fig:comm-revenue}). 
-```{r comm-revenue, fig.width = 6, fig.asp = 0.45, fig.cap = "Revenue for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red)."}
+```{r comm-revenue, fig.width = 6, fig.asp = 0.45, fig.cap = "Revenue for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red), with a significant decrease (purple) for total revenue."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")
 
 ecodata::plot_comdat(report="MidAtlantic", varName="revenue") + 
@@ -282,13 +282,13 @@ Although the Mid-Atlantic region shows declining revenue trends since 2016, infl
 
 ### Indicators: Angler trips, fleet diversity  
 [Recreational effort](https://noaa-edab.github.io/catalog/recreational-fishing-indicators.html) (angler trips) in 2022 has increased and is above the long-term average (Fig. \ref{fig:rec-op}). in the MAB. However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
-```{r rec-op, fig.cap = "Recreational effort in the Mid-Atlantic."}
+```{r rec-op, fig.cap = "Recreational effort (number of trips, black) in the Mid-Atlantic, with significant increase (orange line)."}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "effort")
 ```
 
-```{r rec-div, fig.cap = "Recreational fleet effort diversity in the Mid-Atlantic."}
+```{r rec-div, fig.cap = "Recreational fleet effort diversity (black) in the Mid-Atlantic, with significant decrease (purple line)."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")
 
 ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity")
@@ -335,7 +335,7 @@ ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "
 
 Ecological diversity indices show mixed trends. [Zooplankton diversity](https://noaa-edab.github.io/catalog/zooplankton-diversity.html) is increasing in the MAB (Fig. \ref{fig:zoo-diversity}). [Adult fish diversity](https://noaa-edab.github.io/catalog/expected-number-of-species.html) is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. Adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
 
-```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, based on Shannon diversity index."}
+```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, Shannon diversity index (black) with significant increase (orange line)."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")
 
 ecodata::plot_zoo_diversity(report = "MidAtlantic")
@@ -447,11 +447,11 @@ These indicators provide a snapshot of the presence of environmental justice iss
 
 
 ## Protected Species
-Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration. Protected species include marine mammals protected under the Marine Mammal Protection Act, endangered and threatened species protected under the Endangered Species Act, and migratory birds protected under the Migratory Bird Treaty Act. In the Northeast U.S., endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and five baleen whales. Here we report on the status of these actions as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast U.S. Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs).
+Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration. Protected species include marine mammals protected under the Marine Mammal Protection Act, endangered and threatened species protected under the Endangered Species Act, and migratory birds protected under the Migratory Bird Treaty Act. In the Northeast U.S., endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and five baleen whales. Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs). Here we report on performance relative to these objectives with available indicator data, as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast U.S. 
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
 Average indices for both [harbor porpoise](https://noaa-edab.github.io/catalog/harbor-porpoise-bycatch.html) (Fig. \ref{fig:harborporpoise}) and [gray seal](https://noaa-edab.github.io/catalog/gray-seal-bycatch.html) bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. 
-```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).",, fig.width=5}
+```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).", fig.width=5}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R")
 #fig.width=6}
 
@@ -481,7 +481,7 @@ ecodata::plot_narw(varName = "calf")
 
 This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. Since 2017, the total UME right whale mortalities includes 36 dead stranded whales, 15 in the US and 21 in Canada. When alive but seriously injured whales (35) and sublethal injuries or ill whales (51) are taken into account, 122 individual whales are included in the UME. Recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities. The primary cause of death is “human interaction” from entanglements or vessel strikes.
 
-A UME continued from previous years for humpback whales (2016-present); suspected causes include human interactions.  A UME for minke whales that began in 2017 remains open, but is pending closure as of January 2024.
+A UME continued from previous years for humpback whales (2016-present) and Atlantic minke whales (2018-present); suspected causes include human interactions. A UME for Northeast pinnipeds that began in 2018 for infectious disease is pending closure as of February 2024.
 
 ### Implications
 Bycatch management measures have been implemented to maintain bycatch below PBR thresholds. The downward trend in harbor porpoise bycatch could also be due to a decrease in harbor porpoise abundance in U.S. waters, reducing their overlap with fisheries, and a decrease in gillnet effort. The increasing trend in gray seal bycatch may be related to an increase in the gray seal population ([U.S. pup counts](https://noaa-edab.github.io/catalog/gray-seal-pups.html)), supported by the dramatic rise over the last three decades in observed numbers of gray seal pups born at U.S. breeding sites plus an increase in adult seals at the breeding sites, some of which are supplemented by Canadian adults. 
@@ -939,9 +939,9 @@ Scientific data collection surveys for ocean and ecosystem conditions, fish, and
 The increase of offshore wind development can have both positive (e.g., employment opportunities) and negative (e.g., space-use conflicts) effects. Continued increase in coastal development and gentrification pressure has resulted in loss of fishing infrastructure space within ports. Understanding these existing pressures can allow for avoiding and mitigating negative impacts to our shore support industry and communities dependent on fishing. Some of the communities with the highest fisheries revenue overlap with offshore wind development areas that are also vulnerable to gentrification pressure are Point Pleasant and Atlantic City, NJ, Ocean City, MD, and Beaufort, NC.
 
 
-### Current status: 2023 overview
+### 2023 Highlights
 
-Multiple [anomalous conditions](https://noaa-edab.github.io/catalog/observation-synthesis.html) and extreme events were observed in 2023 that could have brief local effects and/or widespread long-term ecosystem, fishery and management implications. This section intends to provide a record of these observations, the implications they may have for other ecosystem processes, and a reflection on how they fit into our understanding of the ecosystem. Many of these observations are being actively studied but should be noted and considered in future analyses and management decisions.
+This new section is common to the Mid-Atlantic and New England reports. Multiple [anomalous conditions](https://noaa-edab.github.io/catalog/observation-synthesis.html) and extreme events were observed in 2023 that could have brief local effects and/or widespread long-term ecosystem, fishery and management implications. This section intends to provide a record of these observations, the implications they may have for other ecosystem processes, and a reflection on how they fit into our understanding of the ecosystem. Many of these observations are being actively studied but should be noted and considered in future analyses and management decisions.
 
 Globally, 2023 was the warmest year on record with record high sea surface temperatures in the North Atlantic. In contrast, Northeast U.S. shelf surface temperatures were more variable, with near record highs in winter and near average conditions in other seasons.
 
@@ -961,7 +961,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images
 
 Summer [bottom temperatures](https://noaa-edab.github.io/catalog/bottom-temperature---seasonal-anomaly.html) in the Gulf of Maine were the warmest on record (since 1959) resulting in the second largest [bottom marine heatwave](https://noaa-edab.github.io/catalog/marine-heatwaves---bottom.html). The heatwave started in February, peaked in May and likely continued beyond August (pending data update). [2023 bottom temperature](https://noaa-edab.github.io/catalog/thermal-habitat-persistence.html) exceeded the 15 ℃ threshold for up to 59 days along the shelf break. 
 
-A wide-spread, long-duration [phytoplankton bloom](https://noaa-edab.github.io/catalog/observation-synthesis.html) of the dinoflagellate *Tripos muelleri* was observed in the GOM and generated chlorophyll concentrations up to ten times greater than average (a record high since 1998) from March to August. The bloom severely reduced water clarity, impacting harpoon fishing and likely affecting visual predators. Despite *Tripos* being a similar size to typical large phytoplankton (diatoms), this extra production was not grazed nor did it sink to the bottom. The specific drivers of the bloom and implications to the food web are still under investigation. 
+A wide-spread, long-duration [phytoplankton bloom](https://noaa-edab.github.io/catalog/observation-synthesis.html) of the dinoflagellate *Tripos muelleri* was observed in the GOM and generated chlorophyll concentrations up to ten times greater than average (a record high since 1998) from March to August (Figs. \ref{fig.chl-current-year}, \ref{fig.GOMbloom}). The bloom severely reduced water clarity, impacting harpoon fishing and likely affecting visual predators. Despite *Tripos* being a similar size to typical large phytoplankton (diatoms), this extra production was not grazed nor did it sink to the bottom. The specific drivers of the bloom and implications to the food web are still under investigation. 
 
 ```{r chl-current-year, fig.cap="", fig.width=7}
 
@@ -982,7 +982,7 @@ In Chesapeake Bay, [hypoxia conditions](https://noaa-edab.github.io/catalog/ches
 Higher-than-average [salinity](https://noaa-edab.github.io/catalog/chesapeake-bay-salinity.html) across the Bay was likely driven by low precipitation and increased the area of available habitat for species such as croaker, spot, menhaden, and red drum, while restricting habitat area for invasive blue catfish.
 
 #### Shelf-wide Phenomena
-The [Gulf Stream](https://noaa-edab.github.io/catalog/gulf-stream-index.html) was highly variable in 2023, with northward shifts intermittently throughout the year and a more notable prolonged shift north along the continental shelf break in the southern Mid-Atlantic in the fall [Fig .]. This shift severely constricted the Slope Sea (the waters between the Gulf Stream and continental shelf), inhibited warm core ring formation and interactions, resulted in unusually warm and salty surface waters, and strong northeastward currents in the southern Mid-Atlantic. Intermittent warm waters like this can be threats to temperature sensitive species, especially species at the southern end of their range or are not mobile (e.g. scallops), while also providing suitable habitat for more southern species. 
+The [Gulf Stream](https://noaa-edab.github.io/catalog/gulf-stream-index.html) was highly variable in 2023, with northward shifts intermittently throughout the year and a more notable prolonged shift north along the continental shelf break in the southern Mid-Atlantic in the fall (Fig. \ref{fig:gulfstream23}). This shift severely constricted the Slope Sea (the waters between the Gulf Stream and continental shelf), inhibited warm core ring formation and interactions, resulted in unusually warm and salty surface waters, and strong northeastward currents in the southern Mid-Atlantic. Intermittent warm waters like this can be threats to temperature sensitive species, especially species at the southern end of their range or are not mobile (e.g. scallops), while also providing suitable habitat for more southern species. 
 ```{r gulfstream23, out.width='50%', fig.cap="October 8-14, 2023 sea surface temperature average derived from the Advanced Clear Sky Processor for Ocean (ACSPO) SST data. The black line depicts the 100 m isobath and the blue line (this color may change) is the mean path of the Gulf Stream."}
 magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/2023-GS-October-internalreview.png")
 
