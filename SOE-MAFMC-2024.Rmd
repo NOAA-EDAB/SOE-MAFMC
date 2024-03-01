@@ -470,16 +470,16 @@ The [North Atlantic right whale population](https://noaa-edab.github.io/catalog/
 ```{r narw-abundance, fig.cap = "Estimated North Atlanic right whale abundance on the Northeast Shelf."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")
 
-ecodata::plot_narw(varName = "adult")
+ecodata::plot_narw(varName = "adult") + ggplot2::ggtitle("North Atlantic right whale abundance")
 ```
 North Atlantic right whale [calf counts](https://noaa-edab.github.io/catalog/right-whale-abundance.html) have generally declined after 2009 to the point of having zero new calves observed in 2018 (Fig. \ref{fig:NARW-calf-abundance}). However, since 2019, we have seen more calf births each year with 15 births in 2022.
 ```{r NARW-calf-abundance, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2022."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")
 
-ecodata::plot_narw(varName = "calf")
+ecodata::plot_narw(varName = "calf") + ggplot2::ggtitle("North Atlantic right whale calf abundance")
 ```
 
-This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. Since 2017, the total UME right whale mortalities includes 36 dead stranded whales, 15 in the US and 21 in Canada. When alive but seriously injured whales (35) and sublethal injuries or ill whales (51) are taken into account, 122 individual whales are included in the UME. Recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities. The primary cause of death is “human interaction” from entanglements or vessel strikes.
+This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. From 2017 through 16 February 2024, the total UME right whale mortalities includes 38 dead stranded whales, 17 in the US and 21 in Canada. When alive but seriously injured whales (34) and sublethal injuries or ill whales (51) are taken into account, 123 individual whales are included in the UME. Recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities. The primary cause of death is “human interaction” from entanglements or vessel strikes.
 
 A UME continued from previous years for humpback whales (2016-present) and Atlantic minke whales (2018-present); suspected causes include human interactions. A UME for Northeast pinnipeds that began in 2018 for infectious disease is pending closure as of February 2024.
 
