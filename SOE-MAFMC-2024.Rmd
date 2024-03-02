@@ -133,7 +133,7 @@ ecodata::plot_comdat(report = "MidAtlantic", varName = "landings") +
   ggplot2::ylab("")
 ```
 
-Commercial landings by guild include all species and all uses, and are reported as total for the guild and the MAFMC managed species within the [guild](https://noaa-edab.github.io/catalog/feeding-guilds-by-management-bodies.html). As reported in previous years, landings of benthos presented a significant downward trend, primarily driven by surf clam and ocean quahog, with scallops now contributing to the decline as well. However, total landings of planktivores is now also presenting a significant downward trend, primarily due to decreases in species not managed by the MAFMC (Atlantic herring and Atlantic menhaden; Fig. \ref{fig:comm-landings}).
+Commercial landings by guild include all species and all uses, and are reported as total for the guild and the MAFMC managed species within the [guild](https://noaa-edab.github.io/catalog/species_groupings.html). As reported in previous years, landings of benthos presented a significant downward trend, primarily driven by surf clam and ocean quahog, with scallops now contributing to the decline as well. However, total landings of planktivores is now also presenting a significant downward trend, primarily due to decreases in species not managed by the MAFMC (Atlantic herring and Atlantic menhaden; Fig. \ref{fig:comm-landings}).
 
 ```{r, comm-landings, fig.asp=1.6, fig.cap ="Total commercial landings in the Mid-Atlantic Bight (black) and MAFMC-managed U.S seafood landings (red) by feeding guild, with significant declines (purple) in total planktivore landings and both total and MAFMC managed benthos landings and a significant increase (orange) in total benthivore landings."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"),
@@ -142,7 +142,7 @@ ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild")
 
 ```
 
-Although total [recreational harvest](https://noaa-edab.github.io/catalog/recreational-fishing-indicators.html) (retained fish presumed to be eaten) has increased from a historic low in 2018, there is a long-term decline in the MAB (Fig. \ref{fig:rec-landings}). 
+Although total [recreational harvest](https://noaa-edab.github.io/catalog/recdat.html) (retained fish presumed to be eaten) has increased from a historic low in 2018, there is a long-term decline in the MAB (Fig. \ref{fig:rec-landings}). 
 
 ```{r, rec-landings, fig.cap ="Total recreational seafood harvest (millions of pounds, black, significant decrease, purple) in the Mid-Atlantic region."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")
@@ -150,7 +150,7 @@ Although total [recreational harvest](https://noaa-edab.github.io/catalog/recrea
 ecodata::plot_recdat(report = "MidAtlantic", varName ="landings")
 ```
 
-[Recreational shark landings](https://noaa-edab.github.io/catalog/rec-hms.html) show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2022 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. 
+[Recreational shark landings](https://noaa-edab.github.io/catalog/rec_hms.html) show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2022 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. 
 
 ```{r rec-hms, fig.cap="Recreational shark landings from Large Pelagics Survey.",  fig.width=5, fig.asp=.35}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"),
@@ -162,14 +162,14 @@ ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="MidAtlantic")  +
     ) 
 ```
 
-Aquaculture production is not yet included in total seafood landings. Available [aquaculture production](https://noaa-edab.github.io/catalog/aquaculture-production.html) of oysters for a subset of Mid-Atlantic states indicates a decline in recent years.
+Aquaculture production is not yet included in total seafood landings. Available [aquaculture production](https://noaa-edab.github.io/catalog/aquaculture.html) of oysters for a subset of Mid-Atlantic states indicates a decline in recent years.
 
 ### Implications
 
 Declining commercial (total and seafood) and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which stock status and system biomass trends may play a role.
 
 #### Stock Status and Catch Limits
-Single species [management objectives](https://noaa-edab.github.io/catalog/stock-status.html) (1. maintaining biomass above minimum thresholds and 2. maintaining fishing mortality below overfishing limits) are being met for all but two MAFMC-managed species (Fig. \ref{fig:stock-status}), though the status of six stocks is unknown (Table \ref{tab:unkstocks}). 
+Single species [management objectives](https://noaa-edab.github.io/catalog/stock_status.html) (1. maintaining biomass above minimum thresholds and 2. maintaining fishing mortality below overfishing limits) are being met for all but two MAFMC-managed species (Fig. \ref{fig:stock-status}), though the status of six stocks is unknown (Table \ref{tab:unkstocks}). 
 
 ```{r stock-status, fig.width = 7.5,  fig.asp = 0.5, fig.cap = "Summary of single species status for MAFMC and jointly federally managed stocks (Spiny dogfish and both Goosefish). The dotted vertical line is the target biomass reference point of $B_{MSY}$. The dashed lines are the management thresholds of one half $B_{MSY}$. (vertical) or $F_{MSY}$. (horizontal). Stocks in orange are below the biomass threshold (overfished) or have fishing mortality above the limit (subject to overfishing), so are not meeting objectives. Stocks in purple  are above the biomass threshold but below the biomass target with fishing mortality within the limit. Stocks in green are above the biomass target, with fishing mortality within the limit."}
 
@@ -200,7 +200,7 @@ flextable::flextable(a$unknown) |>
 ```
 
 
-Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits [(ABC or ACL)](https://noaa-edab.github.io/catalog/abc-or-acl-for-managed-stocks.html) have been relatively stable 2012-2022 (Fig. \ref{fig:abcacl-stacked}). The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2022, due to that fishery’s small relative size.
+Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits [(ABC or ACL)](https://noaa-edab.github.io/catalog/abc_acl.html) have been relatively stable 2012-2022 (Fig. \ref{fig:abcacl-stacked}). The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2022, due to that fishery’s small relative size.
 
 ```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed commercial (C) and recreational (R) fisheries.", fig.width = 6, fig.asp = 0.4}
 #, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")
@@ -219,7 +219,7 @@ ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
 ```
 
 #### System Biomass
-Although [aggregate biomass](https://noaa-edab.github.io/catalog/aggregate-survey-biomass.html) trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthivores show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
+Although [aggregate biomass](https://noaa-edab.github.io/catalog/aggregate_biomass.html) trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores and fall benthivores show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
 ```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. Significant increases (orange lines) are present for spring piscivore and fall benthivore biomass. The shaded area around each annual mean represents 2 standard deviations from the mean.", fig.width=8, fig.asp = 0.75, results='hide'}
 
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R")
@@ -245,7 +245,7 @@ Other environmental changes require monitoring as they may become important driv
 ## Commercial Profits 
 
 ### Indicators: revenue (a proxy for profits)  
-Total [commercial revenue](https://noaa-edab.github.io/catalog/commercial-landings-and-revenue.html) and MAFMC managed species revenue within the Mid-Atlantic Bight have declined over the past 20-30 years. In 2022, total revenue was at an all-time low, and revenue from MAFMC managed species was near an all-time low (Fig. \ref{fig:comm-revenue}). 
+Total [commercial revenue](https://noaa-edab.github.io/catalog/comdat.html) and MAFMC managed species revenue within the Mid-Atlantic Bight have declined over the past 20-30 years. In 2022, total revenue was at an all-time low, and revenue from MAFMC managed species was near an all-time low (Fig. \ref{fig:comm-revenue}). 
 ```{r comm-revenue, fig.width = 6, fig.asp = 0.45, fig.cap = "Revenue for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red), with a significant decrease (purple) for total revenue."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")
 
@@ -255,7 +255,7 @@ ecodata::plot_comdat(report="MidAtlantic", varName="revenue") +
 
 ```
 
-Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes: harvest levels, the mix of species landed, price changes, or a combination of these. The [Bennet Indicator](https://noaa-edab.github.io/catalog/bennet-indicator.html) decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices. All changes are in relation to a base year (1982).
+Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes: harvest levels, the mix of species landed, price changes, or a combination of these. The [Bennet Indicator](https://noaa-edab.github.io/catalog/bennet.html) decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices. All changes are in relation to a base year (1982).
 
 In the Mid-Atlantic region revenues were above the 1982 baseline for all years in the series until 2022 (Fig. \ref{fig:bennet}).  Both increasing prices and volumes contributed to the positive revenue change in most years.  In terms of prices, since 2000 Benthos contributed the most to increasing prices (Fig.  \ref{fig:bennet-all}). Beginning in the 1990s, in most years benthivores contributed the most to increasing volumes (Fig.  \ref{fig:bennet-all}). 
 ```{r bennet, fig.cap = "Revenue change from 1982 values in 2022 dollars (black); Price (PI), and Volume Indicators (VI) for total commercial landings in the Mid-Atlantic Bight.", fig.width=6, fig.asp=.35}
@@ -275,13 +275,13 @@ ecodata::plot_bennet(report="MidAtlantic") #+ ggplot2::facet_wrap(~Var, ncol=1)
 Although the Mid-Atlantic region shows declining revenue trends since 2016, inflation-adjusted revenue from harvested species was still greater than 1982 levels until 2022. In a similar manner to seafood landings, the results here are driven in large part by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species, as well as lower quotas for Atlantic scallops. The declining Benthos category since 2012 may be partially caused by decreases in surfclam and ocean quahogs in the southern part of their range as harvest have shifted northward. Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
 
 -  Surfclams, ocean quahogs, and scallops are sensitive to warming ocean temperatures and ocean acidification.   
--  [Multiple stressors](https://noaa-edab.github.io/catalog/ocean-acidification-and-other-stressors.html) are interacting in Mid-Atlantic shellfish habitats.
+-  [Multiple stressors](https://noaa-edab.github.io/catalog/ocean_acidification) are interacting in Mid-Atlantic shellfish habitats.
   
 
 ## Recreational Opportunities 
 
 ### Indicators: Angler trips, fleet diversity  
-[Recreational effort](https://noaa-edab.github.io/catalog/recreational-fishing-indicators.html) (angler trips) in 2022 has increased and is above the long-term average (Fig. \ref{fig:rec-op}). in the MAB. However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
+[Recreational effort](https://noaa-edab.github.io/catalog/recdat.html) (angler trips) in 2022 has increased and is above the long-term average (Fig. \ref{fig:rec-op}). in the MAB. However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
 ```{r rec-op, fig.cap = "Recreational effort (number of trips, black) in the Mid-Atlantic, with significant increase (orange line)."}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")
 
@@ -308,7 +308,7 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 While there are many potential metrics of stability, we use diversity indices to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine diversity in commercial fleet and species catch, recreational species catch (with fleet effort diversity discussed above), zooplankton, and adult fishes.
 
 #### Fishery Stability 
-[Diversity](https://noaa-edab.github.io/catalog/commercial-catch-and-fleet-diversity.html)  estimates have been developed for fleets landing managed species, and species landed by commercial vessels with Mid-Atlantic permits. Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average. This indicates similar commercial fleet composition and species targeting opportunities over time. Commercial fisheries are relying on fewer species relative to the mid-90s, although current species revenue diversity has recovered somewhat in the last year (Fig. \ref{fig:commercial-div-species-div}). 
+[Diversity](https://noaa-edab.github.io/catalog/commercial_div.html)  estimates have been developed for fleets landing managed species, and species landed by commercial vessels with Mid-Atlantic permits. Commercial fishery fleet count and fleet diversity have been stable over time in the MAB, with current values near the long-term average. This indicates similar commercial fleet composition and species targeting opportunities over time. Commercial fisheries are relying on fewer species relative to the mid-90s, although current species revenue diversity has recovered somewhat in the last year (Fig. \ref{fig:commercial-div-species-div}). 
 
 ```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the Mid Atlantic.")}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
@@ -316,7 +316,7 @@ While there are many potential metrics of stability, we use diversity indices to
 ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity")
 ```
 
-As noted [above](#recreational-opportunities), [recreational fleet effort diversity](https://noaa-edab.github.io/catalog/recreational-fishing-indicators.html) is declining (Fig. \ref{fig:rec-div}), suggesting a shift in recreational fishing opportunities. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average in 8 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
+As noted [above](#recreational-opportunities), [recreational fleet effort diversity](https://noaa-edab.github.io/catalog/recdat.html) is declining (Fig. \ref{fig:rec-div}), suggesting a shift in recreational fishing opportunities. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average in 8 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
 
 ```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the Mid Atlantic.")}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")
@@ -326,7 +326,7 @@ ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity")
 
 #### Ecological Stability
 
-Total [primary production](https://noaa-edab.github.io/catalog/phytoplankton-chlorophyll-size-class-and-primary-production.html) (PP) is a measure of the total energy input into a system per year. Total primary production in the Mid Atlantic has no clear trend (Fig. \ref{fig:totpp}), suggesting stability in energy at the base of the food web. 
+Total [primary production](https://noaa-edab.github.io/catalog/chl_pp.html) (PP) is a measure of the total energy input into a system per year. Total primary production in the Mid Atlantic has no clear trend (Fig. \ref{fig:totpp}), suggesting stability in energy at the base of the food web. 
 
 ```{r totpp, fig.cap="Total areal annual primary production for the MAB. The dashed line represents the long-term (1998-2023) annual mean."}
 
@@ -334,7 +334,7 @@ ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "
   ggplot2::coord_cartesian(ylim = c(1e+07, 4e+07), xlim = c(1998, 2023))
 ```
 
-Ecological diversity indices show mixed trends. [Zooplankton diversity](https://noaa-edab.github.io/catalog/zooplankton-diversity.html) is increasing in the MAB (Fig. \ref{fig:zoo-diversity}). [Adult fish diversity](https://noaa-edab.github.io/catalog/expected-number-of-species.html) is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. Adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
+Ecological diversity indices show mixed trends. [Zooplankton diversity](https://noaa-edab.github.io/catalog/zoo_diversity.html) is increasing in the MAB (Fig. \ref{fig:zoo-diversity}). [Adult fish diversity](https://noaa-edab.github.io/catalog/exp_n.html) is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. Adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
 
 ```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, Shannon diversity index (black) with significant increase (orange line)."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")
@@ -451,7 +451,7 @@ These indicators provide a snapshot of the presence of environmental justice iss
 Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration. Protected species include marine mammals protected under the Marine Mammal Protection Act, endangered and threatened species protected under the Endangered Species Act, and migratory birds protected under the Migratory Bird Treaty Act. In the Northeast U.S., endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and five baleen whales. Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs). Here we report on performance relative to these objectives with available indicator data, as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast U.S. 
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
-Average indices for both [harbor porpoise](https://noaa-edab.github.io/catalog/harbor-porpoise-bycatch.html) (Fig. \ref{fig:harborporpoise}) and [gray seal](https://noaa-edab.github.io/catalog/gray-seal-bycatch.html) bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. 
+Average indices for both [harbor porpoise](https://noaa-edab.github.io/catalog/harborporpoise.html) (Fig. \ref{fig:harborporpoise}) and [gray seal](https://noaa-edab.github.io/catalog/grayseal.html) bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. 
 ```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).", fig.width=5}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R")
 #fig.width=6}
@@ -467,13 +467,13 @@ The annual estimate for gray seal bycatch has declined since 2019, in part drive
 ecodata::plot_grayseal()
 ```
 
-The [North Atlantic right whale population](https://noaa-edab.github.io/catalog/right-whale-abundance.html) was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:narw-abundance}). The sharp decline observed from 2015-2020 appears to have slowed, although the right whale population continues to experience annual mortalities above recovery thresholds. Reduced survival rates of adult females lead to diverging abundance trends between sexes. It is estimated that there are fewer than 70 adult females remaining in the population.  
+The [North Atlantic right whale population](https://noaa-edab.github.io/catalog/narw.html) was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:narw-abundance}). The sharp decline observed from 2015-2020 appears to have slowed, although the right whale population continues to experience annual mortalities above recovery thresholds. Reduced survival rates of adult females lead to diverging abundance trends between sexes. It is estimated that there are fewer than 70 adult females remaining in the population.  
 ```{r narw-abundance, fig.cap = "Estimated North Atlanic right whale abundance on the Northeast Shelf."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")
 
 ecodata::plot_narw(varName = "adult") + ggplot2::ggtitle("North Atlantic right whale abundance")
 ```
-North Atlantic right whale [calf counts](https://noaa-edab.github.io/catalog/right-whale-abundance.html) have generally declined after 2009 to the point of having zero new calves observed in 2018 (Fig. \ref{fig:NARW-calf-abundance}). However, since 2019, we have seen more calf births each year with 15 births in 2022.
+North Atlantic right whale [calf counts](https://noaa-edab.github.io/catalog/narw.html) have generally declined after 2009 to the point of having zero new calves observed in 2018 (Fig. \ref{fig:NARW-calf-abundance}). However, since 2019, we have seen more calf births each year with 15 births in 2022.
 ```{r NARW-calf-abundance, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2022."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")
 
@@ -485,9 +485,9 @@ This year, the Unusual Mortality Event (UME) for North Atlantic right whales con
 A UME continued from previous years for humpback whales (2016-present) and Atlantic minke whales (2018-present); suspected causes include human interactions. A UME for Northeast pinnipeds that began in 2018 for infectious disease is pending closure as of February 2024.
 
 ### Implications
-Bycatch management measures have been implemented to maintain bycatch below PBR thresholds. The downward trend in harbor porpoise bycatch could also be due to a decrease in harbor porpoise abundance in U.S. waters, reducing their overlap with fisheries, and a decrease in gillnet effort. The increasing trend in gray seal bycatch may be related to an increase in the gray seal population ([U.S. pup counts](https://noaa-edab.github.io/catalog/gray-seal-pups.html)), supported by the dramatic rise over the last three decades in observed numbers of gray seal pups born at U.S. breeding sites plus an increase in adult seals at the breeding sites, some of which are supplemented by Canadian adults. 
+Bycatch management measures have been implemented to maintain bycatch below PBR thresholds. The downward trend in harbor porpoise bycatch could also be due to a decrease in harbor porpoise abundance in U.S. waters, reducing their overlap with fisheries, and a decrease in gillnet effort. The increasing trend in gray seal bycatch may be related to an increase in the gray seal population ([U.S. pup counts](https://noaa-edab.github.io/catalog/seal_pups.html)), supported by the dramatic rise over the last three decades in observed numbers of gray seal pups born at U.S. breeding sites plus an increase in adult seals at the breeding sites, some of which are supplemented by Canadian adults. 
 
-Strong evidence exists to suggest that interactions between right whales and both the fixed gear fisheries in the U.S. and Canada and vessel strikes in the U.S. are contributing substantially to the decline of the species. Further, right whale distribution has changed since 2010. [New research](https://noaa-edab.github.io/catalog/right-whale-abundance.html) suggests that recent climate driven changes in ocean circulation have resulted in right whale distribution changes driven by increased warm water influx through the Northeast Channel, which has reduced the primary right whale prey (the copepod Calanus finmarchicus) in the central and eastern portions of the Gulf of Maine. Additional potential stressors include offshore wind development, which overlaps with important habitat areas used year-round by right whales, including mother and calf migration corridors and foraging habitat. This area is also the only known right whale winter foraging habitat. Additional information can be found in the  [offshore wind risks section](#other-ocean-uses-offshore-wind).
+Strong evidence exists to suggest that interactions between right whales and both the fixed gear fisheries in the U.S. and Canada and vessel strikes in the U.S. are contributing substantially to the decline of the species. Further, right whale distribution has changed since 2010. [New research](https://noaa-edab.github.io/catalog/narw.html) suggests that recent climate driven changes in ocean circulation have resulted in right whale distribution changes driven by increased warm water influx through the Northeast Channel, which has reduced the primary right whale prey (the copepod Calanus finmarchicus) in the central and eastern portions of the Gulf of Maine. Additional potential stressors include offshore wind development, which overlaps with important habitat areas used year-round by right whales, including mother and calf migration corridors and foraging habitat. This area is also the only known right whale winter foraging habitat. Additional information can be found in the  [offshore wind risks section](#other-ocean-uses-offshore-wind).
 
 The UMEs are under investigation and are likely the result of multiple drivers. For all large whale UMEs, human interaction appears to have contributed to increased mortalities, although investigations are not complete.
 
