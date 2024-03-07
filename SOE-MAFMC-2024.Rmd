@@ -371,10 +371,8 @@ The [engagement and reliance](https://noaa-edab.github.io/catalog/engagement.htm
 
 Changes in fishing activity between years changed community engagement and reliance rankings. The largest change from last year’s report is that Hatteras and Hobucken, NC are no longer listed as top ten commercial fishing communities, replaced by Hampton, VA; Swan Quarter, NC; Bowers and Little Creek, DE (Fig.\ref{fig:commercial-engagement}).  Manteo, Vandemere, and Hobuken, NC are no longer listed as top ten recreational communities, replaced by Cape May and Barnegat Light, NJ; Orient, NY; Topsail Beach, Avon and Rodanthe, NC (Fig.\ref{fig:recreational-engagement}). 
 
-Scores for environmental justice concerns remain similar for communities based on 2020 and 2021 data, with top commercial ports (Fig. \ref{fig:commercial-EJ}) showing more concerns than top recreational ports overall (Fig. \ref{fig:recreational-EJ}).  Atlantic City, NJ ranks highest for all three environmental justice concerns. There is variability in the specific issues facing communities with environmental justice concerns.  Higher scores in population composition indicate community vulnerability related to the presence of non-white, non-English speaking, and younger populations. 
-
  
-```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 6.5, fig.asp = 0.65, results='hide'}
+```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 6.5, fig.asp = 0.75, results='hide'}
 #Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
@@ -383,8 +381,9 @@ Scores for environmental justice concerns remain similar for communities based o
 ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial") 
 ```
 
+Scores for environmental justice concerns remain similar for communities based on 2020 and 2021 data, with top commercial ports (Fig. \ref{fig:commercial-EJ}) showing more concerns than top recreational ports overall (Fig. \ref{fig:recreational-EJ}).  Atlantic City, NJ ranks highest for all three environmental justice concerns. There is variability in the specific issues facing communities with environmental justice concerns.  Higher scores in population composition indicate community vulnerability related to the presence of non-white, non-English speaking, and younger populations. 
 
-```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 6.5, fig.asp = 0.65, results='hide'}
+```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 6.5, fig.asp = 0.75, results='hide'}
 #Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
