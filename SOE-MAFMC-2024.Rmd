@@ -573,38 +573,42 @@ Distribution shifts caused by changes in thermal habitat are likely to continue 
 
 Distribution patterns associated with climate-driven changes in ocean circulation are also unlikely to be reversed to historical ranges in the short term. Increased oceanographic variability needs to be captured by regional ocean models and linked to species distribution processes to better understand potential future distributions. Species with high mobility or short lifespans react differently from immobile or long lived species.
 
-Adapting management to changing stock distributions and dynamic ocean processes will require continued monitoring of populations in space and evaluating management measures against a range of possible future spatial distributions. 
+Adapting management to changing stock distributions and dynamic ocean processes will require continued monitoring of populations in space and evaluating management measures against a range of possible future spatial distributions. Processes like the [East Coast Climate Scenario Planning](https://www.mafmc.org/climate-change-scenario-planning) can help coordinate management.
 
 
 ### Risks to Seasonal Management
 
-The effectiveness of seasonal management actions (fishing seasons or area opening/closing) depends on a proper alignment with the seasonal life cycle events of fish stocks (e.g. migration timing and spawning). Changes in the timing of these biological cycles can reduce the effectiveness of management measures if not accounted for. The timing of seasonal patterns can also change the interactions between fisheries and non-target species thus influencing the amount of bycatch and the availability of species to surveys. 
+The effectiveness of seasonal management actions (fishing seasons or area opening/closing) depends on a proper alignment with the seasonal life cycle events (phenology) of fish stocks (e.g. migration timing and spawning). Changes in the timing of these biological cycles can reduce the effectiveness of management measures if not accounted for. The timing of seasonal patterns can also change the interactions between fisheries and non-target species thus influencing the amount of bycatch and the availability of species to surveys. 
 
 #### Indicators: Timing shifts
 
 [Spawning timing](https://noaa-edab.github.io/catalog/spawn_timing.html) is shifting earlier for multiple stocks, including haddock and yellowtail flounder. Spawning of both haddock stocks occurred earlier in the year, as indicated by more resting (post-spawning) stage fish in the 2010s as compared to earlier in the time series (Fig. \ref{fig:spawntiming}). The northern (CC/GOM) stock shows earlier active spawning in recent years with a decline in pre-spawning resting females.The recent increase in resting females in the southern (SNE) stock also indicates a shift to earlier spawning (i.e. more post-spawn fish). Yellowtail flounder spawning is related to bottom temperature, week of year, and decade sampled for each of the three stocks.
 
-```{r spawntiming, fig.cap="Percent resting stage (non-spawning) mature female fish from two haddock and three yellowtail flounder stocks: CC = Cape Cod Gulf of Maine, GOM = Gulf of Maine, GB = Georges Bank, SNE = Southern New England.", fig.width = 7, fig.asp=.5}
+```{r spawntiming, fig.cap="Percent resting stage (non-spawning) mature female fish (black) with significant increases (orange) and decreases (purple) from two haddock and three yellowtail flounder stocks: CC = Cape Cod Gulf of Maine, GOM = Gulf of Maine, GB = Georges Bank, SNE = Southern New England. ", fig.width = 7, fig.asp=.5}
 
 ecodata::plot_spawn_timing() + ggplot2::ggtitle("Spring Resting Maturity Stage")
 
 ```
 
-[Migration timing](https://noaa-edab.github.io/catalog/timing-shifts-risks-to-seasonal-management.html) of some tuna and large whale migrations has changed. For example, tuna were caught in recreational fisheries 50 days earlier in the year in 2019 compared to 2002. In Cape Cod Bay, peak spring habitat use by right and humpback whales has shifted 18-19 days later over time. 
+[Migration timing](https://noaa-edab.github.io/catalog/timing_shifts.html) of some tuna and large whale migrations has changed. For example, tuna were caught in recreational fisheries 50 days earlier in the year in 2019 compared to 2002. In Cape Cod Bay, peak spring habitat use by right and humpback whales has shifted 18-19 days later over time. 
 
-Understanding whether seasonal patterns are changing for stocks requires regular observations during those events.  Despite the importance of understanding seasonal patterns,  we have few indicators that directly assess timing shifts of species. We plan on incorporating more indicators of phenology in future reports.
+Understanding whether seasonal patterns are changing for stocks requires regular observations throughout the year.  Despite the importance of understanding seasonal patterns,  we have few indicators that directly assess timing shifts of species. We plan on incorporating more indicators of timing shifts and phenology in future reports.
 
 
 #### Drivers: 
 
 The drivers of timing shifts in managed stocks are generally coupled to shifts in environmental or biological conditions, since these can result in changes in habitat quality or food availability within the year. Changes in the timing of fall phytoplankton blooms and seasonal shifts in zooplankton communities are thought to be critical indicators of changes in seasonal food availability to stocks. 
 
-Along with the overall warming trends in the Mid Atlantic, ocean summer conditions have been lasting longer, as shown by the later [transition](https://noaa-edab.github.io/catalog/transition-dates.html) from warm stratified summer conditions to well mixed cool fall conditions (Fig. \ref{fig:transition}). Changes in the broad seasonal cycles of their environment can lead to changes in species biological processes (migrations, spawning, etc.) that are triggered by seasonal events.  
+Along with the overall warming trends in the Mid Atlantic, ocean summer conditions have been lasting longer, as shown by the later [transition](https://noaa-edab.github.io/catalog/trans_dates.html) from warm stratified summer conditions to well mixed cool fall conditions (Fig. \ref{fig:transition}). Changes in the broad seasonal cycles of their environment can lead to changes in species biological processes (migrations, spawning, etc.) that are triggered by seasonal events.  
 
-```{r transition, fig.cap="Ocean summer length in the MAB: the annual total number of days between the spring thermal transition date and the fall thermal transition date.  The transition dates are defined as the day of the year when surface temperatures changeover from cool to warm conditions in the spring and back to cool conditions in the fall."}
+```{r transition, fig.cap="Ocean summer length in the MAB: the annual total number of days between the spring thermal transition date and the fall thermal transition date (black), with an increasing trend (orange)."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")
+# The transition dates are defined as the day of the year when surface temperatures changeover from cool to warm conditions in the spring and back to cool conditions in the fall.
 
-ecodata::plot_trans_dates(varName = "length")
+ecodata::plot_trans_dates(varName = "length") + ggplot2::ggtitle("Time between spring and fall transition: MAB") + theme(
+  strip.background = element_blank(),
+  strip.text.x = element_blank()
+)
 ```
 
 The [cold pool](https://noaa-edab.github.io/catalog/cold-pool-index.html) is a seasonal feature within the MAB that creates seasonally suitable habitat for many species. In 8 of the past 10 years, cold pool persistence has been well below average, so this habitat was available for a shorter portion of the year  (Fig. \ref{fig:cold-pool-time}). A change in the timing of the cold pool may impact the recruitment of species that depend on it for juvenile habitat, such as yellowtail flounder.
