@@ -331,7 +331,9 @@ Total [primary production](https://noaa-edab.github.io/catalog/chl_pp.html) (PP)
 ```{r totpp, fig.cap="Total areal annual primary production for the MAB. The dashed line represents the long-term (1998-2023) annual mean."}
 
 ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "total") +
-  ggplot2::coord_cartesian(ylim = c(1e+07, 4e+07), xlim = c(1998, 2023))
+  ggplot2::coord_cartesian(ylim = c(1e+07, 4e+07), xlim = c(1998, 2023)) + 
+  ggplot2::ggtitle("MAB Primary Production") +
+  ggplot2::ylab("Carbon (mt)")
 ```
 
 Ecological diversity indices show mixed trends. [Zooplankton diversity](https://noaa-edab.github.io/catalog/zoo_diversity.html) is increasing in the MAB (Fig. \ref{fig:zoo-diversity}). [Adult fish diversity](https://noaa-edab.github.io/catalog/exp_n.html) is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. Adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
@@ -372,16 +374,18 @@ Changes in fishing activity between years changed community engagement and relia
 Scores for environmental justice concerns remain similar for communities based on 2020 and 2021 data, with top commercial ports (Fig. \ref{fig:commercial-EJ}) showing more concerns than top recreational ports overall (Fig. \ref{fig:recreational-EJ}).  Atlantic City, NJ ranks highest for all three environmental justice concerns. There is variability in the specific issues facing communities with environmental justice concerns.  Higher scores in population composition indicate community vulnerability related to the presence of non-white, non-English speaking, and younger populations. 
 
  
-```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.  Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", fig.width = 7, fig.asp = 0.5, results='hide'}
+```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 6.5, fig.asp = 0.65, results='hide'}
+#Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
 #(* Scored high (1.00 and above)) for both commercial engagement and reliance indicators)
 
-ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial")
+ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial") 
 ```
 
 
-```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic. Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.", fig.width = 7, fig.asp = 0.5, results='hide'}
+```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 6.5, fig.asp = 0.65, results='hide'}
+#Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
 
@@ -493,7 +497,7 @@ The UMEs are under investigation and are likely the result of multiple drivers. 
 
 A climate vulnerability assessment is published for Atlantic and Gulf of Mexico marine mammal populations.
 
-# Risks to meeting fishery management objectives
+# Risks to Meeting Fishery Management Objectives
 
 ## Climate and Ecosystem Change
 
@@ -505,10 +509,10 @@ This year, we have restructured this section to focus on three categories of man
 
 Shifting species distributions (changes in spatial extent or center of gravity) alter both species interactions and fishery interactions. In particular, shifting species distributions can affect expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions. Species availability to surveys can also change as distributions shift within survey footprints.
 
-#### Observations: Fish and protected species distribution shifts
-As noted in the [Landings Implications section above](#implications), the center of [distribution](https://noaa-edab.github.io/catalog/species-distribution-indicators.html) for a suite of 48 commercially or ecologically important fish species along the entire Northeast Shelf continues to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:species-dist}). 
+#### Indicators: Fish and protected species distribution shifts
+As noted in the [Landings Implications section above](#implications), the center of [distribution](https://noaa-edab.github.io/catalog/species_dist.html) for a suite of 48 commercially or ecologically important fish species along the entire Northeast Shelf continues to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:species-dist}). 
   
-```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", fig.width = 8, fig.asp=0.3}
+```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem: along shelf distance with increasing trend (orange), and depth with decreasing trend indicating deeper water (purple).", fig.width = 8, fig.asp=0.3}
 
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")
 
@@ -529,33 +533,33 @@ ecodata::plot_HMS_species_distribution() + ggplot2::ggtitle("Whale and Dolphin D
 
 #### Drivers: 
 
-Mobile populations shift distributions to maintain suitable temperature and prey fields, possibly expanding ranges if new suitable habitat exists.   Changes in managed species distribution is related, in part, to the [distribution of forage biomass](https://noaa-edab.github.io/catalog/forage-fish-index.html). Since 1982, the fall center of gravity of forage fish (20 species combined) has moved to the north and east (Fig. \ref{fig:forageshifts}). Spring forage fish center of gravity has been more variable over time. 
+Mobile populations shift distributions to maintain suitable temperature and prey fields, possibly expanding ranges if new suitable habitat exists.   Changes in managed species distribution is related, in part, to the [distribution of forage biomass](https://noaa-edab.github.io/catalog/forage_index.html). Since 1982, the fall center of gravity of forage fish (20 species combined) has moved to the north and east (Fig. \ref{fig:forageshifts}). Spring forage fish center of gravity has been more variable over time. 
 
-```{r forageshifts, fig.cap="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf.", fig.width = 8, fig.asp = .3}
+```{r forageshifts, fig.cap="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf, with increasing trend (orange) for fall eastward and northward center of gravity.", fig.width = 8, fig.asp = .3}
 
 ecodata::plot_forage_index(varName = "cog")
 ```
 
-Ocean temperatures influence the distribution, seasonal timing, and productivity of managed species (see sections below). The Northeast US shelf, including the Mid-Atlantic, has experienced a continued warming trend for both the [surface](https://noaa-edab.github.io/catalog/sea-surface-temperature-anomaly.html) (Fig. \ref{fig:long-term-sst}) and [bottom](https://noaa-edab.github.io/catalog/bottom-temperature---seasonal-anomaly.html) in all seasons.
+Ocean temperatures influence the distribution, seasonal timing, and productivity of managed species (see sections below). The Northeast US shelf, including the Mid-Atlantic, has experienced a continued warming trend for both the [long term](https://noaa-edab.github.io/catalog/long_term_sst.html) (Fig. \ref{fig:long-term-sst}) and [recent surface](https://noaa-edab.github.io/catalog/seasonal_oisst_anom.html) and [bottom](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) in all seasons.
 
-```{r long-term-sst, fig.cap="Northeast US annual sea surface temperature (SST) time series."}
+```{r long-term-sst, fig.cap="Northeast US annual sea surface temperature (SST, black), with increasing trend (orange)."}
 
 ecodata::plot_long_term_sst()
 ```
 
 
-Species suitable habitat can expand or contract when changes in temperature and major oceanographic conditions alter distinct water mass habitats.The variability of the Gulf Stream is a major driver of the predominant oceanographic conditions of the Northeast U.S. continental shelf. As the [Gulf Stream](https://noaa-edab.github.io/catalog/gulf-stream-index.html) has become less stable and shifted northward in the last decade (Fig. \ref{fig:GSI}), warmer ocean temperatures have been observed on the northeast shelf and a higher proportion of [Warm Slope Water](https://noaa-edab.github.io/catalog/slopewater-proportions.html) has been present in the Northeast Channel.
+Species suitable habitat can expand or contract when changes in temperature and major oceanographic conditions alter distinct water mass habitats.The variability of the Gulf Stream is a major driver of the predominant oceanographic conditions of the Northeast U.S. continental shelf. As the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) has become less stable and shifted northward in the last decade (Fig. \ref{fig:GSI}), warmer ocean temperatures have been observed on the northeast shelf and a higher proportion of [Warm Slope Water](https://noaa-edab.github.io/catalog/slopewater.html) has been present in the Northeast Channel.
 
-```{r GSI, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position."}
+```{r GSI, fig.cap = "Index representing changes in the location of the Gulf Stream north wall (black). Positive values represent a more northerly Gulf Stream position, with increasing trend (orange)."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")
 
 ecodata::plot_gsi()
 ```
 
 
-Changes in ocean temperature and circulation alter habitat features such as the seasonal [cold pool](https://noaa-edab.github.io/catalog/cold-pool-index.html), a band of relatively cold near-bottom water from spring to fall over the  northern MAB. The cold pool represents essential fish spawning and nursery habitat, and affects fish distribution and behavior. The cold pool has been getting warmer and smaller over time (Fig. \ref{fig:cold-pool-size}). The spatial extent (or area) of the seasonal cold pool is decreasing over time, yet the interannual variability of cold pool area has increased.
+Changes in ocean temperature and circulation alter habitat features such as the seasonal [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html), a band of relatively cold near-bottom water from spring to fall over the  northern MAB. The cold pool represents essential fish spawning and nursery habitat, and affects fish distribution and behavior. The cold pool has been getting warmer and smaller over time (Fig. \ref{fig:cold-pool-size}). The spatial extent (or area) of the seasonal cold pool is decreasing over time, yet the interannual variability of cold pool area has increased.
 
-```{r cold-pool-size, fig.cap="Seasonal cold pool mean temperature (left)and spatial extent index (right),  based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.width = 5, fig.asp=.5, results='hide'}
+```{r cold-pool-size, fig.cap="Seasonal cold pool mean temperature (left) and spatial extent index (right), based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles), with declining trends (purple).", fig.width = 5, fig.asp=.5, results='hide'}
 #,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
 
 a <- ecodata::plot_cold_pool(varName = "cold_pool")
@@ -566,7 +570,7 @@ a+b
 
 #### Future Considerations 
 
-Distribution shifts caused by changes in thermal habitat are not likely to change as long as long-term temperature trends persist. Near-term oceanographic forecasts are currently in development and may inform how future warming impacts species distributions.
+Distribution shifts caused by changes in thermal habitat are likely to continue as long as long-term temperature trends persist. Near-term oceanographic forecasts are currently in development and may inform how future warming impacts species distributions.
 
 Distribution patterns associated with climate-driven changes in ocean circulation are also unlikely to be reversed to historical ranges in the short term. Increased oceanographic variability needs to be captured by regional ocean models and linked to species distribution processes to better understand potential future distributions. Species with high mobility or short lifespans react differently from immobile or long lived species.
 
@@ -575,11 +579,11 @@ Adapting management to changing stock distributions and dynamic ocean processes 
 
 ### Risks to Seasonal Management
 
-The effectiveness of seasonal management actions (fishing seasons or area opening/closing) depends on a proper alignment with the seasonal life cycle events of fish stocks (e.g. migration timing and spawning). Changes in the timing of these biological cycles can reduce the effectiveness of management measures if not accounted for. The timing of seasonal patterns can also change the interactions between fisheries of non-target species thus influencing the amount of bycatch and the availability of species to surveys. 
+The effectiveness of seasonal management actions (fishing seasons or area opening/closing) depends on a proper alignment with the seasonal life cycle events of fish stocks (e.g. migration timing and spawning). Changes in the timing of these biological cycles can reduce the effectiveness of management measures if not accounted for. The timing of seasonal patterns can also change the interactions between fisheries and non-target species thus influencing the amount of bycatch and the availability of species to surveys. 
 
-#### Observations: Timing shifts
+#### Indicators: Timing shifts
 
-Spawning timing is shifting earlier for multiple stocks, including haddock and yellowtail flounder. Spawning of both haddock stocks occurred earlier in the year, as indicated by more resting (post-spawning) stage fish in the 2010s as compared to earlier in the time series (Fig. \ref{fig:spawntiming}). The northern (CC/GOM) stock shows earlier active spawning in recent years with a decline in pre-spawning resting females.The recent increase in resting females in the southern (SNE) stock also indicates a shift to earlier spawning (i.e. more post-spawn fish). Yellowtail flounder spawning is related to bottom temperature, week of year, and decade sampled for each of the three stocks.
+[Spawning timing](https://noaa-edab.github.io/catalog/spawn_timing.html) is shifting earlier for multiple stocks, including haddock and yellowtail flounder. Spawning of both haddock stocks occurred earlier in the year, as indicated by more resting (post-spawning) stage fish in the 2010s as compared to earlier in the time series (Fig. \ref{fig:spawntiming}). The northern (CC/GOM) stock shows earlier active spawning in recent years with a decline in pre-spawning resting females.The recent increase in resting females in the southern (SNE) stock also indicates a shift to earlier spawning (i.e. more post-spawn fish). Yellowtail flounder spawning is related to bottom temperature, week of year, and decade sampled for each of the three stocks.
 
 ```{r spawntiming, fig.cap="Percent resting stage (non-spawning) mature female fish from two haddock and three yellowtail flounder stocks: CC = Cape Cod Gulf of Maine, GOM = Gulf of Maine, GB = Georges Bank, SNE = Southern New England.", fig.width = 7, fig.asp=.5}
 
@@ -621,7 +625,7 @@ For stocks reliant on environmental processes to dictate the timing of their beh
 
 The efficacy of short-term stock projections and rebuilding plans rely on an accurate understanding of processes affecting stock growth, reproduction, and natural mortality. These biological processes are often driven by underlying environmental change. When observed environmental change occurs, there is a risk that established stock-level biological reference points may no longer reflect the current population. 
 
-#### Observations: Fish productivity and condition shifts
+#### Indicators: Fish productivity and condition shifts
 Indicators of [fish productivity](https://noaa-edab.github.io/catalog/fish-productivity-indicators.html) are derived from observations (surveys) or models (stock assessments). Fish productivity has been declining in the Mid-Atlantic since the early 2000s, as described by the small-fish-per-large-fish anomaly indicator (derived from NEFSC bottom trawl survey) (Fig. \ref{fig:productivity-anomaly}). This decline in fish productivity is also shown by a similar analysis based on stock assessment model outputs (recruitment per spawning stock biomass anomaly).
 
 ```{r productivity-anomaly, fig.cap = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Mid-Atlantic Bight. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in the Mid-Atlantic. The summed anomaly across species is shown by the black line, drawn across all years with the same number of stocks analyzed.", fig.width=8, fig.asp=0.6}
@@ -854,17 +858,17 @@ For example, Atlantic City, NJ had the highest potential revenue loss (minimum o
 *This section still to be updated, ports may change*
 Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Barnstable, MA, Boston, MA, Hyannis, MA, North Kingstown/Davisville, RI, and Point Judith, RI. Woods Hole, MA would be added to this list based on pounds only, but did not exceed 50% of value from Mid-Atlantic managed species within wind areas.
 
-```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.4, fig.align='left'}
+```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.2, fig.align='left'}
 df.symbol <- ecodata::wind_port %>% filter(EPU == "NE", 
                                            !Var %in% c("MaxVal", "TOT_MAX", 
                                                      "perc_MIN", "perc_MAX")) %>% 
    tidyr::pivot_wider( names_from = Var, values_from = Value) %>%
   dplyr::mutate(City = paste0(City,State)) %>% 
   dplyr::filter(City %in% c("Point Judith RI",
-                            "North Kingstown RI",
-                            "Boston MA",
-                            "Woods Hole MA",
-                            "Hyannis MA",
+                          #  "North Kingstown RI",
+                          #  "Boston MA",
+                          #  "Woods Hole MA",
+                          #  "Hyannis MA",
                             "Barnstable MA")) %>%
   dplyr::select(City, EJ, Gentrification) %>% 
   pivot_longer(cols = c(EJ, Gentrification), names_to = "Variable") %>% 
