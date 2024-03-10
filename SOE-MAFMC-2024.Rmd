@@ -393,6 +393,7 @@ Scores for environmental justice concerns remain similar for communities based o
 ecodata::plot_engagement(report = "MidAtlantic", varName = "Recreational")
 ```
 
+Both commercial and recreational fishing are important activities in Montauk, NY, Cape May, Barnegat Light and Point Pleasant Beach, NJ; and Rodanthe, NC, meaning these communities may be impacted simultaneously by commercial and recreational regulatory changes. However, in all but Point Pleasant Beach NJ,  environmental justice may not be a major concern in these communities given the index scores (Figs \ref{fig:commercial-EJ} and \ref{fig:recreational-EJ})). Point Pleasant Beach, NJ scored medium for the personal disruption index, indicating that environmental justice may  be a moderate concern in Point Pleasant Beach.
 
 ```{r commercial-EJ, crop=TRUE, fig.cap="Environmental justice indicators (Poverty Index, population composition index, and personal disruption index) for top commercial fishing communities in Mid-Atlantic. Some communities are missing data for some indices. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.", out.width='75%'}
 
@@ -439,10 +440,6 @@ cropRecEJ <- RecEJ %>%
 
 cropRecEJ
 ```
-
-
-Both commercial and recreational fishing are important activities in Montauk, NY, Cape May, Barnegat Light and Point Pleasant Beach, NJ; and Rodanthe, NC, meaning these communities may be impacted simultaneously by commercial and recreational regulatory changes. However, in all but Point Pleasant Beach NJ,  environmental justice may not be a major concern in these communities given the index scores (Figs \ref{fig:commercial-EJ} and \ref{fig:recreational-EJ})). Point Pleasant Beach, NJ scored medium for the personal disruption index, indicating that environmental justice may  be a moderate concern in Point Pleasant Beach.
-
 
 ### Implications
 A range of environmental justice concerns are found throughout Mid-Atlantic fishing communities. However, index scores for these concerns are higher overall in the top commercial communities relative to the top recreational communities. 
@@ -825,9 +822,9 @@ flextable::flextable(dt) %>%
 
 Proposed wind development areas interact with the region’s federal scientific surveys. Scientific surveys are impacted by offshore wind in four ways:  
 1.  Exclusion of NOAA Fisheries’ sampling platforms from the wind development area due to operational and safety limitations.  
-1.  Impacts on the random-stratified statistical design that is the basis for scientific assessments, advice, and analyses.  
-1.  Alteration of benthic and pelagic habitats, and airspace in and around the wind energy development, requiring new designs and methods to sample new habitats.  
-1.  Reduced sampling productivity through navigation impacts of wind energy infrastructure on aerial and vessel survey operations.  
+2.  Impacts on the random-stratified statistical design that is the basis for scientific assessments, advice, and analyses.  
+3.  Alteration of benthic and pelagic habitats, and airspace in and around the wind energy development, requiring new designs and methods to sample new habitats.  
+4.  Reduced sampling productivity through navigation impacts of wind energy infrastructure on aerial and vessel survey operations.  
 
 Increased vessel transit between stations may decrease data collections that are already limited by annual days-at-sea day allocations. The total survey area overlap ranges from 1-70% for all Greater Atlantic federal surveys. The Gulf of Maine Cooperative Research Bottom Longline Survey (41%) and the Shrimp Survey (70%) have the largest percent overlap with the draft Gulf of Maine Wind Energy Areas. The remaining surveys range from 1-16% overlap.  Individual survey strata have significant interaction with wind areas, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey (up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas and a region-wide survey mitigation program is underway
 
@@ -866,13 +863,13 @@ df.symbol <- ecodata::wind_port %>% filter(EPU == "NE",
                                            !Var %in% c("MaxVal", "TOT_MAX", 
                                                      "perc_MIN", "perc_MAX")) %>% 
    tidyr::pivot_wider( names_from = Var, values_from = Value) %>%
-  dplyr::mutate(City = paste0(City,State)) %>% 
-  dplyr::filter(City %in% c("Point Judith RI",
+  dplyr::mutate(City = paste0(City,",", State)) %>% 
+  dplyr::filter(City %in% c("Point Judith, RI",
                           #  "North Kingstown RI",
                           #  "Boston MA",
                           #  "Woods Hole MA",
                           #  "Hyannis MA",
-                            "Barnstable MA")) %>%
+                            "Barnstable, MA")) %>%
   dplyr::select(City, EJ, Gentrification) %>% 
   pivot_longer(cols = c(EJ, Gentrification), names_to = "Variable") %>% 
   filter(!value == "NA") %>% 
@@ -885,17 +882,17 @@ df.symbol <- ecodata::wind_port %>% filter(EPU == "NE",
 df.all.perc<- ecodata::wind_port %>% filter(EPU == "NE") %>%
   tidyr::pivot_wider( names_from = Var, values_from = Value) %>%
   dplyr::mutate(ordering = MaxVal,
-                   City = paste0(City, State),
+                   City = paste0(City, ",", State),
                    perc_dif =  c(perc_MAX - perc_MIN),
                    TOT_MAX = c(100 - perc_dif - perc_MIN)) %>% 
   tidyr::pivot_longer(cols = c(perc_MIN,  perc_dif, TOT_MAX), names_to="Var", values_to = "Value") %>% 
   dplyr::arrange(desc(ordering)) %>%
-  dplyr::filter(City %in% c("Point Judith RI",
+  dplyr::filter(City %in% c("Point Judith, RI",
                             #"North Kingstown RI",
                             #"Boston MA",
                             #"Woods Hole MA",
                             #"Hyannis MA",
-                            "Barnstable MA")) %>%
+                            "Barnstable, MA")) %>%
   dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
   dplyr::filter(!Var %in% c("MaxVal", "EJ", "Gentrification")) %>% 
   dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
