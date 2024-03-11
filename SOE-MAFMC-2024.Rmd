@@ -696,14 +696,16 @@ a/b
 Fish production can also be directly related to the prevailing environmental conditions by altering metabolic processes (growth) and reproduction. Many species possess thermal tolerances and can experience stressful or lethal conditions if temperatures exceed certain levels. Extreme temperatures at both the [surface](https://noaa-edab.github.io/catalog/seasonal_oisst_anom.html) and [bottom](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) can exceed [thermal tolerance](https://noaa-edab.github.io/catalog/thermal_habitat_persistence.html) limits for some fish. For example, 2015 had the [warmest summer and fall bottom temperatures](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) in the Mid-Atlantic. A large proportion of the region had bottom temperatures above the 15℃ thermal tolerance for most groundfish, with some days exceeding the 24℃ potential mortality limit (Fig. \ref{fig:therm-hab-persist-2015}). Many Mid-Atlantic species have different thermal tolerance limits from groundfish, and we will work to include those next year.
 
 
-```{r therm-hab-persist-2015, fig.cap = "The number of days in 2015 where bottom temperature exceeds 15℃ (left) and 24℃ (right) based on the GLORYS 1/12 degree grid.", out.width='70%'}
-year = 2015
-p <- ecodata::plot_thermal_habitat_persistence(year=year) + ggplot2::ggtitle(paste(year))
-ggplot2::ggsave(here::here('images','thermal_habitat_2015.png'),p,width = 8,height = 8, units = 'in',dpi = 300)
+```{r therm-hab-persist-2015, fig.cap = "The number of days in 2015 where bottom temperature exceeds 15℃ (left) and 24℃ (right) based on the GLORYS 1/12 degree grid.", out.width='90%'}
+# year = 2015
+# p <- ecodata::plot_thermal_habitat_persistence(year=year) + ggplot2::ggtitle(paste(year))
+# ggplot2::ggsave(here::here('images','thermal_habitat_2015.png'),p,width = 8,height = 8, units = 'in',dpi = 300)
+# 
+# magick::image_read(here::here('images','thermal_habitat_2015.png')) |>
+#   magick::image_trim() |>
+#   magick::image_write(here::here('images', 'thermal_habitat_2015_cropped.png'))
 
-magick::image_read(here::here('images','thermal_habitat_2015.png')) |>
-  magick::image_trim() |>
-  magick::image_flatten()
+knitr::include_graphics(here::here('images','thermal_habitat_2012_cropped.png'))
 
 ```
 
@@ -968,7 +970,7 @@ Summer [bottom temperatures](hhttps://noaa-edab.github.io/catalog/bottom_temp_co
 
 A wide-spread, long-duration [phytoplankton bloom](https://noaa-edab.github.io/catalog/observation_synthesis.html) of the dinoflagellate *Tripos muelleri* was observed in the GOM and generated chlorophyll concentrations up to ten times greater than average (a record high since 1998) from March to August (Figs. \ref{fig.chl-current-year}, \ref{fig.GOMbloom}). The bloom severely reduced water clarity, impacting harpoon fishing and likely affecting visual predators. Despite *Tripos* being a similar size to typical large phytoplankton (diatoms), this extra production was not grazed nor did it sink to the bottom. The specific drivers of the bloom and implications to the food web are still under investigation. 
 
-```{r chl-current-year, fig.cap="", fig.width=7}
+```{r chl-current-year, fig.cap="2023 median weekly chlorophyll concentrations (green line) with standard deviation 1998-2023 (gray shading).", fig.width=7}
 
 a <- ecodata::plot_chl_pp(report = "MidAtlantic") + ggplot2::ggtitle("Mid Atlantic 2023")
 
