@@ -518,7 +518,7 @@ b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(xl
 a+b
 ```  
 
-[Habitat model-based species richness](https://noaa-edab.github.io/catalog/species-richness.html) suggests shifts of both cooler and warmer water species to the northeast. Similar patterns have been found for [marine mammals](https://noaa-edab.github.io/catalog/cetacean-distribution-shifts.html), with multiple species shifting northeast between 2010 and 2017 in most seasons (Fig. \ref{fig:protectedspp-dist-shifts}).
+[Habitat model-based species richness](https://noaa-edab.github.io/catalog/habitat_diversity.html) suggests shifts of both cooler and warmer water species to the northeast. Similar patterns have been found for [marine mammals](https://noaa-edab.github.io/catalog/HMS_species_distribution.html), with multiple species shifting northeast between 2010 and 2017 in most seasons (Fig. \ref{fig:protectedspp-dist-shifts}).
 
 ```{r protectedspp-dist-shifts, fig.cap="Direction and magnitude of core habitat shifts, represented by the length of the line of the seasonal weighted centroid for species with more than 70 km difference between 2010 and 2017 (tip of arrow).", fig.width=7, fig.asp=0.8}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R")
@@ -555,7 +555,7 @@ ecodata::plot_gsi()
 
 Changes in ocean temperature and circulation alter habitat features such as the seasonal [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html), a band of relatively cold near-bottom water from spring to fall over the  northern MAB. The cold pool represents essential fish spawning and nursery habitat, and affects fish distribution and behavior. The cold pool has been getting warmer and smaller over time (Fig. \ref{fig:cold-pool-size}). The spatial extent (or area) of the seasonal cold pool is decreasing over time, yet the interannual variability of cold pool area has increased.
 
-```{r cold-pool-size, fig.cap="Seasonal cold pool mean temperature (left) and spatial extent index (right), based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles), with declining trends (purple).", fig.width = 5, fig.asp=.5, results='hide'}
+```{r cold-pool-size, fig.cap="Seasonal cold pool mean temperature (left) and spatial extent index (right), based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles), with declining trends (purple).", fig.width = 7.5, fig.asp = 0.3, results='hide'}
 #,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
 
 a <- ecodata::plot_cold_pool(varName = "cold_pool")
@@ -608,7 +608,7 @@ ecodata::plot_trans_dates(varName = "length") + ggplot2::ggtitle("Time between s
 )
 ```
 
-The [cold pool](https://noaa-edab.github.io/catalog/cold-pool-index.html) is a seasonal feature within the MAB that creates seasonally suitable habitat for many species. In 8 of the past 10 years, cold pool persistence has been well below average, so this habitat was available for a shorter portion of the year  (Fig. \ref{fig:cold-pool-time}). A change in the timing of the cold pool may impact the recruitment of species that depend on it for juvenile habitat, such as yellowtail flounder.
+The [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html) is a seasonal feature within the MAB that creates seasonally suitable habitat for many species. In 8 of the past 10 years, cold pool persistence has been well below average, so this habitat was available for a shorter portion of the year  (Fig. \ref{fig:cold-pool-time}). A change in the timing of the cold pool may impact the recruitment of species that depend on it for juvenile habitat, such as yellowtail flounder.
 
 ```{r cold-pool-time, fig.cap="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.width = 3.5, fig.asp=.5, results='hide'}
 #, fig.width = 5,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
@@ -646,11 +646,17 @@ a + b
 
 ```
 
-The health of individual fish (i.e. fish condition) can contribute to population productivity through improved growth, reproduction and survival. [Fish condition](https://noaa-edab.github.io/catalog/relative-condition.html) in the MAB was generally good prior to 2000, poor from 2001-2010 (concurrent with declines in productivity, Fig. \ref{fig:productivity-anomaly}), and a mix of good and poor since 2011. In 2023, condition was mixed, with general improvement since a relatively low condition year in 2021 (Fig. \ref{fig:mab-cf}). Preliminary analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
+The health of individual fish (i.e. fish condition) can contribute to population productivity through improved growth, reproduction and survival. [Fish condition](https://noaa-edab.github.io/catalog/condition.html) in the MAB was generally good prior to 2000, poor from 2001-2010 (concurrent with declines in productivity, Fig. \ref{fig:productivity-anomaly}), and a mix of good and poor since 2011. In 2023, condition was mixed, with general improvement since a relatively low condition year in 2021 (Fig. \ref{fig:mab-cf}). Preliminary analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
 
-```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", fig.width=6}
+```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", fig.width=9}
 
-ecodata::plot_condition()
+ecodata::plot_condition() +
+  theme(#legend.position = 'bottom',
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 11),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 10),
+        plot.title = element_text(size = 12))
 ```
 
 #### Drivers: 
@@ -668,7 +674,7 @@ The [energy content](https://noaa-edab.github.io/catalog/energy_density.html) of
 ecodata::plot_energy_density()
 ```
 
-Changes in the overall abundance of forage fish can influence managed species productivity as it relates to changes in food availability. A spatially-explicit forage index for the Mid-Atlantic shows a long term declining trend in fall, with higher forage biomass in fall than spring (Fig. \ref{fig:foragebio}). Forage biomass was highest during fall in the early-1980s.   
+Changes in the overall abundance of forage fish can influence managed species productivity as it relates to changes in food availability. A spatially-explicit [forage index](https://noaa-edab.github.io/catalog/forage_index.html) for the Mid-Atlantic shows a long term declining trend in fall, with higher forage biomass in fall than spring (Fig. \ref{fig:foragebio}). Forage biomass was highest during fall in the early-1980s.   
 ```{r foragebio, fig.cap = "Forage fish index in the MAB for spring (blue) and fall (red) surveys, with a decline (purple) in fall. Index values are relative to the maximum observation within a region across surveys.", fig.asp=.6}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R")
 
@@ -736,7 +742,7 @@ The processes that control fish productivity and mortality are dynamic, complex,
 ## Other Ocean Uses: Offshore Wind
 
 ### Indicators: development timeline, revenue in lease areas, coastal community vulnerability
-As of January 2024, 30 offshore [wind development](https://noaa-edab.github.io/catalog/speed-and-scale-of-offshore-wind-development-in-the-northeast.html) projects are proposed for construction over the next decade in the Northeast (timelines and project data for 2024 are based on the Ocean Wind 1 Offshore Wind Farm Final Environmental Impact Statement. Volume II: Appendix F). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-proposed-dev}). All states will be able to reach their 2030 offshore wind goals with existing lease areas.  
+As of January 2024, 30 offshore [wind development](https://noaa-edab.github.io/catalog/wind_dev_speed.html) projects are proposed for construction over the next decade in the Northeast (timelines and project data for 2024 are based on the Ocean Wind 1 Offshore Wind Farm Final Environmental Impact Statement. Volume II: Appendix F). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-proposed-dev}). All states will be able to reach their 2030 offshore wind goals with existing lease areas.  
 ```{r wind-proposed-dev, fig.cap='Total area proposed for wind develpment on the northeast shelf through 2030.', fig.width=5}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R")
 
@@ -755,7 +761,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images
 
 ```
 
-Based on federal vessel logbook data, [commercial fishery revenue](https://noaa-edab.github.io/catalog/fishery-impacts-from-offshore-wind-development.html) from trips in the current offshore wind lease areas, including the newly designated lease areas in the Central Atlantic, have varied annually from 2008-2022, with less than \$1 million in maximum annual revenue overlapping with these areas for most fisheries with the exception of the surfclam, monkfish, and longfin squid fisheries. Some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including the surfclam (\$6.6 million), longfin squid (\$4.7 million), monkfish (\$4.3 million), and summer flounder (\$1.3 million) fisheries (Fig. \ref{fig:wea-spp-rev}). 
+Based on federal vessel logbook data, [commercial fishery revenue](https://noaa-edab.github.io/catalog/wind_revenue.html) from trips in the current offshore wind lease areas, including the newly designated lease areas in the Central Atlantic, have varied annually from 2008-2022, with less than \$1 million in maximum annual revenue overlapping with these areas for most fisheries with the exception of the surfclam, monkfish, and longfin squid fisheries. Some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including the surfclam (\$6.6 million), longfin squid (\$4.7 million), monkfish (\$4.3 million), and summer flounder (\$1.3 million) fisheries (Fig. \ref{fig:wea-spp-rev}). 
 
 ```{r wea-spp-rev, fig.cap="Fishery revenue in wind energy lease areas in the Mid-Atlantic.",  fig.width=5, fig.asp=.4}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"),
@@ -966,11 +972,11 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images
 ```
 
 
-Summer [bottom temperatures](hhttps://noaa-edab.github.io/catalog/bottom_temp_comp.html) in the Gulf of Maine were the warmest on record (since 1959) resulting in the second largest [bottom marine heatwave](https://noaa-edab.github.io/catalog/heatwave_year.html). The heatwave started in February, peaked in May and likely continued beyond August (pending data update). [2023 bottom temperature](https://noaa-edab.github.io/catalog/thermal_habitat_persistence.html) exceeded the 15 ℃ threshold for up to 59 days along the shelf break. 
+Summer [bottom temperatures](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) in the Gulf of Maine were the warmest on record (since 1959) resulting in the second largest [bottom marine heatwave](https://noaa-edab.github.io/catalog/heatwave_year.html). The heatwave started in February, peaked in May and likely continued beyond August (pending data update). [2023 bottom temperature](https://noaa-edab.github.io/catalog/thermal_habitat_persistence.html) exceeded the 15 ℃ threshold for up to 59 days along the shelf break. 
 
-A wide-spread, long-duration [phytoplankton bloom](https://noaa-edab.github.io/catalog/observation_synthesis.html) of the dinoflagellate *Tripos muelleri* was observed in the GOM and generated chlorophyll concentrations up to ten times greater than average (a record high since 1998) from March to August (Figs. \ref{fig.chl-current-year}, \ref{fig.GOMbloom}). The bloom severely reduced water clarity, impacting harpoon fishing and likely affecting visual predators. Despite *Tripos* being a similar size to typical large phytoplankton (diatoms), this extra production was not grazed nor did it sink to the bottom. The specific drivers of the bloom and implications to the food web are still under investigation. 
+A wide-spread, long-duration [phytoplankton bloom](https://noaa-edab.github.io/catalog/observation_synthesis.html) of the dinoflagellate *Tripos muelleri* was observed in the GOM and generated chlorophyll concentrations up to ten times greater than average (a record high since 1998) from March to August (Figs. \ref{fig:chl-current-year}, \ref{fig:GOMbloom}). The bloom severely reduced water clarity, impacting harpoon fishing and likely affecting visual predators. Despite *Tripos* being a similar size to typical large phytoplankton (diatoms), this extra production was not grazed nor did it sink to the bottom. The specific drivers of the bloom and implications to the food web are still under investigation. 
 
-```{r chl-current-year, fig.cap="2023 median weekly chlorophyll concentrations (green line) with standard deviation 1998-2023 (gray shading).", fig.width=7}
+```{r chl-current-year, fig.cap="2023 median weekly chlorophyll concentrations (green line) with standard deviation 1998-2023 (gray shading).", fig.width=7, fig.asp=.35}
 
 a <- ecodata::plot_chl_pp(report = "MidAtlantic") + ggplot2::ggtitle("Mid Atlantic 2023")
 
