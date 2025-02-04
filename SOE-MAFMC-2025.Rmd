@@ -62,32 +62,37 @@ set_flextable_defaults(
 
 ## About This Report
 
-This report is for the Mid-Atlantic Fishery Management Council (MAFMC). The purpose of this report is to synthesize ecosystem information to allow the MAFMC to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized on pages 1 and 2, with highlights of 2024 ecosystem events on page 3. The information in this report is organized into two main sections; [performance measured against ecosystem-level management objectives](#performance-relative-to-fishery-management-objectives) (Table \ref{tab:management-objectives}), and potential [risks to meeting fishery management objectives](#risks-to-meeting-fishery-management-objectives) ([climate change](#climate-and-ecosystem-change) and [other ocean uses](#other-ocean-uses-offshore-wind)). A final new section introduced this year highlights [notable 2024 ecosystem observations](#highlights). 
+This report is for the Mid-Atlantic Fishery Management Council (MAFMC). The purpose of this report is to synthesize ecosystem information to allow the MAFMC to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized on pages 1 and 2, with highlights of 2024 ecosystem events on page 3. The information in this report is organized into two main sections; [performance measured against ecosystem-level management objectives](#performance-relative-to-fishery-management-objectives) (Table \ref{tab:management-objectives}), and potential [risks to meeting fishery management objectives](#risks-to-meeting-fishery-management-objectives) ((Table \ref{tab:management-risks}): [climate change](#climate-and-ecosystem-change) and [other ocean uses](#other-ocean-uses-offshore-wind)). A final section highlights [notable 2024 ecosystem observations](#highlights). 
 
 ## Report structure
 
+A glossary of terms^[https://noaa-edab.github.io/tech-doc/glossary.html], detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc], indicator data^[https://noaa-edab.github.io/ecodata/], and detailed indicator descriptions^[https://noaa-edab.github.io/catalog/index.html]  are available online. We recommend new readers first review the details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding guilds (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) provided at the end of the document. 
+
 The two main sections contain subsections for each management objective or potential risk. Within each subsection, we first review observed trends for indicators representing each objective or risk, including the status of the most recent data year relative to a threshold (if available) or relative to the long-term average. Second, we identify potential drivers of observed trends, and synthesize results of indicators related to those drivers to outline potential implications for management. For example, if there are multiple drivers related to an indicator trend, do indicators associated with the drivers have similar trends, and can any drivers be affected by management action(s)? We emphasize that these implications are intended to represent testable hypotheses at present, rather than “answers,” because the science behind these indicators and syntheses continues to develop.
 
-A glossary of terms^[https://noaa-edab.github.io/tech-doc/glossary.html], detailed technical methods documentation^[https://NOAA-EDAB.github.io/tech-doc], indicator data^[https://noaa-edab.github.io/ecodata/], and detailed indicator descriptions^[https://noaa-edab.github.io/catalog/index.html]  are available online. We recommend new readers first review the details of standard figure formatting (Fig. \ref{fig:docformat}a), categorization of fish and invertebrate species into feeding guilds (Table \ref{tab:species-groupings}), and definitions of ecological production units (EPUs, including the Mid-Atlantic Bight, MAB; Fig. \ref{fig:docformat}b) provided at the end of the document. 
 
 ```{r management-objectives, ft.arraystretch = 1}
 
 mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
-                                                 "Profits","Recreation",
+                                                 "Commercial Profits","Recreational Opportunities",
                                                  "Stability","Social & Cultural",
                                                  "Protected Species",
-                                                 "Biomass","Productivity",
-                                                 "Trophic structure","Habitat"),
+                                                 "Management","Biomass"
+                                                 #,"Productivity",
+                                                 #"Trophic structure","Habitat"
+                                                 ),
 "Indicators reported" = c("Landings; commercial total and by feeding guild; recreational harvest",
                                "Revenue decomposed to price and volume",
                                "Angler trips; recreational fleet diversity",
                                "Diversity indices (fishery and ecosystem)",
-                               "Community engagement/reliance and environmental justice status",
+                               "Community fishing engagement and social vulnerability status",
                                "Bycatch; population (adult and juvenile) numbers; mortalities",
-                               "Biomass or abundance by feeding guild from surveys",
-                               "Condition and recruitment of managed species, primary productivity",
-                               "Relative biomass of feeding guilds, zooplankton",
-                               "Estuarine and offshore habitat conditions"))
+                               "Stock status; catch compared with catch limits",
+                               "Biomass or abundance by feeding guild from surveys"#,
+                               #"Condition and recruitment of managed species, primary productivity",
+                               #"Relative biomass of feeding guilds, zooplankton",
+                               #"Estuarine and offshore habitat conditions"
+                          ))
 
 # knitr::kable(mng_obj, linesep = "",
 #       col.names = c("Objective Categories","Indicators reported"),
@@ -102,8 +107,8 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
 #   pack_rows("Provisioning and Cultural Services", 1,6) %>%
 #   pack_rows("Supporting and Regulating Services", 7,10)
 
-mng_obj$service <- c(rep("Provisioning and Cultural Services", 6), 
-                     rep("Supporting and Regulating Services", 4))
+mng_obj$service <- c(rep("Objectives: Provisioning and Cultural Services", 6), 
+                     rep("Potential Drivers: Supporting and Regulating Services", 2))
 
 flextable::as_grouped_data(mng_obj, groups = "service") %>% 
   flextable::as_flextable(hide_grouplabel=TRUE) %>% 
@@ -117,6 +122,62 @@ flextable::as_grouped_data(mng_obj, groups = "service") %>%
 
 
 ```
+ 
+```{r management-risks, ft.arraystretch = 1}
+
+FitFlextableToPage <- function(ft, pgwidth = 6){
+
+  ft_out <- ft %>% autofit()
+
+  ft_out <- width(ft_out, width = dim(ft_out)$widths*pgwidth /(flextable_dim(ft_out)$widths))
+  return(ft_out)
+}
+
+mng_obj <- data.frame("Risks" = c("Risks to Managing Spatially",
+                                  "Risks to Managing Seasonally",
+                                  "Risks to Setting Catch Limits",
+                                  "Offshore Wind Risks"),
+                      "Observation Indicators" = c("Managed species (fish and cetacean) distribution shifts",
+                                                   "Managed species spawning and migration timing changes", 
+                                                   "Managed species body condition and recruitment changes",
+                                                   "Fishery revenue and landings from wind lease areas by species and port"),
+                      "Potential Driver Indicators" = c("Benthic and pelagic forage distribution; ocean temperature, changes in currents and cold pool",
+                                                        "Habitat timing: Length of ocean summer, cold pool seasonal persistence",
+                                                        "Benthic and pelagic forage quality & abundance: ocean temperature & acidification ",
+                                                        "Wind development speed; Protected species presence and  hotspots"
+                      ))
+
+# knitr::kable(mng_obj, linesep = "",
+#       col.names = c("Objective Categories","Indicators reported"),
+#       caption = "Ecosystem-scale fishery management objectives in the Mid-Atlantic Bight",
+#       #align = 'c',
+#       booktabs = T) %>%
+#   kable_styling(latex_options = "hold_position", "scale_down") %>%
+#  # column_spec(c(2), width = c("25em")) %>%
+#   row_spec(0, bold = TRUE) %>%
+#  # group_rows("Provisioning/Cultural", 1,4) %>%
+#  # group_rows("Supporting/Regulating", 5,9)
+#   pack_rows("Provisioning and Cultural Services", 1,6) %>%
+#   pack_rows("Supporting and Regulating Services", 7,10)
+
+mng_obj$service <- c(rep("Climate and Ecosystem Risks", 3), 
+                     rep("Other Ocean Uses Risks", 1))
+
+tab <- flextable::as_grouped_data(mng_obj, groups = "service") %>% 
+  flextable::as_flextable(hide_grouplabel=TRUE) %>% 
+  flextable::align(i = ~ !is.na(service), align = "left") %>% 
+  flextable::bold(i = ~ !is.na(service), bold = TRUE) %>%
+  flextable::set_header_labels(Risks = "Risk categories",
+                               Observation.Indicators = "Observation indicators reported",
+                               Potential.Driver.Indicators = "Potential driver indicators reported") %>%
+  flextable::set_caption("Risks to meeting fishery management objectives in the Mid-Atlantic Bight") #%>%
+  #flextable::autofit() 
+  
+FitFlextableToPage(tab)
+
+
+```
+
  
 # Performance Relative to Fishery Management Objectives
 
