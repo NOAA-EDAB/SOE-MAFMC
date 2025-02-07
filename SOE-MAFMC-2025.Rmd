@@ -213,14 +213,18 @@ ecodata::plot_recdat(report = "MidAtlantic", varName ="landings", n=10)
 
 [Recreational shark landings](https://noaa-edab.github.io/catalog/rec_hms.html) show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2022 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. 
 
-```{r rec-hms, fig.cap="Recreational shark landings from Large Pelagics Survey.",  fig.width=5, fig.asp=.35}
+```{r rec-hms, fig.cap="Recreational shark landings from Marine Recreational Information Program (left) and Large Pelagics Survey (right) with declining trends (purple).",  fig.width=8, fig.asp=.35}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"),
 
-ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="MidAtlantic")  +
+a <- ecodata::plot_rec_hms(report="MidAtlantic", n=100)  +
   ggplot2::scale_color_discrete(        
-    limits = c("LargeCoastal", "Pelagic", "Prohibited", "SmallCoastal"),         
-    labels = c("Large Coastal", "Pelagic", "Prohibited", "Small Coastal")
+    limits = c("LargeCoastal",  "Prohibited", "SmallCoastal"),         
+    labels = c("Large Coastal", "Prohibited", "Small Coastal")
     ) 
+
+b <- ecodata::plot_lps_sharks(n=100)
+
+a+b
 ```
 
 Aquaculture production is not yet included in total seafood landings. Available [aquaculture production](https://noaa-edab.github.io/catalog/aquaculture.html) of oysters for a subset of Mid-Atlantic states indicates a decline in recent years.
@@ -247,10 +251,17 @@ a$p + ggplot2::coord_cartesian(xlim=c(0,2), ylim=c(0,2))
 #                             xmin=0.8, xmax=1.8, ymin=1.5, ymax=2)
 
 ```
-**ADD BLUELINE TILEFISH, CHUB MACKEREL**
+
 ```{r unkstocks}
 
-flextable::flextable(a$unknown) |>
+nostatus <- data.frame(Stock = c("Blueline tilefish - Mid-Atlantic Coast", "Chub mackerel - Atlantic"),
+                       F.Fmsy = c(NA, NA),
+                       B.Bmsy = c(NA, NA))
+
+stocktab <- a$unknown |>
+  dplyr::bind_rows(nostatus)
+
+flextable::flextable(stocktab) |>
   flextable::set_header_labels(F.Fmsy = "F/Fmsy",
                                B.Bmsy = "B/Bmsy") |>
   flextable::colformat_num(na_str = "-") |>
