@@ -3,16 +3,16 @@ title:
 csl: plos.csl
 fontsize: 10pt
 output:
-  bookdown::word_document2:
-    toc: false
-  bookdown::html_document2: 
-    df_print: paged
   bookdown::pdf_document2:
     includes:
       in_header: latex/header1.tex
     keep_tex: yes
     toc: false
     number_sections: false
+  bookdown::html_document2: 
+    df_print: paged
+  bookdown::word_document2:
+    toc: false
 link-citations: yes
 geometry: left=2cm, right=2cm, top=2cm, bottom=3cm, footskip = .5cm
 subparagraph: yes
@@ -474,286 +474,21 @@ Changes in fishing activity between years changed community engagement and relia
 
 #ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial") 
 
-dat <- read.csv(here::here("data-raw/fishdata_2022_CSVI_1-23-2025.csv"))
+a <- ecodata::plot_engagement()
 
-dat$GEO_NAME <- replace(dat$GEO_NAME,
-        dat$GEO_NAME=="Port Clyde-Tenants Harbor/Saint George/Spruce Head, ME",
-        "Port Clyde-Tenants Harbor, ME")
+a$p
 
+```
 
-dat$GEO_NAME <- replace(dat$GEO_NAME,
-                        dat$GEO_NAME=="Sandwich/East Sandwich/Forestdale, MA",
-                        "Sandwich, MA")
-
-
-dat$GEO_NAME <- replace(dat$GEO_NAME,
-                        dat$GEO_NAME=="Reedville/District 5 (Northumberland County), VA",
-                        "Reedville, VA*")
-
-##reorder ranks
-dat$ComEng_ct <- 
-  factor(dat$ComEng_ct, levels=c("high", "med high", "med", "low"))
-dat$ComRel_ct <- 
-  factor(dat$ComRel_ct, levels=c("high", "med high", "med", "low"))
-dat$RecEng_ct <- 
-  factor(dat$RecEng_ct, levels=c("high", "med high", "med", "low"))
-dat$RecRel_ct <- 
-  factor(dat$RecRel_ct, levels=c("high", "med high", "med", "low"))
-dat$poverty_rank <- 
-  factor(dat$poverty_rank, levels=c("high", "med high", "med", "low"))
-dat$pop_composition_rank <- 
-  factor(dat$pop_composition_rank, levels=c("high", "med high", "med", "low"))
-dat$personal_disruption_rank <- 
-  factor(dat$personal_disruption_rank, levels=c("high", "med high", "med", "low"))
-
-#make data numeric
-dat$ComEng <- as.numeric(dat$ComEng)
-dat$ComRel <- as.numeric(dat$ComRel)
-dat$RecEng <- as.numeric(dat$RecEng)
-dat$RecRel <- as.numeric(dat$RecRel)
-
-#remove NA
-dat_com_e<-dat[!is.na(dat$ComEng),]
-dat_com_r<-dat[!is.na(dat$ComRel),]
-dat_rec_e<-dat[!is.na(dat$RecEng),]
-dat_rec_r<-dat[!is.na(dat$RecRel),]
-
-#remove low scores
-dat_com_e_nolow<-dat_com_e[!(dat_com_e$ComEng_ct=='low'),]
-dat_com_r_nolow<-dat_com_r[!(dat_com_r$ComRel_ct=='low'),]
-dat_rec_e_nolow<-dat_rec_e[!(dat_rec_e$RecEng_ct=='low'),]
-dat_rec_r_nolow<-dat_rec_r[!(dat_rec_r$RecRel_ct=='low'),]
-
-#subset Mid Atlantic
-
-dat_com_e_MA <- dat_com_e[(dat_com_e$STATEABBR=='NY' | 
-                             dat_com_e$STATEABBR=='PA'| 
-                             dat_com_e$STATEABBR=='NJ'| 
-                             dat_com_e$STATEABBR=='DE'| 
-                             dat_com_e$STATEABBR=='MD'| 
-                             dat_com_e$STATEABBR=='VA'| 
-                             dat_com_e$STATEABBR=='NC'), ]
-
-dat_com_e_nolow_MA <- dat_com_e_nolow[(dat_com_e_nolow$STATEABBR=='NY' | 
-                                         dat_com_e_nolow$STATEABBR=='PA'| 
-                                         dat_com_e_nolow$STATEABBR=='NJ'| 
-                                         dat_com_e_nolow$STATEABBR=='DE'| 
-                                         dat_com_e_nolow$STATEABBR=='MD'| 
-                                         dat_com_e_nolow$STATEABBR=='VA'| 
-                                         dat_com_e_nolow$STATEABBR=='NC'),]
-
-dat_com_r_MA <- dat_com_r[(dat_com_r$STATEABBR=='NY' | 
-                             dat_com_r$STATEABBR=='PA'| 
-                             dat_com_r$STATEABBR=='NJ'| 
-                             dat_com_r$STATEABBR=='DE'| 
-                             dat_com_r$STATEABBR=='MD'| 
-                             dat_com_r$STATEABBR=='VA'| 
-                             dat_com_r$STATEABBR=='NC'),]
-
-dat_com_r_nolow_MA <- dat_com_r_nolow[(dat_com_r_nolow$STATEABBR=='NY' | 
-                                         dat_com_r_nolow$STATEABBR=='PA'| 
-                                         dat_com_r_nolow$STATEABBR=='NJ'| 
-                                         dat_com_r_nolow$STATEABBR=='DE'| 
-                                         dat_com_r_nolow$STATEABBR=='MD'| 
-                                         dat_com_r_nolow$STATEABBR=='VA'| 
-                                         dat_com_r_nolow$STATEABBR=='NC'),]
-
-
-dat_rec_e_MA <- dat_rec_e[(dat_rec_e$STATEABBR=='NY' | 
-                             dat_rec_e$STATEABBR=='PA'| 
-                             dat_rec_e$STATEABBR=='NJ'| 
-                             dat_rec_e$STATEABBR=='DE'| 
-                             dat_rec_e$STATEABBR=='MD'| 
-                             dat_rec_e$STATEABBR=='VA'| 
-                             dat_rec_e$STATEABBR=='NC'),]
-
-dat_rec_e_nolow_MA <- dat_rec_e_nolow[(dat_rec_e_nolow$STATEABBR=='NY' | 
-                                         dat_rec_e_nolow$STATEABBR=='PA'| 
-                                         dat_rec_e_nolow$STATEABBR=='NJ'| 
-                                         dat_rec_e_nolow$STATEABBR=='DE'| 
-                                         dat_rec_e_nolow$STATEABBR=='MD'| 
-                                         dat_rec_e_nolow$STATEABBR=='VA'| 
-                                         dat_rec_e_nolow$STATEABBR=='NC'),]
-
-dat_rec_r_MA <- dat_rec_r[(dat_rec_r$STATEABBR=='NY' | 
-                             dat_rec_r$STATEABBR=='PA'| 
-                             dat_rec_r$STATEABBR=='NJ'| 
-                             dat_rec_r$STATEABBR=='DE'| 
-                             dat_rec_r$STATEABBR=='MD'| 
-                             dat_rec_r$STATEABBR=='VA'| 
-                             dat_rec_r$STATEABBR=='NC'),]
-
-dat_rec_r_nolow_MA <- dat_rec_r_nolow[(dat_rec_r_nolow$STATEABBR=='NY' | 
-                                         dat_rec_r_nolow$STATEABBR=='PA'| 
-                                         dat_rec_r_nolow$STATEABBR=='NJ'| 
-                                         dat_rec_r_nolow$STATEABBR=='DE'| 
-                                         dat_rec_r_nolow$STATEABBR=='MD'| 
-                                         dat_rec_r_nolow$STATEABBR=='VA'| 
-                                         dat_rec_r_nolow$STATEABBR=='NC'),]
-
-
-
-# logic: category gets the max indicator rank, I think this is how EJ works
-# ignore this not using it right now
-commsocvulrank <- dat |>
-  #dplyr::filter(REGION=="Northeast") |>
-  dplyr::mutate(across(25:32, ~ case_when(   #stringr::str_detect("_rank")
-                  . == "low" ~ "1",
-                  . == "med" ~ "2",
-                  . == "med high" ~ "3",
-                  . == "high" ~ "4",
-                  TRUE ~ NA_character_
-                ))) |>
-  dplyr::rowwise() |>
-  dplyr::mutate(EJrank = max(as.numeric(personal_disruption_rank), 
-                             as.numeric(pop_composition_rank), 
-                             as.numeric(poverty_rank)),
-                Econrank = max(as.numeric(labor_force_str_rank),
-                               as.numeric(housing_characteristics_rank)),
-                Gentrank = max(as.numeric(housing_disrupt_rank),
-                               as.numeric(retiree_migration_rank),
-                               as.numeric(urban_sprawl_index_rank)))
-
-
-MA_com_plot <- dat |>
-  dplyr::filter(STATEABBR %in% c("DE", "MD", "NJ", "NY", "NC", "PA", "VA")) |>
-  ggplot2::ggplot(ggplot2::aes(x=ComEng, y=ComRel)) + 
-  ggplot2::geom_point(shape=1, 
-             size=1.4, stroke=0.9, alpha=0.6, 
-             ggplot2::aes(color=ComEng_ct))+
-  ggplot2::scale_color_manual(values = c("high" = "navy",
-                                "med high"="slateblue3",
-                                "med"="skyblue",
-                                "low"="gray"))+
-             #aes(color=as.factor(EJrank)))+
-  #ggplot2::scale_colour_viridis_d(direction = -1) +
-  # ggplot2::scale_color_manual(values = c(4 ="firebrick4",
-  #                               3="darkorange1",
-  #                               2="goldenrod1",
-  #                               1="gray")) +
-  ggplot2::theme_bw()+
-  ggplot2::ylim(-3,20)+
-  ggplot2::xlim(-1,10)+
-  ggplot2::theme(#text = element_text(size=10),
-        #plot.title = element_text(size=9, vjust=-7.5, hjust=0.01),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        legend.position = "bottom")+
-  ggplot2::ylab(expression(paste("Relative Commercial Engagement Index", italic(" (factor score)"))))+
-  ggplot2::xlab(expression(paste("Commercial Engagement Index", italic(" (factor score)"))))+
-  ggplot2::guides(color=guide_legend(title="Engagement Score Rank"))+
-  ggrepel::geom_label_repel(aes(label = ifelse(ComEng>2,as.character(GEO_NAME),ifelse(ComRel>1.28,as.character(GEO_NAME),''))),
-                   size=2,
-                   box.padding   = 0.4, 
-                   point.padding = 0,
-                   segment.color = 'grey50',
-                   min.segment.length = 0.01,
-                   max.overlaps=Inf,
-                   label.size = NA,
-                   fill = alpha(c("white"),0.1))+
-  ggplot2::ggtitle("engagement index")
-
-MA_com_poverty <- ggplot(dat_com_e_MA %>% filter(poverty_rank == "high"|
-                                                   poverty_rank == "med high"|
-                                                   poverty_rank =="med"), 
-                         aes(x=ComEng, y=ComRel)) + 
-  geom_point(shape=1, 
-             size=1.4, stroke=0.9, alpha=0.6, 
-             aes(color=poverty_rank, ))+
-  scale_color_manual(values = c("high" = "firebrick4",
-                                "med high"="darkorange1",
-                                "med"="goldenrod1",
-                                "low"="skyblue2")) +
-  theme_bw()+
-  ylim(-3,20)+
-  xlim(-1,10)+
-  theme(text = element_text(size=9),
-        plot.title = element_text(size=8, vjust=-5, hjust=0.01),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        legend.position="none")+
-  ggrepel::geom_label_repel(aes(label = ifelse(ComEng>2,as.character(GEO_NAME),ifelse(ComRel>1.28,as.character(GEO_NAME),''))),
-                   size=1.6,
-                   force=2.5,
-                   box.padding   = 0.4, 
-                   point.padding = 0,
-                   segment.color = 'grey50',
-                   min.segment.length = 0.01,
-                   max.overlaps=Inf,
-                   label.size = NA,
-                   fill = alpha(c("white"),0.1))+
-  ggtitle("poverty index")
-
-MA_com_pers <- ggplot(dat_com_e_MA %>% filter(personal_disruption_rank == "high"|personal_disruption_rank == "med high"|personal_disruption_rank =="med"), aes(x=ComEng, y=ComRel)) + 
-  geom_point(shape=1, 
-             size=1.4, stroke=0.9, alpha=0.6, 
-             aes(color=personal_disruption_rank, ))+
-  scale_color_manual(values = c("high" = "firebrick4",
-                                "med high"="darkorange1",
-                                "med"="goldenrod1",
-                                "low"="skyblue2")) +
-  theme_bw()+
-  ylim(-3,20)+
-  xlim(-1,10)+
-  theme(text = element_text(size=9),
-        plot.title = element_text(size=8, vjust=-7.5, hjust=0.01),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        legend.position="none")+
-  ggrepel::geom_label_repel(aes(label = ifelse(ComEng>2,as.character(GEO_NAME),ifelse(ComRel>1.28,as.character(GEO_NAME),''))),
-                   size=1.6,
-                   force=2.5,
-                   box.padding   = 0.4, 
-                   point.padding = 0,
-                   segment.color = 'grey50',
-                   min.segment.length = 0.01,
-                   max.overlaps=Inf,
-                   label.size = NA,
-                   fill = alpha(c("white"),0.1))+
-  ggtitle("personal disruption index")
-
-
-MA_com_pop <- ggplot(dat_com_e_MA %>% filter(pop_composition_rank == "high"| 
-                                               pop_composition_rank == "med high"|
-                                               pop_composition_rank =="med"), 
-                     aes(x=ComEng, y=ComRel)) + 
-  geom_point(shape=1, 
-             size=1.4, stroke=0.9, alpha=0.6, 
-             aes(color=pop_composition_rank, ))+
-  scale_color_manual(values = c("high" = "firebrick4",
-                                "med high"="darkorange1",
-                                "med"="goldenrod1",
-                                "low"="skyblue2")) +
-  theme_bw()+
-  ylim(-3,20)+
-  xlim(-1,10)+
-  theme(text = element_text(size=9),
-        plot.title = element_text(size=8, vjust=-7.5, hjust=0.01),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        legend.position="right")+
-  guides(color=guide_legend(title="Vulnerability\nIndicator\nScore Rank"))+
-  ggrepel::geom_label_repel(aes(label = ifelse(ComEng>2,as.character(GEO_NAME),ifelse(ComRel>1.28,as.character(GEO_NAME),''))),
-                   size=1.6,
-                   force=2.5,
-                   box.padding   = 0.4, 
-                   point.padding = 0,
-                   segment.color = 'grey50',
-                   min.segment.length = 0.01,
-                   max.overlaps=Inf,
-                   label.size = NA,
-                   fill = alpha(c("white"),0.1))+
-  ggtitle("population composition index")
-
-
-MA_com_plot + (MA_com_poverty / MA_com_pers / MA_com_pop) +
-  plot_layout(ncol=2, widths = c(5,2))
+```{r comvultab}
+flextable::flextable(a$t) |>
+  flextable::set_header_labels(personal_disruption_rank = "Personal Disruption",
+                               pop_composition_rank = "Population Composition",
+                               poverty_rank = "Poverty") |>
+  flextable::colformat_num(na_str = "-") |>
+  flextable::set_caption("Social vulnerability rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in commercial fishing, 2022. Blank spaces indicate no data available.") |>
+  flextable::autofit() 
+  
 ```
 
 Scores for environmental justice concerns remain similar for communities based on 2020 and 2021 data, with top commercial ports (Fig. \ref{fig:commercial-EJ}) showing more concerns than top recreational ports overall (Fig. \ref{fig:recreational-EJ}).  Atlantic City, NJ ranks highest for all three environmental justice concerns. There is variability in the specific issues facing communities with environmental justice concerns.  Higher scores in population composition indicate community vulnerability related to the presence of non-white, non-English speaking, and younger populations. 
@@ -769,152 +504,22 @@ Scores for environmental justice concerns remain similar for communities based o
 
 ####Mid-Atlantic Recreational Engagement####
 
-MA_rec_plot <- ggplot(dat_rec_e_MA, aes(x=RecEng, y=RecRel)) + 
-  geom_point(shape=1, 
-             size=1.4, stroke=0.9, alpha=0.6, 
-             aes(color=RecEng_ct))+
-  scale_color_manual(values = c("high" = "navy",
-                                "med high"="slateblue3",
-                                "med"="skyblue",
-                                "low"="gray")) +
-  theme_bw()+
-  ylim(-2,25)+
-  xlim(-1,16)+
-  theme(text = element_text(size=10),
-        plot.title = element_text(size=9, vjust=-7.5, hjust=0.01),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        legend.position = "bottom")+
-  ylab(expression(paste("Population Relative Recreational Engagement Index", italic(" (factor score)"))))+
-  xlab(expression(paste("Recreational Engagement Index", italic(" (factor score)"))))+
-  guides(color=guide_legend(title="Engagement Score Rank"))+
-  ggrepel::geom_label_repel(aes(label = ifelse(RecEng>7,as.character(GEO_NAME),ifelse(RecRel>7,as.character(GEO_NAME),''))),
-                   size=2,
-                   box.padding   = 0.4, 
-                   point.padding = 0,
-                   segment.color = 'grey50',
-                   min.segment.length = 0.01,
-                   max.overlaps=Inf,
-                   label.size = NA,
-                   fill = alpha(c("white"),0.1))+
-  ggtitle("engagement index")
+a <- ecodata::plot_engagement(varName = "Recreational")
+
+a$p
+
+```
 
 
-MA_rec_poverty <- ggplot(dat_rec_e_MA %>% filter(poverty_rank == "high"|
-                                                   poverty_rank == "med high"|
-                                                   poverty_rank =="med"), aes(x=RecEng, y=RecRel)) + 
-  geom_point(shape=1, 
-             size=1.4, stroke=0.9, alpha=0.6, 
-             aes(color=poverty_rank, ))+
-  scale_color_manual(values = c("high" = "firebrick4",
-                                "med high"="darkorange1",
-                                "med"="goldenrod1",
-                                "low"="skyblue2")) +
-  theme_bw()+
-  ylim(-2,25)+
-  xlim(-1,16)+
-  theme(text = element_text(size=9),
-        plot.title = element_text(size=8, vjust=-5, hjust=0.01),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        legend.position="none")+
-  ggrepel::geom_label_repel(aes(label = ifelse(RecEng>7,as.character(GEO_NAME),ifelse(RecRel>7,as.character(GEO_NAME),''))),
-                   size=1.6,
-                   force=2.5,
-                   box.padding   = 0.4, 
-                   point.padding = 0,
-                   segment.color = 'grey50',
-                   min.segment.length = 0.01,
-                   max.overlaps=Inf,
-                   label.size = NA,
-                   fill = alpha(c("white"),0.1))+
-  ggtitle("poverty index")
-
-
-
-MA_rec_pers <- ggplot(dat_rec_e_MA %>% filter(personal_disruption_rank == "high"|
-                                                personal_disruption_rank == "med high"|
-                                                personal_disruption_rank =="med"), 
-                      aes(x=RecEng, y=RecRel)) + 
-  geom_point(shape=1, 
-             size=1.4, stroke=0.9, alpha=0.6, 
-             aes(color=personal_disruption_rank, ))+
-  scale_color_manual(values = c("high" = "firebrick4",
-                                "med high"="darkorange1",
-                                "med"="goldenrod1",
-                                "low"="skyblue2")) +
-  theme_bw()+
-  ylim(-2,25)+
-  xlim(-1,16)+
-  theme(text = element_text(size=9),
-        plot.title = element_text(size=8, vjust=-7.5, hjust=0.01),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        legend.position="none")+
-  ggrepel::geom_label_repel(aes(label = ifelse(RecEng>7,as.character(GEO_NAME),ifelse(RecRel>7,as.character(GEO_NAME),''))),
-                   size=1.6,
-                   force=8,
-                   box.padding   = 0.4, 
-                   point.padding = 0,
-                   segment.color = 'grey50',
-                   min.segment.length = 0.01,
-                   max.overlaps=Inf,
-                   label.size = NA,
-                   fill = alpha(c("white"),0.1))+
-  ggtitle("personal disruption index")
-
-
-
-MA_rec_pop <- ggplot(dat_rec_e_MA %>% filter(pop_composition_rank == "high"| 
-                                               pop_composition_rank == "med high"|
-                                               pop_composition_rank =="med"), 
-                     aes(x=RecEng, y=RecRel)) + 
-  geom_point(shape=1, 
-             size=1.4, stroke=0.9, alpha=0.6, 
-             aes(color=pop_composition_rank, ))+
-  scale_color_manual(values = c("high" = "firebrick4",
-                                "med high"="darkorange1",
-                                "med"="goldenrod1",
-                                "low"="skyblue2")) +
-  theme_bw()+
-  ylim(-2,25)+
-  xlim(-1,16)+
-  theme(text = element_text(size=9),
-        plot.title = element_text(size=8, vjust=-7.5, hjust=0.01),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        legend.position="right")+
-  guides(color=guide_legend(title="Vulnerability\nIndicator\nScore Rank"))+
-  ggrepel::geom_label_repel(aes(label = ifelse(RecEng>7,as.character(GEO_NAME),ifelse(RecRel>7,as.character(GEO_NAME),''))),
-                   size=1.6,
-                   force=2.5,
-                   box.padding   = 0.4, 
-                   point.padding = 0,
-                   segment.color = 'grey50',
-                   min.segment.length = 0.01,
-                   max.overlaps=Inf,
-                   label.size = NA,
-                   fill = alpha(c("white"),0.1))+
-  ggtitle("population composition index")
-
-
-
-
-
-#put them together
-#tiff("MA_rec_1-23-25.tiff", units="in", width=8, height=5, res=300)
-
-MA_rec_plot + (MA_rec_poverty / MA_rec_pers / MA_rec_pop) +
-  plot_layout(ncol=2, widths = c(5,2))
-
-#dev.off()
-
+```{r recvultab}
+flextable::flextable(a$t) |>
+  flextable::set_header_labels(personal_disruption_rank = "Personal Disruption",
+                               pop_composition_rank = "Population Composition",
+                               poverty_rank = "Poverty") |>
+  flextable::colformat_num(na_str = "-") |>
+  flextable::set_caption("Social vulnerability rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in recreational fishing, 2022. Blank spaces indicate no data available.") |>
+  flextable::autofit() 
+  
 ```
 
 Both commercial and recreational fishing are important activities in Montauk, NY, Cape May, Barnegat Light and Point Pleasant Beach, NJ; and Rodanthe, NC, meaning these communities may be impacted simultaneously by commercial and recreational regulatory changes. However, in all but Point Pleasant Beach NJ,  environmental justice may not be a major concern in these communities given the index scores (Figs \ref{fig:commercial-EJ} and \ref{fig:recreational-EJ})). Point Pleasant Beach, NJ scored medium for the personal disruption index, indicating that environmental justice may  be a moderate concern in Point Pleasant Beach.
@@ -926,64 +531,7 @@ Coastal fishing communities worldwide have or are likely to experience social, e
 
 ```{r commvulex, fig.width = 7.5, fig.asp=.5, fig.cap="Proportion of Mid-Atlantic communities at each revenue climate vulnerability level over time."}
 
-#CCCVI <- readxl::read_excel("CCCVI-NE/NE_CCCVI_00_22.xlsx", sheet = "NE_CCCVI_Final00_22")
-
-
-
-# CCCVImid <- ecodata::community_climate_vulnerability |> 
-#   dplyr::filter(State %in% c("MD", "NJ", "VA","NY", "NC", "DE")) 
-# 
-# CCCVImid[CCCVImid == 0] <- NA
-
-vulquants <- data.frame(ymin = c(1,1.6,2.6,3.6),
-                        ymax = c(1.5,2.5,3.5,4),
-                        category = c("Low",
-                                     "Moderate",
-                                     "High",
-                                     "Very High"))
-
-risk = c("darkgreen", "yellow3", "orange", "red")
-names(risk) <- c("Low","Moderate","High","Very High")
-
-
-props <- ecodata::community_climate_vulnerability |>
-  dplyr::filter(!is.na(Value), #remove communities with no ranking in a given year
-                Var %in% "vulnSum") |> # hardcoded for total vulnerability
-  #dplyr::select(Time, Port, State, Var) |>
-  dplyr::group_by(Time, EPU) |>
-  dplyr::mutate(commn = n(),
-                vulCat = dplyr::case_when(Value <= 1.5 ~ "Low",
-                                          Value > 3.5 ~ "Very High",
-                                          Value > 1.5 & Value <= 2.5 ~ "Moderate",
-                                          Value > 2.5 & Value <= 3.5 ~ "High")) |>
-  dplyr::group_by(Time, EPU, vulCat) |>
-  dplyr::mutate(catn = n(),
-                propcat = catn/commn)
-
-propsonly <- props |>
-  dplyr::select(Time, vulCat, propcat) |>
-  dplyr::distinct() |>
-  dplyr::filter(EPU == "MAB")
-
-ggplot2::ggplot() + #, group=PORT_NAME
-  #ggplot2::geom_line(aes(group = PORT_NAME), alpha = 0.05) +
-  # ggplot2::geom_rect(data = vulquants,
-  #                    aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
-  #                    alpha = .3) +
-  ggplot2::scale_fill_manual(values=risk) +
-  ggplot2::geom_point(data = propsonly, ggplot2::aes(x=Time, y=propcat, color=vulCat)) +
-  ggplot2::geom_line(data = propsonly, ggplot2::aes(x=Time, y=propcat, color=vulCat)) +
-  ggplot2::scale_color_manual(values=risk, 
-                              breaks=c('Low', 'Moderate', 'High', 'Very High'),
-                              name="Climate Vulnerability") +
-  ggplot2::facet_wrap(~EPU) +
-  ecodata::geom_lm(n=22) + #this doesnt work yet
-  #ggplot2::ylim(1,4) +
-  ggplot2::theme_bw() + 
-  #ggplot2::ggtitle("Mid-Atlantic") +
-  #ggplot2::theme(legend.position = "blank")
-  ggplot2::ylab("Proportion communities")
-
+ecodata::plot_community_climate_vulnerability(n=100)
 ```
 
 
@@ -1312,7 +860,7 @@ LOWEST ARAGONITE SATURATION OBSERVED SINCE MEASUREMENTS STARTED IN 2007
 
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
 
-knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/blob/dev/data-raw/workshop/images/SeasonalBottomAragoniteLongfin-GraceSaba_2025.png?raw=true")
+knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/blob/dev/data-raw/workshop/images/SOE-2025-OA-figure_final_GraceSaba_2025.png?raw=true")
 
 #magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC - Grace Saba.jpg")
 
