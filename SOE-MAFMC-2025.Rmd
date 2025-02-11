@@ -1273,7 +1273,7 @@ c+d
 # a/b
 
 a <- ecodata::plot_zooplankton_index(report = "MidAtlantic", varName = "Lgcopeall", n=10) +  ggplot2::theme(legend.position = "none")
-b <- ecodata::plot_zooplankton_index(report = "MidAtlantic", varName = "Smallcopeall", n=10) +  ggplot2::theme(legend.position = "none")
+b <- ecodata::plot_zooplankton_index(report = "MidAtlantic", varName = "Smallcopeall", n=10) +  ggplot2::theme(legend.position = "bottom")
 c <- ecodata::plot_zooplankton_index(report = "MidAtlantic", varName = "Euph", n=10) +  ggplot2::theme(legend.position = "none")
 
 a+b + c
@@ -1454,27 +1454,41 @@ ecodata::plot_wind_port(report = "MidAtlantic") #+
 
 For example, Atlantic City, NJ had the highest potential revenue loss (minimum of 10\% and maximum of 23\%) from potential wind development areas based on 2008-2022 total port fisheries revenue. BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of communities with environmental justice concerns who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts.
 
-THIS NEEDS AN UPDATE WE DON'T KNOW WHICH COMMUNITIES TO INCLUDE HERE
-
 Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Barnstable, MA, and Point Judith, RI. 
 
 ```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.3, fig.align='left'}
+
+# Email from Abby 30 January 2025
+# Here are the ports that have >=50% of their total revenue coming from species managed outside of the port region:
+# ##  [1] "BARNEGAT LIGHT, NJ"             "BRIELLE, NJ"                   
+# ##  [3] "CAPE MAY, NJ"                   "DAVISVILLE/NORTH KINGSTOWN, RI"
+# ##  [5] "HAMPTON, VA"                    "LONG BEACH (TOWN OF), NJ"      
+# ##  [7] "NEWPORT NEWS, VA"               "POINT JUDITH, RI"              
+# ##  [9] "WILDWOOD, NJ"                   "HYANNIS, MA"                   
+# ## [11] "FAIRHAVEN, MA"                  "MENEMSHA, MA"
+# And here are the ports that have >=50% of their revenue within the WEAs coming from species managed outside of the port region:
+# ##  [1] "BARNEGAT LIGHT, NJ"             "BRIELLE, NJ"                   
+# ##  [3] "CAPE MAY, NJ"                   "DAVISVILLE/NORTH KINGSTOWN, RI"
+# ##  [5] "HAMPTON, VA"                    "LONG BEACH (TOWN OF), NJ"      
+# ##  [7] "NEWPORT NEWS, VA"               "POINT JUDITH, RI"              
+# ##  [9] "POINT LOOKOUT, NY"              "POINT PLEASANT, NJ"            
+# ## [11] "WILDWOOD, NJ"                   "HYANNIS, MA"                   
+# ## [13] "MENEMSHA, MA"
+
 df.symbol <- ecodata::wind_port %>% filter(EPU == "NE", 
                                            !Var %in% c("MaxVal", "TOT_MAX", 
                                                      "perc_MIN", "perc_MAX")) %>% 
    tidyr::pivot_wider( names_from = Var, values_from = Value) %>%
   dplyr::mutate(City = paste0(City,",", State)) %>% 
-  dplyr::filter(City %in% c("Point Judith, RI",
-                          #  "North Kingstown RI",
-                          #  "Boston MA",
-                          #  "Woods Hole MA",
-                          #  "Hyannis MA",
-                            "Barnstable, MA")) %>%
+  dplyr::filter(City %in% c("POINT JUDITH, RI",
+                            "DAVISVILLE/NORTH KINGSTOWN, RI",
+                            "HYANNIS, MA",
+                            "MENEMSHA, MA")) %>%
   dplyr::select(City, EJ, Gentrification) %>% 
   pivot_longer(cols = c(EJ, Gentrification), names_to = "Variable") %>% 
   filter(!value == "NA") %>% 
   dplyr::mutate(symbol = recode(Variable, EJ = -7, Gentrification = -3), 
-                Variable = recode(Variable,"EJ"= "Mid-High to High EJ Concerns" , 
+                Variable = recode(Variable,"EJ"= "Mid-High to High Social-Demographic Concerns" , 
                                   "Gentrification" ="Mid-High to High Gentrificaiton Concerns"))
 
 # Percentage plot
@@ -1487,12 +1501,10 @@ df.all.perc<- ecodata::wind_port %>% filter(EPU == "NE") %>%
                    TOT_MAX = c(100 - perc_dif - perc_MIN)) %>% 
   tidyr::pivot_longer(cols = c(perc_MIN,  perc_dif, TOT_MAX), names_to="Var", values_to = "Value") %>% 
   dplyr::arrange(desc(ordering)) %>%
-  dplyr::filter(City %in% c("Point Judith, RI",
-                            #"North Kingstown RI",
-                            #"Boston MA",
-                            #"Woods Hole MA",
-                            #"Hyannis MA",
-                            "Barnstable, MA")) %>%
+  dplyr::filter(City %in% c("POINT JUDITH, RI",
+                            "DAVISVILLE/NORTH KINGSTOWN, RI",
+                            "HYANNIS, MA",
+                            "MENEMSHA, MA")) %>%
   dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
   dplyr::filter(!Var %in% c("MaxVal", "EJ", "Gentrification")) %>% 
   dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
