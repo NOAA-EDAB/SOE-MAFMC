@@ -429,9 +429,9 @@ ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity", n=10)
 
 #### Ecological Stability
 
-Total [primary production](https://noaa-edab.github.io/catalog/chl_pp.html) (PP) is a measure of the total energy input into a system per year. Total primary production in the Mid Atlantic has no clear trend (Fig. \ref{fig:totpp}), suggesting stability in energy at the base of the food web. 
+Ecological diversity indices show mixed trends. Total annual [primary production](https://noaa-edab.github.io/catalog/chl_pp.html) is a measure of the total amount of carbon (i.e. energy ) produced by phytoplankton per year. Total primary production in the Mid Atlantic Bight has no clear trend (Fig. \ref{fig:totpp}), suggesting stability in energy at the base of the food web. 
 
-```{r totpp, fig.cap="Total areal annual primary production for the MAB. The dashed line represents the long-term (1998-2023) annual mean."}
+```{r totpp, fig.cap="Total areal annual primary production for the MAB. The dashed line represents the long-term (1998-2024) annual mean."}
 
 ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "total") +
   ggplot2::coord_cartesian(ylim = c(1e+07, 4e+07), xlim = c(1998, 2023)) + 
@@ -439,7 +439,7 @@ ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "
   ggplot2::ylab("Carbon (mt)")
 ```
 
-Ecological diversity indices show mixed trends. [Zooplankton diversity](https://noaa-edab.github.io/catalog/zoo_diversity.html) is increasing in the MAB (Fig. \ref{fig:zoo-diversity}). [Adult fish diversity](https://noaa-edab.github.io/catalog/exp_n.html) is measured as the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey. Adult fish diversity indices appear stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
+[Zooplankton diversity](https://noaa-edab.github.io/catalog/zoo_diversity.html) is increasing in the MAB (Fig. \ref{fig:zoo-diversity}), while [adult fish diversity](https://noaa-edab.github.io/catalog/exp_n.html), the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey, appears stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
 
 ```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, Shannon diversity index (black) with significant increase (orange line)."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")
@@ -454,32 +454,44 @@ ecodata::plot_zoo_diversity(report = "MidAtlantic", n=10)
 ecodata::plot_exp_n(report = "MidAtlantic", varName = "fall", n=10)
 ```
 
-Functional traits, such as length at maturity, asymptotic body size, or fecundity, can synthesize change across complex, diverse communities. Monitoring changes in functional trait distributions can provide a means of assessing ecosystem-scale resilience. There was evidence for long term change in trait distributions in the mid-Atlantic Bight. The spring finfish community in the mid-Atlantic Bight is showing long-term shifts towards slower life history strategies with lower fecundity.
+Functional traits, such as length at maturity, maximum body size, or fecundity, can synthesize change across complex, diverse communities. Monitoring changes in functional trait distributions for the fish community can provide a means of assessing ecosystem-scale resilience. There is evidence of long term change in trait distributions in the MAB (Fig. \ref{fig:traits}). The spring finfish community in the MAB is showing long-term shifts towards slower life history strategies with higher length and maturity and lower fecundity. In contrast, the fall MAB finfish community has shifted towards decreased length at maturity, smaller offspring size, and lower trophic level indicative of faster life histories. 
 
-[PLACEHOLDER FIG]
+```{r traits, fig.cap="Fish community functional traits in the Mid Atlantic Bight based on Fall (red) and Spring (blue) survey data. Length at maturity for the full finfish community has increased in spring (orange line), but decreased in fall (purple lines)"}
+
+ecodata::plot_finfish_traits(varName = "length_maturity")
+
+```
+
 
 
 ### Implications
-Fleet diversity indices are used by the MAFMC to evaluate stability objectives as well as risks to fishery resilience and maintaining equity in access to fishery resources. Instability in one commercial fleet diversity metric suggests potentially lower capacity to respond to the current range of fishing opportunities. Commercial species diversity is relatively stable but comparisons are limited by missing clam fishery data prior to 2003.
+Fleet diversity indices are used by the MAFMC in their EAFM risk assessment to evaluate stability objectives as well as risks to fishery resilience and maintaining equity in access to fishery resources. Instability in the commercial fleet count metric suggests potentially lower capacity to respond to the current range of fishing opportunities. Commercial species permit revenue diversity is relatively stable but comparisons are limited by missing clam fishery data prior to 2003.
 
-Declining recreational fleet effort diversity, as noted above, indicates that the party/charter boat sector continues to contract, with shoreside angling becoming more important as a percentage of recreational angler trips. Stability in recreational species catch diversity has been maintained by a different set of species over time. A recent increase in Atlantic States Marine Fisheries Commission (ASMFC) and South Atlantic Fishery Management Council (SAFMC) managed species in recreational catch is helping to maintain diversity in the same range that MAFMC and New England Fishery Management Council (NEFMC) managed species supported in the 1990s.
+Declining recreational fleet effort diversity, as noted above, indicates that the party/charter boat sector continues to contract, with shoreside angling becoming more important as a percentage of recreational angler trips. Stability in recreational species catch diversity has been maintained by a different set of species over time. A recent increase in Atlantic States Marine Fisheries Commission (ASMFC) and South Atlantic Fishery Management Council (SAFMC) managed species in recreational catch is helping to maintain diversity in the same range that MAFMC and New England Fishery Management Council (NEFMC) managed species supported in the 1990s. These changes in effort and species trends may necessitate new or changing management considerations to ensure effective tools and opportunities are in place to support recreational fisheries.
 
-Production at the base of the food web is variable, but stable over time. Ecological diversity indices can provide insight into ecosystem structure. Changes in ecological diversity over time may indicate altered ecosystem structure with implications for fishery productivity and management. Stable adult fish diversity indicates the same overall number and evenness over time, but doesn’t rule out species substitutions (e.g., warm-water replacing cold-water). In addition, the change in survey vessels complicates interpretation of long-term fish diversity trends.
+Production at the base of the food web is variable, but stable over time. Stable adult fish diversity indicates the same overall number and evenness over time, but doesn’t rule out species substitutions (e.g., warm-water replacing cold-water).
 
-In the MAB, existing diversity indicators suggest some instability in the fisheries and ecosystem components examined. In addition, declining recreational fleet diversity suggests a potential loss in the range of recreational fishing opportunities. Increasing zooplankton diversity (due to increases in abundance of several taxa and stable or declining dominance of an important copepod species) suggests a shift in the zooplankton community that warrants continued monitoring to determine if managed species are affected. In addition, the species diversity in commercial landings warrants continued attention given its relatively low index value indicating average reliance on a small number of species for revenue.
+There was evidence for long term change in finfish trait distributions in the mid-Atlantic Bight, with spring and fall communities showing shifts in different directions. This suggests instability in seasonal dominance of fish with faster or slower life histories.
+In the MAB, existing diversity indicators suggest some instability in the fisheries and ecosystem components examined. In addition, declining recreational fleet diversity suggests a potential loss in the range of recreational fishing opportunities. Increasing zooplankton diversity (due to increases in abundance of several taxa and stable or declining dominance of an important copepod species) suggests a shift in the zooplankton community that warrants continued monitoring to determine if managed species are affected. In addition, the species revenue diversity in commercial landings warrants continued attention given its relatively low index value indicating average reliance on a small number of species for revenue.
+
 
 ## Community Social and Climate Vulnerability 
 
-Providing for sustained participation of fishing communities, and avoiding adverse economic impacts to fishing communities are objectives of fishery management. We report the top ten communities most engaged in, and/or reliant upon, commercial and recreational fisheries and the degree to which these communities may be vulnerable to environmental justice issues (i.e., Poverty, Population Composition, and Personal Disruption) using data for the most recent available year (2022). We also compare these results with those presented in previous SOE reports to highlight changes in community status. 
+Providing for sustained participation of fishing communities, and avoiding adverse economic impacts to fishing communities are objectives of fishery management. We report the top communities most engaged in commercial and recreational fisheries and the degree to which these communities may be vulnerable to change based on their socioeconomic conditions using data for the most recent available year (2022).
+
+Coastal fishing communities worldwide have or are likely to experience social, economic, and cultural impacts from climate change, both negative (e.g., loss of infrastructure, fish stock decline) and positive (e.g., increased abundance of valuable species). Changes in marine fisheries as a consequence of climate change will require adaptation by coastal fishing communities and fisheries managers alike. The Community Climate Change Risk Indicators were developed to help examine trends in climate change vulnerability in U.S. coastal fishing communities in the Northeast Region using indicators developed to understand fishing community level risk to climate change as based on species dependency. 
+
 
 ### Indicators: Fishing Engagement and Community Social Vulnerability
 
-The [engagement](https://noaa-edab.github.io/catalog/engagement.html) indices demonstrate the importance of commercial and recreational fishing to a given community relative to other coastal communities in a region. Social vulnerability indicators measure social factors that shape a community’s ability to adapt to change. A subset of these factors can be used to assess potential environmental justice issues. Similarly to the engagement and reliance indicators, the environmental justice indices characterize different facets and levels of social vulnerability in a given community relative to other coastal communities in a region. 
+The [engagement](https://noaa-edab.github.io/catalog/engagement.html) indices demonstrate the importance of commercial and recreational fishing to a given community relative to other coastal communities in a region. Social vulnerability indicators measure social factors that shape a community’s ability to adapt to change.  For this report, we focus on top communities with the highest engagement scores, the top communities with the highest population relative engagement scores, and on three socio-demographic indicators within the CSVI toolset (poverty, personal disruption, population composition). 
 
-Changes in fishing activity between years changed community engagement and reliance rankings. The largest change from last year’s report is that Hatteras and Hobucken, NC are no longer listed as top ten commercial fishing communities, replaced by Hampton, VA; Swan Quarter, NC; Bowers and Little Creek, DE (Fig.\ref{fig:commercial-engagement}).  Manteo, Vandemere, and Hobuken, NC are no longer listed as top ten recreational communities, replaced by Cape May and Barnegat Light, NJ; Orient, NY; Topsail Beach, Avon and Rodanthe, NC (Fig.\ref{fig:recreational-engagement}). 
+In 2022, Cape May, NJ; Reedville, VA; and Montauk, NY were the most engaged commercial fishing communities. Barnegat Light, NJ is much more engaged in commercial fishing relative to its population size when compared to other communities in the Mid-Atlantic  (Fig.\ref{fig:commercial-engagement}). Cape May, NJ also ranked medium on the population composition index (calculated based on proportions of non-white, non-English speaking, and younger populations) and Atlantic City, NJ ranked high for all socio-demographic indicators suggesting that this important commercial fishing community may be more vulnerable to change in the future (Table \ref{tab:comvultab}). 
+ 
+ Manteo, Vandemere, and Hobuken, NC are no longer listed as top ten recreational communities, replaced by Cape May and Barnegat Light, NJ; Orient, NY; Topsail Beach, Avon and Rodanthe, NC (Fig.\ref{fig:recreational-engagement}). 
 
  
-```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 0.85, results='hide'}
+```{r commercial-engagement, fig.cap= "Commercial engagement and population relative engagement, with labels for the top commercially engaged fishing communities in the Mid-Atlantic. *Due to changes in data infrastructure, data from Reedville, VA was combined with data from ‘Other VA' and 'Other Northumberland’.", fig.width = 7, fig.asp = 0.85, results='hide'}
 #Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
@@ -499,14 +511,15 @@ flextable::flextable(a$t) |>
                                pop_composition_rank = "Population Composition",
                                poverty_rank = "Poverty") |>
   flextable::colformat_num(na_str = "-") |>
-  flextable::set_caption("Social vulnerability rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in commercial fishing, 2022. Blank spaces indicate no data available.") |>
+  flextable::set_caption("Socio-demographic indicator rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in commercial fishing, 2022. Blank spaces indicate no data available.") |>
   flextable::autofit() 
   
 ```
 
-Scores for environmental justice concerns remain similar for communities based on 2020 and 2021 data, with top commercial ports (Fig. \ref{fig:commercial-EJ}) showing more concerns than top recreational ports overall (Fig. \ref{fig:recreational-EJ}).  Atlantic City, NJ ranks highest for all three environmental justice concerns. There is variability in the specific issues facing communities with environmental justice concerns.  Higher scores in population composition indicate community vulnerability related to the presence of non-white, non-English speaking, and younger populations. 
+Several communities ranked in the top communities for both commercial and recreational indices; Montauk, NY, Cape May, NJ, Barnegat Light, NJ, Point Pleasant Beach, NJ, Ocean City, MD, and Wachapreague, VA (Fig. \ref{fig:recreational-engagement}), meaning these communities may be impacted simultaneously (to a greater degree than others) by commercial and recreational regulatory changes. Of those included in the top-ranked recreational communities, both Bivalve, MD and Morehead City, NC had medium or higher ranks for two of three socio-demographic indicators examined here (Table \ref{tab:recvultab}). This suggests that future changes to recreational fishing conditions may disproportionately impact these places.
 
-```{r recreational-engagement, fig.cap= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 0.85, results='hide'}
+
+```{r recreational-engagement, fig.cap= "Recreational engagement and population relative engagement with labels for the top recreationally engaged fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 0.85, results='hide'}
 #Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
@@ -530,7 +543,7 @@ flextable::flextable(a$t) |>
                                pop_composition_rank = "Population Composition",
                                poverty_rank = "Poverty") |>
   flextable::colformat_num(na_str = "-") |>
-  flextable::set_caption("Social vulnerability rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in recreational fishing, 2022. Blank spaces indicate no data available.") |>
+  flextable::set_caption("Socio-demographic indicator rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in recreational fishing, 2022. Blank spaces indicate no data available.") |>
   flextable::autofit() 
   
 ```
@@ -540,7 +553,7 @@ Both commercial and recreational fishing are important activities in Montauk, NY
 
 ### Indicators: Community Climate Vulnerability in the Mid-Atlantic
 
-Coastal fishing communities worldwide have or are likely to experience social, economic, and cultural impacts from climate change, both negative (e.g., loss of infrastructure, fish stock decline) and positive (e.g., increased abundance of valuable species). Changes in marine fisheries as a consequence of climate change will require adaptation by coastal fishing communities and fisheries managers alike. The Community Climate Change Vulnerability Indicators were developed to help examine trends in climate change vulnerability in U.S. coastal fishing communities in the Northeast Region using indicators developed to understand fishing community level risk to climate change as based on species dependency.
+The Community Climate Change Risk Indicators are calculated by multiplying the percent contribution of species to the total value landed in a community by their respective Total Vulnerability scores (based on NOAA’s Climate Vulnerability Assessment) for different sensitivity and exposure factors and then summing the resulting values by year. As a community (or region) shifts towards climate vulnerable species, its risk score increases. While there is not a long-term trend in total climate vulnerability across Mid Atlantic communities as a whole, a majority of communities rank either high or very high risk (Fig. \ref{fig:commvulex}). This suggests that a majority of Mid-Atlantic communities depend on climate vulnerable species to generate commercial fishery revenue.
 
 ```{r commvulex, fig.width = 7.5, fig.asp=.5, fig.cap="Proportion of Mid-Atlantic communities at each revenue climate vulnerability level over time."}
 
@@ -549,18 +562,17 @@ ecodata::plot_community_climate_vulnerability(n=100)
 
 
 ### Implications
-A range of socioeconomic and climate vulnerability concerns are found throughout Mid-Atlantic fishing communities. However, index scores for socioeconomic concerns are higher overall in the top commercial communities relative to the top recreational communities. 
+A range of socioeconomic and climate vulnerability concerns are found throughout Mid-Atlantic fishing communities. These indicators provide a snapshot of the presence of socio-demographic concerns in most highly engaged commercial and recreational fishing communities in the Mid-Atlantic. These communities may be especially vulnerable to changes in fishing patterns due to regulations and/or ecosystem changes. Several of these top fishing communities, both commercial and recreational fishing communities, demonstrated medium to high socio-demographic vulnerability, indicating that they may be at a disadvantage responding to change.
 
-These indicators provide a snapshot of the presence of socioeconomi issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be especially vulnerable to changes in fishing patterns due to regulations and/or climate change. Some changes occurred among the top fishing communities due to shifts in fishing activities, both commercial and recreational. Many of these communities, especially top commercial fishing communities, demonstrated medium to high environmental justice vulnerability, indicating that they may be at a disadvantage when responding to change.
-
-There is evidence that a majority of Mid-Atlantic communities have high to very high revenue climate vulnerability. Coastal fishing communities are greatly affected by climate change, both because of their physical location and because of their frequent social, cultural, and economic dependence on fishing. These impacts are expected to become more pressing as climatic changes become more extensive. Changes in ocean temperature and acidification affecting marine life have the potential to directly impact fisheries and fishery dependent livelihoods. 
+There is evidence that a majority of Mid-Atlantic communities have high to very high total climate vulnerability based on revenue. Coastal fishing communities are greatly affected by climate change, both because of their physical location and because of their frequent social, cultural, and economic dependence on fishing. These impacts are expected to become more pressing as climatic changes become more extensive. Changes in ocean temperature and acidification affecting marine life have the potential to directly impact fisheries and fishery dependent livelihoods.  
 
 
 ## Protected Species
-Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration. Protected species include marine mammals protected under the Marine Mammal Protection Act, endangered and threatened species protected under the Endangered Species Act, and migratory birds protected under the Migratory Bird Treaty Act. In the Northeast U.S., endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, and five baleen whales. Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs). Here we report on performance relative to these objectives with available indicator data, as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast U.S. 
+Fishery management objectives for protected species generally focus on reducing threats and on habitat conservation/restoration. Protected species include marine mammals protected under the Marine Mammal Protection Act, endangered and threatened species protected under the Endangered Species Act, and migratory birds protected under the Migratory Bird Treaty Act. In the Northeast U.S., endangered/threatened species include Atlantic salmon, Atlantic and shortnose sturgeon, all sea turtle species, giant manta ray, oceanic whitetip shark, and five baleen whales. Protected species objectives include managing bycatch to remain below potential biological removal (PBR) thresholds, recovering endangered populations, and monitoring unusual mortality events (UMEs). Here we report on performance relative to these objectives with available indicator data, as well as indicating the potential for future interactions driven by observed and predicted ecosystem changes in the Northeast U.S.  
 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
 Average indices for both [harbor porpoise](https://noaa-edab.github.io/catalog/harborporpoise.html) (Fig. \ref{fig:harborporpoise}) and [gray seal](https://noaa-edab.github.io/catalog/grayseal.html) bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives. 
+
 ```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).", fig.width=5}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R")
 #fig.width=6}
@@ -568,7 +580,8 @@ Average indices for both [harbor porpoise](https://noaa-edab.github.io/catalog/h
 ecodata::plot_harborporpoise()
 ```
 
-The annual estimate for gray seal bycatch has declined since 2019, in part driven by declining gillnet landings. In addition, estimates since 2019 have greater uncertainty stemming from low observer coverage since 2019. The rolling mean confidence interval remains just below the PBR threshold.
+The annual estimate for gray seal bycatch, most of which occurs in New England, has declined since 2019, in part driven by declining gillnet landings. In addition, estimates since 2019 have greater uncertainty stemming from low observer coverage in some times and areas since 2019. The rolling mean confidence interval remains just below the PBR threshold. 
+
 ```{r grayseal, fig.cap="Gray Seal average bycatch estimate for gillnet fisheries (blue) and and the potential biological removal (red).", fig.width=5}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R")
 #fig.width=6}
@@ -576,27 +589,30 @@ The annual estimate for gray seal bycatch has declined since 2019, in part drive
 ecodata::plot_grayseal()
 ```
 
-The [North Atlantic right whale population](https://noaa-edab.github.io/catalog/narw.html) was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:narw-abundance}). The sharp decline observed from 2015-2020 appears to have slowed, although the right whale population continues to experience annual mortalities above recovery thresholds. Reduced survival rates of adult females lead to diverging abundance trends between sexes. It is estimated that there are fewer than 70 adult females remaining in the population.  
+The [North Atlantic right whale population](https://noaa-edab.github.io/catalog/narw.html) was on a recovery trajectory until 2010, but has since declined (Fig. \ref{fig:narw-abundance}). The sharp decline observed from 2015-2020 appears to have slowed, although the right whale population continues to experience annual mortalities above recovery thresholds. Reduced survival rates of adult females lead to diverging abundance trends between sexes. It is estimated that there are fewer than 70 adult females remaining in the population.
+
 ```{r narw-abundance, fig.cap = "Estimated North Atlanic right whale abundance on the Northeast Shelf."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")
 
 ecodata::plot_narw(varName = "adult", n=10) + ggplot2::ggtitle("North Atlantic right whale abundance")
 ```
-North Atlantic right whale [calf counts](https://noaa-edab.github.io/catalog/narw.html) have generally declined after 2009 to the point of having zero new calves observed in 2018 (Fig. \ref{fig:NARW-calf-abundance}). However, since 2019, we have seen more calf births each year with 15 births in 2022.
+North Atlantic right whale [calf counts](https://noaa-edab.github.io/catalog/narw.html) have generally declined after 2009 to the point of having zero new calves observed in 2018 (Fig. \ref{fig:NARW-calf-abundance}). However, since 2020, calf births have been closer to the long-term average.
+
 ```{r NARW-calf-abundance, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2022."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")
 
 ecodata::plot_narw(varName = "calf", n=10) + ggplot2::ggtitle("North Atlantic right whale calf abundance")
 ```
 
-This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. From 2017 through 16 February 2024, the total UME right whale mortalities includes 38 dead stranded whales, 17 in the US and 21 in Canada. When alive but seriously injured whales (34) and sublethal injuries or ill whales (51) are taken into account, 123 individual whales are included in the UME. Recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities. The primary cause of death is “human interaction” from entanglements or vessel strikes.
+This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. From 2017 through 2 January 2025, the total UME right whale mortalities includes 41 dead stranded whales, 17 in the US and 21 in Canada. When alive but seriously injured whales (39) and sublethal injuries or ill whales (71) are taken into account, 151 individual whales are included in the UME. Recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities. The primary cause of death is “human interaction” from entanglements or vessel strikes.
 
-A UME continued from previous years for humpback whales (2016-present) and Atlantic minke whales (2018-present); suspected causes include human interactions. A UME for Northeast pinnipeds that began in 2018 for infectious disease is pending closure as of February 2024.
+A UME continued from previous years for humpback whales (2016-present) and Atlantic minke whales (2018-present); suspected causes include human interactions. A UME for Northeast pinnipeds that began in 2018 for infectious disease is pending closure as of February 2025.
+
 
 ### Implications
-Bycatch management measures have been implemented to maintain bycatch below PBR thresholds. The downward trend in harbor porpoise bycatch could also be due to a decrease in harbor porpoise abundance in U.S. waters, reducing their overlap with fisheries, and a decrease in gillnet effort. The increasing trend in gray seal bycatch may be related to an increase in the gray seal population ([U.S. pup counts](https://noaa-edab.github.io/catalog/seal_pups.html)), supported by the dramatic rise over the last three decades in observed numbers of gray seal pups born at U.S. breeding sites plus an increase in adult seals at the breeding sites, some of which are supplemented by Canadian adults. 
+Bycatch management measures have been implemented to maintain bycatch below PBR thresholds. The downward trend in harbor porpoise bycatch could also be due to a decrease in harbor porpoise abundance in U.S. waters, reducing their overlap with fisheries, and a decrease in gillnet effort. The increasing trend in gray seal bycatch may be related to an increase in the gray seal population ([U.S. pup counts](https://noaa-edab.github.io/catalog/seal_pups.html)), supported by the dramatic rise over the last three decades in observed numbers of gray seal pups born at U.S. breeding sites plus an increase in adult seals at the breeding sites, some of which are supplemented by Canadian adults.
 
-Strong evidence exists to suggest that interactions between right whales and both the fixed gear fisheries in the U.S. and Canada and vessel strikes in the U.S. are contributing substantially to the decline of the species. Further, right whale distribution has changed since 2010. [New research](https://noaa-edab.github.io/catalog/narw.html) suggests that recent climate driven changes in ocean circulation have resulted in right whale distribution changes driven by increased warm water influx through the Northeast Channel, which has reduced the primary right whale prey (the copepod Calanus finmarchicus) in the central and eastern portions of the Gulf of Maine. Additional potential stressors include offshore wind development, which overlaps with important habitat areas used year-round by right whales, including mother and calf migration corridors and foraging habitat. This area is also the only known right whale winter foraging habitat. Additional information can be found in the  [offshore wind risks section](#other-ocean-uses-offshore-wind).
+Strong evidence exists to suggest that interactions between right whales and both the fixed gear fisheries in the U.S. and Canada and vessel strikes in the U.S. are contributing substantially to the decline of the species. Further, right whale distribution has changed since 2010. [Recent research](https://noaa-edab.github.io/catalog/narw.html) suggests that recent climate driven changes in ocean circulation have resulted in right whale distribution changes driven by increased warm water influx through the Northeast Channel, which has reduced the primary right whale prey (the copepod *Calanus finmarchicus*) in the central and eastern portions of the Gulf of Maine. Additional potential stressors include offshore wind development, which overlaps with important habitat areas used year-round by right whales, including mother and calf migration corridors and foraging habitat. This area is also the only known right whale winter foraging habitat. Additional information can be found in the [offshore wind risks section](#other-ocean-uses-offshore-wind).
 
 The UMEs are under investigation and are likely the result of multiple drivers. For all large whale UMEs, human interaction appears to have contributed to increased mortalities, although investigations are not complete.
 
