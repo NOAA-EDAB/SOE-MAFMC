@@ -624,14 +624,16 @@ A climate vulnerability assessment is published for Atlantic and Gulf of Mexico 
 
 Regulations and measures designed to meet fishery management objectives are often based on historical information about stocks, their distribution in space and time, and their overall productivity. Large scale climate related changes in the ecosystem can lead to changes in important habitats and ecological interactions, altering distributions and productivity. With large enough ecosystem changes, management measures may be less effective, and management objectives may not be met.
 
-This year, we have restructured this section to focus on three categories of management decisions and the risk posed to them by climate and ecosystem change: spatial management, seasonal management, and quota setting or rebuilding depleted stocks. In each section, we describe potential risks to a management category, highlight indicators of observed changes that contribute to those risks, review possible biological and environmental drivers and the ways they may explain the observed indicators, and raise potential future implications if these trends persist or change. 
+This section  focuses on three categories of management decisions and the risk posed to them by climate and ecosystem change: managing spatially, managing seasonally, and setting catch limits. In each section, we describe potential risks to a management category, highlight indicators of observed changes that contribute to those risks, review possible biological and environmental drivers and the ways they may explain the observed indicators, and raise potential future implications if these trends persist or change.
 
-### Risks to Spatial Management
+### Risks to Managing Spatially
 
-Shifting species distributions (changes in spatial extent or center of gravity) alter both species interactions and fishery interactions. In particular, shifting species distributions can affect expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions. Species availability to surveys can also change as distributions shift within survey footprints.
+Shifting species distributions (changes in spatial extent or center of gravity) alter both species interactions and fishery interactions. In particular, shifting species distributions can affect expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions. Species availability to surveys can also change as distributions shift within survey footprints, complicating the interpretation of survey trends.
+
+Coastwide indicators are reviewed in this section to evaluate spatial change throughout the Northeast US shelf. Indicators are identical between the Mid Atlantic and New England reports.
 
 #### Indicators: Fish and protected species distribution shifts
-As noted in the [Landings Implications section above](#implications), the center of [distribution](https://noaa-edab.github.io/catalog/species_dist.html) for a suite of 48 commercially or ecologically important fish species along the entire Northeast Shelf continues to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:species-dist}). 
+As noted in the [Seafood Production Implications section above](#implications), the center of [distribution](https://noaa-edab.github.io/catalog/species_dist.html) for a suite of 48 commercially or ecologically important fish species combined along the entire Northeast Shelf continues to show movement towards the northeast and generally into deeper water (Fig. \ref{fig:species-dist}). Distribution shifts have been noted for several [highly migratory species](https://noaa-edab.github.io/catalog/species_dist.html), including sharks, billfish and tunas between 2002 and 2019. 
   
 ```{r species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem: along shelf distance with increasing trend (orange), and depth with decreasing trend indicating deeper water (purple).", fig.width = 8, fig.asp=0.3}
 
@@ -654,26 +656,20 @@ ecodata::plot_cetacean_dist() + ggplot2::ggtitle("Whale and Dolphin Distribution
 
 #### Drivers: 
 
-Mobile populations shift distributions to maintain suitable temperature and prey fields, possibly expanding ranges if new suitable habitat exists.   Changes in managed species distribution is related, in part, to the [distribution of forage biomass](https://noaa-edab.github.io/catalog/forage_index.html). Since 1982, the fall center of gravity of forage fish (20 species combined) has moved to the north and east (Fig. \ref{fig:forageshifts}). Spring forage fish center of gravity has been more variable over time. 
+Mobile populations shift distributions to maintain suitable temperature and prey fields, possibly expanding ranges if new suitable habitat exists. Changes in managed species distribution is related, in part, to the [distribution of forage biomass](https://noaa-edab.github.io/catalog/forage_index.html). Since 1982, the fall center of gravity of forage fish (20 species combined) has moved to the north and east (Fig. \ref{fig:forageshifts}). Spring forage fish center of gravity has been more variable over time.  [Small copepods](https://noaa-edab.github.io/catalog/zooplankton_index.html#key-results-and-visualizations-4), widespread prey of many larval and juvenile fish, show a similar shift in center of gravity as forage fish, to the north and east in the fall, as well as northward in spring. 
 
 ```{r forageshifts, fig.cap="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf, with increasing trend (orange) for fall eastward and northward center of gravity.", fig.width = 8, fig.asp = .3}
 
 ecodata::plot_forage_index(varName = "cog", n=10)
 ```
 
-ADD COG FOR BENTHOS AND ZOOPLANKTON?
+In contrast, macrobenthos center of gravity has shifted westward. Macrobenthos are small bottom-dwelling invertebrates including polychaete worms, small crustaceans, bivalves (non-commercial), gastropods, nemerteans, tunicates, cnidarians, brittle stars, sea cucumbers, and sand dollars, and are prey for many managed species. [Large copepods](https://noaa-edab.github.io/catalog/zooplankton_index.html#key-results-and-visualizations-4) have a similar pattern to macrobenthos, trending westward in fall.
 
-In contrast, macrobenthos center of gravity has shifted westward. Macrobenthos are small bottom-dwelling invertebrates including polychaete worms, small crustaceans, bivalves (non-commercial), gastropods, nemerteans, tunicates, cnidarians, brittle stars, sea cucumbers, and sand dollars. Large copepods have a similar pattern to macrobenthos (link to catalog).
 ```{r macrobenthosshifts, fig.alt="Eastward (left) and northward (right) shifts in the center of gravity for macrobenthos species on the Northeast U.S. Shelf", fig.width = 8,fig.asp = .3}
 #, fig.asp = .3
 ecodata::plot_benthos_index(plottype = "cog", varName = "Macrobenthos", n=10)+ ggplot2::coord_cartesian(xlim = c(1982, 2022))
 ```
 
-While small Copepods center of gravity from ECOMON shows generally similar shifts to forage fish, [link to catalog dont need to show this].
-```{r Smcopeshifts, fig.alt="Eastward (left) and northward (right) shifts in the center of gravity for small copepod species on the Northeast U.S. Shelf", fig.width = 8,fig.asp = .3}
-#, fig.asp = .3
-ecodata::plot_zooplankton_index(plottype = "cog", varName = "Smallcopeall", n=10)+ ggplot2::coord_cartesian(xlim = c(1982, 2022))
-```
 
 Ocean temperatures influence the distribution, seasonal timing, and productivity of managed species (see sections below). The Northeast US shelf, including the Mid-Atlantic, has experienced a continued warming trend for both the [long term](https://noaa-edab.github.io/catalog/long_term_sst.html) (Fig. \ref{fig:long-term-sst}) and [recent surface](https://noaa-edab.github.io/catalog/seasonal_oisst_anom.html) and [bottom](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) in all seasons.
 
@@ -683,16 +679,16 @@ ecodata::plot_long_term_sst(n=10)
 ```
 
 
-Species suitable habitat can expand or contract when changes in temperature and major oceanographic conditions alter distinct water mass habitats.The variability of the Gulf Stream is a major driver of the predominant oceanographic conditions of the Northeast U.S. continental shelf. As the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) has become less stable and shifted northward in the last decade (Fig. \ref{fig:GSI}), warmer ocean temperatures have been observed on the northeast shelf and a higher proportion of [Warm Slope Water](https://noaa-edab.github.io/catalog/slopewater.html) has been present in the Northeast Channel.
+Species suitable habitat can expand or contract when changes in temperature and major oceanographic conditions alter distinct water mass habitats.The variability of the Gulf Stream is a major driver of the predominant oceanographic conditions of the Northeast U.S. continental shelf. As the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) has become less stable and shifted northward in the last decade (Fig. \ref{fig:GSI}), warmer ocean temperatures have been observed on the northeast shelf and a higher proportion of [Warm Slope Water](https://noaa-edab.github.io/catalog/slopewater.html) has been present in the Northeast Channel. Since 2008, the Gulf Stream has moved closer to the Grand Banks, reducing the supply of cold, fresh, and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf. In 2024, however, conditions changed with a shift in the Gulf Stream and increased Labrador Slope water entering the Gulf of Maine, resulting in colder and fresher conditions throughout the Northwest Atlantic (see [2024 Highlights](#2024-Highlights)).
 
-```{r GSI, fig.cap = "Index representing changes in the location of the western Gulf Stream north wall (black). Positive values represent a more northerly Gulf Stream position, with increasing trend (orange)."}
+```{r GSI, fig.cap = "Index representing changes in the location of the western (between 64 and 55 degrees W) Gulf Stream north wall (black). Positive values represent a more northerly Gulf Stream position, with increasing trend (orange)."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")
 
 ecodata::plot_gsi(varName = "westgsi", n=10)
 ```
 
 
-Changes in ocean temperature and circulation alter habitat features such as the seasonal [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html), a band of relatively cold near-bottom water from spring to fall over the  northern MAB. The cold pool represents essential fish spawning and nursery habitat, and affects fish distribution and behavior. The cold pool has been getting warmer and smaller over time (Fig. \ref{fig:cold-pool-size}). The spatial extent (or area) of the seasonal cold pool is decreasing over time, yet the interannual variability of cold pool area has increased.
+Changes in ocean temperature and circulation alter habitat features such as the seasonal [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html), a band of relatively cold near-bottom water from spring to fall over the  northern MAB. The cold pool represents essential fish spawning and nursery habitat, and affects fish distribution and behavior. The cold pool has been getting warmer and smaller over time (Fig. \ref{fig:cold-pool-size}). The spatial extent (or area) of the seasonal cold pool is decreasing over time, yet the interannual variability of cold pool area has increased. The spatial extent (or area) of the seasonal cold pool is decreasing over time, yet the interannual variability of cold pool area has increased. In 2024, however, the cold pool index and extent were near the long-term average, likely due to the influx of Labrador Slope and Scotian Shelf waters into the system.
 
 ```{r cold-pool-size, fig.cap="Seasonal cold pool mean temperature (left) and spatial extent index (right), based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles), with declining trends (purple).", fig.width = 7.5, fig.asp = 0.3, results='hide'}
 #,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
@@ -705,37 +701,37 @@ a+b
 
 #### Future Considerations 
 
-Distribution shifts caused by changes in thermal habitat are likely to continue as long as long-term temperature trends persist. Near-term oceanographic forecasts are currently in development and may inform how future warming impacts species distributions.
+Distribution shifts caused by changes in thermal habitat and ocean circulation are likely to continue as long as long-term trends persist. Episodic and short-term events (see observation highlights) may increase variability in the trends, however species distributions are unlikely to reverse to historical ranges in the short term. Increased mechanistic understanding of distribution drivers is needed to better understand future distribution shifts: species with high mobility or short lifespans react differently from immobile or long lived species. 
 
-Distribution patterns associated with climate-driven changes in ocean circulation are also unlikely to be reversed to historical ranges in the short term. Increased oceanographic variability needs to be captured by regional ocean models and linked to species distribution processes to better understand potential future distributions. Species with high mobility or short lifespans react differently from immobile or long lived species.
+Long-term oceanographic projections forecast a temporary pause in warming over the next decade due to internal variability in circulation and a southward shift of the Gulf Stream. Near-term forecasts are being evaluated to determine how well they are able to predict episodic and anomalous events that are outside of the long-term patterns.
 
-Adapting management to changing stock distributions and dynamic ocean processes will require continued monitoring of populations in space and evaluating management measures against a range of possible future spatial distributions. Processes like the [East Coast Climate Scenario Planning](https://www.mafmc.org/climate-change-scenario-planning) can help coordinate management.
+Adapting management to changing stock distributions and dynamic ocean processes will require continued monitoring of populations in space and evaluating management measures against a range of possible future spatial distributions. Processes like the [East Coast Climate Scenario Planning](https://www.mafmc.org/climate-change-scenario-planning),and subsequent formation of the [East Coast Climate Coordination Group](https://www.mafmc.org/e3cg), can help coordinate management.
 
 
-### Risks to Seasonal Management
+### Risks to Managing Seasonally
 
-The effectiveness of seasonal management actions (fishing seasons or area opening/closing) depends on a proper alignment with the seasonal life cycle events (phenology) of fish stocks (e.g. migration timing and spawning). Changes in the timing of these biological cycles can reduce the effectiveness of management measures if not accounted for. The timing of seasonal patterns can also change the interactions between fisheries and non-target species thus influencing the amount of bycatch and the availability of species to surveys. 
+The effectiveness of seasonal management actions (fishing seasons or area opening/closing) depends on a proper alignment with the seasonal life cycle events (phenology) of fish stocks (e.g. migration timing and spawning). Changes in the timing of these biological cycles can reduce the effectiveness of management measures if not accounted for. The timing of seasonal patterns can also change the interactions between fisheries and non-target species thus influencing the amount of bycatch and the availability of species to surveys.
 
 #### Indicators: Timing shifts
 
-[Spawning timing](https://noaa-edab.github.io/catalog/spawn_timing.html) is shifting earlier for multiple stocks, including haddock and yellowtail flounder. Spawning of both haddock stocks occurred earlier in the year, as indicated by more resting (post-spawning) stage fish in the 2010s as compared to earlier in the time series (Fig. \ref{fig:spawntiming}). The northern (CC/GOM) stock shows earlier active spawning in recent years with a decline in pre-spawning resting females.The recent increase in resting females in the southern (SNE) stock also indicates a shift to earlier spawning (i.e. more post-spawn fish). Yellowtail flounder spawning is related to bottom temperature, week of year, and decade sampled for each of the three stocks.
+[Spawning timing](https://noaa-edab.github.io/catalog/spawn_timing.html) is shifting earlier for multiple stocks, including haddock and yellowtail flounder. Spawning of both haddock stocks occurred earlier in the year, as indicated by more resting (post-spawning) stage fish in the 2010s as compared to earlier in the time series (Fig. \ref{fig:spawntiming}). The northern (Cape Cod/GOM) yellowtail flounder stock shows earlier active spawning in recent years with a decline in pre-spawning resting females.The recent increase in resting females in the southern (SNE) stock also indicates a shift to earlier spawning (i.e. more post-spawn fish). Yellowtail flounder spawning is related to bottom temperature, week of year, and decade sampled for each of the three stocks.
 
-```{r spawntiming, fig.cap="Percent resting stage (non-spawning) mature female fish (black) with significant increases (orange) and decreases (purple) from two haddock and three yellowtail flounder stocks: CC = Cape Cod Gulf of Maine, GOM = Gulf of Maine, GB = Georges Bank, SNE = Southern New England. ", fig.width = 7, fig.asp=.5}
+```{r spawntiming, fig.cap="Percent resting stage (non-spawning) mature female fish (black) from spring NEFSC bottom trawl survey with significant increases (orange) and decreases (purple) from two haddock and three yellowtail flounder stocks: CC = Cape Cod Gulf of Maine, GOM = Gulf of Maine, GB = Georges Bank, SNE = Southern New England. ", fig.width = 7, fig.asp=.5}
 
 ecodata::plot_spawn_timing(n=10) + ggplot2::ggtitle("Spring Resting Maturity Stage")
 
 ```
 
-[Migration timing](https://noaa-edab.github.io/catalog/timing_shifts.html) of some tuna and large whale migrations has changed. For example, tuna were caught in recreational fisheries 50 days earlier in the year in 2019 compared to 2002. In Cape Cod Bay, peak spring habitat use by right and humpback whales has shifted 18-19 days later over time. 
+[Migration timing](https://noaa-edab.github.io/catalog/timing_shifts.html) of some tuna and large whale migrations has changed. An analysis of recreational fishing data between 2019 and 2022 identified multiple shifts in important HMS species. For example, Bigeye tuna were caught 50 days earlier; small and large bluefin tuna were caught 38 and 80 days earlier respectively in Massachusetts; and blue marlin in New York were caught 27 days earlier. In Cape Cod Bay, peak spring habitat use by right and humpback whales has shifted 18-19 days later over time.
 
-Understanding whether seasonal patterns are changing for stocks requires regular observations throughout the year.  Despite the importance of understanding seasonal patterns,  we have few indicators that directly assess timing shifts of species. We plan on incorporating more indicators of timing shifts and phenology in future reports.
+Understanding whether seasonal patterns are changing for stocks requires regular observations throughout the year. For example, baseline work on [cetacean presence in Southern New England](https://noaa-edab.github.io/catalog/cetacean_acoustic.html) shows different seasonal use patterns for whale and dolphin species. Despite the importance of understanding seasonal patterns,  we have few indicators that directly assess timing shifts of species. We plan on incorporating more indicators of timing shifts and phenology in future reports.
 
 
 #### Drivers: 
 
-The drivers of timing shifts in managed stocks are generally coupled to shifts in environmental or biological conditions, since these can result in changes in habitat quality or food availability within the year. Changes in the timing of fall phytoplankton blooms and seasonal shifts in zooplankton communities are thought to be critical indicators of changes in seasonal food availability to stocks. 
+The drivers of timing shifts in managed stocks are generally coupled to shifts in environmental or biological conditions, since these can result in changes in habitat quality or food availability within the year. Changes in the timing of fall phytoplankton blooms and seasonal shifts in zooplankton communities are indicators of changes in seasonal food availability to stocks.
 
-Along with the overall warming trends in the Mid Atlantic, ocean summer conditions have been lasting longer, as shown by the later [transition](https://noaa-edab.github.io/catalog/trans_dates.html) from warm stratified summer conditions to well mixed cool fall conditions (Fig. \ref{fig:transition}). Changes in the broad seasonal cycles of their environment can lead to changes in species biological processes (migrations, spawning, etc.) that are triggered by seasonal events.  
+Along with the overall warming trends in the Mid-Atlantic, ocean summer conditions have been lasting longer (Fig. \ref{fig:transition}) due to the later [transition](https://noaa-edab.github.io/catalog/trans_dates.html) rom warm summer conditions to cooler fall temperatures. These transition dates relate how daily temperatures compare to the seasonal norm. Changes in the timing of seasonal environmental cycles can alter biological processes (migrations, spawning, etc.) that are triggered by seasonal events.  
 
 ```{r transition, fig.cap="Ocean summer length in the MAB: the annual total number of days between the spring thermal transition date and the fall thermal transition date (black), with an increasing trend (orange)."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")
@@ -747,7 +743,7 @@ ecodata::plot_trans_dates(varName = "length", n=10) + ggplot2::ggtitle("Time bet
 )
 ```
 
-The [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html) is a seasonal feature within the MAB that creates seasonally suitable habitat for many species. In 8 of the past 10 years, cold pool persistence has been well below average, so this habitat was available for a shorter portion of the year  (Fig. \ref{fig:cold-pool-time}). A change in the timing of the cold pool may impact the recruitment of species that depend on it for juvenile habitat, such as yellowtail flounder.
+The [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html) s a summer to early fall feature within the MAB that creates seasonally suitable habitat for some species. Cold pool persistence, a measure of how long this feature is present in a given year, has been declining, so this habitat is available for a shorter portion of the year (Fig. \ref{fig:cold-pool-time}). All cold pool indices were near the long-term average in 2024 and likely related to the influx of northern waters into the system (see [2024 Highlights section](#2024-Highlights)). A change in the timing of the autumn breakdown of the cold pool may impact the recruitment of species that depend on it for habitat, such as juvenile yellowtail flounder.  
 
 ```{r cold-pool-time, fig.cap="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.width = 3.5, fig.asp=.5, results='hide'}
 #, fig.width = 5,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
@@ -756,16 +752,25 @@ ecodata::plot_cold_pool(varName = "persistence", n=10)
 
 ```
 
+The seasonal timing of Mid-Atlantic phytoplankton blooms shows high interannual variability during the fall bloom period (October-December).  The significant increase in January chlorophyll suggests that the fall bloom period is continuing into the winter, with more chlorophyll now than in the late 1990s. The significant decrease of chlorophyll in September could be related to warmer temperatures persisting into early fall and increased nutrient limitation.
+
+```{r montlychl, fig.width=14, fig.height=8, fig.cap="Monthly median chlorophyll a concentration in the MAB (black) with significant increase in January (orange line) and decrease in September (purple line)."}
+
+ecodata::plot_chl_pp(plottype = "monthly", n=100) 
+
+```
+
+
 #### Future Considerations
 
-For stocks reliant on environmental processes to dictate the timing of their behavior (e.g. phytoplankton bloom timing, thermal transition, or the duration of the cold pool), it is possible that some changes are episodic and have interannual variability, while other effects on timing can change on scales of years to decades. However, other species may rely on the general seasonal succession of their environment, which exhibits long-term trends unlikely to reverse in coming years. For those species, timing shifts in migration or spawning may continue. Management actions that rely on effective alignment of fisheries availability and biological processes should continue to evaluate whether prior assumptions on seasonal timings still hold, and new indicators should be developed to monitor timing shifts for stocks.
+For species  reliant on environmental processes to dictate the timing of their behavior (e.g. phytoplankton bloom timing, thermal transition, or the duration of the cold pool), it is possible that some changes are episodic and have interannual variability, while other timing effects can change on scales of years to decades. Other species may rely on the general seasonal succession of environmental drivers (e.g. the timing of the fall turnover) to cue biological processes, and these long-term trends are unlikely to reverse in coming years. Such timing shifts in migration or spawning may continue. Management actions that rely on effective alignment of fisheries availability and biological processes should continue to evaluate whether prior assumptions on seasonal timings still hold, and new indicators should be developed to monitor timing shifts for stocks.
 
-### Risks to Quota Setting/Rebuilding
+### Risks to Setting Catch Limits 
 
-The efficacy of short-term stock projections and rebuilding plans rely on an accurate understanding of processes affecting stock growth, reproduction, and natural mortality. These biological processes are often driven by underlying environmental change. When observed environmental change occurs, there is a risk that established stock-level biological reference points may no longer reflect the current population. 
+The efficacy of short-term stock projections and rebuilding plans rely on accurate understanding of processes affecting stock growth, reproduction, and natural mortality. These biological processes are often driven by underlying environmental change. When observed environmental change occurs, there is a risk that established stock-level biological reference points may no longer reflect the current population and short-term projections become more uncertain.
 
 #### Indicators: Fish productivity and condition shifts
-Indicators of [fish productivity](https://noaa-edab.github.io/catalog/productivity_anomaly.html) are derived from observations (surveys) or models (stock assessments). Fish productivity has been declining in the Mid-Atlantic since the early 2000s, as described by the small-fish-per-large-fish anomaly indicator (derived from NEFSC bottom trawl survey) (Fig. \ref{fig:productivity-anomaly}). This decline in fish productivity is also shown by a similar analysis based on stock assessment model outputs (recruitment per spawning stock biomass anomaly).
+Indicators of [fish productivity](https://noaa-edab.github.io/catalog/productivity_anomaly.html) are derived from observations (surveys) or models (stock assessments). Fish productivity has been declining in the Mid-Atlantic since the early 2000s, as described by the small-fish-per-large-fish anomaly indicator (derived from NEFSC bottom trawl survey) (Fig. \ref{fig:productivity-anomaly}). This decline in fish productivity is also shown by a similar analysis based on stock assessment model outputs (recruitment per spawning stock biomass anomaly).  
 
 ```{r productivity-anomaly, fig.cap = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Mid-Atlantic Bight. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in the Mid-Atlantic. The summed anomaly across species is shown by the black line, drawn across all years with the same number of stocks analyzed.", fig.width=8, fig.asp=0.6}
 #out.width='49%', fig.show='hold',
@@ -785,7 +790,7 @@ a + b
 
 ```
 
-The health of individual fish (i.e. fish condition) can contribute to population productivity through improved growth, reproduction and survival. [Fish condition](https://noaa-edab.github.io/catalog/condition.html) in the MAB was generally good prior to 2000, poor from 2001-2010 (concurrent with declines in productivity, Fig. \ref{fig:productivity-anomaly}), and a mix of good and poor since 2011. In 2023, condition was mixed, with general improvement since a relatively low condition year in 2021 (Fig. \ref{fig:mab-cf}). Preliminary analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
+The health of individual fish (i.e. fish condition, measured as weight for a given length) can contribute to population productivity through improved growth, reproduction and survival. [Fish condition](https://noaa-edab.github.io/catalog/condition.html) in the MAB was generally good prior to 2000, poor from 2001-2010 (concurrent with declines in productivity, Fig. \ref{fig:productivity-anomaly}), and a mix of good and poor since 2011. In 2024, condition continued to be mixed, with general improvement since a relatively low condition year in 2021 (Fig. \ref{fig:mab-cf}). Preliminary analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
 
 ```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", fig.width=9}
 
@@ -800,32 +805,31 @@ ecodata::plot_condition() +
 
 #### Drivers: 
 
-Fish productivity and condition are affected by increasing metabolic demands from increasing temperature, combined with changes in the availability and quality of prey.  Long-term environmental trends and episodic extreme temperatures, ocean acidification, and low oxygen events represent multiple stressors that can affect growth rates, reproductive success, recruitment, and cause mortality.
+Fish productivity and condition are affected by increasing metabolic demands from increasing temperature, combined with changes in the availability and quality of prey. Long-term environmental trends and episodic extreme temperatures, ocean acidification, and low oxygen events represent multiple stressors that can affect growth rates, reproductive success, recruitment, and cause mortality.
 
 ##### Biological Drivers: Forage quality and abundance
-The amount of forage fish available in the ecosystem combined with the energy content of the forage species determines the amount of energy potentially available to predators in the ecosystem. Changes in the forage base can drive managed and protected species production. 
+The amount of forage fish available in the ecosystem combined with the energy content of the forage species determines the amount of energy potentially available to predators in the ecosystem. Changes in the forage base can drive managed and protected species production.
 
-The [energy content](https://noaa-edab.github.io/catalog/energy_density.html) of juvenile and adult forage fish as prey is related to forage fish growth and reproductive cycles, as well as environmental conditions.  The energy content of Atlantic herring from the NEFSC trawl surveys has increased recently (Fig. \ref{fig:energy-density}) but is still well below that observed in the 1980s and 1990s. Silver hake, longfin squid (Loligo in figure) and shortfin squid (Illex in figure) remain lower than previous estimates.
+The [energy content](https://noaa-edab.github.io/catalog/energy_density.html) of juvenile and adult forage fish as prey is related to forage fish growth and reproductive cycles, as well as environmental conditions. The energy content of Atlantic herring was estimated to be highest of any forage species in the 1980s and 1990s, based on very small numbers of fish. Most observations from the NEFSC trawl surveys are below the previous estimates (Fig. \ref{fig:energy-density}). However, a recent study that included samples from additional sources indicated herring energy density peaked in summer, with some values closer to the historic estimates.Silver hake, longfin squid (Loligo in figure) and shortfin squid (Illex in figure) remain lower than previous estimates.
+
   
-```{r energy-density, fig.cap="Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line) and 1990s (dashed line) values.",  fig.width = 7.5, fig.asp = 0.5}
+```{r energy-density, fig.cap="Energy density (mean and standard deviation) of eight forage species from NEFSC bottom trawl surveys by season and year, compared with limited data available from the 1980s (solid line) and 1990s (dashed line)",  fig.width = 7.5, fig.asp = 0.5}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"),
 
 ecodata::plot_energy_density()
 ```
 
 Changes in the overall abundance of forage fish can influence managed species productivity as it relates to changes in food availability. A spatially-explicit [forage index](https://noaa-edab.github.io/catalog/forage_index.html) for the Mid-Atlantic shows a long term declining trend in fall, with higher forage biomass in fall than spring (Fig. \ref{fig:foragebio}). Forage biomass was highest during fall in the early-1980s.   
+
 ```{r foragebio, fig.cap = "Forage fish index in the MAB for spring (blue) and fall (red) surveys, with a decline (purple) in fall. Index values are relative to the maximum observation within a region across surveys.", fig.asp=.6}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R")
 
 ecodata::plot_forage_index(n=10)
 ```
 
-ADD BENTHOS FORAGE HERE?
+[Benthic invertebrates](https://noaa-edab.github.io/catalog/benthos_index.html) are extremely important forage for some managed species (black sea bass, yellowtail and winter flounders, Atlantic cod, and haddock, and many skate species). Macrobenthos indices show long term declines in spring (Fig. \ref{fig:benthos}). In contrast, megabenthos indices show long-term increases in spring in the MAB.
 
-Benthic invertebrates are extremely important forage for some managed species (Black Sea Bass,...) Macrobenthos indices show long term declines in spring. In contrast, Megabenthos indices show long term increases in spring in the MAB.
-
-
-```{r benthos, fig.alt="Changes in benthos abundance in the MAB for megabenthos (left) and macrobenthos (right).", fig.width=7.5, fig.asp=.45}
+```{r benthos, fig.cap="Changes in spring (blue) and fall (red) benthos abundance in the MAB for megabenthos (left) and macrobenthos (right).", fig.width=7.5, fig.asp=.45}
 
 c <- ecodata::plot_benthos_index(report = "MidAtlantic", varName = "Megabenthos", n=10) +  ggplot2::theme(legend.position = "bottom")
 d <- ecodata::plot_benthos_index(report = "MidAtlantic", varName = "Macrobenthos", n=10) +  ggplot2::theme(legend.position = "none")
@@ -837,11 +841,11 @@ c+d
 
 ##### Biological Drivers: Lower trophic levels
 
-[Phytoplankton](https://noaa-edab.github.io/catalog/chl_pp.html) are the foundation of the food web and are the primary food source for zooplankton and filter feeders such as shellfish. Numerous environmental and oceanographic factors affect the abundance, [size composition](https://noaa-edab.github.io/catalog/phyto_size.html), spatial distribution, and productivity of phytoplankton. While changes in fish productivity (including forage) could result from changing primary productivity, total primary production in the Mid Atlantic has no clear trend (Fig. \ref{fig:totpp}).
+[Phytoplankton](https://noaa-edab.github.io/catalog/chl_pp.html) are the foundation of the food web and are the primary food source for zooplankton and filter feeders such as shellfish. Multiple environmental and oceanographic drivers affect the abundance, [composition](https://noaa-edab.github.io/catalog/phyto_size.html), spatial distribution, and productivity of phytoplankton. While changes in phytoplankton productivity could affect fish productivity (including forage), there is no clear long-term trend in Mid-Atlantic total primary production (Fig. \ref{fig:totpp}).
 
-[Zooplankton](https://noaa-edab.github.io/catalog/zoo_abundance_anom.html) communities in the Mid-Atlantic have increasing trends for krill (euphausiids; Fig. \ref{fig:zoopanom}) with recent decreasing trends for smaller bodied copepods. Small copepods are less energy-rich than Eupausiids (krill) or the larger-bodied copepod *Calanus finmarchicus*. A changing mix of zooplankton prey can impact forage fish energy content and abundance, as well as the prey field of filter feeding whales. 
+[Zooplankton](https://noaa-edab.github.io/catalog/zoo_abundance_anom.html) communities in the Mid-Atlantic have high variability without trend for large copepods (Fig. \ref{fig:zoopanom}), long term and recent decreasing trends for smaller bodied copepods, and increasing trends for krill (Euphausiids). Small copepods are less energy-rich than Euphausiids (krill) or the larger-bodied copepod *Calanus finmarchicus*. A changing mix of zooplankton prey can impact forage fish energy content and abundance, as well as the prey field of filter feeding whales. 
 
-```{r zoopanom, fig.cap="Changes in zooplankton abundance in the MAB for large (left) and small (canter) copepods, and Euphausiids (right), with significant decreases (purple) in small copepods and increases (orange) in Euphausiids.", fig.width=7.5, fig.asp=.5}
+```{r zoopanom, fig.cap="Changes in zooplankton abundance in the MAB for large (left) and small (center) copepods, and Euphausiids (right), with significant decreases (purple) in small copepods and increases (orange) in Euphausiids.", fig.width=7.5, fig.asp=.5}
 # a <- ecodata::plot_zoo_abundance_anom(report = "MidAtlantic", varName = "copepod") + 
 #   ggplot2::facet_wrap(~EPU~Var, labeller = labeller(EPU = function(x) {rep("", length(x))}))
 # b <- ecodata::plot_zoo_abundance_anom(report = "MidAtlantic", varName = "euphausid") + 
@@ -859,10 +863,9 @@ a+b + c
 
 ##### Environmental Drivers
 
-Fish production can also be directly related to the prevailing environmental conditions by altering metabolic processes (growth) and reproduction. Many species possess thermal tolerances and can experience stressful or lethal conditions if temperatures exceed certain levels. Extreme temperatures at both the [surface](https://noaa-edab.github.io/catalog/seasonal_oisst_anom.html) and [bottom](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) can exceed [thermal tolerance](https://noaa-edab.github.io/catalog/thermal_habitat_persistence.html) limits for some fish. 
+Fish production can also be directly related to the prevailing environmental conditions by altering metabolic (growth) and reproductive processes. Many species possess thermal tolerances and can experience stressful or lethal conditions if temperatures exceed certain levels. Extreme temperatures at both the [surface](https://noaa-edab.github.io/catalog/seasonal_oisst_anom.html) and [bottom](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) can exceed [thermal tolerance](https://noaa-edab.github.io/catalog/thermal_habitat_persistence.html) limits for some fish, which we have observed in past years. However, in 2024, surface and bottom temperatures were near or below normal in the MAB. The amount of habitat exceeding a 24 C thermal tolerance was limited to the southern MAB and the conditions persisted for fewer than 30 days (Fig. \ref{fig:therm-hab-persist-2024}).
 
-REPLACE WITH 2024 TEXT? 2024 didn't have a lot of hot water (Fig. \ref{fig:therm-hab-persist-2024}). OLD TEXT For example, 2015 had the [warmest summer and fall bottom temperatures](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) in the Mid-Atlantic. A large proportion of the region had bottom temperatures above the 15℃ thermal tolerance for most groundfish, with some days exceeding the 24℃ potential mortality limit. Many Mid-Atlantic species have different thermal tolerance limits from groundfish, and we will work to include those next year.
-
+In 2024, there were no marine heatwaves in the MAB. Only one marine heatwave occurred throughout the entire U.S. Northeast Shelf due to the cooler ocean conditions observed in the region.  This surface marine heatwave occurred in the Gulf of Maine starting on May 29th, peaking on June 7th, and lasting 12 days.
 
 ```{r therm-hab-persist-2024, fig.cap = "The number of days in 2024 where bottom temperature exceeds 15℃ (left) and 24℃ (right) based on the GLORYS 1/12 degree grid.", fig.width=10, fig.asp=1}
 # year = 2015
@@ -880,11 +883,10 @@ ecodata::plot_thermal_habitat_gridded()
 ```
 
 
-REPLACE WITH NEW FIGS NEED WRITEUP POSTED
-LOWEST ARAGONITE SATURATION OBSERVED SINCE MEASUREMENTS STARTED IN 2007
-[Ocean acidification](https://noaa-edab.github.io/catalog/ocean_acidification.html) (OA) risks vary among species and include reduced survival, growth, reproduction, and productivity, where high OA risk indicates potential negative effects to species.  High OA risk conditions were observed for Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid shelf regions of the New Jersey shelf during summer of 2016, 2018, 2019, and 2023 (Fig. \ref{fig:mab-oa}).
+[Ocean acidification](https://noaa-edab.github.io/catalog/ocean_acidification.html) risks vary among species and include reduced survival, growth, reproduction, and productivity, where high OA risk indicates potential negative effects to species. OA risk can also be heightened during colder conditions due to increased $CO_2$ absorption by the water or by transport of high $CO_2$ water masses (see highlights section). Higher OA risk conditions were observed for Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid shelf regions of the New Jersey shelf during summers of 2016, 2018, 2019, 2023, and 2024 (Fig. \ref{fig:mab-oa}). The OA indicator observed on the Mid-Atlantic coastal shelf during summer 2024 was the most extreme recorded when compared to all of the years sampled (since 2007).
 
-```{r mab-oa, out.width = '100%', fig.cap = "Locations where bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan) and 2023 only (magenta). Gray circles indicate locations where bottom $\\Omega_{Arag}$ values were above the species specific sensitivity values.."}
+
+```{r mab-oa, out.width = '100%', fig.cap = "Locations where bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan), 2023 only (magenta) and 2024 only (cyan). Gray circles indicate locations where bottom $\\Omega_{Arag}$ values were above the species specific sensitivity values.."}
 
 
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
@@ -895,15 +897,15 @@ magick::image_read("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/dev/data
 
 ```
 
-Biological and oceanographic processes can affect the amount of oxygen present in the water column. During low oxygen (hypoxic) events, species growth is negatively affected, and very low oxygen can result in mortality. The duration and extent of hypoxic events is being monitored, but long-term shelf-wide observations are not yet available. However, [hypoxic events](https://noaa-edab.github.io/catalog/ocean_acidification.html) were detected off the coast of New Jersey in 2023 and were potentially responsible for fish, lobster, and crab [mortalities](https://sebsnjaesnews.rutgers.edu/2023/12/rutgers-scientists-observe-unusual-ocean-conditions-possibly-linked-to-mortality-in-marine-life-off-new-jersey/).
+Low oxygen was detected on the [MAB shelf in 2023](https://noaa-edab.github.io/catalog/observation_synthesis.html), but not in 2024. Biological and oceanographic processes can affect the amount of oxygen present in the water column. During low oxygen (hypoxic) events, species growth is negatively affected, and very low oxygen can result in [mortality.](https://sebsnjaesnews.rutgers.edu/2023/12/rutgers-scientists-observe-unusual-ocean-conditions-possibly-linked-to-mortality-in-marine-life-off-new-jersey/).
 
 #### Drivers: Predation
-The abundance and distribution of predators can affect both the productivity and mortality rates on managed stocks. Predators can consume managed species or compete for the same resources, resulting in increased natural mortality or decreased productivity. The northeast shift in [whales and dolphins](https://noaa-edab.github.io/catalog/HMS_species_distribution.html)  (Fig. \ref{fig:protectedspp-dist-shifts}) indicates a change in the overlap between predators and prey. Since we also observe distribution shifts in managed species as well as forage species, the effect of changing predator distributions alone is difficult to quantify. 
+The abundance and distribution of marine mammal, HMS, and shark predators can affect both the productivity and mortality rates on managed stocks. Predators can consume managed species or compete for the same resources, resulting in increased natural mortality or decreased productivity. The northeast shift in [whales and dolphins](https://noaa-edab.github.io/catalog/HMS_species_distribution.html)  (Fig. \ref{fig:protectedspp-dist-shifts}) indicates a change in the overlap between predators and prey. Since we also observe distribution shifts in managed species as well as forage species, the effect of changing predator distributions alone is difficult to quantify. 
 
-Indicators for shark populations, combined with information on gray seals (see [Protected Species Implications section, above](#protected-species)), suggests predator populations range from stable ([sharks](https://noaa-edab.github.io/catalog/hms_cpue.html)) to increasing ([gray seals](https://noaa-edab.github.io/catalog/seal_pups.html))  in the MAB. [Stock status](https://noaa-edab.github.io/catalog/hms_stock_status.html) is mixed for Atlantic Highly Migratory Species (HMS) stocks (including sharks, swordfish, billfish, and tunas) occurring throughout the Northeast U.S. shelf. While there are several HMS species considered to be overfished or that have unknown stock status, the population status for some managed Atlantic sharks and tunas is at or above the biomass target, suggesting the potential for robust predator populations among these managed species. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
+Indicators for shark populations, combined with information on gray seals (see [Protected Species Implications section, above](#protected-species)), suggests predator populations range from stable ([sharks](https://noaa-edab.github.io/catalog/hms_cpue.html)) to increasing ([gray seals](https://noaa-edab.github.io/catalog/seal_pups.html))  in the MAB. [Stock status](https://noaa-edab.github.io/catalog/hms_stock_status.html) is mixed for Atlantic Highly Migratory Species (HMS) stocks (including sharks, swordfish, billfish, and tunas) occurring throughout the Northeast U.S. shelf. While there are several HMS species considered to be overfished or that have unknown stock status, the population status for some managed Atlantic sharks and tunas is at or above the biomass target, suggesting the potential for robust (or rebuilt) predator populations among these managed species. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
 
 ### Future Considerations
-The processes that control fish productivity and mortality are dynamic, complex, and are the result of the interactions between multiple system drivers. There is a real risk that short-term predictions in assessments and rebuilding plans that assume unchanging underlying conditions will not be as effective, given the observed change documented in the prior sections in both ecological and environmental processes. Assumptions for species’ growth, reproduction, and natural mortality should continue to be evaluated for individual species. With observations of system-wide productivity shifts of multiple managed stocks, more research is needed to determine whether regime shifts or ecosystem reorganization are occurring, and how this should be incorporated into management.
+The processes that control fish productivity and mortality are dynamic, complex, and are the result of the interactions between multiple system drivers. There is a real risk that short-term predictions in assessments and rebuilding plans that assume unchanging underlying conditions will be highly uncertain and not be as effective, given the observed change documented in the prior sections in both ecological and environmental processes. Assumptions for species’ growth, reproduction, and natural mortality should continue to be evaluated for individual species. With observations of system-wide productivity shifts of multiple managed stocks, more research is needed to determine whether regime shifts or ecosystem reorganization are occurring, and how this should be incorporated into management.
 
 
 ## Other Ocean Uses: Offshore Wind
