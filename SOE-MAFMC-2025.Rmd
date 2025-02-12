@@ -186,7 +186,7 @@ In this section, we examine indicators related to broad, ecosystem-level fishery
 ## Seafood Production 
 
 ### Indicators: Landings; commercial and recreational 
-This year, we present updated indicators for total [commercial landings](https://noaa-edab.github.io/catalog/comdat.html), U.S. seafood landings, and Council-managed U.S. seafood landings. Total commercial landings within the Mid-Atlantic have declined over the long term, and total U.S. Mid-Atlantic seafood landings are near their all time low (Fig. \ref{fig:total-landings}).
+This year, we present updated indicators for total [commercial landings](https://noaa-edab.github.io/catalog/comdat.html), (includes seafood, bait, and industrial landings), U.S. seafood landings, and Council-managed U.S. seafood landings. Total commercial landings within the Mid-Atlantic have declined over the long term, and both total U.S. and Mid-Atlantic managed seafood landings are near their all time low (Fig. \ref{fig:total-landings}).
 
 ```{r, total-landings, fig.asp=.8, fig.cap = "Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red), with significant decline (purple) in total landings."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")
@@ -203,7 +203,14 @@ ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild", n=10)
 
 ```
 
-Although total [recreational harvest](https://noaa-edab.github.io/catalog/recdat.html) (retained fish presumed to be eaten) has increased from a historic low in 2018, there is a long-term decline in the MAB (Fig. \ref{fig:rec-landings}). 
+Community Climate Change Risk indicators have been developed to evaluate port specific landings and revenue risk in terms of commercial species climate vulnerability. The total climate vulnerability is a measure of to what degree a region’s landings (or revenue) is dependent on species sensitive to different climate and environmental change factors including temperature and acidification. For ports combined across Mid-Atlantic states, the total climate vulnerability of landings ranged between moderate and high with no long-term trend (Fig. \ref{fig:climatevul-land}).  In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
+
+```{r climatevul-land, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
+ecodata::plot_community_climate_vulnerability(plottype = "regionland")
+```
+
+
+Although total [recreational harvest](https://noaa-edab.github.io/catalog/recdat.html) (fish presumed to be eaten) has increased from a historic low in 2018, there is a long-term decline in the Mid-Atlantic (Fig. \ref{fig:rec-landings}). 
 
 ```{r, rec-landings, fig.cap ="Total recreational seafood harvest (millions of pounds, black, significant decrease, purple) in the Mid-Atlantic region."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")
@@ -211,7 +218,7 @@ Although total [recreational harvest](https://noaa-edab.github.io/catalog/recdat
 ecodata::plot_recdat(report = "MidAtlantic", varName ="landings", n=10)
 ```
 
-[Recreational shark landings](https://noaa-edab.github.io/catalog/rec_hms.html) show an increase in pelagic sharks over the past decade, with a sharp decrease in 2018 - 2019 persisting through 2022 (Fig \ref{fig:rec-hms}). This is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks. 
+[Recreational shark landings](https://noaa-edab.github.io/catalog/rec_hms.html) have generally decreased for most shark groups  through 2023 (Fig \ref{fig:rec-hms}). The recent low in pelagic shark landings is likely influenced by regulatory changes implemented in 2018 intended to rebuild shortfin mako stocks and comply with binding recommendations by the International Commission for the Conservation of Atlantic Tunas (ICCAT).
 
 ```{r rec-hms, fig.cap="Recreational shark landings from Marine Recreational Information Program (left) and Large Pelagics Survey (right) with declining trends (purple).",  fig.width=8, fig.asp=.35}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"),
@@ -231,7 +238,7 @@ Aquaculture production is not yet included in total seafood landings. Available 
 
 ### Implications
 
-Declining commercial (total and seafood) and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which stock status and system biomass trends may play a role.
+Declining commercial (total and seafood) landings and recreational harvest can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which stock status, management, and system biomass trends may play a role.
 
 #### Stock Status and Catch Limits
 Single species [management objectives](https://noaa-edab.github.io/catalog/stock_status.html) (1. maintaining biomass above minimum thresholds and 2. maintaining fishing mortality below overfishing limits) are being met for all but three MAFMC-managed species (Fig. \ref{fig:stock-status}), though the status of six stocks is unknown (Table \ref{tab:unkstocks}). 
@@ -272,7 +279,7 @@ flextable::flextable(stocktab) |>
 ```
 
 
-Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits [(ABC or ACL)](https://noaa-edab.github.io/catalog/abc_acl.html) have been relatively stable 2012-2022 (Fig. \ref{fig:abcacl-stacked}). The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management in 2017 contributing an additional ABC and ACL to the total 2017-2022, due to that fishery’s small relative size.
+Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits [(ABC or ACL)](https://noaa-edab.github.io/catalog/abc_acl.html) have been relatively stable 2012-2023 (Fig. \ref{fig:abcacl-stacked}). The recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. This is true even with the addition of blueline tilefish management contributing an additional ABC to the total post-2017, due to that fishery’s small relative size.
 
 ```{r abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed commercial (C) and recreational (R) fisheries.", fig.width = 6, fig.asp = 0.4}
 #, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")
@@ -291,7 +298,7 @@ ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
 ```
 
 #### System Biomass
-Although [aggregate biomass](https://noaa-edab.github.io/catalog/aggregate_biomass.html) trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores, fall benthivores, and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings.
+Although [aggregate biomass](https://noaa-edab.github.io/catalog/aggregate_biomass.html) trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores, fall benthivores, and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings. 
 ```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. Significant increases (orange lines) are present for spring piscivore and fall benthivore and benthos biomass. The shaded area around each annual mean represents 2 standard deviations from the mean.", fig.width=8, fig.asp = 0.75, results='hide'}
 
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R")
@@ -301,15 +308,13 @@ ecodata::plot_aggregate_biomass(report = "MidAtlantic", n=10)
 ```
 
 #### Effect on Seafood Production
-Stock status is above the minimum threshold for all but three stocks, and aggregate biomass trends appear stable, so the decline in managed commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. In addition, regional availability of scallops has contributed to the decline of benthos landings not managed by the MAFMC, with some of the most productive grounds currently closed through rotational management. The long term decline in total planktivore landings is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s. 
+Stock status is above the minimum threshold for all but one stock, and aggregate biomass trends appear stable or increasing, so the decline in managed commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. In addition, regional availability of scallops has contributed to the decline of benthos landings not managed by the MAFMC, with some of the most productive grounds closed through 2023 due to rotational management. The long term decline in total planktivore landings, and total landings, is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s.
 
-Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council.
+The distribution of surfclams and ocean quahogs is changing, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could have become problematic and the Council recently took final action to address this issue.
 
-The decline in recreational seafood harvest stems from other drivers. Some of the decline, such as that for recreational shark landings, is driven by management intended to reduce fishing mortality on mako sharks. However, NOAA Fisheries’ Marine Recreational Information Program survey methodology was updated in 2018, so it is unclear whether the lower than average landings for species other than sharks since 2018 are driven by changes in fishing behavior or the change in the survey methodology. Nevertheless, the recreational harvest seems to be stabilizing at a lower level than historical estimates.
+The decline in recreational seafood harvest stems from other drivers. Some of the decline, such as that for recreational shark landings, is driven by management intended to reduce fishing mortality on mako sharks. However, NOAA Fisheries’ Marine Recreational Information Program survey methodology was updated in 2018, so it is unclear whether the lower than average landings for species other than sharks since 2018 are driven by changes in fishing behavior or the change in the survey methodology. Nevertheless, the recreational harvest appears to be stabilizing at a lower level than historical estimates.
 
-[PLACEHOLDER AGGREGATE COMMUNITY LANDING CLIMATE VULNERABIITY]
-
-Other environmental changes require monitoring as they may become important drivers of landings in the future:
+Other environmental changes require monitoring as they may become important drivers of commercial and recreational landings in the future.  Overall, landings from Mid-Atlantic ports depend on species with moderate climate variability. We note that individual stocks will respond differently to these drivers, and fisheries and communities rely on different combinations of stocks:  
  
 - Climate is trending into uncharted territory. Globally, 2024 was the warmest year on record (see [2024 Highlights section](#highlights)). 
 - Stocks are shifting their distributions, moving towards the northeast and into deeper waters throughout the Northeast US Large Marine Ecosystem (see [Climate Risks section](#climate-and-ecosystem-change)).
@@ -320,6 +325,7 @@ Other environmental changes require monitoring as they may become important driv
 
 ### Indicators: revenue (a proxy for profits)  
 Total [commercial revenue](https://noaa-edab.github.io/catalog/comdat.html) and MAFMC managed species revenue within the Mid-Atlantic Bight have declined over the past 20-30 years. In 2023, total revenue was at an all-time low, and revenue from MAFMC managed species was near an all-time low (Fig. \ref{fig:comm-revenue}). 
+
 ```{r comm-revenue, fig.width = 6, fig.asp = 0.45, fig.cap = "Revenue for the for the Mid-Atlantic region: total (black) and from MAFMC managed species (red)."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")
 
@@ -329,29 +335,36 @@ ecodata::plot_comdat(report="MidAtlantic", varName="revenue", n=10) +
 
 ```
 
-Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes: harvest levels, the mix of species landed, price changes, or a combination of these. The [Bennet Indicator](https://noaa-edab.github.io/catalog/bennet.html) decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices. All changes are in relation to a base year (1982).
+Revenue earned by harvesting resources is a function of both the quantity landed of each species and the prices paid for landings. Beyond monitoring yearly changes in revenue, it is even more valuable to determine what drives these changes: harvest levels, the mix of species landed, price changes, or a combination of these. The [Bennet Indicator](https://noaa-edab.github.io/catalog/bennet.html) decomposes revenue change into two parts, one driven by changing quantities (volumes), and a second driven by changing prices. All changes are in relation to a base year (1982). The 1982 base year was selected because that is the first year the relevant data is available and it also allows for an extended period of time in which to evaluate market trends and dynamics.
 
-In the Mid-Atlantic region revenues were above the 1982 baseline for all years in the series until 2022 (Fig. \ref{fig:bennet}).  Both increasing prices and volumes contributed to the positive revenue change in most years.  In terms of prices, since 2000 Benthos contributed the most to increasing prices (Fig.  \ref{fig:bennet-all}). Beginning in the 1990s, in most years benthivores contributed the most to increasing volumes (Fig.  \ref{fig:bennet-all}). 
-```{r bennet, fig.cap = "Revenue change from 1982 values in 2022 dollars (black); Price (PI), and Volume Indicators (VI) for total commercial landings in the Mid-Atlantic Bight.", fig.width=6, fig.asp=.35}
+In the Mid-Atlantic region revenues were above the 1982 baseline for all years in the series until 2022 and 2023 (Fig. \ref{fig:bennet}).  In 2023, lower revenue was driven primarily by both lower quantities of benthos landed, and lower prices of benthos, benthivores, and planktivores. The lower benthos prices are a departure from past years, which saw benthos prices contributing positively to revenue changes since the early 2000’s. (Fig.  \ref{fig:bennet-all}). 
+
+```{r bennet, fig.cap = "Revenue change from 1982 values in 2023 dollars (black); Price (PI), and Volume Indicators (VI) for total commercial landings in the Mid-Atlantic Bight.", fig.width=6, fig.asp=.35}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R")
 
 ecodata::plot_bennet(report = "MidAtlantic", varName = "total")
 
 ```
 
-```{r bennet-all, fig.cap = "Total price and volume indicators in 2022 dollars (black) for commercial landings, and individual guild contributions to each indicator, in the Mid-Atlantic Bight.",  fig.width = 7.5, fig.asp = 0.35}
+```{r bennet-all, fig.cap = "Total price and volume indicators in 2023 dollars (black) for commercial landings, and individual guild contributions to each indicator, in the Mid-Atlantic Bight.",  fig.width = 7.5, fig.asp = 0.35}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"),
 
 ecodata::plot_bennet(report="MidAtlantic") #+ ggplot2::facet_wrap(~Var, ncol=1)
 ```
 
+For ports combined across Mid-Atlantic states, total climate vulnerability of revenue ranged from high to very high (with the exception of a single moderate ranking 2022), with no long-term trend. This suggests that Mid-Atlantic port commercial fishing revenue has been highly reliant on climate-sensitive species for most of the period since 2000 (Fig.  \ref{fig:climatevul-rev}). In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
+
+```{r climatevul-rev, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
+
+ecodata::plot_community_climate_vulnerability(plottype = "regionrev")
+```
+
+
 ### Implications 
-Although the Mid-Atlantic region shows declining revenue since 2016, inflation-adjusted revenue from harvested species was still greater than 1982 levels until 2022. In a similar manner to seafood landings, the results here are driven in large part by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species, as well as lower quotas for Atlantic scallops. The declining Benthos category since 2012 may be partially caused by decreases in surfclam and ocean quahogs in the southern part of their range as harvest have shifted northward. Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
+Although the Mid-Atlantic region shows declining revenue since 2016, inflation-adjusted revenue from harvested species was still greater than 1982 levels until the past two years. In a similar manner to seafood landings, the results here are driven in large part by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species, as well as lower quotas and prices for Atlantic scallops. The declining benthos category since 2012 may be partially caused by decreases in surfclam and ocean quahogs in the southern part of their range as harvest have shifted northward. Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
 
--  Surfclams, ocean quahogs, and scallops are sensitive to warming ocean temperatures and ocean acidification.   
+-  Surfclams, ocean quahogs, and scallops are sensitive to warming ocean temperatures and ocean acidification, as reflected in the high climate vulnerability of total landings from from Mid-Atlantic ports . 
 -  [Multiple stressors](https://noaa-edab.github.io/catalog/ocean_acidification) are interacting in Mid-Atlantic shellfish habitats.
-
-[PLACEHOLDER AGGREGATE COMMUNITY REVENUE CLIMATE VULNERABIITY]
   
 
 ## Recreational Opportunities 
