@@ -370,7 +370,8 @@ Although the Mid-Atlantic region shows declining revenue since 2016, inflation-a
 ## Recreational Opportunities 
 
 ### Indicators: Angler trips, fleet diversity  
-[Recreational effort](https://noaa-edab.github.io/catalog/recdat.html) (angler trips) in 2022 has increased and is above the long-term average (Fig. \ref{fig:rec-op}). in the MAB. However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
+[Recreational effort](https://noaa-edab.github.io/catalog/recdat.html) (angler trips) in 2023 continues to be above the long-term average (Fig. \ref{fig:rec-op}). in the MAB. However, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term (Fig. \ref{fig:rec-div}). 
+
 ```{r rec-op, fig.cap = "Recreational effort (number of trips, black) in the Mid-Atlantic, with significant increase (orange line)."}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")
 
@@ -384,42 +385,41 @@ ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity", n=10)
 ```
 
 ### Implications
-While the overall number of recreational opportunities in the MAB is above the long-term average, the continuing decline in recreational fleet effort diversity suggests a potentially reduced range of recreational fishing options, despite the slight increase in this indicator’s value between 2020 and 2022.
+While the overall number of recreational opportunities in the MAB is above the long-term average, the continuing decline in recreational fleet effort diversity suggests a potentially reduced range of recreational fishing options.
 
-The downward effort diversity trend is driven by party/charter contraction (down from 2% in 2021 to 1.4% in 2023), and a shift toward shorebased angling, which currently makes up 59% of angler trips. Effort in private boats has increased slightly to 40% of trips from 37% in 2021.
+The downward effort diversity trend is driven by party/charter contraction (down from 2.2% in 2021 to 1.3% of trips in 2023), and a shift toward shorebased angling, which currently makes up 60% of all angler trips. Effort in private boats has remained relatively stable from 2022 values.
 
-Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species is accessible both from shore and from a vessel, shore anglers typically have access to smaller individuals. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector.
+Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species is accessible both from shore and from a vessel, shore anglers typically have access to smaller individuals. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. MAFMC is currently considering recreational sector separation which might establish different options for managing the for-hire sector from other modes.  
 
 
 ## Stability 
 
 ### Indicators: fishery fleet and catch diversity, ecological component diversity 
-While there are many potential metrics of stability, we use diversity indices to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine diversity in commercial fleet and species catch, recreational species catch (with fleet effort diversity discussed above), zooplankton, adult fishes, and fish traits.
+While there are many potential metrics of stability, we use diversity indices to evaluate overall stability in fisheries and ecosystems. In general, diversity that remains constant over time suggests a similar capacity to respond to change over time. A significant change in diversity over time does not necessarily indicate a problem or an improvement, but does indicate a need for further investigation. We examine diversity in commercial fleet and species catch, recreational species catch (with fleet effort diversity discussed above), zooplankton, adult fishes, and fish traits (e.g. size and fecundity).
 
 #### Fishery Stability 
-[Diversity](https://noaa-edab.github.io/catalog/commercial_div.html)  estimates have been developed for fleets landing managed species, and species landed by commercial vessels with Mid-Atlantic permits. Commercial fishery fleet count has declined while fleet diversity has been stable over time in the MAB, with current values near the long-term average. 
+Several [diversity](https://noaa-edab.github.io/catalog/commercial_div.html) estimates are used to evaluate stability for fleets landing federally managed species, and species landed by commercial vessels with Mid-Atlantic permits. Commercial fishery fleet count has declined while fleet revenue diversity has been stable over time in the MAB, with no trend identified, but current values are above the long-term average (Fig. \ref{fig:comm-div-fleet}). 
 
-```{r, fig.width = 7.5, fig.asp = 0.3}
-a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count", n=21)
+```{r comm-div-fleet, fig.width = 7.5, fig.asp = 0.3, fig.cap="Commercial fleet count (left) and fleet diversity in revenue (right) in the Mid-Atlantic (black) with significant decline in fleet count (purple line)."}
+a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count", n=100)
 
-b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diversity in revenue", n=21)
+b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diversity in revenue", n=100)
 
 a+b
 
 ```
 
 
-This indicates different commercial fleet composition but similar species targeting opportunities over time. Commercial fisheries are relying on fewer species relative to the mid-90s, although current species revenue diversity has recovered in the last year (Fig. \ref{fig:commercial-div-species-div}). 
+This indicates different commercial fleet composition but similar diversity in species targeting opportunities over time, for those fleets continuing to fish(Fig. \ref{fig:commercial-div-species-div}). Of note is that the current lack of vessel data available for surf clam and ocean quahog prior to 2003 precludes the assessment of longer term dynamics with these indicators.
 
-CAVEAT ABOUT CLAM DATA?
 
 ```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the Mid Atlantic.")}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
 
-ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity", n=21)
+ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity", n=100)
 ```
 
-As noted [above](#recreational-opportunities), [recreational fleet effort diversity](https://noaa-edab.github.io/catalog/recdat.html) is declining (Fig. \ref{fig:rec-div}), suggesting a shift in recreational fishing opportunities. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average in 8 of the last 10 years (Fig. \ref{fig:recdat-div-catch}). 
+As noted [above](#recreational-opportunities), [recreational fleet effort diversity](https://noaa-edab.github.io/catalog/recdat.html) is declining (Fig. \ref{fig:rec-div}), suggesting a shift in recreational fishing opportunities. However, recreational species catch diversity has no long term trend so is considered stable, and has been at or above the long term average since 2016 (Fig. \ref{fig:recdat-div-catch}). 
 
 ```{r recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the Mid Atlantic.")}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")
