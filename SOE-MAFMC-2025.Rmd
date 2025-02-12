@@ -911,16 +911,17 @@ The processes that control fish productivity and mortality are dynamic, complex,
 ## Other Ocean Uses: Offshore Wind
 
 ### Indicators: development timeline, revenue in lease areas, coastal community vulnerability
-As of January 2024, 30 offshore [wind development](https://noaa-edab.github.io/catalog/wind_dev_speed.html) projects are proposed for construction over the next decade in the Northeast (timelines and project data for 2024 are based on the Ocean Wind 1 Offshore Wind Farm Final Environmental Impact Statement. Volume II: Appendix F). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-proposed-dev}). All states will be able to reach their 2030 offshore wind goals with existing lease areas.  
+As of January 2025, 30 offshore [wind development](https://noaa-edab.github.io/catalog/wind_dev_speed.html) projects are proposed for construction over the next decade in the Northeast (timelines and project data for 2025 are based on the Ocean Wind 1 Offshore Wind Farm Final Environmental Impact Statement. Volume II: Appendix F). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-proposed-dev}). All states will be able to reach their 2030 offshore wind goals with existing lease areas.  
+
 ```{r wind-proposed-dev, fig.cap='Total area proposed for wind develpment on the northeast shelf through 2030.', fig.width=5}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R")
 
 ecodata::plot_wind_dev_speed()
 ```
 
-Just over 3,300 foundations and more than 12,000 miles of inter-array and offshore export cables are proposed to date (Fig. \ref{fig:wind-dev-cumul}). Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time. Construction of two projects in Southern New England (South Fork Wind and Vineyard Wind 1) during 2023 affected fisheries managed by the Mid-Atlantic Fishery Management Council, while construction activities began for Revolution Wind in early 2024. It is likely that construction will begin on other projects in Southern New England and possibly the New York Bight during 2024 that will further affect regional fisheries. 
+Just over 3,300 foundations and more than 12,000 miles of inter-array and offshore export cables are proposed to date (Fig. \ref{fig:wind-dev-cumul}). Based on current timelines, the areas affected would be spread out such that it is unlikely that any one particular area would experience full development at one time. Construction of two projects in Southern New England (Vineyard Wind 1 and Revolution Wind) and two more in the Mid-Atlantic/New York Bight (Coastal Virginia Offshore Wind and Empire Wind 1) during 2024 affected fisheries managed by the Mid-Atlantic Fishery Management Council. It is likely that construction will begin on other projects in Southern New England and possibly the New York Bight during 2025 that will further affect regional fisheries.
 
-```{r wind-dev-cumul, fig.cap = "All Northeast Project areas by year construction ends (each project has 2 year construction period).", out.width='90%'}
+```{r wind-dev-cumul, fig.cap = "All Northeast Project areas by year construction ends (each project has a 2 year construction period).", out.width='90%'}
 #knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/All_2021128_needsgraph-01.jpg")
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/offshore_wind_timeline.png")
 
@@ -930,7 +931,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/worksh
 
 ```
 
-Based on federal vessel logbook data, [commercial fishery revenue](https://noaa-edab.github.io/catalog/wind_revenue.html) from trips in the current offshore wind lease areas, including the newly designated lease areas in the Central Atlantic, have varied annually from 2008-2022, with less than \$1 million in maximum annual revenue overlapping with these areas for most fisheries with the exception of the surfclam, monkfish, and longfin squid fisheries. Some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including the surfclam (\$6.6 million), longfin squid (\$4.7 million), monkfish (\$4.3 million), and summer flounder (\$1.3 million) fisheries (Fig. \ref{fig:wea-spp-rev}). 
+Based on federal vessel logbook data, [commercial fishery revenue](https://noaa-edab.github.io/catalog/wind_revenue.html) from trips in the current offshore wind lease areas, including the newly designated lease areas in the Central Atlantic, have varied annually from 2008-2023, with less than \$1 million in maximum annual revenue overlapping with these areas for most fisheries with the exception of the surfclam, monkfish, and longfin squid fisheries. Some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including the surfclam (\$6.5 million), longfin squid (\$4.8 million), monkfish (\$2.5 million), and summer flounder (\$1.3 million) fisheries (Fig. \ref{fig:wea-spp-rev}). 
 
 ```{r wea-spp-rev, fig.cap="Fishery revenue in wind energy lease areas in the Mid-Atlantic.",  fig.width=5, fig.asp=.4}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"),
@@ -939,7 +940,7 @@ ecodata::plot_wind_revenue(report = "MidAtlantic", varName = "value", plottype =
 
 ```
 
-Of MAFMC managed fisheries, the monkfish fishery would be the fishery most affected by offshore wind development, with a maximum of 20\% of annual regional fishery revenue occurring within existing and proposed wind lease areas and the Gulf of Maine Draft Wind Energy Area during 2008-2022 (see Table \ref{tab:wea-landings-rev}). Future fishery resource overlap with wind leases, especially surfclams and ocean quahogs, may change due to species distribution shifts attributable to climate change and recruitment and larval dispersion pattern changes caused by hydrodynamic flow disruptions from turbine foundations, which could also affect fishery landings/revenue.
+Of MAFMC managed fisheries, the surfclam fishery would be the most affected by offshore wind development, with a maximum of 15% of annual regional fishery revenue occurring within existing wind lease areas during 2008-2023 (see Table \ref{tab:wea-landings-rev}). It should be noted that 2023 surfclam landings/revenue within lease areas may be artificially low due to potential misreporting issues. Future fishery resource overlap with wind leases, especially surfclams and ocean quahogs, may change due to species distribution shifts attributable to climate change and recruitment and larval dispersion pattern changes caused by hydrodynamic flow disruptions from turbine foundations, which could also affect fishery landings/revenue.  
 
 
 ```{r wea-landings-rev, ft.arraystretch = 1}
@@ -992,20 +993,20 @@ dt<- ecodata::wea_landings_rev |>
     "Maximum Percent Total Annual Regional Species Revenue"="perc_revenue_max")
 
 flextable::flextable(dt) %>%
-  flextable::set_caption("Mid-Atlantic managed species Landings and Revenue from Wind Energy Areas.") %>%
+  flextable::set_caption("Mid-Atlantic managed species Landings and Revenue from Wind Energy Areas. *Less than a maximum of 50,000 lb was reported landed annually in wind energy lease areas for these species.") %>%
   flextable::width(width = c(2,2,2))
 
 ```
 
-Proposed wind development areas interact with the region’s federal scientific surveys. Scientific surveys are impacted by offshore wind in four ways:  
-1.  Exclusion of NOAA Fisheries’ sampling platforms from the wind development area due to operational and safety limitations.  
-2.  Impacts on the random-stratified statistical design that is the basis for scientific assessments, advice, and analyses.  
-3.  Alteration of benthic and pelagic habitats, and airspace in and around the wind energy development, requiring new designs and methods to sample new habitats.  
-4.  Reduced sampling productivity through navigation impacts of wind energy infrastructure on aerial and vessel survey operations.  
+Proposed wind development areas interact with the region’s federal scientific surveys. Scientific surveys are impacted by offshore wind in four ways:
+1. Exclusion of NOAA Fisheries’ sampling platforms from the wind development area due to operational and safety limitations.
+2. Impacts on the random-stratified statistical design that is the basis for scientific assessments, advice, and analyses.
+3. Alteration of benthic and pelagic habitats, and airspace in and around the wind energy development, requiring new designs and methods to sample new habitats.
+4. Reduced sampling productivity through navigation impacts of wind energy infrastructure on aerial and vessel survey operations.
 
-Increased vessel transit between stations may decrease data collections that are already limited by annual days-at-sea day allocations. The total survey area overlap ranges from 1-70% for all Greater Atlantic federal surveys. The Gulf of Maine Cooperative Research Bottom Longline Survey (41%) and the Shrimp Survey (70%) have the largest percent overlap with the draft Gulf of Maine Wind Energy Areas. The remaining surveys range from 1-16% overlap.  Individual survey strata have significant interaction with wind areas, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey (up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas and a region-wide survey mitigation program is underway
+Increased vessel transit between stations may decrease data collections that are already limited by annual days-at-sea day allocations. The total survey area overlap ranges from 1-70% for all Greater Atlantic federal surveys as of 2024. Individual survey strata have significant interaction with wind areas, including the sea scallop survey (up to 96% of individual strata) and the bottom trawl survey (up to 60% strata overlap). Additionally, up to 50% of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas and a region-wide survey mitigation program is underway
 
-Social vulnerabilities of communities are priority concerns with offshore wind development and fisheries impacts in the Northeast, and the impacts of offshore wind development are expected to differentially [impact specific coastal communities](https://noaa-edab.github.io/catalog/wind_port.html) (Fig. \ref{fig:wea-port-rev}). Additionally, impacts of offshore wind development may unevenly affect individual operators, with some permit holders deriving a much higher proportion of revenue from wind areas than the port-based mean.   
+The socio-demographic conditions, and resultant vulnerabilities, of some communities may further exacerbate the impacts of offshore wind development in the Northeast such that the impacts of offshore wind development are expected to differentially [impact specific coastal communities](https://noaa-edab.github.io/catalog/wind_port.html) (Fig. \ref{fig:wea-port-rev}). Additionally, impacts of offshore wind development may unevenly affect individual operators, with some permit holders deriving a much higher proportion of revenue from wind areas than the port-based mean.
 
 ```{r wea-port-rev, fig.cap="Percent of Mid-Atlantic port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.",  fig.width=6.5, fig.asp=.85, fig.align='left'}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"),
@@ -1031,9 +1032,9 @@ ecodata::plot_wind_port(report = "MidAtlantic") #+
 
 ```
 
-For example, Atlantic City, NJ had the highest potential revenue loss (minimum of 10\% and maximum of 23\%) from potential wind development areas based on 2008-2022 total port fisheries revenue. BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of communities with environmental justice concerns who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts.
+For example, Atlantic City, NJ had the highest potential revenue loss (historical minimum of 10% and maximum of 23%) from potential wind development areas based on 2008-2023 total port fisheries revenue. BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of communities with socio-demographic concerns who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts.
 
-Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Barnstable, MA, and Point Judith, RI. 
+Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Davisville/North Kingston and Point Judith, RI, and Hyannis and Menemsha, MA.
 
 ```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.3, fig.align='left'}
 
@@ -1109,12 +1110,13 @@ p2
 ```
 
 
-Top fishing communities with [environmental justice concerns](https://noaa-edab.github.io/catalog/engagement.html) (i.e., Atlantic City, NJ, Newport News, VA, Hobucken and Beaufort, NC) should be considered in decision making to reduce the social and economic impacts and aid in the resilience and adaptive capacity of underserved communities. These are communities where we need to provide further resources to reach underserved and underrepresented groups and create opportunities for and directly involve these groups in the decision-making process. 
+Top fishing communities with [socio-demographic concerns](https://noaa-edab.github.io/catalog/engagement.html) (i.e., Atlantic City, NJ,  and Hampton Bays, NY) should be considered in decision making to reduce the social and economic impacts and aid in the resilience and adaptive capacity of underserved communities. These are communities where we need to provide further resources to reach underserved and underrepresented groups and create opportunities for and directly involve these groups in the decision-making process.
+
 
 ### Implications
-Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region (Fig. \ref{fig:wind-dev-cumul}).  Up to 17\% of maximum annual fisheries revenue for major Mid-Atlantic commercial species in lease areas and draft call areas could be forgone or reduced and associated effort displaced if all sites are developed. Displaced fishing effort can alter historic fishing area, timing, and method patterns, which can in turn change habitat, species (managed and protected), and fleet interactions. Several factors, including fishery regulations, fishery availability, and user conflicts affect where, when, and how fishing effort may be displaced, along with impacts to and responses of affected fish species.
+Current plans for buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region (Fig. \ref{fig:wind-dev-cumul}).  Up to 15% of maximum annual fisheries revenue for major Mid-Atlantic commercial species in lease areas could be forgone or reduced and associated effort displaced if all sites are developed. Displaced fishing effort can alter historic fishing area, timing, and method patterns, which can in turn change habitat, species (managed and protected), and fleet interactions. Several factors, including fishery regulations, fishery availability, and user conflicts affect where, when, and how fishing effort may be displaced, along with impacts to and responses of affected fish species.  
 
-Planned development [overlaps NARW](https://noaa-edab.github.io/catalog/persistent_hotspots.html) mother and calf migration corridors and a significant foraging habitat that is used throughout the year (Fig. \ref{fig:whales-wind}). Turbine presence and extraction of energy from the system could alter local oceanography and may affect right whale prey availability. For example, persistent foraging hotspots of right whales and seabirds overlap on Nantucket Shoals, where unique hydrography aggregates enhanced prey densities. Wind leases (OCS-A 0521 and OCS-A 0522) currently intersect these hotspots on the southwestern corner of Nantucket Shoals and a prominent tidal front associated with invertebrate prey swarms important to seabirds and possibly right whales. Proposed wind development areas also bring increased vessel strike risk from construction and operation vessels. In addition, there are a number of potential impacts to whales from pile driving and operational noise such as displacement, increased levels of communication masking, and elevated stress hormones.
+Planned development [overlaps NARW](https://noaa-edab.github.io/catalog/persistent_hotspots.html) mother and calf migration corridors and a significant foraging habitat that is used throughout the year (Fig. \ref{fig:whales-wind}). Turbine presence and extraction of energy from the system could alter local oceanography and may affect right whale prey availability. For example, persistent foraging hotspots of right whales and seabirds overlap on Nantucket Shoals, where unique hydrography aggregates enhanced prey densities. Wind leases (OCS-A 0521 and OCS-A 0522) currently intersect these hotspots on the southwestern corner of Nantucket Shoals and a prominent tidal front associated with invertebrate prey swarms important to seabirds and possibly right whales. Proposed wind development areas also bring increased vessel strike risk from construction and operation vessels. In addition, there are a number of potential impacts to whales from pile driving and operational noise such as displacement, increased levels of communication masking, and elevated stress hormones.  
 
 ```{r whales-wind, out.width="55%", fig.cap="Northern Right Whale persistent hotspots (red shading) and Wind Energy Areas (black outlines)."}
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/right_whales.png")
@@ -1129,7 +1131,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/worksh
 
 Scientific data collection surveys for ocean and ecosystem conditions, fish, and protected species will be altered, potentially increasing uncertainty for stock assessments and associated management decision making.
 
-The increase of offshore wind development can have both positive (e.g., employment opportunities) and negative (e.g., space-use conflicts) effects. Continued increase in coastal development and gentrification pressure has resulted in loss of fishing infrastructure space within ports. Understanding these existing pressures can allow for avoiding and mitigating negative impacts to our shore support industry and communities dependent on fishing. Some of the communities with the highest fisheries revenue overlap with offshore wind development areas that are also vulnerable to gentrification pressure are Point Pleasant and Atlantic City, NJ, Ocean City, MD, and Beaufort, NC.
+The increase of offshore wind development can have both positive (e.g., employment opportunities) and negative (e.g., space-use conflicts) effects. Continued increase in coastal development and gentrification pressure has resulted in loss of fishing infrastructure space within ports. Understanding these existing pressures can allow for avoiding and mitigating negative impacts to our shore support industry and communities dependent on fishing. Some of the communities with the highest fisheries revenue overlap with offshore wind development areas that are also vulnerable to gentrification pressure are  Beaufort, NC, and Cape May, Barnegat Light, and Long Beach, NJ.
 
 
 ### 2024 Highlights
