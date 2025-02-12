@@ -927,7 +927,7 @@ Just over 3,300 foundations and more than 12,000 miles of inter-array and offsho
 
 #magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/Cumulative_Timeline_FullRegion_SoE2024_v2_2024.png")
 
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/SoE2025_TimelineandFootprint_Sept2024-AngelaSilva_2025.pdf")
+magick::image_read_pdf("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/dev/data-raw/workshop/images/SoE2025_TimelineandFootprint_Sept2024-AngelaSilva_2025.pdf")
 
 ```
 
@@ -1136,59 +1136,57 @@ The increase of offshore wind development can have both positive (e.g., employme
 
 ### 2024 Highlights
 
-This new section is common to the Mid-Atlantic and New England reports. Multiple [anomalous conditions](https://noaa-edab.github.io/catalog/observation_synthesis.html) and extreme events were observed in 2023 that could have brief local effects and/or widespread long-term ecosystem, fishery and management implications. This section intends to provide a record of these observations, the implications they may have for other ecosystem processes, and a reflection on how they fit into our understanding of the ecosystem. Many of these observations are being actively studied but should be noted and considered in future analyses and management decisions.
+This section intends to provide a record of noteworthy observations reported in 2024 across the Northeast U.S. region. The full ecosystem and fisheries impacts of many of these observations are still to be determined. They should, however, be noted and considered in future analyses and management decisions.
 
-Globally, 2023 was the warmest year on record with record high sea surface temperatures in the North Atlantic. In contrast, Northeast U.S. shelf surface temperatures were more variable, with near record highs in winter and near average conditions in other seasons.
+2024 global sea surface and air temperatures exceeded 2023 as the warmest year on record, but colder than average temperatures were observed in the Northeast U.S. Oceanographic and ecological conditions in the Northwest Atlantic were markedly different in 2024 compared to recent years. 
 
-#### Regional/Coastal phenomena
-There was a documented [die-off of scallops](https://noaa-edab.github.io/catalog/observation_synthesis.html) in the Mid-Atlantic Elephant Trunk regions between the 2022 and 2023 surveys. In 2022, Elephant Trunk experienced [stressful temperatures](https://noaa-edab.github.io/catalog/thermal_habitat_persistence.html) for scallops (17 - 19 ℃) for an average of 30 days (Fig. \ref{fig:elephantrunk}), but ongoing research is being conducted to identify contributing factors. A  fish and shellfish mortality event was observed in coastal New Jersey linked to [hypoxia and ocean acidification](https://noaa-edab.github.io/catalog/ocean_acidification.html) (Fig. \ref{fig:NJhypoxia}).
+#### Northwest Atlantic Phenomena 
+Late 2023 and early 2024 observations indicate movement of cooler and fresher water into the Northwest Atlantic. Anomalously cold and low salinity conditions were recorded throughout the Northeast Shelf and were widespread across the Slope Sea. These cooler and fresher conditions are linked to the southward movement of the eastern portion of the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) and an increased influx of Labrador Slope and Scotian Shelf water into the system. 
 
-```{r elephantrunk, out.width='50%', fig.cap="The number of days where bottom temperature was between 17 and 19 °C in each GLORYS grid cell for 2022. The gray lines show the sea scallop estimation areas, with the Elephant Trunk region highlighted in black lines."}
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/bottom_temp_threshold_17_19_Elephant_Trunk.png")
+```{r slopesea, fig.cap="February 2024 sea surface temperature difference compared to the February 2000-2020 long-term mean from the NOAA Advanced Clear-Sky Processor for Ocean (ACSPO) Super-collated SST."}
 
-```
-
-```{r NJhypoxia, out.width='50%', fig.cap = "Mission tracks of three gliders (left) deployed off the coast of New Jersey in August and September of 2023. Locations of hypoxic levels of dissolved oxygen (magenta; < 3 mg/liter) and low aragonite saturation state (cyan; < 1) measured along the glider mission tracks and locations of reported fish, lobster, and/or crab mortalities (red X)."}
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/Figure2-GraceSaba_2024.png")
-```
-
-Summer [bottom temperatures](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) in the Gulf of Maine were the warmest on record (since 1959) resulting in the second largest [bottom marine heatwave](https://noaa-edab.github.io/catalog/heatwave_year.html). The heatwave started in February, peaked in May and likely continued beyond August (pending data update). [2023 bottom temperature](https://noaa-edab.github.io/catalog/thermal_habitat_persistence.html) exceeded the 15 ℃ threshold for up to 59 days along the shelf break. 
-
-A wide-spread, long-duration [phytoplankton bloom](https://noaa-edab.github.io/catalog/observation_synthesis.html) of the dinoflagellate *Tripos muelleri* was observed in the GOM and generated chlorophyll concentrations up to ten times greater than average (a record high since 1998) from March to August (Figs. \ref{fig:chl-current-year}, \ref{fig:GOMbloom}). The bloom severely reduced water clarity, impacting harpoon fishing and likely affecting visual predators. Despite *Tripos* being a similar size to typical large phytoplankton (diatoms), this extra production was not grazed nor did it sink to the bottom. The specific drivers of the bloom and implications to the food web are still under investigation. 
-
-```{r chl-current-year, fig.cap="2023 median weekly chlorophyll concentrations (green line) with standard deviation 1998-2023 (gray shading).", fig.width=7, fig.asp=.35}
-
-a <- ecodata::plot_chl_pp(report = "MidAtlantic") + ggplot2::ggtitle("Mid Atlantic 2024")
-
-b <- ecodata::plot_chl_pp(report = "NewEngland") + ggplot2::ggtitle("New England 2024")
-
-a + b + patchwork::plot_layout(widths = c(2.6, 5.2))
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/Feb2024-SST-ANOM_KHyde_2025.png")
 
 ```
 
-```{r GOMbloom, out.width='50%', fig.cap="June 2023 chlorophyll anomaly shown as the ratio of the June 2023 average compared to climatological (1998-2023) June average. The black line depicts the 100 m isobath."}
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/2023-GOMbloom-internalreview.png")
-```
+Labrador Slope water accounted for more than 50% of the [source water](https://noaa-edab.github.io/catalog/slopewater.html) entering the Gulf of Maine through the Northeast Channel (Fig. \ref{fig.slopewater}). The increased influx of Labrador Slope and Scotian Shelf water resulted in colder and fresher conditions throughout the Northwest Atlantic and contributed to the Mid-Atlantic [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html). The cold pool area was larger and colder than recent years and more similar to the historical mean (1993-2020). 
 
-In Chesapeake Bay, [hypoxia conditions](https://noaa-edab.github.io/catalog/ches_bay_synthesis.html) were the lowest on record (since 1995), creating more suitable habitat for multiple fin fish and benthic species. Cooler [Chesapeake Bay water temperatures](https://noaa-edab.github.io/catalog/ches_bay_sst.html) paired with low hypoxia in the summer suggest conditions that season were favorable for striped bass. Cooler summer temperatures also support juvenile summer flounder growth.  However, warmer winter and spring water temperatures in the Chesapeake Bay, along with other environmental factors (such as low flow), may have played a role in low production of juvenile striped bass in 2023. Higher-than-average [salinity](https://noaa-edab.github.io/catalog/ch_bay_sal.html) across the Bay was likely driven by low precipitation and increased the area of available habitat for species such as croaker, spot, menhaden, and red drum, while restricting habitat area for invasive blue catfish.
+```{r slopewater, fig.cap="The proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSW) enter the Gulf of Maine through the Northeast Channel. The orange and teal dashed lines represent the long-term proportion averages for the WSW and LSW respectively."}
 
-#### Shelf-wide Phenomena
-The [Gulf Stream](https://noaa-edab.github.io/catalog/observation_synthesis.html) was highly variable in 2023, with northward shifts intermittently throughout the year and a more notable prolonged shift north along the continental shelf break in the southern Mid-Atlantic in the fall (Fig. \ref{fig:gulfstream23}). This shift severely constricted the Slope Sea (the waters between the Gulf Stream and continental shelf), inhibited warm core ring formation and interactions, resulted in unusually warm and salty surface waters, and strong northeastward currents in the southern Mid-Atlantic. Intermittent warm waters like this can be threats to temperature sensitive species, especially species at the southern end of their range or are not mobile (e.g. scallops), while also providing suitable habitat for more southern species. 
-```{r gulfstream23, out.width='50%', fig.cap="October 8-14, 2023 sea surface temperature average derived from the Advanced Clear Sky Processor for Ocean (ACSPO) SST data. The black line depicts the 100 m isobath and the white line is the mean path of the Gulf Stream."}
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MAP_SST_Gulf_Stream_2024.png")
+ecodata::plot_slopewater(report = "NewEngland")
 
 ```
 
+#### Northeast Shelf and Local Phenomena
 
-While the total number of [warm core rings](https://noaa-edab.github.io/catalog/wcr.html) in 2023 (18) was below the decadal average (31), there were a few notable events. A large early season ring pulled continental shelf water into the Slope Sea. Events like these can create biological hotspots, aggregating multiple species in small areas, increasing bycatch risks, and marine mammal shipstrike risks. In spring 2023, concentrations of North Atlantic right whales, humpback whales, basking sharks, and other large baleen whales were observed feeding near the edge of warm core rings near the shelf break. 
+The influx of the northern waters is likely linked to multiple observations across the Northeast Shelf including the uncommon presence of Arctic Calanus zooplankton species in the Gulf of Maine, delayed migration of many species, and redistribution of some species. Several members of the fishing community noted delayed migration of species into typical fishing grounds. In particular, they attributed the delayed migration of longfin squid, black sea bass, and haddock to the cooler water temperatures. Many also reported redistribution of some species. Specifically, pollock, bluefin tuna, Atlantic mackerel, longfin squid, bluefish, and bonito were observed in surprising or unusual locations. Some species, such as Atlantic mackerel, were reported outside of typical fishing grounds and in higher abundance compared to recent years. Anglers also reported good catches of red drum in Chesapeake Bay and record high (since 1995) numbers were observed at Poplar Island survey location.
 
-Multiple fall 2023 tropical and coastal storms caused several flash flood events, above average coastal water levels, strong winds and high rainfall totals throughout the Northeast. These storms may be related to the shift from 2020-2022 La Niña conditions to strong El Niño conditions in late spring 2023. El Niño winters are associated with more frequent East Coast storms, which can result in increased risk of coastal flooding,  increased freshwater runoff into the coastal ocean, and delayed spring transition from a well mixed water column to stratified. In estuaries, increased freshwater flow decreases salinity, reduces the amount of suitable habitat for juvenile marine fish, and is related to increased hypoxia (low oxygen). However, precipitation is not uniform throughout the Northeast U.S., and [Chesapeake Bay 2023 conditions](https://noaa-edab.github.io/catalog/ch_bay_sal.html)  did not align with El Nino expectations.  The current El Niño is expected to weaken by spring 2024. 
+In the summer, Chesapeake Bay recorded warm temperatures and low bottom water dissolved oxygen that resulted in less than suitable habitat for species such as striped bass and blue crabs. These poor conditions can affect their distribution, growth, and survival. Additionally, lower than average spring and summer salinity negatively impacted oyster hatchery operations and increased the area of available habitat for invasive blue catfish, potentially increasing predation on blue crabs and other important finfish species.
+
+During the summer months there were multiple prolonged upwelling events that brought cold water to the surface off the New Jersey coast. There was also an atypical phytoplankton bloom south of Long Island in late June to early July 2024, possibly linked to an upwelling event (Fig. \ref{fig:cocbloom}). The bloom was dominated by coccolithophores, which have an exoskeleton made up of calcium carbonate plates that can turn the water an opaque turquoise color. Large blooms of coccolithophores are unusual in this region, but they are not considered harmful and are grazed by zooplankton. Additionally, there were observations of multiple whale species aggregating near the Hudson Canyon between May and August.
+
+```{r cocobloom, fig.cap="An OLCI Sentinel 3A true color image with enhanced contrast captured on July 2, 2024. Coccolithophores shed their coccolith plates during the later stages of the bloom cycle, which results in the milky turquoise water color (Image credit: NOAA STAR, OCView and Ocean Color Science Team)."}
+
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/20240702_Long_Island_algae_bloom_KHyde_2025.png")
+
+```
+
+Summer bottom [ocean acidification (OA)](https://noaa-edab.github.io/catalog/ocean_acidification.html) risk in the Mid-Atlantic was the highest recorded since sampling began in 2007. High OA risk is measured as low aragonite saturation state($\Omega$). Similarly, the winter/early spring [Gulf of Maine surface OA risk](https://noaa-edab.github.io/catalog/gom_acidification.html)  was significantly above the climatological average and near the sensitivity levels for cod ($\Omega$<1.19) and lobster ($\Omega$<1.09) (Fig.\ref{fig:GOMoa}). These observations were likely driven by the greater volume of fresher, less-buffered Labrador Slope water entering the Gulf of Maine and Mid-Atlantic. The 2023 and 2024 high summer OA risk has increased the extent of potentially unfavorable habitat for Atlantic sea scallops ($\Omega$<1.1) and longfin squid ($\Omega$<0.96). Additionally, for the first time, high OA risk conditions were observed outside of summer (fall for both species and spring for Atlantic sea scallops).
+
+```{r GOMoa, fig.cap="GOM OA"}
+
+magick::image_read_pdf("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/Hunt_WBD_2024_pCO2_OMa_Weekly_Climatology-ChrisH_2025.pdf") |>
+  magick::image_crop("2250x1650+0+1650")
+
+```
+
+In contrast to the  documented die-off of scallops in the Mid-Atlantic Elephant Trunk region between the 2022 and 2023 surveys, in 2024 there was strong scallop recruitment in the southeastern portion of the Nantucket Lightship Area.
 
 # Contributors
 
-**Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Joseph Caracappa, Andy Beet, Brandon Beltz, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith
+**Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Joseph Caracappa, Andy Beet, Brandon Beltz, Geret DePiper, Kimberly Hyde, Scott Large, Laurel Smith, Sarah Weisberg
 
-**Contributors** (NEFSC unless otherwise noted): Kimberly Bastille, Aaron Beaver (Anchor QEA), Andy Beet, Brandon Beltz, Ruth Boettcher (Virginia Department of Game and Inland Fisheries), Mandy Bromilow and CJ Pellerin (NOAA Chesapeake Bay Office), Joseph Caracappa, Baoshan Chen (Stony Brook University), Doug Christel (GARFO), Patricia Clay, Lisa Colburn, Jennifer Cudney and Tobey Curtis (NMFS Atlantic HMS Management Division), Geret DePiper, Dan Dorfman (NOAA-NOS-NCCOS), Hubert du Pontavice, Emily Farr and Grace Roskar (NMFS Office of Habitat Conservation), Michael Fogarty, Paula Fratantoni, Kevin Friedland, Marjy Friedrichs (VIMS), Sarah Gaichas, Ben Galuardi (GAFRO), Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth), James Gartland (Virginia Institute of Marine Science), Lori Garzio (Rutgers University), Glen Gawarkiewicz (Woods Hole Oceanographic Institution), Sean Hardison, Dvora Hart, Kimberly Hyde, John Kocik, Steve Kress and Don Lyons (National Audubon Society’s Seabird Restoration Program), Young-Oh Kwon and Zhuomin Chen (Woods Hole Oceanographic Institution), Andrew Lipsky, Sean Lucey, Chris Melrose, Shannon Meseck, Ryan Morse, Ray Mroch (SEFSC), Brandon Muffley (MAFMC), Kimberly Murray, David Moe Nelson (NCCOS), Janet Nye (University of North Carolina at Chapel Hill), Chris Orphanides, Richard Pace,Debi Palka, Tom Parham (Maryland DNR), Charles Perretti, Jeffrey Runge (U Maine), Grace Saba and Emily Slesinger (Rutgers University), Vincent Saba, Sarah Salois, Chris Schillaci (GARFO), Amy Schueller (SEFSC), Teresa Schwemmer (Stony Brook University), Dave Secor (CBL), Angela Silva, Adrienne Silver (UMass/SMAST), Laurel Smith, Talya tenBrink (GARFO), Abigail Tyrell, Bruce Vogt (NOAA Chesapeake Bay Office), Ron Vogel (University of Maryland Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research), John Walden, Harvey Walsh, Changhua Weng, Dave Wilcox (VIMS), Timothy White (Environmental Studies Program, BOEM), Mark Wuenschel, Qian Zhang (U Maryland)
+**Contributors** (currently being updated)
 
 # Document Orientation
 
@@ -1197,90 +1195,7 @@ The figure format is illustrated in Fig \ref{fig:docformat}a. Trend lines are sh
 ```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.asp = 0.3, ft.arraystretch = 1}
 #fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.49\\linewidth', fig.show="hold" 
 # Figure orientation subfigure
-m <- 0.1
-x <- 1985:2022
-y <-  m*x + rnorm(30, sd = 0.35)
-
-data <- data.frame(x = x,
-                  y = y)
-
-#Define constants for figure plot
-x.shade.max <- max(x)
-x.shade.min <- x.shade.max - 9 
-hline = mean(y)
-
-setup <- ecodata::plot_setup(shadedRegion = c(2014,2023), report = "MidAtlantic")
-
-#Plot series with trend 
-psample <- ggplot2::ggplot(data = data,aes(x = x, y = y)) +
-  #Highlight last ten years
-  annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
-      xmin = setup$x.shade.min , xmax = setup$x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_point(size = setup$pcex) +
-  scale_color_manual(aesthetics = "color")+
-  guides(color = FALSE) +
-  geom_hline(aes(yintercept = hline),
-              size = setup$hline.size,
-             alpha = setup$hline.alpha,
-             linetype = setup$hline.lty)+
-  geom_line() +
-  geom_gls(aes(x = x, y = y)) +
-  scale_y_continuous(labels = function(l){trans = l / 1000})+
-  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
-  ylab(expression("Invented Index, 10"^3*"widgets")) +
-  xlab("Time") +
-  labs(tag = "a")  +
-  theme_ts()
-
-
-# EPU map subfigure
-# Set lat/lon window for map
-xmin = -78
-xmax = -65
-ymin = 36
-ymax = 45
-xlims <- c(xmin, xmax)
-ylims <- c(ymin, ymax)
-
-#CRS
-crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
-
-#Specify data frame with lat/lon locations for labels
-epu_labels <- data.frame(EPU = c("Mid-Atlantic\n Bight",
-                                 "Gulf of Maine",
-                                 "Georges Bank"),
-                         latitude = c(40,42.85,41),
-                         longitude = c(-72.7,-69,-68.5))
-
-#Map of NE LME
-epumap <- ggplot() +
-  geom_sf(data = coast, size = setup$map.lwd) +
-  geom_sf(data = epu_sf, fill = "transparent", size = setup$map.lwd) +
-  coord_sf(crs = setup$crs, xlim = setup$xlims, ylim = setup$ylims) +
-  geom_text(data = epu_labels, aes(x = longitude,
-                                    y = latitude,
-                                    label = EPU),
-            size = 1.7)+
-  theme_map() +
-  scale_x_continuous(breaks = seq(-78, -65, by = 4), expand = c(0.01, 0.01)) +
-  xlab("Longitude") +
-  ylab("Latitude") +
-  labs(tag = "b")
-
-#epumap <- magick::image_read("images/EPU_Designations_Map.jpg")
-
-psample + plot_spacer() + epumap + plot_layout(ncol = 3, widths=c(3,.5,4.5))
-
-# psample
-# 
-# knitr::include_graphics("images/EPU_Designations_Map.jpg")
-# magick::image_read("images/EPU_Designations_Map.jpg")
-# epumap <- magick::image_read("images/EPU_Designations_Map.jpg") %>%
-#  magick::image_scale("10%")
-# epumap <- magick::image_scale(epumap, "50%")
-
-# epumap
+ecodata::plot_demo()
 
 ```
 
@@ -1291,14 +1206,14 @@ Fish and invertebrates are aggregated into similar feeding categories (Table \re
 # new table with all species listed by management entity
 df <- ecodata::species_groupings %>%
   dplyr::select(SOE.24, COMNAME, Fed.Managed) %>%
-  filter(SOE.24 != "Other") %>%
-  distinct() %>%
-  group_by(SOE.24, Fed.Managed) %>%
-  summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
-  spread(Fed.Managed, COMNAME) %>%
-  arrange(factor(SOE.24, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
+  dplyr::filter(SOE.24 != "Other") %>%
+  dplyr::distinct() %>%
+  dplyr::group_by(SOE.24, Fed.Managed) %>%
+  dplyr::summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
+  tidyr::spread(Fed.Managed, COMNAME) %>%
+  dplyr::arrange(factor(SOE.24, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
 df<-df[c(1,3,2,4,5)] %>%
-  mutate_all(tolower)
+  dplyr::mutate_all(tolower)
 
 
 # knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodies.', 
