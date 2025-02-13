@@ -62,7 +62,7 @@ set_flextable_defaults(
 
 ## About This Report
 
-This report is for the Mid-Atlantic Fishery Management Council (MAFMC). The purpose of this report is to synthesize ecosystem information to allow the MAFMC to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized on pages 1 and 2, with highlights of 2024 ecosystem events on page 3. The information in this report is organized into two main sections; [performance measured against ecosystem-level management objectives](#performance-relative-to-fishery-management-objectives) (Table \ref{tab:management-objectives}), and potential [risks to meeting fishery management objectives](#risks-to-meeting-fishery-management-objectives) ((Table \ref{tab:management-risks}): [climate change](#climate-and-ecosystem-change) and [other ocean uses](#other-ocean-uses-offshore-wind)). A final section highlights [notable 2024 ecosystem observations](#highlights). 
+This report is for the Mid-Atlantic Fishery Management Council (MAFMC). The purpose of this report is to synthesize ecosystem information to allow the MAFMC to better meet fishery management objectives, and to update the MAFMC’s Ecosystem Approach to Fishery Management (EAFM) risk assessment. The major messages of the report are synthesized on pages 1 and 2, with highlights of 2024 ecosystem events on page 3. The information in this report is organized into two main sections; [performance measured against ecosystem-level management objectives](#performance-relative-to-fishery-management-objectives) (Table \ref{tab:management-objectives}), and potential [risks to meeting fishery management objectives](#risks-to-meeting-fishery-management-objectives) (Table \ref{tab:management-risks}: [climate change](#climate-and-ecosystem-change) and [other ocean uses](#other-ocean-uses-offshore-wind)). A final section highlights [notable 2024 ecosystem observations](#highlights). 
 
 ## Report structure
 
@@ -77,7 +77,7 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                                  "Commercial Profits","Recreational Opportunities",
                                                  "Stability","Social & Cultural",
                                                  "Protected Species",
-                                                 "Management","Biomass"
+                                                 "Management","Biomass", "Environment"
                                                  #,"Productivity",
                                                  #"Trophic structure","Habitat"
                                                  ),
@@ -88,7 +88,8 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                "Community fishing engagement and social vulnerability status",
                                "Bycatch; population (adult and juvenile) numbers; mortalities",
                                "Stock status; catch compared with catch limits",
-                               "Biomass or abundance by feeding guild from surveys"#,
+                               "Biomass or abundance by feeding guild from surveys",
+                               "Climate and ecosystem risk indicators listed in Table 2"
                                #"Condition and recruitment of managed species, primary productivity",
                                #"Relative biomass of feeding guilds, zooplankton",
                                #"Estuarine and offshore habitat conditions"
@@ -108,7 +109,9 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
 #   pack_rows("Supporting and Regulating Services", 7,10)
 
 mng_obj$service <- c(rep("Objectives: Provisioning and Cultural Services", 6), 
-                     rep("Potential Drivers: Supporting and Regulating Services", 2))
+                     rep("Potential Drivers: Supporting and Regulating Services", 3))
+
+mng_obj <- as.tibble(mng_obj)
 
 flextable::as_grouped_data(mng_obj, groups = "service") %>% 
   flextable::as_flextable(hide_grouplabel=TRUE) %>% 
@@ -123,6 +126,7 @@ flextable::as_grouped_data(mng_obj, groups = "service") %>%
 
 ```
  
+
 ```{r management-risks, ft.arraystretch = 1}
 
 FitFlextableToPage <- function(ft, pgwidth = 6){
@@ -190,8 +194,8 @@ This year, we present updated indicators for total [commercial landings](https:/
 
 ```{r, total-landings, fig.asp=.8, fig.cap = "Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red), with significant decline (purple) in total landings."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")
-ecodata::plot_comdat(report = "MidAtlantic", varName = "landings", n=10) +
-  ggplot2::ylab("")
+ecodata::plot_comdat(report = "MidAtlantic", varName = "landings", n=10) #+
+  #ggplot2::ylab("")
 ```
 
 Commercial landings by guild include all species and all uses, and are reported as total for the guild and the MAFMC managed species within the [guild](https://noaa-edab.github.io/catalog/species_groupings.html). Landings of benthos have been below the long term average since 2010, primarily driven by surf clam and ocean quahog, with scallops now contributing to the decline as well. Total landings of planktivores is presenting a significant downward trend, primarily due to decreases in species not managed by the MAFMC (Atlantic herring and Atlantic menhaden; Fig. \ref{fig:comm-landings}).
@@ -203,9 +207,9 @@ ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild", n=10)
 
 ```
 
-Community Climate Change Risk indicators have been developed to evaluate port specific landings and revenue risk in terms of commercial species climate vulnerability. The total climate vulnerability is a measure of to what degree a region’s landings (or revenue) is dependent on species sensitive to different climate and environmental change factors including temperature and acidification. For ports combined across Mid-Atlantic states, the total climate vulnerability of landings ranged between moderate and high with no long-term trend (Fig. \ref{fig:climatevul-land}).  In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
+[Community Climate Change Risk indicators](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) have been developed to evaluate port specific landings and revenue risk in terms of commercial species climate vulnerability. The total climate vulnerability is a measure of to what degree a region’s landings (or revenue) is dependent on species sensitive to different climate and environmental change factors including temperature and acidification. For ports combined across Mid-Atlantic states, the total climate vulnerability of landings ranged between moderate and high with no long-term trend (Fig. \ref{fig:climatevul-land}).  In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
 
-```{r climatevul-land, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
+```{r climatevul-land, fig.width = 7, fig.asp=.6, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
 ecodata::plot_community_climate_vulnerability(plottype = "regionland")
 ```
 
@@ -229,7 +233,7 @@ a <- ecodata::plot_rec_hms(report="MidAtlantic", n=100)  +
     labels = c("Large Coastal", "Prohibited", "Small Coastal")
     ) 
 
-b <- ecodata::plot_lps_sharks(n=100)
+b <- ecodata::plot_lps_sharks(n=100) + ggplot2::ggtitle("Mid Atlantic Rec. Pelagic Shark Landings")
 
 a+b
 ```
@@ -299,6 +303,7 @@ ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
 
 #### System Biomass
 Although [aggregate biomass](https://noaa-edab.github.io/catalog/aggregate_biomass.html) trends derived from scientific resource surveys are mostly stable in the MAB, spring piscivores, fall benthivores, and fall benthos show long-term increases (Fig. \ref{fig:nefsc-biomass-mab}). While managed species make up varying proportions of aggregate biomass, trends in landings are not mirroring shifts in the overall trophic structure of survey-sampled fish and invertebrates. Therefore, major shifts in feeding guilds or ecosystem trophic structure are unlikely to be driving the decline in landings. 
+
 ```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with the nearshore NEAMAP survey shown in red. Significant increases (orange lines) are present for spring piscivore and fall benthivore and benthos biomass. The shaded area around each annual mean represents 2 standard deviations from the mean.", fig.width=8, fig.asp = 0.75, results='hide'}
 
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R")
@@ -352,9 +357,9 @@ ecodata::plot_bennet(report = "MidAtlantic", varName = "total")
 ecodata::plot_bennet(report="MidAtlantic") #+ ggplot2::facet_wrap(~Var, ncol=1)
 ```
 
-For ports combined across Mid-Atlantic states, total climate vulnerability of revenue ranged from high to very high (with the exception of a single moderate ranking 2022), with no long-term trend. This suggests that Mid-Atlantic port commercial fishing revenue has been highly reliant on climate-sensitive species for most of the period since 2000 (Fig.  \ref{fig:climatevul-rev}). In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
+For ports combined across Mid-Atlantic states, [total climate vulnerability](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) of revenue ranged from high to very high (with the exception of a single moderate ranking 2022), with no long-term trend. This suggests that Mid-Atlantic port commercial fishing revenue has been highly reliant on climate-sensitive species for most of the period since 2000 (Fig.  \ref{fig:climatevul-rev}). In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
 
-```{r climatevul-rev, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
+```{r climatevul-rev, fig.width = 7, fig.asp=.6, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
 
 ecodata::plot_community_climate_vulnerability(plottype = "regionrev")
 ```
@@ -363,8 +368,8 @@ ecodata::plot_community_climate_vulnerability(plottype = "regionrev")
 ### Implications 
 Although the Mid-Atlantic region shows declining revenue since 2016, inflation-adjusted revenue from harvested species was still greater than 1982 levels until the past two years. In a similar manner to seafood landings, the results here are driven in large part by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species, as well as lower quotas and prices for Atlantic scallops. The declining benthos category since 2012 may be partially caused by decreases in surfclam and ocean quahogs in the southern part of their range as harvest have shifted northward. Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
 
--  Surfclams, ocean quahogs, and scallops are sensitive to warming ocean temperatures and ocean acidification, as reflected in the high climate vulnerability of total landings from from Mid-Atlantic ports . 
--  [Multiple stressors](https://noaa-edab.github.io/catalog/ocean_acidification) are interacting in Mid-Atlantic shellfish habitats.
+-  Surfclams, ocean quahogs, and scallops are sensitive to warming ocean temperatures and ocean acidification, as reflected in the high climate vulnerability of total landings from from Mid-Atlantic ports. 
+-  Multiple stressors including [warming](https://noaa-edab.github.io/catalog/bottom_temp_insitu.html) and [ocean acidification](https://noaa-edab.github.io/catalog/ocean_acidification) are interacting in Mid-Atlantic shellfish habitats.
   
 
 ## Recreational Opportunities 
@@ -454,9 +459,9 @@ ecodata::plot_zoo_diversity(report = "MidAtlantic", n=10)
 ecodata::plot_exp_n(report = "MidAtlantic", varName = "fall", n=10)
 ```
 
-Functional traits, such as length at maturity, maximum body size, or fecundity, can synthesize change across complex, diverse communities. Monitoring changes in functional trait distributions for the fish community can provide a means of assessing ecosystem-scale resilience. There is evidence of long term change in trait distributions in the MAB (Fig. \ref{fig:traits}). The spring finfish community in the MAB is showing long-term shifts towards slower life history strategies with higher length and maturity and lower fecundity. In contrast, the fall MAB finfish community has shifted towards decreased length at maturity, smaller offspring size, and lower trophic level indicative of faster life histories. 
+[Functional traits](https://noaa-edab.github.io/catalog/finfish_traits.html), such as length at maturity, maximum body size, or fecundity, can synthesize change across complex, diverse communities. Monitoring changes in functional trait distributions for the fish community can provide a means of assessing ecosystem-scale resilience. There is evidence of long term change in trait distributions in the MAB (Fig. \ref{fig:traits}). The spring finfish community in the MAB is showing long-term shifts towards slower life history strategies with higher length and maturity and lower fecundity. In contrast, the fall MAB finfish community has shifted towards decreased length at maturity, smaller offspring size, and lower trophic level indicative of faster life histories. 
 
-```{r traits, fig.cap="Fish community functional traits in the Mid Atlantic Bight based on Fall (red) and Spring (blue) survey data. Length at maturity for the full finfish community has increased in spring (orange line), but decreased in fall (purple lines)"}
+```{r traits, fig.width = 6, fig.asp=0.6, fig.cap="Fish community functional traits in the Mid Atlantic Bight based on Fall (red) and Spring (blue) survey data. Length at maturity for the full finfish community has increased in spring (orange line), but decreased in fall (purple lines)"}
 
 ecodata::plot_finfish_traits(varName = "length_maturity")
 
@@ -501,7 +506,7 @@ In 2022, Cape May, NJ; Reedville, VA; and Montauk, NY were the most engaged comm
 
 a <- ecodata::plot_engagement()
 
-a$p
+a$p + ggplot2::theme(plot.title=element_text(vjust = 0))
 
 ```
 
@@ -532,7 +537,7 @@ Several communities ranked in the top communities for both commercial and recrea
 
 a <- ecodata::plot_engagement(varName = "Recreational")
 
-a$p
+a$p + ggplot2::theme(plot.title=element_text(vjust = 0))
 
 ```
 
@@ -548,12 +553,10 @@ flextable::flextable(a$t) |>
   
 ```
 
-Both commercial and recreational fishing are important activities in Montauk, NY, Cape May, Barnegat Light and Point Pleasant Beach, NJ; and Rodanthe, NC, meaning these communities may be impacted simultaneously by commercial and recreational regulatory changes. However, in all but Point Pleasant Beach NJ,  environmental justice may not be a major concern in these communities given the index scores (Figs \ref{fig:commercial-EJ} and \ref{fig:recreational-EJ})). Point Pleasant Beach, NJ scored medium for the personal disruption index, indicating that environmental justice may  be a moderate concern in Point Pleasant Beach.
-
 
 ### Indicators: Community Climate Vulnerability in the Mid-Atlantic
 
-The Community Climate Change Risk Indicators are calculated by multiplying the percent contribution of species to the total value landed in a community by their respective Total Vulnerability scores (based on NOAA’s Climate Vulnerability Assessment) for different sensitivity and exposure factors and then summing the resulting values by year. As a community (or region) shifts towards climate vulnerable species, its risk score increases. While there is not a long-term trend in total climate vulnerability across Mid Atlantic communities as a whole, a majority of communities rank either high or very high risk (Fig. \ref{fig:commvulex}). This suggests that a majority of Mid-Atlantic communities depend on climate vulnerable species to generate commercial fishery revenue.
+The [Community Climate Change Risk Indicators](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) are calculated by multiplying the percent contribution of species to the total value landed in a community by their respective Total Vulnerability scores (based on NOAA’s Climate Vulnerability Assessment) for different sensitivity and exposure factors and then summing the resulting values by year. As a community (or region) shifts towards climate vulnerable species, its risk score increases. While there is not a long-term trend in total climate vulnerability across Mid Atlantic communities as a whole, a majority of communities rank either high or very high risk (Fig. \ref{fig:commvulex}). This suggests that a majority of Mid-Atlantic communities depend on climate vulnerable species to generate commercial fishery revenue.
 
 ```{r commvulex, fig.width = 7.5, fig.asp=.5, fig.cap="Proportion of Mid-Atlantic communities at each revenue climate vulnerability level over time."}
 
@@ -564,7 +567,7 @@ ecodata::plot_community_climate_vulnerability(n=100)
 ### Implications
 A range of socioeconomic and climate vulnerability concerns are found throughout Mid-Atlantic fishing communities. These indicators provide a snapshot of the presence of socio-demographic concerns in most highly engaged commercial and recreational fishing communities in the Mid-Atlantic. These communities may be especially vulnerable to changes in fishing patterns due to regulations and/or ecosystem changes. Several of these top fishing communities, both commercial and recreational fishing communities, demonstrated medium to high socio-demographic vulnerability, indicating that they may be at a disadvantage responding to change.
 
-There is evidence that a majority of Mid-Atlantic communities have high to very high total climate vulnerability based on revenue. Coastal fishing communities are greatly affected by climate change, both because of their physical location and because of their frequent social, cultural, and economic dependence on fishing. These impacts are expected to become more pressing as climatic changes become more extensive. Changes in ocean temperature and acidification affecting marine life have the potential to directly impact fisheries and fishery dependent livelihoods.  
+There is evidence that a majority of Mid-Atlantic communities have high to very high total climate vulnerability based on revenue. Coastal fishing communities are greatly affected by climate change, both because of their physical location and because of their frequent social, cultural, and economic dependence on fishing. These impacts are expected to become more pressing as climatic changes become more extensive. Changes in [ocean temperature](https://noaa-edab.github.io/catalog/bottom_temp_insitu.html) and [acidification](https://noaa-edab.github.io/catalog/ocean_acidification.html) affecting marine life have the potential to directly impact fisheries and fishery dependent livelihoods.  
 
 
 ## Protected Species
@@ -604,7 +607,7 @@ North Atlantic right whale [calf counts](https://noaa-edab.github.io/catalog/nar
 ecodata::plot_narw(varName = "calf", n=10) + ggplot2::ggtitle("North Atlantic right whale calf abundance")
 ```
 
-This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. From 2017 through 2 January 2025, the total UME right whale mortalities includes 41 dead stranded whales, 17 in the US and 21 in Canada. When alive but seriously injured whales (39) and sublethal injuries or ill whales (71) are taken into account, 151 individual whales are included in the UME. Recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities. The primary cause of death is “human interaction” from entanglements or vessel strikes.
+This year, the Unusual Mortality Event (UME) for North Atlantic right whales continued. From 2017 through 2 January 2025, the total UME right whale mortalities includes 41 dead stranded whales, 19 in the US and 22 in Canada. When alive but seriously injured whales (39) and sublethal injuries or ill whales (71) are taken into account, 151 individual whales are included in the UME. Recent research suggests that many mortalities go unobserved and the true number of mortalities are about three times the count of the observed mortalities. The primary cause of death is “human interaction” from entanglements or vessel strikes.
 
 A UME continued from previous years for humpback whales (2016-present) and Atlantic minke whales (2018-present); suspected causes include human interactions. A UME for Northeast pinnipeds that began in 2018 for infectious disease is pending closure as of February 2025.
 
@@ -679,7 +682,7 @@ ecodata::plot_long_term_sst(n=10)
 ```
 
 
-Species suitable habitat can expand or contract when changes in temperature and major oceanographic conditions alter distinct water mass habitats.The variability of the Gulf Stream is a major driver of the predominant oceanographic conditions of the Northeast U.S. continental shelf. As the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) has become less stable and shifted northward in the last decade (Fig. \ref{fig:GSI}), warmer ocean temperatures have been observed on the northeast shelf and a higher proportion of [Warm Slope Water](https://noaa-edab.github.io/catalog/slopewater.html) has been present in the Northeast Channel. Since 2008, the Gulf Stream has moved closer to the Grand Banks, reducing the supply of cold, fresh, and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf. In 2024, however, conditions changed with a shift in the Gulf Stream and increased Labrador Slope water entering the Gulf of Maine, resulting in colder and fresher conditions throughout the Northwest Atlantic (see [2024 Highlights](#2024-Highlights)).
+Species suitable habitat can expand or contract when changes in temperature and major oceanographic conditions alter distinct water mass habitats.The variability of the Gulf Stream is a major driver of the predominant oceanographic conditions of the Northeast U.S. continental shelf. As the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) has become less stable and shifted northward in the last decade (Fig. \ref{fig:GSI}), warmer ocean temperatures have been observed on the northeast shelf and a higher proportion of [Warm Slope Water](https://noaa-edab.github.io/catalog/slopewater.html) has been present in the Northeast Channel. Since 2008, the Gulf Stream has moved closer to the Grand Banks, reducing the supply of cold, fresh, and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf. In 2024, however, conditions changed with a shift in the Gulf Stream and increased Labrador Slope water entering the Gulf of Maine, resulting in colder and fresher conditions throughout the Northwest Atlantic (see [2024 Highlights](#2024-highlights)).
 
 ```{r GSI, fig.cap = "Index representing changes in the location of the western (between 64 and 55 degrees W) Gulf Stream north wall (black). Positive values represent a more northerly Gulf Stream position, with increasing trend (orange)."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")
@@ -701,7 +704,7 @@ a+b
 
 #### Future Considerations 
 
-Distribution shifts caused by changes in thermal habitat and ocean circulation are likely to continue as long as long-term trends persist. Episodic and short-term events (see observation highlights) may increase variability in the trends, however species distributions are unlikely to reverse to historical ranges in the short term. Increased mechanistic understanding of distribution drivers is needed to better understand future distribution shifts: species with high mobility or short lifespans react differently from immobile or long lived species. 
+Distribution shifts caused by changes in thermal habitat and ocean circulation are likely to continue as long as long-term trends persist. Episodic and short-term events (see [2024 Highlights](#2024-highlights)) may increase variability in the trends, however species distributions are unlikely to reverse to historical ranges in the short term. Increased mechanistic understanding of distribution drivers is needed to better understand future distribution shifts: species with high mobility or short lifespans react differently from immobile or long lived species. 
 
 Long-term oceanographic projections forecast a temporary pause in warming over the next decade due to internal variability in circulation and a southward shift of the Gulf Stream. Near-term forecasts are being evaluated to determine how well they are able to predict episodic and anomalous events that are outside of the long-term patterns.
 
@@ -731,7 +734,7 @@ Understanding whether seasonal patterns are changing for stocks requires regular
 
 The drivers of timing shifts in managed stocks are generally coupled to shifts in environmental or biological conditions, since these can result in changes in habitat quality or food availability within the year. Changes in the timing of fall phytoplankton blooms and seasonal shifts in zooplankton communities are indicators of changes in seasonal food availability to stocks.
 
-Along with the overall warming trends in the Mid-Atlantic, ocean summer conditions have been lasting longer (Fig. \ref{fig:transition}) due to the later [transition](https://noaa-edab.github.io/catalog/trans_dates.html) rom warm summer conditions to cooler fall temperatures. These transition dates relate how daily temperatures compare to the seasonal norm. Changes in the timing of seasonal environmental cycles can alter biological processes (migrations, spawning, etc.) that are triggered by seasonal events.  
+Along with the overall warming trends in the Mid-Atlantic, ocean summer conditions have been lasting longer (Fig. \ref{fig:transition}) due to the later [transition](https://noaa-edab.github.io/catalog/trans_dates.html) from warm summer conditions to cooler fall temperatures. These transition dates relate how daily temperatures compare to the seasonal norm. Changes in the timing of seasonal environmental cycles can alter biological processes (migrations, spawning, etc.) that are triggered by seasonal events.  
 
 ```{r transition, fig.cap="Ocean summer length in the MAB: the annual total number of days between the spring thermal transition date and the fall thermal transition date (black), with an increasing trend (orange)."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")
@@ -743,7 +746,7 @@ ecodata::plot_trans_dates(varName = "length", n=10) + ggplot2::ggtitle("Time bet
 )
 ```
 
-The [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html) s a summer to early fall feature within the MAB that creates seasonally suitable habitat for some species. Cold pool persistence, a measure of how long this feature is present in a given year, has been declining, so this habitat is available for a shorter portion of the year (Fig. \ref{fig:cold-pool-time}). All cold pool indices were near the long-term average in 2024 and likely related to the influx of northern waters into the system (see [2024 Highlights section](#2024-Highlights)). A change in the timing of the autumn breakdown of the cold pool may impact the recruitment of species that depend on it for habitat, such as juvenile yellowtail flounder.  
+The [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html) s a summer to early fall feature within the MAB that creates seasonally suitable habitat for some species. Cold pool persistence, a measure of how long this feature is present in a given year, has been declining, so this habitat is available for a shorter portion of the year (Fig. \ref{fig:cold-pool-time}). All cold pool indices were near the long-term average in 2024 and likely related to the influx of northern waters into the system (see [2024 Highlights section](#2024-highlights)). A change in the timing of the autumn breakdown of the cold pool may impact the recruitment of species that depend on it for habitat, such as juvenile yellowtail flounder.  
 
 ```{r cold-pool-time, fig.cap="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.width = 3.5, fig.asp=.5, results='hide'}
 #, fig.width = 5,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
@@ -752,7 +755,7 @@ ecodata::plot_cold_pool(varName = "persistence", n=10)
 
 ```
 
-The seasonal timing of Mid-Atlantic phytoplankton blooms shows high interannual variability during the fall bloom period (October-December).  The significant increase in January chlorophyll suggests that the fall bloom period is continuing into the winter, with more chlorophyll now than in the late 1990s. The significant decrease of chlorophyll in September could be related to warmer temperatures persisting into early fall and increased nutrient limitation.
+The seasonal timing of Mid-Atlantic [phytoplankton](https://noaa-edab.github.io/catalog/chl_pp.html) blooms shows high interannual variability during the fall bloom period (October-December).  The significant increase in January chlorophyll suggests that the fall bloom period is continuing into the winter, with more chlorophyll now than in the late 1990s. The significant decrease of chlorophyll in September could be related to warmer temperatures persisting into early fall and increased nutrient limitation.
 
 ```{r montlychl, fig.width=14, fig.height=8, fig.cap="Monthly median chlorophyll a concentration in the MAB (black) with significant increase in January (orange line) and decrease in September (purple line)."}
 
@@ -1008,7 +1011,7 @@ Increased vessel transit between stations may decrease data collections that are
 
 The socio-demographic conditions, and resultant vulnerabilities, of some communities may further exacerbate the impacts of offshore wind development in the Northeast such that the impacts of offshore wind development are expected to differentially [impact specific coastal communities](https://noaa-edab.github.io/catalog/wind_port.html) (Fig. \ref{fig:wea-port-rev}). Additionally, impacts of offshore wind development may unevenly affect individual operators, with some permit holders deriving a much higher proportion of revenue from wind areas than the port-based mean.
 
-```{r wea-port-rev, fig.cap="Percent of Mid-Atlantic port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.",  fig.width=6.5, fig.asp=.85, fig.align='left'}
+```{r wea-port-rev, fig.cap="Percent of Mid-Atlantic port revenue from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA.",  fig.width=6.5, fig.asp=.85, fig.align='left'}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"),
 
 # df.symbol <- ecodata::wind_port |>
@@ -1036,7 +1039,7 @@ For example, Atlantic City, NJ had the highest potential revenue loss (historica
 
 Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Davisville/North Kingston and Point Judith, RI, and Hyannis and Menemsha, MA.
 
-```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.3, fig.align='left'}
+```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA.", fig.width=6.5, fig.asp=.5, fig.align='left'}
 
 # Email from Abby 30 January 2025
 # Here are the ports that have >=50% of their total revenue coming from species managed outside of the port region:
@@ -1143,7 +1146,7 @@ This section intends to provide a record of noteworthy observations reported in 
 #### Northwest Atlantic Phenomena 
 Late 2023 and early 2024 observations indicate movement of cooler and fresher water into the Northwest Atlantic. Anomalously cold and low salinity conditions were recorded throughout the Northeast Shelf and were widespread across the Slope Sea. These cooler and fresher conditions are linked to the southward movement of the eastern portion of the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) and an increased influx of Labrador Slope and Scotian Shelf water into the system. 
 
-```{r slopesea, fig.cap="February 2024 sea surface temperature difference compared to the February 2000-2020 long-term mean from the NOAA Advanced Clear-Sky Processor for Ocean (ACSPO) Super-collated SST."}
+```{r slopesea, out.width="65%", fig.cap="February 2024 sea surface temperature difference compared to the February 2000-2020 long-term mean from the NOAA Advanced Clear-Sky Processor for Ocean (ACSPO) Super-collated SST."}
 
 magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/Feb2024-SST-ANOM_KHyde_2025.png")
 
@@ -1151,7 +1154,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/worksh
 
 Labrador Slope water accounted for more than 50% of the [source water](https://noaa-edab.github.io/catalog/slopewater.html) entering the Gulf of Maine through the Northeast Channel (Fig. \ref{fig.slopewater}). The increased influx of Labrador Slope and Scotian Shelf water resulted in colder and fresher conditions throughout the Northwest Atlantic and contributed to the Mid-Atlantic [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html). The cold pool area was larger and colder than recent years and more similar to the historical mean (1993-2020). 
 
-```{r slopewater, fig.cap="The proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSW) enter the Gulf of Maine through the Northeast Channel. The orange and teal dashed lines represent the long-term proportion averages for the WSW and LSW respectively."}
+```{r slopewater, fig.asp=.5, fig.cap="The proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSW) enter the Gulf of Maine through the Northeast Channel. The orange and teal dashed lines represent the long-term proportion averages for the WSW and LSW respectively."}
 
 ecodata::plot_slopewater(report = "NewEngland")
 
@@ -1165,7 +1168,7 @@ In the summer, Chesapeake Bay recorded warm temperatures and low bottom water di
 
 During the summer months there were multiple prolonged upwelling events that brought cold water to the surface off the New Jersey coast. There was also an atypical phytoplankton bloom south of Long Island in late June to early July 2024, possibly linked to an upwelling event (Fig. \ref{fig:cocbloom}). The bloom was dominated by coccolithophores, which have an exoskeleton made up of calcium carbonate plates that can turn the water an opaque turquoise color. Large blooms of coccolithophores are unusual in this region, but they are not considered harmful and are grazed by zooplankton. Additionally, there were observations of multiple whale species aggregating near the Hudson Canyon between May and August.
 
-```{r cocobloom, fig.cap="An OLCI Sentinel 3A true color image with enhanced contrast captured on July 2, 2024. Coccolithophores shed their coccolith plates during the later stages of the bloom cycle, which results in the milky turquoise water color (Image credit: NOAA STAR, OCView and Ocean Color Science Team)."}
+```{r cocobloom, out.width="65%", fig.cap="An OLCI Sentinel 3A true color image with enhanced contrast captured on July 2, 2024. Coccolithophores shed their coccolith plates during the later stages of the bloom cycle, which results in the milky turquoise water color (Image credit: NOAA STAR, OCView and Ocean Color Science Team)."}
 
 magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/20240702_Long_Island_algae_bloom_KHyde_2025.png")
 
@@ -1173,7 +1176,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/worksh
 
 Summer bottom [ocean acidification (OA)](https://noaa-edab.github.io/catalog/ocean_acidification.html) risk in the Mid-Atlantic was the highest recorded since sampling began in 2007. High OA risk is measured as low aragonite saturation state($\Omega$). Similarly, the winter/early spring [Gulf of Maine surface OA risk](https://noaa-edab.github.io/catalog/gom_acidification.html)  was significantly above the climatological average and near the sensitivity levels for cod ($\Omega$<1.19) and lobster ($\Omega$<1.09) (Fig.\ref{fig:GOMoa}). These observations were likely driven by the greater volume of fresher, less-buffered Labrador Slope water entering the Gulf of Maine and Mid-Atlantic. The 2023 and 2024 high summer OA risk has increased the extent of potentially unfavorable habitat for Atlantic sea scallops ($\Omega$<1.1) and longfin squid ($\Omega$<0.96). Additionally, for the first time, high OA risk conditions were observed outside of summer (fall for both species and spring for Atlantic sea scallops).
 
-```{r GOMoa, fig.cap="GOM OA"}
+```{r GOMoa, out.width="85%", fig.cap="GOM OA"}
 
 magick::image_read_pdf("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/Hunt_WBD_2024_pCO2_OMa_Weekly_Climatology-ChrisH_2025.pdf") |>
   magick::image_crop("2250x1650+0+1650")
