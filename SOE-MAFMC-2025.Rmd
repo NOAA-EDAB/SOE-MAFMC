@@ -209,7 +209,7 @@ ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild", n=10)
 
 [Community Climate Change Risk indicators](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) have been developed to evaluate port specific landings and revenue risk in terms of commercial species climate vulnerability. The total climate vulnerability is a measure of to what degree a region’s landings (or revenue) is dependent on species sensitive to different climate and environmental change factors including temperature and acidification. For ports combined across Mid-Atlantic states, the total climate vulnerability of landings ranged between moderate and high with no long-term trend (Fig. \ref{fig:climatevul-land}).  In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
 
-```{r climatevul-land, fig.width = 7, fig.asp=.6, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
+```{r climatevul-land, fig.width = 6, fig.asp = 0.45, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
 ecodata::plot_community_climate_vulnerability(plottype = "regionland")
 ```
 
@@ -359,7 +359,7 @@ ecodata::plot_bennet(report="MidAtlantic") #+ ggplot2::facet_wrap(~Var, ncol=1)
 
 For ports combined across Mid-Atlantic states, [total climate vulnerability](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) of revenue ranged from high to very high (with the exception of a single moderate ranking 2022), with no long-term trend. This suggests that Mid-Atlantic port commercial fishing revenue has been highly reliant on climate-sensitive species for most of the period since 2000 (Fig.  \ref{fig:climatevul-rev}). In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
 
-```{r climatevul-rev, fig.width = 7, fig.asp=.6, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
+```{r climatevul-rev, fig.width = 6, fig.asp = 0.45, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
 
 ecodata::plot_community_climate_vulnerability(plottype = "regionrev")
 ```
