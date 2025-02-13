@@ -125,8 +125,7 @@ flextable::as_grouped_data(mng_obj, groups = "service") %>%
 
 
 ```
- 
-
+ \newpage
 ```{r management-risks, ft.arraystretch = 1}
 
 FitFlextableToPage <- function(ft, pgwidth = 6){
@@ -461,7 +460,7 @@ ecodata::plot_exp_n(report = "MidAtlantic", varName = "fall", n=10)
 
 [Functional traits](https://noaa-edab.github.io/catalog/finfish_traits.html), such as length at maturity, maximum body size, or fecundity, can synthesize change across complex, diverse communities. Monitoring changes in functional trait distributions for the fish community can provide a means of assessing ecosystem-scale resilience. There is evidence of long term change in trait distributions in the MAB (Fig. \ref{fig:traits}). The spring finfish community in the MAB is showing long-term shifts towards slower life history strategies with higher length and maturity and lower fecundity. In contrast, the fall MAB finfish community has shifted towards decreased length at maturity, smaller offspring size, and lower trophic level indicative of faster life histories. 
 
-```{r traits, fig.width = 6, fig.asp=0.6, fig.cap="Fish community functional traits in the Mid Atlantic Bight based on Fall (red) and Spring (blue) survey data. Length at maturity for the full finfish community has increased in spring (orange line), but decreased in fall (purple lines)"}
+```{r traits, fig.width = 5, fig.asp=0.5, fig.cap="Fish community functional traits in the Mid Atlantic Bight based on Fall (red) and Spring (blue) survey data. Length at maturity for the full finfish community has increased in spring (orange line), but decreased in fall (purple lines)"}
 
 ecodata::plot_finfish_traits(varName = "length_maturity")
 
@@ -558,7 +557,7 @@ flextable::flextable(a$t) |>
 
 The [Community Climate Change Risk Indicators](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) are calculated by multiplying the percent contribution of species to the total value landed in a community by their respective Total Vulnerability scores (based on NOAA’s Climate Vulnerability Assessment) for different sensitivity and exposure factors and then summing the resulting values by year. As a community (or region) shifts towards climate vulnerable species, its risk score increases. While there is not a long-term trend in total climate vulnerability across Mid Atlantic communities as a whole, a majority of communities rank either high or very high risk (Fig. \ref{fig:commvulex}). This suggests that a majority of Mid-Atlantic communities depend on climate vulnerable species to generate commercial fishery revenue.
 
-```{r commvulex, fig.width = 7.5, fig.asp=.5, fig.cap="Proportion of Mid-Atlantic communities at each revenue climate vulnerability level over time."}
+```{r commvulex, fig.width = 6.5, fig.asp=.5, fig.cap="Proportion of Mid-Atlantic communities at each revenue climate vulnerability level over time."}
 
 ecodata::plot_community_climate_vulnerability(n=100)
 ```
@@ -1039,7 +1038,7 @@ For example, Atlantic City, NJ had the highest potential revenue loss (historica
 
 Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Davisville/North Kingston and Point Judith, RI, and Hyannis and Menemsha, MA.
 
-```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA.", fig.width=6.5, fig.asp=.5, fig.align='left'}
+```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA.", fig.width=6.5, fig.asp=.4, fig.align='left'}
 
 # Email from Abby 30 January 2025
 # Here are the ports that have >=50% of their total revenue coming from species managed outside of the port region:
