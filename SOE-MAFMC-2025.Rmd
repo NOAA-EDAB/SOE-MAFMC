@@ -673,7 +673,7 @@ ecodata::plot_benthos_index(plottype = "cog", varName = "Macrobenthos", n=10)+ g
 ```
 
 
-Ocean temperatures influence the distribution, seasonal timing, and productivity of managed species (see sections below). The Northeast US shelf, including the Mid-Atlantic, has experienced a continued warming trend for both the [long term](https://noaa-edab.github.io/catalog/long_term_sst.html) (Fig. \ref{fig:long-term-sst}) and [recent surface](https://noaa-edab.github.io/catalog/seasonal_oisst_anom.html) and [bottom](https://noaa-edab.github.io/catalog/bottom_temp_comp.html) in all seasons.
+Ocean temperatures influence the distribution, seasonal timing, and productivity of managed species (see sections below). The Northeast US shelf, including the Mid-Atlantic, has experienced a continued warming trend for both the [long term annual sea surface](https://noaa-edab.github.io/catalog/long_term_sst.html) (Fig. \ref{fig:long-term-sst}) and [seasonal  surface](https://noaa-edab.github.io/catalog/seasonal_oisst_anom.html) and [bottom temperature](https://noaa-edab.github.io/catalog/bottom_temp_model_anom.html). However, 2024 observations show near normal to cooler than normal conditions in 2 of the 4 seasons (see [2024 Highlights section](#highlights)).
 
 ```{r long-term-sst, fig.cap="Northeast US annual sea surface temperature (SST, black), with increasing trend (orange)."}
 
@@ -681,7 +681,7 @@ ecodata::plot_long_term_sst(n=10)
 ```
 
 
-Species suitable habitat can expand or contract when changes in temperature and major oceanographic conditions alter distinct water mass habitats.The variability of the Gulf Stream is a major driver of the predominant oceanographic conditions of the Northeast U.S. continental shelf. As the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) has become less stable and shifted northward in the last decade (Fig. \ref{fig:GSI}), warmer ocean temperatures have been observed on the northeast shelf and a higher proportion of [Warm Slope Water](https://noaa-edab.github.io/catalog/slopewater.html) has been present in the Northeast Channel. Since 2008, the Gulf Stream has moved closer to the Grand Banks, reducing the supply of cold, fresh, and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf. In 2024, however, conditions changed with a shift in the Gulf Stream and increased Labrador Slope water entering the Gulf of Maine, resulting in colder and fresher conditions throughout the Northwest Atlantic (see [2024 Highlights](#2024-highlights)).
+Species suitable habitat can expand or contract when changes in temperature and major oceanographic conditions alter distinct water mass habitats.The variability of the Gulf Stream is a major driver of the predominant oceanographic conditions of the Northeast U.S. continental shelf. As the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) has become less stable and shifted northward in the last decade (Fig. \ref{fig:GSI}), warmer ocean temperatures have been observed on the northeast shelf and a higher proportion of [Warm Slope Water](https://noaa-edab.github.io/catalog/slopewater.html) has been present in the Northeast Channel. Since 2008, the Gulf Stream has moved closer to the Grand Banks, reducing the supply of cold, fresh, and oxygen-rich Labrador Current waters to the Northwest Atlantic Shelf. In 2024, however, the [eastern portion of the Gulf Stream was further south](https://noaa-edab.github.io/catalog/gsi.html), which could affect the composition of the source water entering the Gulf of Maine through the Northeast Channel (see [2024 Highlights](#2024-highlights)).
 
 ```{r GSI, fig.cap = "Index representing changes in the location of the western (between 64 and 55 degrees W) Gulf Stream north wall (black). Positive values represent a more northerly Gulf Stream position, with increasing trend (orange)."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")
@@ -690,7 +690,7 @@ ecodata::plot_gsi(varName = "westgsi", n=10)
 ```
 
 
-Changes in ocean temperature and circulation alter habitat features such as the seasonal [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html), a band of relatively cold near-bottom water from spring to fall over the  northern MAB. The cold pool represents essential fish spawning and nursery habitat, and affects fish distribution and behavior. The cold pool has been getting warmer and smaller over time (Fig. \ref{fig:cold-pool-size}). The spatial extent (or area) of the seasonal cold pool is decreasing over time, yet the interannual variability of cold pool area has increased. The spatial extent (or area) of the seasonal cold pool is decreasing over time, yet the interannual variability of cold pool area has increased. In 2024, however, the cold pool index and extent were near the long-term average, likely due to the influx of Labrador Slope and Scotian Shelf waters into the system.
+Changes in ocean temperature and circulation alter habitat features such as the Middle Atlantic Bight [Cold Pool](https://noaa-edab.github.io/catalog/cold_pool.html), a band of relatively cold near-bottom water from spring to fall over the  northern MAB. The cold pool represents essential fish spawning and nursery habitat, and affects fish distribution and behavior. The cold pool has been getting warmer and its areal extent has been shrinking over time (Fig. \ref{fig:cold-pool-size}). In 2024, however, the cold pool index and extent were near the long-term average, likely due to the influx of Labrador Slope and Scotian Shelf waters into the system.
 
 ```{r cold-pool-size, fig.cap="Seasonal cold pool mean temperature (left) and spatial extent index (right), based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles), with declining trends (purple).", fig.width = 7.5, fig.asp = 0.3, results='hide'}
 #,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
@@ -745,7 +745,7 @@ ecodata::plot_trans_dates(varName = "length", n=10) + ggplot2::ggtitle("Time bet
 )
 ```
 
-The [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html) s a summer to early fall feature within the MAB that creates seasonally suitable habitat for some species. Cold pool persistence, a measure of how long this feature is present in a given year, has been declining, so this habitat is available for a shorter portion of the year (Fig. \ref{fig:cold-pool-time}). All cold pool indices were near the long-term average in 2024 and likely related to the influx of northern waters into the system (see [2024 Highlights section](#2024-highlights)). A change in the timing of the autumn breakdown of the cold pool may impact the recruitment of species that depend on it for habitat, such as juvenile yellowtail flounder.  
+As noted above, the Middle Atlantic [Cold Pool](https://noaa-edab.github.io/catalog/cold_pool.html) is a summer to early fall feature that creates seasonally suitable habitat for some species. Cold pool persistence, a measure of how long this feature is present in a given year, has been declining, so this habitat is available for a shorter portion of the year (Fig. \ref{fig:cold-pool-time}). All cold pool indices were near the long-term average in 2024 and likely related to the influx of northern waters into the system (see [2024 Highlights section](#2024-highlights)). A change in the timing of the autumn breakdown of the cold pool may impact the recruitment of species that depend on it for habitat, such as juvenile yellowtail flounder.  
 
 ```{r cold-pool-time, fig.cap="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.width = 3.5, fig.asp=.5, results='hide'}
 #, fig.width = 5,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
@@ -1143,7 +1143,7 @@ This section intends to provide a record of noteworthy observations reported in 
 2024 global sea surface and air temperatures exceeded 2023 as the warmest year on record, but colder than average temperatures were observed in the Northeast U.S. Oceanographic and ecological conditions in the Northwest Atlantic were markedly different in 2024 compared to recent years. 
 
 #### Northwest Atlantic Phenomena 
-Late 2023 and early 2024 observations indicate movement of cooler and fresher water into the Northwest Atlantic. Anomalously cold and low salinity conditions were recorded throughout the Northeast Shelf and were widespread across the Slope Sea. These cooler and fresher conditions are linked to the southward movement of the eastern portion of the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) and an increased influx of Labrador Slope and Scotian Shelf water into the system. 
+Late 2023 and early 2024 observations indicate movement of cooler and fresher water into the Northwest Atlantic. Anomalously cold (Fig. \ref{fig:slopesea}) and low salinity conditions were recorded throughout the Northeast Shelf and were widespread across the Slope Sea for much of the year. These cooler and fresher conditions are linked to the southward movement of the eastern portion of the [Gulf Stream](https://noaa-edab.github.io/catalog/gsi.html) and an increased influx of Labrador Slope and Scotian Shelf water into the system. 
 
 ```{r slopesea, out.width="65%", fig.cap="February 2024 sea surface temperature difference compared to the February 2000-2020 long-term mean from the NOAA Advanced Clear-Sky Processor for Ocean (ACSPO) Super-collated SST."}
 
@@ -1151,7 +1151,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/worksh
 
 ```
 
-Labrador Slope water accounted for more than 50% of the [source water](https://noaa-edab.github.io/catalog/slopewater.html) entering the Gulf of Maine through the Northeast Channel (Fig. \ref{fig.slopewater}). The increased influx of Labrador Slope and Scotian Shelf water resulted in colder and fresher conditions throughout the Northwest Atlantic and contributed to the Mid-Atlantic [cold pool](https://noaa-edab.github.io/catalog/cold_pool.html). The cold pool area was larger and colder than recent years and more similar to the historical mean (1993-2020). 
+In 2023, Labrador Slope water accounted for more than 50% of the [source water](https://noaa-edab.github.io/catalog/slopewater.html) entering the Gulf of Maine through the Northeast Channel (Fig. \ref{fig:slopewater}); data are still being processed for 2024. Colder, fresher water detected deep in the Jordan Basin for the [first half of 2024](https://noaa-edab.github.io/catalog/observation_synthesis_2024.html) suggests an increased influx of Labrador Slope and Scotian Shelf water, which resulted in colder and fresher conditions throughout the Northwest Atlantic and contributed to the increased size and colder temperatures of the  Mid-Atlantic [Cold Pool](https://noaa-edab.github.io/catalog/cold_pool.html). 
 
 ```{r slopewater, fig.asp=.5, fig.cap="The proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSW) enter the Gulf of Maine through the Northeast Channel. The orange and teal dashed lines represent the long-term proportion averages for the WSW and LSW respectively."}
 
@@ -1165,20 +1165,21 @@ The influx of the northern waters is likely linked to multiple observations acro
 
 In the summer, Chesapeake Bay recorded warm temperatures and low bottom water dissolved oxygen that resulted in less than suitable habitat for species such as striped bass and blue crabs. These poor conditions can affect their distribution, growth, and survival. Additionally, lower than average spring and summer salinity negatively impacted oyster hatchery operations and increased the area of available habitat for invasive blue catfish, potentially increasing predation on blue crabs and other important finfish species.
 
-During the summer months there were multiple prolonged upwelling events that brought cold water to the surface off the New Jersey coast. There was also an atypical phytoplankton bloom south of Long Island in late June to early July 2024, possibly linked to an upwelling event (Fig. \ref{fig:cocbloom}). The bloom was dominated by coccolithophores, which have an exoskeleton made up of calcium carbonate plates that can turn the water an opaque turquoise color. Large blooms of coccolithophores are unusual in this region, but they are not considered harmful and are grazed by zooplankton. Additionally, there were observations of multiple whale species aggregating near the Hudson Canyon between May and August.
+During the summer months there were multiple prolonged upwelling events that brought cold water to the surface off the New Jersey coast. There was also an atypical phytoplankton bloom south of Long Island in late June to early July 2024, possibly linked to an upwelling event (Fig. \ref{fig:cocobloom}). The bloom was dominated by coccolithophores, which have an exoskeleton made up of calcium carbonate plates that can turn the water an opaque turquoise color. Large blooms of coccolithophores are unusual in this region, but they are not considered harmful and are grazed by zooplankton. Additionally, there were observations of multiple whale species aggregating near the Hudson Canyon between May and August.
 
 ```{r cocobloom, out.width="65%", fig.cap="An OLCI Sentinel 3A true color image with enhanced contrast captured on July 2, 2024. Coccolithophores shed their coccolith plates during the later stages of the bloom cycle, which results in the milky turquoise water color (Image credit: NOAA STAR, OCView and Ocean Color Science Team)."}
 
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/20240702_Long_Island_algae_bloom_KHyde_2025.png")
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/20240702_Long_Island_algae_bloom_KHyde_2025.png")|>
+  magick::image_resize("800x1800")
 
 ```
 
 Summer bottom [ocean acidification (OA)](https://noaa-edab.github.io/catalog/ocean_acidification.html) risk in the Mid-Atlantic was the highest recorded since sampling began in 2007. High OA risk is measured as low aragonite saturation state($\Omega$). Similarly, the winter/early spring [Gulf of Maine surface OA risk](https://noaa-edab.github.io/catalog/gom_acidification.html)  was significantly above the climatological average and near the sensitivity levels for cod ($\Omega$<1.19) and lobster ($\Omega$<1.09) (Fig.\ref{fig:GOMoa}). These observations were likely driven by the greater volume of fresher, less-buffered Labrador Slope water entering the Gulf of Maine and Mid-Atlantic. The 2023 and 2024 high summer OA risk has increased the extent of potentially unfavorable habitat for Atlantic sea scallops ($\Omega$<1.1) and longfin squid ($\Omega$<0.96). Additionally, for the first time, high OA risk conditions were observed outside of summer (fall for both species and spring for Atlantic sea scallops).
 
-```{r GOMoa, out.width="85%", fig.cap="GOM OA"}
+```{r GOMoa, out.width="85%", fig.cap="Weekly average surface aragonite saturation state measured at the long-term buoy location in the Gulf of Maine at 43.02 N and 70.54 W"}
 
 magick::image_read_pdf("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/Hunt_WBD_2024_pCO2_OMa_Weekly_Climatology-ChrisH_2025.pdf") |>
-  magick::image_crop("2250x1650+0+1650")
+  magick::image_crop("1650x1100+400+1650")
 
 ```
 
@@ -1186,7 +1187,7 @@ In contrast to the  documented die-off of scallops in the Mid-Atlantic Elephant 
 
 # Contributors
 
-**Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Joseph Caracappa, Andy Beet, Brandon Beltz, Geret DePiper, Kimberly Hyde, Scott Large, Laurel Smith, Sarah Weisberg
+**Editors** (NOAA NMFS Northeast Fisheries Science Center, NEFSC): Sarah Gaichas, Joseph Caracappa, Andy Beet, Brandon Beltz, Geret DePiper, Kimberly Hyde, Scott Large, Sarah Weisberg.
 
 **Contributors** (currently being updated)
 
@@ -1194,10 +1195,10 @@ In contrast to the  documented die-off of scallops in the Mid-Atlantic Elephant 
 
 The figure format is illustrated in Fig \ref{fig:docformat}a. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for 2022, the shaded region will still cover this time period. The spatial scale of indicators is either coastwide, Mid-Atlantic states (New York, New Jersey, Delaware, Maryland, Virginia, North Carolina), or at the Mid-Atlantic Bight (MAB) Ecosystem Production Unit (EPU, Fig. \ref{fig:docformat}b) level.
 
-```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.asp = 0.3, ft.arraystretch = 1}
-#fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.49\\linewidth', fig.show="hold" 
+```{r docformat, fig.cap = "Document orientation. a. Key to figures. b.The Northeast Large Marine Ecosystem.",  fig.width = 8, fig.height = 2.5}
+#fig.subcap= c('Key to figures.', 'The Northeast Large Marine Ecosystem.'), out.width = '.49\\linewidth', fig.show="hold" fig.asp = 0.3, ft.arraystretch = 1
 # Figure orientation subfigure
-ecodata::plot_demo()
+ecodata::plot_demo(n=10)
 
 ```
 
