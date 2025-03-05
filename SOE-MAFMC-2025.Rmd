@@ -191,7 +191,7 @@ In this section, we examine indicators related to broad, ecosystem-level fishery
 ### Indicators: Landings; commercial and recreational 
 This year, we present updated indicators for total [commercial landings](https://noaa-edab.github.io/catalog/comdat.html), (includes seafood, bait, and industrial landings), U.S. seafood landings, and Council-managed U.S. seafood landings. Total commercial landings within the Mid-Atlantic have declined over the long term, and both total U.S. and Mid-Atlantic managed seafood landings are near their all time low (Fig. \ref{fig:total-landings}).
 
-```{r, total-landings, fig.asp=.8, fig.cap = "Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red), with significant decline (purple) in total landings."}
+```{r, total-landings, fig.asp=.7, fig.cap = "Total commercial landings (black), total U.S. seafood landings (blue), and Mid-Atlantic managed U.S. seafood landings (red), with significant decline (purple) in total landings."}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")
 ecodata::plot_comdat(report = "MidAtlantic", varName = "landings", n=10) #+
   #ggplot2::ylab("")
@@ -208,7 +208,7 @@ ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild", n=10)
 
 [Community Climate Change Risk indicators](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) have been developed to evaluate port specific landings and revenue risk in terms of commercial species climate vulnerability. The total climate vulnerability is a measure of to what degree a region’s landings (or revenue) is dependent on species sensitive to different climate and environmental change factors including temperature and acidification. For ports combined across Mid-Atlantic states, the total climate vulnerability of landings ranged between moderate and high with no long-term trend (Fig. \ref{fig:climatevul-land}).  In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
 
-```{r climatevul-land, fig.width = 6, fig.asp = 0.45, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
+```{r climatevul-land, fig.width = 8, fig.asp = 0.5, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
 ecodata::plot_community_climate_vulnerability(plottype = "regionland")
 ```
 
@@ -230,7 +230,8 @@ a <- ecodata::plot_rec_hms(report="MidAtlantic", n=100)  +
   ggplot2::scale_color_discrete(        
     limits = c("LargeCoastal",  "Prohibited", "SmallCoastal"),         
     labels = c("Large Coastal", "Prohibited", "Small Coastal")
-    ) 
+    ) +
+  ggplot2::ggtitle("Mid Atlantic Recreational Shark Landings")
 
 b <- ecodata::plot_lps_sharks(n=100) + ggplot2::ggtitle("Mid Atlantic Rec. Pelagic Shark Landings")
 
@@ -323,7 +324,7 @@ Other environmental changes require monitoring as they may become important driv
 - Climate is trending into uncharted territory. Globally, 2024 was the warmest year on record (see [2024 Highlights section](#highlights)). 
 - Stocks are shifting their distributions, moving towards the northeast and into deeper waters throughout the Northeast US Large Marine Ecosystem (see [Climate Risks section](#climate-and-ecosystem-change)).
 - Some ecosystem composition and production changes have been observed (see [Stability section](#stability)). 
-- Some fishing communities are affected by socioeconomic vulnerabilities (see [Community Social and Climate Vulnerability section](#community-social-and climate-vulnerability)).  
+- Some fishing communities are affected by socioeconomic vulnerabilities (see [Community Social and Climate Vulnerability section](#community-social-and-climate-vulnerability)).  
 
 ## Commercial Profits 
 
@@ -358,7 +359,7 @@ ecodata::plot_bennet(report="MidAtlantic") #+ ggplot2::facet_wrap(~Var, ncol=1)
 
 For ports combined across Mid-Atlantic states, [total climate vulnerability](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) of revenue ranged from high to very high (with the exception of a single moderate ranking 2022), with no long-term trend. This suggests that Mid-Atlantic port commercial fishing revenue has been highly reliant on climate-sensitive species for most of the period since 2000 (Fig.  \ref{fig:climatevul-rev}). In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
 
-```{r climatevul-rev, fig.width = 6, fig.asp = 0.45, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
+```{r climatevul-rev, fig.width=8, fig.asp=0.5, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
 
 ecodata::plot_community_climate_vulnerability(plottype = "regionrev")
 ```
@@ -575,7 +576,7 @@ Fishery management objectives for protected species generally focus on reducing 
 ### Indicators: bycatch, population (adult and juvenile) numbers, mortalities
 Average indices for both [harbor porpoise](https://noaa-edab.github.io/catalog/harborporpoise.html) (Fig. \ref{fig:harborporpoise}) and [gray seal](https://noaa-edab.github.io/catalog/grayseal.html) bycatch (Fig. \ref{fig:grayseal}) are below current PBR thresholds, meeting management objectives, although uncertainty in the gray seal bycatch estimate has increased recently, and gray seal bycatch is among the highest for marine mammals in the U.S.
 
-```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).", fig.width=5}
+```{r harborporpoise, fig.cap="Harbor porpoise average bycatch estimate for Mid-Atlantic and New England gillnet fisheries (blue) and the potential biological removal (red).", fig.width=5, fig.asp=0.47}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R")
 #fig.width=6}
 
@@ -584,7 +585,7 @@ ecodata::plot_harborporpoise()
 
 The annual estimate for gray seal bycatch, most of which occurs in New England, has declined since 2019, in part driven by declining gillnet landings. In addition, estimates since 2019 have greater uncertainty stemming from low observer coverage in some times and areas since 2019. The rolling mean confidence interval remains just below the PBR threshold. 
 
-```{r grayseal, fig.cap="Gray Seal average bycatch estimate for gillnet fisheries (blue) and and the potential biological removal (red).", fig.width=5}
+```{r grayseal, fig.cap="Gray Seal average bycatch estimate for gillnet fisheries (blue) and and the potential biological removal (red).", fig.width=5, fig.asp=0.47}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R")
 #fig.width=6}
 
@@ -662,14 +663,20 @@ Mobile populations shift distributions to maintain suitable temperature and prey
 
 ```{r forageshifts, fig.cap="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf, with increasing trend (orange) for fall eastward and northward center of gravity.", fig.width = 8, fig.asp = .3}
 
-ecodata::plot_forage_index(varName = "cog", n=10)
+ecodata::plot_forage_index(varName = "cog", n=10) +
+  ggplot2::coord_cartesian(xlim = c(1982, 2023)) +
+  ggplot2::ggtitle("Northeast U.S. Forage Fish Distribution") +
+  ggplot2::ylab("Center of Gravity, km")
 ```
 
-In contrast, macrobenthos center of gravity has shifted westward. Macrobenthos are small bottom-dwelling invertebrates including polychaete worms, small crustaceans, bivalves (non-commercial), gastropods, nemerteans, tunicates, cnidarians, brittle stars, sea cucumbers, and sand dollars, and are prey for many managed species. [Large copepods](https://noaa-edab.github.io/catalog/zooplankton_index.html#key-results-and-visualizations-4) have a similar pattern to macrobenthos, trending westward in fall.
+In contrast, macrobenthos center of gravity has shifted westward (Fig. \ref{fig:macrobenthosshifts}). Macrobenthos are small bottom-dwelling invertebrates including polychaete worms, small crustaceans, bivalves (non-commercial), gastropods, nemerteans, tunicates, cnidarians, brittle stars, sea cucumbers, and sand dollars, and are prey for many managed species. [Large copepods](https://noaa-edab.github.io/catalog/zooplankton_index.html#key-results-and-visualizations-4) have a similar pattern to macrobenthos, trending westward in fall.
 
-```{r macrobenthosshifts, fig.alt="Eastward (left) and northward (right) shifts in the center of gravity for macrobenthos species on the Northeast U.S. Shelf", fig.width = 8,fig.asp = .3}
+```{r macrobenthosshifts, fig.cap="Eastward (left) and northward (right) shifts in the center of gravity for macrobenthos species on the Northeast U.S. Shelf", fig.width = 8,fig.asp = .3}
 #, fig.asp = .3
-ecodata::plot_benthos_index(plottype = "cog", varName = "Macrobenthos", n=10)+ ggplot2::coord_cartesian(xlim = c(1982, 2022))
+ecodata::plot_benthos_index(plottype = "cog", varName = "Macrobenthos", n=10) + 
+  ggplot2::coord_cartesian(xlim = c(1980, 2023)) +
+  ggplot2::ggtitle("Northeast U.S. Macrobenthos Distribution") +
+  ggplot2::ylab("Center of Gravity, km")
 ```
 
 
@@ -747,14 +754,14 @@ ecodata::plot_trans_dates(varName = "length", n=10) + ggplot2::ggtitle("Time bet
 
 As noted above, the Middle Atlantic [Cold Pool](https://noaa-edab.github.io/catalog/cold_pool.html) is a summer to early fall feature that creates seasonally suitable habitat for some species. Cold pool persistence, a measure of how long this feature is present in a given year, has been declining, so this habitat is available for a shorter portion of the year (Fig. \ref{fig:cold-pool-time}). All cold pool indices were near the long-term average in 2024 and likely related to the influx of northern waters into the system (see [2024 Highlights section](#2024-highlights)). A change in the timing of the autumn breakdown of the cold pool may impact the recruitment of species that depend on it for habitat, such as juvenile yellowtail flounder.  
 
-```{r cold-pool-time, fig.cap="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.width = 3.5, fig.asp=.5, results='hide'}
+```{r cold-pool-time, fig.cap="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.width = 4, fig.asp=.52, results='hide'}
 #, fig.width = 5,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
 
 ecodata::plot_cold_pool(varName = "persistence", n=10)
 
 ```
 
-The seasonal timing of Mid-Atlantic [phytoplankton](https://noaa-edab.github.io/catalog/chl_pp.html) blooms shows high interannual variability during the fall bloom period (October-December).  The significant increase in January chlorophyll suggests that the fall bloom period is continuing into the winter, with more chlorophyll now than in the late 1990s. The significant decrease of chlorophyll in September could be related to warmer temperatures persisting into early fall and increased nutrient limitation.
+The seasonal timing of Mid-Atlantic [phytoplankton](https://noaa-edab.github.io/catalog/chl_pp.html) blooms shows high interannual variability during the fall bloom period (October-December, Fig. \ref{fig:montlychl}).  The significant increase in January chlorophyll suggests that the fall bloom period is continuing into the winter, with more chlorophyll now than in the late 1990s. The significant decrease of chlorophyll in September could be related to warmer temperatures persisting into early fall and increased nutrient limitation.
 
 ```{r montlychl, fig.width=14, fig.height=8, fig.cap="Monthly median chlorophyll a concentration in the MAB (black) with significant increase in January (orange line) and decrease in September (purple line)."}
 
@@ -794,7 +801,7 @@ a + b
 
 The health of individual fish (i.e. fish condition, measured as weight for a given length) can contribute to population productivity through improved growth, reproduction and survival. [Fish condition](https://noaa-edab.github.io/catalog/condition.html) in the MAB was generally good prior to 2000, poor from 2001-2010 (concurrent with declines in productivity, Fig. \ref{fig:productivity-anomaly}), and a mix of good and poor since 2011. In 2024, condition continued to be mixed, with general improvement since a relatively low condition year in 2021 (Fig. \ref{fig:mab-cf}). Preliminary analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
 
-```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", fig.width=9}
+```{r mab-cf, fig.cap = "Condition factor for fish species in the MAB based on fall NEFSC bottom trawl survey data. MAB data are missing for 2017 due to survey delays, and no survey was conducted in 2020.", fig.width=9, fig.asp=.7}
 
 ecodata::plot_condition() +
   theme(#legend.position = 'bottom',
@@ -869,7 +876,7 @@ Fish production can also be directly related to the prevailing environmental con
 
 In 2024, there were no marine heatwaves in the MAB. Only one marine heatwave occurred throughout the entire U.S. Northeast Shelf due to the cooler ocean conditions observed in the region.  This surface marine heatwave occurred in the Gulf of Maine starting on May 29th, peaking on June 7th, and lasting 12 days.
 
-```{r therm-hab-persist-2024, fig.cap = "The number of days in 2024 where bottom temperature exceeds 15℃ (left) and 24℃ (right) based on the GLORYS 1/12 degree grid.", fig.width=10, fig.asp=1}
+```{r therm-hab-persist-2024, fig.cap = "The number of days in 2024 where bottom temperature exceeds 15℃ (left) and 24℃ (right) based on the GLORYS 1/12 degree grid.", fig.width=10, fig.asp=.5}
 # year = 2015
 # p <- ecodata::plot_thermal_habitat_persistence(year=year) + ggplot2::ggtitle(paste(year))
 # ggplot2::ggsave(here::here('images','thermal_habitat_2015.png'),p,width = 8,height = 8, units = 'in',dpi = 300)
@@ -913,7 +920,7 @@ The processes that control fish productivity and mortality are dynamic, complex,
 ## Other Ocean Uses: Offshore Wind
 
 ### Indicators: development timeline, revenue in lease areas, coastal community vulnerability
-All reported potential offshore wind projected development timelines and data are subject to change and have been based on BOEM Environmental Impact Statements.  Offshore wind development schedule and areas are subject to change based on the Executive Order [Temporary Withdrawal of All Areas on the Outer Continental Shelf from Offshore Wind Leasing and Review of the Federal Government's Leasing and Permitting Practices for Wind Projects](https://www.whitehouse.gov/presidential-actions/2025/01/temporary-withdrawal-of-all-areas-on-the-outer-continental-shelf-from-offshore-wind-leasing-and-review-of-the-federal-governments-leasing-and-permitting-practices-for-wind-projects/)
+All reported potential offshore wind projected development timelines and data are subject to change and have been based on BOEM Environmental Impact Statements.  Offshore wind development schedule and areas are subject to change based on the Executive Order [Temporary Withdrawal of All Areas on the Outer Continental Shelf from Offshore Wind Leasing and Review of the Federal Government's Leasing and Permitting Practices for Wind Projects](https://www.whitehouse.gov/presidential-actions/2025/01/temporary-withdrawal-of-all-areas-on-the-outer-continental-shelf-from-offshore-wind-leasing-and-review-of-the-federal-governments-leasing-and-permitting-practices-for-wind-projects/).
 
 As of January 2025, 30 offshore [wind development](https://noaa-edab.github.io/catalog/wind_dev_speed.html) projects are proposed for construction over the next decade in the Northeast (timelines and project data for 2025 are based on the Maryland Offshore Wind Final Environmental Impact Statement, Appendix D). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-proposed-dev}). An additional 800,000 lease acres are proposed for development beyond 2030 and 17 million acres are identified by BOEM as designated planning areas (Fig. \ref{fig:wind-dev-cumul}).
 
@@ -1041,7 +1048,7 @@ ecodata::plot_wind_port(report = "MidAtlantic") #+
 
 For example, Atlantic City, NJ was in the top three potential revenue loss (historical minimum of 3% and maximum of 24%, respectively) from potential wind development areas based on 2008-2023 total port fisheries revenue. BOEM reports that cumulative offshore wind development (if all proposed projects are developed) could have moderate impacts on low-income members of communities with socio-demographic concerns who work in the commercial fishing and for-hire fishing industry due to disruptions to fish populations, restrictions on navigation and increased vessel traffic, as well as existing vulnerabilities of low-income workers to economic impacts.
 
-Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Davisville/North Kingston and Point Judith, RI, and Hyannis and Menemsha, MA.
+Some ports in New England land Mid-Atlantic managed species from wind areas as well. For the maximum percent value reported in each New England port, the majority (at least 50% based on both value and pounds) of those landings were Mid-Atlantic managed species within wind areas for Davisville/North Kingston and Point Judith, RI, and Hyannis and Menemsha, MA (Fig. \ref{fig:wind-rev-NE-MAFMC}).
 
 ```{r wind-rev-NE-MAFMC, fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA.", fig.width=6.5, fig.asp=.4, fig.align='left'}
 
