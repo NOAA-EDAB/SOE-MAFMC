@@ -206,10 +206,10 @@ ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild", n=10)
 
 ```
 
-[Community Climate Change Risk indicators](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) have been developed to evaluate port specific landings and revenue risk in terms of commercial species climate vulnerability. The total climate vulnerability is a measure of to what degree a region’s landings (or revenue) is dependent on species sensitive to different climate and environmental change factors including temperature and acidification. For ports combined across Mid-Atlantic states, the total climate vulnerability of landings ranged between moderate and high with no long-term trend (Fig. \ref{fig:climatevul-land}).  In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
+[Community Climate Change Risk indicators](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) have been developed to evaluate port specific landings and revenue risk in terms of commercial species climate vulnerability. The total climate vulnerability is a measure of to what degree a region’s landings (or revenue) is dependent on species sensitive to different climate and environmental change factors including temperature and acidification. For ports combined across Mid-Atlantic states, the total climate vulnerability of landings ranged between moderate and high with a long term increase from 2000-2021 (Fig. \ref{fig:climatevul-land}). 
 
 ```{r climatevul-land, fig.width = 8, fig.asp = 0.5, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
-ecodata::plot_community_climate_vulnerability(plottype = "regionland")
+ecodata::plot_community_climate_vulnerability(plottype = "regionland", n=100)
 ```
 
 
@@ -319,7 +319,7 @@ The distribution of surfclams and ocean quahogs is changing, resulting in areas 
 
 The decline in recreational seafood harvest stems from other drivers. Some of the decline, such as that for recreational shark landings, is driven by management intended to reduce fishing mortality on mako sharks. However, NOAA Fisheries’ Marine Recreational Information Program survey methodology was updated in 2018, so it is unclear whether the lower than average landings for species other than sharks since 2018 are driven by changes in fishing behavior or the change in the survey methodology. Nevertheless, the recreational harvest appears to be stabilizing at a lower level than historical estimates.
 
-Other environmental changes require monitoring as they may become important drivers of commercial and recreational landings in the future.  Overall, landings from Mid-Atlantic ports depend on species with moderate climate variability. We note that individual stocks will respond differently to these drivers, and fisheries and communities rely on different combinations of stocks:  
+Other environmental changes require monitoring as they may become important drivers of commercial and recreational landings in the future.  Overall, landings from Mid-Atlantic ports depend on species with moderate climate vulnerability, and the proportion of landings with higher vulnerability has increased over time. We note that individual stocks will respond differently to these drivers, and fisheries and communities rely on different combinations of stocks:  
  
 - Climate is trending into uncharted territory. Globally, 2024 was the warmest year on record (see [2024 Highlights section](#highlights)). 
 - Stocks are shifting their distributions, moving towards the northeast and into deeper waters throughout the Northeast US Large Marine Ecosystem (see [Climate Risks section](#climate-and-ecosystem-change)).
@@ -357,11 +357,11 @@ ecodata::plot_bennet(report = "MidAtlantic", varName = "total")
 ecodata::plot_bennet(report="MidAtlantic") #+ ggplot2::facet_wrap(~Var, ncol=1)
 ```
 
-For ports combined across Mid-Atlantic states, [total climate vulnerability](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) of revenue ranged from high to very high (with the exception of a single moderate ranking 2022), with no long-term trend. This suggests that Mid-Atlantic port commercial fishing revenue has been highly reliant on climate-sensitive species for most of the period since 2000 (Fig.  \ref{fig:climatevul-rev}). In 2022, surfclam and ocean quahog landings were not in the data, which accounts for much of the decline in total climate vulnerability.
+For ports combined across Mid-Atlantic states, [total climate vulnerability](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) of revenue ranged from high to very high from 2000-2021, with no long-term trend. This suggests that Mid-Atlantic port commercial fishing revenue has been highly reliant on climate-sensitive species for most of the period since 2000 (Fig. \ref{fig:climatevul-rev}). 
 
 ```{r climatevul-rev, fig.width=8, fig.asp=0.5, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
 
-ecodata::plot_community_climate_vulnerability(plottype = "regionrev")
+ecodata::plot_community_climate_vulnerability(plottype = "regionrev", n=100)
 ```
 
 
