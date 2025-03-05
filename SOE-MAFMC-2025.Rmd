@@ -415,7 +415,7 @@ a+b
 ```
 
 
-This indicates different commercial fleet composition but similar diversity in species targeting opportunities over time, for those fleets continuing to fish(Fig. \ref{fig:commercial-div-species-div}). Of note is that the current lack of vessel data available for surf clam and ocean quahog prior to 2003 precludes the assessment of longer term dynamics with these indicators.
+This indicates different commercial fleet composition but similar diversity in species targeting opportunities over time, for those fleets continuing to fish (Fig. \ref{fig:commercial-div-species-div}). Of note is that the current lack of vessel data available for surf clam and ocean quahog prior to 2003 precludes the assessment of longer term dynamics with these indicators.
 
 
 ```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the Mid Atlantic.")}
@@ -446,10 +446,13 @@ ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "
 
 [Zooplankton diversity](https://noaa-edab.github.io/catalog/zoo_diversity.html) is increasing in the MAB (Fig. \ref{fig:zoo-diversity}), while [adult fish diversity](https://noaa-edab.github.io/catalog/exp_n.html), the expected number of species in a standard number of individuals sampled from the NEFSC bottom trawl survey, appears stable over time, with current values within one standard deviation from most historic estimates (Fig. \ref{fig:exp-n}). 
 
-```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, Shannon diversity index (black) with significant increase (orange line)."}
+```{r zoo-diversity, fig.cap = "Zooplankton diversity in the Mid-Atlantic Bight, Shannon diversity index (black) with significant increase (orange line).", fig.asp=.47}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")
 
-ecodata::plot_zoo_diversity(report = "MidAtlantic", n=10)
+ecodata::plot_zoo_diversity(report = "MidAtlantic", n=10) +
+  ggplot2::ggtitle("Zooplankton Diversity") +
+  ggplot2::theme(plot.title = element_text(vjust=-5)) +
+  ggplot2::ylab("Shannon Index")
 ```
 
 
@@ -938,8 +941,8 @@ Just over 3,200 foundations and more than 12,000 miles of inter-array and offsho
 
 #magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/Cumulative_Timeline_FullRegion_SoE2024_v2_2024.png")
 
-magick::image_read_pdf("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/dev/data-raw/workshop/images/UpdatedWindFigure49(MAFMC)andFig50(NEFMC)-AngelaSilva_2025.pdf")%>%
-  magick::image_resize('1000x2000')
+magick::image_read_pdf("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/dev/data-raw/workshop/images/UpdatedWindFigure49(MAFMC)andFig50(NEFMC)-AngelaSilva_2025.pdf") #%>%
+  #magick::image_resize('1000x2000')
 
 ```
 
