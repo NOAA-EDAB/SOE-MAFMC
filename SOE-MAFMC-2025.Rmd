@@ -931,7 +931,7 @@ Just over 3,200 foundations and more than 12,000 miles of inter-array and offsho
 
 #magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/Cumulative_Timeline_FullRegion_SoE2024_v2_2024.png")
 
-magick::image_read("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/dev/data-raw/workshop/images/UpdatedWindFigure49(MAFMC)andFig50(NEFMC)-AngelaSilva_2025.png")%>%
+magick::image_read_pdf("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/dev/data-raw/workshop/images/UpdatedWindFigure49(MAFMC)andFig50(NEFMC)-AngelaSilva_2025.pdf")%>%
   magick::image_resize('1000x2000')
 
 ```
